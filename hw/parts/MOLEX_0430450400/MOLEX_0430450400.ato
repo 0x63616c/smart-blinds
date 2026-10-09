@@ -1,0 +1,19 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component MOLEX_0430450400_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C122413", date="2026-10-09T17:59:51.900580+00:00", checksum="5a98f94aa865025da67471dc827c4affcc50e7c390267ba207f6b03066ee4c48">
+
+    trait is_atomic_part<manufacturer="MOLEX", partnumber="0430450400", footprint="CONN-TH_0430450400.kicad_mod", symbol="0430450400.kicad_sym", model="430450400.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C122413", manufacturer="MOLEX", partno="0430450400">
+    trait has_designator_prefix<prefix="CN">
+
+    # pins
+    pin 4
+    pin 3
+    pin 2
+    pin 1

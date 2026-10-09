@@ -1,0 +1,138 @@
+(footprint "Sunlord_MWSA0603S_100MT:IND-SMD_L7.1-W6.6"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "4ef4ac6c-5378-4d2a-afd6-98b90e89650a")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "11ce0ff3-e20f-40fb-990f-76f601bf4bbe")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "IND-SMD_L7.1-W6.6"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "248518f5-1070-4a3d-9338-97c024c36719")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -3.55 3.3)
+		(end -3.52 3.3)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "95274197-65b7-42c5-9bf0-327bfd375c88")
+	)
+	(fp_line
+		(start 3.3 -1.84)
+		(end 3.3 -3.3)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "35c4a3d1-01e1-4b83-a936-18803d9eeb97")
+	)
+	(fp_line
+		(start 3.3 -3.3)
+		(end -3.3 -3.3)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "695f1114-294f-4807-885a-6c97af6d6f25")
+	)
+	(fp_line
+		(start -3.3 1.84)
+		(end -3.3 3.3)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "525e2dd4-9c8c-44f6-a292-e9c29d69f0e3")
+	)
+	(fp_line
+		(start -3.3 3.3)
+		(end 3.3 3.3)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "1e80464a-7e73-4306-b1b7-bed89ace6572")
+	)
+	(fp_line
+		(start 3.3 3.3)
+		(end 3.3 1.84)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "26951229-685f-451a-bd04-302a831c45f7")
+	)
+	(fp_line
+		(start -3.3 -3.3)
+		(end -3.3 -1.84)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "66904659-0ee9-4414-94d5-43751590ede5")
+	)
+	(pad "2" smd rect
+		(at 2.91 0 0)
+		(size 2.15 3.32)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "2a176f54-f01f-41c6-97d4-be6977a39dcd")
+	)
+	(pad "1" smd rect
+		(at -2.91 0 0)
+		(size 2.15 3.32)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "a699c8ed-cfcb-41cd-a5b5-937b3ae742a3")
+	)
+	(model "${KIPRJMOD}/../../parts/Sunlord_MWSA0603S_100MT/IND-SMD_L7.0-W6.6-H3.0.STEP"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

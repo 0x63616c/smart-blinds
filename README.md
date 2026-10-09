@@ -1,6 +1,6 @@
 # e8s
 
-Hardware project: battery packs built from Samsung 50E 21700 cells, the boards that charge them, and the parts that hold them.
+Hardware project: battery packs built from Samsung 50E 21700 cells (8 × 3S2P), the boards that feed and charge them, and the parts that hold them.
 
 | Dir | What |
 |---|---|
@@ -12,7 +12,7 @@ Hardware project: battery packs built from Samsung 50E 21700 cells, the boards t
 
 | Board | What | Notes |
 |---|---|---|
-| `pd12v6` | USB-C PD (20 V) → 12.6 V / 4.5 A, XT30PW out, USB data pass-through | `docs/pd12v6/design.md` |
+| `pd12v6` | USB-C PD (20 V) → 12.6 V / 5 A, Micro-Fit 3.0 out (12.6 V, GND, D+, D−), 4-layer | `docs/pd12v6/design.md` |
 
 ## Setup
 

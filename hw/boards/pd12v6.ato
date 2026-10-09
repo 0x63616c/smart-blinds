@@ -1,5 +1,5 @@
 """
-pd12v6 — USB-C PD (20 V) in, regulated 12.6 V / up to ~4.5 A out, USB 2.0 data passed through.
+pd12v6 — USB-C PD (20 V) in, regulated 12.6 V / up to 5 A out, USB 2.0 data passed through.
 
 Design point (see docs/pd12v6/design.md for the full rationale):
   * CH224A asks the USB-C PD source for 20 V (CFG1 = 120 kΩ, single-resistor mode).
@@ -9,13 +9,14 @@ Design point (see docs/pd12v6/design.md for the full rationale):
       UVLO 820 k / 56 k         ->  starts at ~17.8 V, stops at ~15.0 V
                                     (buck stays OFF on plain 5 V USB; only runs once PD 20 V is granted)
       Comp 20 k + 8.2 nF, 47 pF pole (datasheet §8.2.2.11 with Cout ≈ 56 µF derated)
-  * Constant-current limit ≈ 4.5 A: 20 mΩ shunt in the output return, LM358 integrator
-    injects current into FB when I_out > limit so a 65 W (3.25 A @ 20 V) charger is never overloaded.
-      I_lim = (20 V * 1k / 221k) / 20 mΩ = 90 mV / 20 mΩ ≈ 4.5 A
+  * No current limiter on this board: the TPS54560's own ~6 A cycle-by-cycle limit protects the
+    buck, and the downstream pack board sets the charge current.  A 65 W charger that is
+    overdrawn simply resets its PD contract.
   * LEDs: red  = PD 20 V negotiated (CH224A PG, active low)
           green = 12.6 V output present
-  * Output: XT30PW-M (right angle, 15 A rated) + 1x3 2.54 mm header: D- , D+ , GND (USB 2.0 pass-through)
-  * 4x M2 mounting holes (grounded), 2-layer, black solder mask.
+  * Output: one Molex Micro-Fit 3.0 2x2 right-angle header (43045-0400, 8.5 A/pin):
+          1 = +12.6 V, 2 = GND, 3 = D+, 4 = D-
+  * 4x M2 mounting holes (grounded), 4-layer (Sig / GND / PWR / Sig), black solder mask.
 
 This board knows nothing about what is downstream: it is just a PD-to-12.6 V supply.
 """
@@ -26,14 +27,10 @@ import has_net_name
 from "parts/UNKNOWN_TYPE_C_31_M_12/UNKNOWN_TYPE_C_31_M_12.ato" import UNKNOWN_TYPE_C_31_M_12_package
 from "parts/WCH_CH224A/WCH_CH224A.ato" import WCH_CH224A_package
 from "parts/TI_TPS54560DDAR/TI_TPS54560DDAR.ato" import TI_TPS54560DDAR_package
-from "parts/onsemi_LM358DR2G/onsemi_LM358DR2G.ato" import onsemi_LM358DR2G_package
-from "parts/UNKNOWN_SL1040_100M/UNKNOWN_SL1040_100M.ato" import UNKNOWN_SL1040_100M_package
+from "parts/Sunlord_MWSA0603S_100MT/Sunlord_MWSA0603S_100MT.ato" import Sunlord_MWSA0603S_100MT_package
 from "parts/MDD_SS56/MDD_SS56.ato" import MDD_SS56_package
+from "parts/MOLEX_0430450400/MOLEX_0430450400.ato" import MOLEX_0430450400_package
 from "parts/MDD_SMBJ24A/MDD_SMBJ24A.ato" import MDD_SMBJ24A_package
-from "parts/CJ_1N4148W/CJ_1N4148W.ato" import CJ_1N4148W_package
-from "parts/PSA_FMF25FPJR020_LH/PSA_FMF25FPJR020_LH.ato" import PSA_FMF25FPJR020_LH_package
-from "parts/AMASS_XT30PW_M30_G_Y/AMASS_XT30PW_M30_G_Y.ato" import AMASS_XT30PW_M30_G_Y_package
-from "parts/HCTL_PZ254_1_03_Z_8_5/HCTL_PZ254_1_03_Z_8_5.ato" import HCTL_PZ254_1_03_Z_8_5_package
 from "parts/UNKNOWN_NCD0603G1/UNKNOWN_NCD0603G1.ato" import UNKNOWN_NCD0603G1_package
 from "parts/KENTO_KT_0603R/KENTO_KT_0603R.ato" import KENTO_KT_0603R_package
 from "parts/M2_HOLE/M2_HOLE.ato" import M2_HOLE
@@ -47,15 +44,12 @@ from "parts/muRata_GRM1885C1H822JA01D/muRata_GRM1885C1H822JA01D.ato" import muRa
 from "parts/FH_0603CG470J500NT/FH_0603CG470J500NT.ato" import FH_0603CG470J500NT_package                          # 47 pF C0G 0603
 
 # resistors (0603, 1 %)
-from "parts/UNI_ROYAL_0603WAF1001T5E/UNI_ROYAL_0603WAF1001T5E.ato" import UNI_ROYAL_0603WAF1001T5E_package  # 1 k
 from "parts/UNI_ROYAL_0603WAF4701T5E/UNI_ROYAL_0603WAF4701T5E.ato" import UNI_ROYAL_0603WAF4701T5E_package  # 4.7 k
 from "parts/UNI_ROYAL_0603WAF1002T5E/UNI_ROYAL_0603WAF1002T5E.ato" import UNI_ROYAL_0603WAF1002T5E_package  # 10 k
 from "parts/UNI_ROYAL_0603WAF2002T5E/UNI_ROYAL_0603WAF2002T5E.ato" import UNI_ROYAL_0603WAF2002T5E_package  # 20 k
 from "parts/UNI_ROYAL_0603WAF5602T5E/UNI_ROYAL_0603WAF5602T5E.ato" import UNI_ROYAL_0603WAF5602T5E_package  # 56 k
-from "parts/UNI_ROYAL_0603WAF1003T5E/UNI_ROYAL_0603WAF1003T5E.ato" import UNI_ROYAL_0603WAF1003T5E_package  # 100 k
 from "parts/UNI_ROYAL_0603WAF1203T5E/UNI_ROYAL_0603WAF1203T5E.ato" import UNI_ROYAL_0603WAF1203T5E_package  # 120 k
 from "parts/UNI_ROYAL_0603WAF1473T5E/UNI_ROYAL_0603WAF1473T5E.ato" import UNI_ROYAL_0603WAF1473T5E_package  # 147 k
-from "parts/UNI_ROYAL_0603WAF2203T5E/UNI_ROYAL_0603WAF2203T5E.ato" import UNI_ROYAL_0603WAF2203T5E_package  # 220 k
 from "parts/UNI_ROYAL_0603WAF2403T5E/UNI_ROYAL_0603WAF2403T5E.ato" import UNI_ROYAL_0603WAF2403T5E_package  # 240 k
 from "parts/UNI_ROYAL_0603WAF8203T5E/UNI_ROYAL_0603WAF8203T5E.ato" import UNI_ROYAL_0603WAF8203T5E_package  # 820 k
 
@@ -65,7 +59,6 @@ module App:
     signal gnd        # board ground (USB-C shell/GND, input side)
     signal vbus       # USB-C VBUS, 5 V at plug-in then 20 V after PD negotiation
     signal vout       # 12.56 V regulated output
-    signal out_rtn    # output return; sits I_out * 20 mΩ above gnd (current sense)
     signal usb_dp
     signal usb_dn
     signal cc1
@@ -79,11 +72,6 @@ module App:
     signal comp_z     # between comp resistor and zero capacitor
     signal rt
     signal cfg1
-    signal i_ref      # ≈ 90 mV current-limit reference
-    signal i_sense    # filtered shunt voltage
-    signal i_int      # LM358 inverting input / integrator node
-    signal i_out      # LM358 output
-    signal i_inj      # after 100 k, before injection diode
     signal led_pd_k
     signal led_out_k
 
@@ -91,7 +79,6 @@ module App:
     trait gnd has_net_name<name="GND">
     trait vbus has_net_name<name="VBUS">
     trait vout has_net_name<name="VOUT">
-    trait out_rtn has_net_name<name="OUT_RTN">
     trait usb_dp has_net_name<name="USB_DP">
     trait usb_dn has_net_name<name="USB_DN">
     trait cc1 has_net_name<name="CC1">
@@ -105,11 +92,6 @@ module App:
     trait comp_z has_net_name<name="COMP_Z">
     trait rt has_net_name<name="RT">
     trait cfg1 has_net_name<name="CFG1">
-    trait i_ref has_net_name<name="I_REF">
-    trait i_sense has_net_name<name="I_SENSE">
-    trait i_int has_net_name<name="I_INT">
-    trait i_out has_net_name<name="I_OUT">
-    trait i_inj has_net_name<name="I_INJ">
     trait led_pd_k has_net_name<name="LED_PD_K">
     trait led_out_k has_net_name<name="LED_OUT_K">
 
@@ -202,7 +184,7 @@ module App:
     d_catch.K ~ sw
     d_catch.A ~ gnd
 
-    l_out = new UNKNOWN_SL1040_100M_package       # 10 µH, 7.5 A, 10x10 mm shielded
+    l_out = new Sunlord_MWSA0603S_100MT_package   # 10 µH, Isat 5.5 A, 7.1x6.6x3 mm shielded, C132141
     l_out.1 ~ sw
     l_out.2 ~ vout
 
@@ -234,18 +216,11 @@ module App:
     c_comp_p.2 ~ gnd
 
     # ------------------------------------------------------------------ output
-    out = new AMASS_XT30PW_M30_G_Y_package        # XT30PW-M right-angle, C431092
-    out.pos ~ vout
-    out.neg ~ out_rtn
-
-    r_shunt = new PSA_FMF25FPJR020_LH_package     # 20 mΩ 2 W 2512, in the output return
-    r_shunt.1 ~ out_rtn
-    r_shunt.2 ~ gnd
-
-    data = new HCTL_PZ254_1_03_Z_8_5_package      # 1x3 2.54 mm header: D- D+ GND
-    data.1 ~ usb_dn                               # pin 1 (square pad) = D-
-    data.2 ~ usb_dp
-    data.3 ~ out_rtn                              # same reference as the output negative
+    out = new MOLEX_0430450400_package            # Micro-Fit 3.0 2x2 right-angle, 8.5 A/pin, C122413
+    out.1 ~ vout                                  # +12.6 V
+    out.2 ~ gnd                                   # return
+    out.3 ~ usb_dp                                # USB 2.0 D+ pass-through
+    out.4 ~ usb_dn                                # USB 2.0 D-
 
     led_out = new UNKNOWN_NCD0603G1_package       # green: "12.6 V present"
     r_led_out = new UNI_ROYAL_0603WAF4701T5E_package  # 4.7 k -> ~2.2 mA
@@ -253,53 +228,6 @@ module App:
     led_out.K ~ led_out_k
     r_led_out.1 ~ led_out_k
     r_led_out.2 ~ gnd
-
-    # ------------------------------------------------------------------ constant-current limit (~4.5 A)
-    opamp = new onsemi_LM358DR2G_package          # LM358, powered from VBUS (20 V)
-    opamp.VCC ~ vbus
-    opamp.GND ~ gnd
-    c_opamp = new YAGEO_CC0603KRX7R9BB104_package
-    c_opamp.1 ~ vbus
-    c_opamp.2 ~ gnd
-
-    # reference: VBUS * 1k / (220k + 1k) ≈ 90 mV
-    r_ref_hi = new UNI_ROYAL_0603WAF2203T5E_package
-    r_ref_lo = new UNI_ROYAL_0603WAF1001T5E_package
-    r_ref_hi.1 ~ vbus
-    r_ref_hi.2 ~ i_ref
-    r_ref_lo.1 ~ i_ref
-    r_ref_lo.2 ~ gnd
-
-    # shunt sense filter: 1 k + 100 nF
-    r_sense = new UNI_ROYAL_0603WAF1001T5E_package
-    c_sense = new YAGEO_CC0603KRX7R9BB104_package
-    r_sense.1 ~ out_rtn
-    r_sense.2 ~ i_sense
-    c_sense.1 ~ i_sense
-    c_sense.2 ~ gnd
-
-    # integrator: + = sense, - = ref via 10 k, 100 nF feedback
-    opamp.P1INpos ~ i_sense
-    opamp.P1INneg ~ i_int
-    opamp.P1OUT ~ i_out
-    r_int = new UNI_ROYAL_0603WAF1002T5E_package
-    c_int = new YAGEO_CC0603KRX7R9BB104_package
-    r_int.1 ~ i_ref
-    r_int.2 ~ i_int
-    c_int.1 ~ i_out
-    c_int.2 ~ i_int
-
-    # injection into FB: 100 k series limits FB to < 3 V abs-max even with the op-amp railed
-    r_inj = new UNI_ROYAL_0603WAF1003T5E_package
-    d_inj = new CJ_1N4148W_package
-    r_inj.1 ~ i_out
-    r_inj.2 ~ i_inj
-    d_inj.A ~ i_inj
-    d_inj.K ~ fb
-
-    # unused second op-amp: follower with input grounded
-    opamp.P2INpos ~ gnd
-    opamp.P2INneg ~ opamp.P2OUT
 
     # ------------------------------------------------------------------ mechanical
     h1 = new M2_HOLE
