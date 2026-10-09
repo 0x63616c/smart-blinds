@@ -1,0 +1,19 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component UNKNOWN_NCD0603G1_package:
+    """LED"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C84267", date="2026-10-09T13:28:57.830267+00:00", checksum="54fa0d827317e0b1800a2a61c1f44d90929239d78690644721d0ef90c367d0ae">
+
+    trait is_atomic_part<manufacturer="国星光电", partnumber="NCD0603G1", footprint="LED0603-RD_1.kicad_mod", symbol="FC-D1608UGK-520D10.kicad_sym", model="LED0603-RD_1.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C84267", manufacturer="国星光电", partno="NCD0603G1">
+    trait has_designator_prefix<prefix="LED">
+
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1

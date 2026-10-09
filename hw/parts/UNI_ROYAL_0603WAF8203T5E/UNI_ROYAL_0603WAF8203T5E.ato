@@ -1,0 +1,19 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component UNI_ROYAL_0603WAF8203T5E_package:
+    """820KΩ (8203) ±1%"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C23252", date="2026-10-09T13:33:35.984474+00:00", checksum="60273070bc3e0e50265f07d4d98d02b19a2c8afba277073a55b1c5eac43b0b99">
+
+    trait is_atomic_part<manufacturer="UNI-ROYAL", partnumber="0603WAF8203T5E", footprint="R0603.kicad_mod", symbol="0603WAF8203T5E.kicad_sym", model="R0603.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C23252", manufacturer="UNI-ROYAL", partno="0603WAF8203T5E">
+    trait has_designator_prefix<prefix="R">
+
+    # pins
+    pin 2
+    pin 1

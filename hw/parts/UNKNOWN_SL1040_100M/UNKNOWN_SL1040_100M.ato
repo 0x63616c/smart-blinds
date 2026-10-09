@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component UNKNOWN_SL1040_100M_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C22463839", date="2026-10-09T13:28:38.942937+00:00", checksum="59468e910e945c68edae0ce8ff328b659c73aa5fe62f7d3c5b9078a09e646ecf">
+
+    trait is_atomic_part<manufacturer="台湾陆海", partnumber="SL1040-100M", footprint="IND-SMD_L11.0-W10.2.kicad_mod", symbol="SL1040-100M.kicad_sym", model="IND-SMD_L11.0-W10.2-H4.0.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C22463839", manufacturer="台湾陆海", partno="SL1040-100M">
+    trait has_designator_prefix<prefix="L">
+
+    # pins
+    pin 2
+    pin 1

@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component muRata_GRM1885C1H822JA01D_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C162249", date="2026-10-09T13:28:53.896393+00:00", checksum="ee5c5bb00396520beb953b16e95050a53fac53bf0be7d200d2c05186ebf3e2f3">
+
+    trait is_atomic_part<manufacturer="muRata", partnumber="GRM1885C1H822JA01D", footprint="C0603.kicad_mod", symbol="GRM1885C1H822JA01D.kicad_sym", model="C0603_L1.6-W0.8-H0.8.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C162249", manufacturer="muRata", partno="GRM1885C1H822JA01D">
+    trait has_designator_prefix<prefix="C">
+
+    # pins
+    pin 1
+    pin 2

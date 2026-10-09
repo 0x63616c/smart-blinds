@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component TORCH_CC1210X7R50V106KN_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C53084452", date="2026-10-09T13:28:50.006531+00:00", checksum="85e2f9f33b678f51ad360fd48fd0a514294652a2181765c5fe74f8f18bf478f4">
+
+    trait is_atomic_part<manufacturer="TORCH", partnumber="CC1210X7R50V106KN", footprint="C1210.kicad_mod", symbol="CC1210X7R50V106KN.kicad_sym", model="C1210_L3.2-W2.5-H2.5.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C53084452", manufacturer="TORCH", partno="CC1210X7R50V106KN">
+    trait has_designator_prefix<prefix="C">
+
+    # pins
+    pin 1
+    pin 2

@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component Chinocera_HGC1210R5476M250NSVK_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C7432791", date="2026-10-09T13:28:48.726716+00:00", checksum="38381f7bb82ebf0e8ea3f160cb44a5c505bee688a7e6cba9a7f93d6353214095">
+
+    trait is_atomic_part<manufacturer="Chinocera", partnumber="HGC1210R5476M250NSVK", footprint="C1210.kicad_mod", symbol="HGC1210R5476M250NSVK.kicad_sym", model="C1210_L3.2-W2.5-H2.5.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C7432791", manufacturer="Chinocera", partno="HGC1210R5476M250NSVK">
+    trait has_designator_prefix<prefix="C">
+
+    # pins
+    pin 1
+    pin 2

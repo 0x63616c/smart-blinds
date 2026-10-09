@@ -1,0 +1,126 @@
+(footprint "MDD_SMBJ24A:SMB_L4.6-W3.6-LS5.3-RD"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "e6240eca-1c92-42e5-95d2-73c9ecc11843")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "248f6077-321a-48ca-8e7e-7c0c00c36c95")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SMB_L4.6-W3.6-LS5.3-RD"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "5949e877-cd55-4bd2-9b8b-bf79b2b0845e")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -2.65 1.8)
+		(end -2.62 1.8)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "98e8c50f-1d98-412c-b1d5-f8626989727e")
+	)
+	(fp_line
+		(start -1.02 -1.89)
+		(end -1.02 1.89)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "d59cf10c-d143-41f0-bd01-f2752292676a")
+	)
+	(fp_line
+		(start -2.74 -1.89)
+		(end 2.74 -1.89)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "09ea1c61-696b-433b-b79a-86f0526075c1")
+	)
+	(fp_line
+		(start -2.74 1.89)
+		(end 2.74 1.89)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "e8711b59-fbf7-499e-b5ae-03bba3657a9f")
+	)
+	(fp_line
+		(start 2.74 -1.89)
+		(end 2.74 -1.3)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "44b0c377-0246-4945-8af0-49ba07e8846b")
+	)
+	(fp_line
+		(start 2.74 1.89)
+		(end 2.74 1.3)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "d1a82cd1-a8a4-4667-9cc2-8389af02aab3")
+	)
+	(pad "2" smd rect
+		(at 2.36 0 0)
+		(size 2.05 2.19)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "af26e1ff-a9e5-4c19-956f-c7f6ba3cc2a9")
+	)
+	(pad "1" smd rect
+		(at -2.36 0 0)
+		(size 2.05 2.19)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "d0b6d2bf-9ad6-461c-a674-b36634cbd2e9")
+	)
+	(model "${KIPRJMOD}/../../parts/MDD_SMBJ24A/SMB_L4.6-W3.6-LS5.3-RD.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

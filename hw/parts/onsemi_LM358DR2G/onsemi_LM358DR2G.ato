@@ -1,0 +1,23 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component onsemi_LM358DR2G_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C7950", date="2026-10-09T13:28:43.416786+00:00", checksum="a475fa35d79c47495de06b5bed65d0f61c94ab114855a18a37c7202351b14012">
+
+    trait is_atomic_part<manufacturer="onsemi", partnumber="LM358DR2G", footprint="SOIC-8_L5.0-W4.0-P1.27-LS6.0-BL.kicad_mod", symbol="LM358DR2G.kicad_sym", model="SOIC-8_L4.9-W3.9-H1.7-LS6.0-P1.27.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C7950", manufacturer="onsemi", partno="LM358DR2G">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    signal GND ~ pin 4
+    signal P1INneg ~ pin 2
+    signal P1INpos ~ pin 3
+    signal P1OUT ~ pin 1
+    signal P2INneg ~ pin 6
+    signal P2INpos ~ pin 5
+    signal P2OUT ~ pin 7
+    signal VCC ~ pin 8

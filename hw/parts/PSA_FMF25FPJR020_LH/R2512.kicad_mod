@@ -1,0 +1,138 @@
+(footprint "PSA_FMF25FPJR020_LH:R2512"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "43e95501-af84-46af-809a-d1bb9e0433ec")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "29e385e1-1383-411b-a214-94296f08939b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "R2512"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "0fd3a1b8-39fc-4cf1-9be6-c479073a1a47")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -3.18 1.6)
+		(end -3.15 1.6)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "961e169d-cd93-42b6-a790-125985756e0b")
+	)
+	(fp_line
+		(start 2.5 1.96)
+		(end 3.94 1.96)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "47e5cc7f-92ca-4a19-bbab-0cd73c461ce3")
+	)
+	(fp_line
+		(start 3.94 1.96)
+		(end 3.94 -1.96)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "6ac77177-d567-49b2-b48c-d4aa663aabbe")
+	)
+	(fp_line
+		(start 3.94 -1.96)
+		(end 2.5 -1.96)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "0a4cbde3-a29a-4e3a-9a23-6fea482fdcec")
+	)
+	(fp_line
+		(start -2.5 1.96)
+		(end -3.94 1.96)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "5f91cd9e-5b67-4f28-bbb6-6e3b3c361e20")
+	)
+	(fp_line
+		(start -3.94 1.96)
+		(end -3.94 -1.96)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "9cdc6806-1900-46e4-9efd-eb2855f9e883")
+	)
+	(fp_line
+		(start -3.94 -1.96)
+		(end -2.5 -1.96)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "505df587-f192-4430-819a-c4a836c27e10")
+	)
+	(pad "2" smd rect
+		(at 3.07 0 0)
+		(size 1.28 3.46)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "e726cf07-a22e-4b4a-86ce-ae52bc337e42")
+	)
+	(pad "1" smd rect
+		(at -3.07 0 0)
+		(size 1.28 3.46)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "86ff2595-5622-4d81-a1a0-08eaec38b0e2")
+	)
+	(model "${KIPRJMOD}/../../parts/PSA_FMF25FPJR020_LH/R2512_L6.3-W3.2-H0.6.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

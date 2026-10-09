@@ -1,0 +1,19 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component CJ_1N4148W_package:
+    """1N4148W T4"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C2099", date="2026-10-09T13:33:50.489939+00:00", checksum="66ccd287bca66c7653e61df92b63777fb3ddf75cfbdf667c41268073403a1f3a">
+
+    trait is_atomic_part<manufacturer="CJ", partnumber="1N4148W", footprint="SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod", symbol="1N4148WT4.kicad_sym", model="SOD-123_L2.8-W1.8-LS3.7-RD.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2099", manufacturer="CJ", partno="1N4148W">
+    trait has_designator_prefix<prefix="D">
+
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1

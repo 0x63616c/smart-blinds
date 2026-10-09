@@ -1,0 +1,11 @@
+import has_designator_prefix
+import has_part_removed
+import is_atomic_part
+
+component M2_HOLE:
+    """Plated M2 mounting hole (2.2 mm drill, 3.8 mm pad). Not populated, not in BOM."""
+    trait is_atomic_part<manufacturer="e8s", partnumber="M2_HOLE", footprint="M2_HOLE.kicad_mod", symbol="M2_HOLE.kicad_sym">
+    trait has_designator_prefix<prefix="H">
+    trait has_part_removed   # no part to buy; still gets a designator/footprint
+
+    signal contact ~ pin 1

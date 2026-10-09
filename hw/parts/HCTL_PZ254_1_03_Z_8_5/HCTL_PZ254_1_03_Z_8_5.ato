@@ -1,0 +1,13 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component HCTL_PZ254_1_03_Z_8_5_package:
+    trait is_atomic_part<manufacturer="HCTL", partnumber="PZ254-1-03-Z-8.5", footprint="HDR-TH_03P-P2.54-V-M.kicad_mod", symbol="PZ254-1-03-Z-8.5.kicad_sym", model="HDR-TH_03P-P2.54-V-M.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2894926", manufacturer="HCTL", partno="PZ254-1-03-Z-8.5">
+    trait has_designator_prefix<prefix="J">   # edited: J for connectors (H is used for mounting holes)
+
+    # pins
+    pin 1
+    pin 2
+    pin 3

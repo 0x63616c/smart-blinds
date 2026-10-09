@@ -1,0 +1,135 @@
+(footprint "HCTL_PZ254_1_03_Z_8_5:HDR-TH_03P-P2.54-V-M"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "15f0c9ef-120e-4d02-9dcb-7e61c80b3fc5")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "6a3645aa-db1d-43a5-a3a0-0a8dbadb9ce1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "HDR-TH_03P-P2.54-V-M"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "23b93c32-e9fa-4ed0-a95d-aeb926beb306")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center -3.81 1.25)
+		(end -3.78 1.25)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "703e7248-a691-4c2f-9ad1-e7f9f645e301")
+	)
+	(fp_line
+		(start 4.01 -1.27)
+		(end 4.01 1.27)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "93b674dd-1d34-48e6-87d6-7c0c537985fa")
+	)
+	(fp_line
+		(start -4.01 -1.27)
+		(end 4.01 -1.27)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "8aca4827-ff1e-45af-bac3-dc3acf52d3e9")
+	)
+	(fp_line
+		(start -4.01 1.27)
+		(end 4.01 1.27)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "742d9ded-ab5d-40db-b7e7-914869b83b2a")
+	)
+	(fp_line
+		(start -1.28 -1.27)
+		(end -1.28 1.27)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "1c44e336-9c25-4d02-8c27-62a6980a1695")
+	)
+	(fp_line
+		(start -4.01 -1.27)
+		(end -4.01 1.27)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "cd2f22f8-cd18-4de3-96e5-b1d8d0405778")
+	)
+	(pad "3" thru_hole circle
+		(at 2.54 0 0)
+		(size 1.7 1.7)
+		(drill 1.1000232)
+		(layers "*.Cu" "*.Mask")
+		(uuid "0444f6c2-94ad-4cc2-aece-ac9e38c4521a")
+	)
+	(pad "2" thru_hole circle
+		(at 0 0 0)
+		(size 1.7 1.7)
+		(drill 1.1000232)
+		(layers "*.Cu" "*.Mask")
+		(uuid "aa01c8b6-f687-468d-b6e3-0343018560e8")
+	)
+	(pad "1" thru_hole rect
+		(at -2.54 0 0)
+		(size 1.57 1.7)
+		(drill 1.1000232)
+		(layers "*.Cu" "*.Mask")
+		(uuid "a18e350f-f761-4843-bd3e-dae4c84d525a")
+	)
+	(model "${KIPRJMOD}/../../parts/HCTL_PZ254_1_03_Z_8_5/HDR-TH_03P-P2.54-V-M.step"
+		(offset
+			(xyz 0 -0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

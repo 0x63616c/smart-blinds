@@ -1,0 +1,834 @@
+CH224 Datasheet                                                                                   https://wch-ic.com
+
+
+
+ USB PD Multi Fast Charging Protocol Power Receiving Chip CH224
+                                                     Datasheet
+                                                   Version: V2.0
+                                                https://wch-ic.com
+
+1. Overview
+CH224Q/CH224A is a USB PD fast charging protocol receiver chip that supports USB PD3.2, up to PD3.2 EPR
+140W power, and supports single resistor configuration, I/O level configuration and I2C configuration. Through the
+I2C interface can read the protocol handshake status and read the current PD gear rated current. Chip built-in high-
+voltage LDO, static low-power consumption, high integration, peripheral streamlined. Chip integrated output
+voltage detection and over-voltage protection, can be widely used in various types of electronic equipment to expand
+the high-power input such as wireless chargers, small appliances, lithium battery power tools and other occasions.
+CH224K/CH224D/CH221K are USB PD3.0 fast charging protocol receiver chips, supporting up to 100W power,
+single resistor configuration and I/O level configuration.
+
+
+2. Features
+      Support 4V to 30V input voltage
+      Support PD3.2 EPR, AVS, PPS, SPR protocols and BC1.2 and other boost fast charging protocols
+      Support eMarker simulation and automatic detection of VCONN.
+      Support multiple ways to dynamically adjust the requested voltage
+      Support 400kHz rate I2C communication.
+      Built-in high-voltage LDO, static low-power consumption.
+      Single chip with high integration, streamlined peripherals and low cost.
+      Built-in overvoltage protection module OVP
+
+
+
+
+V2.0                                                   1
+CH224 Datasheet                                                                                      https://wch-ic.com
+
+
+
+3. Pinouts
+
+           0
+                      CH224A                           0
+                                                                       CH224Q
+           1      GND                     10                  GND
+                  VHV              PG                  1                                        10
+           2                               9           2      VHV                     PG         9
+           3      CFG2/SCL       CFG1      8                  CFG2/SCL              CFG1
+                  CFG3/SDA       VBUS                  3                                         8
+           4                               7           4      CFG3/SDA              VBUS         7
+           5      DP              CC1      6                  DP                     CC1
+                  DM              CC2                  5                                         6
+                                                              DM                     CC2
+
+
+
+                                                             0
+                                                                        CH224K
+                                                             1        GND                       10
+                                                             2        VDD           PG          9
+                                                             3        CFG2        CFG1          8
+                                                             4        CFG3        VBUS          7
+                                                             5        DP           CC1          6
+                                                                      DM           CC2
+
+
+                                                                         CH221K
+                                                                  1      VDD      CFG       6
+                                                                  2      GND      CC2       5
+                                                                  3      PG       CC1       4
+
+
+                                      Table 3-1 Package description
+  Package Form      Body Size         Pin Pitch                       Package description             Order Model
+       DFN10         2*2mm       0.4mm      15.7mil              Dual Flat No-Lead Package               CH224Q
+       ESSOP10       3.9mm      1.00mm      39.4mil        EPAD Shrink Small Outline Package             CH224A
+       ESSOP10       3.9mm      1.00mm      39.4mil        EPAD Shrink Small Outline Package             CH224K
+       QFN20         3*3mm      0.40mm      15.7mil           Quad Flat No-Lead Package                  CH224D
+       SOT23-6       1.6mm      0.95mm         37mil              Small Outline Transistor               CH221K
+Note: 1. Pin 0# refers to the ESSOP10, DFN10, QFN20 package EPAD.
+      2. Small and versatile CH224Q is recommended for new projects, CH224A focuses on PCB compatibility
+with CH224K.
+
+
+
+
+V2.0                                               2
+CH224 Datasheet                                                                                    https://wch-ic.com
+
+
+
+4. Pin Definitions
+
+                                   Table 4-1 CH224Q, CH224A pin definition
+            Pin No.
+                           Pin name Pin type(1)                       Function description
+    CH224Q CH224A
+       0              0     GND          P        Common ground terminal, heat dissipation EPAD.
+                                                  Operating power supply input, externally connected with 1uF
+       1              1     VHV          P
+                                                  capacitance to ground (pay attention to tolerant voltage).
+       4              4      DP
+                                        I/O       USB bus.
+       5              5      DM
+       7              7      CC1
+                                        I/O       Type-C CC signal line.
+       6              6      CC2
+       9              9     CFG1         I        Power gear configuration input pin 1.
+                           CFG2/SC
+       2              2                 I,PU      Power gear configuration input pin 2 or I2C clock input pin.
+                              L
+                           CFG3/SD                Power gear configuration input pin 3 or I2C data bidirectional
+       3              3               I/O,PU
+                              A                   pin.
+       8              8     VBUS         I        Voltage detection input needs to be shorted to VHV.
+                                                  Defaulted PowerGood indication, active low, can be
+       10             10     PG         OD
+                                                  customized.
+
+
+                                       Table 4-2 CH224K pin definition
+            Pin No.
+                           Pin name Pin type(1)                       Function description
+            CH224K
+              0             GND          P        Common ground terminal, heat dissipation EPAD.
+                                                  Operating power input, external 1uF capacitor to ground,
+              1             VDD          P
+                                                  series resistor to VBUS.
+              4              DP
+                                        I/O       USB bus.
+              5              DM
+              7              CC1
+                                        I/O       Type-C CC signal line.
+              6              CC2
+              9             CFG1         I
+              2             CFG2         I        Power range configuration input pin.
+              3             CFG3         I
+                                                  Voltage sense input, requires series resistor to external input
+              8             VBUS         I
+                                                  VBUS.
+                                                  Defaulted PowerGood indication, active low, can be
+              10             PG         OD
+                                                  customized.
+
+
+                                       Table 4-3 CH224D pin definition
+            Pin No.
+                           Pin name Pin type(1)                       Function description
+            CH224D
+
+V2.0                                                  3
+CH224 Datasheet                                                                                  https://wch-ic.com
+
+
+             0              GND          P       Common ground terminal, heat dissipation EPAD.
+                                                 For operating power input, it is recommended to connect an
+             2             VBUS          P
+                                                 external 0.1uF or 1uF capacitor to ground.
+                                                 Internal regulator output terminal, external 1uF capacitor to
+             7              VDD          P
+                                                 ground.
+             8               DP
+                                        I/O      USB bus.
+             9              DM
+             11             CC1
+                                        I/O      Type-C CC signal line.
+             10             CC2
+             19            CFG1              I
+             13            CFG2              I   Power gear configuration input pin.
+             12            CFG3              I
+             1              DRV          O       Weak drive output, used to drive the configuration resistor.
+             14              ISP                 Differential input, used to detect operating current and
+                                             I
+             15             ISN                  customized functions.
+                                                 Used to drive high-side power path NMOS, customized
+             5             GATE        O,HV
+                                                 functions.
+                                                 Drive NMOS enable, low level is valid, and should be short-
+             6            NMOS#              I
+                                                 circuited to GND.
+
+
+                                       Table 4-4 CH221K pin definition
+          Pin No.
+                          Pin name Pin type(1)                       Function description
+         CH221K
+                                                 Working power input, external 1uF capacitor to ground,
+             1              VDD          P
+                                                 series resistor to VBUS.
+             2              GND          P       Common ground terminal.
+             4              CC1
+                                        I/O      Type-C CC signal line.
+             5              CC2
+                                                 Defaulted PowerGood indication, active low, can be
+             3               PG        I,OD
+                                                 customized.
+             6              CFG         OD       Power gear configuration input pin.
+Note 1: Pin type abbreviation explanation:
+       I = Signal input;
+       O=Signal output;
+       P = Power supply or ground;
+       OD = Open-drain output;
+       HV = High voltage pin;
+       PD = Built-in pull-down resistor;
+       PU = Built-in pull-up resistor.
+
+
+
+
+V2.0                                                 4
+CH224 Datasheet                                                                                   https://wch-ic.com
+
+
+
+5. Function Description
+
+5.1 Overview
+CH224Q/CH224A is a protocol power supply receiving end chip that supports PD3.2EPR, AVS, PPS, SPR protocol
+handshake, BC1.2 and other boost fast charging protocol inputs. It supports voltage requests in the range of 5 to
+30V and can dynamically configure the requested voltage level through single resistor configuration, I/O level
+configuration and I2C configuration. Among them, CH224Q is smaller in size and is suitable for scenarios with
+higher integration requirements.
+CH224A is pin-compatible with CH224K. In most cases, it can be replaced by replacing peripheral components
+without changing the PCB. For details, please refer to Chapter 7.
+
+
+5.2 CH224Q/CH224A Voltage Gear Configuration
+5.2.1 Single Resistor Configuration
+Applicable to applications where different requested voltages can be achieved on the same PCB by modifying the
+resistance value.
+CFG1 connects resistors to GND, and different resistance values correspond to different voltage request gears. When
+using single resistor configuration mode, CFG2 and CFG3 pins can be suspended. The comparison table of
+resistance and requested voltage is as follows:
+
+                         Table 5-1 Comparison between resistance and requested voltage
+                                       Configuration
+                                                               Request voltage
+                                       resistor value
+                                          6.8KΩ                      9V
+                                          24KΩ                      12V
+                                          56KΩ                      15V
+                                          120KΩ                     20V
+                                          210KΩ                     28V
+
+
+5.2.2 I/O Level Configuration
+Applicable to applications where the MCU dynamically adjusts the requested voltage or the PCB circuit fixes the
+requested voltage.
+
+                                Table 5-2 I/O level and request voltage comparison
+                                 CFG1      CFG2         CFG3      Request voltage
+                                   0          0          0                9V
+                                   0          0          1             12V
+                                   0          1          1             20V
+                                   0          1          0             28V
+                                   1         X           X                5V
+"X" in the table means don't care.
+"0" in the table indicates low level, and the external terminal should be short-connected to GND.
+"1" in the table indicates a high level. CFG2 and CFG3 have built-in pull-up resistors and support 3.3V or 5V level
+input. External push-pull or open-drain output drive can be used. If CFG1 needs to be set to a high level, there are
+
+V2.0                                                    5
+CH224 Datasheet                                                                                                https://wch-ic.com
+
+
+three methods according to different application scenarios:
+(1) Pull up to the VHV pin through a 100KΩ resistor (when no control of CH224 is required);
+(2) Connect a 2KΩ resistor in series to the GPIO of the MCU, and use the push-pull mode to output a high level
+    (when using a 5V level to control CH224);
+(3) Directly connect to the GPIO of the MCU and use the push-pull mode to output a high level (when using 3.3V
+    level to control CH224).
+
+5.2.3 I2C Configuration
+When the chip is configured as a single resistor, the I2C configuration function is automatically enabled. At this
+time, the voltage request can be controlled or related information can be read through I2C communication.
+CH224Q/CH224A 7-bit I2C address is 0x22 or 0x23 (excluding read and write bits). CH224A only supports single-
+byte read and write operations, and CH224Q supports I2C continuous read and write operations.
+
+                                              Table 5-3 Chip function register
+                   Address                                  Name                                    Function
+                      0x09                            I2C status register              Get the current protocol status
+                      0x0A                       Voltage control register                Switching request voltage
+                                                                                        Get the maximum available
+                      0x50                           Current data register
+                                                                                        current in the current gear
+                                                AVS voltage configuration               Configure the AVS request
+                             0x51
+                                                 register (high eight bits)              voltage high eight bits
+                                                AVS voltage configuration               Configure the AVS request
+              Only           0x52
+                                                 register (low eight bits)                voltage low eight bits
+             CH224Q
+                             0x53           PPS voltage configuration register         Configure PPS request voltage
+                                                                                            Get complete power
+                          0x60~0x8F               PD power data register
+                                                                                         information of the adapter
+
+
+0x09: I2C status register
+       Bit            7           6              5               4               3          2             1              0
+                                 AVS           EPR            EPR             PD         QC3            QC2            BC
+    Name          Reserved
+                                 exist         exist       activation     activation   activation     activation    activation
+  Defaulted
+                      0           0              0               0               0          0             0              0
+   value
+ Read/Write                                                          Read-only
+When BIT0, 1, 2, 3, 4 is 1, it indicates that the corresponding protocol handshake is successful.
+When BIT5 is 1, it indicates that the power supply exists in EPR mode (i.e., adapter maximum power > 100W
+mode).
+When BIT6 is 1, it indicates that the power supply exists in AVS mode.
+
+0x0A: Voltage control register
+       Bit            7           6              5               4               3          2             1              0
+    Name                                 Request voltage value, refer to the detailed explanation
+  Defaulted
+                                                                       0x00
+   value
+
+
+V2.0                                                         6
+CH224 Datasheet                                                                                               https://wch-ic.com
+
+
+ Read/Write                                                          Write-only
+Request voltage details:
+    0: 5V          1: 9V    2: 12V                       3: 15V      4: 20V               5: 28V
+    6: PPSmode(Only CH224Q)                         7: AVS mode (Only CH224Q)
+
+0x50: Current data register
+       Bit             7             6              5            4                3           2           1             0
+    Name                                      Maximum current reference value (unit: 50mA)
+  Defaulted
+                                                                       0xXX
+   value
+ Read/Write                                                          Read-only
+Indicates the maximum current value available under the current PD gear. This register is only valid during the
+handshake PD protocol.
+
+0x51, 0x52: AVS voltage configuration register high eight bits, AVS voltage configuration register low eight bits
+(only CH224Q)
+       Bit        15       14   13       12    11       10   9        8       7       6   5       4   3       2     1       0
+    Name                                        AVS request voltage value (unit: 25mV）
+  Defaulted
+                                                                      0x0000
+   value
+ Read/Write                                                          Write-only
+When configuring, write the upper eight bits first and then the lower eight bits. When applying for AVS for the first
+time, configure the voltage first, and then configure the voltage control register to AVS mode. Subsequent voltage
+adjustments can be made by directly modifying the AVS voltage configuration register.
+
+0x53: PPS voltage configuration register
+       Bit             7             6              5            4                3           2           1             0
+    Name                                            PPS setting voltage (unit: 100mV）
+  Defaulted
+                                                                       0x00
+   value
+ Read/Write                                                          Write-only
+When applying for PPS for the first time, configure the voltage first, then configure the voltage control register to
+PPS mode. For subsequent voltage adjustments, simply modify the PPS voltage configuration register.
+
+0x60~0x8F: PD power data register (Only CH224Q)
+  Defaulted
+                                                                       0x00
+   value
+ Read/Write                                                          Read-only
+When the adapter's power supply capacity is less than 100W, reading this area can obtain complete power SRCCAP
+data.
+When the chip is in EPR mode (28V), reading this area can obtain the complete EPR_SRCCAP data.
+
+
+5.3 Simulation eMarker Function
+
+V2.0                                                         7
+CH224 Datasheet                                                                                  https://wch-ic.com
+
+
+If you want to use the simulation eMarker function and request an output greater than 20V or greater than 60W, you
+must use a Type-C male connector and connect a 1KΩ resistor from the CC2 pin to GND (please contact our
+technical support).
+
+
+
+
+V2.0                                                  8
+CH224 Datasheet                                                                                  https://wch-ic.com
+
+
+
+6. Reference Schematic
+
+6.1 CH224Q/CH224A Reference Schematic
+6.1.1 Reference Schematics for Single Resistor Configuration and I2C Configuration (See Table 5-1 for
+Rset resistance value corresponding to requested voltage)
+The single resistor configuration is achieved by connecting the CFG1 pin to GND with a configuration resistor of a
+specific resistance value. At this time, CFG2 and CFG3 can be used for I2C configuration. If I2C configuration is
+not used, CFG2 and CFG3 can be left floating.
+                          VHV
+       VBUS
+                                     1uF
+                                            0
+                                                     CH224A
+        DP                                         GND                           Rset
+        DM                                  1                          10
+                                                   VHV        PG
+                                       CFG2 2                          9
+                                                   CFG2/SCL CFG1                                 MCU
+                                       CFG3 3                          8 VHV
+                                                   CFG3/SDA VBUS
+       CC2
+                                            4                          7             CFG2
+                                                   DP        CC1                              SCL
+       CC1                                  5                          6             CFG3
+                                                   DM        CC2                              SDA
+       GND                                                                                    GND
+
+
+
+
+6.1.2 I/O Level Configuration Reference Schematic Diagram (I/O level corresponding to the requested
+voltage reference table 5-2)
+When the power system does not need to interact or control CH224, CFG1 can provide a high level by connecting
+100KΩ in series to the VHV pin (the figure below shows the I/O level configuration of 20V).
+
+                             VHV                                              VHV
+       VBUS
+                                       1uF
+                                            0
+                                                     CH224A
+        DP                                         GND                           100KΩ
+        DM                                  1                          10
+                                                   VHV        PG
+                                       CFG2 2                          9 CFG1
+                                                   CFG2/SCL CFG1
+                                       CFG3 3                          8 VHV        CFG1
+                                                   CFG3/SDA VBUS
+        CC2
+                                            4                          7
+                                                   DP        CC1
+        CC1                                 5                          6
+                                                   DM        CC2                    CFG2
+       GND
+                                                                                    CFG3
+
+
+When the power system has a 3.3 or 5V power supply and needs to control CH224, CFG1 can be connected to the
+GPIO of the MCU in the system (as shown below). If the system high level is 3.3V, R1 should be 0Ω; if the system
+high level is 5V, R1 should be 2KΩ.
+
+
+
+
+V2.0                                                  9
+CH224 Datasheet                                                                                                   https://wch-ic.com
+
+
+
+                               VHV
+       VBUS
+                                             1uF
+                                                    0
+                                                                    CH224A
+          DP                                                   GND                              Rset
+                                                    1                                  10
+          DM
+                                               CFG2 2
+                                                               VHV        PG
+                                                                                       9
+                                                                                                  R1                   MCU
+                                                               CFG2/SCL CFG1                                       IO1
+                                               CFG3 3                                  8 VHV               CFG2
+                                                               CFG3/SDA VBUS                                       IO2
+        CC2
+                                                    4                                  7                   CFG3
+                                                               DP        CC1                                       IO3
+        CC1                                         5                                  6
+                                                               DM        CC2
+                                                                                                                   GND
+        GND
+
+
+
+
+6.2 CH224K Reference Schematic (I/O level is configured for 20V)
+
+
+                                                                                                                                   Request
+                                                                                                      CFG1     CFG2      CFG3
+                                                                                                                                   voltage
+                                                                                                       1          X         X          5V
+                                                                                             VBUS
+                        VBUS           VDD                                                             0          0         0          9V
+       VBUS                                                                                            0          0         1          12V
+                               1KΩ
+                                             1uF       0
+                                                               CH224K                 10KΩ
+         DP                                                  GND                                       0          1         1          15V
+                                                       1                            10
+         DM                                                  VDD          PG
+                                        CFG2           2
+                                                             CFG2       CFG1
+                                                                                    9 CFG1             0          1         0          20V
+                                        CFG3           3                            8
+                                                             CFG3       VBUS
+       CC2                                             4     DP          CC1        7           CFG1
+       CC1                                             5     DM          CC2        6           CFG3
+                                                                                                            VDD
+       GND                                                                                      CFG2
+
+
+Note: It is recommended to upgrade to CH224A chip, refer to Section 7.2.
+
+
+6.3 CH224D Reference Schematic (Single resistor configuration 9V)
+
+
+                                 VBUS
+                                                   2                           5
+                                                                                                                                Request
+                                                       VBUS            GATE                                 Rset resistor
+        VBUS                                                                                                                    voltage
+                                                8                              1
+                                                 9     DP               DRV    19
+         DP                                            DM              CFG1                                   6.8KΩ               9V
+         DM                                    10                              13
+                                                       CC2             CFG2                   Rset
+                                               11      CC1             CFG3    12             6.8KΩ            24KΩ              12V
+                                             VDD
+         CC2                                    7
+                                                       VDD                                                     56KΩ              15V
+         CC1             5.1KΩ VBUS
+                         5.1KΩ
+                                                              CH224D                                              NC             20V
+        GND                              1uF 0
+                                 1uF                   GND             ISP     14
+                                             6         NMOS#           ISN     15
+
+
+
+
+6.4 CH221K Reference Schematic (Single resistor configuration 20V)
+
+
+
+V2.0                                                           10
+CH224 Datasheet                                                     https://wch-ic.com
+
+
+
+              VBUS
+       VBUS                                                                      Request
+                      1KΩ
+                                                               Rset resistor
+                                                                                 voltage
+        DP                             CH221K          200KΩ
+        DM
+                                   1               6              10KΩ              5V
+                             1uF       VDD   CFG
+       CC2
+                                   2   GND   CC2   5              20KΩ              9V
+       CC1
+                                   3               4
+                                       PG    CC1                  47KΩ             12V
+                     5.1KΩ
+                     5.1KΩ                                       100KΩ             15V
+       GND                                                       200KΩ             20V
+
+
+
+
+V2.0                                         11
+CH224 Datasheet                                                                                    https://wch-ic.com
+
+
+
+7. Guide for CH224A to Replace CH224K
+CH224A is pin-compatible with CH224K. In most cases, it can be replaced by replacing peripheral components
+without changing the PCB. The following are the differences between the chips and common replacement examples.
+
+
+7.1 Differences between CH224A and CH224K
+      CH224A's pin 1 is VHV with 32V tolerant voltage, CH224K's pin 1 is VDD with 3.6V tolerant voltage
+      CFG2 and CFG3 of CH224A have their own internal pull-up resistors, CFG2 and CFG3 of CH224K have no
+       internal pull-up resistors.
+      CFG1 of CH224A has 3.8V tolerant voltage, and CFG1 of CH224K has 8V tolerant voltage.
+      VBUS of CH224A has 3.8V tolerant voltage, and VBUS of CH224K has 8V tolerant voltage
+
+
+7.2 Common Substitution Examples
+7.2.1 Original CH224K is in Single Resistor Configuration Mode (Rset resistor is reserved, and CFG2
+and CFG3 are left floating or shorted to GND)
+
+                   Figure 7-1 Schematic diagram of original CH224K single resistor configuration
+
+                                  VBUS       VDD                                            VBUS
+               VBUS
+                                       R1
+                                                   1uF    0
+                                                                CH224K                             R2
+                  DP                   1KΩ                    GND                        Rset
+                  DM                                      1                     10                 10KΩ
+                                                              VDD         PG
+                                                          2                     9
+                                                              CFG2      CFG1
+                                                          3                     8
+                                                              CFG3      VBUS
+                  CC2                                     4                     7
+                                                              DP         CC1
+                  CC1                                     5                     6
+                                                              DM         CC2
+                  GND
+
+
+
+
+The following changes are required:
+1. Short or replace R1 with 0Ω;
+2. Short or replace R2 with 0Ω;
+3. Change Rset to the configuration resistor of CH224A.
+
+7.2.2 Original CH224K is in I/O Level Configuration Mode (CFG1, CFG2 and CFG3 are reserved with
+configuration pads or resistors).
+
+
+
+
+V2.0                                                     12
+CH224 Datasheet                                                                                    https://wch-ic.com
+
+
+                      Figure 7-2 Schematic diagram of original CH224 I/O level configuration
+
+
+                                                                               VBUS
+                      VBUS         VDD
+    VBUS
+                             R1
+                                         1uF   0
+                                                     CH224K                      R2
+       DP                    1KΩ               1   GND                10         10KΩ   VDD
+       DM
+                                    CFG2       2   VDD           PG   9 CFG1                        CFG1
+                                    CFG3       3   CFG2        CFG1   8                       R3            R4
+                                                   CFG3        VBUS                                 CFG2
+    CC2                                        4   DP           CC1   7
+    CC1                                        5   DM           CC2   6                       R5    CFG3    R6
+
+    GND                                                                                       R7            R8
+
+
+The following changes are required:
+1. Short or replace R1 with 0Ω;
+2. Short or replace R2 with 0Ω;
+3. Replace the original R3 with 100KΩ, and leave R5 and R7 unsoldered (CFG2 and CFG3 of CH224A have their
+own internal pull-ups);
+4. Short R4, R6 and R8 according to the I/O level configuration mode selection of CH224A.
+
+
+7.3 Other Precautions
+      The single resistor configuration and I/O level configuration of CH224A and CH224K use different resistor
+       values or I/O level corresponding voltages.
+
+
+
+
+V2.0                                                      13
+CH224 Datasheet                                                                         https://wch-ic.com
+
+
+
+8. Parameters
+8.1 Absolute Maximum Value
+8.1.1 CH224Q/A Absolute Maximum Value (Critical or exceeding the absolute maximum value will
+probably cause the chip to work improperly or even be damaged)
+       Symbol                            Parameter                       Min.    Max.           Unit
+         TA       Ambient temperature during operation                   -40      105            ℃
+         TS       Ambient temperature during storage                     -55      125            ℃
+        VHV       Operating power supply voltage                         -0.5    32.0            V
+       VIOHV      Voltage on high-voltage capable pins (PG, VBUS)        -0.5    32.0            V
+       VIOCC      Voltage on pin CC1, CC2                                -0.5    32.0            V
+       VIOUX      Voltage on pin DP, DMM, CFG1                           -0.5     3.8            V
+       VIOFT      Voltage on pin CFG2, CFG3                              -0.5     6.5            V
+                  Maximum power consumption of the entire chip (VHV
+         PD                                                                       300           mW
+                  voltage * current)
+
+
+8.1.2 CH221K Absolute Maximum Value (Critical or exceeding the absolute maximum value will probably
+cause the chip to work improperly or even be damaged)
+       Symbol                            Parameter                       Min.    Max.           Unit
+         TA       Ambient temperature during operation                   -40      105            ℃
+         TS       Ambient temperature during storage                     -55      125            ℃
+                  Operating power supply voltage (VDD to power supply,
+        VDD                                                              -0.5     5.8            V
+                  GND to ground)
+       VODHV The voltage on the high-voltage open-drain output pin PG    -0.5    13.5            V
+       VIOCC      Voltage on pin CC1, CC2                                -0.5      8             V
+       VIOUX      Voltage on pin CFG                                     -0.5   VDD+0.5          V
+                  Maximum power consumption of the entire chip (VDD
+         PD                                                                       250           mW
+                  voltage * current)
+
+
+8.1.3 CH224K Absolute Maximum Value (Critical or exceeding the absolute maximum value will probably
+cause the chip to work improperly or even be damaged)
+       Symbol                            Parameter                       Min.    Max.           Unit
+         TA       Ambient temperature during operation                   -40      90             ℃
+         TS       Ambient temperature during storage                     -55      125            ℃
+                  Operating power supply voltage (VDD to power supply,
+        VDD                                                              3.0      3.6            V
+                  GND to ground)
+       VODHV Voltage on pin VBUS                                         -0.5    13.5            V
+       VIOCC      Voltage on pin CC1, CC2, CFG1                          -0.5      8             V
+       VIOUX      Voltage on pin DP, DM, CFG2, CFG3                      -0.5   VDD+0.5          V
+                  Maximum power consumption of the entire chip (VDD
+         PD                                                                       400           mW
+                  voltage * current)
+
+
+8.1.4 CH224D Absolute Maximum Value (Critical or exceeding the absolute maximum value will probably
+
+
+V2.0                                                     14
+CH224 Datasheet                                                                            https://wch-ic.com
+
+
+cause the chip to work improperly or even be damaged)
+       Symbol                              Parameter                       Min.     Max.           Unit
+         TA       Ambient temperature during operation                     -40       100            ℃
+         TS       Ambient temperature during storage                       -55       125            ℃
+                  Operating power supply voltage (VDD to power supply,
+        VDD                                                                -0.5       6             V
+                  GND to ground)
+       VODHV Voltage on pin VBUS                                           -0.5      24             V
+       VIOCC      Voltage on pin CC1, CC2                                  -0.5      20             V
+                  Voltage on pin DP, DM, CFG1, CFG2, CFG3, DRV,
+       VIOUX                                                               -0.5   VDD+0.5           V
+                  NMOS#, ISP, ISN
+       VIOHX      Voltage on pin GATE                                      -0.5   VIOHV+6.5         V
+                  Maximum power consumption of the entire chip (VDD
+         PD                                                                          300           mW
+                  voltage * current)
+
+
+8.2 Electrical Parameters
+8.2.1 CH224Q/A Electrical Parameters (Test condition: TA = 25℃)
+       Symbol                       Parameter                  Condition   Min.     Typ.          Max.
+        VHV       High voltage supply voltage VHV                 3.3       5.0      30             V
+         ICC      Power supply current during operation                     1.8      12            mA
+       VILI2C     I2C active low voltage                          0                  0.8            V
+       VIHI2C I2C active high voltage                             1.5                3.3            V
+       RPUFB      Pull-up resistor on pin CFG2, CFG3              7         10       15            KΩ
+                  VHV power supply overvoltage reset OVR
+       VVHVX                                                      32        33       34             V
+                  protection voltage
+         VR       Power-on reset voltage threshold                2.2       2.4     2.65            V
+
+
+8.2.2 CH221K Electrical Parameters (Test condition: TA = 25℃)
+       Symbol                       Parameter                  Condition   Min.     Typ.          Max.
+       VLDOK Internal power regulator VDD shunt regulator         3.0       3.3      3.6            V
+                  Internal power regulator VDD parallel sink
+        ILDO                                                      0                  30            mA
+                  current capability
+         VR       Power-on reset voltage threshold                2.2       2.4      2.6            V
+
+
+8.2.3 CH224K Electrical Parameters (Test condition: TA = 25℃)
+       Symbol                       Parameter                  Condition   Min.     Typ.          Max.
+       VLDOK Internal power regulator VDD shunt regulator        3.24       3.3     3.36            V
+                  Internal power regulator VDD parallel sink
+        ILDO                                                      0                  30            mA
+                  current capability
+                  Reference threshold temperature of over-
+       TOTA                                                       90       105       120           ℃
+                  temperature protection module OTA
+         VR       Power-on reset voltage threshold                2.2       2.4      2.6            V
+
+
+8.2.4 CH224D Electrical Parameters (Test condition: TA = 25℃)
+
+V2.0                                                      15
+CH224 Datasheet                                                                         https://wch-ic.com
+
+
+       Symbol                       Parameter                  Condition   Min.   Typ.         Max.
+       VLDOK Internal power regulator VDD output voltage          4.6      4.7    4.8            V
+                  Internal power regulator VDD external load
+        ILDO                                                                      10            mA
+                  ability
+         VR       Power-on reset voltage threshold                2.2      2.4    2.6            V
+
+
+
+
+V2.0                                                 16
+CH224 Datasheet                                                                                    https://wch-ic.com
+
+
+
+9. Package Information
+Note: The dimensioning unit is mm.
+The pin center distance is a nominal value, no error, and other errors are not more than ±0.2mm.
+
+
+9.1 ESSOP10
+
+
+
+
+V2.0                                                 17
+CH224 Datasheet        https://wch-ic.com
+
+
+9.2 DFN10
+
+
+
+
+9.3 DFN20
+
+
+
+
+V2.0              18
+CH224 Datasheet        https://wch-ic.com
+
+
+9.4 SOT23-6
+
+
+
+
+V2.0              19
+

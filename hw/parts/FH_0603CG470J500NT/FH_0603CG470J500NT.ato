@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component FH_0603CG470J500NT_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C94904", date="2026-10-09T13:33:49.094994+00:00", checksum="1238e7bdda1e5afaa401f9e9cae624c1363a776395b4b3a31cf2010fcad27fc9">
+
+    trait is_atomic_part<manufacturer="FH", partnumber="0603CG470J500NT", footprint="C0603.kicad_mod", symbol="0603CG470J500NT.kicad_sym", model="C0603_L1.6-W0.8-H0.8.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C94904", manufacturer="FH", partno="0603CG470J500NT">
+    trait has_designator_prefix<prefix="C">
+
+    # pins
+    pin 1
+    pin 2

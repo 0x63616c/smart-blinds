@@ -1,0 +1,47 @@
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+
+# atopile
+hw/build/
+hw/.ato/
+hw/**/build/
+*.ato.lock.bak
+
+# KiCad temp / backups
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*.kicad_prl
+*-backups/
+_autosave-*
+*.lck
+fp-info-cache
+*.bak
+*~
+
+# Fabrication exports (regenerate from build)
+*.gbr
+*.drl
+*.zip
+
+# CAD exports (keep source, ignore generated)
+cad/**/*.stl
+cad/**/*.step
+cad/**/*.3mf
+cad/**/*.gcode
+
+# OS / editor
+.DS_Store
+.idea/
+*.swp
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Secrets / local
+.env
+*.local

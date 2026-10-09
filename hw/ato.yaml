@@ -1,0 +1,9 @@
+requires-atopile: "0.15.9"
+
+paths:
+  src: ./
+  layout: ./layouts
+
+builds:
+  pd12v6:
+    entry: boards/pd12v6.ato:App

@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component MDD_SMBJ24A_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C123819", date="2026-10-09T13:28:41.578615+00:00", checksum="7f2a7ae1dcb01225c14fc038d5117b05df905b92edd7419f156b0c42bbd4d1cd">
+
+    trait is_atomic_part<manufacturer="MDD", partnumber="SMBJ24A", footprint="SMB_L4.6-W3.6-LS5.3-RD.kicad_mod", symbol="SMBJ24A_C123819.kicad_sym", model="SMB_L4.6-W3.6-LS5.3-RD.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C123819", manufacturer="MDD", partno="SMBJ24A">
+    trait has_designator_prefix<prefix="D">
+
+    # pins
+    signal A ~ pin 2
+    signal C ~ pin 1

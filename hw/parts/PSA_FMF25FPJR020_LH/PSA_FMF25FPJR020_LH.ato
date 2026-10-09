@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component PSA_FMF25FPJR020_LH_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C105360", date="2026-10-09T13:28:45.399096+00:00", checksum="6afc70c887ece361e40624c57105355c53c320bf92407c309cc273484414d42b">
+
+    trait is_atomic_part<manufacturer="PSA", partnumber="FMF25FPJR020-LH", footprint="R2512.kicad_mod", symbol="FMF25FPJR020-LHL.kicad_sym", model="R2512_L6.3-W3.2-H0.6.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C105360", manufacturer="PSA", partno="FMF25FPJR020-LH">
+    trait has_designator_prefix<prefix="R">
+
+    # pins
+    pin 2
+    pin 1
