@@ -228,7 +228,7 @@ cn = PLACE["CN1"]
 LABELS = [
     # title block, bottom-left free area
     ("e8s  pd12v6", 14.0, 26.3, 1.2, "F.SilkS", 0, True),
-    ("USB-C PD -> 12.6 V 4.5 A", 14.0, 28.0, 0.8, "F.SilkS", 0, False),
+    ("USB-C PD -> 12.6 V 5 A", 14.0, 28.0, 0.8, "F.SilkS", 0, False),
     (REV, 14.0, 29.5, 0.8, "F.SilkS", 0, False),
     # connectors
     ("PD IN", 4.2, 24.6, 0.8, "F.SilkS", 0, True),

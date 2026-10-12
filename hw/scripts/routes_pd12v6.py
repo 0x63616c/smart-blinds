@@ -119,7 +119,7 @@ for xy in ((10, 1.6), (16, 1.6), (31.5, 1.6), (34, 1.6), (6, 30.4), (20, 30.4), 
 
 # ================================================================== polarity / pin-1 marks
 dot(17.1, 5.9)                      # U1 pin 1
-dot(19.0, 14.4, 0.4)                # U2 pin 1
+dot(18.6, 20.1, 0.4)                # U2 pin 1 (bottom-right corner, pin 1 = VBUS)
 dot(30.6, 11.5)                     # CN1 pin 1 (+12.6 V)
 bar(22.4, 3.0, 1.8, True)           # D1 cathode (SW side)
 bar(8.25, 4.7, 2.0, False)          # D2 cathode (VBUS side, top)
