@@ -3,7 +3,7 @@
 Same job, same connectors as [pd12v6](design.md): USB-C PD asks for 20 V, a buck makes 12.6 V / 5 A,
 one Micro-Fit 3.0 carries +12.6 V, GND, D+, D−. Built to be small and clean for JLCPCB assembly.
 
-Status: rev A layout complete, DRC clean (0 violations, 0 unconnected).
+Status: rev B layout (hand-placed, hand-routed, every part labelled), DRC clean (0 violations, 0 unconnected).
 Source `hw/boards/pd12v6mini.ato`; layouts `hw/layouts/pd12v6mini/` (routed) and
 `hw/layouts/pd12v6mini_manual/` (placed, no tracks). Regenerate: `hw/scripts/review.sh pd12v6mini`.
 
@@ -11,7 +11,7 @@ Source `hw/boards/pd12v6mini.ato`; layouts `hw/layouts/pd12v6mini/` (routed) and
 
 | | pd12v6 | pd12v6mini |
 |---|---|---|
-| Board | 40 × 32 mm | 33 × 20 mm (48 % less area) |
+| Board | 40 × 32 mm | 35 × 24.5 mm (33 % less area; rev A was 33 × 20 but crammed) |
 | Placed parts | 27 | 23 |
 | Unique parts (JLC feeders) | 22 + CN1 | 19 + CN1 |
 | Smallest via drill | 0.25 mm (+$37 at JLCPCB) | 0.3 mm (no surcharge) |
@@ -39,21 +39,26 @@ Design values (TPS56637 datasheet SLVSEG1A):
 - MODE tied to GND: Eco-mode at light load. PG unused.
 - Ripple at 21 V in: 1.8 A p-p, peak 5.9 A against 8.6 A Isat.
 
-## Look-and-feel rules
+## Layout and look (rev B)
 
-- **Front silk is only what someone holding the board needs:** "PD" and "ON" under the LEDs, plus
-  pin-1 dots and the TVS cathode bar. Name, rating, Micro-Fit pinout and the "not current limited"
-  warning are on the back.
-- **No reference designators on the board.** They live on F.Fab and are exported as the
-  assembly drawing (`build/review/pd12v6mini/assembly.png`, `.pdf`). JLCPCB places from the
-  CPL file, not from silk.
-- **One via size everywhere (0.5 / 0.3 mm), tented both sides.** No dots of bare copper show.
-- **Power flows in a straight line along the top edge:** USB-C → input caps → TPS56637 →
-  inductor → output cap → Micro-Fit. Feedback and UVLO resistors sit in one 1 mm-pitch row
-  under the converter, signal pad up. The PD controller sits on the centre line between the
-  connectors.
-- **Finish:** matte black mask + ENIG. ENIG is set in the board file for the renders. **Choose it on
-  the JLCPCB order form too**, because the order form decides.
+- **Grouped by job:**
+  - INPUT (USB-C, TVS) on the left.
+  - BUCK along the top: input caps → TPS56637 → boot cap → inductor. Its six tuning parts sit in
+    one 2 mm-pitch row underneath, signal pad up, labels on one line.
+  - PD controller on the centre line, with two mirrored status columns under it:
+    PG → R6 → LED2 "PD" and VOUT → LED1 → R5 "ON".
+  - OUTPUT caps mirrored above and below the Micro-Fit.
+- **Every part is labelled on the top silk** on a consistent grid. LEDs also carry "PD" / "ON".
+- **White inset outline on both sides,** broken at the connectors. M2 holes sit inside it in the
+  corners. Matte black mask, ENIG. Choose ENIG on the JLCPCB order form too.
+- **Routing:**
+  - Traces come in one width per job: 0.2 mm signals, 0.3 mm power into 0402 pads,
+    0.6 mm power into big pads. Heavy current runs in shaped copper areas.
+  - Every track leaves its pad straight along the pad axis, and every corner is the same
+    45° chamfer (`path()` in the routes script).
+  - The top only carries pad-to-pad links. USB data runs on B.Cu, CC2 hops on In2, and
+    VBUS/VOUT reach far pins through In2.
+- **One via size (0.5/0.3), tented.** GND vias only sit beside pads that need them.
 
 ## Layers
 

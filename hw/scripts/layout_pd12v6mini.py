@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministic placement + routing for pd12v6mini (4-layer, 33 x 20 mm).
+"""Deterministic placement + routing for pd12v6mini (4-layer, 35 x 24.5 mm).
 
     /Applications/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3 \
         scripts/layout_pd12v6mini.py [--place-only] [--dump]
@@ -27,43 +27,55 @@ DUMP = "--dump" in sys.argv
 OUT = (PCB.parent.parent / "pd12v6mini_manual" / "pd12v6mini_manual.kicad_pcb") if PLACE_ONLY else PCB
 OUT.parent.mkdir(exist_ok=True)
 
-W, H, RAD = 33.0, 20.0, 1.5
-CY = 10.0                                   # connector centre line
+W, H, RAD = 35.0, 24.5, 1.5
+CY = 13.5                                   # connector centre line
 CNX = W - 10.9                              # Micro-Fit footprint origin (body flush with the right edge)
-REV = "rev A  2026-10"
+REV = "rev B  2026-10"
 
+# Groups (left -> right): INPUT (USB-C, TVS) | BUCK (top band + control row) | PD (U2 + status
+# columns) | OUTPUT (output caps above/below the Micro-Fit). Everything on a 0.05 mm grid.
 PLACE = {
-    # mounting holes, M2, corners
-    "H1": (2.5, 2.5, 0), "H2": (W - 2.5, 2.5, 0), "H3": (2.5, H - 2.5, 0), "H4": (W - 2.5, H - 2.5, 0),
-    # connectors on the centre line, mouths outward
+    "H1": (3.0, 3.0, 0), "H2": (W - 3.0, 3.0, 0), "H3": (3.0, H - 3.0, 0), "H4": (W - 3.0, H - 3.0, 0),
+    # ---- INPUT
     "USBC1": (4.2, CY, 270),
+    "D1": (8.35, 20.5, 0),                             # SMAJ22A, K (VBUS) left
+    # ---- BUCK power row, centre line y 4.6: input caps -> TPS56637 -> inductor
+    "C3": (8.4, 4.6, 270), "C4": (10.6, 4.6, 270),   # 10 uF 1206, VBUS up / GND down
+    "C5": (12.45, 4.2, 270),                          # 100 nF at VIN/PGND
+    "U1": (14.7, 4.6, 90),                            # VIN top, SW exits right, EN/FB/AGND/PG bottom
+    "C1": (17.5, 3.69, 0),                            # boot cap, BOOT left / SW right
+    "L1": (20.4, 4.6, 0),                             # 5.6 uH
+    # ---- BUCK control row: six identical 0402s, 2 mm pitch, pads on y 7.97 / 8.83, labels on y 9.85
+    "R7": (11.95, 8.4, 90), "R8": (13.95, 8.4, 270),  # UVLO 390 k / 27 k        (EN on top)
+    "R3": (15.95, 8.4, 270), "R2": (17.95, 8.4, 90),  # FB 10 k / 200 k          (FB on top)
+    "R4": (19.95, 8.4, 90), "C2": (21.95, 8.4, 270),  # feed-forward 20 k + 100 pF (FB on top / VOUT on top)
+    # ---- PD: CH224A on the centre line, CC1 straight across from the USB-C
+    "U2": (15.0, CY - 0.25, 90),
+    "R1": (10.4, 16.9, 270),                          # CFG1 120 k (CFG1 up)
+    "R6": (12.0, 16.9, 90), "LED2": (12.0, 19.6, 270),   # left status column:  PG -> R6 -> LED2 -> VBUS
+    "C8": (18.0, 16.9, 270),                          # right column: VHV 1 uF
+    "LED1": (18.0, 19.6, 90), "R5": (18.0, 21.3, 270),   #               VOUT -> LED1 -> R5 -> GND
+    # ---- OUTPUT: caps mirrored above / below the Micro-Fit pins
+    "C6": (CNX + 1.5, 4.6, 90),                       # VOUT pad down, straight onto pin 1
     "CN1": (CNX, CY, 90),
-    # ---- top band: power stage, left -> right ----------------------------------------------
-    "C3": (8.0, 3.4, 270), "C4": (10.0, 3.4, 270),   # 2 x 10 uF 1206, VBUS pad up, GND pad down
-    "C5": (11.35, 3.0, 270),                          # 100 nF right at VIN (up) / PGND (down)
-    "U1": (13.6, 3.4, 90),                            # TPS56637: VIN top, SW exits right, EN/FB/AGND/PG bottom
-    "C1": (16.0, 2.0, 270),                           # boot cap: BOOT up, SW down
-    "L1": (19.0, 3.4, 0),                             # 5.6 uH, SW left / VOUT right
-    "C6": (24.0, 2.6, 0),                             # 47 uF 1210 above the Micro-Fit body
-    # ---- feedback / UVLO row under U1 (1.0 mm pitch, signal pad up) ---------------------------
-    "R7": (11.5, 6.3, 90),  "R8": (12.5, 6.3, 270),  # UVLO 390 k / 27 k        (EN up)
-    "R3": (13.5, 6.3, 270), "R4": (14.5, 6.3, 90),   # FB 10 k, feed-forward 20 k (FB up)
-    "R2": (15.5, 6.3, 90),                            # FB 200 k                  (FB up, VOUT down)
-    "C2": (14.92, 7.55, 180),                         # feed-forward 100 pF under R4/R2
-    # ---- PD controller ------------------------------------------------------------------------
-    "U2": (14.5, 10.5, 90),                           # CH224A: CC/VBUS/CFG1/PG column faces the USB-C
-    "R1": (10.4, 14.3, 270),                          # CFG1 120 k
-    "C8": (17.5, 14.0, 0),                            # VHV 1 uF
-    # ---- bottom band: TVS, LEDs, second output cap -----------------------------------------
-    "D1": (9.2, 17.6, 0),                             # SMAJ22A, K (VBUS) left
-    "R6": (14.5, 17.6, 180), "LED2": (16.0, 17.6, 0),   # PD LED (red)
-    "R5": (19.0, 17.6, 180), "LED1": (20.5, 17.6, 0),   # ON LED (green)
-    "C7": (24.0, 17.4, 0),                            # 47 uF 1210 below the Micro-Fit body
+    "C7": (CNX + 1.5, 21.0, 90),                      # GND pad up towards pin 2
+}
+SILK_REFS = {r for r in PLACE if not r.startswith("H")}
+TOP = 1.3                                             # label row above the power row
+REF_POS = {
+    "C3": (0, TOP - 4.6, 0), "C4": (0, TOP - 4.6, 0), "C5": (0, TOP - 4.2, 0), "U1": (0, TOP - 4.6, 0),
+    "C1": (0, TOP - 3.69, 0), "L1": (0, TOP - 4.6, 0), "C6": (2.5, 0, 0), "C7": (2.5, 0, 0),
+    "R7": (0, 1.45, 0), "R8": (0, 1.45, 0), "R3": (0, 1.45, 0), "R2": (0, 1.45, 0),
+    "R4": (0, 1.45, 0), "C2": (0, 1.45, 0),
+    "USBC1": (-0.2, -6.5, 0), "D1": (0, -1.6, 0), "U2": (0, 3.05, 0),
+    "R1": (0, 1.3, 0), "R6": (1.2, 0, 0), "LED2": (1.9, 0, 0),
+    "C8": (1.2, 0, 0), "LED1": (1.9, 0, 0), "R5": (1.2, 0, 0),
+    "CN1": (5.5, -5.9, 0),
 }
 
 b = Board(PCB, layers=4)
 b.place_only = PLACE_ONLY
-b.place(PLACE, silk_refs=set())
+b.place(PLACE, silk_refs=SILK_REFS, ref_size=0.8, ref_stroke=0.12, ref_pos=REF_POS)
 b.reset(OUT)
 if DUMP:
     b.dump(); sys.exit(0)
@@ -74,6 +86,11 @@ for p in b.fps["CN1"].Pads():           # Micro-Fit plastic locating peg -> NPTH
         import pcbnew
         p.SetAttribute(pcbnew.PAD_ATTRIB_NPTH); p.SetSize(p.GetDrillSize())
 b.rounded_rect(0, 0, W, H, RAD, "Edge.Cuts", 0.1)
+# white inset outline on both sides, broken where the connectors cross the edge
+FRAME = 0.6
+for side in ("F.SilkS", "B.SilkS"):
+    b.rounded_rect(FRAME, FRAME, W - FRAME, H - FRAME, RAD - FRAME + 0.3, side, 0.15,
+                   gaps=[("left", CY - 5.6, CY + 5.6), ("right", CY - 5.4, CY + 5.2)])
 
 exec(open(HERE / "routes_pd12v6mini.py").read())
 
