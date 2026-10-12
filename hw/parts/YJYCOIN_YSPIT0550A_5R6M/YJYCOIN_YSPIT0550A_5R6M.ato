@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component YJYCOIN_YSPIT0550A_5R6M_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C18236291", date="2026-10-12T19:24:50.523309+00:00", checksum="b84d2569bd8f6bf8dfb98aef310094238c7c98e7de9610190b50ac3aa2f4eb95">
+
+    trait is_atomic_part<manufacturer="YJYCOIN", partnumber="YSPIT0550A-5R6M", footprint="IND-SMD_L5.5-W5.3.kicad_mod", symbol="YSPIT0550A-5R6M.kicad_sym", model="IND-SMD_L5.5-W5.3.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C18236291", manufacturer="YJYCOIN", partno="YSPIT0550A-5R6M">
+    trait has_designator_prefix<prefix="L">
+
+    # pins
+    pin 2
+    pin 1

@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component XINGLIGHT_XL_1005SURC_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C25503345", date="2026-10-12T19:24:56.553483+00:00", checksum="60967dca77af22375f4ce4f8d3e8f73faf36e7b0ca6c4b74ab4aa50af209f6ff">
+
+    trait is_atomic_part<manufacturer="XINGLIGHT", partnumber="XL-1005SURC", footprint="LED0402-RD.kicad_mod", symbol="XL-1005SURC_C25503345.kicad_sym", model="LED0402_L1.0-W0.5-H0.2.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C25503345", manufacturer="XINGLIGHT", partno="XL-1005SURC">
+    trait has_designator_prefix<prefix="LED">
+
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1

@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component XINGLIGHT_XL_1005UGC_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C965793", date="2026-10-12T19:24:57.432346+00:00", checksum="a985bd91e0bafb92dd0dce6332956c2e551b814c3d19e74ab3bf838cf624409f">
+
+    trait is_atomic_part<manufacturer="XINGLIGHT", partnumber="XL-1005UGC", footprint="LED0402-RD_GREEN.kicad_mod", symbol="XL-1005UGC.kicad_sym", model="LED0402-RD_GREEN.STEP">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C965793", manufacturer="XINGLIGHT", partno="XL-1005UGC">
+    trait has_designator_prefix<prefix="LED">
+
+    # pins
+    signal A ~ pin 2
+    signal K ~ pin 1

@@ -1,0 +1,24 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component TI_TPS56637RPAR_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C841386", date="2026-10-12T19:20:54.612012+00:00", checksum="a5884921560962b7796abfd7a628ed58d974b0ec32630fcf6c7965629a26149e">
+
+    trait is_atomic_part<manufacturer="TI", partnumber="TPS56637RPAR", footprint="VQFN-HR-10_L3.0-W3.0_RPA.kicad_mod", symbol="TPS56637RPAR.kicad_sym", model="VQFN-HR-10_L3.0-W3.0_RPA.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C841386", manufacturer="TI", partno="TPS56637RPAR">
+    trait has_designator_prefix<prefix="U">
+
+    # pins
+    signal AGND ~ pin 3
+    signal BOOT ~ pin 7
+    signal EN ~ pin 1
+    signal FB ~ pin 2
+    signal MODE ~ pin 10
+    signal PG ~ pin 4
+    signal PGND ~ pin 9
+    signal SW ~ pin 6
+    signal VIN ~ pin 8

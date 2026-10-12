@@ -1,48 +1,63 @@
 #!/usr/bin/env bash
-# Rebuild the pd12v6 board end-to-end and drop everything a reviewer needs into hw/build/review/.
-#   ./scripts/review.sh            # build + layout + DRC + images + STEP
-#   ./scripts/review.sh --open     # ...then open the board in KiCad
+# Rebuild boards end-to-end and drop everything a reviewer needs into hw/build/review/<board>/.
+#   ./scripts/review.sh                     # every board: pd12v6 and pd12v6mini
+#   ./scripts/review.sh pd12v6mini          # just one
+#   ./scripts/review.sh pd12v6mini --open   # ...then open it in KiCad
+# For each board: ato build -> scripted layout (routed + place-only copy) -> DRC -> layer images,
+# 3D renders, assembly drawing (reference designators, F.Fab) -> STEP.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 KPY=/Applications/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3
 KCLI=${KICAD_CLI:-$HOME/.local/bin/kicad-cli}
-PCB=layouts/pd12v6/pd12v6.kicad_pcb
-MPCB=layouts/pd12v6_manual/pd12v6_manual.kicad_pcb
-OUT=build/review
-mkdir -p "$OUT"
+FILTER='assert|leak|Legacy|best-effort|Debug|wxApp'
 
-echo "== ato build"
-uv run ato build -b pd12v6 2>&1 | grep -E "Build (successful|failed)|Error" || true
+OPEN=0; BOARDS=()
+for a in "$@"; do [[ "$a" == "--open" ]] && OPEN=1 || BOARDS+=("$a"); done
+[[ ${#BOARDS[@]} -eq 0 ]] && BOARDS=(pd12v6 pd12v6mini)
 
-echo "== layout (place + route + zones)"
-"$KPY" scripts/layout_pd12v6.py 2>&1 | grep -v "assert\|leak\|Legacy\|best-effort\|Debug"
-echo "== layout (place only, hand-route copy)"
-"$KPY" scripts/layout_pd12v6.py --place-only 2>&1 | grep -v "assert\|leak\|Legacy\|best-effort\|Debug"
+svg2png() { "$KCLI" pcb export svg --layers "$2" --page-size-mode 2 --exclude-drawing-sheet ${4:-} -o "$3.svg" "$1" >/dev/null
+            rsvg-convert -w 2000 "$3.svg" -o "$3.png"; }
 
-echo "== DRC"
-"$KCLI" pcb drc --refill-zones --severity-error --severity-warning --format json -o "$OUT/drc.json" "$PCB" >/dev/null
-python3 scripts/drc_summary.py "$OUT/drc.json" | tee "$OUT/drc_summary.txt"
-"$KCLI" pcb drc --refill-zones --severity-error --severity-warning --format json -o "$OUT/drc_manual.json" $MPCB >/dev/null
-echo "(manual copy)"; python3 scripts/drc_summary.py "$OUT/drc_manual.json" | head -2
+for BOARD in "${BOARDS[@]}"; do
+  PCB=layouts/$BOARD/$BOARD.kicad_pcb
+  MPCB=layouts/${BOARD}_manual/${BOARD}_manual.kicad_pcb
+  OUT=build/review/$BOARD
+  mkdir -p "$OUT"
+  echo "######## $BOARD"
 
-echo "== layer images"
-"$KCLI" pcb export svg --layers "F.Cu,F.SilkS,F.Mask,Edge.Cuts" --page-size-mode 2 --exclude-drawing-sheet -o "$OUT/top.svg" "$PCB" >/dev/null
-"$KCLI" pcb export svg --layers "B.Cu,B.SilkS,B.Mask,Edge.Cuts" --page-size-mode 2 --exclude-drawing-sheet --mirror -o "$OUT/bottom.svg" "$PCB" >/dev/null
-rsvg-convert -w 2000 "$OUT/top.svg" -o "$OUT/top.png"
-rsvg-convert -w 2000 "$OUT/bottom.svg" -o "$OUT/bottom.png"
-"$KCLI" pcb export svg --layers "In1.Cu,Edge.Cuts" --page-size-mode 2 --exclude-drawing-sheet -o "$OUT/in1.svg" "$PCB" >/dev/null
-"$KCLI" pcb export svg --layers "In2.Cu,Edge.Cuts" --page-size-mode 2 --exclude-drawing-sheet -o "$OUT/in2.svg" "$PCB" >/dev/null
-rsvg-convert -w 2000 "$OUT/in1.svg" -o "$OUT/in1.png"; rsvg-convert -w 2000 "$OUT/in2.svg" -o "$OUT/in2.png"
-"$KCLI" pcb export svg --layers "F.Cu,F.SilkS,F.Mask,Edge.Cuts" --page-size-mode 2 --exclude-drawing-sheet -o "$OUT/manual_top.svg" $MPCB >/dev/null
-rsvg-convert -w 2000 "$OUT/manual_top.svg" -o "$OUT/manual_top.png"
+  echo "== ato build"
+  uv run ato build -b "$BOARD" 2>&1 | grep -E "Build (successful|failed)|Error" || true
 
-echo "== 3D renders"
-"$KCLI" pcb render --side top    --quality high --zoom 1.1 -w 1800 -h 1600 -o "$OUT/3d_top.png"    "$PCB" >/dev/null
-"$KCLI" pcb render --side bottom --quality high --zoom 1.1 -w 1800 -h 1600 -o "$OUT/3d_bottom.png" "$PCB" >/dev/null
-"$KCLI" pcb render --side top --perspective --rotate "-35,0,25" --quality high --zoom 1.0 -w 1800 -h 1400 -o "$OUT/3d_iso.png" "$PCB" >/dev/null
+  echo "== layout (routed) + place-only copy"
+  "$KPY" "scripts/layout_$BOARD.py" 2>&1 | grep -Ev "$FILTER" || true
+  "$KPY" "scripts/layout_$BOARD.py" --place-only 2>&1 | grep -Ev "$FILTER" || true
 
-echo "== STEP"
-"$KCLI" pcb export step --subst-models --force -o "$OUT/pd12v6.step" "$PCB" >/dev/null 2>&1 || echo "(step export failed)"
+  echo "== DRC"
+  "$KCLI" pcb drc --refill-zones --severity-error --severity-warning --format json -o "$OUT/drc.json" "$PCB" >/dev/null
+  python3 scripts/drc_summary.py "$OUT/drc.json" | tee "$OUT/drc_summary.txt"
+  "$KCLI" pcb drc --refill-zones --severity-error --severity-warning --format json -o "$OUT/drc_manual.json" "$MPCB" >/dev/null
+  echo "(place-only copy)"; python3 scripts/drc_summary.py "$OUT/drc_manual.json" | head -2
 
-echo "review outputs in $OUT:"; ls -1 "$OUT"
-if [[ "${1:-}" == "--open" ]]; then open -a KiCad "$PCB"; fi
+  echo "== layer images + assembly drawing"
+  svg2png "$PCB" "F.Cu,F.SilkS,F.Mask,Edge.Cuts" "$OUT/top"
+  svg2png "$PCB" "B.Cu,B.SilkS,B.Mask,Edge.Cuts" "$OUT/bottom" --mirror
+  svg2png "$PCB" "In1.Cu,Edge.Cuts" "$OUT/in1"
+  svg2png "$PCB" "In2.Cu,Edge.Cuts" "$OUT/in2"
+  svg2png "$PCB" "F.Fab,Edge.Cuts" "$OUT/assembly"
+  svg2png "$MPCB" "F.Cu,F.SilkS,F.Mask,Edge.Cuts" "$OUT/manual_top"
+  "$KCLI" pcb export pdf --layers "F.Fab,Edge.Cuts" --include-border-title -o "$OUT/assembly.pdf" "$PCB" >/dev/null 2>&1 || true
+
+  echo "== 3D renders"
+  "$KCLI" pcb render --side top    --quality high --zoom 1.1 -w 1800 -h 1300 -o "$OUT/3d_top.png"    "$PCB" >/dev/null
+  "$KCLI" pcb render --side bottom --quality high --zoom 1.1 -w 1800 -h 1300 -o "$OUT/3d_bottom.png" "$PCB" >/dev/null
+  "$KCLI" pcb render --side top --perspective --rotate "-35,0,25" --quality high --zoom 1.0 -w 1800 -h 1400 -o "$OUT/3d_iso.png" "$PCB" >/dev/null
+
+  echo "== STEP"
+  "$KCLI" pcb export step --subst-models --force -o "$OUT/$BOARD.step" "$PCB" >/dev/null 2>&1 || echo "(step export failed)"
+  rm -f "$OUT"/*.svg
+  echo "outputs in $OUT"
+done
+
+if [[ $OPEN -eq 1 ]]; then
+  for BOARD in "${BOARDS[@]}"; do open -n -a /Applications/KiCad.app/Contents/Applications/pcbnew.app --args "$PWD/layouts/$BOARD/$BOARD.kicad_pcb"; done
+fi

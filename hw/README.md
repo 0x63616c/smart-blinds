@@ -18,8 +18,9 @@ uv run ato build -b pd12v6      # compile .ato -> netlist/BOM, sync layout
 ./scripts/review.sh --open      # ...and open the board in KiCad
 ```
 
-The layout is fully scripted (`scripts/layout_pd12v6.py` places, `routes_pd12v6.py` routes) and
+Each board's layout is fully scripted (`scripts/layout_<board>.py` places, `routes_<board>.py` routes,
+shared plumbing in `scripts/pcbkit.py`) and
 idempotent: rerunning regenerates the same board, so edit the scripts rather than the .kicad_pcb.
-`layout_pd12v6.py --place-only` writes the hand-route copy (`layouts/pd12v6_manual/`); it keeps
+`layout_<board>.py --place-only` writes the hand-route copy (`layouts/<board>_manual/`); it keeps
 placement, zones, outline and silk and drops every track and via. The review script runs both.
-Scripts run under KiCad's bundled Python (KiCad 10). Design notes: `../docs/pd12v6/design.md`.
+Scripts run under KiCad's bundled Python (KiCad 10). Design notes: `../docs/pd12v6/design.md`, `../docs/pd12v6/mini.md`.

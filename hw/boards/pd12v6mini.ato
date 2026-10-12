@@ -1,0 +1,204 @@
+"""
+pd12v6mini — compact version of pd12v6: USB-C PD (20 V) in, 12.6 V / 5 A out, USB 2.0 data passed through.
+
+Same job and same connectors as pd12v6, smaller parts (see docs/pd12v6/mini.md):
+  * CH224A asks the charger for 20 V (CFG1 = 120 kΩ). (CH224Q, the 2x2 mm version, is out of stock.)
+  * TPS56637 synchronous buck, 3x3 mm, 500 kHz, D-CAP3 (no compensation network, no catch diode)
+      Vout = 0.6 V * (1 + 200 k / 10 k) = 12.6 V
+      L = 5.6 µH, Cout = 2 x 47 µF 1210 (≈30 µF effective at 12.6 V), datasheet table 4 row "12 V"
+      feed-forward 100 pF + 20 k across the top resistor (table 4 note 4)
+      UVLO via EN: 390 k / 27 k -> start ≈ 17.8 V, stop ≈ 15.3 V (datasheet eq. 2-4, Ip 1 µA, Ih 4 µA)
+      MODE = GND -> Eco-mode at light load
+  * SMAJ22A TVS (the TPS56637 is a 28 V / 32 V-abs-max part, so the clamp is lower than pd12v6's)
+  * 0402 passives and LEDs, assembled by JLCPCB.
+  * Output: Molex Micro-Fit 3.0 2x2 right-angle: 1 = +12.6 V, 2 = GND, 3 = D+, 4 = D-
+  * 4x M2 grounded holes, 4-layer, black mask, ENIG.
+"""
+
+import Electrical
+import has_net_name
+
+from "parts/UNKNOWN_TYPE_C_31_M_12/UNKNOWN_TYPE_C_31_M_12.ato" import UNKNOWN_TYPE_C_31_M_12_package
+from "parts/WCH_CH224A/WCH_CH224A.ato" import WCH_CH224A_package
+from "parts/TI_TPS56637RPAR/TI_TPS56637RPAR.ato" import TI_TPS56637RPAR_package
+from "parts/YJYCOIN_YSPIT0550A_5R6M/YJYCOIN_YSPIT0550A_5R6M.ato" import YJYCOIN_YSPIT0550A_5R6M_package
+from "parts/DIODES_SMAJ22A_13_F/DIODES_SMAJ22A_13_F.ato" import DIODES_SMAJ22A_13_F_package
+from "parts/MOLEX_0430450400/MOLEX_0430450400.ato" import MOLEX_0430450400_package
+from "parts/XINGLIGHT_XL_1005SURC/XINGLIGHT_XL_1005SURC.ato" import XINGLIGHT_XL_1005SURC_package
+from "parts/XINGLIGHT_XL_1005UGC/XINGLIGHT_XL_1005UGC.ato" import XINGLIGHT_XL_1005UGC_package
+from "parts/M2_HOLE/M2_HOLE.ato" import M2_HOLE
+
+# capacitors
+from "parts/SAMSUNG_CL31A106KBHNNNE/SAMSUNG_CL31A106KBHNNNE.ato" import SAMSUNG_CL31A106KBHNNNE_package                  # 10 µF 50 V X5R 1206 (Basic)
+from "parts/Chinocera_HGC1210R5476M250NSVK/Chinocera_HGC1210R5476M250NSVK.ato" import Chinocera_HGC1210R5476M250NSVK_package  # 47 µF 25 V X5R 1210
+from "parts/SAMSUNG_CL05B104KB54PNC/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package                  # 100 nF 50 V X7R 0402 (Basic)
+from "parts/SAMSUNG_CL05A105KA5NQNC/SAMSUNG_CL05A105KA5NQNC.ato" import SAMSUNG_CL05A105KA5NQNC_package                  # 1 µF 25 V X5R 0402 (Basic)
+from "parts/FH_0402CG101J500NT/FH_0402CG101J500NT.ato" import FH_0402CG101J500NT_package                                # 100 pF 50 V C0G 0402 (Basic)
+
+# resistors (0402, 1 %)
+from "parts/UNI_ROYAL_0402WGF4701TCE/UNI_ROYAL_0402WGF4701TCE.ato" import UNI_ROYAL_0402WGF4701TCE_package  # 4.7 k
+from "parts/UNI_ROYAL_0402WGF1002TCE/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package  # 10 k
+from "parts/UNI_ROYAL_0402WGF2002TCE/UNI_ROYAL_0402WGF2002TCE.ato" import UNI_ROYAL_0402WGF2002TCE_package  # 20 k
+from "parts/UNI_ROYAL_0402WGF2702TCE/UNI_ROYAL_0402WGF2702TCE.ato" import UNI_ROYAL_0402WGF2702TCE_package  # 27 k
+from "parts/UNI_ROYAL_0402WGF1203TCE/UNI_ROYAL_0402WGF1203TCE.ato" import UNI_ROYAL_0402WGF1203TCE_package  # 120 k
+from "parts/UNI_ROYAL_0402WGF2003TCE/UNI_ROYAL_0402WGF2003TCE.ato" import UNI_ROYAL_0402WGF2003TCE_package  # 200 k
+from "parts/UNI_ROYAL_0402WGF3903TCE/UNI_ROYAL_0402WGF3903TCE.ato" import UNI_ROYAL_0402WGF3903TCE_package  # 390 k
+
+
+module App:
+    signal gnd
+    signal vbus       # USB-C VBUS, 5 V at plug-in then 20 V after PD negotiation
+    signal vout       # 12.6 V regulated output
+    signal usb_dp
+    signal usb_dn
+    signal cc1
+    signal cc2
+    signal pg_n       # CH224A PowerGood, open-drain, LOW when 20 V granted
+    signal en         # TPS56637 EN / UVLO divider tap
+    signal boot
+    signal sw
+    signal fb
+    signal ff         # feed-forward R-C midpoint
+    signal cfg1
+    signal led_pd_k
+    signal led_out_k
+
+    trait gnd has_net_name<name="GND">
+    trait vbus has_net_name<name="VBUS">
+    trait vout has_net_name<name="VOUT">
+    trait usb_dp has_net_name<name="USB_DP">
+    trait usb_dn has_net_name<name="USB_DN">
+    trait cc1 has_net_name<name="CC1">
+    trait cc2 has_net_name<name="CC2">
+    trait pg_n has_net_name<name="PG_n">
+    trait en has_net_name<name="EN">
+    trait boot has_net_name<name="BOOT">
+    trait sw has_net_name<name="SW">
+    trait fb has_net_name<name="FB">
+    trait ff has_net_name<name="FF">
+    trait cfg1 has_net_name<name="CFG1">
+    trait led_pd_k has_net_name<name="LED_PD_K">
+    trait led_out_k has_net_name<name="LED_OUT_K">
+
+    # ------------------------------------------------------------------ USB-C input
+    usb = new UNKNOWN_TYPE_C_31_M_12_package     # TYPE-C-31-M-12, 16-pin, C165948
+    usb.VBUS ~ vbus
+    usb.GND ~ gnd
+    usb.EH ~ gnd
+    usb.CC1 ~ cc1
+    usb.CC2 ~ cc2
+    usb.DP1 ~ usb_dp
+    usb.DP2 ~ usb_dp
+    usb.DN1 ~ usb_dn
+    usb.DN2 ~ usb_dn
+
+    tvs = new DIODES_SMAJ22A_13_F_package         # 22 V standoff, SMA, C134971
+    tvs.K ~ vbus
+    tvs.A ~ gnd
+
+    # ------------------------------------------------------------------ PD sink controller
+    pd = new WCH_CH224A_package                   # CH224A, ESSOP-10, C42459160
+    pd.VHV ~ vbus
+    pd.VBUS ~ vbus
+    pd.GND ~ gnd
+    pd.CC1 ~ cc1
+    pd.CC2 ~ cc2
+    pd.CFG1 ~ cfg1
+    pd.PG ~ pg_n
+
+    c_vhv = new SAMSUNG_CL05A105KA5NQNC_package   # 1 µF on VHV
+    c_vhv.1 ~ vbus
+    c_vhv.2 ~ gnd
+
+    r_cfg1 = new UNI_ROYAL_0402WGF1203TCE_package # 120 k -> request 20 V
+    r_cfg1.1 ~ cfg1
+    r_cfg1.2 ~ gnd
+
+    led_pd = new XINGLIGHT_XL_1005SURC_package    # red 0402: "PD 20 V negotiated"
+    r_led_pd = new UNI_ROYAL_0402WGF1002TCE_package  # 10 k -> ~1.8 mA, 32 mW
+    led_pd.A ~ vbus
+    led_pd.K ~ led_pd_k
+    r_led_pd.1 ~ led_pd_k
+    r_led_pd.2 ~ pg_n
+
+    # ------------------------------------------------------------------ buck 20 V -> 12.6 V
+    buck = new TI_TPS56637RPAR_package            # TPS56637RPAR, VQFN-HR-10 3x3, C841386
+    buck.VIN ~ vbus
+    buck.PGND ~ gnd
+    buck.AGND ~ gnd
+    buck.MODE ~ gnd                               # Eco-mode at light load
+    buck.EN ~ en
+    buck.BOOT ~ boot
+    buck.SW ~ sw
+    buck.FB ~ fb
+    # PG unused (open drain, left floating)
+
+    c_in1 = new SAMSUNG_CL31A106KBHNNNE_package   # 2 x 10 µF 50 V 1206
+    c_in2 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_in_hf = new SAMSUNG_CL05B104KB54PNC_package # 100 nF at VIN/PGND
+    c_in1.1 ~ vbus
+    c_in1.2 ~ gnd
+    c_in2.1 ~ vbus
+    c_in2.2 ~ gnd
+    c_in_hf.1 ~ vbus
+    c_in_hf.2 ~ gnd
+
+    r_uvlo1 = new UNI_ROYAL_0402WGF3903TCE_package   # 390 k
+    r_uvlo2 = new UNI_ROYAL_0402WGF2702TCE_package   # 27 k
+    r_uvlo1.1 ~ vbus
+    r_uvlo1.2 ~ en
+    r_uvlo2.1 ~ en
+    r_uvlo2.2 ~ gnd
+
+    c_boot = new SAMSUNG_CL05B104KB54PNC_package  # 100 nF BOOT-SW
+    c_boot.1 ~ boot
+    c_boot.2 ~ sw
+
+    l_out = new YJYCOIN_YSPIT0550A_5R6M_package   # 5.6 µH, Isat 8.6 A, 24 mΩ, 5.5x5.3 mm, C18236291
+    l_out.1 ~ sw
+    l_out.2 ~ vout
+
+    c_out1 = new Chinocera_HGC1210R5476M250NSVK_package
+    c_out2 = new Chinocera_HGC1210R5476M250NSVK_package
+    c_out1.1 ~ vout
+    c_out1.2 ~ gnd
+    c_out2.1 ~ vout
+    c_out2.2 ~ gnd
+
+    r_fb_hi = new UNI_ROYAL_0402WGF2003TCE_package   # 200 k
+    r_fb_lo = new UNI_ROYAL_0402WGF1002TCE_package   # 10 k
+    r_fb_hi.1 ~ vout
+    r_fb_hi.2 ~ fb
+    r_fb_lo.1 ~ fb
+    r_fb_lo.2 ~ gnd
+
+    c_ff = new FH_0402CG101J500NT_package         # 100 pF feed-forward
+    r_ff = new UNI_ROYAL_0402WGF2002TCE_package   # 20 k in series with it
+    c_ff.1 ~ vout
+    c_ff.2 ~ ff
+    r_ff.1 ~ ff
+    r_ff.2 ~ fb
+
+    # ------------------------------------------------------------------ output
+    out = new MOLEX_0430450400_package            # Micro-Fit 3.0 2x2 right-angle, C122413
+    out.1 ~ vout
+    out.2 ~ gnd
+    out.3 ~ usb_dp
+    out.4 ~ usb_dn
+
+    led_out = new XINGLIGHT_XL_1005UGC_package    # green 0402: "12.6 V present"
+    r_led_out = new UNI_ROYAL_0402WGF4701TCE_package  # 4.7 k -> ~2.2 mA
+    led_out.A ~ vout
+    led_out.K ~ led_out_k
+    r_led_out.1 ~ led_out_k
+    r_led_out.2 ~ gnd
+
+    # ------------------------------------------------------------------ mechanical
+    h1 = new M2_HOLE
+    h2 = new M2_HOLE
+    h3 = new M2_HOLE
+    h4 = new M2_HOLE
+    h1.contact ~ gnd
+    h2.contact ~ gnd
+    h3.contact ~ gnd
+    h4.contact ~ gnd

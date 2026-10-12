@@ -1,0 +1,19 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component UNI_ROYAL_0402WGF3903TCE_package:
+    """390KΩ (3903) ±1%"""
+
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C25782", date="2026-10-12T19:24:54.294202+00:00", checksum="7eba1a31dab39c4f6e3094a7883f68f45cf13edbcb422404a32419305fd0660a">
+
+    trait is_atomic_part<manufacturer="UNI-ROYAL", partnumber="0402WGF3903TCE", footprint="R0402.kicad_mod", symbol="0402WGF3903TCE.kicad_sym", model="R0402_L1.0-W0.5-H0.4.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C25782", manufacturer="UNI-ROYAL", partno="0402WGF3903TCE">
+    trait has_designator_prefix<prefix="R">
+
+    # pins
+    pin 2
+    pin 1

@@ -1,0 +1,162 @@
+(footprint "XINGLIGHT_XL_1005SURC:LED0402-RD"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "1ccf425f-3295-4b4c-934d-98b11235467d")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "9a7e9f56-b5c2-47b3-9325-eb6778a18480")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "LED0402-RD"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "24b9ffbc-b2bf-4d43-9086-71ca0aa43b11")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_circle
+		(center -0.5 0.25)
+		(end -0.47 0.25)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "e8384bb7-2863-4a36-96c5-468ef7b5ebd3")
+	)
+	(fp_line
+		(start -0.19 0.5)
+		(end -0.83 0.5)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "0f63bf20-f15a-446e-b2fe-b1dd5695cd3e")
+	)
+	(fp_line
+		(start -0.83 0.5)
+		(end -0.98 0.35)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "b5ba8e0d-9f08-4aa3-baac-d692cafd3c05")
+	)
+	(fp_line
+		(start -0.98 0.35)
+		(end -0.98 -0.34)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "53eb35e2-5c6c-4427-bca7-96006738ec10")
+	)
+	(fp_line
+		(start -0.98 -0.34)
+		(end -0.83 -0.5)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "a9ff09da-2de1-4bf3-b2e9-708e961e9281")
+	)
+	(fp_line
+		(start -0.83 -0.5)
+		(end -0.19 -0.5)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "00def2e6-123b-4c38-829f-b5af1b427282")
+	)
+	(fp_line
+		(start 0.19 0.5)
+		(end 0.98 0.5)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "ca15b13d-ff7d-4f01-9529-16b363e28f2a")
+	)
+	(fp_line
+		(start 0.98 0.5)
+		(end 0.98 -0.5)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "11eb5a19-8411-4a3f-9413-27262194cc26")
+	)
+	(fp_line
+		(start 0.98 -0.5)
+		(end 0.19 -0.5)
+		(stroke
+			(width 0.15)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "c4c08137-e344-4cb7-9e9f-2bd70d9938e2")
+	)
+	(pad "2" smd rect
+		(at 0.42 0 0)
+		(size 0.5 0.54)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "215595af-b024-417b-b8f0-8252da905c3b")
+	)
+	(pad "1" smd rect
+		(at -0.42 0 0)
+		(size 0.5 0.54)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "67fff60c-3fda-4b2f-ae15-f9cf546cc621")
+	)
+	(model "${KIPRJMOD}/../../parts/XINGLIGHT_XL_1005SURC/LED0402_L1.0-W0.5-H0.2.step"
+		(offset
+			(xyz 0 0 -0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)

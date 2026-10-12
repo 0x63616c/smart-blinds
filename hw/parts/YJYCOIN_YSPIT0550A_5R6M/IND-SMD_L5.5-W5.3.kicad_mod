@@ -1,0 +1,126 @@
+(footprint "YJYCOIN_YSPIT0550A_5R6M:IND-SMD_L5.5-W5.3"
+	(version 20241229)
+	(generator "faebryk_convert")
+	(generator_version "v5")
+	(layer "F.Cu")
+	(tedit "5DC5F6A4")
+	(uuid "2ab2f5ea-2c0a-4ed8-aaa5-1b8a650085fd")
+	(property "Reference" "REF**"
+		(at 0 -4)
+		(layer "F.SilkS")
+		(uuid "60500bf7-bd1e-42c4-8fe3-cc21348eda95")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "IND-SMD_L5.5-W5.3"
+		(at 0 4)
+		(layer "F.Fab")
+		(uuid "95dec477-9da3-41de-ba02-4e513bfac1e9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center -2.65 2.75)
+		(end -2.62 2.75)
+		(stroke
+			(width 0.06)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(locked no)
+		(uuid "f0da7bd7-a7d8-4fc0-ba9e-d4530ed2a39b")
+	)
+	(fp_line
+		(start 2.75 2.85)
+		(end 2.75 -2.85)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "fd72464e-06b5-4e3d-b706-8c4586ca84f8")
+	)
+	(fp_line
+		(start 2.75 -2.85)
+		(end -2.75 -2.85)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "c305571f-a500-43ea-b200-40e842e42f29")
+	)
+	(fp_line
+		(start -2.75 -2.85)
+		(end -2.75 -1.7)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "f814a76e-e154-4a43-a680-f65a952dd669")
+	)
+	(fp_line
+		(start -2.75 -1.7)
+		(end -2.75 2.85)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "9ee7417c-4a21-4201-9da3-0323e3bf9223")
+	)
+	(fp_line
+		(start -2.75 2.85)
+		(end 2.75 2.85)
+		(stroke
+			(width 0.25)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(layers "F.SilkS")
+		(locked no)
+		(uuid "aec9634c-e8cf-4302-b4a0-4daed8ce3b28")
+	)
+	(pad "2" smd rect
+		(at 1.66 0 0)
+		(size 1.18 4.7)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "ba09cd6b-ea80-4fa1-a3f4-0252a4cfced4")
+	)
+	(pad "1" smd rect
+		(at -1.66 0 0)
+		(size 1.18 4.7)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "7380c442-f12a-4d01-9d67-19dbfbf60ae5")
+	)
+	(model "${KIPRJMOD}/../../parts/YJYCOIN_YSPIT0550A_5R6M/IND-SMD_L5.5-W5.3.step"
+		(offset
+			(xyz 0 -0 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+	(embedded_fonts no)
+)
