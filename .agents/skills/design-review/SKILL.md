@@ -14,7 +14,7 @@ Dispatches four parallel review agents, each focused on a distinct type of reaso
 1. Identify the `.ato` files under review.
 2. **Ensure datasheets are local.** Check the project's local `datasheets/` directory for the relevant IC datasheet and application note. If missing, download them there first (`WebFetch`/`curl` the PDF URL from the manufacturer's site, save as `<manufacturer>_<part>.pdf`). Agents must read from the local copy, not hunt the internet.
 3. Extract the module's design parameters (`v_max`, current targets, etc.) from the source.
-4. Dispatch all four agents in a single message (parallel execution).
+4. Dispatch all four agents in a single message (parallel execution). If your agent cannot spawn subagents, run the four reviews one after another yourself, keeping each review's findings separate.
 
 ## The Four Review Agents
 
@@ -105,9 +105,9 @@ IMPORTANT:
 
 Tools to use:
 - Read .ato source files directly
-- mcp__atopile-lsp__get_hover — inspect types, members, constraints
-- mcp__atopile-lsp__get_diagnostics — parse errors and type mismatches
-- mcp__atopile-lsp__get_references — trace connections across files
+- atopile-lsp: get_hover — inspect types, members, constraints
+- atopile-lsp: get_diagnostics — parse errors and type mismatches
+- atopile-lsp: get_references — trace connections across files
 - Read datasheet PDF from the local path below
 
 Files under review:

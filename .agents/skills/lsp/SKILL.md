@@ -1,9 +1,4 @@
 ---
-description: atopile lsp skill
-globs: ["**/*.ato", "**/ato.yaml"]
-alwaysApply: false
----
----
 name: lsp
 description: Use when working with .ato files and you need semantic code intelligence — hover info, diagnostics, go-to-definition, find-references, or symbol inspection. Triggers on questions like "what type is this", "what members does X have", "where is X defined", "what uses Y", checking for parse errors, or understanding atopile module/interface signatures.
 ---
@@ -12,7 +7,7 @@ description: Use when working with .ato files and you need semantic code intelli
 
 The atopile LSP (`ato lsp start`) can be bridged to MCP (e.g. via [mcpls](https://github.com/bug-ops/mcpls)). This gives you semantic access to `.ato` files beyond what grep/read can provide.
 
-The tool names below assume the MCP server is registered as `atopile-lsp`. If yours is registered under a different name, substitute the prefix accordingly.
+Tools below are written as `atopile-lsp: <tool>`, meaning the `<tool>` tool on the MCP server registered as `atopile-lsp`. Each agent exposes MCP tools under its own naming scheme (Claude Code: `mcp__atopile-lsp__<tool>`; Codex and Cursor: the plain tool name under the server), so call whichever form your agent shows for that server. If the server is registered under a different name, substitute it.
 
 ## When to Use
 
@@ -29,12 +24,12 @@ All position params are 1-indexed (as shown in editors).
 
 | Tool | What it does | Key params |
 |------|-------------|------------|
-| `mcp__atopile-lsp__get_hover` | Type info, docs, members, usage examples | `file_path`, `line`, `character` |
-| `mcp__atopile-lsp__get_diagnostics` | Parse errors/warnings for a file | `file_path` |
-| `mcp__atopile-lsp__get_cached_diagnostics` | Same as above but from cache (faster) | `file_path` |
-| `mcp__atopile-lsp__get_definition` | Jump to where a symbol is defined | `file_path`, `line`, `character` |
-| `mcp__atopile-lsp__get_references` | Find all usages of a symbol | `file_path`, `line`, `character`, `include_declaration` |
-| `mcp__atopile-lsp__format_document` | Format a file with language rules | `file_path` |
+| `atopile-lsp: get_hover` | Type info, docs, members, usage examples | `file_path`, `line`, `character` |
+| `atopile-lsp: get_diagnostics` | Parse errors/warnings for a file | `file_path` |
+| `atopile-lsp: get_cached_diagnostics` | Same as above but from cache (faster) | `file_path` |
+| `atopile-lsp: get_definition` | Jump to where a symbol is defined | `file_path`, `line`, `character` |
+| `atopile-lsp: get_references` | Find all usages of a symbol | `file_path`, `line`, `character`, `include_declaration` |
+| `atopile-lsp: format_document` | Format a file with language rules | `file_path` |
 
 ## Tools That May Return Empty
 
@@ -42,11 +37,11 @@ Depending on LSP version, some methods are not yet fully implemented and return 
 
 | Tool | Notes |
 |------|-------|
-| `mcp__atopile-lsp__get_completions` | May run but return no items |
-| `mcp__atopile-lsp__get_code_actions` | May run but return no actions |
-| `mcp__atopile-lsp__get_document_symbols` | `textDocument/documentSymbol` may be unimplemented |
-| `mcp__atopile-lsp__workspace_symbol_search` | `workspace/symbol` may be unimplemented |
-| `mcp__atopile-lsp__prepare_call_hierarchy` | `textDocument/prepareCallHierarchy` may be unimplemented |
+| `atopile-lsp: get_completions` | May run but return no items |
+| `atopile-lsp: get_code_actions` | May run but return no actions |
+| `atopile-lsp: get_document_symbols` | `textDocument/documentSymbol` may be unimplemented |
+| `atopile-lsp: workspace_symbol_search` | `workspace/symbol` may be unimplemented |
+| `atopile-lsp: prepare_call_hierarchy` | `textDocument/prepareCallHierarchy` may be unimplemented |
 
 If a tool returns nothing, fall back to grep + `get_hover` on the located position.
 

@@ -6,10 +6,10 @@ description: Use when writing, reading, or reviewing .ato files. Triggers on "wh
 # Atopile Language
 
 ## How to Find Information
-- **Hover** (`mcp__atopile-lsp__get_hover`): pass file path + line + character to get full member lists, usage examples, and docs for any symbol. Always hover on an import or type before writing code that uses it.
-- **Definition** (`mcp__atopile-lsp__get_definition`): jump to where a module/interface is defined -- use to read library source.
-- **References** (`mcp__atopile-lsp__get_references`): find all usages of a symbol across the project.
-- **Diagnostics** (`mcp__atopile-lsp__get_diagnostics`): parse errors and type mismatches for a file.
+- **Hover** (`atopile-lsp: get_hover`): pass file path + line + character to get full member lists, usage examples, and docs for any symbol. Always hover on an import or type before writing code that uses it.
+- **Definition** (`atopile-lsp: get_definition`): jump to where a module/interface is defined -- use to read library source.
+- **References** (`atopile-lsp: get_references`): find all usages of a symbol across the project.
+- **Diagnostics** (`atopile-lsp: get_diagnostics`): parse errors and type mismatches for a file.
 - **CLI**: run `ato <command> --help` for full flags. Use `ato --help` for the command list.
 - **Packages**: use `find_packages` / `inspect_package` MCP tools or the ato registry at packages.atopile.io.
 
