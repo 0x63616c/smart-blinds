@@ -3,7 +3,8 @@
 #   ./scripts/review.sh                     # every board: pd12v6 and pd12v6mini
 #   ./scripts/review.sh pd12v6mini          # just one
 #   ./scripts/review.sh pd12v6mini --open   # ...then open it in KiCad
-# For each board: ato build -> scripted layout (routed + place-only copy) -> DRC -> layer images,
+# For each board: ato build -> scripted layout (routed + place-only copy) -> DRC -> routing style
+# check (45-degree angles, straight pad entry, nothing under part bodies) -> layer images,
 # 3D renders, assembly drawing (reference designators, F.Fab) -> STEP.
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -32,11 +33,16 @@ for BOARD in "${BOARDS[@]}"; do
   "$KPY" "scripts/layout_$BOARD.py" 2>&1 | grep -Ev "$FILTER" || true
   "$KPY" "scripts/layout_$BOARD.py" --place-only 2>&1 | grep -Ev "$FILTER" || true
 
-  echo "== DRC"
-  "$KCLI" pcb drc --refill-zones --severity-error --severity-warning --format json -o "$OUT/drc.json" "$PCB" >/dev/null
+  # DRC runs on the file as saved (no --refill-zones): the stored zone fill is what KiCad shows and
+  # what the gerbers are plotted from, so a refill here would hide a bad stored fill.
+  echo "== DRC (stored fill, as the gerbers will see it)"
+  "$KCLI" pcb drc --severity-error --severity-warning --format json -o "$OUT/drc.json" "$PCB" >/dev/null
   python3 scripts/drc_summary.py "$OUT/drc.json" | tee "$OUT/drc_summary.txt"
-  "$KCLI" pcb drc --refill-zones --severity-error --severity-warning --format json -o "$OUT/drc_manual.json" "$MPCB" >/dev/null
+  "$KCLI" pcb drc --severity-error --severity-warning --format json -o "$OUT/drc_manual.json" "$MPCB" >/dev/null
   echo "(place-only copy)"; python3 scripts/drc_summary.py "$OUT/drc_manual.json" | head -2
+
+  echo "== routing style (check_layout.py)"
+  "$KPY" scripts/check_layout.py "$PCB" 2>&1 | grep -Ev "$FILTER" | tee "$OUT/check_layout.txt" || true
 
   echo "== layer images + assembly drawing"
   svg2png "$PCB" "F.Cu,F.SilkS,F.Mask,Edge.Cuts" "$OUT/top"

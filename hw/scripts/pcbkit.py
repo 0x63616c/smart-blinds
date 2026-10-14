@@ -17,7 +17,8 @@ Why the odd bits exist:
   * atopile 0.15.9 only parses the KiCad 9 file grammar; finish() rewrites the v10 tokens and
     restores the numbered net table.
 """
-import json, re, shutil
+import json, os, re, shutil, subprocess, tempfile
+from pathlib import Path
 import pcbnew
 from pcbnew import VECTOR2I, FromMM
 
@@ -26,6 +27,52 @@ def pt(x, y): return VECTOR2I(mm(x), mm(y))
 
 LAYER_NAMES = ["F.Cu", "In1.Cu", "In2.Cu", "B.Cu", "Edge.Cuts", "F.SilkS", "B.SilkS",
                "F.Mask", "B.Mask", "F.Fab", "B.Fab", "User.1"]
+
+
+def save_filled(board, out_path, project_from=None):
+    """Save `board` to `out_path` with every zone filled correctly for a file that will be labelled
+    KiCad 9 (atopile 0.15.9 only reads that grammar). Returns the reloaded board (keep it alive).
+
+    * Fills come from `kicad-cli pcb drc --refill-zones --save-board`, not pcbnew.ZONE_FILLER: from a
+      script the filler runs without the board's clearance rules and stores fills ~0.1 mm (or less)
+      from other nets. DRC with --refill-zones hides that, but gerbers are plotted from the stored fill.
+    * KiCad 9 stored fills shrunk by half the zone's minimum width and KiCad 10 grows them back by that
+      when it opens a pre-10 file, so the fills are stored shrunk. Otherwise every pour comes back
+      0.1 mm fatter, into its clearance.
+    * The fill runs 10 µm wider than each zone's clearance and the hole clearance: the shrink / regrow
+      lands a few µm off at rounded corners and round holes, and the margin absorbs that. The real
+      clearances are put back afterwards.
+    """
+    clear = {z.m_Uuid.AsString(): z.GetLocalClearance() for z in board.Zones()}
+    for z in board.Zones():
+        z.SetLocalClearance(clear[z.m_Uuid.AsString()] + mm(0.01))
+    ds = board.GetDesignSettings()
+    hole = ds.m_HoleClearance
+    ds.m_HoleClearance = hole + mm(0.01)
+    board.Save(str(out_path))
+    if project_from is not None and project_from != out_path:      # rules must sit beside the board
+        shutil.copy(project_from.with_suffix(".kicad_pro"), out_path.with_suffix(".kicad_pro"))
+        shutil.copy(project_from.with_name("fp-lib-table"), out_path.with_name("fp-lib-table"))
+    cli = os.environ.get("KICAD_CLI", str(Path.home() / ".local/bin/kicad-cli"))
+    with tempfile.TemporaryDirectory() as tmp:
+        subprocess.run([cli, "pcb", "drc", "--refill-zones", "--save-board", "-o", f"{tmp}/drc.rpt",
+                        str(out_path)], check=True, capture_output=True)
+    filled = pcbnew.LoadBoard(str(out_path))
+    for z in filled.Zones():
+        for layer in z.GetLayerSet().Seq():
+            if z.HasFilledPolysForLayer(layer):
+                ps = pcbnew.SHAPE_POLY_SET(z.GetFilledPolysList(layer))
+                ps.Unfracture()             # stored fills cut a zero-width seam into every hole; shrinking
+                ps.Deflate(z.GetMinThickness() // 2, pcbnew.CORNER_STRATEGY_ROUND_ALL_CORNERS, mm(0.002))
+                ps.Fracture()               # across one can leave a copper hair touching the hole
+                z.SetFilledPolysList(layer, ps)
+        z.SetLocalClearance(clear[z.m_Uuid.AsString()])
+    filled.GetDesignSettings().m_HoleClearance = hole
+    filled.Save(str(out_path))
+    for z in board.Zones():
+        z.SetLocalClearance(clear[z.m_Uuid.AsString()])
+    ds.m_HoleClearance = hole
+    return filled
 
 
 class Board:
@@ -71,9 +118,12 @@ class Board:
                     fld.SetVisible(False)
 
     def reset(self, out_path):
-        """Delete generated geometry + footprint silk, save to out_path and reload."""
+        """Delete generated geometry + footprint silk, save to out_path and reload.
+        Footprint graphics on User.Comments go too: EasyEDA puts pin-1 circles there and the 3D view
+        draws them as grey discs next to the pads."""
         silk = (self.L["F.SilkS"], self.L["B.SilkS"])
-        off = [(f, g) for f in self.fps.values() for g in f.GraphicalItems() if g.GetLayer() in silk]
+        drop = (*silk, self.board.GetLayerID("User.Comments"))
+        off = [(f, g) for f in self.fps.values() for g in f.GraphicalItems() if g.GetLayer() in drop]
         drawings = [d for d in self.board.Drawings()
                     if d.GetLayer() in (self.L["Edge.Cuts"], self.L["User.1"], *silk)]
         removed = drawings + list(self.board.GetTracks()) + list(self.board.Zones())
@@ -204,10 +254,9 @@ class Board:
 
     # ------------------------------------------------------------------ output
     def finish(self, out_path, mask="Black", finish=None, project_from=None, severities=None):
-        """Fill zones, save, then patch the file: mask colour, copper finish, tented vias,
-        KiCad 10 -> 9 grammar (atopile 0.15.9), net table. Project severities go in .kicad_pro."""
-        pcbnew.ZONE_FILLER(self.board).Fill(self.board.Zones())
-        self.board.Save(str(out_path))
+        """Save with correct zone fills (save_filled), then patch the file: mask colour, copper finish,
+        tented vias, KiCad 10 -> 9 grammar (atopile 0.15.9), net table. Severities go in .kicad_pro."""
+        self._graveyard = getattr(self, "_graveyard", []) + [save_filled(self.board, out_path, project_from)]
         s = out_path.read_text()
         s = s.replace('\n\t\t\t\t(color "Black")', '')
         if mask:
@@ -232,9 +281,6 @@ class Board:
         s = s[:i] + table + s[i:]
         out_path.write_text(s)
         pro_path = out_path.with_suffix(".kicad_pro")
-        if project_from is not None and project_from != out_path:
-            shutil.copy(project_from.with_suffix(".kicad_pro"), pro_path)
-            shutil.copy(project_from.with_name("fp-lib-table"), out_path.with_name("fp-lib-table"))
         pro = json.loads(pro_path.read_text()) if pro_path.exists() else {}
         sev = pro.setdefault("board", {}).setdefault("design_settings", {}).setdefault("rule_severities", {})
         sev.update(severities or {})

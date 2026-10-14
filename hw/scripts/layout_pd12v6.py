@@ -279,9 +279,10 @@ if PLACE_ONLY:   # hand-routing copy: keep zones/labels/marks, drop every track 
     def via(*a, **k): pass
 exec(open(HERE / "routes_pd12v6.py").read())   # ROUTES live in a sibling file (kept separate for readability)
 
-# ---- fill zones and save
-filler = pcbnew.ZONE_FILLER(board); filler.Fill(board.Zones())
-board.Save(str(OUT))
+# ---- fill zones and save (kicad-cli fill, stored the KiCad 9 way: see pcbkit.save_filled)
+sys.path.insert(0, str(HERE))
+from pcbkit import save_filled
+_filled = save_filled(board, OUT, PCB if PLACE_ONLY else None)
 
 # black solder mask + matte: stored in the stackup block (KiCad reads it for 3D/plot colours)
 s = OUT.read_text()
