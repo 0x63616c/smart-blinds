@@ -1,0 +1,17 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+import is_auto_generated
+
+component PROD_PSTMAA666460_6R8MB_package:
+    # This trait marks this file as auto-generated
+    # If you want to manually change it, remove the trait
+    trait is_auto_generated<system="ato_part", source="easyeda:C55172548", date="2026-10-14T02:15:23.556928+00:00", checksum="25829645cbed387a4d13458195412dd7802659980e33bd4a7246572373a6afc0">
+
+    trait is_atomic_part<manufacturer="PROD", partnumber="PSTMAA666460-6R8MB", footprint="IND-SMD_PSTMAA666460-6R8MB.kicad_mod", symbol="PSTMAA666460-6R8MB.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C55172548", manufacturer="PROD", partno="PSTMAA666460-6R8MB">
+    trait has_designator_prefix<prefix="L">
+
+    # pins
+    pin 2
+    pin 1

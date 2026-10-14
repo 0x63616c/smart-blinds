@@ -5,9 +5,14 @@ Same job and same connectors as pd12v6, smaller parts (see docs/pd12v6/mini.md):
   * CH224A asks the charger for 20 V (CFG1 = 120 kΩ). (CH224Q, the 2x2 mm version, is out of stock.)
   * TPS56637 synchronous buck, 3x3 mm, 500 kHz, D-CAP3 (no compensation network, no catch diode)
       Vout = 0.6 V * (1 + 200 k / 10 k) = 12.6 V
-      L = 5.6 µH, Cout = 2 x 47 µF 1210 (≈30 µF effective at 12.6 V), datasheet table 4 row "12 V"
+      L = 6.8 µH (WEBENCH; table 4 says 5.6 µH for 12 V), Cout = 2 x 47 µF 1210 (≈30 µF effective at 12.6 V)
+      L1 Isat 12.5 A: in overload the valley limit (8.6 A max) plus ripple (1.5 A) puts the peak near 10 A,
+      past the 8.6 A Isat of the old 5.6 µH part
+      Cin = 3 x 10 µF 50 V 1206 (≈13 µF effective at 20 V, WEBENCH asks for >= 13 µF) + 100 nF
       feed-forward 100 pF + 20 k across the top resistor (table 4 note 4)
-      UVLO via EN: 390 k / 27 k -> start ≈ 17.8 V, stop ≈ 15.3 V (datasheet eq. 2-4, Ip 1 µA, Ih 4 µA)
+      UVLO via EN: 390 k / 30 k -> start ≈ 16.1 V (17.6 V worst case), stop ≈ 13.7 V (datasheet eq. 2-4,
+      Ip 1 µA, Ih 4 µA). 30 k, not 27 k: with 27 k the worst-case start (EN threshold at its 1.26 V max,
+      resistors 1 % off) was 19.4 V, above the 19.0 V a 20 V PD source may legally deliver. hw/sim/uvlo_pd12v6mini.cir
       MODE = GND -> Eco-mode at light load
   * SMAJ22A TVS (the TPS56637 is a 28 V / 32 V-abs-max part, so the clamp is lower than pd12v6's)
   * 0402 passives and LEDs, assembled by JLCPCB.
@@ -21,7 +26,7 @@ import has_net_name
 from "parts/UNKNOWN_TYPE_C_31_M_12/UNKNOWN_TYPE_C_31_M_12.ato" import UNKNOWN_TYPE_C_31_M_12_package
 from "parts/WCH_CH224A/WCH_CH224A.ato" import WCH_CH224A_package
 from "parts/TI_TPS56637RPAR/TI_TPS56637RPAR.ato" import TI_TPS56637RPAR_package
-from "parts/YJYCOIN_YSPIT0550A_5R6M/YJYCOIN_YSPIT0550A_5R6M.ato" import YJYCOIN_YSPIT0550A_5R6M_package
+from "parts/PROD_PSTMAA666460_6R8MB/PROD_PSTMAA666460_6R8MB.ato" import PROD_PSTMAA666460_6R8MB_package
 from "parts/DIODES_SMAJ22A_13_F/DIODES_SMAJ22A_13_F.ato" import DIODES_SMAJ22A_13_F_package
 from "parts/MOLEX_0430450400/MOLEX_0430450400.ato" import MOLEX_0430450400_package
 from "parts/XINGLIGHT_XL_1005SURC/XINGLIGHT_XL_1005SURC.ato" import XINGLIGHT_XL_1005SURC_package
@@ -39,7 +44,7 @@ from "parts/FH_0402CG101J500NT/FH_0402CG101J500NT.ato" import FH_0402CG101J500NT
 from "parts/UNI_ROYAL_0402WGF4701TCE/UNI_ROYAL_0402WGF4701TCE.ato" import UNI_ROYAL_0402WGF4701TCE_package  # 4.7 k
 from "parts/UNI_ROYAL_0402WGF1002TCE/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package  # 10 k
 from "parts/UNI_ROYAL_0402WGF2002TCE/UNI_ROYAL_0402WGF2002TCE.ato" import UNI_ROYAL_0402WGF2002TCE_package  # 20 k
-from "parts/UNI_ROYAL_0402WGF2702TCE/UNI_ROYAL_0402WGF2702TCE.ato" import UNI_ROYAL_0402WGF2702TCE_package  # 27 k
+from "parts/UNI_ROYAL_0402WGF3002TCE/UNI_ROYAL_0402WGF3002TCE.ato" import UNI_ROYAL_0402WGF3002TCE_package  # 30 k
 from "parts/UNI_ROYAL_0402WGF1203TCE/UNI_ROYAL_0402WGF1203TCE.ato" import UNI_ROYAL_0402WGF1203TCE_package  # 120 k
 from "parts/UNI_ROYAL_0402WGF2003TCE/UNI_ROYAL_0402WGF2003TCE.ato" import UNI_ROYAL_0402WGF2003TCE_package  # 200 k
 from "parts/UNI_ROYAL_0402WGF3903TCE/UNI_ROYAL_0402WGF3903TCE.ato" import UNI_ROYAL_0402WGF3903TCE_package  # 390 k
@@ -133,18 +138,21 @@ module App:
     buck.FB ~ fb
     # PG unused (open drain, left floating)
 
-    c_in1 = new SAMSUNG_CL31A106KBHNNNE_package   # 2 x 10 µF 50 V 1206
+    c_in1 = new SAMSUNG_CL31A106KBHNNNE_package   # 3 x 10 µF 50 V 1206 (≈4.5 µF each at 20 V)
     c_in2 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_in3 = new SAMSUNG_CL31A106KBHNNNE_package
     c_in_hf = new SAMSUNG_CL05B104KB54PNC_package # 100 nF at VIN/PGND
     c_in1.1 ~ vbus
     c_in1.2 ~ gnd
     c_in2.1 ~ vbus
     c_in2.2 ~ gnd
+    c_in3.1 ~ vbus
+    c_in3.2 ~ gnd
     c_in_hf.1 ~ vbus
     c_in_hf.2 ~ gnd
 
     r_uvlo1 = new UNI_ROYAL_0402WGF3903TCE_package   # 390 k
-    r_uvlo2 = new UNI_ROYAL_0402WGF2702TCE_package   # 27 k
+    r_uvlo2 = new UNI_ROYAL_0402WGF3002TCE_package   # 30 k (C25776)
     r_uvlo1.1 ~ vbus
     r_uvlo1.2 ~ en
     r_uvlo2.1 ~ en
@@ -154,7 +162,7 @@ module App:
     c_boot.1 ~ boot
     c_boot.2 ~ sw
 
-    l_out = new YJYCOIN_YSPIT0550A_5R6M_package   # 5.6 µH, Isat 8.6 A, 24 mΩ, 5.5x5.3 mm, C18236291
+    l_out = new PROD_PSTMAA666460_6R8MB_package   # 6.8 µH, Isat 12.5 A, Irms 10 A, 11 mΩ, 6.4x6.6x6.0 mm, C55172548
     l_out.1 ~ sw
     l_out.2 ~ vout
 

@@ -1,0 +1,85 @@
+* pd12v6mini buck power stage: 20 V -> 12.6 V, 500 kHz, part values from hw/boards/pd12v6mini.ato
+* Run: cd hw/sim && ngspice -b buck_pd12v6mini.cir && uv run --with pandas --with matplotlib python plot_buck.py
+* U1 (TPS56637) has no ngspice model, so it is stood in for by its two switches (26 / 12 mOhm,
+* datasheet) driven by a simple PWM loop with the chip's 2 ms soft start. That gives the real ripple,
+* inductor current and inrush for these parts; it does NOT reproduce D-CAP3's fast load-step response.
+.param VIN=20 RLOAD=2.52 RSRC=0.1
+* --- charger + cable (about 0.1 ohm round trip)
+Vsrc  src 0 {VIN}
+Rsrc  src vbus {RSRC}
+* --- input caps C3, C4 (10 uF 50 V X5R 1206, ~5 uF left at 20 V) + C5 100 nF
+C3 vbus c3e 5u
+R3e c3e 0 3m
+C4 vbus c4e 5u
+R4e c4e 0 3m
+C5 vbus 0 100n
+* --- U1's switches
+S1 vbus sw hs 0 swm_hs
+S2 sw 0 ls 0 swm_ls
+D2 0 sw dbody
+.model swm_hs sw vt=0.5 vh=0.01 ron=26m roff=10meg
+.model swm_ls sw vt=0.5 vh=0.01 ron=12m roff=10meg
+.model dbody d is=1e-9 n=1.5 rs=10m
+* --- L1 5.6 uH, 24 mOhm (Vil senses its current)
+Vil sw sw2 0
+L1 sw2 lx 5.6u
+RL1 lx vout 24m
+* --- output caps C6, C7 (47 uF 25 V X5R 1210, ~15 uF each left at 12.6 V)
+C6 vout c6e 15u
+R6e c6e 0 3m
+C7 vout c7e 15u
+R7e c7e 0 3m
+* --- feedback divider R2 200 k / R3 10 k (sets 0.6 V x 21 = 12.6 V)
+R2 vout fb 200k
+R3 fb 0 10k
+* --- load: 1 A until 6 ms, then the full 5 A
+Rlight vout 0 12.6
+Rheavy vout lsw {RLOAD*12.6/(12.6-RLOAD)}
+Sload lsw 0 lctl 0 swm_load
+.model swm_load sw vt=0.5 vh=0.01 ron=1m roff=100meg
+Vlctl lctl 0 PWL(0 0 6m 0 6.001m 1)
+* --- stand-in controller: peak current mode at 500 kHz with slope compensation, PI error amp,
+*     the chip's 2 ms soft start, max duty 85 % (its 300 ns minimum off time)
+Vref ref 0 PWL(0 0 0.65m 0 2.65m 0.6)
+Bint 0 vi I=99000*(V(ref)-V(fb))
+Cint vi 0 1
+Rint vi 0 1e9
+Bvc vc 0 V=max(0, min(1.2, V(vi) + 7.9*(V(ref)-V(fb))))
+Vsaw saw 0 PULSE(0 1 0 1.99u 10n 0 2u)
+Vclk clk 0 PULSE(0 1 0 5n 5n 20n 2u)
+Bcmp cmp 0 V=((0.1*i(Vil) + 0.35*V(saw)) > V(vc)) || (V(saw) > 0.85) ? 1 : 0
+Aadc [clk cmp] [dclk dcmp] adc1
+.model adc1 adc_bridge(in_low=0.4 in_high=0.6)
+Aen en_d en1
+.model en1 d_pullup
+Azero zero_d lo1
+.model lo1 d_pulldown
+* d_srlatch pins: S R enable set reset out Nout (S = clock, R = current-limit compare, reset wins)
+Alatch dclk dcmp en_d zero_d zero_d dq dqn latch1
+.model latch1 d_srlatch(rise_delay=1n fall_delay=1n)
+Adac [dq dqn] [hs ls] dac1
+.model dac1 dac_bridge(out_low=0 out_high=1 t_rise=5n t_fall=5n)
+.options method=gear reltol=1e-3
+.tran 20n 10m 0 10n uic
+.save v(vout) i(Vil) v(vbus) i(Vsrc) v(sw) v(fb)
+.control
+run
+meas tran vout_5a     AVG v(vout)  from=9.5m to=10m
+meas tran vout_5a_pp  PP  v(vout)  from=9.5m to=10m
+meas tran il_5a_max   MAX i(Vil)   from=9.5m to=10m
+meas tran il_5a_min   MIN i(Vil)   from=9.5m to=10m
+meas tran vout_1a     AVG v(vout)  from=5.5m to=6m
+meas tran vout_1a_pp  PP  v(vout)  from=5.5m to=6m
+meas tran il_peak_all MAX i(Vil)   from=0 to=10m
+meas tran vout_peak   MAX v(vout)  from=0 to=6m
+meas tran step_min    MIN v(vout)  from=6m to=7m
+meas tran iin_5a      AVG i(Vsrc)  from=9.5m to=10m
+meas tran iin_peak    MIN i(Vsrc)  from=0 to=6m
+meas tran vbus_5a_pp  PP  v(vbus)  from=9.5m to=10m
+meas tran vbus_5a     AVG v(vbus)  from=9.5m to=10m
+let pin = -iin_5a*20
+let pout = vout_5a*vout_5a*(1/12.6 + 1/(2.52*12.6/(12.6-2.52)))
+print pin pout
+wrdata buck_wave.txt v(vout) i(Vil) v(sw) v(vbus) i(Vsrc)
+.endc
+.end

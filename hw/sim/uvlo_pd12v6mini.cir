@@ -1,0 +1,31 @@
+* pd12v6mini: at what input voltage does the buck turn on / off?  (R7 390 k top, R8 30 k bottom on EN; was 27 k)
+* TPS56637 EN: turns on above 1.18 V typ / 1.26 V max, off below 1.12 V typ / 1.04 V min.
+* EN pulls itself up with Ip = 1 uA while off, Ip + Ih = 5 uA while on (datasheet 6.5, eq. 2-4).
+.param RT=390k RB=30k IEN=1u
+Vin vin 0 20
+R7 vin en {RT}
+R8 en 0 {RB}
+Ien 0 en {IEN}
+.dc Vin 5 25 0.001
+.control
+* turn-on, typical and worst case (threshold at max, resistors 1 % the wrong way)
+alterparam IEN=1u
+reset
+run
+meas dc on_typ WHEN v(en)=1.18 RISE=1
+meas dc on_max WHEN v(en)=1.26 RISE=1
+alterparam RT=393.9k
+alterparam RB=29.7k
+reset
+run
+meas dc on_worst WHEN v(en)=1.26 RISE=1
+* turn-off (pull-up now 5 uA)
+alterparam RT=390k
+alterparam RB=30k
+alterparam IEN=5u
+reset
+run
+meas dc off_typ WHEN v(en)=1.12 RISE=1
+meas dc off_min WHEN v(en)=1.04 RISE=1
+.endc
+.end
