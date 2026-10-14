@@ -155,25 +155,33 @@ Where the mini's difference comes from:
 - **Small-drill surcharge:** none (pd12v6 pays $37 for its three 0.25 mm vias).
 - **Bare PCB:** the same price bracket. Both are under 50 × 50 mm, and Standard PCBA panelises both.
 
-## Ordering (JLCPCB), in progress 2026-10-14
+## Ordering (JLCPCB), in the cart 2026-10-14
 
 Files: `hw/scripts/fab_export.sh pd12v6mini` writes the gerber zip, `bom_jlc.csv` and `cpl_jlc.csv` to
 `hw/build/fab/pd12v6mini/`, plotted from the stored fill.
 
-Quote so far (jlcpcb.com quote page, signed out; nothing in the cart yet):
-- JLC read the zip as 4 layers, 47.5 × 25 mm.
-- Settings: 10 PCBs (it sells 5 or 10), 1.6 mm, black, ENIG 1 µ", 1 oz outer / 0.5 oz inner, vias plugged
-  (the default; tented is not offered on 4 layers), 0.3 mm min via, mark removed.
-- **Bare PCB: $33.10** (black +$8, ENIG +$16.90). Shipping estimate: DHL $31.44.
-- Assembly on, top side, **PCBA qty 8**. Economic PCBA is greyed out, so it is Standard, and JLC adds edge rails:
-  the panel becomes 71.5 × 71 mm, and the PCB price rises to **$39.80** before any assembly charges.
-- Next: sign in (Calum does this; agents don't enter passwords), upload `bom_jlc.csv` and `cpl_jlc.csv`, check
-  part rotations in JLC's placement preview, read the assembled price, then **save to cart only** (no checkout).
+**In Calum's JLCPCB cart, not paid** (saved as `pd12v6mini_gerbers_Y6`, est. ship date 2026-10-22):
 
-Build-it-yourself parts for 8 boards from LCSC, 2026-10-14: **≈ $54.50**. This includes spares and LCSC's minimum
-pack sizes; U1 alone is $22.78. LCSC itself showed 0 stock for C307331, C13585, C52923 and C25776, so a DIY order
-needs equivalents for those. A stencil and the bare PCBs come on top. U1 (VQFN-HR) needs paste and a hot plate,
-not an iron.
+| | |
+|---|---|
+| 10 PCBs: 4 layers, 47.5 × 25 mm, 1.6 mm, black, ENIG, vias plugged, 0.3 mm min via, mark removed | $39.80 |
+| Standard PCBA, top side, 8 boards (Economic is greyed out) | $116.23 |
+| of which: setup $25.75, stencil $8.27, parts $46.50, feeder loading $29.45 (13 Extended parts), SMT $1.61, CN1 hand solder $3.61, other $1.04 | |
+| DHL shipping estimate (0.76 kg) | $32.86 |
+| **Total** | **$188.89 (≈ $23.60 a board)** |
+
+- JLC matched all 20 BOM lines, all in stock.
+- In JLC's placement preview, U1 and U2 pin 1, D1 (cathode up, to VBUS), LED1/LED2 (anode on + side),
+  USBC1 and CN1 (peg in the NPTH hole) all sit right with no rotation fixes.
+- The bare-board price without assembly is $33.10. Assembly forces edge rails, so the panel becomes
+  71.5 × 71 mm.
+- Cheaper option: about $29 of the cost is feeder loading for Extended parts. Swapping R1, R7, R8 and the LEDs
+  for Basic equivalents would save about $3 each.
+
+**Building it yourself instead** (2026-10-14): bare PCBs $33.10, stencil ≈ $8, LCSC parts ≈ $54.50 (spares and
+pack minimums included; U1 alone $22.78), shipping from both, so roughly **$140–150**. That saves $40–50 but
+needs solder paste, a hot plate and time; 0402 parts and U1's VQFN-HR need paste and reflow, not an iron. LCSC
+showed 0 stock for C307331, C13585, C52923 and C25776, so you would need equivalents.
 
 ## Known limits / to check
 
