@@ -190,6 +190,18 @@ void test_remaining_fault_boundaries() {
         check(c.lose_reference().state == State::unreferenced, "explicit reference loss stops");
         check(c.local_move(true, good, 1120) == Reason::unreferenced, "unreferenced local movement refused");
     }
+    {
+        Controller c(cal, {}, 42); arm(c, good);
+        check(c.renew_lease(42, 1, 1010, 1000, 10) == Reason::ok,
+              "coordinator ahead within known clock error accepted");
+        check(c.renew_lease(42, 1, 1021, 1010, 10) == Reason::too_late,
+              "future timestamp beyond bound rejected");
+        check(c.renew_lease(42, 1, 1020, 1010, 11) == Reason::clock_uncertain,
+              "excessive lease clock uncertainty rejected");
+        for (std::uint64_t now = 1000; now < 1300; now += 10) c.tick(good, now, 10);
+        check(c.tick(good, 1300, 10).reason == Reason::lease_expired,
+              "lease expires from earliest possible send time, not future estimate");
+    }
 }
 void test_reverse_trajectory_control() {
     auto cal = calibration(); Controller c(cal, {}, 42);

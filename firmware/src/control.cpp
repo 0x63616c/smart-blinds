@@ -175,15 +175,20 @@ Reason Controller::commit(std::uint64_t boot, std::uint64_t sequence, std::uint6
     return Reason::ok;
 }
 Reason Controller::renew_lease(std::uint64_t boot, std::uint64_t sequence,
-                               std::uint64_t sent, std::uint64_t now) {
+                               std::uint64_t sent, std::uint64_t now, std::uint64_t error) {
     if (boot != boot_nonce_) return Reason::wrong_boot;
     if (local_ || sequence != command_.sequence || !active()) return Reason::wrong_command;
-    // Authentication and clock synchronization precede this API. Old packets must not extend a lease.
-    if (sent <= lease_sent_ms_ || sent > now || now - sent >= limits_.lease_ms)
+    if (error > limits_.max_clock_error_ms) return Reason::clock_uncertain;
+    // sent is translated into the same monotonic domain as now. Authentication and
+    // a conservative clock error bound precede this API. Expire from the EARLIEST
+    // possible send time, so allowing a slightly future estimate never adds life.
+    if (sent <= lease_sent_ms_ || (sent > now && sent - now > error))
         return Reason::too_late;
-    if (sent > std::numeric_limits<std::uint64_t>::max() - limits_.lease_ms) return Reason::invalid;
+    const auto earliest = sent > error ? sent - error : 0;
+    if (earliest > std::numeric_limits<std::uint64_t>::max() - limits_.lease_ms) return Reason::invalid;
+    if (now >= earliest + limits_.lease_ms) return Reason::too_late;
     lease_sent_ms_ = sent;
-    lease_until_ms_ = sent + limits_.lease_ms;
+    lease_until_ms_ = earliest + limits_.lease_ms;
     return Reason::ok;
 }
 Output Controller::output(double speed, double desired) const {

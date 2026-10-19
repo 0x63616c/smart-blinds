@@ -1,12 +1,14 @@
 # Home Assistant and local coordinator
 
-This directory contains a tested, transport-independent coordinator engine. **It is not yet an installed Home Assistant integration, MQTT daemon, Matter implementation or radio bridge.** Run the nine scenarios with:
+This directory contains a tested, transport-independent coordinator engine. **It is not yet an installed Home Assistant integration, MQTT daemon, Matter implementation or radio bridge.** Run the coordinator and source-freshness scenarios with:
 
 ```sh
 python3 -m unittest discover -s integrations/home_assistant -p 'test_*.py' -v
 ```
 
 `coordinator.py` prepares one shared physical-height trajectory, waits for every member, commits a future start and renews short running leases only after all members acknowledge. A missing member, fault, reboot or stale active report stops the group. Local STOP is always a node action first. The [control contract](../../docs/firmware/control-contract.md) specifies transport and clock boundaries.
+
+ACKs and active reports require `SourceStamp(sample_ms, sequence, clock_error_ms)`. The authenticated adapter translates the actual source sample time into the coordinator's monotonic epoch and supplies an absolute error bound. `freshness.py` rejects replayed or old samples even when they arrive now; uncertainty subtracts from the sample timestamp for age calculations. Device boot and command binding remain separate checks. An ACK should include newly sampled readiness, not merely repeat cached status. The authentication and clock estimator themselves are still platform work.
 
 ## Proposed Home Assistant surface
 

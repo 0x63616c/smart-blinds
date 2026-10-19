@@ -24,6 +24,8 @@ jobs:
           ctest --test-dir work/firmware-build --output-on-failure
       - name: Test group coordinator
         run: python3 -m unittest discover -s integrations/home_assistant -p 'test_*.py'
+      - name: Test gauge readback and offline profile calculations
+        run: python3 -m unittest discover -s firmware/tools -p 'test_*.py'
       - name: Check CAD parameter consistency
         run: python3 cad/build.py --check-parameters
 

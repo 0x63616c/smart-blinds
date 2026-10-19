@@ -1,6 +1,7 @@
 import unittest
 from dataclasses import replace
 from coordinator import Device, Phase, begin_group
+from freshness import SourceStamp
 
 
 class GroupTests(unittest.TestCase):
@@ -8,13 +9,21 @@ class GroupTests(unittest.TestCase):
         self.devices = [Device(f"blind-{i}", 100 + i, 12, 3, i * 10, 2000 + i * 30,
                                300, 20 + i, 40, 1000, 5) for i in range(7)]
 
+    def ack(self, job, device, boot, sequence, kind, now, **kwargs):
+        return job.acknowledge(device, boot, sequence, kind, now,
+                               stamp=SourceStamp(now, now + 1, 0), **kwargs)
+
+    def report(self, job, device, boot, sequence, now, **kwargs):
+        return job.report(device, boot, sequence, now,
+                          stamp=SourceStamp(now, now + 1, 0), **kwargs)
+
     def ready(self, job):
         out = []
         for d in self.devices:
-            out = job.acknowledge(d.device_id, d.boot_nonce, 13, "prepared", 2000)
+            out = self.ack(job, d.device_id, d.boot_nonce, 13, "prepared", 2000)
         self.assertEqual(len(out), 7)
         for d in self.devices:
-            out = job.acknowledge(d.device_id, d.boot_nonce, 13, "committed", 2500)
+            out = self.ack(job, d.device_id, d.boot_nonce, 13, "committed", 2500)
         self.assertEqual(len(out), 7)
         self.assertTrue(all(m.kind == "lease" for m in out))
 
@@ -31,7 +40,7 @@ class GroupTests(unittest.TestCase):
     def test_missing_member_stops_without_commit(self):
         job, _ = begin_group(self.devices, 50, 1000)
         for d in self.devices[:-1]:
-            self.assertEqual(job.acknowledge(d.device_id, d.boot_nonce, 13, "prepared", 2000), [])
+            self.assertEqual(self.ack(job, d.device_id, d.boot_nonce, 13, "prepared", 2000), [])
         stops = job.tick(2700)
         self.assertEqual(len(stops), 7)
         self.assertTrue(all(m.kind == "stop" for m in stops))
@@ -40,21 +49,21 @@ class GroupTests(unittest.TestCase):
 
     def test_wrong_boot_duplicate_and_stale_ack(self):
         job, _ = begin_group(self.devices, 50, 1000)
-        self.assertEqual(job.acknowledge("blind-0", 99, 13, "prepared", 1200), [])
-        self.assertEqual(job.acknowledge("blind-0", 100, 12, "prepared", 1200), [])
+        self.assertEqual(self.ack(job, "blind-0", 99, 13, "prepared", 1200), [])
+        self.assertEqual(self.ack(job, "blind-0", 100, 12, "prepared", 1200), [])
         self.assertFalse(job.prepared)
-        job.acknowledge("blind-0", 100, 13, "prepared", 1200)
-        job.acknowledge("blind-0", 100, 13, "prepared", 1200)
+        self.ack(job, "blind-0", 100, 13, "prepared", 1200)
+        self.ack(job, "blind-0", 100, 13, "prepared", 1200)
         self.assertEqual(len(job.prepared), 1)
-        job.acknowledge("blind-1", 101, 13, "prepared", 3000)
+        self.ack(job, "blind-1", 101, 13, "prepared", 3000)
         self.assertEqual(job.phase, Phase.ABORTED)
 
     def test_commit_ack_missing_never_emits_run_lease(self):
         job, _ = begin_group(self.devices, 50, 1000)
         for d in self.devices:
-            job.acknowledge(d.device_id, d.boot_nonce, 13, "prepared", 2000)
+            self.ack(job, d.device_id, d.boot_nonce, 13, "prepared", 2000)
         for d in self.devices[:-1]:
-            self.assertEqual(job.acknowledge(d.device_id, d.boot_nonce, 13, "committed", 2500), [])
+            self.assertEqual(self.ack(job, d.device_id, d.boot_nonce, 13, "committed", 2500), [])
         self.assertEqual(job.phase, Phase.COMMITTING)
         self.assertEqual({m.kind for m in job.tick(3500)}, {"stop"})
 
@@ -80,16 +89,16 @@ class GroupTests(unittest.TestCase):
     def test_fault_stops_whole_group_and_no_replay(self):
         job, _ = begin_group(self.devices, 50, 1000)
         self.ready(job)
-        stops = job.report("blind-3", 103, 13, 2550, height_mm=300, state="fault", fault="jam")
+        stops = self.report(job, "blind-3", 103, 13, 2550, height_mm=300, state="fault", fault="jam")
         self.assertEqual(len(stops), 7)
         self.assertEqual(job.phase, Phase.ABORTED)
         self.assertEqual(job.tick(2600), [])
-        self.assertEqual(job.acknowledge("blind-3", 103, 13, "committed", 2700), [])
+        self.assertEqual(self.ack(job, "blind-3", 103, 13, "committed", 2700), [])
 
     def test_reboot_and_lost_telemetry_abort(self):
         job, _ = begin_group(self.devices, 50, 1000)
         self.ready(job)
-        self.assertEqual(len(job.report("blind-2", 999, 13, 2550, height_mm=300, state="idle")), 7)
+        self.assertEqual(len(self.report(job, "blind-2", 999, 13, 2550, height_mm=300, state="idle")), 7)
         job, _ = begin_group(self.devices, 50, 1000)
         self.ready(job)
         self.assertEqual(len(job.tick(2751)), 7)
@@ -100,14 +109,36 @@ class GroupTests(unittest.TestCase):
         self.ready(job)
         for now in range(2600, 60000, 100):
             for d in self.devices:
-                job.report(d.device_id, d.boot_nonce, 13, now, height_mm=300, state="moving")
+                self.report(job, d.device_id, d.boot_nonce, 13, now, height_mm=300, state="moving")
             job.tick(now)
         for d in self.devices[:-1]:
-            job.report(d.device_id, d.boot_nonce, 13, 60000, height_mm=1030, state="idle")
+            self.report(job, d.device_id, d.boot_nonce, 13, 60000, height_mm=1030, state="idle")
         self.assertNotEqual(job.phase, Phase.COMPLETE)
-        job.report("blind-6", 106, 13, 60000, height_mm=1030, state="idle")
+        self.report(job, "blind-6", 106, 13, 60000, height_mm=1030, state="idle")
         self.assertEqual(job.phase, Phase.COMPLETE)
         self.assertEqual(job.tick(60001), [])
+
+    def test_delayed_source_telemetry_cannot_keep_group_alive(self):
+        job, _ = begin_group(self.devices, 50, 1000)
+        self.ready(job)
+        for d in self.devices:
+            job.report(d.device_id, d.boot_nonce, 13, 2700,
+                       stamp=SourceStamp(2400, 2701, 0), height_mm=300, state="moving")
+        self.assertEqual(job.last_report_ms["blind-0"], 2500)
+        self.assertEqual(len(job.tick(2751)), 7)
+        self.assertEqual(job.phase, Phase.ABORTED)
+
+    def test_old_ack_does_not_establish_readiness(self):
+        job, _ = begin_group(self.devices, 50, 1000)
+        job.acknowledge("blind-0", 100, 13, "prepared", 2000,
+                        stamp=SourceStamp(1100, 2, 0))
+        self.assertFalse(job.prepared)
+
+    def test_start_report_can_be_slightly_future_with_bound(self):
+        from dataclasses import replace
+        ds = [replace(d, report_ms=1010, clock_error_ms=10) for d in self.devices]
+        job, _ = begin_group(ds, 50, 1000)
+        self.assertEqual(job.phase, Phase.PREPARING)
 
 
 if __name__ == "__main__":

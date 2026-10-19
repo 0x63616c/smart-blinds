@@ -8,6 +8,7 @@ cmake --build work/firmware-build
 ctest --test-dir work/firmware-build --output-on-failure
 work/firmware-build/group_demo
 python3 -m unittest discover -s integrations/home_assistant -p 'test_*.py' -v
+python3 -m unittest discover -s firmware/tools -p 'test_*.py' -v
 ```
 
 The C++17 library has no platform dependencies or heap allocation. It implements:
@@ -22,6 +23,8 @@ The C++17 library has no platform dependencies or heap allocation. It implements
 Tests cover nonlinear calibration, common ranges, differing lengths, duplicate/stale commands, missing commit/leases, incorrect clocks, local override and an ideal seven-device trajectory. The ideal actuator test verifies the software coordinate logic; it does **not** simulate real motor inertia, clutch slip, radio loss, torque or RF interference.
 
 Read the [control contract](../docs/firmware/control-contract.md), [radio trade study](../docs/firmware/2026-10-19-radio-and-sleep.md), [hardware interface](../docs/firmware/hardware-interface.md) and [Home Assistant contract](../integrations/home_assistant/README.md).
+
+[MAX17320 tooling](../docs/firmware/max17320-commissioning.md) provides register reads, offline partial configuration arithmetic and readback comparison. It cannot program NVM; the full pack profile and hardware tests remain open.
 
 ## Before motor enable
 

@@ -8,6 +8,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
 from math import isfinite
+from freshness import FreshnessTracker, SourceStamp, earliest_sample
 
 
 class Phase(str, Enum):
@@ -30,10 +31,11 @@ class Device:
     height_mm: float
     max_speed_mm_s: float
     max_accel_mm_s2: float
-    report_ms: int
+    report_ms: int  # Actual source sample time translated into coordinator clock
     clock_error_ms: int
     referenced: bool = True
     ready: bool = True
+    report_sequence: int = 1
 
 
 @dataclass(frozen=True)
@@ -61,6 +63,7 @@ class Job:
     completed: dict[str, float] = field(default_factory=dict)
     last_report_ms: dict[str, int] = field(default_factory=dict)
     last_lease_ms: int = -1
+    freshness: FreshnessTracker = field(default_factory=FreshnessTracker)
 
     def envelope(self, device_id: str, kind: str, **extra) -> Envelope:
         cmd = self.commands[device_id]
@@ -75,12 +78,19 @@ class Job:
         return [self.envelope(device_id, "stop") for device_id in self.members]
 
     def acknowledge(self, device_id: str, boot_nonce: int, sequence: int,
-                    kind: str, now_ms: int, *, ok: bool = True) -> list[Envelope]:
+                    kind: str, now_ms: int, *, stamp: SourceStamp, ok: bool = True) -> list[Envelope]:
         if self.phase in (Phase.ABORTED, Phase.COMPLETE) or device_id not in self.members:
             return []
         command = self.commands[device_id]
         if boot_nonce != command["boot_nonce"] or sequence != command["sequence"]:
             return []  # unrelated or delayed ACK cannot advance this job
+        if not ((kind == "prepared" and self.phase == Phase.PREPARING) or
+                (kind == "committed" and self.phase == Phase.COMMITTING)):
+            return []
+        try:
+            sampled = self.freshness.accept(device_id, stamp, now_ms, 250)
+        except ValueError:
+            return []  # stale ACK must not establish readiness or refresh supervision
         if not ok:
             return self.abort(f"{device_id}: rejected {kind}")
         if kind == "prepared" and self.phase == Phase.PREPARING:
@@ -94,14 +104,15 @@ class Job:
             if now_ms >= self.commit_deadline_ms:
                 return self.abort("commit deadline")
             self.committed.add(device_id)
+            self.last_report_ms[device_id] = sampled
             if self.committed == self.members.keys():
                 self.phase = Phase.ARMED
-                self.last_report_ms = dict.fromkeys(self.members, now_ms)
                 return self.tick(now_ms)
         return []
 
     def report(self, device_id: str, boot_nonce: int, sequence: int,
-               now_ms: int, *, height_mm: float, state: str, fault: str = "") -> list[Envelope]:
+               now_ms: int, *, stamp: SourceStamp, height_mm: float,
+               state: str, fault: str = "") -> list[Envelope]:
         if self.phase not in (Phase.ARMED, Phase.MOVING) or device_id not in self.members:
             return []
         if now_ms < self.last_lease_ms or any(now_ms - report > 250
@@ -112,10 +123,14 @@ class Job:
             return self.abort(f"{device_id}: reboot during group move")
         if sequence != cmd["sequence"]:
             return []
-        if not isfinite(height_mm) or fault or state in ("fault", "unreferenced", "stopped"):
+        try:
+            sampled = self.freshness.accept(device_id, stamp, now_ms, 250)
+        except ValueError:
+            return []
+        if not isfinite(height_mm) or fault or state not in ("armed", "moving", "idle"):
             return self.abort(f"{device_id}: {fault or state}")
-        self.last_report_ms[device_id] = now_ms
-        if state == "idle" and now_ms >= self.start_ms:
+        self.last_report_ms[device_id] = sampled
+        if state == "idle" and sampled >= self.start_ms:
             if abs(height_mm - self.target_height_mm) > 1:
                 return self.abort(f"{device_id}: stopped before target")
             self.completed[device_id] = height_mm
@@ -168,7 +183,8 @@ def begin_group(devices: list[Device], percent: float, now_ms: int,
             raise ValueError(f"{d.device_id}: invalid device epoch")
         if d.low_mm >= d.high_mm or not d.low_mm <= d.height_mm <= d.high_mm:
             raise ValueError(f"{d.device_id}: invalid travel")
-        if not d.referenced or not d.ready or not 0 <= now_ms - d.report_ms <= 1500:
+        earliest_sample(SourceStamp(d.report_ms, d.report_sequence, d.clock_error_ms), now_ms, 1500)
+        if not d.referenced or not d.ready:
             raise ValueError(f"{d.device_id}: unavailable or stale")
         if not 0 <= d.clock_error_ms <= 10:
             raise ValueError(f"{d.device_id}: clock not synchronized")
@@ -197,4 +213,7 @@ def begin_group(devices: list[Device], percent: float, now_ms: int,
     }
     job = Job({d.device_id: d for d in devices}, commands, percent, target, start,
               now_ms + 1700, now_ms + 2500)
+    for d in devices:
+        job.freshness.accept(d.device_id,
+                             SourceStamp(d.report_ms, d.report_sequence, d.clock_error_ms), now_ms, 1500)
     return job, [Envelope(member, "prepare", payload) for member, payload in commands.items()]

@@ -109,7 +109,8 @@ public:
                    std::uint64_t now_ms, std::uint64_t clock_error_ms);
     Reason commit(std::uint64_t boot_nonce, std::uint64_t sequence, std::uint64_t now_ms);
     Reason renew_lease(std::uint64_t boot_nonce, std::uint64_t sequence,
-                       std::uint64_t sent_ms, std::uint64_t now_ms);
+                       std::uint64_t sent_ms, std::uint64_t now_ms,
+                       std::uint64_t clock_error_ms = 0);
     Output tick(const Measurement& measurement, std::uint64_t now_ms,
                 std::uint64_t clock_error_ms);
     // Local input takes precedence. Any button during group motion stops it immediately.
