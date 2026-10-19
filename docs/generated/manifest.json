@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "source_commit": "5ec421d6913f12cdbea84cc2a985e3f2f36087f2",
+  "source_commit": "49f1d17622522276dadbafdc320b303eb532c467",
   "tools": {
-    "kicad": "10.0.4",
+    "kicad": "10.0.7",
     "openscad": "OpenSCAD version 2021.01"
   },
   "manifest_sha256": "909d8927336d8049b6cfdc6ad61d958b088ae348a2bb7b89d4faa8acd1c558ab",
@@ -16,7 +16,7 @@
         "cad/build.py": "323c2c962392152a71969894cfa8dc4bbb217b84854e0ff56b92060f4b22c903",
         "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02"
       },
-      "source_files_dirty": true,
+      "source_files_dirty": false,
       "role": "Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.",
       "outputs": [
         {
@@ -33,12 +33,12 @@
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
-      "source_files_dirty": true,
+      "source_files_dirty": false,
       "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
       "outputs": [
         {
           "path": "compact-closed/assembly.png",
-          "sha256": "f8c4f9227776cec40656ed12b4164992c93819e55de1e0252e34e4f8cb6255fd"
+          "sha256": "7adaa4723f2a9a8153fed08c5f89602d806a704d73662f7475920bc8d1c0edcf"
         }
       ]
     },
@@ -50,12 +50,12 @@
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
-      "source_files_dirty": true,
+      "source_files_dirty": false,
       "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
       "outputs": [
         {
           "path": "compact-exploded/assembly.png",
-          "sha256": "dd7166ff1176d0f660eaaa9c02f310581141858a76c8974a55a9896d5a670700"
+          "sha256": "1159acbd66d8b1788828b3a00ea9e3625df260fc8747a7f6c9aac3a4a094f79e"
         }
       ]
     },
@@ -67,12 +67,12 @@
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
-      "source_files_dirty": true,
+      "source_files_dirty": false,
       "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
       "outputs": [
         {
           "path": "broad-assembly/assembly.png",
-          "sha256": "02d21db8164193361ad733c798237af7a1cb1b08cde9aabbed62fc26bad84984"
+          "sha256": "44018258b99888aba609d32f247fdb53384ca0a4ce2043355d722322a8e17dac"
         }
       ]
     },
@@ -84,12 +84,12 @@
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
-      "source_files_dirty": true,
+      "source_files_dirty": false,
       "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
       "outputs": [
         {
           "path": "compact-assembly/assembly.png",
-          "sha256": "36ce24b8d0128a252ecdc3b71ce56242490f4d11a886a76f618b086282877f6a"
+          "sha256": "eee21ecaa0dfe4397594004d6ebb7c380ecba0dad2e3f228645d13a6d58f6930"
         }
       ]
     },
@@ -101,12 +101,12 @@
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
-      "source_files_dirty": true,
+      "source_files_dirty": false,
       "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
       "outputs": [
         {
           "path": "narrow-assembly/assembly.png",
-          "sha256": "399be5aafc4222c7280996173ad6e90a249bc72f4349197e37e8ad72b21e302c"
+          "sha256": "ca2a735c12f7e79d9c7b87951b71c3f2bcea744d9701c5134e622ab82e356ec5"
         }
       ]
     },
@@ -118,12 +118,12 @@
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
-      "source_files_dirty": true,
+      "source_files_dirty": false,
       "role": "Original parametric packaging study with six cells in a single depth layer. Unmeasured purchased-part envelopes; not a released enclosure.",
       "outputs": [
         {
           "path": "slim-assembly/assembly.png",
-          "sha256": "6cd5d14a6a82d2b96f8def436753f78a107d3c721f99366fc7c5e6be98a373e0"
+          "sha256": "c909692718d90da380a201ca69c27fd8ff053392d01d965de7260054242b3588"
         }
       ]
     },
@@ -138,11 +138,11 @@
       "outputs": [
         {
           "path": "pd12v6mini-reference/assembly.png",
-          "sha256": "ff067a3297544fb3c01730bcd35dff67fb26b8e4834eaca21d58c810ea793fb1"
+          "sha256": "63b192b6b52cd94dada030085eeb8e8bb2a2587c429b16cba489db84251e2e90"
         },
         {
           "path": "pd12v6mini-reference/top.svg",
-          "sha256": "3a31facdcb05563fb683c0d9b44ec457536053f6e1f8d561d6ad0429d6811655"
+          "sha256": "17d98020c9a2e4140397f6a18fc26383ad9d24ca9411c86a2d9dfe72528b35f0"
         }
       ],
       "models_sha256": {
