@@ -1,0 +1,73 @@
+name: Design previews
+
+on:
+  push:
+    branches: [main]
+    paths: ['hw/**', 'cad/**', 'tools/render_previews.py', 'docs/previews.json', '.github/workflows/design-previews.yml']
+  pull_request:
+    paths: ['hw/**', 'cad/**', 'tools/render_previews.py', 'docs/previews.json', '.github/workflows/design-previews.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: design-previews-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install rendering tools
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends kicad kicad-packages3d openscad xvfb xauth
+      - name: Generate previews from sources
+        run: xvfb-run -a python3 tools/render_previews.py
+      - name: Prepare review artifact
+        run: |
+          mkdir -p work/preview-artifact/docs
+          cp README.md work/preview-artifact/
+          cp -R docs/generated work/preview-artifact/docs/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: design-previews
+          path: work/preview-artifact/
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: render
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          name: design-previews
+          path: work/preview-artifact
+      - name: Publish only if source is still current
+        env:
+          SOURCE_SHA: ${{ github.sha }}
+        run: |
+          if [ "$(git rev-parse HEAD)" != "$SOURCE_SHA" ]; then
+            echo 'Newer source exists; leaving its previews to the newer run.'
+            exit 0
+          fi
+          cp work/preview-artifact/README.md README.md
+          rm -rf docs/generated
+          cp -R work/preview-artifact/docs/generated docs/
+          git add README.md docs/generated
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs: refresh generated design previews'
+          git push origin HEAD:main

@@ -1,6 +1,21 @@
-# e8s
+# Smart Blinds
 
 Hardware designs written in [atopile](https://atopile.io) (`.ato` files under `hw/`), built to KiCad layouts and fabricated at JLCPCB.
+
+## Current product authority
+
+Read `docs/brief.md`, `docs/measurements.json` and `docs/status.md` before design work.
+Build a fresh integrated smart-blinds system for seven installations plus a spare. Archived designs
+are evidence only; their locked architecture, part choices and validation claims are not authoritative.
+Preserve inherited PD12V6 boards as labelled references. They are not battery chargers.
+
+Group percentages represent a shared physical bottom-edge height, not each blind's own fraction.
+Compare at least three complete enclosure layouts before freezing the PCB outline. Treat unmeasured
+motor/holder geometry and electrical limits as provisional. Distinguish simulated, inspected and
+physically tested results. No purchasing/fabrication without owner authorization.
+
+Update source-generated previews and progress as sources change. Keep secrets out of the repository.
+The owner permits subagents for alternative designs, comparisons, implementation and review.
 
 ## Skills
 

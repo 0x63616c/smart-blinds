@@ -1,4 +1,7 @@
-# hw
+# Hardware
+
+**Inherited references:** PD12V6 and PD12V6Mini are USB-C power supplies. They are not complete
+battery chargers or the new integrated smart-blind controller. See [the current brief](../docs/brief.md).
 
 atopile project. One build target per board in `ato.yaml`.
 

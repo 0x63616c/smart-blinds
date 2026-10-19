@@ -1,0 +1,59 @@
+{
+  "updated": "2026-10-19",
+  "units": "mm unless stated",
+  "policy": "Owner-reported archive measurements are evidence, not independent verification. Null values remain unknown.",
+  "chain": {
+    "bead_diameter_mm": 4.5,
+    "centre_pitch_mm": 6.0,
+    "link_thickness_max_mm": 1.0,
+    "link_thickness_status": "owner estimate",
+    "coupler_reported": false,
+    "status": "owner-entered September 2026; verify across seven units",
+    "strand_plane": "perpendicular to wall"
+  },
+  "blind": {
+    "max_travel_approx_mm": 3048,
+    "peak_pull_reported_lbf": 5,
+    "peak_pull_status": "archived narrative; raw measurement not recovered",
+    "fabric_per_100mm_chain_reported_mm": [
+      100,
+      120
+    ],
+    "per_blind_inventory": null,
+    "shared_height_datum": null
+  },
+  "motor": {
+    "brand": "Recfountik",
+    "family": "JGB37-520",
+    "rated_voltage_V": 12,
+    "nominal_speed_rpm": 111,
+    "encoder_present": true,
+    "body_length_mm": null,
+    "mounting_pattern": null,
+    "shaft_measured": false,
+    "stall_current_A": null,
+    "encoder_supply_V": null,
+    "encoder_pinout": null,
+    "encoder_counts_per_output_turn": null,
+    "status": "current owner purchase screenshot; exact mechanical/electrical data pending"
+  },
+  "battery": {
+    "cell": "Samsung INR21700-50E",
+    "series": 3,
+    "parallel": 2,
+    "cells_per_unit": 6,
+    "units_installed": 7,
+    "units_budgeted": 8,
+    "cells_required_total": 48,
+    "inventory_verified": false,
+    "pack_construction": "open design decision"
+  },
+  "assumptions": {
+    "full_open_close_cycles_per_day": 1,
+    "runtime_days_target": 60,
+    "runtime_days_stretch": 90,
+    "group_final_alignment_target_mm": 5,
+    "status": "design targets, not measured performance"
+  },
+  "source_record": "research/archive-findings.md"
+}

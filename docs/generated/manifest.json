@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "source_commit": "3ad0a29efcf933d6b887825998ced19d0c5ab11e",
+  "tools": {
+    "kicad": "10.0.4"
+  },
+  "manifest_sha256": "3dedd47604e9f32ddfb604646208d82953f34d83adb86ecac32b3f37d4775fc1",
+  "renderer_sha256": "5890e17a06eca0af82f1cec7732e84663dd9700172cc8ec503e7741f6bcdee29",
+  "validation": "preview generation only; no physical validation",
+  "designs": [
+    {
+      "id": "pd12v6mini-reference",
+      "source": "hw/layouts/pd12v6mini/pd12v6mini.kicad_pcb",
+      "inputs_sha256": {
+        "hw/layouts/pd12v6mini/pd12v6mini.kicad_pcb": "42b815261574d5c2a2dcf9225ba1f451145dbf305631535767a07bb240892dc1"
+      },
+      "source_files_dirty": false,
+      "role": "Existing e8s USB-C PD to 12.6 V power supply. This is not the new controller or a battery charger; no new hardware validation is implied.",
+      "outputs": [
+        {
+          "path": "pd12v6mini-reference/assembly.png",
+          "sha256": "7fc2332666876d58cb8987564c377ce76b3996204f3cab6d652dba6e6a5c99bc"
+        },
+        {
+          "path": "pd12v6mini-reference/top.svg",
+          "sha256": "17bc8245aab34b8b53f5535228fdb2cc841f3cba4a349cb5bde24ac83ac1f987"
+        }
+      ],
+      "models_sha256": {
+        "${KIPRJMOD}/../../parts/SAMSUNG_CL05B104KB54PNC/C0402_L1.0-W0.5-H0.5.step": "0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8",
+        "${KIPRJMOD}/../../parts/UNI_ROYAL_0402WGF1002TCE/R0402_L1.0-W0.5-H0.4.step": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+        "${KIPRJMOD}/../../parts/UNI_ROYAL_0402WGF2002TCE/R0402_L1.0-W0.5-H0.4.step": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+        "${KICAD10_3DMODEL_DIR}/Connector_USB.3dshapes/USB_C_Receptacle_GCT_USB4105-xx-A_16P_TopMnt_Horizontal.step": "6338ce740fa231c2d3dcc6384e0576994a47240a312a21413cb85d76990a69a0",
+        "${KIPRJMOD}/../../parts/SAMSUNG_CL31A106KBHNNNE/C1206_L3.2-W1.6-H1.3.step": "8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef",
+        "${KIPRJMOD}/../../parts/TI_TPS56637RPAR/VQFN-HR-10_L3.0-W3.0_RPA.step": "ad9b461ebbf969063ac5e2982b2fd5be8c968b16634dede53e3f71829058e745",
+        "${KIPRJMOD}/../../parts/UNI_ROYAL_0402WGF2003TCE/R0402_L1.0-W0.5-H0.4.step": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+        "${KIPRJMOD}/../../parts/MOLEX_0430450400/430450400.STEP": "38060bd724ade39292c20473ff9b332ebac5caeb26fc8fa093fd611c9e229987",
+        "${KIPRJMOD}/../../parts/Chinocera_HGC1210R5476M250NSVK/C1210_L3.2-W2.5-H2.5.step": "8a9bdc5145436e36ff7bbe00fc010c78c7d7be7dc50bd29ebd824c39672ce66b",
+        "${KIPRJMOD}/../../parts/UNI_ROYAL_0402WGF3903TCE/R0402_L1.0-W0.5-H0.4.step": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+        "${KIPRJMOD}/../../parts/XINGLIGHT_XL_1005UGC/LED0402-RD_GREEN.STEP": "2e26cce501c0c5e19ecbc0f7f6d86c3538e2498083739eaab3f24117a6e76b87",
+        "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/SSOP-10-1EP_3.9x4.9mm_P1mm_EP2.1x3.3mm.step": "3623be00464827bd6d94a12acf96d5923399b878c328184fa76e1ecbc0a63bc2",
+        "${KIPRJMOD}/../../parts/SAMSUNG_CL05A105KA5NQNC/C0402_L1.0-W0.5-H0.5.step": "0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8",
+        "${KIPRJMOD}/../../parts/UNI_ROYAL_0402WGF4701TCE/R0402_L1.0-W0.5-H0.4.step": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+        "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_Chilisin_BWVS00505040.step": "137d6119c6f54ad9443b916d97fa65df547ee2a2464a2a68afc28d6d32a65613",
+        "${KIPRJMOD}/../../parts/UNI_ROYAL_0402WGF3002TCE/R0402_L1.0-W0.5-H0.4.step": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+        "${KIPRJMOD}/../../parts/FH_0402CG101J500NT/C0402_L1.0-W0.5-H0.5.step": "0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8",
+        "${KICAD10_3DMODEL_DIR}/Diode_SMD.3dshapes/D_SMA.step": "1cfddd4e3b1bf22b8fc6ee3258c2aade882ed7b85b528e23b9db42437775a1db",
+        "${KIPRJMOD}/../../parts/UNI_ROYAL_0402WGF1203TCE/R0402_L1.0-W0.5-H0.4.step": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+        "${KIPRJMOD}/../../parts/XINGLIGHT_XL_1005SURC/LED0402_L1.0-W0.5-H0.2.step": "2ceb8db3deae7937b10e6a7563704882e99a2a2e44e36e3fb95c2e84645ef708"
+      }
+    }
+  ]
+}
