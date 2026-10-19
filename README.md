@@ -4,6 +4,7 @@ Compact, rechargeable blind controllers for seven windows, with one spare.
 White printed enclosures, USB-C charging, physical buttons and Home Assistant control.
 
 [![Design previews](https://github.com/0x63616c/smart-blinds/actions/workflows/design-previews.yml/badge.svg)](https://github.com/0x63616c/smart-blinds/actions/workflows/design-previews.yml)
+[![Design checks](https://github.com/0x63616c/smart-blinds/actions/workflows/design-checks.yml/badge.svg)](https://github.com/0x63616c/smart-blinds/actions/workflows/design-checks.yml)
 
 **Current stage: prototype design.** This repository is being designed afresh. The inherited
 USB-C boards below are references, not the new blind controller or a battery charger.
@@ -16,6 +17,7 @@ No complete unit has been built or physically validated.
 ## The product
 
 - One integrated controller and one 3S2P Samsung 50E battery pack per blind.
+- PCB-mounted cell holders are being evaluated on a separate protected carrier to simplify assembly.
 - Existing Recfountik JGB37-520 12 V / 111 RPM encoder motors.
 - A small white enclosure mounted low on the wall, with accessible USB-C and up/down buttons.
 - Group commands align the **physical bottom edges** of different-height blinds.
@@ -33,6 +35,14 @@ These images are generated from the design sources. [Preview generation and prov
 A green preview badge means the images generated successfully, not that the hardware is validated.
 
 <!-- previews:start -->
+### Compact enclosure — provisional exterior
+
+Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.
+
+![Compact enclosure — provisional exterior](docs/generated/compact-closed/assembly.png)
+
+[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/compact-closed/)
+
 ### Four layouts at the same scale
 
 Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.
@@ -41,61 +51,68 @@ Calculated front footprints from the original packaging study. Dimensions and pu
 
 [Source](cad/parameters/packaging.json) · [Generated files](docs/generated/packaging-comparison/)
 
-### Compact enclosure — provisional exterior
-
-Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
-
-![Compact enclosure — provisional exterior](docs/generated/compact-closed/assembly.png)
-
-[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/compact-closed/)
-
 ### Compact enclosure — exploded study
 
-Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
+Enclosure and internal fit study. Motor, cells and PCB are reserved envelopes; attachment and drive details are still being developed.
 
 ![Compact enclosure — exploded study](docs/generated/compact-exploded/assembly.png)
 
 [Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/compact-exploded/)
 
-### Wide and shallow — packaging study
+<details>
+<summary>Compact direct drive — packaging study</summary>
 
-Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
-
-![Wide and shallow — packaging study](docs/generated/broad-assembly/assembly.png)
-
-[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/broad-assembly/)
-
-### Compact direct drive — packaging study
-
-Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
+Compact direct drive with three cell columns and two depth layers. Provisional packaging study.
 
 ![Compact direct drive — packaging study](docs/generated/compact-assembly/assembly.png)
 
 [Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/compact-assembly/)
 
-### Narrow with right-angle drive — packaging study
+</details>
 
-Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
+<details>
+<summary>Wide and shallow — packaging study</summary>
+
+Six cells across one depth layer. Provisional packaging study.
+
+![Wide and shallow — packaging study](docs/generated/broad-assembly/assembly.png)
+
+[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/broad-assembly/)
+
+</details>
+
+<details>
+<summary>Narrow with right-angle drive — packaging study</summary>
+
+Narrow footprint with a right-angle transmission envelope. Gears are not yet functional designs.
 
 ![Narrow with right-angle drive — packaging study](docs/generated/narrow-assembly/assembly.png)
 
 [Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/narrow-assembly/)
 
-### Tall and shallow direct drive — packaging study
+</details>
 
-Original parametric packaging study with six cells in a single depth layer. Unmeasured purchased-part envelopes; not a released enclosure.
+<details>
+<summary>Tall and shallow direct drive — packaging study</summary>
+
+Two vertical rows of three cells in a single depth layer. Provisional packaging study.
 
 ![Tall and shallow direct drive — packaging study](docs/generated/slim-assembly/assembly.png)
 
 [Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/slim-assembly/)
 
-### PD12V6Mini — inherited power-board reference
+</details>
+
+<details>
+<summary>PD12V6Mini — inherited power-board reference</summary>
 
 Existing e8s USB-C PD to 12.6 V power supply. This is not the new controller or a battery charger; no new hardware validation is implied.
 
 ![PD12V6Mini — inherited power-board reference](docs/generated/pd12v6mini-reference/assembly.png)
 
 [Source](hw/layouts/pd12v6mini/pd12v6mini.kicad_pcb) · [Generated files](docs/generated/pd12v6mini-reference/)
+
+</details>
 
 <!-- previews:end -->
 

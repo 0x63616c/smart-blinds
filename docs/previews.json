@@ -1,16 +1,6 @@
 {
   "designs": [
     {
-      "id": "packaging-comparison",
-      "kind": "footprints",
-      "title": "Four layouts at the same scale",
-      "source": "cad/parameters/packaging.json",
-      "dependencies": [
-        "cad/build.py"
-      ],
-      "role": "Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional."
-    },
-    {
       "id": "compact-closed",
       "kind": "openscad",
       "title": "Compact enclosure \u2014 provisional exterior",
@@ -23,7 +13,19 @@
         "option": "compact",
         "part": "closed"
       },
-      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
+      "role": "Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.",
+      "collapsed": false
+    },
+    {
+      "id": "packaging-comparison",
+      "kind": "footprints",
+      "title": "Four layouts at the same scale",
+      "source": "cad/parameters/packaging.json",
+      "dependencies": [
+        "cad/build.py"
+      ],
+      "role": "Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.",
+      "collapsed": false
     },
     {
       "id": "compact-exploded",
@@ -38,22 +40,8 @@
         "option": "compact",
         "part": "exploded"
       },
-      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
-    },
-    {
-      "id": "broad-assembly",
-      "kind": "openscad",
-      "title": "Wide and shallow \u2014 packaging study",
-      "source": "cad/source/smart_blinds.scad",
-      "dependencies": [
-        "cad/source/*.scad",
-        "cad/parameters/*.json"
-      ],
-      "defines": {
-        "option": "broad",
-        "part": "assembly"
-      },
-      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
+      "role": "Enclosure and internal fit study. Motor, cells and PCB are reserved envelopes; attachment and drive details are still being developed.",
+      "collapsed": false
     },
     {
       "id": "compact-assembly",
@@ -68,7 +56,24 @@
         "option": "compact",
         "part": "assembly"
       },
-      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
+      "role": "Compact direct drive with three cell columns and two depth layers. Provisional packaging study.",
+      "collapsed": true
+    },
+    {
+      "id": "broad-assembly",
+      "kind": "openscad",
+      "title": "Wide and shallow \u2014 packaging study",
+      "source": "cad/source/smart_blinds.scad",
+      "dependencies": [
+        "cad/source/*.scad",
+        "cad/parameters/*.json"
+      ],
+      "defines": {
+        "option": "broad",
+        "part": "assembly"
+      },
+      "role": "Six cells across one depth layer. Provisional packaging study.",
+      "collapsed": true
     },
     {
       "id": "narrow-assembly",
@@ -83,7 +88,8 @@
         "option": "narrow",
         "part": "assembly"
       },
-      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
+      "role": "Narrow footprint with a right-angle transmission envelope. Gears are not yet functional designs.",
+      "collapsed": true
     },
     {
       "id": "slim-assembly",
@@ -98,14 +104,16 @@
         "option": "slim",
         "part": "assembly"
       },
-      "role": "Original parametric packaging study with six cells in a single depth layer. Unmeasured purchased-part envelopes; not a released enclosure."
+      "role": "Two vertical rows of three cells in a single depth layer. Provisional packaging study.",
+      "collapsed": true
     },
     {
       "id": "pd12v6mini-reference",
       "kind": "pcb",
       "title": "PD12V6Mini \u2014 inherited power-board reference",
       "source": "hw/layouts/pd12v6mini/pd12v6mini.kicad_pcb",
-      "role": "Existing e8s USB-C PD to 12.6 V power supply. This is not the new controller or a battery charger; no new hardware validation is implied."
+      "role": "Existing e8s USB-C PD to 12.6 V power supply. This is not the new controller or a battery charger; no new hardware validation is implied.",
+      "collapsed": true
     }
   ]
 }

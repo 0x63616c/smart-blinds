@@ -1,6 +1,6 @@
 # Smart Blinds firmware
 
-Fresh, hardware-independent control groundwork. **No firmware image has been built for a selected MCU, flashed, or validated on the purchased motor.** The control core returns a physical fabric velocity request; a future board port must close the encoder speed loop and implement the actual motor, power, radio and sensor drivers.
+Fresh, hardware-independent control groundwork. The [motor-disabled ESP32-C6 bring-up image](esp-idf/README.md) cross-compiled successfully with ESP-IDF v5.5.4 on 2026-10-19. **No device has been flashed or validated on the purchased motor.** The control core returns a physical fabric velocity request; a future board port must close the encoder speed loop and implement the actual motor, power, radio and sensor drivers.
 
 ```sh
 cmake -S firmware -B work/firmware-build

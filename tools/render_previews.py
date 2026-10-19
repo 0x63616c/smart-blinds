@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+from html import escape
 import importlib.util
 import json
 import os
@@ -43,6 +44,16 @@ def local_source(name: str) -> Path:
     if not path.is_relative_to(ROOT) or not path.is_file():
         raise ValueError(f'Missing or non-project source: {name}')
     return path
+
+
+def entry_inputs(entry: dict) -> set[Path]:
+    paths = {local_source(entry['source'])}
+    for pattern in entry.get('dependencies', []):
+        matches = [p for p in ROOT.glob(pattern) if p.is_file()]
+        if not matches:
+            raise ValueError(f'No dependencies match {pattern}')
+        paths.update(matches)
+    return paths
 
 
 def model_files(board: Path, env: dict[str, str]) -> dict[str, str]:
@@ -94,18 +105,17 @@ def render() -> None:
     metadata = {'schema': 1, 'source_commit': commit, 'tools': versions,
                 'manifest_sha256': digest(MANIFEST), 'renderer_sha256': digest(Path(__file__)),
                 'validation': 'preview generation only; no physical validation', 'designs': []}
+    source_paths = {MANIFEST, Path(__file__).resolve()}
+    for entry in entries:
+        source_paths.update(entry_inputs(entry))
+    source_snapshot = {path: digest(path) for path in source_paths}
     gallery = []
     # Generate everything before replacing published outputs, so failures leave them intact.
     with tempfile.TemporaryDirectory(prefix='smart-blinds-previews-') as temp:
         destination = Path(temp)
         for entry in entries:
             source = local_source(entry['source'])
-            input_paths = {source}
-            for pattern in entry.get('dependencies', []):
-                matches = [p for p in ROOT.glob(pattern) if p.is_file()]
-                if not matches:
-                    raise ValueError(f'No dependencies match {pattern}')
-                input_paths.update(matches)
+            input_paths = entry_inputs(entry)
             inputs = {str(p.relative_to(ROOT)): digest(p) for p in sorted(input_paths)}
             status = run(['git', 'status', '--porcelain', '--', *inputs])
             item = {'id': entry['id'], 'source': entry['source'], 'inputs_sha256': inputs,
@@ -157,9 +167,24 @@ def render() -> None:
                     item['outputs'].append({'path': str(path.relative_to(destination)), 'sha256': digest(path)})
             metadata['designs'].append(item)
             image_link = f'docs/generated/{image.relative_to(destination)}'
-            gallery.extend([f"### {entry['title']}", '', entry['role'], '',
+            if entry.get('collapsed', False):
+                gallery.extend(['<details>', f"<summary>{escape(entry['title'])}</summary>", ''])
+            else:
+                gallery.extend([f"### {entry['title']}", ''])
+            gallery.extend([entry['role'], '',
                             f"![{entry['title']}]({image_link})", '',
                             f"[Source]({entry['source']}) · [Generated files](docs/generated/{entry['id']}/)", ''])
+            if entry.get('collapsed', False):
+                gallery.extend(['</details>', ''])
+        final_paths = {MANIFEST, Path(__file__).resolve()}
+        for entry in entries:
+            final_paths.update(entry_inputs(entry))
+        if final_paths != source_paths or any(digest(path) != value for path, value in source_snapshot.items()):
+            raise RuntimeError('Design sources changed during rendering; previous published previews preserved. Rerun from stable sources.')
+        for entry, item in zip(entries, metadata['designs']):
+            if entry['kind'] == 'pcb' and model_files(local_source(entry['source']), env) != item['models_sha256']:
+                raise RuntimeError('PCB models changed during rendering; previous published previews preserved.')
+        metadata['source_snapshot_verified_unchanged'] = True
         (destination / 'manifest.json').write_text(json.dumps(metadata, indent=2) + '\n')
         readme = (ROOT / 'README.md').read_text()
         replacement = '<!-- previews:start -->\n' + '\n'.join(gallery) + '\n<!-- previews:end -->'

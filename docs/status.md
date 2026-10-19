@@ -18,7 +18,16 @@ A green preview result only confirms generation of the documented images.
 - Portable motion/calibration code and the group coordinator pass local host tests, including
   seven different calibration maps following a shared physical-height trajectory. No motor has
   been driven and no Home Assistant integration is installed on the owner's system.
-- The embedded C6 bring-up build, complete circuitry/routing and radio integration are in progress.
+- The motor-disabled C6 bring-up image cross-builds with official ESP-IDF v5.5.4. Actual board
+  drivers, complete circuitry/routing and radio integration are in progress.
+- The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
+  compared with main-board holders and welded construction. This may change the initial layouts.
+- The exact motor listing is identified and partial seller dimensions are recorded. The owner is
+  away for several weeks; design continues with allowances and replaceable fit parts.
+
+The first complete study snapshot is `49f1d17`. Its [control/CAD-parameter/electrical-model checks](https://github.com/0x63616c/smart-blinds/actions/runs/39341111874)
+and [source-generated preview workflow](https://github.com/0x63616c/smart-blinds/actions/runs/39341111797)
+passed on GitHub. These checks validate the declared models and exports, not a physical product.
 
 ## Inherited references
 

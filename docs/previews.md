@@ -23,6 +23,9 @@ On a headless Linux machine, run under `xvfb-run -a`. Generated metadata records
 source hashes, local source dirty state, model hashes and tool versions. A local modified design
 is identified as dirty; its source hash still identifies exactly what was rendered. A generated
 commit's parent is the source commit, so its image metadata intentionally points to that parent.
+Generation refuses to publish if registered sources or PCB models change during rendering.
+Optional `collapsed: true` entries remain available under expandable README details, keeping
+alternate internal layouts and inherited references below the primary product views.
 
 ## CI and release meaning
 
