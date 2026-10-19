@@ -7,7 +7,7 @@ Status: preliminary design envelope, not fabrication-ready. Physical pins and co
 | Net/domain | Range or target | Connected functions | Important boundary |
 |---|---|---|---|
 | USB_VBUS | 5 V before negotiation; target 15 V PD | PD sink, input protection, charger | No assumed 3 A entitlement before CC/PD capability is known |
-| CELL0..CELL3 | Three series groups, two cells parallel in each | Cell sensing, raw pack connection | Fused/insulated pack harness; connector order and fault current need review |
+| CELL0..CELL3 | Three series groups, two cells parallel in each | Cell sensing on protected holder carrier | Keep raw rails internal; per-cell insertion/fuse/retention design required |
 | PACK_PROTECTED | About 9–12.6 V normal working envelope | Motor bridge, charger battery terminal | Independent per-cell protection; 9 V is a planning limit, not a final cutoff |
 | CHARGER_SYS | Battery-related system voltage | Logic buck | Permits USB-only commissioning; motor disabled without a safe pack |
 | LOGIC_3V3 | 3.3 V, supply sized for radio peaks | C6, interfaces, buttons | TPS62902 candidate, up to 2 A and 4 µA typical quiescent current; complete rail must be measured |
@@ -36,7 +36,7 @@ Reserve roughly 16–19 GPIO plus native USB, depending on shared interrupt and 
 
 ## Motor envelope and energy return
 
-DRV8874 is a candidate with current feedback and hardware current limiting. Its 6 A figure is peak capability, not permission to run continuously at 6 A on a tiny PCB. Initial calculation: 1.65 V reference and 1.21 kΩ IPROPI resistor give about 3.03 A nominal trip using the datasheet 450 µA/A gain. Tolerances and chopping overshoot must be included before setting the final limit. At 2 A, 200 mΩ nominal bridge resistance alone dissipates 0.8 W; heat rises further at temperature. [TI DRV8874 data](https://www.ti.com/lit/ds/symlink/drv8874.pdf)
+DRV8874 is a candidate with current feedback and hardware current limiting. Its 6 A figure is peak capability, not permission to run continuously at 6 A on a tiny PCB. Initial circuit:1.65 V reference and1.2 kΩ IPROPI resistor give about3.06 A nominal trip using the datasheet450 µA/A gain. Including3%logic,1%resistors and5.5%gain tolerances gives about2.75–3.40 A, before chopping overshoot. At2 A,200 mΩ nominal bridge resistance alone dissipates0.8 W; heat rises further at temperature. [TI DRV8874 data](https://www.ti.com/lit/ds/symlink/drv8874.pdf)
 
 The actual motor resistance, inductance, no-load current, loaded current, stall current, encoder supply and counts are unknown. A hypothetical 1.5 Ω / 500 µH load is a simulation stimulus, not a claimed motor specification. The design must stop when the encoder fails to make expected progress, with a bounded startup allowance; current feedback alone cannot prove an obstruction is safe.
 
@@ -44,7 +44,7 @@ Energy can return from the motor when slowing down or when the blind back-drives
 
 ## Battery pack and charging
 
-The BQ40Z50-R2 candidate combines cell monitoring, high-side protection-FET control, balancing and fuel gauging. It does not charge the battery. Gauge configuration must match 3S2P capacity, cell chemistry, current-shunt calibration and protection limits; an unconfigured part is not a working battery manager. [TI product and setup resources](https://www.ti.com/product/BQ40Z50-R2)
+The provisional MAX17320G22+ combines cell monitoring, high-side protection-FET control, balancing and fuel gauging. It does not charge the battery. Gauge configuration must match3S2P capacity, cell model, current-shunt scaling and protection limits; an unconfigured part is not a working battery manager. Keep it on the holder carrier with the pack fuse and protection FETs so a disconnected pack remains protected. [Commissioning and tool comparison](gauge-commissioning.md).
 
 Use an inline pack fuse close to the cells, protected terminals, strain relief and an insulated serviceable pack assembly. Cell identification, condition and matching remain to be checked. Raw cell sense wires need fault-current-limiting treatment. Do not choose a holder footprint from the conflicting old drawing.
 

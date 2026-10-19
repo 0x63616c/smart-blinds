@@ -1,7 +1,7 @@
 # Trade Study: integrated power and control
 
 **Date:** 2026-10-19
-**Status:** OPEN — architecture recommendation, component selection and physical validation pending
+**Status:** provisional B architecture with MAX17320G22+; circuitry and physical validation pending
 
 ## 1. Context
 
@@ -19,7 +19,7 @@ BQ24133 accepts 4.5–17 V operating input, charges up to 2.5 A and supports a t
 
 ### B: wide-input buck-boost charging, integrated smart pack
 
-A CC-line PD sink plus BQ25798 supports USB sources below or above pack voltage. A BQ40Z50-R2 and protection MOSFETs manage the pack. The motor connects to protected pack power; charger SYS feeds the logic supply. Charging pauses during motor motion, which avoids motor load confusing charge termination at the battery node.
+A CC-line PD sink plus BQ25798 supports USB sources below or above pack voltage. The initial BQ40Z50-R2 option has been replaced provisionally by MAX17320G22+ and protection MOSFETs after a commissioning-cost comparison. The motor connects to protected pack power; charger SYS feeds the logic supply. Charging pauses during motor motion, which avoids motor load confusing charge termination at the battery node.
 
 BQ25798 has an integrated switching bridge, configurable cell count, input current control and an NTC input. Hardware PROG selects 3S defaults, and CE remains disabled until the controller checks the pack and input capability. PD negotiation remains a separate function; this charger is not a PD sink controller. [TI datasheet](https://www.ti.com/lit/ds/symlink/bq25798.pdf)
 
@@ -36,7 +36,7 @@ This approach requires more independent interfaces or more host battery-estimati
 | Criterion | A: 15 V buck | B: buck-boost | C: separate battery functions |
 |---|---|---|---|
 | USB charging experience | Requires a suitable 15 V PD source | Can support slower 5 V charging within negotiated/advertised current | Same 15 V requirement in the compared implementation |
-| Charger IC public JLC price, 1+ | BQ24133 $2.9586 | BQ25798 $2.8378 in first live snapshot; refresh was rate limited | BQ24133 $2.9586 plus separate pack functions |
+| Charger IC public JLC price, 1+ | BQ24133 $2.9586 | BQ25798 $2.8378 in dated public snapshot | BQ24133 $2.9586 plus separate pack functions |
 | Battery percentage | Gauge must be configured and learned | Same gauge and commissioning | Host estimator and calibration required |
 | Pack protection grounding | High-side gauge FETs retain system ground | Same | Small low-side options complicate USB/debug grounding |
 | Space | Charger plus input/power-path FETs and passives | Integrated bridge, but several power capacitors and inductor still dominate | Savings in one IC can be lost in extra ICs, isolation and passives |
@@ -58,8 +58,8 @@ All retain Wi-Fi and IEEE 802.15.4 capability. Transport remains open: Thread po
 
 ## 4. Recommendation
 
-**Rationale:** develop B with a C6 WROOM module and BQ40Z50-R2 first. It preserves usable USB-C charging, measures state of charge with a dedicated gauge, and currently preserves a cheaper assembly tier. The 75 × 35 mm PCB is an allocation to test, not a routed-size claim. Direct battery motor drive avoids another high-power converter; closed-loop speed must be limited by the weakest calibrated blind at low battery.
+**Rationale:** develop B with a C6 WROOM module and MAX17320G22+ first. The latter costs more per IC but avoids a mandatory $208.95 EV2400/Windows setup path if our documented direct-host commissioning implementation is validated. It preserves usable USB-C charging and a dedicated state-of-charge gauge. The 75 × 35 mm controller PCB is an allocation to test, not a routed-size claim. Protection/gauging now belongs on the proposed separate holder carrier; its geometry and assembly costs are additional. Direct battery motor drive avoids another high-power converter; closed-loop speed must be limited by the weakest calibrated blind at low battery. [Gauge comparison](gauge-commissioning.md), [holder comparison](battery-carrier-trade.md).
 
-**What we are giving up:** WROOM uses about 240 mm² more body area than MINI. The smart gauge needs chemistry selection, calibration and a learning cycle; allow development tooling and time in the budget. A protected, fused, insulated pack with sense wires is more involved than six loose holders. A charger and gauge do not eliminate prototype charging, thermal or fault testing.
+**What we are giving up:** WROOM uses about 240 mm² more body area than MINI. The EZ gauge avoids mandatory custom chemistry characterization, but its complete protection/NTC/capacity profile and real Samsung50E accuracy still require validation. PCB holders add space and contact-resistance risk; raw cell taps should remain inside the protected carrier. A charger and gauge do not eliminate prototype charging, thermal or fault testing.
 
 **When to revisit:** motor current exceeds the driver/thermal envelope; low-battery torque cannot meet the common speed; module stock or assembly tier changes; the enclosure cannot keep the antenna away from metal; gauge development tooling costs outweigh its benefit; or measured radio power misses 60 days. A regulated motor rail or larger driver is a fallback only when measurements justify it.

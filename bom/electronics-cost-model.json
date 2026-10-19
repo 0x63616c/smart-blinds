@@ -5,7 +5,17 @@
   "units": 8,
   "assembly_fee_source": "https://jlcpcb.com/help/article/pcb-assembly-price",
   "fee_observed_date": "2026-10-19",
-  "selected_candidate_mpns": ["ESP32-C6-WROOM-1-N4", "BQ25798RQMR", "BQ40Z50RSMR-R2", "DRV8874PWPR", "TPS62902RPJR"],
+  "selected_candidate_mpns": ["ESP32-C6-WROOM-1-N4", "BQ25798RQMR", "MAX17320G22+", "DRV8874PWPR", "TPS62902RPJR"],
+  "partition": "Single assembled PCB baseline for comparison only; proposed separate protected carrier adds PCB, setup and interconnect costs",
+  "gauge_setup_comparison": {
+    "selected_mpn": "MAX17320G22+",
+    "fallback_mpn": "BQ40Z50RSMR-R2",
+    "ti_ev2400_usd": 208.95,
+    "ti_ev2400_source": "https://www.ti.com/product/EV2400/part-details/EV2400",
+    "ti_ev2400_observed_date": "2026-10-19",
+    "max_direct_host_hardware_budget_usd": 0,
+    "max_direct_host_note": "Incremental adapter budget only: controller USB/I2C fixture path remains to be implemented/tested. Common bench instruments and commissioning time are unpriced."
+  },
   "assumptions": {
     "pcb_per_unit_usd": 2.0,
     "other_components_per_unit_usd": 10.0,
@@ -15,7 +25,7 @@
     "standard_fixture_allowance_usd": 16.42,
     "standard_packing_allowance_usd": 0.5,
     "added_thread_router_budget_usd": [0, 50, 100],
-    "shared_gauge_setup_tools_budget_usd": [0, 100, 250]
+    "shared_gauge_setup_tools_budget_usd": [0, 208.95]
   },
   "fees": {
     "economic_setup": 8.18,
@@ -28,6 +38,8 @@
   },
   "unpriced_required_items": [
     "Actual PCB fabrication quote and any panel tooling",
+    "Separate battery carrier fabrication and additional PCBA setup/feeder costs",
+    "Six battery holders per unit, cell-level fuses, interconnects and retention hardware",
     "Actual complete line-item passive, protection FET, PD sink, connector and inductor BOM",
     "Component attrition and MOQ rounding",
     "X-ray inspection, handling and special component fees after quote",
@@ -38,5 +50,5 @@
     "USB PD supply and cable if existing supplies are unsuitable",
     "Gauge adapter, chemistry characterization, test fixture and load equipment"
   ],
-  "note": "Router and gauge-tool figures are sensitivity inputs, not current vendor prices. A compatible existing router can make incremental router cost zero. No tool purchase or component reservation has occurred."
+  "note": "Router figures are sensitivity inputs. TI EV2400 is a dated public price; MAX direct-host adapter budget is an unvalidated implementation assumption, not a bench-equipment budget. No tool purchase or component reservation has occurred."
 }

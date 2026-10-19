@@ -26,6 +26,8 @@ PARTS = [
     ("BQ76942PFBR", "C2692351"),
     ("MAX17320G20+", "C7457894"),
     ("MAX17320G22+", "C2914309"),
+    ("BH-21700-A5BJ001", "C20606809"),
+    ("BH-21700-B1BJ001", "C20606791"),
 ]
 FIELDS = (
     "componentModelEn", "componentLibraryType", "preferredComponentFlag",
