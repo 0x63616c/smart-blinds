@@ -1,1 +1,1 @@
-idf_component_register(SRCS "main.cpp" INCLUDE_DIRS "." REQUIRES blinds_control esp_timer)
+idf_component_register(SRCS "main.cpp" INCLUDE_DIRS "." REQUIRES blinds_control gauge_readonly esp_timer)
