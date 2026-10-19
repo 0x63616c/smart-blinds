@@ -9,6 +9,7 @@ White printed enclosures, USB-C charging, physical buttons and Home Assistant co
 USB-C boards below are references, not the new blind controller or a battery charger.
 No complete unit has been built or physically validated.
 
+[Enclosure comparison](docs/mechanical/2026-10-19-packaging-trade-study.md) · [Electronics comparison](docs/electrical/2026-10-19-power-control-trade.md) ·
 [Design brief](docs/brief.md) · [Progress](docs/status.md) · [Measurements](docs/measurements.json) ·
 [Validation plan](docs/verification-plan.md) · [Shopping list](bom/README.md)
 
@@ -32,6 +33,62 @@ These images are generated from the design sources. [Preview generation and prov
 A green preview badge means the images generated successfully, not that the hardware is validated.
 
 <!-- previews:start -->
+### Four layouts at the same scale
+
+Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.
+
+![Four layouts at the same scale](docs/generated/packaging-comparison/footprints.svg)
+
+[Source](cad/parameters/packaging.json) · [Generated files](docs/generated/packaging-comparison/)
+
+### Compact enclosure — provisional exterior
+
+Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
+
+![Compact enclosure — provisional exterior](docs/generated/compact-closed/assembly.png)
+
+[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/compact-closed/)
+
+### Compact enclosure — exploded study
+
+Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
+
+![Compact enclosure — exploded study](docs/generated/compact-exploded/assembly.png)
+
+[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/compact-exploded/)
+
+### Wide and shallow — packaging study
+
+Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
+
+![Wide and shallow — packaging study](docs/generated/broad-assembly/assembly.png)
+
+[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/broad-assembly/)
+
+### Compact direct drive — packaging study
+
+Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
+
+![Compact direct drive — packaging study](docs/generated/compact-assembly/assembly.png)
+
+[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/compact-assembly/)
+
+### Narrow with right-angle drive — packaging study
+
+Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.
+
+![Narrow with right-angle drive — packaging study](docs/generated/narrow-assembly/assembly.png)
+
+[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/narrow-assembly/)
+
+### Tall and shallow direct drive — packaging study
+
+Original parametric packaging study with six cells in a single depth layer. Unmeasured purchased-part envelopes; not a released enclosure.
+
+![Tall and shallow direct drive — packaging study](docs/generated/slim-assembly/assembly.png)
+
+[Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/slim-assembly/)
+
 ### PD12V6Mini — inherited power-board reference
 
 Existing e8s USB-C PD to 12.6 V power supply. This is not the new controller or a battery charger; no new hardware validation is implied.
@@ -42,7 +99,8 @@ Existing e8s USB-C PD to 12.6 V power supply. This is not the new controller or 
 
 <!-- previews:end -->
 
-New enclosure, assembly and controller previews will be added as their source designs exist.
+The enclosure views show original packaging studies with provisional motor and PCB envelopes.
+The fresh integrated controller is still being designed; the inherited board is labelled separately.
 
 ## What's in the project
 

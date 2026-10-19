@@ -1,0 +1,534 @@
+{
+  "revision": "mechanical-study-01",
+  "status": "geometric packaging study; not physical acceptance",
+  "options": [
+    {
+      "id": "broad",
+      "name": "Broad and shallow",
+      "outer_mm": [
+        150,
+        140,
+        58
+      ],
+      "bounding_volume_cm3": 1218.0,
+      "wall_area_cm2": 210.0,
+      "depth_mm": 58,
+      "pack_envelope_bounds_mm": [
+        3.5,
+        10,
+        5.5,
+        144.0,
+        86,
+        28.5
+      ],
+      "pack_to_inner_shell_bounds_mm": [
+        1.1,
+        7.6,
+        2.5,
+        3.6,
+        51.6,
+        27.1
+      ],
+      "pcb_front_gap_mm": 2.0,
+      "passes_axis_aligned_envelope_checks": true,
+      "limits": "Bounding-box checks only; rounded corners, purchased-part geometry, wiring bends, full assembly collisions, loads and thermal/RF performance require further validation.",
+      "shaft_offset_sensitivity": [
+        {
+          "offset_y_mm": -7,
+          "offset_z_mm": -7,
+          "wheel_rear_margin_mm": 3,
+          "wheel_front_margin_mm": 19.6,
+          "wheel_top_margin_mm": 18.6
+        },
+        {
+          "offset_y_mm": -7,
+          "offset_z_mm": 0,
+          "wheel_rear_margin_mm": 10,
+          "wheel_front_margin_mm": 12.6,
+          "wheel_top_margin_mm": 18.6
+        },
+        {
+          "offset_y_mm": -7,
+          "offset_z_mm": 7,
+          "wheel_rear_margin_mm": 17,
+          "wheel_front_margin_mm": 5.6,
+          "wheel_top_margin_mm": 18.6
+        },
+        {
+          "offset_y_mm": 0,
+          "offset_z_mm": -7,
+          "wheel_rear_margin_mm": 3,
+          "wheel_front_margin_mm": 19.6,
+          "wheel_top_margin_mm": 11.6
+        },
+        {
+          "offset_y_mm": 0,
+          "offset_z_mm": 0,
+          "wheel_rear_margin_mm": 10,
+          "wheel_front_margin_mm": 12.6,
+          "wheel_top_margin_mm": 11.6
+        },
+        {
+          "offset_y_mm": 0,
+          "offset_z_mm": 7,
+          "wheel_rear_margin_mm": 17,
+          "wheel_front_margin_mm": 5.6,
+          "wheel_top_margin_mm": 11.6
+        },
+        {
+          "offset_y_mm": 7,
+          "offset_z_mm": -7,
+          "wheel_rear_margin_mm": 3,
+          "wheel_front_margin_mm": 19.6,
+          "wheel_top_margin_mm": 4.6
+        },
+        {
+          "offset_y_mm": 7,
+          "offset_z_mm": 0,
+          "wheel_rear_margin_mm": 10,
+          "wheel_front_margin_mm": 12.6,
+          "wheel_top_margin_mm": 4.6
+        },
+        {
+          "offset_y_mm": 7,
+          "offset_z_mm": 7,
+          "wheel_rear_margin_mm": 17,
+          "wheel_front_margin_mm": 5.6,
+          "wheel_top_margin_mm": 4.6
+        }
+      ],
+      "offset_note": "Sensitivity of 30mm flange envelope only. Scenarios are not measured limits; retune guard and ports after measurement."
+    },
+    {
+      "id": "compact",
+      "name": "Compact direct drive",
+      "outer_mm": [
+        114,
+        140,
+        68
+      ],
+      "bounding_volume_cm3": 1085.3,
+      "wall_area_cm2": 159.6,
+      "depth_mm": 68,
+      "pack_envelope_bounds_mm": [
+        6.5,
+        10,
+        5.5,
+        76.5,
+        86,
+        52.0
+      ],
+      "pack_to_inner_shell_bounds_mm": [
+        4.1,
+        7.6,
+        2.5,
+        35.1,
+        51.6,
+        13.6
+      ],
+      "pcb_front_gap_mm": 1.0,
+      "passes_axis_aligned_envelope_checks": true,
+      "limits": "Bounding-box checks only; rounded corners, purchased-part geometry, wiring bends, full assembly collisions, loads and thermal/RF performance require further validation.",
+      "shaft_offset_sensitivity": [
+        {
+          "offset_y_mm": -7,
+          "offset_z_mm": -7,
+          "wheel_rear_margin_mm": 3,
+          "wheel_front_margin_mm": 29.6,
+          "wheel_top_margin_mm": 18.6
+        },
+        {
+          "offset_y_mm": -7,
+          "offset_z_mm": 0,
+          "wheel_rear_margin_mm": 10,
+          "wheel_front_margin_mm": 22.6,
+          "wheel_top_margin_mm": 18.6
+        },
+        {
+          "offset_y_mm": -7,
+          "offset_z_mm": 7,
+          "wheel_rear_margin_mm": 17,
+          "wheel_front_margin_mm": 15.6,
+          "wheel_top_margin_mm": 18.6
+        },
+        {
+          "offset_y_mm": 0,
+          "offset_z_mm": -7,
+          "wheel_rear_margin_mm": 3,
+          "wheel_front_margin_mm": 29.6,
+          "wheel_top_margin_mm": 11.6
+        },
+        {
+          "offset_y_mm": 0,
+          "offset_z_mm": 0,
+          "wheel_rear_margin_mm": 10,
+          "wheel_front_margin_mm": 22.6,
+          "wheel_top_margin_mm": 11.6
+        },
+        {
+          "offset_y_mm": 0,
+          "offset_z_mm": 7,
+          "wheel_rear_margin_mm": 17,
+          "wheel_front_margin_mm": 15.6,
+          "wheel_top_margin_mm": 11.6
+        },
+        {
+          "offset_y_mm": 7,
+          "offset_z_mm": -7,
+          "wheel_rear_margin_mm": 3,
+          "wheel_front_margin_mm": 29.6,
+          "wheel_top_margin_mm": 4.6
+        },
+        {
+          "offset_y_mm": 7,
+          "offset_z_mm": 0,
+          "wheel_rear_margin_mm": 10,
+          "wheel_front_margin_mm": 22.6,
+          "wheel_top_margin_mm": 4.6
+        },
+        {
+          "offset_y_mm": 7,
+          "offset_z_mm": 7,
+          "wheel_rear_margin_mm": 17,
+          "wheel_front_margin_mm": 15.6,
+          "wheel_top_margin_mm": 4.6
+        }
+      ],
+      "offset_note": "Sensitivity of 30mm flange envelope only. Scenarios are not measured limits; retune guard and ports after measurement.",
+      "antenna_lateral_pack_gap_mm": 15.5
+    },
+    {
+      "id": "narrow",
+      "name": "Narrow with right-angle drive",
+      "outer_mm": [
+        86,
+        212,
+        68
+      ],
+      "bounding_volume_cm3": 1239.8,
+      "wall_area_cm2": 182.3,
+      "depth_mm": 68,
+      "pack_envelope_bounds_mm": [
+        4,
+        33.0,
+        5.5,
+        80,
+        103.0,
+        52.0
+      ],
+      "pack_to_inner_shell_bounds_mm": [
+        1.6,
+        30.6,
+        2.5,
+        3.6,
+        106.6,
+        13.6
+      ],
+      "pcb_front_gap_mm": 1.0,
+      "passes_axis_aligned_envelope_checks": true,
+      "limits": "Bounding-box checks only; rounded corners, purchased-part geometry, wiring bends, full assembly collisions, loads and thermal/RF performance require further validation."
+    },
+    {
+      "id": "slim",
+      "name": "Slim direct drive",
+      "outer_mm": [
+        114,
+        220,
+        54
+      ],
+      "bounding_volume_cm3": 1354.3,
+      "wall_area_cm2": 250.8,
+      "depth_mm": 54,
+      "pack_envelope_bounds_mm": [
+        6.5,
+        10,
+        5.5,
+        76.5,
+        166,
+        28.5
+      ],
+      "pack_to_inner_shell_bounds_mm": [
+        4.1,
+        7.6,
+        2.5,
+        35.1,
+        51.6,
+        23.1
+      ],
+      "pcb_front_gap_mm": 7.0,
+      "passes_axis_aligned_envelope_checks": true,
+      "limits": "Bounding-box checks only; rounded corners, purchased-part geometry, wiring bends, full assembly collisions, loads and thermal/RF performance require further validation.",
+      "shaft_offset_sensitivity": [
+        {
+          "offset_y_mm": -7,
+          "offset_z_mm": -7,
+          "wheel_rear_margin_mm": 3,
+          "wheel_front_margin_mm": 15.6,
+          "wheel_top_margin_mm": 18.6
+        },
+        {
+          "offset_y_mm": -7,
+          "offset_z_mm": 0,
+          "wheel_rear_margin_mm": 10,
+          "wheel_front_margin_mm": 8.6,
+          "wheel_top_margin_mm": 18.6
+        },
+        {
+          "offset_y_mm": -7,
+          "offset_z_mm": 7,
+          "wheel_rear_margin_mm": 17,
+          "wheel_front_margin_mm": 1.6,
+          "wheel_top_margin_mm": 18.6
+        },
+        {
+          "offset_y_mm": 0,
+          "offset_z_mm": -7,
+          "wheel_rear_margin_mm": 3,
+          "wheel_front_margin_mm": 15.6,
+          "wheel_top_margin_mm": 11.6
+        },
+        {
+          "offset_y_mm": 0,
+          "offset_z_mm": 0,
+          "wheel_rear_margin_mm": 10,
+          "wheel_front_margin_mm": 8.6,
+          "wheel_top_margin_mm": 11.6
+        },
+        {
+          "offset_y_mm": 0,
+          "offset_z_mm": 7,
+          "wheel_rear_margin_mm": 17,
+          "wheel_front_margin_mm": 1.6,
+          "wheel_top_margin_mm": 11.6
+        },
+        {
+          "offset_y_mm": 7,
+          "offset_z_mm": -7,
+          "wheel_rear_margin_mm": 3,
+          "wheel_front_margin_mm": 15.6,
+          "wheel_top_margin_mm": 4.6
+        },
+        {
+          "offset_y_mm": 7,
+          "offset_z_mm": 0,
+          "wheel_rear_margin_mm": 10,
+          "wheel_front_margin_mm": 8.6,
+          "wheel_top_margin_mm": 4.6
+        },
+        {
+          "offset_y_mm": 7,
+          "offset_z_mm": 7,
+          "wheel_rear_margin_mm": 17,
+          "wheel_front_margin_mm": 1.6,
+          "wheel_top_margin_mm": 4.6
+        }
+      ],
+      "offset_note": "Sensitivity of 30mm flange envelope only. Scenarios are not measured limits; retune guard and ports after measurement."
+    }
+  ],
+  "drive": {
+    "pocket_count": 12,
+    "pitch_radius_mm": 11.591,
+    "nominal_chain_speed_mm_per_s_at_111_rpm": 133.2,
+    "torque_Nm_at_22_24_N_pull": 0.258,
+    "limits": "Ideal kinematics; no efficiency, acceleration, wear, shaft load or slip allowance. Use encoder control and measure torque; 111RPM is listing speed, not guaranteed loaded speed."
+  },
+  "meshes": [
+    {
+      "file": "exports/provisional/base.stl",
+      "triangles": 5288,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          114.0,
+          140.0,
+          25.0
+        ]
+      ],
+      "volume_cm3": 52.786,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/provisional/cover.stl",
+      "triangles": 1380,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          114.0,
+          140.0,
+          64.6
+        ]
+      ],
+      "volume_cm3": 109.508,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/provisional/cradle.stl",
+      "triangles": 660,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          82.0,
+          81.0,
+          13.0
+        ]
+      ],
+      "volume_cm3": 18.979,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/provisional/clamp.stl",
+      "triangles": 736,
+      "bounds_mm": [
+        [
+          -5.0,
+          -23.0,
+          0.0
+        ],
+        [
+          5.0,
+          23.0,
+          22.0
+        ]
+      ],
+      "volume_cm3": 2.959,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/provisional/wheel.stl",
+      "triangles": 11128,
+      "bounds_mm": [
+        [
+          -15.0,
+          -15.0,
+          0.0
+        ],
+        [
+          15.0,
+          15.0,
+          15.0
+        ]
+      ],
+      "volume_cm3": 5.477,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/provisional/guard.stl",
+      "triangles": 1712,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          20.0,
+          42.0,
+          39.0
+        ]
+      ],
+      "volume_cm3": 8.661,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/provisional/pcb_tray.stl",
+      "triangles": 1072,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          63.0,
+          38.0,
+          2.0
+        ]
+      ],
+      "volume_cm3": 2.333,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/provisional/button.stl",
+      "triangles": 764,
+      "bounds_mm": [
+        [
+          -6.0,
+          -6.0,
+          0.0
+        ],
+        [
+          6.0,
+          6.0,
+          5.4
+        ]
+      ],
+      "volume_cm3": 0.277,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/provisional/coupons.stl",
+      "triangles": 13032,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          93.0,
+          95.0,
+          15.0
+        ]
+      ],
+      "volume_cm3": 16.948,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 8,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    }
+  ],
+  "source_sha256": {
+    "parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
+    "source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61",
+    "source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
+    "build.py": "323c2c962392152a71969894cfa8dc4bbb217b84854e0ff56b92060f4b22c903"
+  },
+  "source_snapshot_verified_unchanged": true
+}

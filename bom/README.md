@@ -8,7 +8,7 @@ Budget for eight complete units: seven installations plus one spare. The first p
 | Recfountik JGB37-520 encoder motor, 12 V / 111 RPM | 1 | 2 | 8 | Archived purchase reports six; current inventory to verify |
 | Integrated populated controller PCB | 1 | 2 | 8 | New design pending |
 | Protected 3S2P pack assembly | 1 | 2 | 8 | Pack construction/protection method pending |
-| Printed enclosure/drive pieces | set | 2 sets | 8 sets | Packaging study pending |
+| Printed enclosure/drive pieces | set | 2 sets | 8 sets | Four original packaging studies and provisional fit meshes available |
 | Buttons, cables, terminals, fixings | set | 2 sets | 8 sets | Design dependent |
 
 Count cells separately from pack construction to avoid double-charging their cost. Record existing
@@ -20,3 +20,10 @@ footprint, assembly class, stock date, unit cost and source. Do not infer assemb
 an LCSC retail listing. Compare complete quoted single-sided/economic and alternatives with setup,
 stencil, feeder/loading, hand insertion, finish, shipping and tax shown separately. Prices are
 estimates until a dated actual quote exists; no quote or order has yet been placed.
+
+[Electronics cost sensitivity](electronics-cost.md) · [Dated component snapshot](electronics-sourcing-snapshot.json) ·
+[Mechanical quantities](mechanical.md)
+
+The owner prefers PCB-mounted cell holders to reduce assembly work. Compare a separate protected
+holder carrier with holders on the main PCB and a welded pack. Holder contacts, retention, reverse
+insertion, assembly fees and the extra interconnect must be included in this comparison.

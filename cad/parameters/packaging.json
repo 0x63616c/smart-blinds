@@ -1,0 +1,192 @@
+{
+  "revision": "mechanical-study-01",
+  "units": "mm",
+  "status": "provisional envelopes; owned motor and chain wall offsets unmeasured",
+  "cell": {
+    "diameter_max": 21.25,
+    "length_max": 70.8,
+    "insulated_envelope_diameter": 23,
+    "insulated_envelope_length": 76,
+    "pitch": 23.5,
+    "count": 6
+  },
+  "motor": {
+    "body_diameter": 39,
+    "body_length": 64,
+    "shaft_length": 18,
+    "shaft_diameter": 6,
+    "shaft_across_flat": 5.4,
+    "body_clearance": 0.6,
+    "shaft_offset": 0,
+    "status": "conservative study envelope, not manufacturer or owned motor dimensions; offset 0 is a packaging scenario, not a measurement",
+    "offset_scenarios_mm": [
+      -7,
+      0,
+      7
+    ],
+    "offset_scenario_status": "Sensitivity scenarios; no bound on owned motor inferred."
+  },
+  "chain": {
+    "bead_diameter": 4.5,
+    "pitch": 6,
+    "link_max": 1,
+    "pockets": 12,
+    "pocket_clearance": 0.5,
+    "wheel_width": 10,
+    "flange_diameter": 30,
+    "wall_offset": null
+  },
+  "pcb": {
+    "width": 75,
+    "height": 35,
+    "thickness": 1.6,
+    "component_height_allowance": 8,
+    "antenna_clear_width": 15,
+    "status": "allocation only, no electronic fit yet"
+  },
+  "shell": {
+    "wall": 2.4,
+    "base": 3,
+    "corner_radius": 9,
+    "seam_clearance": 0.35
+  },
+  "options": [
+    {
+      "id": "broad",
+      "name": "Broad and shallow",
+      "outer": [
+        150,
+        140,
+        58
+      ],
+      "pack": "six cells in one depth layer",
+      "motor_axis": "X direct drive",
+      "pack_origin": [
+        15,
+        10,
+        17
+      ],
+      "cell_columns": 6,
+      "cell_depth_layers": 1,
+      "cell_vertical_rows": 1,
+      "pcb_origin": [
+        65,
+        3,
+        44
+      ],
+      "motor_origin": [
+        12,
+        111,
+        28
+      ],
+      "shaft_axis_offset_z": 0,
+      "drive_extra_parts": 0
+    },
+    {
+      "id": "compact",
+      "name": "Compact direct drive",
+      "outer": [
+        114,
+        140,
+        68
+      ],
+      "pack": "three cells across, two depth layers",
+      "motor_axis": "X direct drive",
+      "pack_origin": [
+        18,
+        10,
+        17
+      ],
+      "cell_columns": 3,
+      "cell_depth_layers": 2,
+      "cell_vertical_rows": 1,
+      "pcb_origin": [
+        32,
+        3,
+        55
+      ],
+      "motor_origin": [
+        12,
+        111,
+        28
+      ],
+      "shaft_axis_offset_z": 0,
+      "drive_extra_parts": 0
+    },
+    {
+      "id": "narrow",
+      "name": "Narrow with right-angle drive",
+      "outer": [
+        86,
+        212,
+        68
+      ],
+      "pack": "three horizontal cells vertically, two depth layers",
+      "motor_axis": "Y plus bevel pair to X",
+      "pack_origin": [
+        4,
+        44.5,
+        17
+      ],
+      "cell_columns": 1,
+      "cell_depth_layers": 2,
+      "cell_vertical_rows": 3,
+      "pcb_origin": [
+        4,
+        3,
+        55
+      ],
+      "motor_origin": [
+        26,
+        111,
+        26
+      ],
+      "shaft_axis_offset_z": 0,
+      "drive_extra_parts": 5,
+      "pcb_override": [
+        65,
+        35
+      ],
+      "antenna_orientation": "bottom-right PCB edge, rotated module; pack begins15mm above antenna reservation"
+    },
+    {
+      "id": "slim",
+      "name": "Slim direct drive",
+      "outer": [
+        114,
+        220,
+        54
+      ],
+      "pack": "three vertical cells across, two rows end-to-end, one depth layer",
+      "motor_axis": "X direct drive",
+      "pack_origin": [
+        18,
+        10,
+        17
+      ],
+      "cell_columns": 3,
+      "cell_depth_layers": 1,
+      "cell_vertical_rows": 2,
+      "pcb_origin": [
+        32,
+        3,
+        35
+      ],
+      "motor_origin": [
+        12,
+        191,
+        28
+      ],
+      "shaft_axis_offset_z": 0,
+      "drive_extra_parts": 0
+    }
+  ],
+  "provisional_selected": "compact",
+  "selection_status": "engineering candidate for comparison and fit coupons; user review and actual dimensions pending",
+  "sources": {
+    "cells": "Samsung-authored cell specification, manufacturer document hosted at https://files.batteryjunction.com/frontend/files/samsung/datasheet/SAMSUNG-50E-21700-Datasheet.pdf ; geometry only, check owned revision and wraps",
+    "chain": "Owner-entered measurements 2026-09-14, archived smart-shades docs/entered-measurements.json",
+    "motor": "Owner purchase evidence: Recfountik JGB37-520 12V 111RPM encoder, 2026-09-19; exact geometry unavailable",
+    "pull_force": "Prior owner report approximately 5 lbf (22.24 N); dynamic load and torque unverified"
+  }
+}

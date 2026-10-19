@@ -1,9 +1,109 @@
 {
   "designs": [
     {
+      "id": "packaging-comparison",
+      "kind": "footprints",
+      "title": "Four layouts at the same scale",
+      "source": "cad/parameters/packaging.json",
+      "dependencies": [
+        "cad/build.py"
+      ],
+      "role": "Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional."
+    },
+    {
+      "id": "compact-closed",
+      "kind": "openscad",
+      "title": "Compact enclosure \u2014 provisional exterior",
+      "source": "cad/source/smart_blinds.scad",
+      "dependencies": [
+        "cad/source/*.scad",
+        "cad/parameters/*.json"
+      ],
+      "defines": {
+        "option": "compact",
+        "part": "closed"
+      },
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
+    },
+    {
+      "id": "compact-exploded",
+      "kind": "openscad",
+      "title": "Compact enclosure \u2014 exploded study",
+      "source": "cad/source/smart_blinds.scad",
+      "dependencies": [
+        "cad/source/*.scad",
+        "cad/parameters/*.json"
+      ],
+      "defines": {
+        "option": "compact",
+        "part": "exploded"
+      },
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
+    },
+    {
+      "id": "broad-assembly",
+      "kind": "openscad",
+      "title": "Wide and shallow \u2014 packaging study",
+      "source": "cad/source/smart_blinds.scad",
+      "dependencies": [
+        "cad/source/*.scad",
+        "cad/parameters/*.json"
+      ],
+      "defines": {
+        "option": "broad",
+        "part": "assembly"
+      },
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
+    },
+    {
+      "id": "compact-assembly",
+      "kind": "openscad",
+      "title": "Compact direct drive \u2014 packaging study",
+      "source": "cad/source/smart_blinds.scad",
+      "dependencies": [
+        "cad/source/*.scad",
+        "cad/parameters/*.json"
+      ],
+      "defines": {
+        "option": "compact",
+        "part": "assembly"
+      },
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
+    },
+    {
+      "id": "narrow-assembly",
+      "kind": "openscad",
+      "title": "Narrow with right-angle drive \u2014 packaging study",
+      "source": "cad/source/smart_blinds.scad",
+      "dependencies": [
+        "cad/source/*.scad",
+        "cad/parameters/*.json"
+      ],
+      "defines": {
+        "option": "narrow",
+        "part": "assembly"
+      },
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure."
+    },
+    {
+      "id": "slim-assembly",
+      "kind": "openscad",
+      "title": "Tall and shallow direct drive \u2014 packaging study",
+      "source": "cad/source/smart_blinds.scad",
+      "dependencies": [
+        "cad/source/*.scad",
+        "cad/parameters/*.json"
+      ],
+      "defines": {
+        "option": "slim",
+        "part": "assembly"
+      },
+      "role": "Original parametric packaging study with six cells in a single depth layer. Unmeasured purchased-part envelopes; not a released enclosure."
+    },
+    {
       "id": "pd12v6mini-reference",
       "kind": "pcb",
-      "title": "PD12V6Mini — inherited power-board reference",
+      "title": "PD12V6Mini \u2014 inherited power-board reference",
       "source": "hw/layouts/pd12v6mini/pd12v6mini.kicad_pcb",
       "role": "Existing e8s USB-C PD to 12.6 V power supply. This is not the new controller or a battery charger; no new hardware validation is implied."
     }

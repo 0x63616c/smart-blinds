@@ -26,6 +26,8 @@ jobs:
           sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends kicad kicad-packages3d openscad xvfb xauth
+      - name: Check CAD parameters
+        run: python3 cad/build.py --check-parameters
       - name: Generate previews from sources
         run: xvfb-run -a python3 tools/render_previews.py
       - name: Prepare review artifact

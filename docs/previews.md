@@ -6,7 +6,7 @@ legacy layout generators or silently modify the PCB. Missing models cause a fail
 an apparently complete board image with absent components.
 
 Supported entries are `pcb` (KiCad 3D PNG and top-layer SVG), `schematic` (all KiCad SVG sheets),
-and `openscad` (rendered source PNG, with optional `defines` and dependency globs). Register new
+`footprints` (the CAD comparison at a common scale), and `openscad` (colored source-preview PNG, with optional `defines` and dependency globs). Register new
 schematics and CAD only when their real source files exist. Enclosure previews must identify
 provisional purchased-part envelopes and distinguish a study from a released printable assembly.
 
@@ -32,5 +32,6 @@ assets, provided the branch still points to the source revision. Concurrent newe
 publishing stale previews. Generated-only commits do not retrigger this workflow.
 
 A passing preview workflow confirms export/render success. It does not run the full electrical,
-firmware, mechanical or physical validation gates. The first gallery contains only the inherited
-PD12V6Mini reference; fresh controller and enclosure sources are under development.
+firmware, mechanical or physical validation gates. The gallery includes provisional enclosure studies and the inherited PD12V6Mini reference.
+OpenSCAD images use its colored preview renderer; full part geometry/mesh checks are separate.
+The fresh integrated controller is under development.

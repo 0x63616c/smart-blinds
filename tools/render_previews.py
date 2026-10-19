@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -128,9 +129,16 @@ def render() -> None:
                 if not pages:
                     raise RuntimeError('No schematic pages produced')
                 image = pages[0]
+            elif entry['kind'] == 'footprints':
+                # The CAD study owns the comparison dimensions and SVG generator.
+                spec = importlib.util.spec_from_file_location('cad_study', ROOT / 'cad/build.py')
+                module = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(module)
+                image = folder / 'footprints.svg'
+                module.write_footprints(json.loads(source.read_text()), image)
             elif entry['kind'] == 'openscad':
                 image = folder / 'assembly.png'
-                command = [openscad, '--render', '--imgsize=1600,1000', '--viewall', '--autocenter',
+                command = [openscad, '--preview', '--imgsize=1600,1000', '--viewall', '--autocenter',
                            '--projection=o', '--colorscheme=Tomorrow', '-o', str(image)]
                 for key, value in entry.get('defines', {}).items():
                     if not re.fullmatch(r'[A-Za-z_][A-Za-z_0-9]*', key):
@@ -139,6 +147,9 @@ def render() -> None:
                 run([*command, str(source)], env=env)
             else:
                 raise ValueError(f"Unknown preview kind: {entry['kind']}")
+            # KiCad emits trailing XML whitespace; normalize it for readable diffs.
+            for svg in folder.glob('*.svg'):
+                svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines()) + '\n')
             for path in sorted(folder.rglob('*')):
                 if path.is_file():
                     if path.stat().st_size == 0:

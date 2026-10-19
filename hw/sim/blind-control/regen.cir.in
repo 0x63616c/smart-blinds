@@ -1,0 +1,22 @@
+* Smart Blinds: protected battery opens during hypothetical regeneration.
+* Architecture-only energy model. The behavioural clamp is NOT a selected part.
+* Motor return current is an assumed stimulus, not measured motor data.
+.param CBULK=@CAP_F@ ESR=@ESR_OHM@ IRETURN=@CURRENT_A@ TCLAMP=@CLAMP_V@ GCLAMP=@CLAMP_S@
+Cbulk cap 0 {CBULK} IC=12.6
+Resr cap bus {ESR}
+Rleak bus 0 1Meg
+Ireturn 0 bus PWL(0 0 10m 0 10.01m {IRETURN} @END_S@ {IRETURN} @END_RAMP_S@ 0)
+Bdump bus 0 I={max(0,V(bus)-TCLAMP)*GCLAMP}
+.save v(bus) v(cap) @bdump[i]
+.tran 10u @STOP_S@ 0 10u UIC
+.control
+run
+let clamp_power = v(bus)*@bdump[i]
+meas tran peak_bus MAX v(bus)
+meas tran clamp_energy INTEG clamp_power
+set wr_singlescale
+set wr_vecnames
+wrdata wave.txt v(bus) v(cap) @bdump[i] clamp_power
+quit
+.endc
+.end

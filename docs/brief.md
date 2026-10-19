@@ -3,6 +3,8 @@
 Updated 2026-10-19 from the owner's current instructions. These requirements supersede archived
 six-unit, modular-board, 2S3P, holder and controller decisions.
 
+The owner authorized this GitHub repository to be public on 2026-10-19.
+
 ## Scope and acceptance target
 
 Design a complete, costed package for two prototype units, followed by a budget for eight complete
@@ -15,9 +17,9 @@ record. Do not buy parts or release fabrication without an explicit instruction 
 | Appearance | Clean white printed enclosure, low on wall, screw mounting, accessible USB-C, two physical buttons |
 | Size | Compare at least three complete arrangements; report width, height, depth, volume and service clearances |
 | Cost | Minimize complete eight-unit cost within reason, including assembly setup/feeder costs, hardware and pack construction |
-| PCB | Integrated controller/charger/motor drive; JLCPCB-supplied and assembled common components where practical; minimal silkscreen |
+| PCB | Controller/charger/motor drive with JLCPCB-supplied and assembled common components where practical; minimal silkscreen; a separate battery-holder/protection carrier is permitted if it reduces assembly work or size |
 | Finish | Black PCB solder mask preferred; quantify any assembly-cost effect before selection |
-| Battery | Six Samsung INR21700-50E cells, 3S2P per device; safe pack construction and service method to be designed |
+| Battery | Six Samsung INR21700-50E cells, 3S2P per device; owner prefers PCB-mounted holders to simplify assembly; compare main-board holders, a separate keyed carrier and welded construction |
 | Motor | Purchased Recfountik JGB37-520 12 V, 111 RPM, encoder; exact electrical and dimensional data pending |
 | Charging | USB-C; correct 3S CC/CV charging, protection, temperature sensing and cell-balance strategy |
 | Runtime | 60 days target, 90 days stretch; provisional one full open-close cycle/day; include standby and conversion losses |
@@ -66,3 +68,8 @@ cost of command latency and synchronized operation, not only a chip's deep-sleep
 See [measurements](measurements.json). A seven-blind inventory, exact motor geometry and electrical
 limits, cell condition/count, desired noise and daily usage remain unverified. Proceed with labelled
 assumptions for design studies; do not promote them into manufacturing dimensions or verified life.
+
+The owner is away for several weeks and cannot measure the motors. Use documented JGB37-520
+family dimensions with a stated variant allowance; keep the motor bracket and shaft adapter
+replaceable. Continue the design now, with physical fit qualification before fabrication.
+The exact purchased 111 RPM listing is [Amazon B0H4Y1BQ8Y](https://www.amazon.com/dp/B0H4Y1BQ8Y).

@@ -1,0 +1,9 @@
+{
+  "status": "illustrative planning profile, not measured capability or a speed requirement",
+  "travel_source": "docs/measurements.json: blind.max_travel_approx_mm",
+  "fabric_speed_mm_s": 20.0,
+  "fabric_acceleration_mm_s2": 40.0,
+  "full_open_close_cycles_per_day": 1,
+  "motion_duration_sensitivity_seconds_per_day": [60, 120, 300, 600],
+  "note": "Matches the coordinator's illustrative 20 mm/s request. Travel is owner-reported. Actual pack current changes with PWM, speed, torque and supply voltage; independent current/duration sweeps are scenarios, not a motor model."
+}

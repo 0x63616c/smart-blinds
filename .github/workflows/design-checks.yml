@@ -1,0 +1,45 @@
+name: Design checks
+
+on:
+  push:
+    branches: [main]
+    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build.py', 'hw/sim/blind-control/**', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
+  pull_request:
+    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build.py', 'hw/sim/blind-control/**', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  control-and-parameters:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build portable motion controller
+        run: |
+          cmake -S firmware -B work/firmware-build
+          cmake --build work/firmware-build
+          ctest --test-dir work/firmware-build --output-on-failure
+      - name: Test group coordinator
+        run: python3 -m unittest discover -s integrations/home_assistant -p 'test_*.py'
+      - name: Check CAD parameter consistency
+        run: python3 cad/build.py --check-parameters
+
+  electrical-assumptions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install circuit simulator
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends ngspice
+      - name: Check the documented electrical assumptions
+        run: python3 hw/sim/blind-control/run_checks.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: electrical-envelope-results
+          path: |
+            hw/sim/blind-control/results/*.json
+            hw/sim/blind-control/results/*.csv
+          if-no-files-found: error

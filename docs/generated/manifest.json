@@ -1,13 +1,132 @@
 {
   "schema": 1,
-  "source_commit": "44e8383d8bf9a73061ce47cea0f6cf70adca479d",
+  "source_commit": "5ec421d6913f12cdbea84cc2a985e3f2f36087f2",
   "tools": {
-    "kicad": "10.0.7"
+    "kicad": "10.0.4",
+    "openscad": "OpenSCAD version 2021.01"
   },
-  "manifest_sha256": "3dedd47604e9f32ddfb604646208d82953f34d83adb86ecac32b3f37d4775fc1",
-  "renderer_sha256": "5890e17a06eca0af82f1cec7732e84663dd9700172cc8ec503e7741f6bcdee29",
+  "manifest_sha256": "909d8927336d8049b6cfdc6ad61d958b088ae348a2bb7b89d4faa8acd1c558ab",
+  "renderer_sha256": "3b5812524f62f98966da3d11560eb6b4e8616e2051f2374a66d473e5ae4f679f",
   "validation": "preview generation only; no physical validation",
   "designs": [
+    {
+      "id": "packaging-comparison",
+      "source": "cad/parameters/packaging.json",
+      "inputs_sha256": {
+        "cad/build.py": "323c2c962392152a71969894cfa8dc4bbb217b84854e0ff56b92060f4b22c903",
+        "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02"
+      },
+      "source_files_dirty": true,
+      "role": "Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.",
+      "outputs": [
+        {
+          "path": "packaging-comparison/footprints.svg",
+          "sha256": "d7f01a0aa3bbfa2ab09744a72c84c524d9e3f8caeb7bf2bcad2c0fd2e2fdb5e1"
+        }
+      ]
+    },
+    {
+      "id": "compact-closed",
+      "source": "cad/source/smart_blinds.scad",
+      "inputs_sha256": {
+        "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
+        "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
+        "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
+      },
+      "source_files_dirty": true,
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
+      "outputs": [
+        {
+          "path": "compact-closed/assembly.png",
+          "sha256": "f8c4f9227776cec40656ed12b4164992c93819e55de1e0252e34e4f8cb6255fd"
+        }
+      ]
+    },
+    {
+      "id": "compact-exploded",
+      "source": "cad/source/smart_blinds.scad",
+      "inputs_sha256": {
+        "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
+        "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
+        "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
+      },
+      "source_files_dirty": true,
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
+      "outputs": [
+        {
+          "path": "compact-exploded/assembly.png",
+          "sha256": "dd7166ff1176d0f660eaaa9c02f310581141858a76c8974a55a9896d5a670700"
+        }
+      ]
+    },
+    {
+      "id": "broad-assembly",
+      "source": "cad/source/smart_blinds.scad",
+      "inputs_sha256": {
+        "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
+        "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
+        "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
+      },
+      "source_files_dirty": true,
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
+      "outputs": [
+        {
+          "path": "broad-assembly/assembly.png",
+          "sha256": "02d21db8164193361ad733c798237af7a1cb1b08cde9aabbed62fc26bad84984"
+        }
+      ]
+    },
+    {
+      "id": "compact-assembly",
+      "source": "cad/source/smart_blinds.scad",
+      "inputs_sha256": {
+        "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
+        "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
+        "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
+      },
+      "source_files_dirty": true,
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
+      "outputs": [
+        {
+          "path": "compact-assembly/assembly.png",
+          "sha256": "36ce24b8d0128a252ecdc3b71ce56242490f4d11a886a76f618b086282877f6a"
+        }
+      ]
+    },
+    {
+      "id": "narrow-assembly",
+      "source": "cad/source/smart_blinds.scad",
+      "inputs_sha256": {
+        "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
+        "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
+        "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
+      },
+      "source_files_dirty": true,
+      "role": "Original parametric packaging study. Purchased parts are provisional envelopes; motor fit, drive, structure, wiring and print assembly are not physically validated. This is not a released enclosure.",
+      "outputs": [
+        {
+          "path": "narrow-assembly/assembly.png",
+          "sha256": "399be5aafc4222c7280996173ad6e90a249bc72f4349197e37e8ad72b21e302c"
+        }
+      ]
+    },
+    {
+      "id": "slim-assembly",
+      "source": "cad/source/smart_blinds.scad",
+      "inputs_sha256": {
+        "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
+        "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
+        "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
+      },
+      "source_files_dirty": true,
+      "role": "Original parametric packaging study with six cells in a single depth layer. Unmeasured purchased-part envelopes; not a released enclosure.",
+      "outputs": [
+        {
+          "path": "slim-assembly/assembly.png",
+          "sha256": "6cd5d14a6a82d2b96f8def436753f78a107d3c721f99366fc7c5e6be98a373e0"
+        }
+      ]
+    },
     {
       "id": "pd12v6mini-reference",
       "source": "hw/layouts/pd12v6mini/pd12v6mini.kicad_pcb",
@@ -19,11 +138,11 @@
       "outputs": [
         {
           "path": "pd12v6mini-reference/assembly.png",
-          "sha256": "99e187cd235da1ba92c3f46fddb53a0307f95c78db11a70d691c94019d190e3f"
+          "sha256": "ff067a3297544fb3c01730bcd35dff67fb26b8e4834eaca21d58c810ea793fb1"
         },
         {
           "path": "pd12v6mini-reference/top.svg",
-          "sha256": "544f58bc0d32d585cd56b3d2531a344be967db258a85f6efc2063e8d0000b8af"
+          "sha256": "3a31facdcb05563fb683c0d9b44ec457536053f6e1f8d561d6ad0429d6811655"
         }
       ],
       "models_sha256": {

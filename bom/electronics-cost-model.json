@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "status": "planning-sensitivity-not-quote",
+  "currency": "USD",
+  "units": 8,
+  "assembly_fee_source": "https://jlcpcb.com/help/article/pcb-assembly-price",
+  "fee_observed_date": "2026-10-19",
+  "selected_candidate_mpns": ["ESP32-C6-WROOM-1-N4", "BQ25798RQMR", "BQ40Z50RSMR-R2", "DRV8874PWPR", "TPS62902RPJR"],
+  "assumptions": {
+    "pcb_per_unit_usd": 2.0,
+    "other_components_per_unit_usd": 10.0,
+    "unique_total_part_numbers": 45,
+    "ordinary_extended_part_numbers": 15,
+    "smt_joints_per_unit": 250,
+    "standard_fixture_allowance_usd": 16.42,
+    "standard_packing_allowance_usd": 0.5,
+    "added_thread_router_budget_usd": [0, 50, 100],
+    "shared_gauge_setup_tools_budget_usd": [0, 100, 250]
+  },
+  "fees": {
+    "economic_setup": 8.18,
+    "economic_stencil": 1.53,
+    "economic_extended_feeder": 3.07,
+    "standard_single_side_setup": 25.56,
+    "standard_single_side_stencil": 8.21,
+    "standard_feeder_all_unique": 1.53,
+    "smt_per_joint": 0.0016
+  },
+  "unpriced_required_items": [
+    "Actual PCB fabrication quote and any panel tooling",
+    "Actual complete line-item passive, protection FET, PD sink, connector and inductor BOM",
+    "Component attrition and MOQ rounding",
+    "X-ray inspection, handling and special component fees after quote",
+    "Shipping, tax and import charges",
+    "Cell pack fuse, insulation, nickel/interconnects, sense harness and thermistors",
+    "Existing motor/cell inventory reconciliation",
+    "Enclosure material, screws, bearings and wheel hardware",
+    "USB PD supply and cable if existing supplies are unsuitable",
+    "Gauge adapter, chemistry characterization, test fixture and load equipment"
+  ],
+  "note": "Router and gauge-tool figures are sensitivity inputs, not current vendor prices. A compatible existing router can make incremental router cost zero. No tool purchase or component reservation has occurred."
+}
