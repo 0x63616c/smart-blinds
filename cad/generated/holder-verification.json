@@ -1,0 +1,194 @@
+{
+  "revision": "packaging-study-02",
+  "options": [
+    {
+      "id": "sidecar",
+      "outer_mm": [
+        118,
+        142,
+        60
+      ],
+      "volume_cm3": 1005.4,
+      "wall_cm2": 167.6,
+      "battery_bounds_mm": [
+        [
+          6.5,
+          10,
+          5.5,
+          76.5,
+          86,
+          52
+        ]
+      ],
+      "minimum_battery_to_shell_aabb_mm": 2.5,
+      "pcb_front_margin_mm": 2.0,
+      "radio_to_battery_envelope_gap_mm": 22.5,
+      "status": "Bounding reservations only; no detailed collisions, RF performance, current qualification or functional parts claimed.",
+      "aabb_reservations_pass": true
+    },
+    {
+      "id": "supported",
+      "outer_mm": [
+        150,
+        156,
+        64
+      ],
+      "volume_cm3": 1497.6,
+      "wall_cm2": 234.0,
+      "battery_bounds_mm": [
+        [
+          6.5,
+          10,
+          5.5,
+          76.5,
+          86,
+          52
+        ]
+      ],
+      "minimum_battery_to_shell_aabb_mm": 2.5,
+      "pcb_front_margin_mm": 2.0,
+      "radio_to_battery_envelope_gap_mm": 51.5,
+      "status": "Bounding reservations only; no detailed collisions, RF performance, current qualification or functional parts claimed.",
+      "aabb_reservations_pass": true
+    },
+    {
+      "id": "holders_broad",
+      "outer_mm": [
+        170,
+        158,
+        64
+      ],
+      "volume_cm3": 1719.0,
+      "wall_cm2": 268.6,
+      "battery_bounds_mm": [
+        [
+          6,
+          8,
+          8,
+          164,
+          108,
+          34.6
+        ]
+      ],
+      "minimum_battery_to_shell_aabb_mm": 3.6,
+      "pcb_front_margin_mm": 2.0,
+      "radio_to_battery_envelope_gap_mm": 17.0,
+      "status": "Bounding reservations only; no detailed collisions, RF performance, current qualification or functional parts claimed.",
+      "unrestricted_motor_orientation_outer_mm": [
+        170,
+        174,
+        64
+      ],
+      "aabb_reservations_pass": true
+    },
+    {
+      "id": "holders_stack",
+      "outer_mm": [
+        150,
+        158,
+        74
+      ],
+      "volume_cm3": 1753.8,
+      "wall_cm2": 237.0,
+      "battery_bounds_mm": [
+        [
+          6,
+          8,
+          5,
+          88,
+          108,
+          70.2
+        ]
+      ],
+      "minimum_battery_to_shell_aabb_mm": 1.4,
+      "pcb_front_margin_mm": 12.0,
+      "radio_to_battery_envelope_gap_mm": 40.0,
+      "status": "Bounding reservations only; no detailed collisions, RF performance, current qualification or functional parts claimed.",
+      "unrestricted_motor_orientation_outer_mm": [
+        150,
+        174,
+        74
+      ],
+      "aabb_reservations_pass": true,
+      "opposing_tail_clearance_before_barrier_mm": 3.0,
+      "barrier_mm": 1,
+      "tail_status": "12mm clear gap minus two4.5mm maximum tails and1mm barrier leaves2mm total clearance; assembly inspection still required."
+    },
+    {
+      "id": "holders_smt",
+      "outer_mm": [
+        150,
+        168,
+        64
+      ],
+      "volume_cm3": 1612.8,
+      "wall_cm2": 252.0,
+      "battery_bounds_mm": [
+        [
+          6,
+          8,
+          5,
+          88,
+          120,
+          56.6
+        ]
+      ],
+      "minimum_battery_to_shell_aabb_mm": 2,
+      "pcb_front_margin_mm": 2.0,
+      "radio_to_battery_envelope_gap_mm": 40.0,
+      "status": "Bounding reservations only; no detailed collisions, RF performance, current qualification or functional parts claimed.",
+      "unrestricted_motor_orientation_outer_mm": [
+        150,
+        184,
+        64
+      ],
+      "aabb_reservations_pass": true
+    },
+    {
+      "id": "holders_belt",
+      "outer_mm": [
+        128,
+        194,
+        74
+      ],
+      "volume_cm3": 1837.6,
+      "wall_cm2": 248.3,
+      "battery_bounds_mm": [
+        [
+          6,
+          8,
+          5,
+          88,
+          108,
+          70.2
+        ]
+      ],
+      "minimum_battery_to_shell_aabb_mm": 1.4,
+      "pcb_front_margin_mm": 12.0,
+      "radio_to_battery_envelope_gap_mm": 21.0,
+      "status": "Bounding reservations only; no detailed collisions, RF performance, current qualification or functional parts claimed.",
+      "unrestricted_motor_orientation_outer_mm": [
+        128,
+        204,
+        74
+      ],
+      "aabb_reservations_pass": true,
+      "opposing_tail_clearance_before_barrier_mm": 3.0,
+      "barrier_mm": 1,
+      "tail_status": "12mm clear gap minus two4.5mm maximum tails and1mm barrier leaves2mm total clearance; assembly inspection still required."
+    }
+  ],
+  "limitations": [
+    "RF separation is from conducting internal envelopes only; plastic housing and installed antenna require testing.",
+    "Clocked motor assumes eccentric offset directed in Z. Family size is an allowance, not a guaranteed motor specification.",
+    "Holder contact current and mechanical insertion retention are not qualified.",
+    "No new printable complete enclosure claimed; earlier compact meshes remain fit studies only."
+  ],
+  "source_sha256": {
+    "parameters/packaging-v2.json": "0726135dcbd21b67dcf7d97a0186270c909b64edc40ba323dfc9511bfcb72ca1",
+    "source/packaging_v2.scad": "8fe878acb5de1fa57cdfdbb4dcf6270e12b8dd7f67ac2fcd129c2da787705945",
+    "source/packaging_v2_parameters.scad": "1758fa6a548456aabb20f0eea603291e4e302977963af7d871f10e0c5cc3adc9",
+    "build_v2.py": "62e8a41aefb26a6b32ceee198887ab9f088737d696a87e8e4d1bee68fdd2fa41"
+  },
+  "source_snapshot_verified_unchanged": true
+}

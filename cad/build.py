@@ -120,7 +120,7 @@ def inspect_stl(path):
         for j in range(3):
             edge=tuple(sorted((vertices[j],vertices[(j+1)%3])));edges[edge]=edges.get(edge,0)+1
     non_manifold=sum(v!=2 for v in edges.values())
-    return dict(file=path.relative_to(HERE).as_posix(),triangles=n,bounds_mm=[mins,maxs],volume_cm3=round(abs(volume)/1000,3),non_manifold_edges=non_manifold,closed_edge_mesh=non_manifold==0,connected_shells=len({find(v) for v in parents}),
+    return dict(file=path.relative_to(HERE).as_posix(),sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw),triangles=n,bounds_mm=[mins,maxs],volume_cm3=round(abs(volume)/1000,3),non_manifold_edges=non_manifold,closed_edge_mesh=non_manifold==0,connected_shells=len({find(v) for v in parents}),
                 note='Mesh topology check only; not strength, slicer, fit or functional acceptance.')
 
 

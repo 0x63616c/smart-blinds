@@ -6,7 +6,11 @@ Planning quantities for **eight complete units**, including one spare. Existing 
 |---|---:|---:|---|
 | Recfountik JGB37-520 12 V 111 RPM encoder motor | 1 | 8 | Six were recorded as purchased in September; count current stock and confirm exact geometry |
 | Samsung INR21700-50E cells | 6 | 48 | Owned model; quantity, matching and condition to verify |
-| Qualified insulated 3S2P pack assembly | 1 | 8 | Construction/provider, protection partition and completed dimensions open |
+| Protected PCB holder cassette, 3S2P | 1 | 8 | Single-sided carrier is provisional reference; holder current/retention qualification pending |
+| MYOUNG BH-21700-A5BJ001 TH holder (candidate) | 6 | 48 | Actual drawing recovered; no motor-current rating established |
+| Independent 6 mm output shaft | 1 | 8 | Length/material/retention to specify |
+| 6 × 19 × 6 mm bearing envelope | 2 | 16 | 626-class dimensions only; exact bearing selection pending |
+| 6-to-6 mm shaft coupler envelope | 1 | 8 | 25 mm long, 20 mm diameter allocation; exact part/torque rating pending |
 | White printed backplate | 1 | 8 | Provisional CAD; wall mounting test required |
 | White printed cover | 1 | 8 | Provisional CAD; fit/heat/creep test required |
 | Printed pack cradle | 1 | 8 | Provisional CAD; retention and service path open |
@@ -22,4 +26,4 @@ Planning quantities for **eight complete units**, including one spare. Existing 
 | Motor/encoder and pack harnesses, contacts and housings | 1 set each | 8 each | Electrical connector family/current rating and wire bends open |
 | USB-C cable and compatible power source | As needed | User dependent | Electrical charging design determines required PD profile |
 
-No new loose spring battery holders, magnets, bevel gears, extra output bearings or separate panel PCB are assumed in the recommended direct-drive candidate. If testing requires them, add their real costs and dimensions before deciding whether the alternative remains smallest or cheapest.
+The current [holder and supported-drive study](../docs/mechanical/2026-10-19-holder-and-drive-trade-study.md) supersedes the original welded direct-drive assumption. The printed rows above identify necessary part families; their original compact fit meshes are not the new retained assembly. The single-sided holder reference uses a separate protection carrier and small controller. Twin carriers add another PCB, insulating barrier, fixed raw-rail interconnect and cassette fasteners. The belt option substitutes two pulleys and a belt/tensioner for the coupler. Do not combine optional transmission parts into one required bill.

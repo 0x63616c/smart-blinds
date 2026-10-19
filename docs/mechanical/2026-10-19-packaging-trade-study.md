@@ -3,6 +3,8 @@
 **Date:** 2026-10-19
 **Status:** OPEN
 
+The recommendation below is superseded for current development by the [holder and supported-drive comparison](2026-10-19-holder-and-drive-trade-study.md). These original four layouts remain historical size studies.
+
 ## 1. Context
 
 Fit six Samsung INR21700-50E cells, the purchased Recfountik JGB37-520 12 V 111 RPM encoder motor, one integrated controller/charger PCB, a retained bead-chain drive, underside USB-C and two physical buttons into a white wall-mounted enclosure. Seven units are needed; budget and release quantities are eight. Minimize the whole product's cost and size, not just PCB area.

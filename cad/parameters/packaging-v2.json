@@ -1,0 +1,298 @@
+{
+  "revision": "packaging-study-02",
+  "status": "open comparison, no manufacturing dimensions frozen",
+  "holder": {
+    "th_mpn": "BH-21700-A5BJ001",
+    "th_lcsc": "C20606809",
+    "body_width_max": 25.5,
+    "th_body_length_max": 83.8,
+    "smt_mpn": "BH-21700-B1BJ001",
+    "smt_lcsc": "C20606791",
+    "smt_body_length_max": 83.3,
+    "smt_terminal_length_max": 94.1,
+    "unloaded_height_max": 16.1,
+    "loaded_height_allowance": 25,
+    "th_tail_max": 4.5,
+    "pitch": 26,
+    "loaded_height_status": "Conservative allowance, not dimensioned in supplier drawing. Includes cell diameter and cradle floor; verify with sample.",
+    "electrical_status": "100 milliohm maximum contact-resistance wording; no current rating. Motor surge and one-cell-missing case require qualification."
+  },
+  "motor": {
+    "body_diameter": 39,
+    "body_length": 64,
+    "rear_cable_allowance": 8,
+    "shaft_length": 15.5,
+    "shaft_diameter": 6,
+    "axis_offset_sensitivity": 7,
+    "status": "Family allocation. Exact seller drawing gives33mm can,22mm can length,6mm boss,15.5mm exposed shaft; gearbox L unspecified.64mm body allocation is not a guaranteed upper bound."
+  },
+  "drive": {
+    "chain_pitch": 6,
+    "bead_diameter": 4.5,
+    "pockets": 12,
+    "wheel_width": 10,
+    "flange_diameter": 30,
+    "bearing_envelope": [
+      6,
+      19,
+      6
+    ],
+    "coupler_envelope": [
+      25,
+      20
+    ],
+    "status": "6mm shaft, 626-class bearing and coupler envelopes only; procurement and fits unresolved. Independent supports remove chain radial load from motor except coupling misalignment forces."
+  },
+  "options": [
+    {
+      "id": "sidecar",
+      "label": "Welded / direct",
+      "outer": [
+        118,
+        142,
+        60
+      ],
+      "battery": "welded",
+      "drive": "direct",
+      "pcb": [
+        79,
+        3,
+        46,
+        35,
+        75
+      ],
+      "motor": [
+        12,
+        112,
+        30
+      ],
+      "radio": [
+        99,
+        3,
+        47.6,
+        15,
+        18,
+        8
+      ],
+      "note": "Small lower bound; assumes gearbox radial capacity that has not been established."
+    },
+    {
+      "id": "supported",
+      "label": "Welded / supported",
+      "outer": [
+        150,
+        156,
+        64
+      ],
+      "battery": "welded",
+      "drive": "inline",
+      "pcb": [
+        108,
+        3,
+        50,
+        35,
+        75
+      ],
+      "motor": [
+        12,
+        123,
+        30
+      ],
+      "radio": [
+        128,
+        3,
+        51.6,
+        15,
+        18,
+        8
+      ],
+      "note": "Independent shaft adds width; welded pack remains assembly alternative."
+    },
+    {
+      "id": "holders_broad",
+      "label": "One carrier / TH",
+      "outer": [
+        170,
+        158,
+        64
+      ],
+      "battery": "broad",
+      "drive": "inline",
+      "pcb": [
+        126,
+        3,
+        50,
+        35,
+        75
+      ],
+      "motor": [
+        12,
+        126,
+        30
+      ],
+      "radio": [
+        146,
+        3,
+        51.6,
+        15,
+        18,
+        8
+      ],
+      "carrier": [
+        6,
+        8,
+        8,
+        158,
+        100
+      ],
+      "note": "Six single-sided TH holders; separate protected carrier. Initial assembly-effort candidate.",
+      "unrestricted_outer": [
+        170,
+        174,
+        64
+      ],
+      "motor_clocking": "Rotate eccentric shaft toward front/back to avoid Y offset; small replaceable bracket/shims set motor center. This assumption requires fit qualification."
+    },
+    {
+      "id": "holders_stack",
+      "label": "Twin carriers / TH",
+      "outer": [
+        150,
+        158,
+        74
+      ],
+      "battery": "stack",
+      "drive": "inline",
+      "pcb": [
+        108,
+        3,
+        50,
+        35,
+        75
+      ],
+      "motor": [
+        12,
+        126,
+        30
+      ],
+      "radio": [
+        128,
+        3,
+        51.6,
+        15,
+        18,
+        8
+      ],
+      "carrier": [
+        6,
+        8,
+        30,
+        82,
+        100
+      ],
+      "note": "Two outward-facing three-holder carriers, permanent enclosed raw rail joint; 12mm clear gap between board backs.",
+      "unrestricted_outer": [
+        150,
+        174,
+        74
+      ],
+      "motor_clocking": "Rotate eccentric shaft toward front/back to avoid Y offset; small replaceable bracket/shims set motor center. This assumption requires fit qualification."
+    },
+    {
+      "id": "holders_smt",
+      "label": "One carrier / SMT",
+      "outer": [
+        150,
+        168,
+        64
+      ],
+      "battery": "smt",
+      "drive": "inline",
+      "pcb": [
+        108,
+        3,
+        50,
+        35,
+        75
+      ],
+      "motor": [
+        12,
+        136,
+        30
+      ],
+      "radio": [
+        128,
+        3,
+        51.6,
+        15,
+        18,
+        8
+      ],
+      "carrier": [
+        6,
+        8,
+        30,
+        82,
+        112
+      ],
+      "note": "Three holders per face; front/back locating pegs require staggered pattern; Standard assembly.",
+      "unrestricted_outer": [
+        150,
+        184,
+        64
+      ],
+      "motor_clocking": "Rotate eccentric shaft toward front/back to avoid Y offset; small replaceable bracket/shims set motor center. This assumption requires fit qualification."
+    },
+    {
+      "id": "holders_belt",
+      "label": "Twin carriers / belt",
+      "outer": [
+        128,
+        194,
+        74
+      ],
+      "battery": "stack",
+      "drive": "belt",
+      "pcb": [
+        89,
+        3,
+        50,
+        35,
+        75
+      ],
+      "motor": [
+        12,
+        126,
+        30
+      ],
+      "radio": [
+        109,
+        3,
+        51.6,
+        15,
+        18,
+        8
+      ],
+      "carrier": [
+        6,
+        8,
+        30,
+        82,
+        100
+      ],
+      "note": "Parallel supported shaft above motor, hypothetical1:1 belt envelopes.22mm narrower,36mm taller than inline twin-carrier.",
+      "unrestricted_outer": [
+        128,
+        204,
+        74
+      ],
+      "motor_clocking": "Rotate eccentric shaft toward front/back to avoid Y offset; small replaceable bracket/shims set motor center. This assumption requires fit qualification."
+    }
+  ],
+  "recommendation": "holders_broad for first full retention study; compare quote and visual width with twin carrier before freezing",
+  "sources": {
+    "th": "https://datasheet.lcsc.com/datasheet/pdf/ea18f085f5f9b6da9d587816ecf7f47a.pdf",
+    "smt": "https://datasheet.lcsc.com/datasheet/pdf/f19fdde684eed5e7f56342763817f937.pdf",
+    "motor": "https://m.media-amazon.com/images/I/51YhbGO+v1L._AC_SL1001_.jpg"
+  }
+}
