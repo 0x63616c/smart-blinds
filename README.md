@@ -170,6 +170,17 @@ Four ICs and ten passive parts. All 49 physical pin connections checked against 
 </details>
 
 <details>
+<summary>USB-C PD input — native KiCad circuit study</summary>
+
+33 parts and 113 physical pins checked. Three explicit external-power ERC findings. Mandatory factory PD profile, surge behavior, startup and integrated charging remain unqualified; not a fabrication release.
+
+![USB-C PD input — native KiCad circuit study](docs/generated/usb-schematic/usb-test.svg)
+
+[Source](hw/schematics/blind-usb/usb-test.kicad_sch) · [Generated files](docs/generated/usb-schematic/)
+
+</details>
+
+<details>
 <summary>Compact enclosure — provisional exterior</summary>
 
 Earlier study, before PCB-mounted holders and independent shaft support. Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.

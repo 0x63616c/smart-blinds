@@ -1,11 +1,11 @@
 {
   "schema": 1,
-  "source_commit": "757338eabe5cc7479e28c5061e73e94ef03ec295",
+  "source_commit": "20b654456da264adb2d2d66cf92f75f9303ee495",
   "tools": {
     "kicad": "10.0.7",
     "openscad": "OpenSCAD version 2021.01"
   },
-  "manifest_sha256": "926a6a4ffa286a74ad8e011a59e30ec4c0909aaa0fcb50b72da3d0dc2254c070",
+  "manifest_sha256": "540cb865fe2cfb37d9bd0d220b1686a3f03b27ccc240b966daf170a0988c5852",
   "renderer_sha256": "8f1bfd825f6edd75e768f19a1e7b13c6ebbc682bb537b969d4f870381b8fd4e6",
   "validation": "preview generation only; no physical validation",
   "designs": [
@@ -23,7 +23,7 @@
       "outputs": [
         {
           "path": "compact-holder-closed/assembly.png",
-          "sha256": "b11aebb33c22e1ba482ef5b0c91957b85ec344efac40aaa1eb8e5a0efbb86ace"
+          "sha256": "392e5298afbd47df9f3ab21fc701e933a0252e39cf21b2734ca790b87a820314"
         }
       ]
     },
@@ -41,7 +41,7 @@
       "outputs": [
         {
           "path": "compact-holder-assembly/assembly.png",
-          "sha256": "1c174ba46772da0814fdb766eb9b29f50fb3d25c463c07b27264a1f1234ff68b"
+          "sha256": "77b4aa8b0ffbabefb3104766ccb343283d8593044637bdb5b423b05bac71b470"
         }
       ]
     },
@@ -59,7 +59,7 @@
       "outputs": [
         {
           "path": "compact-holder-exploded/assembly.png",
-          "sha256": "a634bcb1fc27f0dc36c2b7d8b701dcb2bdef06fc809c9b9ebc548f1e79b07c26"
+          "sha256": "36032c506b330d3c879ebd8c5cc6a55e9f0e9331cfedb8d9271c300b05758b01"
         }
       ]
     },
@@ -95,7 +95,7 @@
       "outputs": [
         {
           "path": "holder-closed/assembly.png",
-          "sha256": "283b395826ad6b027f0c234355a5f7fff80a1f26a1233a7f83223d377683b2bb"
+          "sha256": "3025a0dea92d21cd5ba896e48e592fa508ebd6fab1adb2835686a7ce66eda672"
         }
       ]
     },
@@ -166,7 +166,7 @@
       "outputs": [
         {
           "path": "motor-schematic/motor-test.svg",
-          "sha256": "9d041709a2c409bb610e97d4e4048b68abdcb4090f0c62ae589321c3db19d56e"
+          "sha256": "844101f604bcf2f5ab827684d1f733851c2fc872aba3c801c51c4178ca2dc347"
         }
       ]
     },
@@ -183,7 +183,7 @@
       "outputs": [
         {
           "path": "supervisor-schematic/supervisor-test.svg",
-          "sha256": "e2331ca20b62a8dbf12acf56100f12ef1ea0cfbb9ab3052ecfa44475f487d4d0"
+          "sha256": "ec038a0be459842a0a5953b975738bd4c715b3acdde74fedd9e1477fbfb09ccd"
         }
       ]
     },
@@ -200,7 +200,7 @@
       "outputs": [
         {
           "path": "charger-schematic/charger-test.svg",
-          "sha256": "293775780c5e855f8829f15b3bd1e3889a9a0661c366a807e3097a2fb179286f"
+          "sha256": "340ffb97bae79dd1924c48e0256801473207a86bca8cf4542b793480a1151c72"
         }
       ]
     },
@@ -217,7 +217,7 @@
       "outputs": [
         {
           "path": "regulator-schematic/regulator-test.svg",
-          "sha256": "b219fec9882f4ae5a8ab181953462a7fec48de998a19d32375945b506e9548a2"
+          "sha256": "d433c11dc23181a504305f861b94d6724f7ef20b8ef09c0ae00a78c65c793a31"
         }
       ]
     },
@@ -234,7 +234,24 @@
       "outputs": [
         {
           "path": "carrier-schematic/carrier-test.svg",
-          "sha256": "3299123f17205748d34e09ded042f817146f8c32f80cd0836e26f796a73d8a84"
+          "sha256": "926c88179e3017b0a342b87ce56a3d7a57fd93f55983d906d259c4f6bfae182c"
+        }
+      ]
+    },
+    {
+      "id": "usb-schematic",
+      "source": "hw/schematics/blind-usb/usb-test.kicad_sch",
+      "inputs_sha256": {
+        "hw/schematics/blind-usb/usb-test.kicad_sch": "487f67bc1944ed54031040b13b0477cb8b4f4011e415851f470c32333ea9afcc",
+        "hw/schematics/blind-usb/usb-test.layout.json": "a478d0f3cb61ae5929033058c6c01f8b7be19d137f88bbd59690211a9cc122b6",
+        "hw/schematics/blind-usb/usb-test.verification.json": "c77420ad06f1bc0b4805a5f2a2bfd8dc56137fe43f2aa45a6d3d8a8c058f1fe4"
+      },
+      "source_files_dirty": false,
+      "role": "33 parts and 113 physical pins checked. Three explicit external-power ERC findings. Mandatory factory PD profile, surge behavior, startup and integrated charging remain unqualified; not a fabrication release.",
+      "outputs": [
+        {
+          "path": "usb-schematic/usb-test.svg",
+          "sha256": "0b5de6ee0637d65b93ee13f3eecb3178bf62eb311cc206a9123ff7f25fc7cd2c"
         }
       ]
     },
@@ -286,7 +303,7 @@
       "outputs": [
         {
           "path": "compact-exploded/assembly.png",
-          "sha256": "9704a2e463cace420efacb08d354136e1a51cf94cce0441231bc74d737d0f6f1"
+          "sha256": "0484fa90c8aaed7c58d74f0b4f280535aa76a923964971f2fe5c313bae69b56d"
         }
       ]
     },
@@ -304,7 +321,7 @@
       "outputs": [
         {
           "path": "compact-assembly/assembly.png",
-          "sha256": "5d167ef65f87f8ed12ea39d587b81bd2be954dba176fb5e19d526535774c5fbc"
+          "sha256": "5440e92c43a0c6fcf31e007333a610bbd9d5ffde11721e3698ac6906162ef1ad"
         }
       ]
     },
@@ -322,7 +339,7 @@
       "outputs": [
         {
           "path": "broad-assembly/assembly.png",
-          "sha256": "20e251f44c251e70bd96b1bb61154d4badfa132fec08d5e1b7407b6f58547141"
+          "sha256": "59c1fc94b86cc00a8cf840047a5baf53da3830778b752e2c91fe2ca0640ac2de"
         }
       ]
     },
@@ -340,7 +357,7 @@
       "outputs": [
         {
           "path": "narrow-assembly/assembly.png",
-          "sha256": "338a5caf291b250ffa6f021f42a44822bb3d4419299eeb9f5fa48eb074093c76"
+          "sha256": "0bc3638c2598f39cf1e0db07a01647d6e3f2ef086e3d32a9c41060f2d4489242"
         }
       ]
     },
@@ -358,7 +375,7 @@
       "outputs": [
         {
           "path": "slim-assembly/assembly.png",
-          "sha256": "77921ec10be988125cdb876584b3394a80614e78aa700b72247acfca0d3aef67"
+          "sha256": "7f14e9133b167bcbeed023ba4c6d5ed34309b28cd2decef924e7a4fd1ea63f40"
         }
       ]
     },
@@ -373,11 +390,11 @@
       "outputs": [
         {
           "path": "pd12v6mini-reference/assembly.png",
-          "sha256": "5bf036e61874c2b71b6e57e9449cd7e99851df9600681695913fd316a6d9c99d"
+          "sha256": "274822aac0ec7dfb27d35acad77e623193d891926eea6fb1aada60f2ec32d668"
         },
         {
           "path": "pd12v6mini-reference/top.svg",
-          "sha256": "3651b24607276048ad8b9dd3b9b5cc0226889977938c01fa8845fa18074ba1d1"
+          "sha256": "c41914e9b5b79dbdaa6598b4c544cbd4b72b1150a07b48b62590c36bf26b185d"
         }
       ],
       "models_sha256": {
