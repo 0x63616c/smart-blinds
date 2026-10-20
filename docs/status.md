@@ -1,6 +1,6 @@
 # Progress
 
-Updated 2026-10-19. [Public repository](https://github.com/0x63616c/smart-blinds).
+Updated 2026-10-20. [Public repository](https://github.com/0x63616c/smart-blinds).
 
 ## Foundation — implemented
 
@@ -77,6 +77,13 @@ A green preview result only confirms generation of the documented images.
 - The USB-C footprint now follows the manufacturer drawing, including its 1.14 mm signal
   lands, distinct shell slots and 0.46 mm mouth overhang. An independent pad/hole check
   covers the standalone and integrated captures. Actual connector fit remains unverified.
+- Three imported core footprints now follow manufacturer land drawings: charger corner
+  pads, motor-driver thermal lands and radio-module thermal barrels. Independent drawing
+  review and compiled-instance geometry checks pass; all logical connections remain intact.
+  Actual main-board placement, manufacturing rules and routing are still in progress.
+- The battery-only motion evidence path passes eight host test targets and both pinned C6
+  builds. It distinguishes protection readback from slower ADC conversion ages, requires a
+  qualified pack profile, and keeps charging disabled. No physical hardware was exercised.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
 - The exact motor listing is identified and partial seller dimensions are recorded. The owner is
@@ -100,7 +107,8 @@ and [previews](https://github.com/0x63616c/smart-blinds/actions/runs/39364197877
 The [regenerative-clamp and captured-cost checks](https://github.com/0x63616c/smart-blinds/actions/runs/39365428219)
 and [motion-executor/C6 I/O checks](https://github.com/0x63616c/smart-blinds/actions/runs/39365933426)
 also passed all eight jobs. The C6 application still does not instantiate motion hardware.
-Newer changes must be checked against their own runs.
+The [pack evidence and battery-only motion checks](https://github.com/0x63616c/smart-blinds/actions/runs/39368534452)
+also passed all eight jobs for `cd7b9be`. Newer changes must be checked against their own runs.
 
 ## Inherited references
 
