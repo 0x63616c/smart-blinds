@@ -4,7 +4,8 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
-from publish_previews import adopt
+from unittest.mock import patch
+from publish_previews import adopt, publish
 
 
 class PublicationTests(unittest.TestCase):
@@ -83,6 +84,96 @@ class PublicationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             adopt(self.root, self.artifact, self.source)
         self.assertFalse((self.root / 'docs/generated').exists())
+
+    def remote(self):
+        remote = Path(self.temp.name) / 'remote.git'
+        self.git('init', '--bare', '-q', str(remote))
+        self.git('branch', '-M', 'main')
+        self.git('remote', 'add', 'origin', str(remote))
+        self.git('push', '-q', 'origin', 'main')
+        return remote
+
+    def racing_push(self, change):
+        original = subprocess.run
+        pushes = []
+
+        def run(args, **kwargs):
+            if args[:3] == ['git', 'push', 'origin']:
+                pushes.append(1)
+                if len(pushes) == 1:
+                    change()
+                    self.commit()
+                    self.git('push', '-q', 'origin', 'main')
+            return original(args, **kwargs)
+        return run, pushes
+
+    def test_remote_advance_revalidates_and_preserves_latest_prose(self):
+        remote = self.remote()
+        self.git('config', 'preview.fixture', 'repository-local-setting')
+        def change():
+            p = self.root / 'README.md'
+            p.write_text(p.read_text().replace('Original', 'Latest'))
+        run, pushes = self.racing_push(change)
+        def configured_run(args, **kwargs):
+            if args[:3] == ['git', 'push', 'origin']:
+                value = subprocess.check_output(['git', 'config', 'preview.fixture'],
+                                                cwd=kwargs['cwd'], text=True)
+                self.assertEqual(value.strip(), 'repository-local-setting')
+            return run(args, **kwargs)
+        with patch('publish_previews.subprocess.run', side_effect=configured_run):
+            self.assertEqual(publish(self.root, self.artifact, self.source), 'published')
+        self.assertEqual(len(pushes), 2)
+        readme = self.git('--git-dir', str(remote), 'show', 'main:README.md')
+        self.assertEqual(readme, 'Latest prose\n<!-- previews:start -->fresh<!-- previews:end -->\nLatest tail')
+        # The publisher never replaces the caller's checkout or its pending files.
+        self.assertIn('>old<', (self.root / 'README.md').read_text())
+        self.assertFalse((self.root / 'docs/generated').exists())
+        self.assertEqual(self.git('worktree', 'list', '--porcelain').count('worktree '), 1)
+
+    def test_remote_design_advance_discards_stale_preview(self):
+        remote = self.remote()
+        run, pushes = self.racing_push(lambda: (self.root / 'cad/design.scad').write_text('new design'))
+        with patch('publish_previews.subprocess.run', side_effect=run):
+            self.assertEqual(publish(self.root, self.artifact, self.source), 'superseded')
+        self.assertEqual(len(pushes), 1)
+        self.assertIn('>old<', self.git('--git-dir', str(remote), 'show', 'main:README.md'))
+
+    def test_rejection_without_remote_advance_is_not_retried(self):
+        self.remote()
+        original = subprocess.run
+        pushes = []
+        def run(args, **kwargs):
+            if args[:3] == ['git', 'push', 'origin']:
+                pushes.append(1)
+                return subprocess.CompletedProcess(args, 1, '', 'fixture rejection')
+            return original(args, **kwargs)
+        with patch('publish_previews.subprocess.run', side_effect=run):
+            with self.assertRaises(subprocess.CalledProcessError):
+                publish(self.root, self.artifact, self.source)
+        self.assertEqual(len(pushes), 1)
+
+    def test_repeated_advance_has_bounded_attempts(self):
+        self.remote()
+        original = subprocess.run
+        pushes = []
+        def run(args, **kwargs):
+            if args[:3] == ['git', 'push', 'origin']:
+                pushes.append(1)
+                (self.root / 'unrelated.txt').write_text(str(len(pushes)))
+                self.commit()
+                self.git('push', '-q', 'origin', 'main')
+            return original(args, **kwargs)
+        with patch('publish_previews.subprocess.run', side_effect=run):
+            with self.assertRaisesRegex(RuntimeError, 'bounded attempts'):
+                publish(self.root, self.artifact, self.source)
+        self.assertEqual(len(pushes), 3)
+
+    def test_current_gallery_does_not_create_another_commit(self):
+        remote = self.remote()
+        self.assertEqual(publish(self.root, self.artifact, self.source), 'published')
+        head = self.git('--git-dir', str(remote), 'rev-parse', 'main')
+        self.assertEqual(publish(self.root, self.artifact, self.source), 'already_current')
+        self.assertEqual(self.git('--git-dir', str(remote), 'rev-parse', 'main'), head)
 
 
 if __name__ == '__main__':

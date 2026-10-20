@@ -22,7 +22,7 @@ python3 tools/render_previews.py
 On a headless Linux machine, run under `xvfb-run -a`. Generated metadata records the source commit,
 source hashes, local source dirty state, model hashes and tool versions. A local modified design
 is identified as dirty; its source hash still identifies exactly what was rendered. A generated
-commit's parent is the source commit, so its image metadata intentionally points to that parent.
+commit may follow unrelated edits, so image metadata identifies the actual render source commit.
 Generation refuses to publish if registered sources or PCB models change during rendering.
 Optional `collapsed: true` entries remain available under expandable README details, keeping
 alternate internal layouts and inherited references below the primary product views.
@@ -31,8 +31,12 @@ alternate internal layouts and inherited references below the primary product vi
 
 Pull requests generate downloadable artifacts without publishing to the branch. On `main`, a
 separate publishing job with write permission commits only the README gallery and generated
-assets, provided the branch still points to the source revision. Concurrent newer edits prevent
-publishing stale previews. Generated-only commits do not retrigger this workflow.
+assets, provided the registered design inputs still match the render source revision.
+Unrelated commits preserve the current README prose. If another commit lands during the push,
+publication fetches the new branch and rechecks inputs in a disposable worktree before trying
+again, with at most three attempts. Changed design inputs defer publication to their newer run;
+other push failures are not treated as concurrent edits. Generated-only commits do not retrigger
+this workflow. Local-repository tests exercise actual rejected pushes and concurrent updates.
 
 A passing preview workflow confirms export/render success. It does not run the full electrical,
 firmware, mechanical or physical validation gates. The gallery includes provisional enclosure studies and the inherited PD12V6Mini reference.

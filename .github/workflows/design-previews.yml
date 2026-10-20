@@ -75,10 +75,4 @@ jobs:
         env:
           SOURCE_SHA: ${{ github.sha }}
         run: |
-          python3 tools/publish_previews.py --artifact-dir work/preview-artifact --source-commit "$SOURCE_SHA"
-          git add README.md docs/generated
-          if git diff --cached --quiet; then exit 0; fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'docs: refresh generated design previews'
-          git push origin HEAD:main
+          python3 tools/publish_previews.py --artifact-dir work/preview-artifact --source-commit "$SOURCE_SHA" --publish
