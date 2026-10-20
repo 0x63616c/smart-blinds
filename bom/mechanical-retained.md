@@ -32,6 +32,17 @@ halves, bearing pod, bearing retainer, wheel and guard), giving **18 file types 
 insulating sheets. Do not reuse the earlier fixed plunger or guide bar. The
 retained source implements only the 71 mm trimmed-pin variant.
 
+The checked meshes total **320.167 cm³ per unit**, equivalent to **406.61 g of
+fully solid PETG**, or **3.253 kg for eight** at the [Prusament PETG data sheet's
+1.27 g/cm³ density](https://prusament.com/wp-content/uploads/2022/10/PETG_Prusament_TDS_2021_10_EN.pdf).
+The reproducible [per-part volume table](mechanical-print-volume.csv) and
+[estimate evidence](mechanical-print-estimate.json) bind this calculation to
+the checked source and STL hashes. This is not a slicer prediction or a filament
+purchase quantity: infill, supports, brims, purge and failed prints change usage.
+Purchased parts and the separate insulating sheet are excluded. The cover and
+wall plate dominate this initial printed volume; structural weight and print-time
+optimization remain work for the prototype design.
+
 The cassette has 4 long closure screws, two integral cleats and 1 separate mounting screw. Cell
 insertion/removal is controlled service, not a routine battery swap. The main
 benefit of the holders is avoiding welding or soldering cells; the extra cassette

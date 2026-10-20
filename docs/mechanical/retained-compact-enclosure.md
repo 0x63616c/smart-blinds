@@ -286,12 +286,20 @@ Maintain smooth cell-facing surfaces, deburr holes and remove loose debris.
 6. Side-load the upper M2 nut into each plunger. Insert its M2×6 adjuster from
    the front, and fit the lower M2 jam nut before fastening the guide bar. Leave
    both cosmetic face caps off. The cover can be removed to reach the jam nuts.
-7. With the cover temporarily mounted and the mechanism electrically observed,
-   hold each button gently against its independent stop. Adjust its screw to
-   the first closure point; release and confirm the switch opens without preload.
-   Remove the cover while preserving that setting, hold the socket with a 1.5 mm
-   key and snug the accessible jam nut. Refit and repeat closure/release checks;
-   locking can move the setting. Do not add an invented overtravel allowance.
+7. With the cover temporarily mounted and switch continuity observed on the
+   unpowered controller, hold each button gently against its independent stop.
+   Adjust its screw to the first closure point; release and confirm the switch
+   opens without preload. Battery and USB remain disconnected for this check;
+   the electrical build must provide appropriate switch-contact test access.
+   Remove the cover and its two rear guide-bar screws. Keep each plunger and
+   adjuster together so the upper captive nut preserves the setting. With the
+   guide removed, hold the front socket with a 1.5 mm key and snug the exposed
+   rear jam nut using a 4 mm nut driver with clearance for the protruding M2
+   screw. Approximately 1.3 mm of nut height is exposed below the plunger flange;
+   check actual tool engagement and locking torque on a coupon. The nut cannot
+   be tightened through the installed guide bar. Refit the guide and cover, then
+   repeat closure/release checks because locking can move the setting. Do not
+   add an invented overtravel allowance.
 8. Fit the cover with the chain in its rear-open slot and install four M3×10
    screws. Recheck both buttons, then press the two cosmetic faces into their
    removable pin sockets. Their pins carry no structural or switch-retention load.

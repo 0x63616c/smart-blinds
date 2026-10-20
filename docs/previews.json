@@ -2,81 +2,90 @@
   "designs": [
     {
       "kind": "openscad",
-      "source": "cad/source/compact_direct.scad",
+      "source": "cad/source/compact_retained.scad",
       "dependencies": [
+        "cad/source/compact_direct.scad",
         "cad/source/compact_buttons.scad",
-        "cad/build_compact.py",
-        "cad/build.py"
+        "cad/source/retained_buttons.scad",
+        "cad/build_retained.py",
+        "cad/build.py",
+        "cad/parameters/retained-interfaces.json"
       ],
       "camera": [
-        0,
-        0,
-        0,
+        57.5,
+        87,
+        37,
         22,
         0,
         25,
-        500
+        620
       ],
       "id": "compact-holder-closed",
-      "title": "Compact holder enclosure \u2014 current exterior",
+      "title": "Retained enclosure \u2014 current exterior",
       "defines": {
-        "part": "closed",
-        "tail_mode": "trimmed"
+        "part": "closed"
       },
       "collapsed": false,
-      "role": "115 \u00d7 174 \u00d7 71 mm candidate, or 78 mm deep with untrimmed holder pins. Front buttons and underside USB-C; motor-family fit, printed tolerances and full fastening remain provisional."
+      "role": "115 \u00d7 174 \u00d7 71 mm white enclosure candidate, with front buttons and underside USB-C. Buttons project to 72.2 mm. This compact version requires holder tails and solder joints trimmed to the documented limit; motor-family fit and printed tolerances remain provisional.",
+      "auto_frame": false
     },
     {
       "kind": "openscad",
-      "source": "cad/source/compact_direct.scad",
+      "source": "cad/source/compact_retained.scad",
       "dependencies": [
+        "cad/source/compact_direct.scad",
         "cad/source/compact_buttons.scad",
-        "cad/build_compact.py",
-        "cad/build.py"
+        "cad/source/retained_buttons.scad",
+        "cad/build_retained.py",
+        "cad/build.py",
+        "cad/parameters/retained-interfaces.json"
       ],
       "camera": [
-        0,
-        0,
-        0,
+        57.5,
+        87,
+        37,
         22,
         0,
         25,
-        500
+        620
       ],
       "id": "compact-holder-assembly",
-      "title": "Six cells and compact drive \u2014 current arrangement",
+      "title": "Removable battery cassette and compact drive",
       "defines": {
-        "part": "assembly",
-        "tail_mode": "trimmed"
+        "part": "assembly"
       },
       "collapsed": false,
-      "role": "Two three-cell carrier boards with an insulating barrier, controller reservation and replaceable motor-fit parts. An outboard bearing shares radial load with the motor; it does not isolate the gearbox from chain force."
+      "role": "Two opposing three-cell carrier boards fit in a removable cassette. Separate controller supports, cable routes and adjustable front buttons are modeled. The controller is shown as a reserved volume; exact holder fastening and physical load tests remain open.",
+      "auto_frame": false
     },
     {
       "kind": "openscad",
-      "source": "cad/source/compact_direct.scad",
+      "source": "cad/source/compact_retained.scad",
       "dependencies": [
+        "cad/source/compact_direct.scad",
         "cad/source/compact_buttons.scad",
-        "cad/build_compact.py",
-        "cad/build.py"
+        "cad/source/retained_buttons.scad",
+        "cad/build_retained.py",
+        "cad/build.py",
+        "cad/parameters/retained-interfaces.json"
       ],
       "camera": [
-        0,
-        0,
-        0,
+        125,
+        87,
+        65,
         22,
         0,
         25,
-        500
+        760
       ],
       "id": "compact-holder-exploded",
-      "title": "Compact holder enclosure \u2014 exploded fit study",
+      "title": "Retained enclosure \u2014 service view",
       "defines": {
-        "part": "exploded",
-        "tail_mode": "trimmed"
+        "part": "exploded"
       },
       "collapsed": false,
-      "role": "Source geometry for the housing, holders and supported drive. Carrier/case fastening and full electrical placement remain unfinished; these are prototype-fit parts, not final manufacturing files."
+      "role": "The cover and cassette lid are separated to show access. Two integral cleats and one mounting screw retain the cassette; its modeled release and removal paths clear the controller and drive. These are prototype-fit files, pending tolerance and load qualification.",
+      "auto_frame": false
     },
     {
       "id": "main-controller-placement",
@@ -125,30 +134,91 @@
     },
     {
       "kind": "openscad",
-      "source": "cad/source/compact_direct.scad",
+      "source": "cad/source/compact_retained.scad",
       "dependencies": [
+        "cad/source/compact_direct.scad",
         "cad/source/compact_buttons.scad",
-        "cad/build_compact.py",
-        "cad/build.py"
+        "cad/source/retained_buttons.scad",
+        "cad/build_retained.py",
+        "cad/build.py",
+        "cad/parameters/retained-interfaces.json"
       ],
       "camera": [
-        0,
-        0,
-        0,
+        101.9,
+        40,
+        65,
         90,
         0,
         90,
-        500
+        110
       ],
       "id": "compact-holder-buttons",
-      "title": "Front buttons \u2014 section through the mechanism",
+      "title": "Adjustable front buttons \u2014 mechanism section",
       "defines": {
-        "part": "buttons",
-        "tail_mode": "trimmed"
+        "part": "buttons"
       },
       "collapsed": true,
-      "role": "Straight plungers operate side-actuated board switches. Nominal gap 0.15 mm and mechanical stop 0.4 mm; printed tolerance, actuation and safe overtravel require qualification.",
-      "render_mode": "render"
+      "role": "Two captive M2 adjusters set the plungers to first electrical closure at the 0.4 mm positive stop. Jam nuts lock the setting. Switch return, printed friction, adjustment and repeated operation still require physical tests.",
+      "render_mode": "render",
+      "auto_frame": false
+    },
+    {
+      "id": "retained-cassette",
+      "kind": "openscad",
+      "source": "cad/source/compact_retained.scad",
+      "dependencies": [
+        "cad/source/compact_direct.scad",
+        "cad/source/compact_buttons.scad",
+        "cad/source/retained_buttons.scad",
+        "cad/build_retained.py",
+        "cad/build.py",
+        "cad/parameters/retained-interfaces.json"
+      ],
+      "title": "Battery cassette \u2014 removable assembly",
+      "defines": {
+        "part": "cassette"
+      },
+      "camera": [
+        47,
+        58,
+        36,
+        22,
+        0,
+        25,
+        500
+      ],
+      "auto_frame": false,
+      "collapsed": true,
+      "role": "Six holders on opposing carrier boards, a separate insulating barrier and a removable printed shell. The assembled cassette releases with a 2.5 mm lift and then moves forward; disconnect and handle the cables separately."
+    },
+    {
+      "id": "retained-cleat-section",
+      "kind": "openscad",
+      "source": "cad/source/compact_retained.scad",
+      "dependencies": [
+        "cad/source/compact_direct.scad",
+        "cad/source/compact_buttons.scad",
+        "cad/source/retained_buttons.scad",
+        "cad/build_retained.py",
+        "cad/build.py",
+        "cad/parameters/retained-interfaces.json"
+      ],
+      "title": "Cassette retention \u2014 cutaway",
+      "defines": {
+        "part": "cleat_section"
+      },
+      "camera": [
+        29.4,
+        11.5,
+        7.5,
+        65,
+        0,
+        50,
+        80
+      ],
+      "auto_frame": false,
+      "collapsed": true,
+      "role": "The cassette pocket captures the integral backplate cleat. Nominal interference confirms capture before the release slide; printed strength, creep and fit remain prototype tests."
     },
     {
       "id": "holder-closed",
