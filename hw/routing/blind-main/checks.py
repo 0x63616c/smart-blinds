@@ -137,6 +137,29 @@ def verify_copper(b):
   ('usb.c_raw',2),('usb.tvs_vbus',2),('charger.c_input2',2),('usb.pd',10),('usb.pd',22),('usb.pd',25),
   ('usb.c_vdd',2),('usb.c_1v2',2),('usb.c_2v7',2),('usb.tvs_cc',3),('controller.usb_esd',1),('controller.usb_esd',2),('controller.usb_esd',4),
   *[('usb.connector',n) for n in ('1','2','3','4','A1B12','B1A12')]],
+
+ [('usb.d_vdd',2),('usb.q_enable',2),('usb.r_base_pull',1),('usb.r_ov_top1',1),('usb.r_raw_dis1',1)],
+ [('usb.q_enable',1),('usb.r_base_pull',2),('usb.r_base1',1)],
+ [('usb.r_base1',2),('usb.r_base2',1)],
+ [('usb.pd',16),('usb.r_base2',2)],
+ [('usb.q_enable',3),('usb.r_uv_top1',1)],
+ [('usb.r_uv_top1',2),('usb.r_uv_top2',1)],
+ [('usb.r_uv_top2',2),('usb.r_uv_bottom',1),('usb.efuse',1)],
+ [('usb.r_ov_top1',2),('usb.r_ov_top2',1)],
+ [('usb.r_ov_top2',2),('usb.r_ov_bottom',1),('usb.efuse',2)],
+ [('usb.r_raw_dis1',2),('usb.r_raw_dis2',1)],
+ [('usb.r_raw_dis2',2),('usb.r_raw_dis3',1)],
+ [('usb.pd',18),('usb.r_raw_dis3',2)],
+ [('charger.c_input2',1),('usb.r_out_dis1',1)],
+ [('usb.r_out_dis1',2),('usb.r_out_dis2',1)],
+ [('usb.r_out_dis2',2),('usb.r_out_dis3',1)],
+ [('usb.pd',9),('usb.r_out_dis3',2)],
+ [('usb.pd',12),('usb.r_addr0',1)],
+ [('usb.pd',13),('usb.r_addr1',1)],
+ [('usb.pd',6),('usb.r_reset',1)],
+ [('usb.pd',7),('usb.r_scl',1)],
+ [('usb.pd',8),('usb.r_sda',1)],
+ [('usb.pd',25),*[(a,2) for a in ['usb.r_addr0','usb.r_addr1','usb.r_reset','usb.r_scl','usb.r_sda']]],
  ]
  cache={}
  for path in paths:
@@ -200,6 +223,15 @@ def main():
   negative_boards=[];removed_items=[]
   with tempfile.TemporaryDirectory() as d:
    changed=Path(d)/'changed.kicad_pcb'
+   for mode,a,pin in [('cut_pd_enable','usb.pd',16),('cut_uv_divider','usb.r_uv_top2',2),('cut_raw_discharge','usb.pd',18),('cut_address_ground','usb.r_addr0',2)]:
+    bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
+    pad=next(p for p in parts(bad)[a].Pads() if p.GetNumber()==str(pin))
+    selected=[t for t in bad.GetTracks() if not isinstance(t,pcbnew.PCB_VIA) and t.GetLayer()==pcbnew.F_Cu and t.GetNetCode()==pad.GetNetCode() and t.GetEffectiveShape(pcbnew.F_Cu).Collide(pad.GetEffectiveShape(pcbnew.F_Cu),0)]
+    assert selected,(mode,'No physical branch')
+    for t in selected:removed_items.append(t);bad.Remove(t)
+    try:verify_copper(bad)
+    except AssertionError:faults.append(mode+'_rejected')
+    else:raise AssertionError('Accepted USB control open: '+mode)
    for mode in ['move_usb','alter_pad','alter_rf']:
     bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad);ps=parts(bad)
     if mode=='move_usb':ps['usb.connector'].Move(pcbnew.VECTOR2I(pcbnew.FromMM(.5),0))

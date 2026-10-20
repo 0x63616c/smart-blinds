@@ -10,11 +10,11 @@ SOURCE=ROOT/'hw/layouts/blind-main/main-test/main-test.kicad_pcb'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
  source_hash=sha(SOURCE);work=ROOT/'work/main-route-build';work.mkdir(parents=True,exist_ok=True)
- for name in ['place.py','charger.py','local_power.py','module_supply.py','usb_input.py']:
+ for name in ['place.py','charger.py','local_power.py','module_supply.py','usb_input.py','usb_controls.py']:
   result=subprocess.run([sys.executable,str(HERE/name)],cwd=ROOT,capture_output=True,text=True)
   (work/(name+'.log')).write_text(result.stdout+result.stderr)
   if result.returncode:raise RuntimeError(name+' failed; inspect '+str(work/(name+'.log')))
- interim=work/'usb-power-route.kicad_pcb';tree=parse(interim.read_text())
+ interim=work/'usb-control-route.kicad_pcb';tree=parse(interim.read_text())
  assert not list(walk(tree,'group'))
  def semantic(v):
   if not isinstance(v,list):return v
@@ -36,7 +36,7 @@ def main():
  table=(SOURCE.parent/'fp-lib-table').read_text().replace('${KIPRJMOD}','${KIPRJMOD}/'+os.path.relpath(SOURCE.parent,HERE))
  (HERE/'fp-lib-table').write_text(table)
  assert sha(SOURCE)==source_hash and board_graph(SOURCE)==board_graph(board)
- sources=[SOURCE,HERE/'placement.json',HERE/'project-template.json',HERE/'route.py',*[HERE/n for n in ['place.py','charger.py','local_power.py','module_supply.py','usb_input.py']]]
- record={'status':'EXPERIMENTAL PARTIAL main power routing; not a fabrication release','source_hashes':{str(p.relative_to(ROOT)):sha(p) for p in sources},'pcb_sha256':sha(board),'project_sha256':sha(board.with_suffix('.kicad_pro')),'segments':len(children(tree,'segment')),'vias':len(children(tree,'via')),'unrouted_work':['USB enable/divider/discharge chains and differential pair','Pack feed and charge/system distribution','Regenerative clamp and supervisor loops','Full logic and analogue signals','Current/thermal/return-path review and final manufacturing rules']}
+ sources=[SOURCE,HERE/'placement.json',HERE/'project-template.json',HERE/'usb-control-routes.json',HERE/'route.py',*[HERE/n for n in ['place.py','charger.py','local_power.py','module_supply.py','usb_input.py','usb_controls.py']]]
+ record={'status':'EXPERIMENTAL PARTIAL main power routing; not a fabrication release','source_hashes':{str(p.relative_to(ROOT)):sha(p) for p in sources},'pcb_sha256':sha(board),'project_sha256':sha(board.with_suffix('.kicad_pro')),'segments':len(children(tree,'segment')),'vias':len(children(tree,'via')),'unrouted_work':['USB differential pair and factory access','Pack feed and charge/system distribution','Regenerative clamp and supervisor loops','Full logic and analogue signals','Current/thermal/return-path review and final manufacturing rules']}
  (HERE/'route-record.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record,indent=2))
 if __name__=='__main__':main()

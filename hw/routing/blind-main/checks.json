@@ -2,16 +2,18 @@
   "status": "Partial route only; no manufacturing or physical acceptance",
   "source_hashes": {
     "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "ba633546b9834325b132ba6cf606e7b5bb5817b4b9ca7f4ac7568eda448de4f5",
-    "hw/routing/blind-main/placement.json": "e3e9c513cc38c7744bf52ee9e601c8ab29220ad782e25c71c06165b44d8102f1",
+    "hw/routing/blind-main/placement.json": "81d5eac178976e949dcd88375cd9421c0a24ddd5817ba9f5665a29688a572590",
     "hw/routing/blind-main/project-template.json": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
-    "hw/routing/blind-main/route.py": "9003fc32264c083ea6648cd4ef1aa91042a54a91216f4cc43b433790f6ded886",
+    "hw/routing/blind-main/usb-control-routes.json": "d82fc7bdd42d071cc7769220493cdfe7c7cb0a7d05ed4dc5e0a774844449af09",
+    "hw/routing/blind-main/route.py": "41430ad3bac5c2a56b42e0503a52e60fc0c4e7258d22951d53c5008d2710a2fe",
     "hw/routing/blind-main/place.py": "95077c4d892a6b49814f3c476dfdc7a6f3397973fbf7215a9e8af65ea41b736d",
     "hw/routing/blind-main/charger.py": "63c7a84fb2b46b3627ccba3e7369fcc0e94ef023af4c7166adadbd659f3fdf0a",
     "hw/routing/blind-main/local_power.py": "a0c8e2895494d882b5092b7835278c0d18389707236a41bf666bd4c5648e81a0",
     "hw/routing/blind-main/module_supply.py": "a981469772987b5d1d078f98fe5c61948f5a47e9b4ddcbb5879eabf44767bba2",
     "hw/routing/blind-main/usb_input.py": "710f7aa2629d8307c0b00afcf956194c4ad979050f5fd68c6e9fa44305b826fa",
-    "hw/routing/blind-main/main-routed.kicad_pcb": "2f63ca901a88ab404389fcf0b7488d7bf1c8d815253bbff6af2b5ef0ee168659",
-    "hw/routing/blind-main/checks.py": "e7c1d540445aa71a8398ecb02aae2fee751276605b7d51a5edbc6c43f58d9ccc",
+    "hw/routing/blind-main/usb_controls.py": "b38d943dd3d520804f3138bfee971391af7ff6f1893644b2cb5c72c881302edd",
+    "hw/routing/blind-main/main-routed.kicad_pcb": "87edfd92aa292a70a52eff9bea7144c86ffd2eb30b03f0ab46e1846c79a80436",
+    "hw/routing/blind-main/checks.py": "760d103f61b8222e7db457b72cc069dc532de3b44f49f80c188e14bc5ddf6cda",
     "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3"
   },
   "kicad_version": "10.0.4",
@@ -20,15 +22,19 @@
     "mechanical_anchors": 17,
     "moved_electrical_parts": [
       "usb.tvs_cc",
+      "usb.r_sda",
       "usb.r_scl",
       "charger.c_input1",
       "charger.c_pmid1",
       "controller.r_strap8",
       "charger.r_ts_bottom",
+      "usb.r_base_pull",
       "encoder.c_gate",
+      "usb.r_raw_dis3",
       "charger.c_bat2",
       "logic_supply.r_mode",
       "controller.r_up",
+      "usb.r_out_dis1",
       "motor.c_fly",
       "charger.c_pmid3",
       "logic_supply.c_input",
@@ -45,6 +51,7 @@
       "motor.r_in1",
       "charger.c_sys5",
       "regen.r_thermal_bottom",
+      "usb.r_out_dis2",
       "charger.c_bat1",
       "encoder.ic",
       "controller.r_home",
@@ -69,9 +76,12 @@
       "motor.c_pump",
       "motor.c_bulk",
       "charger.c_regn",
+      "usb.r_ov_top1",
       "supervision.r_request",
       "charger.c_sys2",
       "supervision.gate",
+      "usb.r_addr0",
+      "usb.r_raw_dis1",
       "charger.inductor",
       "motor.r_mode",
       "controller.r_b_series",
@@ -97,13 +107,17 @@
       "controller.usb_esd",
       "charger.c_pmid_fast",
       "usb.r_raw_dis2",
+      "usb.r_addr1",
       "usb.c_slew",
+      "usb.r_out_dis3",
       "charger.c_input2",
       "encoder.r_enable",
       "charger.c_pmid2",
       "charger.r_ilim_bottom",
       "motor.r_ref_hi",
+      "usb.r_base2",
       "charger.c_sys4",
+      "usb.r_ov_top2",
       "motor.r_sleep",
       "charger.r_permission_base",
       "logic_supply.c_input2",
@@ -133,18 +147,18 @@
       "maximum_mounted_height_mm": 7.8,
       "reviewed_resistor_height_with_solder_allowance_mm": 0.55
     },
-    "unique_uuids": 4966
+    "unique_uuids": 5103
   },
   "copper": {
-    "connected_path_groups": 38,
+    "connected_path_groups": 60,
     "ground_fill_islands": 1,
     "charger_bypass_ground_vias": {
       "charger.c_regn": 2,
       "charger.c_input_fast": 2
     },
     "usb_quiet_ground_vias": 1,
-    "segments": 344,
-    "vias": 100
+    "segments": 457,
+    "vias": 124
   },
   "drc": {
     "remaining_violations": {
@@ -156,7 +170,7 @@
       "text_height": 1,
       "text_thickness": 1
     },
-    "unconnected_items": 322,
+    "unconnected_items": 292,
     "ignored_checks": [
       "footprint_filters_mismatch",
       "track_not_centered_on_via",
@@ -179,6 +193,10 @@
     }
   },
   "negative_controls": [
+    "cut_pd_enable_rejected",
+    "cut_uv_divider_rejected",
+    "cut_raw_discharge_rejected",
+    "cut_address_ground_rejected",
     "move_usb_rejected",
     "alter_pad_rejected",
     "alter_rf_rejected",

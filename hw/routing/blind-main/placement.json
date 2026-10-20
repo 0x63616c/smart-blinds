@@ -762,52 +762,12 @@
       "rotation": 0,
       "fixed": false
     },
-    "usb.r_raw_dis1": {
-      "uv": [
-        39.04,
-        5.99
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_raw_dis3": {
-      "uv": [
-        43.51,
-        6.26
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "usb.r_out_dis3": {
-      "uv": [
-        44.26,
-        12.09
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_out_dis1": {
-      "uv": [
-        31.86,
-        12.35
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
     "regen.r_feedback2": {
       "uv": [
         7.84,
         30.02
       ],
       "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_out_dis2": {
-      "uv": [
-        43.51,
-        9.54
-      ],
-      "rotation": 90,
       "fixed": false
     },
     "usb.d_vdd": {
@@ -930,28 +890,12 @@
       "rotation": 0,
       "fixed": false
     },
-    "usb.r_addr1": {
-      "uv": [
-        47.09,
-        11.93
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
     "usb.r_ov_bottom": {
       "uv": [
         22.6,
         14.4
       ],
       "rotation": 180,
-      "fixed": false
-    },
-    "usb.r_addr0": {
-      "uv": [
-        47.99,
-        10.43
-      ],
-      "rotation": 0,
       "fixed": false
     },
     "regen.c_detector": {
@@ -1002,14 +946,6 @@
       "rotation": 90,
       "fixed": false
     },
-    "usb.r_ov_top2": {
-      "uv": [
-        39.93,
-        2.39
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
     "controller.r_a_series": {
       "uv": [
         3.15,
@@ -1050,28 +986,12 @@
       "rotation": 90,
       "fixed": false
     },
-    "usb.r_uv_top2": {
-      "uv": [
-        39.49,
-        4.33
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
     "controller.r_dp": {
       "uv": [
         3.5,
         51.0
       ],
       "rotation": 180,
-      "fixed": false
-    },
-    "usb.r_ov_top1": {
-      "uv": [
-        41.43,
-        2.43
-      ],
-      "rotation": 90,
       "fixed": false
     },
     "regen.r_gate_off1": {
@@ -1162,14 +1082,6 @@
       "rotation": 90,
       "fixed": false
     },
-    "usb.r_sda": {
-      "uv": [
-        48.425,
-        13.87
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
     "c_thermal_gate": {
       "uv": [
         38.35,
@@ -1230,22 +1142,6 @@
       "uv": [
         3.15,
         36.62
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "usb.r_base_pull": {
-      "uv": [
-        43.35,
-        3.43
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "usb.r_base2": {
-      "uv": [
-        46.925,
-        14.19
       ],
       "rotation": 90,
       "fixed": false
@@ -1326,14 +1222,6 @@
       "uv": [
         23.2,
         34.0
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.q_enable": {
-      "uv": [
-        47.47,
-        6.43
       ],
       "rotation": 0,
       "fixed": false
@@ -1458,14 +1346,6 @@
       "rotation": 0,
       "fixed": false
     },
-    "usb.r_uv_top1": {
-      "uv": [
-        50.925,
-        15.58
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
     "supervision.r_request": {
       "uv": [
         3.5,
@@ -1486,14 +1366,6 @@
       "uv": [
         52.6,
         32.15
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "usb.r_scl": {
-      "uv": [
-        51.55,
-        19.78
       ],
       "rotation": 90,
       "fixed": false
@@ -1546,26 +1418,10 @@
       "rotation": 180,
       "fixed": false
     },
-    "usb.r_raw_dis2": {
-      "uv": [
-        33.45,
-        9.8
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
     "charger.r_ilim_bottom": {
       "uv": [
         28.3,
         11.15
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "usb.r_base1": {
-      "uv": [
-        32.1,
-        10.25
       ],
       "rotation": 90,
       "fixed": false
@@ -1594,14 +1450,6 @@
       "rotation": 90,
       "fixed": false
     },
-    "usb.r_reset": {
-      "uv": [
-        34.1,
-        6.35
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
     "charger.r_ce": {
       "uv": [
         41.64,
@@ -1624,6 +1472,158 @@
         19.4
       ],
       "rotation": 0,
+      "fixed": false
+    },
+    "usb.q_enable": {
+      "uv": [
+        39.15,
+        3
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_out_dis2": {
+      "uv": [
+        45,
+        12.25
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_out_dis3": {
+      "uv": [
+        45,
+        10.85
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_raw_dis1": {
+      "uv": [
+        39,
+        5.65
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_raw_dis2": {
+      "uv": [
+        42.89,
+        4
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_raw_dis3": {
+      "uv": [
+        46,
+        5.18
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_out_dis1": {
+      "uv": [
+        47.075,
+        14.4
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_reset": {
+      "uv": [
+        43.19,
+        6.0
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_uv_top1": {
+      "uv": [
+        29.16,
+        14.25
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_addr1": {
+      "uv": [
+        42.25,
+        13.1
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_sda": {
+      "uv": [
+        44,
+        9
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_ov_top1": {
+      "uv": [
+        31.03,
+        12.5
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_uv_top2": {
+      "uv": [
+        30.26,
+        14.25
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_base2": {
+      "uv": [
+        33.6,
+        11.1
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_addr0": {
+      "uv": [
+        45.55,
+        9.6
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_scl": {
+      "uv": [
+        44,
+        7.45
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_ov_top2": {
+      "uv": [
+        32.1,
+        10.95
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_base1": {
+      "uv": [
+        36.85,
+        3.1
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_base_pull": {
+      "uv": [
+        35.075,
+        1.75
+      ],
+      "rotation": 90,
       "fixed": false
     }
   }
