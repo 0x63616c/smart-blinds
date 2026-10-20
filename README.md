@@ -68,6 +68,28 @@ The cover and cassette lid are separated to show access. Two integral cleats and
 [Source](hw/layouts/blind-main/main-test/main-test.kicad_pcb) · [Generated files](docs/generated/main-controller-placement/)
 
 <details>
+<summary>Companion battery carrier — experimental copper</summary>
+
+Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected nets. Four mounting-hole courtyard and six inherited silkscreen findings remain. Experimental only: current capacity, holder loading, insulation and pack assembly still require qualification.
+
+![Companion battery carrier — experimental copper](docs/generated/companion-routed/assembly.png)
+
+[Source](hw/routing/blind-pack-companion/companion-routed.kicad_pcb) · [Generated files](docs/generated/companion-routed/)
+
+</details>
+
+<details>
+<summary>Reusable holder assembly fixture</summary>
+
+One reusable three-piece workshop fixture, shared across all eight builds. The modeled clearance and print meshes pass; actual rim contact, insertion forces and the complete pack-loading sequence remain unqualified. It adds no installed enclosure parts.
+
+![Reusable holder assembly fixture](docs/generated/holder-service-fixture/assembly.png)
+
+[Source](cad/source/holder_service_fixture.scad) · [Generated files](docs/generated/holder-service-fixture/)
+
+</details>
+
+<details>
 <summary>Complete controller schematic</summary>
 
 Eleven native KiCad sheets cover all 196 circuit features and 609 pin identities. The exported net partition matches the PCB; seven documented ERC findings remain. Unrouted and unpowered.
