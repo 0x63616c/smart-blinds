@@ -6,14 +6,14 @@ The derivative retains the 54 × 68.5 mm outline with its USB tab, all 196
 footprints, 609 physical pin identities, 142 net partitions, 17 mechanical/thermal
 anchors and 13 RF, connector-foot and clamp reservations.
 
-The checkpoint contains 874 segments and 224 vias. It routes the local charger
+The checkpoint contains 1022 segments and 257 vias. It routes the local charger
 switching/bypass network, motor-driver fly/pump/VM and output paths, regulator
 bypass/output/sense paths, and a 3.3 V feed to the radio module. In1 remains a
 continuous filled ground-return island; no signal traces use that layer. The
 module power feed uses In2 beneath the permitted module body, with vias outside
 its solder lands and unchanged antenna keepouts.
 
-Actual KiCad 10 DRC reports **173 unconnected items**. No short, copper/edge/hole
+Actual KiCad 10 DRC reports **114 unconnected items**. No short, copper/edge/hole
 clearance, track-width, courtyard-overlap, keepout, mask-bridge or dangling-route
 failure is accepted. The report retains 260 silkscreen/text findings, four
 library-footprint differences and five footprint-type findings. The latter
@@ -88,7 +88,7 @@ charge-permission wiring remain unfinished.
 A subsequent assembly-clearance pass moves twelve ordinary vias by at most
 0.35 mm and adjusts their sixteen incident traces. Five short top-layer stubs
 preserve connections that previously relied on via copper touching a solder
-land. No component moves. That earlier stage checked 178 routed vias. The clamp and USB stages extend this to all 224 via drills, which remain at least 0.20 mm
+land. No component moves. That earlier stage checked 178 routed vias. The clamp, USB and local supervision stages extend this to all 257 via drills, which remain at least 0.20 mm
 from every top solder land, including lands on the same net; the ordinary
 KiCad same-net clearance check alone does not ensure this. A deliberate
 same-net intrusion at the USB input capacitor is rejected. The explicit
@@ -175,7 +175,7 @@ These need stackup/return-field/ESD review and actual full-speed USB tests.
 Six new fault controls cut a D-plus branch, one D-minus reversible contact,
 the ESD return, the back reference, and restore stale ground within a signal
 antipad, and add a longer parallel path that bypasses the ESD pad.
-All 40 old/new controls pass. The physical USB data connections are
+All 40 controls through the USB stage pass; the later supervision stage brings the total to 47. The physical USB data connections are
 complete; USB performance and manufacturing acceptance remain unfinished.
 
 ## Rules and outstanding work
@@ -189,11 +189,16 @@ mask/paste/assembly-process review. These rules are not a current rating,
 impedance approval, assembly quote or final fabrication profile.
 
 Still unfinished: USB factory access and impedance/ESD qualification, pack feed and onward SYS
-current distribution, clamp external inhibit/fault connections and supervisor loops, complete signal
+current distribution, clamp external inhibit/fault connections and onward supervisor buses, complete signal
 routing, thermal and transient review, sparse silkscreen, final ERC/DRC and a
-manufacturing quote. A separate local 18-net digital congestion experiment is
-not part of this committed power-route checkpoint. No autorouter result is
-substituted for the local power-layout review.
+manufacturing quote. No autorouter result substitutes for the local power-layout review.
+
+The [local supervision stage](local-supervision.md) adds 59 checked branches and
+seven injected faults to the protected USB checkpoint. All 47 fault controls pass.
+It preserves the incoming copper and moves fourteen previously unwired small
+parts. The local encoder returns meet at the regulator GND land, checked by
+physically cutting that land from the graph. Longer bypass/pull-up paths and the
+unfinished ADC connection remain explicit layout limitations.
 
 ## Reproduce
 

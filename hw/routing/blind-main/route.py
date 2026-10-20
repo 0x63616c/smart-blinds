@@ -9,14 +9,14 @@ from generate_schematics import board_graph
 SOURCE=ROOT/'hw/layouts/blind-main/main-test/main-test.kicad_pcb'
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def main():
- sources=[SOURCE,SOURCE.parent/'fp-lib-table',HERE/'placement.json',HERE/'project-template.json',HERE/'usb-control-routes.json',HERE/'charger-power-banks.json',HERE/'charger-control-routes.json',HERE/'via-land-clearance.json',HERE/'regen-routes.json',HERE/'usb-data-routes.json',HERE/'usb_data_checks.py',HERE/'usb_data_faults.py',HERE/'regen_checks.py',HERE/'regen_faults.py',HERE/'regen_analog.py',HERE/'route.py',*[HERE/n for n in ['place.py','charger.py','local_power.py','module_supply.py','usb_input.py','usb_controls.py','distribution.py','charger_controls.py','via_lands.py','regen.py','usb_data.py']]]
+ sources=[SOURCE,SOURCE.parent/'fp-lib-table',HERE/'placement.json',HERE/'project-template.json',HERE/'usb-control-routes.json',HERE/'charger-power-banks.json',HERE/'charger-control-routes.json',HERE/'via-land-clearance.json',HERE/'regen-routes.json',HERE/'usb-data-routes.json',HERE/'local-supervision-routes.json',HERE/'local_supervision_checks.py',HERE/'local_supervision_faults.py',HERE/'usb_data_checks.py',HERE/'usb_data_faults.py',HERE/'regen_checks.py',HERE/'regen_faults.py',HERE/'regen_analog.py',HERE/'route.py',*[HERE/n for n in ['place.py','charger.py','local_power.py','module_supply.py','usb_input.py','usb_controls.py','distribution.py','charger_controls.py','via_lands.py','regen.py','usb_data.py','local_supervision.py']]]
  snapshot={str(p.relative_to(ROOT)):sha(p) for p in sources}
  source_hash=sha(SOURCE);work=ROOT/'work/main-route-build';work.mkdir(parents=True,exist_ok=True)
- for name in ['place.py','charger.py','local_power.py','module_supply.py','usb_input.py','usb_controls.py','distribution.py','charger_controls.py','via_lands.py','regen.py','usb_data.py']:
+ for name in ['place.py','charger.py','local_power.py','module_supply.py','usb_input.py','usb_controls.py','distribution.py','charger_controls.py','via_lands.py','regen.py','usb_data.py','local_supervision.py']:
   result=subprocess.run([sys.executable,str(HERE/name)],cwd=ROOT,capture_output=True,text=True)
   (work/(name+'.log')).write_text(result.stdout+result.stderr)
   if result.returncode:raise RuntimeError(name+' failed; inspect '+str(work/(name+'.log')))
- interim=work/'usb-data.kicad_pcb';tree=parse(interim.read_text())
+ interim=work/'local-supervision.kicad_pcb';tree=parse(interim.read_text())
  assert not list(walk(tree,'group'))
  def semantic(v):
   if not isinstance(v,list):return v
@@ -39,6 +39,6 @@ def main():
  (HERE/'fp-lib-table').write_text(table)
  assert sha(SOURCE)==source_hash and board_graph(SOURCE)==board_graph(board)
  assert snapshot=={str(p.relative_to(ROOT)):sha(p) for p in sources},'Routing inputs changed during rebuild'
- record={'status':'EXPERIMENTAL PARTIAL main power routing; not a fabrication release','source_hashes':snapshot,'pcb_sha256':sha(board),'project_sha256':sha(board.with_suffix('.kicad_pro')),'segments':len(children(tree,'segment')),'vias':len(children(tree,'via')),'unrouted_work':['USB impedance/ESD qualification and factory access','Pack feed and onward system distribution','Clamp external inhibit/fault connections and supervisor loops','Full logic and analogue signals','Current/thermal/return-path review and final manufacturing rules']}
+ record={'status':'EXPERIMENTAL PARTIAL main power routing; not a fabrication release','source_hashes':snapshot,'pcb_sha256':sha(board),'project_sha256':sha(board.with_suffix('.kicad_pro')),'segments':len(children(tree,'segment')),'vias':len(children(tree,'via')),'unrouted_work':['USB impedance/ESD qualification and factory access','Pack feed and onward system distribution','Clamp external inhibit/fault connections and onward supervisor buses','Full logic and analogue signals','Current/thermal/return-path review and final manufacturing rules']}
  (HERE/'route-record.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record,indent=2))
 if __name__=='__main__':main()

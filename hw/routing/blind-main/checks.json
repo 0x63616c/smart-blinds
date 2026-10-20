@@ -11,12 +11,15 @@
     "hw/routing/blind-main/via-land-clearance.json": "2803b9b7de1c3a7b68325312d040fcaba83a7388c3f81a9e83cb14164b5453b7",
     "hw/routing/blind-main/regen-routes.json": "5c7cc940941025b1a0f0828e4c7a0d7ff03d24c6ed20d8cf635f717ed6a2109a",
     "hw/routing/blind-main/usb-data-routes.json": "13c6da66e145a5b9d19e523d3fdaba0c766022cd815a1e51b64fe61f2a04a07e",
+    "hw/routing/blind-main/local-supervision-routes.json": "947e8283f5721f1fe790e5b8cd89e21ff011259231adc8091f94a9eb8594abcd",
+    "hw/routing/blind-main/local_supervision_checks.py": "aec7797ed0af34349836de7cb975ad84390dd633f3c6c8106d6d1bb9923c4d96",
+    "hw/routing/blind-main/local_supervision_faults.py": "24abecb848310543f4e3a004e21a04f6436ed40ef5284bc19d02c67fc9e312a1",
     "hw/routing/blind-main/usb_data_checks.py": "24c8ee84a42db0fcac7350950fe87eff9ae365ca237c96dd5d06f629aac7781d",
     "hw/routing/blind-main/usb_data_faults.py": "0da4f0cd5dd31f3d6836f38073438af6e63506ca32c9c311b91682d215f2bcfe",
     "hw/routing/blind-main/regen_checks.py": "1f19938111e2b049ad3bf8d5f379d233b0a1dbe4fde6022db037dba075149c98",
     "hw/routing/blind-main/regen_faults.py": "3974e99a520760750fc5aa64bc47519c1d9c53a79d22e531e422dbf45e6abea3",
     "hw/routing/blind-main/regen_analog.py": "d97817c3c2b951bb2969167605d77d63dffcb18f4955881d68d0fcff84db897f",
-    "hw/routing/blind-main/route.py": "75d4ba30364c62c6b424d636ead54071ae7cf01360737baa4c9ffd0b31143a2c",
+    "hw/routing/blind-main/route.py": "764c089a03d928b66e98cce3249f6e3da0c990348abf0b6af68554ffde452a63",
     "hw/routing/blind-main/place.py": "95077c4d892a6b49814f3c476dfdc7a6f3397973fbf7215a9e8af65ea41b736d",
     "hw/routing/blind-main/charger.py": "63c7a84fb2b46b3627ccba3e7369fcc0e94ef023af4c7166adadbd659f3fdf0a",
     "hw/routing/blind-main/local_power.py": "a0c8e2895494d882b5092b7835278c0d18389707236a41bf666bd4c5648e81a0",
@@ -28,8 +31,9 @@
     "hw/routing/blind-main/via_lands.py": "01c242719d867b3ccb4bc99cec99757321d1b9d6bcaaf161d0edf3b6b27a08cc",
     "hw/routing/blind-main/regen.py": "e619cd470e91c88751e005de34d50b09d99df088720e2bc4a9f2ac9052ebeba7",
     "hw/routing/blind-main/usb_data.py": "98f72c09842df0a137be697e5b5cab48fb52dee2b8c18c93d1c7a03fbab88eb1",
-    "hw/routing/blind-main/main-routed.kicad_pcb": "98a12e5f0d6ee9c0c0a1ed1332238729b101988dc3eaf19096272eff7903d84d",
-    "hw/routing/blind-main/checks.py": "12ec89e7d3fce9fdcfaea5e0f56af1b051c9186ccc35cd3fd4376662690aba77",
+    "hw/routing/blind-main/local_supervision.py": "8d67606533a35d212dc34b582ac9a32f1eb993a182e58d73eab340cf5683dbbe",
+    "hw/routing/blind-main/main-routed.kicad_pcb": "4bba9a723f4de52ff093a321cbacc004d90b432432084d3d115b1daf1e716cea",
+    "hw/routing/blind-main/checks.py": "97f540262a60ba3b9aab21e0b42ae1ef612b9d88660b1132f072a594d90de64b",
     "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422"
   },
   "kicad_version": "10.0.4",
@@ -47,6 +51,7 @@
       "charger.r_ts_bottom",
       "usb.r_base_pull",
       "encoder.c_gate",
+      "controller.c_enc",
       "usb.r_raw_dis3",
       "charger.c_bat2",
       "regen.r_gate_off1",
@@ -70,9 +75,12 @@
       "usb.c_vdd",
       "regen.r_thermal_ok",
       "charger.c_sys3",
+      "r_thermal_sleep",
       "regen.r_feedback1",
       "motor.r_in1",
       "regen.q_cutoff",
+      "c_thermal_gate",
+      "supervision.c_gate",
       "charger.c_sys5",
       "regen.r_thermal_bottom",
       "usb.r_out_dis2",
@@ -91,6 +99,7 @@
       "regen.r_feedback2",
       "regen.r_threshold_bottom",
       "motor.r_in2",
+      "supervision.r_sleep",
       "controller.c_bypass",
       "usb.c_raw",
       "usb.tvs_vbus",
@@ -98,6 +107,7 @@
       "logic_supply.c_output_fast",
       "charger.r_prog",
       "charger.r_ts_top",
+      "supervision.c_inputs",
       "usb.r_base1",
       "motor.c_vm",
       "regen.r_local_bleed",
@@ -111,6 +121,7 @@
       "usb.r_ov_top1",
       "supervision.r_request",
       "regen.c_thermostat",
+      "supervision.c_sup",
       "charger.c_sys2",
       "supervision.gate",
       "usb.r_addr0",
@@ -188,7 +199,7 @@
       "maximum_mounted_height_mm": 7.8,
       "reviewed_resistor_height_with_solder_allowance_mm": 0.55
     },
-    "unique_uuids": 5621
+    "unique_uuids": 5802
   },
   "copper": {
     "connected_path_groups": 72,
@@ -198,8 +209,8 @@
       "charger.c_input_fast": 2
     },
     "usb_quiet_ground_vias": 1,
-    "segments": 874,
-    "vias": 224,
+    "segments": 1022,
+    "vias": 257,
     "distribution_via_solder_land_margin": {
       "checked_vias": 38,
       "minimum_drill_to_solder_land_mm": 0.2
@@ -209,7 +220,7 @@
       "minimum_drill_to_solder_land_mm": 0.2
     },
     "all_route_via_solder_land_margin": {
-      "checked_vias": 224,
+      "checked_vias": 257,
       "minimum_drill_to_solder_land_mm": 0.2,
       "scope": "All route vias, including same-net lands; footprint thermal holes require separate process review"
     },
@@ -268,7 +279,7 @@
           "plane_entry_vias": 1
         }
       },
-      "route_vias_checked": 224,
+      "route_vias_checked": 257,
       "external_outputs_not_yet_routed": [
         "thermal_ok to main final AND",
         "G to main fault-indication MOSFET"
@@ -329,17 +340,17 @@
               "PACK / clamp supply same-layer/via": {
                 "edge_gap_mm": 0.925003,
                 "new_segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "5d0d82ce-1bf6-5055-bed2-2af0a4406c3f"
+                "neighbor_uuid": "f09b9ba4-f1e8-5eb8-b825-2e04998774d7"
               },
               "charger SW1 same-layer/via": {
                 "edge_gap_mm": 7.707278,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "c98cb912-7790-5a10-a718-12745cc7db15"
+                "neighbor_uuid": "7d738a8b-84d9-5e00-9a45-db54e7e5cd82"
               },
               "charger SW2 same-layer/via": {
                 "edge_gap_mm": 1.839159,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "6a96e7d0-7461-519d-b719-0e93101be49d"
+                "neighbor_uuid": "16927f8e-6904-5900-860d-cab29933074b"
               },
               "PACK / clamp supply same-layer pad": {
                 "edge_gap_mm": 0.205003,
@@ -350,27 +361,27 @@
               "PACK / clamp supply projected B.Cu": {
                 "edge_gap_mm": 0.0,
                 "new_segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "d46fa4a1-4310-54f6-be11-7f74edbe2958"
+                "neighbor_uuid": "4c57b359-73b0-5c4d-84e0-f6091b4b4c2e"
               },
               "series MOSFET midpoint same-layer/via": {
                 "edge_gap_mm": 24.193112,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "44c5a883-976e-502c-b904-bc37d67bdef2"
+                "neighbor_uuid": "144414ca-e866-5827-9b63-d83536f91bb3"
               },
               "clamp switched drain same-layer/via": {
                 "edge_gap_mm": 17.444948,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "d8bedca1-30f3-5dfd-9b05-76922dd6ac3d"
+                "neighbor_uuid": "cb13844a-059c-50dc-b3d2-2746823929ef"
               },
               "charger SW1 projected B.Cu": {
                 "edge_gap_mm": 7.825001,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "986e5435-00fc-5eab-bc70-ab78d8c3df08"
+                "neighbor_uuid": "13108323-f589-5fc8-a1a1-4bfceb069b47"
               },
               "charger SW2 projected B.Cu": {
                 "edge_gap_mm": 2.039159,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "fdc64dea-a580-5c86-ba3f-6db54bbc9fdd"
+                "neighbor_uuid": "e7b18d7d-26b1-5685-a6e5-f66e7f408cb3"
               },
               "clamp switched drain same-layer pad": {
                 "edge_gap_mm": 17.095105,
@@ -400,47 +411,47 @@
             "ground_shielded_projected_crossings": [
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "d46fa4a1-4310-54f6-be11-7f74edbe2958",
+                "neighbor_uuid": "4c57b359-73b0-5c4d-84e0-f6091b4b4c2e",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "6ce67e20-f1df-5ef3-8dff-5d0adc2df50a",
+                "neighbor_uuid": "37ac922f-febf-5b71-a39c-13689d1c6f2e",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "edc59c48-85c0-5d69-8476-35e080e39438",
+                "neighbor_uuid": "2931ac9f-7169-58f0-a429-62d637188417",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "c1d23869-5c66-5325-b491-1c7e786a2bbb",
+                "neighbor_uuid": "e88c6b6c-117f-5c4a-81db-e376df32c1f0",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "42291420-6256-53d4-8184-2fe012aa49a6",
+                "neighbor_uuid": "fc36d8df-eb00-58eb-92da-a063e19da4c3",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-9",
-                "neighbor_uuid": "6ce67e20-f1df-5ef3-8dff-5d0adc2df50a",
+                "neighbor_uuid": "37ac922f-febf-5b71-a39c-13689d1c6f2e",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-9",
-                "neighbor_uuid": "edc59c48-85c0-5d69-8476-35e080e39438",
+                "neighbor_uuid": "2931ac9f-7169-58f0-a429-62d637188417",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-10",
-                "neighbor_uuid": "6ce67e20-f1df-5ef3-8dff-5d0adc2df50a",
+                "neighbor_uuid": "37ac922f-febf-5b71-a39c-13689d1c6f2e",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-11",
-                "neighbor_uuid": "6ce67e20-f1df-5ef3-8dff-5d0adc2df50a",
+                "neighbor_uuid": "37ac922f-febf-5b71-a39c-13689d1c6f2e",
                 "unshielded_projected_area_mm2": 0.0
               }
             ]
@@ -455,17 +466,17 @@
               "PACK / clamp supply same-layer/via": {
                 "edge_gap_mm": 0.64383,
                 "new_segment": "program-reroute-9",
-                "neighbor_uuid": "7d738a8b-84d9-5e00-9a45-db54e7e5cd82"
+                "neighbor_uuid": "15d4be93-e57e-5f25-946d-bb09f41a516d"
               },
               "charger SW1 same-layer/via": {
                 "edge_gap_mm": 1.016632,
                 "new_segment": "program-reroute-5",
-                "neighbor_uuid": "3fa5259a-f9d0-5f93-ae6e-5203c2ff442b"
+                "neighbor_uuid": "3871a358-a26b-5a3e-bf2a-3ab134efdacb"
               },
               "charger SW2 same-layer/via": {
                 "edge_gap_mm": 1.010231,
                 "new_segment": "program-reroute-9",
-                "neighbor_uuid": "80858ec9-d450-584e-9cb9-a1fb6d406220"
+                "neighbor_uuid": "75109f6b-e078-5a16-9ebe-dcb43a4ffa7e"
               },
               "PACK / clamp supply same-layer pad": {
                 "edge_gap_mm": 24.127833,
@@ -486,12 +497,12 @@
               "PACK / clamp supply same-layer/via": {
                 "edge_gap_mm": 1.600001,
                 "new_segment": "shortened-bootstrap-return",
-                "neighbor_uuid": "0a06bff2-efdd-5ce1-a9a6-a223145ca0ad"
+                "neighbor_uuid": "cf2cafb3-c052-5fa6-9768-bac7325472ab"
               },
               "charger SW2 same-layer/via": {
                 "edge_gap_mm": 1.300003,
                 "new_segment": "shortened-bootstrap-return",
-                "neighbor_uuid": "543e2e00-4caf-5963-a0a5-7f6319029037"
+                "neighbor_uuid": "03fde643-fb13-5fe0-9691-5906eee59168"
               },
               "PACK / clamp supply same-layer pad": {
                 "edge_gap_mm": 33.132125,
@@ -548,6 +559,946 @@
       "esd_ground_plane_entries": 1,
       "own_antipad_radius_tolerance_mm": 0.0055,
       "scope": "Actual planar centerlines and direct trace footprint only. D-minus has two additional barrel transitions. No electrical-delay, field-spread, ESD-current or 90-ohm impedance qualification."
+    },
+    "local_supervision": {
+      "connected_branches": [
+        {
+          "start": [
+            "supervision.watchdog",
+            "2"
+          ],
+          "end": [
+            "supervision.c_timing",
+            "1"
+          ],
+          "net": "CWD",
+          "recipe_length_mm": 1.4934522422899932,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.watchdog",
+            "1"
+          ],
+          "end": [
+            "supervision.watchdog",
+            "10"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 3.82842712474619,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.watchdog",
+            "1"
+          ],
+          "end": [
+            "supervision.c_wd",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 1.930388561922179,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.watchdog",
+            "5"
+          ],
+          "end": [
+            "supervision.watchdog",
+            "11"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 1.9071602609511158,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.watchdog",
+            "6"
+          ],
+          "end": [
+            "supervision.watchdog",
+            "11"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 1.9071602609511198,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.supervisor",
+            "6"
+          ],
+          "end": [
+            "supervision.supervisor",
+            "5"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 0.9499999999999886,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.supervisor",
+            "6"
+          ],
+          "end": [
+            "supervision.c_sup",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 3.816167718526998,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.inputs",
+            "5"
+          ],
+          "end": [
+            "supervision.c_inputs",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 1.9458674158328355,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.gate",
+            "5"
+          ],
+          "end": [
+            "supervision.c_gate",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 1.4138246001537857,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.gate",
+            "2"
+          ],
+          "end": [
+            "supervision.gate",
+            "3"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.6500000000000057,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.gate",
+            "4"
+          ],
+          "end": [
+            "supervision.r_sleep",
+            "1"
+          ],
+          "net": "motor_sleep_n-Y",
+          "recipe_length_mm": 3.9408840974627957,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.gate",
+            "5"
+          ],
+          "end": [
+            "encoder.c_gate",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 3.5747073995518948,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.gate",
+            "2"
+          ],
+          "end": [
+            "encoder.gate",
+            "3"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.6500000000000057,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.watchdog",
+            "11"
+          ],
+          "end": [
+            "supervision.watchdog",
+            "11"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 1.8270467974302256,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.c_wd",
+            "2"
+          ],
+          "end": [
+            "supervision.c_wd",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.7002856560004664,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.c_timing",
+            "2"
+          ],
+          "end": [
+            "supervision.c_timing",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.8487629822282453,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.supervisor",
+            "2"
+          ],
+          "end": [
+            "supervision.supervisor",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 1.0499999999999936,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.c_sup",
+            "2"
+          ],
+          "end": [
+            "supervision.c_sup",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.7006425622241298,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.inputs",
+            "2"
+          ],
+          "end": [
+            "supervision.inputs",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.901387818865992,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.c_inputs",
+            "2"
+          ],
+          "end": [
+            "supervision.c_inputs",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.7006425622241405,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.gate",
+            "2"
+          ],
+          "end": [
+            "supervision.gate",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.7499999999999947,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.c_gate",
+            "2"
+          ],
+          "end": [
+            "supervision.c_gate",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.8720091742636541,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.r_sleep",
+            "2"
+          ],
+          "end": [
+            "supervision.r_sleep",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 1.4759743572112152,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "controller.enc",
+            "2"
+          ],
+          "end": [
+            "controller.enc",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.9000000000000057,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "c_thermal_gate",
+            "2"
+          ],
+          "end": [
+            "c_thermal_gate",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.8163332652783382,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "r_thermal_sleep",
+            "2"
+          ],
+          "end": [
+            "r_thermal_sleep",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.700642562224123,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.gate",
+            "2"
+          ],
+          "end": [
+            "encoder.gate",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.7500000000000071,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.c_gate",
+            "2"
+          ],
+          "end": [
+            "encoder.c_gate",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.6800000000000122,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.ic",
+            "3"
+          ],
+          "end": [
+            "encoder.r_enable",
+            "1"
+          ],
+          "net": "EN",
+          "recipe_length_mm": 1.5110923201446074,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.ic",
+            "1"
+          ],
+          "end": [
+            "encoder.c_input",
+            "1"
+          ],
+          "net": "source-hv",
+          "recipe_length_mm": 1.767059704707224,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.ic",
+            "5"
+          ],
+          "end": [
+            "encoder.c_output",
+            "1"
+          ],
+          "net": "encoder-output-hv",
+          "recipe_length_mm": 6.280371534096945,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.ic",
+            "2"
+          ],
+          "end": [
+            "encoder.c_output",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 5.248522966215168,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.ic",
+            "2"
+          ],
+          "end": [
+            "encoder.c_input",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 1.627882059609967,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.ic",
+            "2"
+          ],
+          "end": [
+            "encoder.ic",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 1.000000000000007,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.r_enable",
+            "2"
+          ],
+          "end": [
+            "encoder.r_enable",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.700642562224145,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.watchdog",
+            "8"
+          ],
+          "end": [
+            "supervision.supervisor",
+            "3"
+          ],
+          "net": "MR",
+          "recipe_length_mm": 6.09530561335438,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.inputs",
+            "6"
+          ],
+          "end": [
+            "supervision.watchdog",
+            "3"
+          ],
+          "net": "supervision-6",
+          "recipe_length_mm": 13.914873901364684,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.inputs",
+            "4"
+          ],
+          "end": [
+            "supervision.watchdog",
+            "7"
+          ],
+          "net": "WDI",
+          "recipe_length_mm": 9.042463241553666,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.inputs",
+            "6"
+          ],
+          "end": [
+            "supervision.gate",
+            "6"
+          ],
+          "net": "supervision-6",
+          "recipe_length_mm": 12.500919086209759,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.supervisor",
+            "1"
+          ],
+          "end": [
+            "supervision.gate",
+            "1"
+          ],
+          "net": "reset_n",
+          "recipe_length_mm": 14.858222297708195,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.gate",
+            "4"
+          ],
+          "end": [
+            "encoder.ic",
+            "3"
+          ],
+          "net": "EN",
+          "recipe_length_mm": 13.717923209620285,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "controller.c_adc",
+            "1"
+          ],
+          "end": [
+            "controller.r_adc_lo",
+            "1"
+          ],
+          "net": "c_adc-1",
+          "recipe_length_mm": 1.5011995203836166,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "controller.c_adc",
+            "1"
+          ],
+          "end": [
+            "controller.r_adc_hi",
+            "2"
+          ],
+          "net": "c_adc-1",
+          "recipe_length_mm": 5.972520448105064,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "controller.c_adc",
+            "2"
+          ],
+          "end": [
+            "controller.c_adc",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.7011419257183272,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "controller.r_adc_lo",
+            "2"
+          ],
+          "end": [
+            "controller.r_adc_lo",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.7011419257183267,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.c_wd",
+            "1"
+          ],
+          "end": [
+            "controller.c_bulk",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 6.006369352979776,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.c_sup",
+            "1"
+          ],
+          "end": [
+            "supervision.c_wd",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 11.222775026501374,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.c_inputs",
+            "1"
+          ],
+          "end": [
+            "supervision.c_sup",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 2.786200381159018,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.c_gate",
+            "1"
+          ],
+          "end": [
+            "supervision.c_inputs",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 14.98212743602334,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "encoder.c_gate",
+            "1"
+          ],
+          "end": [
+            "c_thermal_gate",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 4.336966679368205,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "thermal_gate",
+            "5"
+          ],
+          "end": [
+            "c_thermal_gate",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 7.623548469550375,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "thermal_gate",
+            "1"
+          ],
+          "end": [
+            "thermal_gate",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.6500000000000057,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "thermal_gate",
+            "2"
+          ],
+          "end": [
+            "thermal_gate",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 1.276303793914581,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "thermal_gate",
+            "4"
+          ],
+          "end": [
+            "r_thermal_sleep",
+            "1"
+          ],
+          "net": "Y",
+          "recipe_length_mm": 7.823733078150963,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "controller.enc",
+            "5"
+          ],
+          "end": [
+            "controller.c_enc",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 5.484287112688032,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "controller.c_enc",
+            "2"
+          ],
+          "end": [
+            "controller.c_enc",
+            "2"
+          ],
+          "net": "lv",
+          "recipe_length_mm": 0.7002856560004737,
+          "layers": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.watchdog",
+            "8"
+          ],
+          "end": [
+            "supervision.r_wdo",
+            "2"
+          ],
+          "net": "MR",
+          "recipe_length_mm": 8.474265564704131,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "supervision.r_wdo",
+            "1"
+          ],
+          "end": [
+            "supervision.watchdog",
+            "10"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 11.88334122325531,
+          "layers": [
+            "F"
+          ]
+        },
+        {
+          "start": [
+            "controller.c_enc",
+            "1"
+          ],
+          "end": [
+            "supervision.c_inputs",
+            "1"
+          ],
+          "net": "rail-hv",
+          "recipe_length_mm": 18.563485274698746,
+          "layers": [
+            "B",
+            "F"
+          ]
+        }
+      ],
+      "encoder_ground_star": {
+        "pads": [
+          [
+            "encoder.c_input",
+            "2"
+          ],
+          [
+            "encoder.c_output",
+            "2"
+          ],
+          [
+            "encoder.ic",
+            "2"
+          ]
+        ],
+        "plane_vias": 1,
+        "capacitor_ground_components_after_removing_ic_land": 2,
+        "scope": "Actual front copper; saved plane excluded"
+      },
+      "limits": [
+        "Onward MCU and ADC connections remain incomplete",
+        "Recipe lengths do not establish analog performance",
+        "No physical timing, noise or thermal qualification"
+      ]
     }
   },
   "drc": {
@@ -560,7 +1511,7 @@
       "text_height": 1,
       "text_thickness": 1
     },
-    "unconnected_items": 173,
+    "unconnected_items": 114,
     "ignored_checks": [
       "footprint_filters_mismatch",
       "track_not_centered_on_via",
@@ -622,6 +1573,13 @@
     "cut ESD ground via feed rejected",
     "remove back crossover reference rejected",
     "restore saved ground across D-minus via antipad rejected",
-    "add longer D-plus bypass around ESD pad rejected"
+    "add longer D-plus bypass around ESD pad rejected",
+    "local_cut-cwd_rejected",
+    "local_cut-encoder-output-return_rejected",
+    "local_cut-watchdog-to-mr_rejected",
+    "local_cut-encoder-enable_rejected",
+    "local_cut-adc-divider_rejected",
+    "local_same-net-via-in-output-cap_rejected",
+    "local_bridge-encoder-ground-away-from-star_rejected"
   ]
 }

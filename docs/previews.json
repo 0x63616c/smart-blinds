@@ -147,7 +147,11 @@
         "hw/routing/blind-main/usb_data.py",
         "hw/routing/blind-main/usb-data-routes.json",
         "hw/routing/blind-main/usb_data_checks.py",
-        "hw/routing/blind-main/usb_data_faults.py"
+        "hw/routing/blind-main/usb_data_faults.py",
+        "hw/routing/blind-main/local_supervision.py",
+        "hw/routing/blind-main/local-supervision-routes.json",
+        "hw/routing/blind-main/local_supervision_checks.py",
+        "hw/routing/blind-main/local_supervision_faults.py"
       ],
       "image_size": [
         1500,
@@ -160,7 +164,7 @@
       ],
       "zoom": 0.83,
       "collapsed": false,
-      "role": "Experimental four-layer route with 874 segments and 224 vias: charger, motor, regulator, radio, USB power/data and local regenerative-clamp paths. Earlier power groups, two USB data nets, 19 clamp-local nets, eight load groups and 40 injected-fault controls pass; 173 unconnected items remain. Factory access, pack feed, supervisor and remaining signals, USB impedance, thermal/noise review and manufacturing checks are unfinished."
+      "role": "Experimental four-layer route with 1022 segments and 257 vias: local charger, motor, regulator, USB power/data, regenerative clamp and supervision/encoder paths. The 59 added local branches and all 47 injected-fault controls pass; 114 unconnected items remain. Factory access, pack feed, onward MCU/ADC signals, longer bypass paths, USB impedance, thermal/noise review and manufacturing checks are unfinished."
     },
     {
       "id": "companion-routed",
