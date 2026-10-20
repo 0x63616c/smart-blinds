@@ -1,8 +1,8 @@
 {
   "schema": 1,
-  "source_commit": "6a0305a32656f76d25904039feca461fbeb56a4f",
+  "source_commit": "b01e5fb6303d2a7e2372fabdc63b688c93322792",
   "tools": {
-    "kicad": "10.0.4",
+    "kicad": "10.0.7",
     "openscad": "OpenSCAD version 2021.01"
   },
   "manifest_sha256": "36497785c654da9d06589a939b5191761280ccfaeebc90f98cb05152c43be31c",
@@ -23,7 +23,7 @@
       "outputs": [
         {
           "path": "holder-closed/assembly.png",
-          "sha256": "5a153343c17032d8cf5938c8bb6599f9feb374ced7c419e38cfafc8b93cf34ab"
+          "sha256": "283b395826ad6b027f0c234355a5f7fff80a1f26a1233a7f83223d377683b2bb"
         }
       ]
     },
@@ -57,7 +57,7 @@
       "outputs": [
         {
           "path": "holder-exploded/assembly.png",
-          "sha256": "c9e28e4cff62c8294b9d621aaca17ef7fcb1271b297cf22a32b3b15db2f1864d"
+          "sha256": "7dda97778475b1a0b0a138993099af2ef329cc84c4da53704230fe14c6f9c59d"
         }
       ]
     },
@@ -75,7 +75,7 @@
       "outputs": [
         {
           "path": "holder-inside/assembly.png",
-          "sha256": "6f49bcba90714a5432608b338e34f5ca9f26d29a68d42f6fa89ed95681c3dcbe"
+          "sha256": "62317128be62b5579fc538b9bd0e85e5218fc9466779a046c26121fce9618f17"
         }
       ]
     },
@@ -89,12 +89,12 @@
         "tools/generate_schematics.py": "410ced1f9182fa32c7cefb4be1fb2c4368e984b6e8c9167ed8e54c75b53de7e6",
         "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583"
       },
-      "source_files_dirty": true,
+      "source_files_dirty": false,
       "role": "Fourteen components and 43 physical pin connections agree with the atopile board graph. This open block has four documented ERC boundary findings; supply, controller, motor connector and regenerative-energy clamp are not yet integrated.",
       "outputs": [
         {
           "path": "motor-schematic/motor-test.svg",
-          "sha256": "09f8169b8955cd3d28789d9d5a4579f916fe5aa27d3fea5b91051cc77a223e65"
+          "sha256": "4156c39201d6c900809e04a87e580f40347870b856467300a78beb98fc95f2e0"
         }
       ]
     },
@@ -112,7 +112,7 @@
       "outputs": [
         {
           "path": "compact-closed/assembly.png",
-          "sha256": "f7339de96623f01294111e410c6a9049f731b4a7a6a31a6f21eadd856bf25a03"
+          "sha256": "7adaa4723f2a9a8153fed08c5f89602d806a704d73662f7475920bc8d1c0edcf"
         }
       ]
     },
@@ -146,7 +146,7 @@
       "outputs": [
         {
           "path": "compact-exploded/assembly.png",
-          "sha256": "58d1740cb2c95eb8229a97cf486e2203a791611afaa94cf4b45ccba590ca6cb5"
+          "sha256": "8efda52c198a35f400c219e77ef88f27504ee10d7ba1ffca36d3a61d09ab113f"
         }
       ]
     },
@@ -164,7 +164,7 @@
       "outputs": [
         {
           "path": "compact-assembly/assembly.png",
-          "sha256": "fb8738e4542f935416191968dc3f2ad69844e13d8d38e1fc799d810cdc985423"
+          "sha256": "1d4403ba242aa5120032157b14b7ba996317cd5cec832eca1ccbbca948a96140"
         }
       ]
     },
@@ -182,7 +182,7 @@
       "outputs": [
         {
           "path": "broad-assembly/assembly.png",
-          "sha256": "e16b1e77d27351861940e046012b8c3b188f241a235d4f55861232c679d384f0"
+          "sha256": "3097797a75c3fb9a13c8b3646004c1f4a73f5977d670a554165f704e2b386d7c"
         }
       ]
     },
@@ -200,7 +200,7 @@
       "outputs": [
         {
           "path": "narrow-assembly/assembly.png",
-          "sha256": "0f924b6bdc0f516937ce832c6883bb312c9ddceade7d090355bfd6049d273035"
+          "sha256": "4981e1f028d0afc06474baf0f6e4422e35d6b943dc6e9a3ef1db59c3d33878c0"
         }
       ]
     },
@@ -218,7 +218,7 @@
       "outputs": [
         {
           "path": "slim-assembly/assembly.png",
-          "sha256": "345e6cd2c35fdbb9bdd7bfaba25ae3a1c1f216ab2dcc967d24214d6f3e9ee508"
+          "sha256": "77921ec10be988125cdb876584b3394a80614e78aa700b72247acfca0d3aef67"
         }
       ]
     },
@@ -233,11 +233,11 @@
       "outputs": [
         {
           "path": "pd12v6mini-reference/assembly.png",
-          "sha256": "4fd619dd89a98f63ce2c008aa7c073d17251c827de3a99a978dd1d2a0b4c1bd2"
+          "sha256": "624886917b5183949e4e246cf9060c1e6f988d1048ba2f42a2a37e866c4bd9f4"
         },
         {
           "path": "pd12v6mini-reference/top.svg",
-          "sha256": "80d997a999243cacbcd7ec0881254b6e4b10802add7421586cbd2580e20cf425"
+          "sha256": "f2a2aa396b68fced7afb5f01afc09ec683d039bc08ebff78c07ab736717edc89"
         }
       ],
       "models_sha256": {
