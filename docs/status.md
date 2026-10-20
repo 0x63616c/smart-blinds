@@ -15,7 +15,7 @@ followed by an eight-unit build only after their tests pass.
 |---|---|---|
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | 196 circuit features, 609 pin identities and 142 net partitions; native eleven-sheet KiCad schematic; 54 × 68.5 mm four-layer placement with USB tab | Route copper, refine critical loops, resolve manufacturing/thermal rules and ERC/DRC findings |
+| Main controller | Native eleven-sheet schematic and partial four-layer power route; 222 segments, 72 vias, 24 physical connection groups, preserved circuit and mechanical anchors | 364 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete primary/main routing, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session and settling; source-timed faults and supervised motor-off path | Physical reference/commissioning, final hardware qualification, idle local-button wake and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
@@ -28,17 +28,14 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All ten Design checks jobs passed for `abfebb1`](https://github.com/0x63616c/smart-blinds/actions/runs/39379118407):
-control/parameter tests, electrical models, native schematic rebuilds, Home Assistant,
-real local transport tests, both C6 cross-builds, both mechanical-fit jobs and the
-source-bound print material budget, including the 59-test group-transport batch.
-That checkpoint includes the experimental companion route with four injected-fault
-controls and the retained enclosure/holder-fixture checks. Its source-generated
-[design previews also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39379118397).
-New changes must be checked against their own source revision.
-
-The newer tail-clearance/primary-routing checkpoint has passed its local checks
-and awaits its own CI run.
+[All ten Design checks jobs passed for `64d6147`](https://github.com/0x63616c/smart-blinds/actions/runs/39381503463),
+including the primary-carrier current/Kelvin checks, 35 retained-enclosure
+intersection checks and the source-bound print budget. Its source-generated
+[design previews also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39381503393).
+The newer Wi-Fi evaluation CI passed ten of eleven jobs; its C6 build stopped
+at a dependency-ownership check before compilation. A narrowly scoped fix passes
+a reproduced container-ownership build and rejects modified dependency sources.
+The corrected source and new main routing checkpoint await their own CI.
 
 The retained-enclosure artifact contains 35 named empty-intersection checks, a
 positive cleat-capture control and ten closed printable mesh types. Its seven CAD
@@ -83,6 +80,15 @@ but retains 55 unconnected signal/bypass items, 26 silk findings and four mounti
 hole courtyard errors. Its conservative copper-only loss estimate is 1.73 W at
 4 A pack current; width, parallel-layer and 2 oz alternatives need review. The
 primary and main routes remain unfinished.
+
+The [partial main power route](../hw/routing/blind-main/README.md) preserves all
+196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
+reservations. Its 222 segments and 72 vias connect 24 checked copper groups,
+including local charger/motor/regulator paths, radio power and ground return.
+Six injected geometric/copper failures are rejected. Actual DRC retains 364
+unconnected items, 261 silk/text findings, four library differences and five
+footprint-type findings. This is a reproducible partial checkpoint; critical-loop,
+current/thermal, USB, supervisory and full-routing work remain.
 
 The CAD checks now use the twelve actual primary wire-pad positions and remove
 the central support that would intersect their solder tails. Corner supports,

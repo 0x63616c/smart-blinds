@@ -107,8 +107,39 @@
         0
       ],
       "zoom": 0.83,
-      "collapsed": false,
+      "collapsed": true,
       "role": "54 \u00d7 68.5 mm black-board study, with USB-C, protected battery connection, motor tails and encoder/home ports. All 196 footprints are placed; no copper is routed. Thermal design, manufacturing rules and physical qualification remain open."
+    },
+    {
+      "id": "main-power-route",
+      "kind": "pcb",
+      "title": "Integrated controller \u2014 partial power routing",
+      "source": "hw/routing/blind-main/main-routed.kicad_pcb",
+      "dependencies": [
+        "hw/routing/blind-main/route.py",
+        "hw/routing/blind-main/place.py",
+        "hw/routing/blind-main/charger.py",
+        "hw/routing/blind-main/local_power.py",
+        "hw/routing/blind-main/module_supply.py",
+        "hw/routing/blind-main/checks.py",
+        "hw/routing/blind-main/checks.json",
+        "hw/routing/blind-main/route-record.json",
+        "hw/routing/blind-main/placement.json",
+        "hw/routing/blind-main/project-template.json",
+        "hw/routing/blind-main/main-routed.kicad_pro"
+      ],
+      "image_size": [
+        1500,
+        1700
+      ],
+      "rotate": [
+        12,
+        0,
+        0
+      ],
+      "zoom": 0.83,
+      "collapsed": false,
+      "role": "Experimental manual power-route checkpoint with 222 segments, 72 vias and 24 checked physical connection groups. Circuit identities, 17 anchors and 13 keepouts are preserved. 364 disconnected items and documented footprint/silkscreen findings remain; electrical, thermal and physical qualification is unfinished."
     },
     {
       "id": "companion-routed",

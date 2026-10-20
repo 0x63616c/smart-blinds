@@ -224,6 +224,8 @@ jobs:
         run: |
           xvfb-run -a /usr/bin/python3 hw/routing/blind-pack-primary/checks.py --negative-tests
           python3 hw/routing/blind-pack-primary/estimate_losses.py
+      - name: Check partial main power routing and injected failures
+        run: xvfb-run -a /usr/bin/python3 hw/routing/blind-main/checks.py --negative-tests
       - name: Check captured component prices and quantities
         run: python3 bom/captured_components.py --check
       - name: Compile and audit main-controller integration

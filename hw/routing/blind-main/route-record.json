@@ -1,0 +1,24 @@
+{
+  "status": "EXPERIMENTAL PARTIAL main power routing; not a fabrication release",
+  "source_hashes": {
+    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "ba633546b9834325b132ba6cf606e7b5bb5817b4b9ca7f4ac7568eda448de4f5",
+    "hw/routing/blind-main/placement.json": "c9baaada0a5964c874532663b815ea58304f2dc414366c89dd89a9ea6cc6a6fe",
+    "hw/routing/blind-main/project-template.json": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "hw/routing/blind-main/route.py": "5077a75792a2768194164d166c1fa7f5b322c8baa4357cb5a73ed2ae2de94bbc",
+    "hw/routing/blind-main/place.py": "95077c4d892a6b49814f3c476dfdc7a6f3397973fbf7215a9e8af65ea41b736d",
+    "hw/routing/blind-main/charger.py": "63c7a84fb2b46b3627ccba3e7369fcc0e94ef023af4c7166adadbd659f3fdf0a",
+    "hw/routing/blind-main/local_power.py": "a0c8e2895494d882b5092b7835278c0d18389707236a41bf666bd4c5648e81a0",
+    "hw/routing/blind-main/module_supply.py": "a981469772987b5d1d078f98fe5c61948f5a47e9b4ddcbb5879eabf44767bba2"
+  },
+  "pcb_sha256": "b1c98846da77be96abebda1cde72bfd0ab8daeda1d404eef2674cb05a79aa18f",
+  "project_sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+  "segments": 222,
+  "vias": 72,
+  "unrouted_work": [
+    "USB input/protection and differential pair",
+    "Pack feed and charge/system distribution",
+    "Regenerative clamp and supervisor loops",
+    "Full logic and analogue signals",
+    "Current/thermal/return-path review and final manufacturing rules"
+  ]
+}

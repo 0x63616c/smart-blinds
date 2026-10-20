@@ -1,0 +1,164 @@
+{
+  "status": "Partial route only; no manufacturing or physical acceptance",
+  "source_hashes": {
+    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "ba633546b9834325b132ba6cf606e7b5bb5817b4b9ca7f4ac7568eda448de4f5",
+    "hw/routing/blind-main/placement.json": "c9baaada0a5964c874532663b815ea58304f2dc414366c89dd89a9ea6cc6a6fe",
+    "hw/routing/blind-main/project-template.json": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "hw/routing/blind-main/route.py": "5077a75792a2768194164d166c1fa7f5b322c8baa4357cb5a73ed2ae2de94bbc",
+    "hw/routing/blind-main/place.py": "95077c4d892a6b49814f3c476dfdc7a6f3397973fbf7215a9e8af65ea41b736d",
+    "hw/routing/blind-main/charger.py": "63c7a84fb2b46b3627ccba3e7369fcc0e94ef023af4c7166adadbd659f3fdf0a",
+    "hw/routing/blind-main/local_power.py": "a0c8e2895494d882b5092b7835278c0d18389707236a41bf666bd4c5648e81a0",
+    "hw/routing/blind-main/module_supply.py": "a981469772987b5d1d078f98fe5c61948f5a47e9b4ddcbb5879eabf44767bba2",
+    "hw/routing/blind-main/main-routed.kicad_pcb": "b1c98846da77be96abebda1cde72bfd0ab8daeda1d404eef2674cb05a79aa18f",
+    "hw/routing/blind-main/checks.py": "3e7d1458beb12e2e7727b9bbeb6214f51da6231072738d5961c6e97243b18fd9",
+    "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3"
+  },
+  "kicad_version": "10.0.4",
+  "geometry": {
+    "footprints": 196,
+    "mechanical_anchors": 17,
+    "moved_electrical_parts": [
+      "usb.r_scl",
+      "charger.c_input1",
+      "charger.c_pmid1",
+      "controller.r_strap8",
+      "charger.r_ts_bottom",
+      "encoder.c_gate",
+      "charger.c_bat2",
+      "logic_supply.r_mode",
+      "controller.r_up",
+      "motor.c_fly",
+      "charger.c_pmid3",
+      "logic_supply.c_input",
+      "usb.r_uv_top1",
+      "motor.r_ref_lo",
+      "controller.c_bulk",
+      "motor.r_current",
+      "encoder.gate",
+      "charger.r_charge_off",
+      "charger.c_sys3",
+      "motor.r_in1",
+      "charger.c_sys5",
+      "charger.c_bat1",
+      "encoder.ic",
+      "controller.r_home",
+      "charger.c_input_fast",
+      "usb.c_2v7",
+      "logic_supply.r_enable",
+      "motor.c_ref",
+      "motor.ic",
+      "motor.r_in2",
+      "controller.c_bypass",
+      "usb.tvs_vbus",
+      "logic_supply.c_output_fast",
+      "motor.c_vm",
+      "encoder.c_input",
+      "logic_supply.c_input_fast",
+      "charger.c_pmid4",
+      "supervision.watchdog",
+      "motor.c_pump",
+      "motor.c_bulk",
+      "charger.c_regn",
+      "supervision.r_request",
+      "charger.c_sys2",
+      "supervision.gate",
+      "charger.inductor",
+      "motor.r_mode",
+      "controller.r_b_series",
+      "charger.q_charge",
+      "controller.r_home_series",
+      "supervision.c_wd",
+      "supervision.c_timing",
+      "logic_supply.r_pg",
+      "regen.q_drive",
+      "charger.c_boot1",
+      "charger.c_sys1",
+      "charger.r_ilim_top",
+      "logic_supply.c_softstart",
+      "logic_supply.c_output1",
+      "usb.q_enable",
+      "logic_supply.c_output2",
+      "charger.c_boot2",
+      "charger.c_pmid_fast",
+      "charger.c_input2",
+      "encoder.r_enable",
+      "charger.c_pmid2",
+      "motor.r_ref_hi",
+      "charger.c_sys4",
+      "motor.r_sleep",
+      "charger.r_permission_base",
+      "logic_supply.c_input2",
+      "charger.ic",
+      "regen.q_hot_drive",
+      "encoder.c_output",
+      "charger.c_sys_fast",
+      "thermal_gate",
+      "supervision.r_wdo"
+    ],
+    "preserved_keepouts": 13,
+    "courtyards": {
+      "electrical_footprints": 196,
+      "with_courtyards": 196,
+      "new_envelopes_checked": 178
+    },
+    "encoder_wire_height": {
+      "reviewed_parts_under_route": [
+        "controller.r_charge",
+        "controller.r_down"
+      ],
+      "maximum_mounted_height_mm": 7.8,
+      "reviewed_resistor_height_with_solder_allowance_mm": 0.55
+    },
+    "unique_uuids": 4816
+  },
+  "copper": {
+    "connected_path_groups": 24,
+    "ground_fill_islands": 1,
+    "charger_bypass_ground_vias": {
+      "charger.c_regn": 2,
+      "charger.c_input_fast": 2
+    },
+    "segments": 222,
+    "vias": 72
+  },
+  "drc": {
+    "remaining_violations": {
+      "footprint_type_mismatch": 5,
+      "lib_footprint_mismatch": 4,
+      "silk_edge_clearance": 4,
+      "silk_over_copper": 56,
+      "silk_overlap": 199,
+      "text_height": 1,
+      "text_thickness": 1
+    },
+    "unconnected_items": 364,
+    "ignored_checks": [
+      "footprint_filters_mismatch",
+      "track_not_centered_on_via",
+      "tuning_profile_track_geometries"
+    ],
+    "exact_inherited_footprint_findings": {
+      "footprint_type_mismatch": [
+        "charger.inductor",
+        "controller.mcu",
+        "motor.ic",
+        "regen.thermostat",
+        "usb.connector"
+      ],
+      "lib_footprint_mismatch": [
+        "encoder_port.header",
+        "home_port.header",
+        "supervision.watchdog",
+        "usb.efuse"
+      ]
+    }
+  },
+  "negative_controls": [
+    "move_usb_rejected",
+    "alter_pad_rejected",
+    "alter_rf_rejected",
+    "cut_module_supply_rejected",
+    "remove_return_plane_rejected",
+    "cut_regn_bypass_return_rejected"
+  ]
+}
