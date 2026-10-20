@@ -17,7 +17,7 @@ followed by an eight-unit build only after their tests pass.
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
 | Main controller | Native eleven-sheet schematic and partial four-layer power route; 537 segments, 162 vias, 64 physical connection groups, preserved circuit and mechanical anchors | 275 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete primary/main routing, holder load path, insulation and qualified protection settings |
-| Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session and settling; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
+| Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
 | Radio transport | C6 Wi-Fi automatic-light-sleep evaluation and separate default-unqualified motion target; six real localhost DTLS tests; Thread target and seven-peer group adapter remain | Actual RF/power tests, physical qualification, temperature continuity, commissioned configuration and unattended recovery |
 | Costs | Dated parts inventory and component demand for two/eight units, sourced harness candidates and a source-bound print-volume estimate | Final board/assembly quote, slicer-based filament use, hardware totals, shipping, tax and stock refresh |
@@ -28,14 +28,20 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All twelve Design checks jobs passed for `b50a97d`](https://github.com/0x63616c/smart-blinds/actions/runs/39390520866),
-including seventeen portable firmware targets, the C6 gauge adapter, and the
-separate Wi-Fi motion target's default/bench builds against the pinned real SDK.
-The preceding hardware checkpoint's [source-generated previews also
-passed](https://github.com/0x63616c/smart-blinds/actions/runs/39388576220).
-The new charger-distribution extension passes local native geometry/copper checks
-and nineteen injected failures; its next published CI run remains pending.
-The container dependency-ownership failure is fixed; exact source pins and
+[All twelve Design checks jobs passed for `25c4c01`](https://github.com/0x63616c/smart-blinds/actions/runs/39393679149),
+including the charger-distribution extension's nineteen injected failures,
+seventeen portable firmware targets, the C6 gauge adapter, and the separate
+Wi-Fi motion target's default/bench builds against the pinned real SDK.
+Its [source-generated previews also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39393679663).
+
+The new [portable local ownership core](firmware/local-ownership.md) passes
+all eighteen host targets, the same suite under ASan/UBSan, 59 native transport,
+clock, motion and group-bridge checks, and pinned C6 Wi-Fi default/bench and
+Thread cross-builds locally. Its next published CI run remains pending.
+One executor owns local and remote motion, with fresh single-use local intents,
+independent internal epochs and actual OFF readback at admission and handoff.
+C6 applications still provide raw button STOP only; physical gesture/admission
+wiring and qualification remain unfinished. Exact dependency pins and
 modified-source rejection remain enforced.
 
 The retained-enclosure artifact contains 35 named empty-intersection checks, a
@@ -120,7 +126,7 @@ The separate [Wi-Fi motion target](firmware/wifi-motion.md) binds authenticated
 requests to the existing owned control runtime. Raw button STOP precedes ADC
 sampling; revocation and request generations prevent stale readiness or parking
 reports from surviving a disconnect or newly queued command. Physical OFF
-readbacks and independent control power locks govern sleep. The seventeen-target
+readbacks and independent control power locks govern sleep. The eighteen-target
 portable suite passes locally, as do pinned default/bench C6 builds and the
 existing Thread target after the shared runtime changes. The application supplies
 empty qualification records, so it cannot initialize motor I/O or establish a
@@ -166,7 +172,7 @@ measurements remain required before deployment or a battery-life claim.
 
 1. Establish manufacturing rules and route/review critical power and sensing paths.
 2. Finish holder retention, wiring details and a complete print/fastener budget.
-3. Complete temperature continuity, local endpoint ownership and commissioning, then test actual C6 timing/power.
+3. Complete temperature continuity, C6 local gesture/admission wiring and commissioning, then test actual C6 timing/power.
 4. Complete all three routed boards, manufacturing outputs and an assembly quote.
 5. Test two physical prototypes before committing to the eight-unit build.
 

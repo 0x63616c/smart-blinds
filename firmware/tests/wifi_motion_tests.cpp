@@ -12,6 +12,7 @@ struct Io final : MotionIo,CounterOrigin {
     unsigned calls=0,samples=0;
     bool op() { ++calls; ++now; return true; }
     std::uint64_t now_us() const override { return now; }
+    bool parked_off() override { return off && !counting && !encoder && !locked; }
     bool request_n(bool high) override { off=high;return op(); }
     bool charge_off() override { return op(); }
     bool coast() override { return op(); }

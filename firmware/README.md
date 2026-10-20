@@ -6,9 +6,10 @@ the owned motion session, C6 motor port and power readers. Its empty physical
 records and default-OFF compile option prevent motor initialization. The
 [radio-only evaluation](esp-idf-wifi/README.md), Thread target and
 [bring-up image](esp-idf/README.md) remain available separately.
-**No device has been flashed or validated on the purchased motor.** All seventeen
+**No device has been flashed or validated on the purchased motor.** All eighteen
 portable test targets and the pinned Wi-Fi motion default/bench builds pass
-locally; see the [runtime evidence and limits](../docs/firmware/wifi-motion.md).
+locally; see the [runtime evidence and limits](../docs/firmware/wifi-motion.md)
+and the [portable local ownership checkpoint](../docs/firmware/local-ownership.md).
 
 ```sh
 cmake -S firmware -B work/firmware-build
@@ -40,8 +41,8 @@ All default limits in `Limits` are illustrative test values, including current, 
 
 The executor, board pin mapping, authenticated transport and clock checks are
 implemented as reviewed checkpoints, with physical timing and electrical
-qualification still pending. Remaining implementation includes local endpoint
-ownership/gestures, qualified gauge continuity integration, persistent calibration
+qualification still pending. Portable local endpoint ownership is implemented. Remaining implementation
+includes C6 gesture/admission wiring, qualified gauge continuity integration, persistent calibration
 and record admission, credential commissioning, charge permission, homing and
 firmware update/recovery. The physical reference procedure must be completed
 before calling `establish_reference`; the software cannot infer a bottom-edge

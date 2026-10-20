@@ -23,8 +23,10 @@ single producer/single consumer, holds four commands, and rejects overflow.
 Its connection generation is assigned locally after a successful authenticated
 DTLS handshake. Generations increase within a boot, are limited to 32 bits for
 lock-free C6 atomics, and cannot be supplied by a request. Reconnection never
-restores motion. An active session that loses its connection stops and loses
-position validity. Generations and message sequences must not be reset in place.
+restores remote motion. An active remote session that loses its connection stops
+and loses position validity. The portable [local ownership core](local-ownership.md)
+does not use remote connectivity as local authority. Generations and message
+sequences must not be reset in place.
 
 `SessionInput.fast` must come from a successful, source-stamped physical sample.
 `SessionInput.power` must be the result of the actual gauge/charger
@@ -32,8 +34,8 @@ position validity. Generations and message sequences must not be reset in place.
 bounds. Zero/default or failed observations are not ready. The pack binding must
 match the local reference record. A worker must publish a failed capture as
 invalid immediately, replacing its last good result. Passing old good readings
-after a known bus failure is not supported. That worker/publication bridge is
-not implemented in this checkpoint.
+after a known bus failure is not supported. The [C6 runtime](c6-motion-runtime.md) supplies the worker/publication bridge;
+qualified continuity during a gauge refresh remains a separate integration gate.
 
 The clock snapshot must be the last accepted, boot/session-bound four-timestamp
 assessment with a physically qualified clock model. Retain a still-valid prior
@@ -52,7 +54,8 @@ The model remains unqualified in the shipped C6 application.
    Unknown boot, manual intervention or a fault invalidates the reference.
 2. Prepare checks the common physical-height origin and target without clamping,
    source age, current clock/probe, power, connection and duration. It installs
-   a new counter epoch, keeps the motor inhibited and warms the encoder.
+   a new internal counter epoch, verifies parked/OFF hardware, keeps the motor
+   inhibited and warms the encoder. The epoch is independent of the remote ID.
    An accepted prepare is **not** ready. A sample captured before the counter
    starts cannot arm the motor.
 3. A subsequent actual count establishes the controller's referenced measurement,
@@ -105,8 +108,8 @@ interval. A 500 ms total limit, missing sample, fault, I/O error or cleanup erro
 prevents a retained-position result. The quiet times are provisional software
 thresholds, not measured stopping or holding guarantees.
 
-Only a successful quiet interval and complete teardown yield a final count for
-the next command. This also requires independently qualified no-backdrive/no-slip
+Only a successful quiet interval, complete teardown and actual parked/OFF
+readback yield a final count for the next command. This also requires independently qualified no-backdrive/no-slip
 holding and guarded manual access; an incremental encoder cannot prove fabric
 position after chain slip. Immediate fault cleanup always invalidates reference.
 STOP during early encoder warmup also falls back to immediate inhibition and
@@ -119,15 +122,15 @@ See the [reference/recovery comparison](2026-10-19-reference-and-recovery.md).
 An accepted motion sets `Status.awake_required` until inhibited settling/cleanup
 finishes. Its hard duration limit is 240 seconds, independently of lease refresh
 and the radio-only ten-second wake window. A slower trajectory that exceeds this
-limit is rejected. An application must keep the Thread receiver and appropriate
+limit is rejected. An application must keep the selected radio receiver and appropriate
 PM locks active while that flag is true, and supply the actual awake/attached
 state. Merely extending the radio-only wake timer does not satisfy this contract.
 The implemented test moves for more than 15 seconds to check this distinction.
 
-The new session currently handles remote commands and local STOP only. The
-existing local up/down gesture and controller endpoint policies still need the
-same qualified execution path; this checkpoint does not claim that local
-endpoint movement is integrated. The [C6 runtime](c6-motion-runtime.md) now wires
+The portable session also implements [local endpoint ownership](local-ownership.md)
+through the same controller/executor, with distinct internal execution epochs.
+C6 applications still supply raw local STOP only: their gesture and admission
+paths do not construct local endpoint intents. The [C6 runtime](c6-motion-runtime.md) wires
 the authenticated callback, one owning worker and source-stamped status to this
 session. Production remains disabled through empty qualification records.
 Pack/clock/physical-reference commissioning and actual callback/worker timing
@@ -159,17 +162,19 @@ above the shared datum, not a percentage or each blind's own travel fraction.
 All trajectory fields must be zero for commit/lease/STOP. STOP may omit the
 calibration/probe fields, but its boot, message, command and send fields remain
 nonzero. Authentication is supplied by the transport callback and is never a
-payload boolean. No CoAP URI or response shape is claimed implemented here.
+payload boolean. Transport resources are described by the separate [C6 runtime](c6-motion-runtime.md);
+this portable protocol does not define their URI or response encoding.
 
 ## Checks
 
-Run the repository firmware CMake build and CTest suite. All ten host targets
-pass locally, including the new protocol and session targets. Tests cover the
+Run the repository firmware CMake build and CTest suite. Tests cover the
 actual controller/executor with a nonlinear synthetic plant, readiness ordering,
 completed motion and a second counter epoch, delayed-source lease expiry,
 clock-age/drift rejection, a motion beyond the radio-only wake interval, immediate
 STOP with a full inbox, retained coasting counts, held STOP, malformed/old work,
 unknown references, unqualified defaults and injected live health/I/O failures.
 The executor tests inject every settling inhibit and teardown failure and reject
-unending coast or missing evidence. Fresh C6 cross-build evidence for this
-checkpoint is pending; passing tests are not physical motor, RF or battery proof.
+unending coast or missing evidence. The eighteen portable targets, the same
+suite under ASan/UBSan, 59 native transport/clock/motion/bridge checks and pinned
+C6 Wi-Fi default/bench and Thread builds pass locally. These checks are not
+physical motor, RF or battery proof.

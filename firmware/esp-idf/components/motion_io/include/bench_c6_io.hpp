@@ -35,7 +35,7 @@ public:
     bool set_counter_origin(std::uint64_t epoch,double normalized_count) override;
     FastInputs sample_fast(); // ADC/PCNT source sampling, <=1 ms checked budget.
     bool stop_pressed() const; // Raw pads, before ADC; owning task only.
-    bool parked_off(); // Physical pad/peripheral checks, never a desired-state claim.
+    bool parked_off() override; // Physical pad/peripheral checks, never a desired-state claim.
     bool faulted() const { return fault_; }
     esp_err_t last_error() const { return last_error_; }
     std::uint64_t now_us() const override;

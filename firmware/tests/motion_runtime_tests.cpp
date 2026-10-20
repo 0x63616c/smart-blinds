@@ -165,6 +165,7 @@ struct Io : MotionIo,CounterOrigin {
     unsigned calls=0;
     bool off=true,counter=false;
     std::uint64_t now_us() const override { return now; }
+    bool parked_off() override { return off && !counter; } // Synthetic port only.
     bool operation() { ++calls; ++now; return true; }
     bool request_n(bool high) override { off=high; return operation(); }
     bool charge_off() override { return operation(); }

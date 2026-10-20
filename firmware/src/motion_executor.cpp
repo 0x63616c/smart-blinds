@@ -63,6 +63,20 @@ bool MotionExecutor::fail(Fault fault) {
     if(!safe_off()) fault_=Fault::io;
     return false;
 }
+bool MotionExecutor::verify_parked(std::uint64_t observed) {
+    if(!qualified_ || state_!=State::idle) return false;
+    touched_=true; // Qualified owner must inhibit after ANY ambiguous readback.
+    if(!time()) return false;
+    if(last_now_<observed) return fail(Fault::clock);
+    if(operation([&]{return io_.parked_off();})) return true;
+    return fail(Fault::io);
+}
+bool MotionExecutor::check_cadence(std::uint64_t previous) {
+    if(state_==State::idle || state_==State::fault) return false;
+    if(!time()) return false;
+    if(last_now_<=previous || last_now_-previous>cycle_max_us) return fail(Fault::clock);
+    return true;
+}
 bool MotionExecutor::open_sensing(std::uint64_t boot,std::uint64_t command,const MotionEvidence& power) {
     if(state_!=State::idle) return false;
     if(!qualified_) return fail(Fault::unqualified);

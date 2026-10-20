@@ -18,7 +18,7 @@ public:
     struct Cycle {
         std::uint64_t sequence;
         std::uint64_t sampled_us;
-        bool healthy; // Includes reference, power, lease and applied-output checks.
+        bool healthy; // Includes reference, power, authority deadline and applied-output checks.
         bool inputs_coast; // IN1/IN2 are confirmed 00 before the first heartbeat.
     };
 

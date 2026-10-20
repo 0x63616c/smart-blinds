@@ -27,6 +27,10 @@ class MotionIo {
 public:
     virtual ~MotionIo() = default;
     virtual std::uint64_t now_us() const = 0;
+    // Actual pad/peripheral readback: motor/charger/encoder OFF, counter and
+    // PWM stopped, WDI HIGH, no executor awake hold. Desired software state is
+    // insufficient. Unsupported ports refuse session admission by default.
+    virtual bool parked_off() { return false; }
     // All operations are synchronous/nonblocking with <=100 us budget. No I2C,
     // allocation, logging, flash or networking belongs in these operations.
     virtual bool request_n(bool high) = 0;
@@ -52,12 +56,21 @@ public:
     MotionExecutor(MotionIo& io,Calibration calibration,BenchMotionProfile profile,std::uint64_t boot);
     MotionExecutor(const MotionExecutor&)=delete;
     MotionExecutor& operator=(const MotionExecutor&)=delete;
-    // Explicit new command opens a fresh encoder epoch. No command is restored
-    // on reboot; unknown position still requires independent physical reference.
+    // command is the session's internal execution epoch, not an external wire
+    // ID. No execution is restored on reboot; unknown position still requires
+    // independent physical reference.
     bool open_sensing(std::uint64_t boot,std::uint64_t command,const MotionEvidence& power);
     bool poll_sensing(const MotionEvidence& power);
     bool arm(const MotionEvidence& evidence);
     bool update(const Output& output,const MotionEvidence& evidence);
+    // Owning session supplies its previous actual cycle-entry timestamp.
+    // Preserve a missed-cycle fault before cleanup can encounter a secondary
+    // expired heartbeat. This checks time only and can never feed/arm.
+    bool check_cadence(std::uint64_t previous_cycle_us);
+    // Qualified idle owner only. Read back parked outputs/peripherals. A failed
+    // readback issues every OFF operation and latches a fault, even before the
+    // first encoder epoch has touched the hardware.
+    bool verify_parked(std::uint64_t observed_us);
     // The owning task must stop and inspect the result before backend teardown.
     bool stop(); // Immediate OFF; caller must not assume the final count is stationary.
     bool begin_settling(); // Motor OFF immediately; keep encoder awake, no more WDI.

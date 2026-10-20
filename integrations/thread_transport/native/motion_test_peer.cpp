@@ -28,13 +28,14 @@ blinds::BenchMotionProfile profile() {
     p.feedforward=.00025; return p;
 }
 struct Plant : blinds::MotionIo,blinds::CounterOrigin {
-    bool off=true,counter=false,rail=false;
+    bool off=true,counter=false,rail=false,awake=false;
     double count=500,duty=0;
     int direction=0;
     std::uint64_t epoch=0,last=mono_us();
     mutable std::uint64_t previous_read_us=0,max_read_gap_us=0;
     mutable bool reversed_read=false;
     void begin_cycle() { max_read_gap_us=0; reversed_read=false; }
+    bool parked_off() override { return off && !counter && !rail && !awake && duty==0; }
     std::uint64_t now_us() const override {
         const auto now=mono_us();
         if(previous_read_us) {
@@ -56,7 +57,7 @@ struct Plant : blinds::MotionIo,blinds::CounterOrigin {
     bool encoder_power(bool value) override { rail=value; return true; }
     bool counter_start(std::uint64_t value) override { counter=rail && epoch==value; return counter; }
     bool counter_stop() override { counter=false; return true; }
-    bool awake_lock(bool) override { return true; }
+    bool awake_lock(bool held) override { awake=held; return true; }
     bool pwm(int dir,double value) override {
         advance();
         if(off || !counter || (dir!=1 && dir!=-1) || value<0 || value>.5) return false;

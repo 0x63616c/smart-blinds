@@ -265,7 +265,11 @@ Output Controller::tick(const Measurement& m, std::uint64_t now, std::uint64_t e
         return fail(Reason::control_gap);
     }
     const auto sample = trajectory_.sample(static_cast<double>(now - command_.start_ms) / 1000.);
-    if (sample.finished && std::abs(height - command_.target_height_mm) <= limits_.endpoint_tolerance_mm) {
+    // Local endpoint travel has no synchronized arrival time to preserve. Once
+    // inside the existing endpoint tolerance, stop rather than continuing to
+    // drive at the finite calibration boundary until nominal trajectory end.
+    // Measurement/range validation above still precedes this completion check.
+    if ((sample.finished || local_) && std::abs(height - command_.target_height_mm) <= limits_.endpoint_tolerance_mm) {
         state_ = State::idle;
         reason_ = Reason::ok;
         return output(0, command_.target_height_mm);
