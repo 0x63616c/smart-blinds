@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_CRM2512_FX_10R0ELF:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Bourns", partnumber="CRM2512-FX-10R0ELF", footprint="R2512.kicad_mod", symbol="CRM2512_FX_10R0ELF.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C840605", manufacturer="Bourns", partno="CRM2512-FX-10R0ELF">
+    trait has_designator_prefix<prefix="R">
+
+    pin 2
+    pin 1

@@ -211,5 +211,36 @@ class CarrierSchematicTests(unittest.TestCase):
             self.check(changed)
 
 
+class RegenSchematicTests(unittest.TestCase):
+    check = NativeSchematicTests.check
+
+    @classmethod
+    def setUpClass(cls):
+        cls.spec = json.loads((ROOT / "hw/schematics/blind-regen/regen-test.layout.json").read_text())
+        cls.graph = board_graph(ROOT / cls.spec["pcb"])
+        cls.source = parse((ROOT / cls.spec["output"]).read_text())
+        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+
+    def test_real_graph_roundtrip(self):
+        self.assertEqual(self.check(self.source), 105)
+
+    def test_reject_thermal_gate_bypassed(self):
+        changed = copy.deepcopy(self.source)
+        for label in children(changed, "label"):
+            if label[1] == "THERMAL_GATE":
+                label[1] = "PACK"
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+    def test_reject_dump_midpoint_short(self):
+        changed = copy.deepcopy(self.source)
+        for label in children(changed, "label"):
+            if label[1] == "SERIES_MID":
+                label[1] = "GND"
+                break
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+
 if __name__ == "__main__":
     unittest.main()

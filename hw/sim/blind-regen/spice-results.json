@@ -1,0 +1,108 @@
+{
+  "status": "PASS of generic topology/sensitivity experiments; not physical validation",
+  "models": "Generic PNP; ideal threshold MOSFET switches; TLV hysteresis plus assumed RC lag; injected TMP302 hot signal",
+  "template_sha256": {
+    "dump.cir.in": "0c7de705fbf05316c49567e5a0825eb40f51667022a9955ab1ed55b4f0217869",
+    "latch.cir.in": "968549d80434d72ce15fa4bf80508a06c1848579913137b26b50271159329178"
+  },
+  "results": [
+    {
+      "name": "fast_ramp",
+      "stimulus": {
+        "RAMP_END": 0.001001
+      },
+      "measurements": {
+        "cold_ok_min": 3.3,
+        "cold_gate_min": 6.92308,
+        "held_ok_max": 2.86389e-05,
+        "held_gate_max": 7.37651e-06,
+        "held_drive_min": 3.27985,
+        "reset_ok_min": 3.3,
+        "simulated_through_s": 0.16
+      }
+    },
+    {
+      "name": "normal_ramp",
+      "stimulus": {
+        "RAMP_END": 0.002
+      },
+      "measurements": {
+        "cold_ok_min": 3.3,
+        "cold_gate_min": 6.92308,
+        "held_ok_max": 2.86389e-05,
+        "held_gate_max": 7.37651e-06,
+        "held_drive_min": 3.27985,
+        "reset_ok_min": 3.3,
+        "simulated_through_s": 0.16
+      }
+    },
+    {
+      "name": "slow_ramp",
+      "stimulus": {
+        "RAMP_END": 0.041
+      },
+      "measurements": {
+        "cold_ok_min": 3.3,
+        "cold_gate_min": 6.92308,
+        "held_ok_max": 2.86389e-05,
+        "held_gate_max": 7.37651e-06,
+        "held_drive_min": 3.27985,
+        "reset_ok_min": 3.3,
+        "simulated_through_s": 0.16
+      }
+    },
+    {
+      "name": "dump_nominal",
+      "stimulus": {
+        "CURRENT": 0.5,
+        "CAP": 0.00022,
+        "ESR": 0.05,
+        "LAG": 3e-05
+      },
+      "measurements": {
+        "peak_pack": 14.0767,
+        "dump_energy": 0.125169,
+        "idle_gate_max": 0.000897709,
+        "simulated_through_s": 0.05
+      }
+    },
+    {
+      "name": "dump_stress",
+      "stimulus": {
+        "CURRENT": 2,
+        "CAP": 0.000176,
+        "ESR": 0.2,
+        "LAG": 0.0001
+      },
+      "measurements": {
+        "peak_pack": 15.0192,
+        "dump_energy": 0.535522,
+        "idle_gate_max": 0.000897648,
+        "simulated_through_s": 0.05
+      }
+    },
+    {
+      "name": "dump_late",
+      "stimulus": {
+        "CURRENT": 2,
+        "CAP": 0.000176,
+        "ESR": 0.2,
+        "LAG": 0.001
+      },
+      "measurements": {
+        "peak_pack": 18.7874,
+        "dump_energy": 0.549663,
+        "idle_gate_max": 0.000897648,
+        "simulated_through_s": 0.05
+      }
+    }
+  ],
+  "exclusions": [
+    "Actual IC propagation and startup",
+    "MOSFET switching SOA",
+    "motor energy and harness inductance",
+    "thermostat thermal transfer/delay",
+    "device spread/leakage and PCB contamination",
+    "sustained back-drive with open cutoff"
+  ]
+}

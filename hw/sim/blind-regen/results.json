@@ -1,0 +1,44 @@
+{
+  "status": "PASS of physical pin contract, part identity and conditional arithmetic",
+  "components": 38,
+  "physical_pins": 105,
+  "negative_controls_detected": [
+    "independent_supply_lost",
+    "one_bank_resistor_bypassed",
+    "sense_input_grounded",
+    "thermal_latch_feedback_missing",
+    "thermal_series_fet_bypassed"
+  ],
+  "semantic_graph_sha256": "6e96250ca6d5053e9e1fe59ca99415eee018443a4d7c8bb425c16e5801317559",
+  "threshold_bounds_with_tolerance_and_TCR": {
+    "rising_min_v": 13.363758045307444,
+    "rising_max_v": 14.680139450452348,
+    "falling_min_v": 12.808191595889161,
+    "falling_max_v": 14.337551513396619
+  },
+  "conditional_peak_with_assumed_100us_delay_v": 16.216503086815983,
+  "failure_example_with_assumed_1ms_delay_v": 26.44377581408871,
+  "maximum_total_delay_to18v_s": 0.0002569477283601934,
+  "thermal_series_gate_min_v": 4.855758643470601,
+  "thermal_series_gate_max_v": 10.067997367843825,
+  "minimum_dump_current_at_release_a": 2.5257723517825204,
+  "individual_resistor_power_at_conditional_peak_w": 6.640782130422028,
+  "stuck_dump_at12p6_total_w": 32.07272727272727,
+  "stuck_dump_at12p6_each_w": 4.009090909090909,
+  "output_cap_effective_estimate_uf": 2.6944028439045034,
+  "thermostat_sink_upper_a": 0.000686938775510204,
+  "idle_current_partial_bound_a": 0.00016977527472527472,
+  "idle_exclusions": "LDO loaded ground current, transistor/PCB/cap leakage, host gate input load; not a guaranteed total idle specification",
+  "thermal_open_2a_time_from18v_to20v_s": 0.000176,
+  "scope": "Transient values depend on assumed delay/current/C/ESR and PNP saturation. Pulse graph is single-pulse, no assembly thermal proof.",
+  "release_gates": [
+    "Actual returned motor energy/current and whether lowering can regenerate continuously.",
+    "100us comparator/driver response is a planning stimulus, not a guaranteed timing bound.",
+    "TMP302 to resistor-bank thermal coupling, hottest-element gradient and trip timing are unmeasured.",
+    "Sustained back-drive after thermal cutoff or disconnected pack is unsupported; motor coast alone does not absorb that energy.",
+    "Hot startup and brownout must not create a false latch or delayed unsafe clamp.",
+    "Two shorted power FETs or failed thermostat supply defeat independent cutoff; no functional-safety claim.",
+    "Pulse repetition, MOSFET switching SOA, leakage, trace inductance/overshoot, capacitor ESR/aging, printed-case temperatures and EMC require hardware qualification.",
+    "Cold restart after a trip requires pack power removal and service diagnosis, not automatic firmware retry."
+  ]
+}

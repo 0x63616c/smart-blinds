@@ -1,0 +1,53 @@
+* Captured resistor / PNP gate / switch topology under assumed return current.
+* Generic PNP, switch FETs and TLV hysteresis/lag. NOT manufacturer IC models.
+.param CBULK=@CAP@ IRETURN=@CURRENT@ LAG=@LAG@ ESRCAP=@ESR@
+Cbulk cap 0 {CBULK} IC=12.6
+Resr cap pack {ESRCAP}
+Rleak pack 0 1Meg
+Ireturn 0 pack PWL(0 0 10m 0 10.01m {IRETURN} 30m {IRETURN} 30.01m 0)
+Rtop1 pack top 330k
+Rtop2 top sense 10k
+Rbottom sense 0 10k
+Rfeedback1 gate fb 10Meg
+Rfeedback2 fb sense 10Meg
+* An RC lag is a sensitivity stimulus; TLV propagation is not an RC.
+Ebuffer buffer 0 sense 0 1
+Rlag buffer detector 1k
+Clag detector 0 {LAG/1000}
+Sdetect out 0 detector 0 comparator
+Rbase out base 100k
+Roff pack base 100k
+Qdrive gate base pack pnp_generic
+Rgate1 gate 0 100k
+Rgate2 gate 0 100k
+Cgate gate middle 3n
+Sdump bottom middle gate middle powerfet
+Sthermal middle 0 thermal_gate 0 powerfet
+Rthermal_top pack thermal_gate 82k
+Rthermal_bottom thermal_gate 0 100k
+Cthermal thermal_gate 0 3n
+R1a pack branch1 10
+R1b branch1 bottom 10
+R2a pack branch2 10
+R2b branch2 bottom 10
+R3a pack branch3 10
+R3b branch3 bottom 10
+R4a pack branch4 10
+R4b branch4 bottom 10
+.model pnp_generic PNP(IS=1e-14 BF=100 VAF=50 CJE=10p CJC=5p TF=1n)
+.model comparator SW(Ron=50 Roff=1e12 Vt=.39725 Vh=.00275)
+.model powerfet SW(Ron=.0105 Roff=1e12 Vt=4.5 Vh=.1)
+.tran 1u 50m 0 1u UIC
+.control
+run
+let dump_current = (v(pack)-v(bottom))/5
+let dump_power = (v(pack)-v(bottom))*dump_current
+meas tran peak_pack MAX v(pack)
+meas tran dump_energy INTEG dump_power
+meas tran idle_gate_max MAX v(gate) FROM=5m TO=9m
+set wr_singlescale
+set wr_vecnames
+wrdata wave.txt v(pack) v(gate) v(thermal_gate) dump_current dump_power
+quit
+.endc
+.end

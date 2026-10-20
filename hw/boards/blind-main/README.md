@@ -1,8 +1,8 @@
 # Integrated controller capture
 
-This unrouted 148-component, 471-pin study connects the C6 interface, independent
+This unrouted 190-component, 589-pin study connects the C6 interface, independent
 motor supervision, motor bridge, USB-C PD/eFuse input, BQ25798 charger, 3.3 V buck
-and switched 5 V encoder supply. Each block's reviewed physical net graph and
+switched 5 V encoder supply and independent regenerative-energy clamp. Each block's reviewed physical net graph and
 exact part identities are preserved, and independent boundary checks keep:
 
 - The motor on protected PACK, separate from charger SYS.
@@ -12,15 +12,17 @@ exact part identities are preserved, and independent boundary checks keep:
 - The factory PD I2C bus separate from the always-on MCU/gauge bus.
 - BQ25798 exposed pad on PMID, never ground.
 
-Normal and frozen builds pass locally; seven integration tests include injected
-power-domain, factory-bus, exposed-pad and reset faults. These checks preserve
+Normal and frozen builds pass locally; nine integration tests include injected
+power-domain, factory-bus, exposed-pad, reset and thermal-inhibit faults. These checks preserve
 circuit intentions, not behavior of physical silicon or a routed board.
 
 The mechanical team is evaluating a **47 × 75 mm** controller outline inside the
 unchanged 115 × 174 × 71 mm enclosure, with a large antenna reservation. This
-capture has no accepted outline or placement. Regenerative-energy handling,
-hardware thermal motor inhibit, carrier/motor/home connectors and factory pads
-are still being integrated. NVM commissioning, a full native integrated drawing,
+capture has no accepted outline or placement. Carrier/motor/home connectors and
+factory pads are still being integrated. The independent thermal latch gates motor
+permission and pulls the shared driver-fault line low; firmware cannot distinguish
+those two fault sources from that pin alone. The clamp is only a conditional pulse
+design; sustained regeneration and local thermal behavior remain unqualified. NVM commissioning, a full native integrated drawing,
 placement/routing/DRC, thermal/RF/EMI and prototype tests remain open. Do not
 fabricate or power hardware from this study.
 

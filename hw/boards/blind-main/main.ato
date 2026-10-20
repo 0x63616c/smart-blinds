@@ -1,7 +1,14 @@
 import ElectricPower
 import Electrical
 
-from "../blind-assembly/controller.ato" import ControllerAssembly
+from "../blind-io/controller.ato" import ControllerIO
+from "../blind-supervisor/supervisor.ato" import MotorSupervisor
+from "../blind-controller/motor.ato" import MotorBridge
+from "../blind-regen/regen.ato" import RegenerationClamp
+from "../../parts/blind-power/AO3400A.ato" import Part_AO3400A
+from "../../parts/blind-supervisor/SN74AUP1G97DCKR.ato" import Part_SN74AUP1G97DCKR
+from "../../parts/blind-control-io/0402WGF1001TCE.ato" import Part_0402WGF1001TCE
+from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
 from "../blind-usb/usb.ato" import UsbPdInput
 from "../blind-charger/charger.ato" import Charger3S
 from "../blind-regulator/regulator.ato" import LogicSupply
@@ -13,11 +20,16 @@ module MainController:
     Battery input is the protected carrier output, never raw cell rails.
     Motor current bypasses charger SYS and is sensed by the carrier shunt.
     The USB factory I2C bus stays separate from the always-on MCU/gauge bus.
-    Regen clamp, connectors and factory pads are still being
-    added. NVM settings, layout and physical qualification remain mandatory.
+    Connectors and factory pads are still being added. NVM settings, layout and physical qualification remain mandatory.
     This unrouted capture must not be used to power hardware or fabricate.
     """
-    control = new ControllerAssembly
+    controller = new ControllerIO
+    supervision = new MotorSupervisor
+    motor = new MotorBridge
+    regen = new RegenerationClamp
+    thermal_gate = new Part_SN74AUP1G97DCKR
+    r_thermal_sleep = new Part_0402WGF1001TCE
+    c_thermal_gate = new SAMSUNG_CL05B104KB54PNC_package
     usb = new UsbPdInput
     charger = new Charger3S
     logic_supply = new LogicSupply
@@ -25,22 +37,25 @@ module MainController:
     battery = new ElectricPower
     battery.voltage = 9V to 12.6V
     battery ~ charger.battery
-    battery ~ control.pack
+    battery ~ motor.pack
+    battery ~ regen.pack
     usb.output ~ charger.source
     charger.system ~ logic_supply.source
-    logic_supply.logic ~ control.rail
+    logic_supply.logic ~ controller.rail
+    logic_supply.logic ~ supervision.rail
+    logic_supply.logic ~ motor.logic
     logic_supply.logic ~ charger.logic
     charger.system ~ encoder.source
     logic_supply.logic ~ encoder.logic
-    encoder.output ~ control.encoder_supply
-    encoder.allow_n ~ control.controller.encoder_allow_n
-    encoder.reset_n ~ control.controller.reset_n
-    usb.usb_dp ~ control.controller.usb_dp
-    usb.usb_dn ~ control.controller.usb_dm
-    control.controller.charge_allow_n ~ charger.allow_charge_n
-    control.controller.charger_interrupt_n ~ charger.irq_n
-    control.controller.i2c_sda.line ~ charger.sda
-    control.controller.i2c_scl.line ~ charger.scl
+    encoder.output ~ controller.encoder_rail
+    encoder.allow_n ~ controller.encoder_allow_n
+    encoder.reset_n ~ controller.reset_n
+    usb.usb_dp ~ controller.usb_dp
+    usb.usb_dn ~ controller.usb_dm
+    controller.charge_allow_n ~ charger.allow_charge_n
+    controller.charger_interrupt_n ~ charger.irq_n
+    controller.i2c_sda.line ~ charger.sda
+    controller.i2c_scl.line ~ charger.scl
 
     # External protected carrier telemetry and independent charger thermistor.
     # GPIO isolation/absent-pack behavior remains an integration test gate.
@@ -52,3 +67,32 @@ module MainController:
     pack_scl ~ charger.scl
     pack_ntc ~ charger.ntc
     pack_ntc_return ~ charger.ntc_return
+
+    controller.motor_request_n ~ supervision.motor_request_n
+    controller.watchdog_heartbeat ~ supervision.heartbeat
+    controller.reset_n ~ supervision.reset_n
+    controller.motor_in1 ~ motor.in1
+    controller.motor_in2 ~ motor.in2
+    controller.motor_fault_n ~ motor.fault_n
+    controller.current_raw ~ motor.current.line
+
+    # Final independent AND: thermal permission AND supervised motor request.
+    # AUP input tolerates the independent 3.3V rail with main VCC absent.
+    # Missing PACK/local clamp supply therefore inhibits motion but not USB logic.
+    thermal_gate.VCC ~ logic_supply.logic.hv
+    thermal_gate.GND ~ battery.lv
+    thermal_gate.IN0 ~ supervision.motor_sleep_n.line
+    thermal_gate.IN1 ~ battery.lv
+    thermal_gate.IN2 ~ regen.thermal_ok
+    thermal_gate.Y ~ motor.awake.line
+    r_thermal_sleep.1 ~ motor.awake.line
+    r_thermal_sleep.2 ~ battery.lv
+    c_thermal_gate.1 ~ logic_supply.logic.hv
+    c_thermal_gate.2 ~ battery.lv
+
+    # Share driver/thermal fault indication without joining local supply pullups.
+    # The independently latched thermal-trip node drives only this MOSFET gate.
+    q_thermal_fault = new Part_AO3400A
+    q_thermal_fault.G ~ regen.thermal_trip_drive
+    q_thermal_fault.S ~ battery.lv
+    q_thermal_fault.D ~ motor.fault_n.line

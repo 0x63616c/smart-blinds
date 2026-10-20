@@ -7,7 +7,10 @@ ROOT=Path(__file__).resolve().parents[3]
 sys.path.insert(0,str(ROOT/'tools'))
 from generate_schematics import board_graph
 
-BLOCKS=[('control','blind-assembly','controller-test',''),
+BLOCKS=[('controller','blind-io','controller-test','controller'),
+        ('supervision','blind-supervisor','supervisor-test','block'),
+        ('motor','blind-controller','motor-test','bridge'),
+        ('regen','blind-regen','regen-test','regen'),
         ('usb','blind-usb','usb-test','usb'),
         ('charger','blind-charger','charger-test','charger'),
         ('logic_supply','blind-regulator','regulator-test','regulator'),
@@ -38,24 +41,43 @@ def verify(graph):
             for prop in ('Partnumber','LCSC'):
                 assert c['properties'][prop]==projected[name]['properties'][prop],f'{name}: part changed'
         assert groups(reference)==groups(projected),f'{prefix}: internal nets changed'
-    assert actual.keys()==expected_names,'Unexpected integrated components'
+    extra={'thermal_gate':('SN74AUP1G97DCKR','C2682139'),
+           'r_thermal_sleep':('0402WGF1001TCE','C11702'),
+           'c_thermal_gate':('CL05B104KB54PNC','C307331'),
+           'q_thermal_fault':('AO3400A','C20917')}
+    assert actual.keys()==expected_names | extra.keys(),'Unexpected integrated components'
+    for name,(mpn,code) in extra.items():
+        assert actual[name]['properties']['Partnumber']==mpn and actual[name]['properties']['LCSC']==code,name
     pins={name+'.'+pin:net for name,c in actual.items() for pin,net in c['pads'].items()}
     # Independent physical-number boundary anchors, not .ato alias names.
     shared=[
         ['usb.efuse.6','charger.ic.2','charger.ic.3','charger.ic.8','charger.ic.9'],
-        ['charger.ic.22','charger.ic.23','control.motor.ic.11'],
+        ['charger.ic.22','charger.ic.23','motor.ic.11','regen.detector.5','regen.thermal_supply.1'],
         ['charger.ic.25','logic_supply.ic.6','encoder.ic.1'],
-        ['logic_supply.ic.3','control.controller.mcu.2','encoder.gate.5'],
-        ['control.controller.mcu.20','charger.r_permission_base.1'],
-        ['control.controller.mcu.24','charger.ic.21'],
-        ['control.controller.mcu.11','charger.ic.15'],
-        ['control.controller.mcu.12','charger.ic.14'],
-        ['usb.connector.A6','usb.connector.B6','control.controller.r_dp.2'],
-        ['usb.connector.A7','usb.connector.B7','control.controller.r_dm.2'],
-        ['encoder.ic.5','control.controller.r_a_up.1','control.controller.r_b_up.1'],
-        ['encoder.gate.6','control.controller.mcu.21'],
-        ['encoder.gate.1','control.controller.mcu.3'],
-        ['usb.efuse.8','charger.ic.10','logic_supply.ic.4','control.motor.ic.9','encoder.ic.2'],
+        ['logic_supply.ic.3','controller.mcu.2','encoder.gate.5','thermal_gate.5','c_thermal_gate.1'],
+        ['controller.mcu.20','charger.r_permission_base.1'],
+        ['controller.mcu.24','charger.ic.21'],
+        ['controller.mcu.11','charger.ic.15'],
+        ['controller.mcu.12','charger.ic.14'],
+        ['usb.connector.A6','usb.connector.B6','controller.r_dp.2'],
+        ['usb.connector.A7','usb.connector.B7','controller.r_dm.2'],
+        ['encoder.ic.5','controller.r_a_up.1','controller.r_b_up.1'],
+        ['encoder.gate.6','controller.mcu.21'],
+        ['encoder.gate.1','controller.mcu.3'],
+        ['usb.efuse.8','charger.ic.10','logic_supply.ic.4','motor.ic.9','encoder.ic.2',
+         'thermal_gate.1','thermal_gate.2','r_thermal_sleep.2','c_thermal_gate.2'],
+        ['controller.mcu.18','supervision.inputs.1'],
+        ['controller.mcu.25','supervision.inputs.3'],
+        ['controller.mcu.3','supervision.supervisor.1'],
+        ['controller.mcu.16','motor.ic.1'],
+        ['controller.mcu.17','motor.ic.2'],
+        ['controller.mcu.19','motor.ic.4','q_thermal_fault.3'],
+        ['q_thermal_fault.2','motor.ic.9'],
+        ['q_thermal_fault.1','regen.q_hold.1','regen.q_cutoff.1'],
+        ['controller.r_adc_hi.1','motor.ic.6'],
+        ['supervision.gate.4','thermal_gate.3'],
+        ['regen.thermostat.3','thermal_gate.6'],
+        ['thermal_gate.4','motor.ic.3','r_thermal_sleep.1'],
     ]
     for group in shared:
         assert len({pins[p] for p in group})==1, f'Broken integration: {group}'
@@ -64,6 +86,7 @@ def verify(graph):
               'logic_supply.ic.3','encoder.ic.5','charger.ic.29','charger.ic.10']
     assert len({pins[p] for p in isolated})==len(isolated),'Power domains shorted'
     # The unpowered PD factory bus must not join the always-on host/gauge bus.
+    assert pins['supervision.gate.4']!=pins['motor.ic.3'],'Thermal motor inhibit bypassed'
     buses=['usb.pd.7','usb.pd.8','charger.ic.14','charger.ic.15']
     assert len({pins[p] for p in buses})==4,'Factory/host buses shorted'
     return {'status':'PASS: block preservation and integration boundaries, not a routed or tested board',

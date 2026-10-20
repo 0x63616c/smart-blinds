@@ -1,0 +1,8 @@
+requires-atopile: ^0.15.9
+paths:
+  src: ./
+  layout: ../../layouts/blind-regen
+builds:
+  regen-test:
+    entry: regen.ato:RegenTest
+    hide_designators: true

@@ -1,0 +1,758 @@
+{
+  "title": "Smart Blinds / regenerative clamp and thermal latch",
+  "paper": "A3",
+  "pcb": "hw/layouts/blind-regen/regen-test/regen-test.kicad_pcb",
+  "output": "hw/schematics/blind-regen/regen-test.kicad_sch",
+  "symbols": {
+    "P_0402WGF1002TCE": {
+      "source": "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym",
+      "name": "0402WGF1002TCE",
+      "type": "passive"
+    },
+    "P_AO3400A": {
+      "source": "hw/parts/blind-power/AO3400A.kicad_sym",
+      "name": "AO3400A",
+      "type": "passive"
+    },
+    "P_MMBT3906LT1G": {
+      "source": "hw/parts/blind-power/MMBT3906LT1G.kicad_sym",
+      "name": "MMBT3906LT1G",
+      "type": "passive"
+    },
+    "P_CL21A475KAQNNNE": {
+      "source": "hw/parts/blind-power/CL21A475KAQNNNE.kicad_sym",
+      "name": "CL21A475KAQNNNE",
+      "type": "passive"
+    },
+    "P_AON7400A": {
+      "source": "hw/parts/blind-carrier/AON7400A.kicad_sym",
+      "name": "AON7400A",
+      "type": "passive"
+    },
+    "P_CL05B104KB54PNC": {
+      "source": "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym",
+      "name": "CL05B104KB54PNC",
+      "type": "passive"
+    },
+    "P_0402WGF1003TCE": {
+      "source": "hw/parts/blind-control-io/0402WGF1003TCE.kicad_sym",
+      "name": "0402WGF1003TCE",
+      "type": "passive"
+    },
+    "P_0402WGF3303TCE": {
+      "source": "hw/parts/blind-regen/0402WGF3303TCE.kicad_sym",
+      "name": "0402WGF3303TCE",
+      "type": "passive"
+    },
+    "P_0402WGF8202TCE": {
+      "source": "hw/parts/blind-regen/0402WGF8202TCE.kicad_sym",
+      "name": "0402WGF8202TCE",
+      "type": "passive"
+    },
+    "P_0603WAF1005T5E": {
+      "source": "hw/parts/blind-regen/0603WAF1005T5E.kicad_sym",
+      "name": "0603WAF1005T5E",
+      "type": "passive"
+    },
+    "P_TLV6710DDCR": {
+      "source": "hw/parts/blind-regen/TLV6710DDCR.kicad_sym",
+      "name": "TLV6710DDCR",
+      "pins": {
+        "1": {
+          "name": "OUTA",
+          "type": "open_collector"
+        },
+        "2": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "INA",
+          "type": "input"
+        },
+        "4": {
+          "name": "INB",
+          "type": "input"
+        },
+        "5": {
+          "name": "VDD",
+          "type": "power_in"
+        },
+        "6": {
+          "name": "OUTB",
+          "type": "open_collector"
+        }
+      }
+    },
+    "P_TMP302ADRLR": {
+      "source": "hw/parts/blind-regen/TMP302ADRLR.kicad_sym",
+      "name": "TMP302ADRLR",
+      "pins": {
+        "6": {
+          "name": "TRIPSET1",
+          "type": "input"
+        },
+        "5": {
+          "name": "VS",
+          "type": "power_in"
+        },
+        "4": {
+          "name": "HYSTSET",
+          "type": "input"
+        },
+        "3": {
+          "name": "OUT",
+          "type": "open_collector"
+        },
+        "2": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "1": {
+          "name": "TRIPSET0",
+          "type": "input"
+        }
+      }
+    },
+    "P_TPS70933DBVR": {
+      "source": "hw/parts/blind-regen/TPS70933DBVR.kicad_sym",
+      "name": "TPS70933DBVR",
+      "pins": {
+        "1": {
+          "name": "IN",
+          "type": "power_in"
+        },
+        "2": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "EN",
+          "type": "input"
+        },
+        "4": {
+          "name": "NC",
+          "type": "passive"
+        },
+        "5": {
+          "name": "OUT",
+          "type": "power_out"
+        }
+      }
+    },
+    "P_CRM2512_FX_10R0ELF": {
+      "source": "hw/parts/blind-regen/CRM2512_FX_10R0ELF.kicad_sym",
+      "name": "CRM2512-FX-10R0ELF",
+      "type": "passive"
+    }
+  },
+  "components": {
+    "U1": {
+      "symbol": "P_TLV6710DDCR",
+      "mpn": "TLV6710DDCR",
+      "value": "TLV6710DDCR",
+      "at": [
+        62.23,
+        60.96,
+        0
+      ],
+      "text_offset": [
+        0,
+        -13.97
+      ],
+      "no_connect": [
+        "1"
+      ]
+    },
+    "C1": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n",
+      "at": [
+        40.64,
+        100.33,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R22": {
+      "symbol": "P_0402WGF3303TCE",
+      "mpn": "0402WGF3303TCE",
+      "value": "330k",
+      "at": [
+        95.25,
+        100.33,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R23": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        149.86,
+        100.33,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R21": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        204.46999999999997,
+        100.33,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R11": {
+      "symbol": "P_0603WAF1005T5E",
+      "mpn": "0603WAF1005T5E",
+      "value": "10M",
+      "at": [
+        259.08,
+        100.33,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R12": {
+      "symbol": "P_0603WAF1005T5E",
+      "mpn": "0603WAF1005T5E",
+      "value": "10M",
+      "at": [
+        313.69,
+        100.33,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "Q2": {
+      "symbol": "P_MMBT3906LT1G",
+      "mpn": "MMBT3906LT1G",
+      "value": "MMBT3906LT1G",
+      "at": [
+        368.29999999999995,
+        100.33,
+        0
+      ],
+      "text_offset": [
+        12.7,
+        -2.54
+      ]
+    },
+    "R1": {
+      "symbol": "P_0402WGF1003TCE",
+      "mpn": "0402WGF1003TCE",
+      "value": "100k",
+      "at": [
+        40.64,
+        130.81,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R2": {
+      "symbol": "P_0402WGF1003TCE",
+      "mpn": "0402WGF1003TCE",
+      "value": "100k",
+      "at": [
+        95.25,
+        130.81,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R13": {
+      "symbol": "P_0402WGF1003TCE",
+      "mpn": "0402WGF1003TCE",
+      "value": "100k",
+      "at": [
+        149.86,
+        130.81,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R14": {
+      "symbol": "P_0402WGF1003TCE",
+      "mpn": "0402WGF1003TCE",
+      "value": "100k",
+      "at": [
+        204.46999999999997,
+        130.81,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "Q3": {
+      "symbol": "P_AON7400A",
+      "mpn": "AON7400A",
+      "value": "AON7400A",
+      "at": [
+        259.08,
+        130.81,
+        0
+      ],
+      "text_offset": [
+        0,
+        -13.97
+      ]
+    },
+    "Q6": {
+      "symbol": "P_AON7400A",
+      "mpn": "AON7400A",
+      "value": "AON7400A",
+      "at": [
+        313.69,
+        130.81,
+        0
+      ],
+      "text_offset": [
+        0,
+        -13.97
+      ]
+    },
+    "R20": {
+      "symbol": "P_0402WGF8202TCE",
+      "mpn": "0402WGF8202TCE",
+      "value": "82k",
+      "at": [
+        368.29999999999995,
+        130.81,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R18": {
+      "symbol": "P_0402WGF1003TCE",
+      "mpn": "0402WGF1003TCE",
+      "value": "100k",
+      "at": [
+        40.64,
+        161.29,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R3": {
+      "symbol": "P_CRM2512_FX_10R0ELF",
+      "mpn": "CRM2512-FX-10R0ELF",
+      "value": "10R",
+      "at": [
+        95.25,
+        161.29,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R4": {
+      "symbol": "P_CRM2512_FX_10R0ELF",
+      "mpn": "CRM2512-FX-10R0ELF",
+      "value": "10R",
+      "at": [
+        149.86,
+        161.29,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R5": {
+      "symbol": "P_CRM2512_FX_10R0ELF",
+      "mpn": "CRM2512-FX-10R0ELF",
+      "value": "10R",
+      "at": [
+        204.46999999999997,
+        161.29,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R6": {
+      "symbol": "P_CRM2512_FX_10R0ELF",
+      "mpn": "CRM2512-FX-10R0ELF",
+      "value": "10R",
+      "at": [
+        259.08,
+        161.29,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R7": {
+      "symbol": "P_CRM2512_FX_10R0ELF",
+      "mpn": "CRM2512-FX-10R0ELF",
+      "value": "10R",
+      "at": [
+        313.69,
+        161.29,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R8": {
+      "symbol": "P_CRM2512_FX_10R0ELF",
+      "mpn": "CRM2512-FX-10R0ELF",
+      "value": "10R",
+      "at": [
+        368.29999999999995,
+        161.29,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R9": {
+      "symbol": "P_CRM2512_FX_10R0ELF",
+      "mpn": "CRM2512-FX-10R0ELF",
+      "value": "10R",
+      "at": [
+        40.64,
+        191.76999999999998,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R10": {
+      "symbol": "P_CRM2512_FX_10R0ELF",
+      "mpn": "CRM2512-FX-10R0ELF",
+      "value": "10R",
+      "at": [
+        95.25,
+        191.76999999999998,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "U2": {
+      "symbol": "P_TPS70933DBVR",
+      "mpn": "TPS70933DBVR",
+      "value": "TPS70933DBVR",
+      "at": [
+        157.48,
+        60.96,
+        0
+      ],
+      "text_offset": [
+        0,
+        -13.97
+      ],
+      "no_connect": [
+        "3",
+        "4"
+      ]
+    },
+    "C2": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n",
+      "at": [
+        149.86,
+        191.76999999999998,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C3": {
+      "symbol": "P_CL21A475KAQNNNE",
+      "mpn": "CL21A475KAQNNNE",
+      "value": "4.7u",
+      "at": [
+        204.46999999999997,
+        191.76999999999998,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C4": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n",
+      "at": [
+        259.08,
+        191.76999999999998,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R17": {
+      "symbol": "P_0402WGF1003TCE",
+      "mpn": "0402WGF1003TCE",
+      "value": "100k",
+      "at": [
+        313.69,
+        191.76999999999998,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "U3": {
+      "symbol": "P_TMP302ADRLR",
+      "mpn": "TMP302ADRLR",
+      "value": "TMP302ADRLR",
+      "at": [
+        254,
+        60.96,
+        0
+      ],
+      "text_offset": [
+        0,
+        -13.97
+      ]
+    },
+    "R19": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        368.29999999999995,
+        191.76999999999998,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "Q5": {
+      "symbol": "P_MMBT3906LT1G",
+      "mpn": "MMBT3906LT1G",
+      "value": "MMBT3906LT1G",
+      "at": [
+        40.64,
+        222.25,
+        0
+      ],
+      "text_offset": [
+        12.7,
+        -2.54
+      ]
+    },
+    "R15": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        95.25,
+        222.25,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R16": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        149.86,
+        222.25,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R24": {
+      "symbol": "P_0402WGF1003TCE",
+      "mpn": "0402WGF1003TCE",
+      "value": "100k",
+      "at": [
+        204.46999999999997,
+        222.25,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "Q1": {
+      "symbol": "P_AO3400A",
+      "mpn": "AO3400A",
+      "value": "AO3400A",
+      "at": [
+        259.08,
+        222.25,
+        0
+      ],
+      "text_offset": [
+        12.7,
+        -2.54
+      ]
+    },
+    "Q4": {
+      "symbol": "P_AO3400A",
+      "mpn": "AO3400A",
+      "value": "AO3400A",
+      "at": [
+        313.69,
+        222.25,
+        0
+      ],
+      "text_offset": [
+        12.7,
+        -2.54
+      ]
+    },
+    "C5": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n",
+      "at": [
+        368.29999999999995,
+        222.25,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    }
+  },
+  "net_names": {
+    "OUTA": "NC_OUTA",
+    "lv": "GND",
+    "threshold": "SENSE",
+    "hv": "PACK",
+    "OUTB": "DETECT_N",
+    "regen-1-6": "TOP_MID",
+    "regen-1": "DRIVE_GATE",
+    "regen-1-5": "FB_MID",
+    "regen-2-1": "DRIVE_BASE",
+    "series_mid": "SERIES_MID",
+    "regen-2": "DUMP_BOTTOM",
+    "thermal_gate": "THERMAL_GATE",
+    "regen-1-1": "BANK1",
+    "regen-1-2": "BANK2",
+    "regen-1-3": "BANK3",
+    "regen-1-4": "BANK4",
+    "EN": "NC_EN",
+    "NC": "NC_LDO",
+    "1": "3V3",
+    "thermal_ok": "THERMAL_OK",
+    "2": "HOT_BASE",
+    "G": "TRIP_DRIVE"
+  },
+  "notes": [
+    {
+      "at": [
+        15,
+        15
+      ],
+      "text": "REGENERATIVE CLAMP / THERMAL LATCH STUDY",
+      "size": 2
+    },
+    {
+      "at": [
+        15,
+        24
+      ],
+      "text": "PACK-fed protection. 8 x 10R resistors: 2 series x 4 parallel = 5R. 65 C trip latches until PACK removal.",
+      "size": 1.27
+    },
+    {
+      "at": [
+        15,
+        33
+      ],
+      "text": "Pulse energy, switch delay, thermal coupling and sustained back-drive remain unqualified; simulation is conditional.",
+      "size": 1.27
+    },
+    {
+      "at": [
+        15,
+        281
+      ],
+      "text": "38-part unrouted capture. Native pin equivalence is not thermal, transient or fabrication approval.",
+      "size": 1.27
+    }
+  ],
+  "expected_erc_types": {
+    "power_pin_not_driven": 2
+  },
+  "expected_erc_items": {
+    "power_pin_not_driven": [
+      "Symbol U1 Pin 2 [GND, Power input, Line]",
+      "Symbol U1 Pin 5 [VDD, Power input, Line]"
+    ]
+  },
+  "erc_scope": "External protected PACK and ground have no source in this isolated block. THERMAL_OK and TRIP_DRIVE feed the main-board inhibit and fault indication. No artificial power flags or exclusions."
+}

@@ -1,0 +1,39 @@
+* Thermal latch topology experiment. Generic devices, not vendor validation.
+* TMP302 assertion is an injected waveform; no thermal coupling is modeled.
+Vlocal vlocal 0 PWL(0 0 1m 0 @RAMP_END@ 3.3 100m 3.3 101m 0 140m 0 141m 3.3)
+Vpack pack 0 PWL(0 0 1m 0 @RAMP_END@ 12.6 100m 12.6 101m 0 140m 0 141m 12.6)
+Vtrip trip 0 PWL(0 0 60m 0 60.001m 1 70m 1 70.001m 0)
+Sthermostat ok 0 trip 0 thermostat_switch
+Rpull vlocal ok 10k
+Rbase ok base 10k
+Roff vlocal base 10k
+Cfilter vlocal base 100n
+Qhot gate base vlocal pnp_generic
+Rgate gate 0 100k
+Ccut gate 0 1n
+Chold gate 0 1n
+* Parent fault-indicator AO3400A adds one more gate on the same drive signal.
+Cindicator gate 0 1n
+Scut thermal_gate 0 gate 0 smallswitch
+Shold ok 0 gate 0 smallswitch
+Rupper pack thermal_gate 82k
+Rlower thermal_gate 0 100k
+Cpower thermal_gate 0 3n
+.model pnp_generic PNP(IS=1e-14 BF=100 VAF=50 CJE=10p CJC=5p TF=1n)
+.model smallswitch SW(Ron=.048 Roff=1e12 Vt=1.5 Vh=.1)
+.model thermostat_switch SW(Ron=100 Roff=1e12 Vt=.5 Vh=.1)
+.tran 10u 160m 0 10u UIC
+.control
+run
+meas tran cold_ok_min MIN v(ok) FROM=50m TO=59m
+meas tran cold_gate_min MIN v(thermal_gate) FROM=50m TO=59m
+meas tran held_ok_max MAX v(ok) FROM=80m TO=99m
+meas tran held_gate_max MAX v(thermal_gate) FROM=80m TO=99m
+meas tran held_drive_min MIN v(gate) FROM=80m TO=99m
+meas tran reset_ok_min MIN v(ok) FROM=150m TO=159m
+set wr_singlescale
+set wr_vecnames
+wrdata wave.txt v(vlocal) v(ok) v(gate) v(thermal_gate)
+quit
+.endc
+.end

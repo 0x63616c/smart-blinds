@@ -1,0 +1,191 @@
+{
+  "status": "Independent physical-pin contract from primary pin tables",
+  "components": {
+    "detector": {
+      "1": "NC_OUTA",
+      "2": "GND",
+      "3": "GND",
+      "4": "SENSE",
+      "5": "PACK",
+      "6": "DETECT_N"
+    },
+    "thermostat": {
+      "1": "3V3",
+      "2": "GND",
+      "3": "THERMAL_OK",
+      "4": "3V3",
+      "5": "3V3",
+      "6": "3V3"
+    },
+    "thermal_supply": {
+      "1": "PACK",
+      "2": "GND",
+      "3": "NC_EN",
+      "4": "NC_LDO",
+      "5": "3V3"
+    },
+    "q_drive": {
+      "1": "DRIVE_BASE",
+      "2": "PACK",
+      "3": "DRIVE_GATE"
+    },
+    "q_hot_drive": {
+      "1": "HOT_BASE",
+      "2": "3V3",
+      "3": "TRIP_DRIVE"
+    },
+    "q_cutoff": {
+      "1": "TRIP_DRIVE",
+      "2": "GND",
+      "3": "THERMAL_GATE"
+    },
+    "q_hold": {
+      "1": "TRIP_DRIVE",
+      "2": "GND",
+      "3": "THERMAL_OK"
+    },
+    "q_dump": {
+      "1": "SERIES_MID",
+      "2": "SERIES_MID",
+      "3": "SERIES_MID",
+      "4": "DRIVE_GATE",
+      "5": "DUMP_BOTTOM",
+      "6": "DUMP_BOTTOM",
+      "7": "DUMP_BOTTOM",
+      "8": "DUMP_BOTTOM",
+      "9": "DUMP_BOTTOM"
+    },
+    "q_thermal": {
+      "1": "GND",
+      "2": "GND",
+      "3": "GND",
+      "4": "THERMAL_GATE",
+      "5": "SERIES_MID",
+      "6": "SERIES_MID",
+      "7": "SERIES_MID",
+      "8": "SERIES_MID",
+      "9": "SERIES_MID"
+    },
+    "c_detector": {
+      "1": "PACK",
+      "2": "GND"
+    },
+    "r_threshold_top1": {
+      "1": "PACK",
+      "2": "TOP_MID"
+    },
+    "r_threshold_top2": {
+      "1": "TOP_MID",
+      "2": "SENSE"
+    },
+    "r_threshold_bottom": {
+      "1": "SENSE",
+      "2": "GND"
+    },
+    "r_feedback1": {
+      "1": "DRIVE_GATE",
+      "2": "FB_MID"
+    },
+    "r_feedback2": {
+      "1": "FB_MID",
+      "2": "SENSE"
+    },
+    "r_drive_base": {
+      "1": "DETECT_N",
+      "2": "DRIVE_BASE"
+    },
+    "r_drive_off": {
+      "1": "PACK",
+      "2": "DRIVE_BASE"
+    },
+    "r_gate_off1": {
+      "1": "DRIVE_GATE",
+      "2": "GND"
+    },
+    "r_gate_off2": {
+      "1": "DRIVE_GATE",
+      "2": "GND"
+    },
+    "r_thermal_top": {
+      "1": "PACK",
+      "2": "THERMAL_GATE"
+    },
+    "r_thermal_bottom": {
+      "1": "THERMAL_GATE",
+      "2": "GND"
+    },
+    "c_thermal_input": {
+      "1": "PACK",
+      "2": "GND"
+    },
+    "c_thermal_output": {
+      "1": "3V3",
+      "2": "GND"
+    },
+    "c_thermostat": {
+      "1": "3V3",
+      "2": "GND"
+    },
+    "r_local_bleed": {
+      "1": "3V3",
+      "2": "GND"
+    },
+    "r_thermal_ok": {
+      "1": "3V3",
+      "2": "THERMAL_OK"
+    },
+    "r_hot_base": {
+      "1": "THERMAL_OK",
+      "2": "HOT_BASE"
+    },
+    "r_hot_off": {
+      "1": "3V3",
+      "2": "HOT_BASE"
+    },
+    "c_hot_filter": {
+      "1": "3V3",
+      "2": "HOT_BASE"
+    },
+    "r_trip_off": {
+      "1": "TRIP_DRIVE",
+      "2": "GND"
+    },
+    "r_dump1a": {
+      "1": "PACK",
+      "2": "BANK1"
+    },
+    "r_dump1b": {
+      "1": "BANK1",
+      "2": "DUMP_BOTTOM"
+    },
+    "r_dump2a": {
+      "1": "PACK",
+      "2": "BANK2"
+    },
+    "r_dump2b": {
+      "1": "BANK2",
+      "2": "DUMP_BOTTOM"
+    },
+    "r_dump3a": {
+      "1": "PACK",
+      "2": "BANK3"
+    },
+    "r_dump3b": {
+      "1": "BANK3",
+      "2": "DUMP_BOTTOM"
+    },
+    "r_dump4a": {
+      "1": "PACK",
+      "2": "BANK4"
+    },
+    "r_dump4b": {
+      "1": "BANK4",
+      "2": "DUMP_BOTTOM"
+    }
+  },
+  "ports": {
+    "pack.hv": "PACK",
+    "pack.lv": "GND",
+    "thermal_ok": "THERMAL_OK"
+  }
+}

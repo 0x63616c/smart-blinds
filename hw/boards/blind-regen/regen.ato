@@ -1,0 +1,173 @@
+import ElectricPower
+from "../../parts/blind-regen/TLV6710DDCR.ato" import Part_TLV6710DDCR
+from "../../parts/blind-regen/TMP302ADRLR.ato" import Part_TMP302ADRLR
+from "../../parts/blind-regen/TPS70933DBVR.ato" import Part_TPS70933DBVR
+from "../../parts/blind-regen/CRM2512_FX_10R0ELF.ato" import Part_CRM2512_FX_10R0ELF
+from "../../parts/blind-regen/0402WGF3303TCE.ato" import Part_0402WGF3303TCE
+from "../../parts/blind-regen/0402WGF8202TCE.ato" import Part_0402WGF8202TCE
+from "../../parts/blind-regen/0603WAF1005T5E.ato" import Part_0603WAF1005T5E
+from "../../parts/blind-carrier/AON7400A.ato" import Part_AON7400A
+from "../../parts/blind-power/MMBT3906LT1G.ato" import Part_MMBT3906LT1G
+from "../../parts/blind-power/AO3400A.ato" import Part_AO3400A
+from "../../parts/blind-power/CL21A475KAQNNNE.ato" import Part_CL21A475KAQNNNE
+from "../../parts/blind-control-io/0402WGF1003TCE.ato" import Part_0402WGF1003TCE
+from "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package
+from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
+
+module RegenerationClamp:
+    """UNVERIFIED pulse dump and latched local overtemperature cutoff.
+
+    Powered directly by protected motor PACK, independently of charger SYS.
+    Neither an absent-pack sustained back-drive absorber nor a safety-certified
+    cutoff. Qualify propagation, parasitics, pulse repetition, resistor/sensor
+    coupling, hot startup and enclosure temperatures before energizing motors.
+    The 5-ohm bank has eight 2W parts; 16W is NOT an assembly continuous rating.
+    """
+    pack = new ElectricPower
+    pack.voltage = 9V to 12.6V
+    signal thermal_ok
+    signal threshold
+    signal drive_gate
+    signal thermal_gate
+    signal dump_bottom
+    signal series_mid
+    signal thermal_trip_drive
+    signal local_3v3
+
+    detector = new Part_TLV6710DDCR
+    detector.VDD ~ pack.hv
+    detector.GND ~ pack.lv
+    detector.INB ~ threshold
+    detector.INA ~ pack.lv
+    # OUTA intentionally NC. OUTB sinks when INB rises above its reference.
+    c_detector = new SAMSUNG_CL05B104KB54PNC_package
+    c_detector.1 ~ pack.hv
+    c_detector.2 ~ pack.lv
+    r_threshold_top1 = new Part_0402WGF3303TCE
+    r_threshold_top2 = new UNI_ROYAL_0402WGF1002TCE_package
+    r_threshold_bottom = new UNI_ROYAL_0402WGF1002TCE_package
+    r_threshold_top1.1 ~ pack.hv
+    r_threshold_top1.2 ~ r_threshold_top2.1
+    r_threshold_top2.2 ~ threshold
+    r_threshold_bottom.1 ~ threshold
+    r_threshold_bottom.2 ~ pack.lv
+    r_feedback1 = new Part_0603WAF1005T5E
+    r_feedback2 = new Part_0603WAF1005T5E
+    r_feedback1.1 ~ drive_gate
+    r_feedback1.2 ~ r_feedback2.1
+    r_feedback2.2 ~ threshold
+
+    q_drive = new Part_MMBT3906LT1G
+    q_drive.E ~ pack.hv
+    q_drive.C ~ drive_gate
+    r_drive_base = new Part_0402WGF1003TCE
+    r_drive_base.1 ~ detector.OUTB
+    r_drive_base.2 ~ q_drive.B
+    r_drive_off = new Part_0402WGF1003TCE
+    r_drive_off.1 ~ q_drive.E
+    r_drive_off.2 ~ q_drive.B
+    r_gate_off1 = new Part_0402WGF1003TCE
+    r_gate_off2 = new Part_0402WGF1003TCE
+    r_gate_off1.1 ~ drive_gate
+    r_gate_off2.1 ~ drive_gate
+    r_gate_off1.2 ~ pack.lv
+    r_gate_off2.2 ~ pack.lv
+    q_dump = new Part_AON7400A
+    q_dump.G ~ drive_gate
+    q_dump.D ~ dump_bottom
+    q_dump.S ~ series_mid
+    q_thermal = new Part_AON7400A
+    q_thermal.D ~ series_mid
+    q_thermal.S ~ pack.lv
+    q_thermal.G ~ thermal_gate
+    # Passive bias keeps the dump path available before thermostat startup.
+    # The cutoff MOSFET is the lower device, with its source fixed at PACK-.
+    r_thermal_top = new Part_0402WGF8202TCE
+    r_thermal_bottom = new Part_0402WGF1003TCE
+    r_thermal_top.1 ~ pack.hv
+    r_thermal_top.2 ~ thermal_gate
+    r_thermal_bottom.1 ~ thermal_gate
+    r_thermal_bottom.2 ~ pack.lv
+
+    r_dump1a = new Part_CRM2512_FX_10R0ELF
+    r_dump1b = new Part_CRM2512_FX_10R0ELF
+    r_dump2a = new Part_CRM2512_FX_10R0ELF
+    r_dump2b = new Part_CRM2512_FX_10R0ELF
+    r_dump3a = new Part_CRM2512_FX_10R0ELF
+    r_dump3b = new Part_CRM2512_FX_10R0ELF
+    r_dump4a = new Part_CRM2512_FX_10R0ELF
+    r_dump4b = new Part_CRM2512_FX_10R0ELF
+    r_dump1a.1 ~ pack.hv
+    r_dump2a.1 ~ pack.hv
+    r_dump3a.1 ~ pack.hv
+    r_dump4a.1 ~ pack.hv
+    r_dump1a.2 ~ r_dump1b.1
+    r_dump2a.2 ~ r_dump2b.1
+    r_dump3a.2 ~ r_dump3b.1
+    r_dump4a.2 ~ r_dump4b.1
+    r_dump1b.2 ~ dump_bottom
+    r_dump2b.2 ~ dump_bottom
+    r_dump3b.2 ~ dump_bottom
+    r_dump4b.2 ~ dump_bottom
+
+    thermal_supply = new Part_TPS70933DBVR
+    thermal_supply.IN ~ pack.hv
+    thermal_supply.GND ~ pack.lv
+    thermal_supply.OUT ~ local_3v3
+    # EN intentionally open: TI internal 300nA pullup enables the part.
+    # EN must NOT be connected to PACK (6.5V recommended maximum).
+    # NC intentionally open. Output capacitor is separate from main SYS rails.
+    c_thermal_input = new SAMSUNG_CL05B104KB54PNC_package
+    c_thermal_input.1 ~ pack.hv
+    c_thermal_input.2 ~ pack.lv
+    c_thermal_output = new Part_CL21A475KAQNNNE
+    c_thermal_output.1 ~ local_3v3
+    c_thermal_output.2 ~ pack.lv
+    c_thermostat = new SAMSUNG_CL05B104KB54PNC_package
+    c_thermostat.1 ~ local_3v3
+    c_thermostat.2 ~ pack.lv
+    r_local_bleed = new Part_0402WGF1003TCE
+    r_local_bleed.1 ~ local_3v3
+    r_local_bleed.2 ~ pack.lv
+    thermostat = new Part_TMP302ADRLR
+    thermostat.VS ~ local_3v3
+    thermostat.GND ~ pack.lv
+    thermostat.TRIPSET0 ~ local_3v3
+    thermostat.TRIPSET1 ~ local_3v3
+    thermostat.HYSTSET ~ local_3v3
+    thermostat.OUT ~ thermal_ok
+    r_thermal_ok = new UNI_ROYAL_0402WGF1002TCE_package
+    r_thermal_ok.1 ~ local_3v3
+    r_thermal_ok.2 ~ thermal_ok
+
+    # A hot pulse latches two small MOSFETs on: one holds OUT low, one
+    # pulls the series-FET gate off. Reset requires removing PACK power.
+    q_hot_drive = new Part_MMBT3906LT1G
+    q_hot_drive.E ~ local_3v3
+    q_hot_drive.C ~ thermal_trip_drive
+    r_hot_base = new UNI_ROYAL_0402WGF1002TCE_package
+    r_hot_base.1 ~ thermal_ok
+    r_hot_base.2 ~ q_hot_drive.B
+    r_hot_off = new UNI_ROYAL_0402WGF1002TCE_package
+    r_hot_off.1 ~ local_3v3
+    r_hot_off.2 ~ q_hot_drive.B
+    # Hold the PNP base near its emitter during a fast local-supply ramp.
+    # This is a startup-glitch filter, not a qualified thermostat-ready timer.
+    c_hot_filter = new SAMSUNG_CL05B104KB54PNC_package
+    c_hot_filter.1 ~ local_3v3
+    c_hot_filter.2 ~ q_hot_drive.B
+    r_trip_off = new Part_0402WGF1003TCE
+    r_trip_off.1 ~ thermal_trip_drive
+    r_trip_off.2 ~ pack.lv
+    q_cutoff = new Part_AO3400A
+    q_cutoff.G ~ thermal_trip_drive
+    q_cutoff.S ~ pack.lv
+    q_cutoff.D ~ thermal_gate
+    q_hold = new Part_AO3400A
+    q_hold.G ~ thermal_trip_drive
+    q_hold.S ~ pack.lv
+    q_hold.D ~ thermal_ok
+
+module RegenTest:
+    """Unrouted capture; external PACK and thermal_ok are intentional ports."""
+    regen = new RegenerationClamp

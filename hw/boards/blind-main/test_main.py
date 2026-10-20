@@ -15,10 +15,10 @@ class IntegrationTests(unittest.TestCase):
         with self.assertRaises(AssertionError):verify(graph)
 
     def test_captured_boundaries(self):
-        self.assertEqual(verify(self.graph)['components'],148)
+        self.assertEqual(verify(self.graph)['components'],190)
 
     def test_motor_on_charger_sys(self):
-        self.change('control.motor.ic','11','charger.ic','25')
+        self.change('motor.ic','11','charger.ic','25')
 
     def test_usb_switch_bypassed(self):
         self.change('charger.ic','8','usb.efuse','5')
@@ -32,7 +32,13 @@ class IntegrationTests(unittest.TestCase):
     def test_encoder_reset_bypassed(self):
         self.change('encoder.gate','1','encoder.gate','5')
 
+    def test_thermal_fault_inverted(self):
+        self.change('q_thermal_fault','1','regen.thermostat','3')
+
+    def test_thermal_gate_bypassed(self):
+        self.change('motor.ic','3','supervision.gate','4')
+
     def test_wrong_encoder_supply(self):
-        self.change('control.controller.r_a_up','1','logic_supply.ic','3')
+        self.change('controller.r_a_up','1','logic_supply.ic','3')
 
 if __name__=='__main__':unittest.main()

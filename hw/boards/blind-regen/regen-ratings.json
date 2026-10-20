@@ -1,0 +1,250 @@
+{
+  "status": "Provisional capture and scoped arithmetic, not hardware validation",
+  "limits": {
+    "pack_normal_min_v": 9,
+    "pack_normal_max_v": 12.6,
+    "rail_design_ceiling_v": 18,
+    "charger_bat_abs_max_v": 20,
+    "assumed_return_max_a": 2,
+    "assumed_bulk_min_f": 0.000176,
+    "assumed_bulk_esr_ohm": 0.2,
+    "assumed_control_delay_s": 0.0001,
+    "stress_delay_s": 0.001,
+    "resistor_temperature_delta_c": 100,
+    "provisional_single_pulse_max_s": 0.1,
+    "thermal_trip_max_delay_qualified_s": null,
+    "assumed_gate_high_drop_max_v": 0.5
+  },
+  "parts": {
+    "0402WGF1002TCE": {
+      "lcsc": "C25744",
+      "wrapper": "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato",
+      "instances": [
+        "r_threshold_top2",
+        "r_threshold_bottom",
+        "r_thermal_ok",
+        "r_hot_base",
+        "r_hot_off"
+      ],
+      "resistance_ohm": 10000,
+      "tolerance": 0.01,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "tcr_abs_ppm_per_c": 100
+    },
+    "AO3400A": {
+      "lcsc": "C20917",
+      "wrapper": "../../parts/blind-power/AO3400A.ato",
+      "instances": [
+        "q_cutoff",
+        "q_hold"
+      ],
+      "vds_max_v": 30,
+      "vgs_abs_max_v": 12,
+      "rds_max_ohm_at2p5v": 0.048,
+      "source": "https://www.aosmd.com/sites/default/files/res/datasheets/AO3400A.pdf"
+    },
+    "MMBT3906LT1G": {
+      "lcsc": "C53444",
+      "wrapper": "../../parts/blind-power/MMBT3906LT1G.ato",
+      "instances": [
+        "q_drive",
+        "q_hot_drive"
+      ],
+      "vce_abs_max_v": 40,
+      "collector_max_a": 0.2,
+      "source": "https://www.onsemi.com/pdf/datasheet/mmbt3906lt1-d.pdf",
+      "evidence": "PNP 1=B, 2=E, 3=C. The 10 mA saturation specification is not claimed as a guaranteed sub-mA bound."
+    },
+    "CL21A475KAQNNNE": {
+      "lcsc": "C1779",
+      "wrapper": "../../parts/blind-power/CL21A475KAQNNNE.ato",
+      "instances": [
+        "c_thermal_output"
+      ],
+      "capacitance_f": 4.7e-06,
+      "tolerance": 0.1,
+      "max_voltage_v": 25,
+      "dielectric": "X5R",
+      "source": "https://product.samsungsem.com/mlcc/CL21A475KAQNNN.do",
+      "lifecycle": "Mass Production, checked 2026-10-19"
+    },
+    "AON7400A": {
+      "lcsc": "C85734",
+      "wrapper": "../../parts/blind-carrier/AON7400A.ato",
+      "instances": [
+        "q_dump",
+        "q_thermal"
+      ],
+      "vds_v": 30,
+      "vgs_abs_v": 20,
+      "rds_4v5_max_25c_ohm": 0.0105,
+      "qg_10v_max_c": 2.4e-08,
+      "ciss_max_f": 1.38e-09,
+      "status": "Full Production",
+      "source": "https://www.aosmd.com/sites/default/files/res/datasheets/AON7400A.pdf"
+    },
+    "CL05B104KB54PNC": {
+      "lcsc": "C307331",
+      "wrapper": "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato",
+      "instances": [
+        "c_detector",
+        "c_thermal_input",
+        "c_thermostat",
+        "c_hot_filter"
+      ],
+      "capacitance_f": 1e-07,
+      "rated_voltage_v": 50,
+      "tolerance": 0.1
+    },
+    "0402WGF1003TCE": {
+      "lcsc": "C25741",
+      "wrapper": "../../parts/blind-control-io/0402WGF1003TCE.ato",
+      "instances": [
+        "r_drive_base",
+        "r_drive_off",
+        "r_gate_off1",
+        "r_gate_off2",
+        "r_thermal_bottom",
+        "r_local_bleed",
+        "r_trip_off"
+      ],
+      "resistance_ohm": 100000,
+      "tolerance": 0.01,
+      "tcr_abs_ppm_per_c": 100,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"
+    },
+    "0402WGF3303TCE": {
+      "lcsc": "C25778",
+      "wrapper": "../../parts/blind-regen/0402WGF3303TCE.ato",
+      "instances": [
+        "r_threshold_top1"
+      ],
+      "resistance_ohm": 330000,
+      "tolerance": 0.01,
+      "tcr_abs_ppm_per_c": 100,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"
+    },
+    "0402WGF8202TCE": {
+      "lcsc": "C4142",
+      "wrapper": "../../parts/blind-regen/0402WGF8202TCE.ato",
+      "instances": [
+        "r_thermal_top"
+      ],
+      "resistance_ohm": 82000,
+      "tolerance": 0.01,
+      "tcr_abs_ppm_per_c": 100,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"
+    },
+    "0603WAF1005T5E": {
+      "lcsc": "C7250",
+      "wrapper": "../../parts/blind-regen/0603WAF1005T5E.ato",
+      "instances": [
+        "r_feedback1",
+        "r_feedback2"
+      ],
+      "resistance_ohm": 10000000,
+      "tolerance": 0.01,
+      "tcr_abs_ppm_per_c": 200,
+      "max_power_w": 0.1,
+      "max_voltage_v": 75,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"
+    },
+    "TLV6710DDCR": {
+      "lcsc": "C2863066",
+      "wrapper": "../../parts/blind-regen/TLV6710DDCR.ato",
+      "instances": [
+        "detector"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/tlv6710.pdf",
+      "supply_max_v": 36,
+      "output_recommended_max_v": 25,
+      "output_sink_recommended_a": 0.01,
+      "output_low_max_v": 0.25,
+      "rising_threshold_min_v": 0.397,
+      "rising_threshold_max_v": 0.403,
+      "falling_threshold_min_v": 0.387,
+      "falling_threshold_max_v": 0.4,
+      "input_bias_planning_a": 2.5e-08,
+      "iq_max_a": 1.1e-05,
+      "delay_typ_s": 2.81e-05,
+      "startup_typ_s": 0.000155,
+      "delay_max_guaranteed_s": null
+    },
+    "TMP302ADRLR": {
+      "lcsc": "C2877557",
+      "wrapper": "../../parts/blind-regen/TMP302ADRLR.ato",
+      "instances": [
+        "thermostat"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/tmp302.pdf",
+      "supply_min_v": 1.4,
+      "supply_max_v": 3.6,
+      "output_low_max_v": 0.4,
+      "output_test_current_a": 0.003,
+      "iq_max_a": 1.5e-05,
+      "trip_nom_c": 65,
+      "threshold_accuracy_c": 2,
+      "hysteresis_nom_c": 10,
+      "startup_published_s": 0.035,
+      "startup_evidence": "Section8.2.2.2 calls35ms typical; section9 says fully functional within35ms; not a maximum electrical-table timing row"
+    },
+    "TPS70933DBVR": {
+      "lcsc": "C89347",
+      "wrapper": "../../parts/blind-regen/TPS70933DBVR.ato",
+      "instances": [
+        "thermal_supply"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/tps709.pdf",
+      "supply_min_v": 2.7,
+      "supply_max_v": 30,
+      "output_v": 3.3,
+      "output_planning_tolerance": 0.02,
+      "output_effective_min_uf": 1.5,
+      "output_effective_max_uf": 47,
+      "iq_no_load_max_a": 2.05e-06,
+      "startup_max_at_47ohm_s": 0.0006
+    },
+    "CRM2512-FX-10R0ELF": {
+      "lcsc": "C840605",
+      "wrapper": "../../parts/blind-regen/CRM2512_FX_10R0ELF.ato",
+      "instances": [
+        "r_dump1a",
+        "r_dump1b",
+        "r_dump2a",
+        "r_dump2b",
+        "r_dump3a",
+        "r_dump3b",
+        "r_dump4a",
+        "r_dump4b"
+      ],
+      "source": "https://www.bourns.com/docs/Product-Datasheets/CRM.pdf",
+      "resistance_ohm": 10,
+      "tolerance": 0.01,
+      "tcr_abs_ppm_per_c": 100,
+      "power_w_at70c_on_specified_board": 2,
+      "required_copper_mm2_per_part": 300,
+      "pulse_curve_read_100ms_w": 20,
+      "pulse_curve_read_1s_w": 5,
+      "pulse_note": "Conservative visual readings of >=1ohm single-pulse graph; neither repetition nor enclosure temperature is qualified",
+      "max_working_v": 200
+    }
+  },
+  "unresolved": [
+    "Actual returned motor energy/current and whether lowering can regenerate continuously.",
+    "100us comparator/driver response is a planning stimulus, not a guaranteed timing bound.",
+    "TMP302 to resistor-bank thermal coupling, hottest-element gradient and trip timing are unmeasured.",
+    "Sustained back-drive after thermal cutoff or disconnected pack is unsupported; motor coast alone does not absorb that energy.",
+    "Hot startup and brownout must not create a false latch or delayed unsafe clamp.",
+    "Two shorted power FETs or failed thermostat supply defeat independent cutoff; no functional-safety claim.",
+    "Pulse repetition, MOSFET switching SOA, leakage, trace inductance/overshoot, capacitor ESR/aging, printed-case temperatures and EMC require hardware qualification.",
+    "Cold restart after a trip requires pack power removal and service diagnosis, not automatic firmware retry."
+  ]
+}

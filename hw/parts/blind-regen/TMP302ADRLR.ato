@@ -1,0 +1,22 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TMP302ADRLR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TMP302ADRLR", footprint="SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod", symbol="TMP302ADRLR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2877557", manufacturer="Texas Instruments", partno="TMP302ADRLR">
+    trait has_designator_prefix<prefix="U">
+
+    signal TRIPSET1
+    TRIPSET1 ~ pin 6
+    signal VS
+    VS ~ pin 5
+    signal HYSTSET
+    HYSTSET ~ pin 4
+    signal OUT
+    OUT ~ pin 3
+    signal GND
+    GND ~ pin 2
+    signal TRIPSET0
+    TRIPSET0 ~ pin 1

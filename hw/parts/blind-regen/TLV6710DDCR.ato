@@ -1,0 +1,22 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TLV6710DDCR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TLV6710DDCR", footprint="TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod", symbol="TLV6710DDCR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2863066", manufacturer="Texas Instruments", partno="TLV6710DDCR">
+    trait has_designator_prefix<prefix="U">
+
+    signal OUTA
+    OUTA ~ pin 1
+    signal GND
+    GND ~ pin 2
+    signal INA
+    INA ~ pin 3
+    signal INB
+    INB ~ pin 4
+    signal VDD
+    VDD ~ pin 5
+    signal OUTB
+    OUTB ~ pin 6

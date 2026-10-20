@@ -65,10 +65,11 @@ A green preview result only confirms generation of the documented images.
 - A host-tested BQ25798 component proposes and reads back charger settings, checks fresh ADC
   conversions, and rejects bus/register/timer/temperature faults. It has no charging-enable
   operation; the C6 application compiles but does not call it. No cell or device was programmed.
-- The partial main board now composes 148 components and 471 physical pins, including a
-  reset-gated 5 V encoder supply. Five preserved subassemblies and seven integration tests
+- The partial main board now composes 190 components and 589 physical pins, including a
+  reset-gated 5 V encoder supply and an independent thermal latch. Eight preserved blocks and nine integration tests
   check power-domain separation, factory-bus isolation and key control connections. Normal
-  and frozen local builds pass; regenerative protection, connectors and actual layout are next.
+  and frozen local builds pass; connectors and actual layout are next. Regeneration and
+  thermal models have explicit transient and sustained-backdrive limits, not hardware approval.
 - Offline STUSB4500 tooling checks documented PDO fields and full 40-byte readback. An
   undocumented required gate-policy field and unqualified discharge timers keep its output
   explicitly incomplete; no hardware has been accessed or programmed.
@@ -90,7 +91,9 @@ and [source previews](https://github.com/0x63616c/smart-blinds/actions/runs/3936
 `757338e`, including all eight check jobs. The [USB-C and charger build checks](https://github.com/0x63616c/smart-blinds/actions/runs/39362944646)
 passed for `495d01f` after fixing GCC signedness and ESP-IDF header warning compatibility.
 The [USB-C schematic gallery](https://github.com/0x63616c/smart-blinds/actions/runs/39362552134)
-also refreshed successfully. Newer changes must be checked against their own runs.
+also refreshed successfully. The [main-controller and encoder checks](https://github.com/0x63616c/smart-blinds/actions/runs/39364197874)
+and [previews](https://github.com/0x63616c/smart-blinds/actions/runs/39364197877) passed for `9c74cb0`, including all eight jobs.
+Newer changes must be checked against their own runs.
 
 ## Inherited references
 
