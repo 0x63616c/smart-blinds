@@ -1,0 +1,3882 @@
+{
+  "moves": {
+    "regen.q_dump": [
+      [
+        12.1,
+        26.1
+      ],
+      180
+    ],
+    "regen.q_thermal": [
+      [
+        7,
+        27
+      ],
+      0
+    ],
+    "regen.r_thermal_bottom": [
+      [
+        9.0,
+        23.8
+      ],
+      0
+    ],
+    "regen.detector": [
+      [
+        5.9,
+        33
+      ],
+      0
+    ],
+    "regen.thermal_supply": [
+      [
+        14,
+        33
+      ],
+      0
+    ],
+    "regen.q_drive": [
+      [
+        9.85,
+        33.1
+      ],
+      90
+    ],
+    "regen.q_cutoff": [
+      [
+        2.95,
+        27
+      ],
+      90
+    ],
+    "regen.q_hold": [
+      [
+        18.05,
+        32.95
+      ],
+      90
+    ],
+    "regen.q_hot_drive": [
+      [
+        23.2,
+        34
+      ],
+      0
+    ],
+    "regen.c_thermal_output": [
+      [
+        11.69,
+        29.95
+      ],
+      0
+    ],
+    "regen.c_thermal_input": [
+      [
+        16.3,
+        29.8
+      ],
+      270
+    ],
+    "regen.c_thermostat": [
+      [
+        16.05,
+        25.9
+      ],
+      90
+    ],
+    "regen.c_detector": [
+      [
+        3,
+        32
+      ],
+      180
+    ],
+    "regen.r_threshold_top2": [
+      [
+        8,
+        30.4
+      ],
+      0
+    ],
+    "regen.r_threshold_bottom": [
+      [
+        6.0,
+        35.8
+      ],
+      90
+    ],
+    "regen.r_feedback2": [
+      [
+        3.25,
+        35.5
+      ],
+      90
+    ],
+    "regen.r_feedback1": [
+      [
+        1.75,
+        35.5
+      ],
+      270
+    ],
+    "regen.r_threshold_top1": [
+      [
+        3.0,
+        30.2
+      ],
+      90
+    ],
+    "regen.r_thermal_top": [
+      [
+        9.6,
+        25.6
+      ],
+      90
+    ],
+    "regen.r_gate_off1": [
+      [
+        6.0,
+        30.2
+      ],
+      90
+    ],
+    "regen.r_gate_off2": [
+      [
+        4.8,
+        30.2
+      ],
+      90
+    ],
+    "regen.r_drive_base": [
+      [
+        12.6,
+        36.2
+      ],
+      90
+    ],
+    "regen.r_drive_off": [
+      [
+        13.8,
+        36.2
+      ],
+      90
+    ],
+    "regen.r_thermal_ok": [
+      [
+        19.8,
+        26.0
+      ],
+      90
+    ],
+    "regen.r_local_bleed": [
+      [
+        14.8,
+        29.3
+      ],
+      90
+    ],
+    "regen.c_hot_filter": [
+      [
+        24.0,
+        31.2
+      ],
+      0
+    ],
+    "regen.r_hot_off": [
+      [
+        22.0,
+        31.0
+      ],
+      90
+    ],
+    "regen.r_hot_base": [
+      [
+        22.0,
+        29.0
+      ],
+      90
+    ],
+    "regen.r_trip_off": [
+      [
+        1.8,
+        30.0
+      ],
+      90
+    ]
+  },
+  "removed_baseline_segments": [
+    {
+      "net": "PROG",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          25.200000000000003,
+          21.80000000000001
+        ],
+        [
+          22.900000000000006,
+          23.599999999999994
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "c_boot1-1",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          25.299999999999997,
+          25.69999999999999
+        ],
+        [
+          25.299999999999997,
+          22.19999999999999
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "c_boot1-1",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          25.299999999999997,
+          22.19999999999999
+        ],
+        [
+          27.200000000000003,
+          22.19999999999999
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "c_boot1-1",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          27.200000000000003,
+          22.19999999999999
+        ],
+        [
+          29.099999999999994,
+          24.099999999999994
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "PROG",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          32.69999999999999,
+          21.400000000000006
+        ],
+        [
+          25.200000000000003,
+          21.80000000000001
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "PROG",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          33.0,
+          24.5
+        ],
+        [
+          35.400000000000006,
+          24.69999999999999
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "PROG",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          34.19999999999999,
+          22.400000000000006
+        ],
+        [
+          32.69999999999999,
+          21.400000000000006
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "PROG",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          35.400000000000006,
+          24.69999999999999
+        ],
+        [
+          35.80000000000001,
+          24.30000000000001
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "PROG",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          35.80000000000001,
+          24.30000000000001
+        ],
+        [
+          35.80000000000001,
+          24.0
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "PROG",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          35.80000000000001,
+          24.0
+        ],
+        [
+          34.19999999999999,
+          22.400000000000006
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "pack_ntc",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          36.80000000000001,
+          21.69999999999999
+        ],
+        [
+          37.400000000000006,
+          24.400000000000006
+        ]
+      ],
+      "layer": "B.Cu"
+    },
+    {
+      "net": "pack_ntc",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          36.900000000000006,
+          18.69999999999999
+        ],
+        [
+          36.80000000000001,
+          21.69999999999999
+        ]
+      ],
+      "layer": "B.Cu"
+    }
+  ],
+  "removed_baseline_vias": [
+    {
+      "net": "pack_ntc",
+      "uv": [
+        37.4,
+        24.4
+      ],
+      "reason": "Redundant layer transition after shielded front-layer NTC reroute; otherwise native dangling-via finding",
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    }
+  ],
+  "routes": [
+    {
+      "label": "bank-source-1",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          2.2,
+          4.5
+        ],
+        [
+          3.925,
+          4.5
+        ]
+      ]
+    },
+    {
+      "label": "bank-series-1",
+      "net": "r_dump1a-1",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          9.075,
+          4.5
+        ],
+        [
+          13.925,
+          4.5
+        ]
+      ]
+    },
+    {
+      "label": "bank-drain-1",
+      "net": "regen-2-1",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          19.075,
+          4.5
+        ],
+        [
+          19.3,
+          4.5
+        ]
+      ]
+    },
+    {
+      "label": "bank-source-2",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          2.2,
+          10
+        ],
+        [
+          3.925,
+          10
+        ]
+      ]
+    },
+    {
+      "label": "bank-series-2",
+      "net": "r_dump2a-1",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          9.075,
+          10
+        ],
+        [
+          13.925,
+          10
+        ]
+      ]
+    },
+    {
+      "label": "bank-drain-2",
+      "net": "regen-2-1",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          19.075,
+          10
+        ],
+        [
+          19.3,
+          10
+        ]
+      ]
+    },
+    {
+      "label": "bank-source-3",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          2.2,
+          15.5
+        ],
+        [
+          3.925,
+          15.5
+        ]
+      ]
+    },
+    {
+      "label": "bank-series-3",
+      "net": "r_dump3a-1",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          9.075,
+          15.5
+        ],
+        [
+          13.925,
+          15.5
+        ]
+      ]
+    },
+    {
+      "label": "bank-drain-3",
+      "net": "regen-2-1",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          19.075,
+          15.5
+        ],
+        [
+          19.3,
+          15.5
+        ]
+      ]
+    },
+    {
+      "label": "bank-source-4",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          2.2,
+          21
+        ],
+        [
+          3.925,
+          21
+        ]
+      ]
+    },
+    {
+      "label": "bank-series-4",
+      "net": "r_dump4a-1",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          9.075,
+          21
+        ],
+        [
+          13.925,
+          21
+        ]
+      ]
+    },
+    {
+      "label": "bank-drain-4",
+      "net": "regen-2-1",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          19.075,
+          21
+        ],
+        [
+          19.3,
+          21
+        ]
+      ]
+    },
+    {
+      "label": "bank-source-bus",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 1.2,
+      "uvs": [
+        [
+          2.2,
+          4.5
+        ],
+        [
+          2.2,
+          21
+        ]
+      ]
+    },
+    {
+      "label": "bank-source-via-bus",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          2.2,
+          18.2
+        ],
+        [
+          4.6,
+          18.2
+        ]
+      ]
+    },
+    {
+      "label": "bank-drain-bus",
+      "net": "regen-2-1",
+      "layer": "F.Cu",
+      "width_mm": 1.2,
+      "uvs": [
+        [
+          19.3,
+          4.5
+        ],
+        [
+          19.3,
+          23.55
+        ]
+      ]
+    },
+    {
+      "label": "bank-drain-approach",
+      "net": "regen-2-1",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          19.3,
+          23.55
+        ],
+        [
+          12.1,
+          23.55
+        ],
+        [
+          12.1,
+          25.74
+        ]
+      ]
+    },
+    {
+      "label": "dump-drain-peripheral",
+      "net": "regen-2-1",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          11.125,
+          24.6
+        ],
+        [
+          13.075,
+          24.6
+        ]
+      ]
+    },
+    {
+      "label": "dump-drain-side-tabs",
+      "net": "regen-2-1",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          10.685,
+          26.1
+        ],
+        [
+          13.515,
+          26.1
+        ]
+      ]
+    },
+    {
+      "label": "dump-source-0",
+      "net": "series_mid",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          11.775,
+          27.5
+        ],
+        [
+          11.775,
+          28.5
+        ]
+      ]
+    },
+    {
+      "label": "dump-source-1",
+      "net": "series_mid",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          12.425,
+          27.5
+        ],
+        [
+          12.425,
+          28.5
+        ]
+      ]
+    },
+    {
+      "label": "dump-source-2",
+      "net": "series_mid",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          13.075,
+          27.5
+        ],
+        [
+          13.075,
+          28.5
+        ]
+      ]
+    },
+    {
+      "label": "series-current-bus",
+      "net": "series_mid",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          7,
+          28.5
+        ],
+        [
+          13.075,
+          28.5
+        ]
+      ]
+    },
+    {
+      "label": "thermal-drain-spine",
+      "net": "series_mid",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          7,
+          28.5
+        ],
+        [
+          7,
+          27.36
+        ]
+      ]
+    },
+    {
+      "label": "thermal-drain-peripheral",
+      "net": "series_mid",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          6.025,
+          28.5
+        ],
+        [
+          7.975,
+          28.5
+        ]
+      ]
+    },
+    {
+      "label": "thermal-drain-side-tabs",
+      "net": "series_mid",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          5.585,
+          27
+        ],
+        [
+          8.415,
+          27
+        ]
+      ]
+    },
+    {
+      "label": "thermal-source-0",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          6.025,
+          25.6
+        ],
+        [
+          6.025,
+          24
+        ]
+      ]
+    },
+    {
+      "label": "thermal-source-1",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          6.675,
+          25.6
+        ],
+        [
+          6.675,
+          24
+        ]
+      ]
+    },
+    {
+      "label": "thermal-source-2",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "uvs": [
+        [
+          7.325,
+          25.6
+        ],
+        [
+          7.325,
+          24
+        ]
+      ]
+    },
+    {
+      "label": "thermal-ground-bus",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          5.4,
+          24
+        ],
+        [
+          7.5,
+          24
+        ]
+      ]
+    },
+    {
+      "label": "bank-source-back-via-bus",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 0.8,
+      "uvs": [
+        [
+          2.2,
+          18.2
+        ],
+        [
+          4.6,
+          18.2
+        ]
+      ]
+    },
+    {
+      "label": "motor-bulk-to-dump-feed",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 1.2,
+      "uvs": [
+        [
+          3,
+          18.2
+        ],
+        [
+          24.8,
+          22.5
+        ],
+        [
+          26.5,
+          22.5
+        ],
+        [
+          29,
+          21.8
+        ],
+        [
+          34,
+          21.8
+        ],
+        [
+          38.8,
+          21.6
+        ],
+        [
+          40.5,
+          20.8
+        ]
+      ]
+    },
+    {
+      "label": "shortened-bootstrap-return",
+      "net": "c_boot1-1",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          25.3,
+          25.7
+        ],
+        [
+          26.2,
+          24.8
+        ],
+        [
+          29.1,
+          24.9
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-0",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.9,
+          23.6
+        ],
+        [
+          22.5,
+          25.6
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-1",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.5,
+          25.6
+        ],
+        [
+          22.5,
+          26.0
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-2",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.5,
+          26.0
+        ],
+        [
+          24.9,
+          28.4
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-3",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          24.9,
+          28.4
+        ],
+        [
+          24.9,
+          31.4
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-4",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          24.9,
+          31.4
+        ],
+        [
+          25.2,
+          32.1
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-5",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          25.2,
+          32.1
+        ],
+        [
+          25.8,
+          32.6
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-6",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          25.8,
+          32.6
+        ],
+        [
+          26.0,
+          32.7
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-7",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          26.0,
+          32.7
+        ],
+        [
+          34.0,
+          32.7
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-8",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          34.0,
+          32.7
+        ],
+        [
+          34.4,
+          32.5
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-9",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          34.4,
+          32.5
+        ],
+        [
+          34.9,
+          31.9
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-10",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          34.9,
+          31.9
+        ],
+        [
+          35.6,
+          30.8
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-11",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          35.6,
+          30.8
+        ],
+        [
+          35.6,
+          27.1
+        ]
+      ]
+    },
+    {
+      "label": "program-reroute-12",
+      "net": "PROG",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          35.6,
+          27.1
+        ],
+        [
+          33,
+          24.5
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-1",
+      "net": "pack_ntc",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          36.9,
+          18.7
+        ],
+        [
+          37.4,
+          19.2
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-2",
+      "net": "pack_ntc",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          37.4,
+          19.2
+        ],
+        [
+          38.9,
+          19.2
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-3",
+      "net": "pack_ntc",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          38.9,
+          19.2
+        ],
+        [
+          39.2,
+          18.9
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-4",
+      "net": "pack_ntc",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          39.2,
+          18.9
+        ],
+        [
+          39.2,
+          16.9
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-6",
+      "net": "pack_ntc",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          39.2,
+          16.9
+        ],
+        [
+          39.3,
+          20.0
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-7",
+      "net": "pack_ntc",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          39.3,
+          20.0
+        ],
+        [
+          39.1,
+          20.4
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-8",
+      "net": "pack_ntc",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          39.1,
+          20.4
+        ],
+        [
+          39.1,
+          22.3
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-9",
+      "net": "pack_ntc",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          39.1,
+          22.3
+        ],
+        [
+          38.2,
+          23.2
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-10",
+      "net": "pack_ntc",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          38.2,
+          23.2
+        ],
+        [
+          37.9,
+          23.2
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-11",
+      "net": "pack_ntc",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          37.9,
+          23.2
+        ],
+        [
+          37.7,
+          23.4
+        ]
+      ]
+    },
+    {
+      "label": "charger-ntc-shielded-12",
+      "net": "pack_ntc",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          37.7,
+          23.4
+        ],
+        [
+          37.4,
+          24.4
+        ]
+      ]
+    },
+    {
+      "label": "control-ldo-output",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.3,
+      "uvs": [
+        [
+          10.69,
+          29.95
+        ],
+        [
+          11.1,
+          30.55
+        ],
+        [
+          12.1,
+          31.45
+        ],
+        [
+          12.7,
+          32.05
+        ]
+      ]
+    },
+    {
+      "label": "control-ldo-output-return",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.3,
+      "uvs": [
+        [
+          12.69,
+          29.95
+        ],
+        [
+          14,
+          29.95
+        ],
+        [
+          14,
+          33
+        ],
+        [
+          15.3,
+          33
+        ]
+      ]
+    },
+    {
+      "label": "control-ldo-input",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.25,
+      "uvs": [
+        [
+          16.3,
+          30.22
+        ],
+        [
+          16.3,
+          31.2
+        ],
+        [
+          15.3,
+          32.05
+        ]
+      ]
+    },
+    {
+      "label": "control-ldo-input-return",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.3,
+      "uvs": [
+        [
+          16.3,
+          29.38
+        ],
+        [
+          17.1,
+          29.38
+        ],
+        [
+          17.1,
+          33
+        ],
+        [
+          15.3,
+          33
+        ]
+      ]
+    },
+    {
+      "label": "control-thermostat-bypass",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          16.05,
+          25.48
+        ],
+        [
+          16.8,
+          25.3
+        ],
+        [
+          17.5,
+          25.3
+        ]
+      ]
+    },
+    {
+      "label": "control-thermostat-config",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          17.5,
+          25.3
+        ],
+        [
+          17.5,
+          26.7
+        ],
+        [
+          18.5,
+          26.7
+        ]
+      ]
+    },
+    {
+      "label": "control-thermostat-ground",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          18,
+          25.3
+        ],
+        [
+          18,
+          24.5
+        ]
+      ]
+    },
+    {
+      "label": "control-thermostat-cap-ground",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.25,
+      "uvs": [
+        [
+          16.05,
+          26.32
+        ],
+        [
+          15.9,
+          27.1
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-bypass",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          3.42,
+          32
+        ],
+        [
+          3.8,
+          32
+        ],
+        [
+          3.8,
+          33
+        ],
+        [
+          4.7,
+          33
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-cap-ground",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          2.58,
+          32
+        ],
+        [
+          2.1,
+          32.7
+        ]
+      ]
+    },
+    {
+      "label": "control-unused-input-ground",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          7.1,
+          33
+        ],
+        [
+          7.1,
+          33.95
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-quiet-ground",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          6,
+          36.23
+        ],
+        [
+          6.7,
+          36.23
+        ],
+        [
+          7.4,
+          35.5
+        ],
+        [
+          7.4,
+          34.5
+        ],
+        [
+          7.1,
+          33.95
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-ground",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "uvs": [
+        [
+          7.1,
+          33
+        ],
+        [
+          8.2,
+          33
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-input",
+      "net": "threshold",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          6,
+          35.37
+        ],
+        [
+          5.7,
+          35
+        ],
+        [
+          4.7,
+          33.95
+        ]
+      ]
+    },
+    {
+      "label": "control-feedback-midpoint",
+      "net": "r_feedback1-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          1.75,
+          34.75
+        ],
+        [
+          3.25,
+          34.75
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-to-drive-0",
+      "net": "OUTB",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          12.599999999999994,
+          35.77000000000001
+        ],
+        [
+          11.7,
+          34.9
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-to-drive-1",
+      "net": "OUTB",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          11.7,
+          34.9
+        ],
+        [
+          10.4,
+          34.9
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-to-drive-2",
+      "net": "OUTB",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          10.4,
+          34.9
+        ],
+        [
+          9.5,
+          34.0
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-to-drive-3",
+      "net": "OUTB",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          9.5,
+          34.0
+        ],
+        [
+          9.5,
+          33.5
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-to-drive-4",
+      "net": "OUTB",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          9.5,
+          33.5
+        ],
+        [
+          7.6,
+          31.5
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-to-drive-5",
+      "net": "OUTB",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          7.6,
+          31.5
+        ],
+        [
+          6.6,
+          31.5
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-to-drive-6",
+      "net": "OUTB",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          6.6,
+          31.5
+        ],
+        [
+          4.700000000000003,
+          32.05000000000001
+        ]
+      ]
+    },
+    {
+      "label": "control-feedback-to-input-0",
+      "net": "threshold",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          3.25,
+          36.25
+        ],
+        [
+          4.2,
+          35.0
+        ]
+      ]
+    },
+    {
+      "label": "control-feedback-to-input-1",
+      "net": "threshold",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          4.2,
+          35.0
+        ],
+        [
+          4.700000000000003,
+          33.94999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-to-input-0",
+      "net": "threshold",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          8.430000000000007,
+          30.400000000000006
+        ],
+        [
+          7.9,
+          31.1
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-to-input-2",
+      "net": "threshold",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          7.9,
+          31.1
+        ],
+        [
+          6.3,
+          32.4
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-to-input-4",
+      "net": "threshold",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          6.3,
+          32.4
+        ],
+        [
+          4.9,
+          33.8
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-to-input-5",
+      "net": "threshold",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          4.9,
+          33.8
+        ],
+        [
+          4.700000000000003,
+          33.94999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-midpoint-0",
+      "net": "r_threshold_top1-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          3.0,
+          30.629999999999995
+        ],
+        [
+          4.4,
+          31.2
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-midpoint-1",
+      "net": "r_threshold_top1-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          4.4,
+          31.2
+        ],
+        [
+          6.5,
+          31.2
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-midpoint-2",
+      "net": "r_threshold_top1-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          6.5,
+          31.2
+        ],
+        [
+          7.569999999999993,
+          30.400000000000006
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-gate-divider-0",
+      "net": "thermal_gate",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          8.569999999999993,
+          23.80000000000001
+        ],
+        [
+          7.974999999999994,
+          25.599999999999994
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-gate-upper-0",
+      "net": "thermal_gate",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          9.599999999999994,
+          26.03
+        ],
+        [
+          7.974999999999994,
+          25.599999999999994
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-gate-cutoff-0",
+      "net": "thermal_gate",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          2.950000000000003,
+          26.0
+        ],
+        [
+          5.7,
+          26.1
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-gate-cutoff-1",
+      "net": "thermal_gate",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          5.7,
+          26.1
+        ],
+        [
+          7.6,
+          26.1
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-gate-cutoff-2",
+      "net": "thermal_gate",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          7.6,
+          26.1
+        ],
+        [
+          7.974999999999994,
+          25.599999999999994
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-drive-0",
+      "net": "q_drive-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          9.849999999999994,
+          32.099999999999994
+        ],
+        [
+          10.0,
+          31.1
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-drive-2",
+      "net": "q_drive-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          10.0,
+          31.1
+        ],
+        [
+          10.5,
+          27.6
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-drive-4",
+      "net": "q_drive-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          10.5,
+          27.6
+        ],
+        [
+          11.125,
+          27.5
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-bleed1-0",
+      "net": "q_drive-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          6.0,
+          29.77000000000001
+        ],
+        [
+          8.9,
+          29.9
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-bleed1-1",
+      "net": "q_drive-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          8.9,
+          29.9
+        ],
+        [
+          9.849999999999994,
+          32.099999999999994
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-bleed2-0",
+      "net": "q_drive-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          4.799999999999997,
+          29.77000000000001
+        ],
+        [
+          6.0,
+          29.77000000000001
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-feedback-0",
+      "net": "q_drive-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          1.75,
+          36.25
+        ],
+        [
+          2.5,
+          35.5
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-feedback-2",
+      "net": "q_drive-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          2.5,
+          35.5
+        ],
+        [
+          4.1,
+          30.5
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-feedback-4",
+      "net": "q_drive-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          4.1,
+          30.5
+        ],
+        [
+          4.6,
+          29.9
+        ]
+      ]
+    },
+    {
+      "label": "control-dump-gate-feedback-5",
+      "net": "q_drive-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          4.6,
+          29.9
+        ],
+        [
+          4.799999999999997,
+          29.77000000000001
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-base-0",
+      "net": "regen-2-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          12.599999999999994,
+          36.629999999999995
+        ],
+        [
+          13.1,
+          36.2
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-base-1",
+      "net": "regen-2-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          13.1,
+          36.2
+        ],
+        [
+          13.1,
+          35.3
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-base-2",
+      "net": "regen-2-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          13.1,
+          35.3
+        ],
+        [
+          11.7,
+          34.5
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-base-3",
+      "net": "regen-2-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          11.7,
+          34.5
+        ],
+        [
+          10.799999999999997,
+          34.099999999999994
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-base-off-0",
+      "net": "regen-2-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          13.799999999999997,
+          36.629999999999995
+        ],
+        [
+          13.1,
+          36.0
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-base-off-1",
+      "net": "regen-2-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          13.1,
+          36.0
+        ],
+        [
+          13.1,
+          35.3
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-base-off-2",
+      "net": "regen-2-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          13.1,
+          35.3
+        ],
+        [
+          11.7,
+          34.5
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-base-off-3",
+      "net": "regen-2-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          11.7,
+          34.5
+        ],
+        [
+          10.799999999999997,
+          34.099999999999994
+        ]
+      ]
+    },
+    {
+      "label": "control-thermostat-local-supply-0",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          16.049999999999997,
+          25.47999999999999
+        ],
+        [
+          13.7,
+          27.8
+        ]
+      ]
+    },
+    {
+      "label": "control-thermostat-local-supply-2",
+      "net": "c_hot_filter-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          13.7,
+          27.8
+        ],
+        [
+          11.6,
+          31.0
+        ]
+      ]
+    },
+    {
+      "label": "control-thermostat-local-supply-4",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          11.6,
+          31.0
+        ],
+        [
+          10.689999999999998,
+          29.94999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-ok-pullup-0",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          19.799999999999997,
+          25.569999999999993
+        ],
+        [
+          18.8,
+          25.8
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-ok-pullup-1",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          18.8,
+          25.8
+        ],
+        [
+          16.3,
+          25.8
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-ok-pullup-2",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          16.3,
+          25.8
+        ],
+        [
+          16.049999999999997,
+          25.47999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-local-bleed-0",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          14.799999999999997,
+          28.870000000000005
+        ],
+        [
+          14.1,
+          29.4
+        ]
+      ]
+    },
+    {
+      "label": "control-local-bleed-2",
+      "net": "c_hot_filter-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          14.1,
+          29.4
+        ],
+        [
+          12.4,
+          31.1
+        ]
+      ]
+    },
+    {
+      "label": "control-local-bleed-4",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          12.4,
+          31.1
+        ],
+        [
+          12.0,
+          31.0
+        ]
+      ]
+    },
+    {
+      "label": "control-local-bleed-5",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          12.0,
+          31.0
+        ],
+        [
+          10.689999999999998,
+          29.94999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-pullup-0",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          19.799999999999997,
+          26.430000000000007
+        ],
+        [
+          20.3,
+          26.0
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-pullup-1",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          20.3,
+          26.0
+        ],
+        [
+          20.3,
+          25.1
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-pullup-2",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          20.3,
+          25.1
+        ],
+        [
+          20.2,
+          25.0
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-pullup-3",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          20.2,
+          25.0
+        ],
+        [
+          18.8,
+          25.0
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-pullup-4",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          18.8,
+          25.0
+        ],
+        [
+          18.5,
+          25.30000000000001
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-latch-0",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          18.049999999999997,
+          31.94999999999999
+        ],
+        [
+          19.4,
+          29.5
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-latch-1",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          19.4,
+          29.5
+        ],
+        [
+          20.3,
+          26.0
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-latch-2",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          20.3,
+          26.0
+        ],
+        [
+          20.3,
+          25.1
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-latch-3",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          20.3,
+          25.1
+        ],
+        [
+          20.2,
+          25.0
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-latch-4",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          20.2,
+          25.0
+        ],
+        [
+          19.4,
+          25.0
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-latch-5",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          19.4,
+          25.0
+        ],
+        [
+          18.5,
+          25.30000000000001
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-base-0",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.0,
+          28.569999999999993
+        ],
+        [
+          20.0,
+          29.5
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-output-base-1",
+      "net": "thermal_ok",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          20.0,
+          29.5
+        ],
+        [
+          18.049999999999997,
+          31.94999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-filter-base-0",
+      "net": "regen-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          24.42,
+          31.19999999999999
+        ],
+        [
+          24.200000000000003,
+          33.05000000000001
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-resistor-base-0",
+      "net": "regen-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.0,
+          29.430000000000007
+        ],
+        [
+          22.5,
+          30.1
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-resistor-base-1",
+      "net": "regen-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.5,
+          30.1
+        ],
+        [
+          22.5,
+          31.4
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-resistor-base-2",
+      "net": "regen-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.5,
+          31.4
+        ],
+        [
+          24.200000000000003,
+          33.05000000000001
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-off-base-0",
+      "net": "regen-2",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.0,
+          31.430000000000007
+        ],
+        [
+          24.200000000000003,
+          33.05000000000001
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-local-supply-0",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          23.58,
+          31.19999999999999
+        ],
+        [
+          24.0,
+          30.7
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-local-supply-1",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          24.0,
+          30.7
+        ],
+        [
+          24.8,
+          30.7
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-local-supply-2",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          24.8,
+          30.7
+        ],
+        [
+          24.9,
+          30.8
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-local-supply-3",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          24.9,
+          30.8
+        ],
+        [
+          25.0,
+          34.1
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-local-supply-4",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          25.0,
+          34.1
+        ],
+        [
+          24.200000000000003,
+          34.94999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-off-supply-0",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.0,
+          30.569999999999993
+        ],
+        [
+          21.3,
+          30.8
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-off-supply-2",
+      "net": "c_hot_filter-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          21.3,
+          30.8
+        ],
+        [
+          23.8,
+          31.9
+        ]
+      ]
+    },
+    {
+      "label": "control-hot-off-supply-4",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          23.8,
+          31.9
+        ],
+        [
+          23.58,
+          31.19999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-supply-0",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          23.58,
+          31.19999999999999
+        ],
+        [
+          23.8,
+          31.9
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-supply-2",
+      "net": "c_hot_filter-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          23.8,
+          31.9
+        ],
+        [
+          13.1,
+          31.3
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-supply-4",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          13.1,
+          31.3
+        ],
+        [
+          12.1,
+          31.3
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-supply-5",
+      "net": "c_hot_filter-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          12.1,
+          31.3
+        ],
+        [
+          10.689999999999998,
+          29.94999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-hold-drive-0",
+      "net": "G",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          22.200000000000003,
+          34.0
+        ],
+        [
+          21.3,
+          34.7
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-hold-drive-1",
+      "net": "G",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          21.3,
+          34.7
+        ],
+        [
+          19.8,
+          34.7
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-hold-drive-2",
+      "net": "G",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          19.8,
+          34.7
+        ],
+        [
+          19.0,
+          33.94999999999999
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-cutoff-drive-0",
+      "net": "G",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          19.0,
+          33.94999999999999
+        ],
+        [
+          17.9,
+          33.7
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-cutoff-drive-2",
+      "net": "G",
+      "layer": "In2.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          17.9,
+          33.7
+        ],
+        [
+          15.3,
+          33.7
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-cutoff-drive-3",
+      "net": "G",
+      "layer": "In2.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          15.3,
+          33.7
+        ],
+        [
+          12.0,
+          32.1
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-cutoff-drive-4",
+      "net": "G",
+      "layer": "In2.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          12.0,
+          32.1
+        ],
+        [
+          10.2,
+          30.3
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-cutoff-drive-5",
+      "net": "G",
+      "layer": "In2.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          10.2,
+          30.3
+        ],
+        [
+          4.6,
+          28.7
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-cutoff-drive-7",
+      "net": "G",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          4.6,
+          28.7
+        ],
+        [
+          3.9000000000000057,
+          28.0
+        ]
+      ]
+    },
+    {
+      "label": "control-latch-pulldown-0",
+      "net": "G",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          1.7999999999999972,
+          29.569999999999993
+        ],
+        [
+          3.9000000000000057,
+          28.0
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-pack-supply-0",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          3,
+          18.2
+        ],
+        [
+          2.6,
+          31.3
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-pack-supply-2",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          2.6,
+          31.3
+        ],
+        [
+          3.1,
+          31.6
+        ]
+      ]
+    },
+    {
+      "label": "control-detector-pack-supply-3",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          3.1,
+          31.6
+        ],
+        [
+          3.4200000000000017,
+          32.0
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-pack-sense-0",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          3.0,
+          29.77000000000001
+        ],
+        [
+          2.5,
+          30.2
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-pack-sense-1",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          2.5,
+          30.2
+        ],
+        [
+          2.5,
+          31.1
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-pack-sense-2",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          2.5,
+          31.1
+        ],
+        [
+          3.1,
+          31.6
+        ]
+      ]
+    },
+    {
+      "label": "control-divider-pack-sense-3",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          3.1,
+          31.6
+        ],
+        [
+          3.4200000000000017,
+          32.0
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-pack-supply-0",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          15.299999999999997,
+          32.05000000000001
+        ],
+        [
+          15.0,
+          30.5
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-pack-supply-2",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          15.0,
+          30.5
+        ],
+        [
+          14.2,
+          27.6
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-pack-supply-3",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          14.2,
+          27.6
+        ],
+        [
+          10.0,
+          23.5
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-pack-supply-4",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          10.0,
+          23.5
+        ],
+        [
+          3,
+          18.2
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-emitter-supply-0",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          8.900000000000006,
+          34.099999999999994
+        ],
+        [
+          9.6,
+          34.8
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-emitter-supply-2",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          9.6,
+          34.8
+        ],
+        [
+          16.3,
+          32.1
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-emitter-supply-4",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          16.3,
+          32.1
+        ],
+        [
+          15.299999999999997,
+          32.05000000000001
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-off-supply-0",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          13.799999999999997,
+          35.77000000000001
+        ],
+        [
+          13.2,
+          34.8
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-off-supply-2",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          13.2,
+          34.8
+        ],
+        [
+          9.6,
+          34.8
+        ]
+      ]
+    },
+    {
+      "label": "control-drive-off-supply-4",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          9.6,
+          34.8
+        ],
+        [
+          8.900000000000006,
+          34.099999999999994
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-upper-supply-0",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          9.599999999999994,
+          25.169999999999987
+        ],
+        [
+          9.0,
+          24.5
+        ]
+      ]
+    },
+    {
+      "label": "control-thermal-upper-supply-2",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          9.0,
+          24.5
+        ],
+        [
+          3,
+          18.2
+        ]
+      ]
+    },
+    {
+      "label": "control-ground-q_cutoff-0",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          2.0,
+          28.0
+        ],
+        [
+          2.0,
+          27.0
+        ]
+      ]
+    },
+    {
+      "label": "control-ground-r_gate_off1-0",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          6.0,
+          30.629999999999995
+        ],
+        [
+          6.7,
+          30.4
+        ]
+      ]
+    },
+    {
+      "label": "control-ground-r_gate_off2-0",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          4.799999999999997,
+          30.629999999999995
+        ],
+        [
+          6.7,
+          30.4
+        ]
+      ]
+    },
+    {
+      "label": "control-ground-r_local_bleed-0",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          14.799999999999997,
+          29.72999999999999
+        ],
+        [
+          15.5,
+          29.7
+        ]
+      ]
+    },
+    {
+      "label": "control-ground-r_trip_off-0",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          1.7999999999999972,
+          30.430000000000007
+        ],
+        [
+          1.8,
+          31.2
+        ]
+      ]
+    },
+    {
+      "label": "control-ground-q_hold-0",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          17.1,
+          33.95
+        ],
+        [
+          17.1,
+          34.85
+        ]
+      ]
+    },
+    {
+      "label": "control-ground-r_thermal_bottom-0",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "uvs": [
+        [
+          9.430000000000007,
+          23.80000000000001
+        ],
+        [
+          10.0,
+          24.4
+        ]
+      ]
+    }
+  ],
+  "vias": [
+    {
+      "label": "bank-source-bank-0",
+      "net": "hv",
+      "uv": [
+        2.2,
+        18.2
+      ],
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "bank-source-bank-1",
+      "net": "hv",
+      "uv": [
+        3,
+        18.2
+      ],
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "bank-source-bank-2",
+      "net": "hv",
+      "uv": [
+        3.8,
+        18.2
+      ],
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "bank-source-bank-3",
+      "net": "hv",
+      "uv": [
+        4.6,
+        18.2
+      ],
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "thermal-ground-bank-0",
+      "net": "lv",
+      "uv": [
+        5.4,
+        24
+      ],
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "thermal-ground-bank-1",
+      "net": "lv",
+      "uv": [
+        6.1,
+        24
+      ],
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "thermal-ground-bank-2",
+      "net": "lv",
+      "uv": [
+        6.8,
+        24
+      ],
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "thermal-ground-bank-3",
+      "net": "lv",
+      "uv": [
+        7.5,
+        24
+      ],
+      "diameter_mm": 0.8,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "ntc-via-5",
+      "net": "pack_ntc",
+      "uv": [
+        39.2,
+        16.9
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-ldo-ground-entry",
+      "net": "lv",
+      "uv": [
+        16.3,
+        33
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-thermostat-ground-entry",
+      "net": "lv",
+      "uv": [
+        18,
+        24.5
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-thermostat-cap-ground-entry",
+      "net": "lv",
+      "uv": [
+        15.9,
+        27.1
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-detector-cap-ground-entry",
+      "net": "lv",
+      "uv": [
+        2.1,
+        32.7
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-detector-ground-entry",
+      "net": "lv",
+      "uv": [
+        8.2,
+        33
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-divider-to-input-via-1",
+      "net": "threshold",
+      "uv": [
+        7.9,
+        31.1
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-divider-to-input-via-3",
+      "net": "threshold",
+      "uv": [
+        6.3,
+        32.4
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-dump-gate-drive-via-1",
+      "net": "q_drive-1",
+      "uv": [
+        10.0,
+        31.1
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-dump-gate-drive-via-3",
+      "net": "q_drive-1",
+      "uv": [
+        10.5,
+        27.6
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-dump-gate-feedback-via-1",
+      "net": "q_drive-1",
+      "uv": [
+        2.5,
+        35.5
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-dump-gate-feedback-via-3",
+      "net": "q_drive-1",
+      "uv": [
+        4.1,
+        30.5
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-thermostat-local-supply-via-1",
+      "net": "c_hot_filter-1",
+      "uv": [
+        13.7,
+        27.8
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-thermostat-local-supply-via-3",
+      "net": "c_hot_filter-1",
+      "uv": [
+        11.6,
+        31.0
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-local-bleed-via-1",
+      "net": "c_hot_filter-1",
+      "uv": [
+        14.1,
+        29.4
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-local-bleed-via-3",
+      "net": "c_hot_filter-1",
+      "uv": [
+        12.4,
+        31.1
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-hot-off-supply-via-1",
+      "net": "c_hot_filter-1",
+      "uv": [
+        21.3,
+        30.8
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-hot-off-supply-via-3",
+      "net": "c_hot_filter-1",
+      "uv": [
+        23.8,
+        31.9
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-latch-supply-via-3",
+      "net": "c_hot_filter-1",
+      "uv": [
+        13.1,
+        31.3
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-latch-cutoff-drive-via-1",
+      "net": "G",
+      "uv": [
+        17.9,
+        33.7
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-latch-cutoff-drive-via-6",
+      "net": "G",
+      "uv": [
+        4.6,
+        28.7
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-detector-pack-supply-via-1",
+      "net": "hv",
+      "uv": [
+        2.6,
+        31.3
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-thermal-pack-supply-via-1",
+      "net": "hv",
+      "uv": [
+        15.0,
+        30.5
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-drive-emitter-supply-via-1",
+      "net": "hv",
+      "uv": [
+        9.6,
+        34.8
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-drive-emitter-supply-via-3",
+      "net": "hv",
+      "uv": [
+        16.3,
+        32.1
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-drive-off-supply-via-1",
+      "net": "hv",
+      "uv": [
+        13.2,
+        34.8
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-thermal-upper-supply-via-1",
+      "net": "hv",
+      "uv": [
+        9.0,
+        24.5
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-ground-q_cutoff-via-1",
+      "net": "lv",
+      "uv": [
+        2.0,
+        27.0
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-ground-r_gate_off1-via-1",
+      "net": "lv",
+      "uv": [
+        6.7,
+        30.4
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-ground-r_local_bleed-via-1",
+      "net": "lv",
+      "uv": [
+        15.5,
+        29.7
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-ground-r_trip_off-via-1",
+      "net": "lv",
+      "uv": [
+        1.8,
+        31.2
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-ground-q_hold-via-1",
+      "net": "lv",
+      "uv": [
+        17.1,
+        34.85
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "control-ground-r_thermal_bottom-via-1",
+      "net": "lv",
+      "uv": [
+        10.0,
+        24.4
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    }
+  ],
+  "scope": "Experimental local regenerative clamp; thermal_ok and fault indication still require onward routing; not fabrication acceptance",
+  "reviewed_study_sha256": "137b3950624d7a2739d799443ba7ef373b651a8f0d0a6e588bd18c2ac6dc6a22",
+  "study_manifest_sha256": "93cddb42b30411c184254804feff6b74dde8e892f42cadda84c321819a9560d8"
+}

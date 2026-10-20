@@ -138,7 +138,12 @@
         "hw/routing/blind-main/charger_controls.py",
         "hw/routing/blind-main/charger-control-routes.json",
         "hw/routing/blind-main/via_lands.py",
-        "hw/routing/blind-main/via-land-clearance.json"
+        "hw/routing/blind-main/via-land-clearance.json",
+        "hw/routing/blind-main/regen.py",
+        "hw/routing/blind-main/regen-routes.json",
+        "hw/routing/blind-main/regen_checks.py",
+        "hw/routing/blind-main/regen_analog.py",
+        "hw/routing/blind-main/regen_faults.py"
       ],
       "image_size": [
         1500,
@@ -151,7 +156,7 @@
       ],
       "zoom": 0.83,
       "collapsed": false,
-      "role": "Experimental four-layer route with 636 segments and 178 vias: local charger, motor, regulator, radio and USB paths, charger capacitor banks, VAC/BATP sensing and TS/ILIM/PROG networks. 72 physical connection groups and twenty-six injected-fault checks pass; 257 unconnected items remain. USB data/factory access, remaining power/signal routes, thermal review and manufacturing checks are unfinished."
+      "role": "Experimental four-layer route with 832 segments and 218 vias: charger, motor, regulator, radio, USB power and local regenerative-clamp paths. 72 earlier physical connection groups, 19 clamp-local nets, eight load groups and 34 injected-fault controls pass; 179 unconnected items remain. USB data, pack feed, supervisor and remaining signals, thermal/noise review and manufacturing checks are unfinished."
     },
     {
       "id": "companion-routed",

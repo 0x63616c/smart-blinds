@@ -6,14 +6,14 @@ The derivative retains the 54 × 68.5 mm outline with its USB tab, all 196
 footprints, 609 physical pin identities, 142 net partitions, 17 mechanical/thermal
 anchors and 13 RF, connector-foot and clamp reservations.
 
-The checkpoint contains 636 segments and 178 vias. It routes the local charger
+The checkpoint contains 832 segments and 218 vias. It routes the local charger
 switching/bypass network, motor-driver fly/pump/VM and output paths, regulator
 bypass/output/sense paths, and a 3.3 V feed to the radio module. In1 remains a
 continuous filled ground-return island; no signal traces use that layer. The
 module power feed uses In2 beneath the permitted module body, with vias outside
 its solder lands and unchanged antenna keepouts.
 
-Actual KiCad 10 DRC reports **257 unconnected items**. No short, copper/edge/hole
+Actual KiCad 10 DRC reports **179 unconnected items**. No short, copper/edge/hole
 clearance, track-width, courtyard-overlap, keepout, mask-bridge or dangling-route
 failure is accepted. The report retains 260 silkscreen/text findings, four
 library-footprint differences and five footprint-type findings. The latter
@@ -25,7 +25,7 @@ Three unrelated default-disabled DRC categories are listed in `checks.json`.
 partitions, layer/rotation/placement, outline, keepouts, courtyard bounds and
 encoder-wire height clearance. It also follows physical copper shapes through
 72 required connection groups, including the ground fill. A matching net name
-alone cannot pass. Twenty-six injected faults are rejected: moved USB connector, changed motor pad,
+alone cannot pass. Twenty-six earlier injected faults are rejected: moved USB connector, changed motor pad,
 weakened RF reservation, cut module supply, removed return plane, cut charger
 bypass return, cut PD bypass, cut USB input, removed quiet return via, and an
 extra connection from the quiet return to the input-capacitor return, plus open
@@ -88,13 +88,52 @@ charge-permission wiring remain unfinished.
 A subsequent assembly-clearance pass moves twelve ordinary vias by at most
 0.35 mm and adjusts their sixteen incident traces. Five short top-layer stubs
 preserve connections that previously relied on via copper touching a solder
-land. No component moves. All 178 routed via drills now remain at least 0.20 mm
+land. No component moves. That earlier stage checked 178 routed vias. The final clamp stage extends this to all 218 via drills, which remain at least 0.20 mm
 from every top solder land, including lands on the same net; the ordinary
 KiCad same-net clearance check alone does not ensure this. A deliberate
 same-net intrusion at the USB input capacitor is rejected. The explicit
 `via-land-clearance.json` changes replay through `via_lands.py`; this is not a
 filled/capped via-in-pad process. Thermal holes inside library footprints still
 require their separate solder/paste and assembly-process review.
+
+The regenerative clamp now connects its eight-resistor bank, two series power
+MOSFETs, detector/divider/feedback, local supply and bypasses, thermostat and latch.
+Its 19 local multi-pad nets and eight load-path groups are checked using physical
+copper, including every duplicate pad. Three separate plane-free return checks
+keep the load, quiet detector and LDO bypass returns distinct before their plane
+entries. Eight additional injected faults reject opens and an incorrect shared
+return. All 34 old/new fault controls pass. The external `thermal_ok` and `G`
+connections to the main inhibit and fault indication remain open.
+
+`regen.py` consumes the preceding pipeline stage and replays finite geometry from
+`regen-routes.json`; it does not embed a completed baseline or run a route search.
+It replaces twelve exact low-current segments and one redundant NTC via, retains
+all other incoming copper, and adds 249 items. Twenty-five previously unwired
+clamp components move relative to the preceding published checkpoint. The eight
+resistor and all mechanical anchors stay fixed. A now-obsolete NTC via is
+explicitly required absent; the other sixteen control-area vias remain checked.
+
+The selected 38.199 mm × 1.2 mm back-layer feed replaces an evaluated
+48.804 mm × 0.8 mm detour. Nominal 35 µm-copper estimates at 20 °C are 15.68 mΩ
+versus 30.05 mΩ, excluding vias, temperature and process variation. The actual
+filled In1 plane contains a complete 1.2 mm swept-width, 39.802 mm return witness;
+this is checked by polygon subtraction. It is not an ampacity or current-distribution
+result. In1 is only 15.2 µm thick, and the eight 2 W resistor labels do not establish
+16 W continuous capability for this compact assembly.
+
+The shorter power loop requires three reviewed signal changes: PROG grows from
+17.771 to 28.509 mm on B.Cu; NTC grows from 5.768 to 12.980 mm on B/F; the SW1 bootstrap
+return shrinks from 8.087 to 4.175 mm. `regen_analog.py` reports their actual copper
+neighbors and proves an intervening filled In1 shield at the NTC's projected
+crossings with the B.Cu feed. The closest NTC segment remains only 0.205 mm from
+the motor bulk PACK solder land; PROG remains a long startup-sampled branch.
+These are explicit noise/layout qualification limits. A bounded 0.2 mm-grid search
+for a closer one-part PROG relocation found no accepted closer position while
+other parts/copper were fixed; it does not rule out a wider repack.
+
+Comparator overshoot, FET SOA, pulse repetition, thermostat-to-resistor coupling,
+printed-case/battery temperature and real motor regeneration remain untested.
+An opened thermal cutoff cannot absorb sustained manual back-drive.
 
 The complete placement change list is in `checks.json`. Many support components
 have moved from the first placement to make local electrical loops possible.
@@ -116,7 +155,7 @@ mask/paste/assembly-process review. These rules are not a current rating,
 impedance approval, assembly quote or final fabrication profile.
 
 Still unfinished: USB factory access and paired data routing, pack feed and onward SYS
-current distribution, regenerative-clamp and supervisor loops, complete signal
+current distribution, clamp external inhibit/fault connections and supervisor loops, complete signal
 routing, thermal and transient review, sparse silkscreen, final ERC/DRC and a
 manufacturing quote. A separate local 18-net digital congestion experiment is
 not part of this committed power-route checkpoint. No autorouter result is
@@ -143,6 +182,9 @@ Layout references: [BQ25798, §8.4](https://www.ti.com/lit/ds/symlink/bq25798.pd
 [official DevKit layout](https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-pcb-layout_v1.2.pdf),
 [STUSB4500](https://www.st.com/resource/en/datasheet/stusb4500.pdf),
 [TPS25947, §8.4](https://www.ti.com/lit/ds/symlink/tps25947.pdf),
+[TLV6710, §11](https://www.ti.com/lit/ds/symlink/tlv6710.pdf),
+[TPS709, §10.1](https://www.ti.com/lit/ds/symlink/tps709.pdf),
+[TMP302](https://www.ti.com/lit/ds/symlink/tmp302.pdf),
 [JLC capabilities](https://jlcpcb.com/capabilities/pcb-capabilities), and
 [JLC stackups](https://cart.jlcpcb.com/client/template/placeOrder/impedance.html).
 These guide the study; they do not validate the finished board.

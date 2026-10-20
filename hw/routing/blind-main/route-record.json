@@ -2,13 +2,18 @@
   "status": "EXPERIMENTAL PARTIAL main power routing; not a fabrication release",
   "source_hashes": {
     "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "ba633546b9834325b132ba6cf606e7b5bb5817b4b9ca7f4ac7568eda448de4f5",
-    "hw/routing/blind-main/placement.json": "440fff29455bc75b17b530b7a9495e8c7add4f5b7c32414a531e7e145bd4b7cb",
+    "hw/layouts/blind-main/main-test/fp-lib-table": "9ad8b88842d99ef1ad3e3099a74429cedf109a7b9d4dade19d12c07f8445a671",
+    "hw/routing/blind-main/placement.json": "dda3378cb6ea35ab5f3559da1769c5e31588d5f8ea1ff7aa0854b6513690556b",
     "hw/routing/blind-main/project-template.json": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
     "hw/routing/blind-main/usb-control-routes.json": "d82fc7bdd42d071cc7769220493cdfe7c7cb0a7d05ed4dc5e0a774844449af09",
     "hw/routing/blind-main/charger-power-banks.json": "6ada7f8425ff3ffc3c26ad5e47fd92b97b100ca8b5c43dbb0e0c858a6013fbe2",
     "hw/routing/blind-main/charger-control-routes.json": "f721f259b16d30dc1a2246a4206158887be220d39f4b9de76efc589abb69fd90",
     "hw/routing/blind-main/via-land-clearance.json": "2803b9b7de1c3a7b68325312d040fcaba83a7388c3f81a9e83cb14164b5453b7",
-    "hw/routing/blind-main/route.py": "d56786c173e97b5b704c4985e8318eefdab2bdab34ee20d416c423b312dbd368",
+    "hw/routing/blind-main/regen-routes.json": "5c7cc940941025b1a0f0828e4c7a0d7ff03d24c6ed20d8cf635f717ed6a2109a",
+    "hw/routing/blind-main/regen_checks.py": "1f19938111e2b049ad3bf8d5f379d233b0a1dbe4fde6022db037dba075149c98",
+    "hw/routing/blind-main/regen_faults.py": "3974e99a520760750fc5aa64bc47519c1d9c53a79d22e531e422dbf45e6abea3",
+    "hw/routing/blind-main/regen_analog.py": "d97817c3c2b951bb2969167605d77d63dffcb18f4955881d68d0fcff84db897f",
+    "hw/routing/blind-main/route.py": "2ad40a63ec2e2df8bc1eead224593e5262c511cb1d102ad60f36a621199fd76f",
     "hw/routing/blind-main/place.py": "95077c4d892a6b49814f3c476dfdc7a6f3397973fbf7215a9e8af65ea41b736d",
     "hw/routing/blind-main/charger.py": "63c7a84fb2b46b3627ccba3e7369fcc0e94ef023af4c7166adadbd659f3fdf0a",
     "hw/routing/blind-main/local_power.py": "a0c8e2895494d882b5092b7835278c0d18389707236a41bf666bd4c5648e81a0",
@@ -17,16 +22,17 @@
     "hw/routing/blind-main/usb_controls.py": "b38d943dd3d520804f3138bfee971391af7ff6f1893644b2cb5c72c881302edd",
     "hw/routing/blind-main/distribution.py": "541c689b2e9459265031f97de88c9f1d475cae98bb6cd2ef0b39436806adf631",
     "hw/routing/blind-main/charger_controls.py": "e070689368330cdd168a979e475e1bb8dcc0d3cdecc6b2f23a43a0e7d3d01a4b",
-    "hw/routing/blind-main/via_lands.py": "01c242719d867b3ccb4bc99cec99757321d1b9d6bcaaf161d0edf3b6b27a08cc"
+    "hw/routing/blind-main/via_lands.py": "01c242719d867b3ccb4bc99cec99757321d1b9d6bcaaf161d0edf3b6b27a08cc",
+    "hw/routing/blind-main/regen.py": "e619cd470e91c88751e005de34d50b09d99df088720e2bc4a9f2ac9052ebeba7"
   },
-  "pcb_sha256": "c66b4b903de2799e2acd0800329dbdc94defef1799560c5f33e17e3805968aae",
+  "pcb_sha256": "b2708c5346b6b11697f72eaac9c87369149a62c4360bd91a3aa7dc7275929719",
   "project_sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
-  "segments": 636,
-  "vias": 178,
+  "segments": 832,
+  "vias": 218,
   "unrouted_work": [
     "USB differential pair and factory access",
     "Pack feed and onward system distribution",
-    "Regenerative clamp and supervisor loops",
+    "Clamp external inhibit/fault connections and supervisor loops",
     "Full logic and analogue signals",
     "Current/thermal/return-path review and final manufacturing rules"
   ]
