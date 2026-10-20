@@ -1,0 +1,309 @@
+{
+  "title": "Smart Blinds / 3.3 V logic supply",
+  "pcb": "hw/layouts/blind-regulator/regulator-test/regulator-test.kicad_pcb",
+  "output": "hw/schematics/blind-regulator/regulator-test.kicad_sch",
+  "symbols": {
+    "P_TPS62902RPJR": {
+      "source": "hw/parts/blind-core/TPS62902RPJR.kicad_sym",
+      "name": "TPS62902RPJR",
+      "pins": {
+        "1": {
+          "name": "PG",
+          "type": "open_collector"
+        },
+        "2": {
+          "name": "SW",
+          "type": "power_out"
+        },
+        "3": {
+          "name": "VOS",
+          "type": "input"
+        },
+        "4": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "5": {
+          "name": "EN",
+          "type": "input"
+        },
+        "6": {
+          "name": "VIN",
+          "type": "power_in"
+        },
+        "7": {
+          "name": "MODE/S-CONF",
+          "type": "input"
+        },
+        "8": {
+          "name": "SS/TR",
+          "type": "input"
+        },
+        "9": {
+          "name": "FB/VSET",
+          "type": "input"
+        }
+      }
+    },
+    "P_0402WGF1002TCE": {
+      "source": "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym",
+      "name": "0402WGF1002TCE",
+      "type": "passive"
+    },
+    "P_0402WGF2612TCE": {
+      "source": "hw/parts/blind-regulator/0402WGF2612TCE.kicad_sym",
+      "name": "0402WGF2612TCE",
+      "type": "passive"
+    },
+    "P_0402B473K500NT": {
+      "source": "hw/parts/blind-power/0402B473K500NT.kicad_sym",
+      "name": "0402B473K500NT",
+      "type": "passive"
+    },
+    "P_MWSA0402S_1R0MT": {
+      "source": "hw/parts/blind-regulator/MWSA0402S_1R0MT.kicad_sym",
+      "name": "MWSA0402S-1R0MT",
+      "type": "passive"
+    },
+    "P_CL31A106KBHNNNE": {
+      "source": "hw/parts/SAMSUNG_CL31A106KBHNNNE/CL31A106KBHNNNE.kicad_sym",
+      "name": "CL31A106KBHNNNE",
+      "type": "passive"
+    },
+    "P_CL21A226MAYNNNE": {
+      "source": "hw/parts/blind-power/CL21A226MAYNNNE.kicad_sym",
+      "name": "CL21A226MAYNNNE",
+      "type": "passive"
+    },
+    "P_CL05B104KB54PNC": {
+      "source": "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym",
+      "name": "CL05B104KB54PNC",
+      "type": "passive"
+    }
+  },
+  "components": {
+    "U1": {
+      "symbol": "P_TPS62902RPJR",
+      "mpn": "TPS62902RPJR",
+      "value": "TPS62902RPJR",
+      "at": [
+        83.82,
+        74.93,
+        0
+      ],
+      "text_offset": [
+        0,
+        -21.59
+      ],
+      "no_connect": [
+        "9"
+      ]
+    },
+    "L1": {
+      "symbol": "P_MWSA0402S_1R0MT",
+      "mpn": "MWSA0402S-1R0MT",
+      "value": "1u / 5.6A@-20%L",
+      "at": [
+        157.48,
+        55.88,
+        0
+      ],
+      "text_offset": [
+        0,
+        -10.16
+      ]
+    },
+    "R1": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        35.56,
+        115.57,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R2": {
+      "symbol": "P_0402WGF2612TCE",
+      "mpn": "0402WGF2612TCE",
+      "value": "26.1k",
+      "at": [
+        76.2,
+        115.57,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R3": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        116.84,
+        115.57,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C6": {
+      "symbol": "P_0402B473K500NT",
+      "mpn": "0402B473K500NT",
+      "value": "47n / 50V",
+      "at": [
+        157.48,
+        115.57,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C2": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        35.56,
+        154.94,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C7": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        76.2,
+        154.94,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C1": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n / 50V",
+      "at": [
+        116.84,
+        154.94,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C3": {
+      "symbol": "P_CL21A226MAYNNNE",
+      "mpn": "CL21A226MAYNNNE",
+      "value": "22u / 25V",
+      "at": [
+        198.12,
+        55.88,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C4": {
+      "symbol": "P_CL21A226MAYNNNE",
+      "mpn": "CL21A226MAYNNNE",
+      "value": "22u / 25V",
+      "at": [
+        238.76,
+        55.88,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C5": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n / 50V",
+      "at": [
+        238.76,
+        105.41,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    }
+  },
+  "net_names": {
+    "PG": "LOGIC_POWER_GOOD",
+    "SW": "SW",
+    "logic-hv": "3V3",
+    "lv": "GND",
+    "EN": "REGULATOR_ENABLE",
+    "hv": "SYS",
+    "MODE_S_CONF": "MODE",
+    "SS_TR": "SOFT_START",
+    "FB_VSET": "NC_INTERNAL_3V3"
+  },
+  "notes": [
+    {
+      "at": [
+        15,
+        15
+      ],
+      "size": 2,
+      "text": "3.3 V LOGIC SUPPLY / CIRCUIT STUDY"
+    },
+    {
+      "at": [
+        15,
+        24
+      ],
+      "text": "TPS62902: charger SYS 8.8-13.2V input; 1A load design target. Internal 3.3V divider (VSET intentionally open)."
+    },
+    {
+      "at": [
+        15,
+        33
+      ],
+      "text": "Capacitance is nominal. Typical DC-bias estimates and 65mV static reset margin do not prove load-transient behavior."
+    },
+    {
+      "at": [
+        15,
+        187
+      ],
+      "text": "Two external-power ERC findings retained. Unrouted subcircuit; not for fabrication or hardware operation."
+    }
+  ],
+  "expected_erc_types": {
+    "power_pin_not_driven": 2
+  },
+  "expected_erc_items": {
+    "power_pin_not_driven": [
+      "Symbol U1 Pin 6 [VIN, Power input, Line]",
+      "Symbol U1 Pin 4 [GND, Power input, Line]"
+    ]
+  },
+  "erc_scope": "Two explicit external power inputs (SYS and GND); no exclusions or artificial power flags. External connections, full-board routing, thermal and load-transient qualification remain open."
+}

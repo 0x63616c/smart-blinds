@@ -1,0 +1,820 @@
+{
+  "title": "Smart Blinds / USB-PD-fed 3S charger",
+  "paper": "A3",
+  "pcb": "hw/layouts/blind-charger/charger-test/charger-test.kicad_pcb",
+  "output": "hw/schematics/blind-charger/charger-test.kicad_sch",
+  "symbols": {
+    "P_BQ25798RQMR": {
+      "source": "hw/parts/blind-core/BQ25798RQMR.kicad_sym",
+      "name": "BQ25798RQMR",
+      "pins": {
+        "1": {
+          "name": "STAT",
+          "type": "open_collector"
+        },
+        "2": {
+          "name": "VBUS",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "VBUS",
+          "type": "power_in"
+        },
+        "4": {
+          "name": "BTST1",
+          "type": "passive"
+        },
+        "5": {
+          "name": "REGN",
+          "type": "power_out"
+        },
+        "6": {
+          "name": "D+",
+          "type": "bidirectional"
+        },
+        "7": {
+          "name": "D-",
+          "type": "bidirectional"
+        },
+        "8": {
+          "name": "VAC2",
+          "type": "input"
+        },
+        "9": {
+          "name": "VAC1",
+          "type": "input"
+        },
+        "10": {
+          "name": "ACDRV2",
+          "type": "output"
+        },
+        "11": {
+          "name": "ACDRV1",
+          "type": "output"
+        },
+        "12": {
+          "name": "~{QON}",
+          "type": "input"
+        },
+        "13": {
+          "name": "~{CE}",
+          "type": "input"
+        },
+        "14": {
+          "name": "SCL",
+          "type": "input"
+        },
+        "15": {
+          "name": "SDA",
+          "type": "bidirectional"
+        },
+        "16": {
+          "name": "TS",
+          "type": "input"
+        },
+        "17": {
+          "name": "ILIM_HIZ",
+          "type": "input"
+        },
+        "18": {
+          "name": "BATP",
+          "type": "input"
+        },
+        "19": {
+          "name": "BTST2",
+          "type": "passive"
+        },
+        "20": {
+          "name": "PROG",
+          "type": "input"
+        },
+        "21": {
+          "name": "~{INT}",
+          "type": "open_collector"
+        },
+        "22": {
+          "name": "BAT",
+          "type": "power_in"
+        },
+        "23": {
+          "name": "BAT",
+          "type": "power_in"
+        },
+        "24": {
+          "name": "SDRV",
+          "type": "output"
+        },
+        "25": {
+          "name": "SYS",
+          "type": "power_out"
+        },
+        "26": {
+          "name": "SW2",
+          "type": "output"
+        },
+        "27": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "28": {
+          "name": "SW1",
+          "type": "output"
+        },
+        "29": {
+          "name": "PMID",
+          "type": "power_out"
+        }
+      }
+    },
+    "P_CYA0630_2_2UH": {
+      "source": "hw/parts/blind-power/CYA0630_2_2UH.kicad_sym",
+      "name": "CYA0630-2.2UH",
+      "type": "passive"
+    },
+    "P_0402B473K500NT": {
+      "source": "hw/parts/blind-power/0402B473K500NT.kicad_sym",
+      "name": "0402B473K500NT",
+      "type": "passive"
+    },
+    "P_CL21A475KAQNNNE": {
+      "source": "hw/parts/blind-power/CL21A475KAQNNNE.kicad_sym",
+      "name": "CL21A475KAQNNNE",
+      "type": "passive"
+    },
+    "P_0402B102K500NT": {
+      "source": "hw/parts/blind-power/0402B102K500NT.kicad_sym",
+      "name": "0402B102K500NT",
+      "type": "passive"
+    },
+    "P_RC0402FR_0713K7L": {
+      "source": "hw/parts/blind-power/RC0402FR_0713K7L.kicad_sym",
+      "name": "RC0402FR-0713K7L",
+      "type": "passive"
+    },
+    "P_0402WGF1002TCE": {
+      "source": "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym",
+      "name": "0402WGF1002TCE",
+      "type": "passive"
+    },
+    "P_AO3400A": {
+      "source": "hw/parts/blind-power/AO3400A.kicad_sym",
+      "name": "AO3400A",
+      "type": "passive"
+    },
+    "P_0402WGF5231TCE": {
+      "source": "hw/parts/blind-power/0402WGF5231TCE.kicad_sym",
+      "name": "0402WGF5231TCE",
+      "type": "passive"
+    },
+    "P_0402WGF3012TCE": {
+      "source": "hw/parts/blind-power/0402WGF3012TCE.kicad_sym",
+      "name": "0402WGF3012TCE",
+      "type": "passive"
+    },
+    "P_CL05B104KB54PNC": {
+      "source": "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym",
+      "name": "CL05B104KB54PNC",
+      "type": "passive"
+    },
+    "P_0402WGF1000TCE": {
+      "source": "hw/parts/blind-power/0402WGF1000TCE.kicad_sym",
+      "name": "0402WGF1000TCE",
+      "type": "passive"
+    },
+    "P_CL31A106KBHNNNE": {
+      "source": "hw/parts/SAMSUNG_CL31A106KBHNNNE/CL31A106KBHNNNE.kicad_sym",
+      "name": "CL31A106KBHNNNE",
+      "type": "passive"
+    },
+    "P_MMBT3906LT1G": {
+      "source": "hw/parts/blind-power/MMBT3906LT1G.kicad_sym",
+      "name": "MMBT3906LT1G",
+      "type": "passive"
+    },
+    "P_0402WGF3302TCE": {
+      "source": "hw/parts/blind-power/0402WGF3302TCE.kicad_sym",
+      "name": "0402WGF3302TCE",
+      "type": "passive"
+    }
+  },
+  "components": {
+    "U1": {
+      "symbol": "P_BQ25798RQMR",
+      "mpn": "BQ25798RQMR",
+      "value": "BQ25798RQMR",
+      "at": [
+        100.33,
+        69.85,
+        0
+      ],
+      "text_offset": [
+        0,
+        -25.4
+      ],
+      "no_connect": [
+        "6",
+        "7",
+        "12"
+      ]
+    },
+    "L1": {
+      "symbol": "P_CYA0630_2_2UH",
+      "mpn": "CYA0630-2.2UH",
+      "value": "CYA0630-2.2UH",
+      "at": [
+        100.33,
+        119.38,
+        0
+      ],
+      "text_offset": [
+        0,
+        -10.16
+      ]
+    },
+    "C4": {
+      "symbol": "P_0402B473K500NT",
+      "mpn": "0402B473K500NT",
+      "value": "47n / 50V",
+      "at": [
+        64.77,
+        119.38,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C5": {
+      "symbol": "P_0402B473K500NT",
+      "mpn": "0402B473K500NT",
+      "value": "47n / 50V",
+      "at": [
+        139.7,
+        119.38,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C13": {
+      "symbol": "P_CL21A475KAQNNNE",
+      "mpn": "CL21A475KAQNNNE",
+      "value": "4.7u / 25V",
+      "at": [
+        180.34,
+        49.53,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C14": {
+      "symbol": "P_0402B102K500NT",
+      "mpn": "0402B102K500NT",
+      "value": "1n / 50V",
+      "at": [
+        180.34,
+        90.17,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R7": {
+      "symbol": "P_RC0402FR_0713K7L",
+      "mpn": "RC0402FR-0713K7L",
+      "value": "13.7k",
+      "at": [
+        64.77,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R2": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        149.86,
+        215.9,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "Q1": {
+      "symbol": "P_AO3400A",
+      "mpn": "AO3400A",
+      "value": "AO3400A",
+      "at": [
+        110.49,
+        215.9,
+        0
+      ],
+      "text_offset": [
+        0,
+        -10.16
+      ]
+    },
+    "R3": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        190.5,
+        215.9,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R4": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        134.62,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R9": {
+      "symbol": "P_0402WGF5231TCE",
+      "mpn": "0402WGF5231TCE",
+      "value": "5.23k",
+      "at": [
+        180.34,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R8": {
+      "symbol": "P_0402WGF3012TCE",
+      "mpn": "0402WGF3012TCE",
+      "value": "30.1k",
+      "at": [
+        214.63,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C21": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n / 50V",
+      "at": [
+        250.19,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R1": {
+      "symbol": "P_0402WGF1000TCE",
+      "mpn": "0402WGF1000TCE",
+      "value": "100R",
+      "at": [
+        284.48,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C3": {
+      "symbol": "P_0402B473K500NT",
+      "mpn": "0402B473K500NT",
+      "value": "47n / 50V",
+      "at": [
+        320.04,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C6": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        229.87,
+        49.53,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C7": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        265.43,
+        49.53,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C8": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n / 50V",
+      "at": [
+        299.72,
+        49.53,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C9": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        229.87,
+        90.17,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C10": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        265.43,
+        90.17,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C11": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        299.72,
+        90.17,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C12": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n / 50V",
+      "at": [
+        335.28,
+        49.53,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C15": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        209.55,
+        119.38,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C16": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        245.11,
+        119.38,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C17": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        279.4,
+        119.38,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C18": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        314.96,
+        119.38,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C19": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        350.52,
+        119.38,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C20": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n / 50V",
+      "at": [
+        384.81,
+        119.38,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C1": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        369.57,
+        49.53,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C2": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        369.57,
+        90.17,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "Q2": {
+      "symbol": "P_MMBT3906LT1G",
+      "mpn": "MMBT3906LT1G",
+      "value": "MMBT3906LT1G",
+      "at": [
+        50.8,
+        215.9,
+        0
+      ],
+      "text_offset": [
+        0,
+        -10.16
+      ]
+    },
+    "R6": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        50.8,
+        250.19,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R10": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        90.17,
+        250.19,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R5": {
+      "symbol": "P_0402WGF3302TCE",
+      "mpn": "0402WGF3302TCE",
+      "value": "33k",
+      "at": [
+        100.33,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C22": {
+      "symbol": "P_CL31A106KBHNNNE",
+      "mpn": "CL31A106KBHNNNE",
+      "value": "10u / 50V",
+      "at": [
+        335.28,
+        90.17,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    }
+  },
+  "net_names": {
+    "source-hv": "PD_INPUT",
+    "battery-hv": "PACK_PROTECTED",
+    "system-hv": "SYS",
+    "hv": "3V3",
+    "lv": "GND",
+    "c_boot1-1": "BTST1",
+    "c_regn-1": "REGN",
+    "DP": "NC_DP",
+    "DM": "NC_DM",
+    "QON_n": "NC_QON",
+    "CE_n": "CHARGE_ENABLE_N",
+    "scl": "I2C_SCL",
+    "sda": "I2C_SDA",
+    "ntc": "CELL_NTC",
+    "ILIM_HIZ": "STARTUP_ILIM",
+    "BATP": "BATTERY_SENSE",
+    "c_boot2-1": "BTST2",
+    "PROG": "3S_PROGRAM",
+    "INT_n": "CHARGER_IRQ_N",
+    "SDRV": "SDRV",
+    "2": "SW2",
+    "c_boot1-1-1": "SW1",
+    "c_pmid1-1": "PMID",
+    "STAT": "CHARGER_STATUS_N",
+    "charger-1": "CE_GATE",
+    "charger-1-1": "PERMISSION_BASE",
+    "1": "CHARGE_ALLOW_N"
+  },
+  "notes": [
+    {
+      "at": [
+        15,
+        17
+      ],
+      "size": 2,
+      "text": "3S CHARGER / CIRCUIT STUDY"
+    },
+    {
+      "at": [
+        15,
+        26
+      ],
+      "text": "BQ25798: 3S, 750 kHz, 2.2 uH. PD input switching, protected carrier and regulator are separate unfinished blocks."
+    },
+    {
+      "at": [
+        15,
+        34
+      ],
+      "text": "All capacitor values are nominal. DC bias, converter dynamics and thermal behavior require qualification."
+    },
+    {
+      "at": [
+        15,
+        190
+      ],
+      "text": "Active-LOW charging permission; absent 3V3 keeps the CE pull-down off."
+    },
+    {
+      "at": [
+        230,
+        215
+      ],
+      "text": "NTC: independent 10k / B3435 thermistor on cells (external).\nHost sets 40C warm suspend; independent pack protection required.\nDefault hard-hot is approximately 60C, not 45C."
+    },
+    {
+      "at": [
+        230,
+        240
+      ],
+      "text": "Motor uses protected PACK, not SYS.\nNo placement, routing, physical charging or fabrication approval."
+    },
+    {
+      "at": [
+        15,
+        278
+      ],
+      "text": "ERC retains 10 findings: external ports plus ACDRV1/2 tied to GND per TI no-input-FET instructions."
+    }
+  ],
+  "expected_erc_types": {
+    "power_pin_not_driven": 3,
+    "pin_to_pin": 1,
+    "pin_not_driven": 1,
+    "isolated_pin_label": 5
+  },
+  "expected_erc_items": {
+    "power_pin_not_driven": [
+      "Symbol U1 Pin 2 [VBUS, Power input, Line]",
+      "Symbol U1 Pin 27 [GND, Power input, Line]",
+      "Symbol U1 Pin 22 [BAT, Power input, Line]"
+    ],
+    "pin_to_pin": [
+      "Symbol U1 Pin 10 [ACDRV2, Output, Line]",
+      "Symbol U1 Pin 11 [ACDRV1, Output, Line]"
+    ],
+    "pin_not_driven": [
+      "Symbol U1 Pin 14 [SCL, Input, Line]"
+    ],
+    "isolated_pin_label": [
+      "Label 'CHARGE_ALLOW_N'",
+      "Label 'CHARGER_STATUS_N'",
+      "Label 'I2C_SCL'",
+      "Label 'CHARGER_IRQ_N'",
+      "Label 'I2C_SDA'"
+    ]
+  },
+  "erc_scope": "Ten explicit findings: three external power nets, external SCL driver, five single-pin external interfaces, and ACDRV1/2 tied together at ground as TI SLUSDV2C p5 explicitly requires when external ACFET/RBFET are absent. Generic output pin types are retained; no exclusions or artificial power flags. Not a full circuit or charging proof."
+}

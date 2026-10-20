@@ -1,0 +1,16 @@
+{
+  "status": "PASS: compiled pad equivalence against independent physical-pin contract",
+  "component_count": 36,
+  "physical_pin_count": 101,
+  "net_count": 27,
+  "intentional_nc_count": 3,
+  "negative_controls_detected": [
+    "ce_gate_open",
+    "input_battery_short",
+    "nc_grounded",
+    "pmid_ground_pin_swap"
+  ],
+  "contract_sha256": "1462790ce694b6931ec3a4c13380215d3500556f99e8330d64355a1e8c9143e6",
+  "semantic_graph_sha256": "efdde1006bad43b45e9e95d93f0b64b3bd11aa732f35eb74b5848379bb3915e9",
+  "limits": "Not a fresh Ato build, schematic ERC, routed DRC, transient simulation or physical validation."
+}

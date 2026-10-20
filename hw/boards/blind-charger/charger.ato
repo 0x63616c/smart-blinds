@@ -158,6 +158,9 @@ module Charger3S:
     c_pmid1 = new SAMSUNG_CL31A106KBHNNNE_package
     c_pmid2 = new SAMSUNG_CL31A106KBHNNNE_package
     c_pmid3 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_pmid4 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_pmid4.1 ~ ic.PMID
+    c_pmid4.2 ~ source.lv
     c_pmid_fast = new SAMSUNG_CL05B104KB54PNC_package
     c_pmid1.1 ~ ic.PMID
     c_pmid2.1 ~ ic.PMID

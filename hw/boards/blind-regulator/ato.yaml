@@ -1,0 +1,8 @@
+requires-atopile: ^0.15.9
+paths:
+  src: ./
+  layout: ../../layouts/blind-regulator
+builds:
+  regulator-test:
+    entry: regulator.ato:RegulatorTest
+    hide_designators: true

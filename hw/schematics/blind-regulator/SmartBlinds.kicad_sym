@@ -1,0 +1,1060 @@
+(kicad_symbol_lib
+  (version 20241209)
+  (generator "smart_blinds_schematic")
+  (symbol
+    "P_TPS62902RPJR"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "U"
+      (at 0 10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "TPS62902RPJR"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-core:VQFN-HR-9_L2.0-W1.5-P0.50-TL"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://www.lcsc.com/datasheet/C2870154.pdf"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "TI(德州仪器)"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "TPS62902RPJR"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C2870154"
+      (at 0 -22.86 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_TPS62902RPJR_0_1"
+      (rectangle
+        (start -13.97 7.62)
+        (end 13.97 -7.62)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type background)))
+      (circle
+        (center -12.7 6.35)
+        (radius 0.38)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        open_collector
+        line
+        (at -16.51 2.54 0)
+        (length 2.54)
+        (name
+          "PG"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_out
+        line
+        (at -16.51 -0.0 0)
+        (length 2.54)
+        (name
+          "SW"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at -16.51 -2.54 0)
+        (length 2.54)
+        (name
+          "VOS"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "3"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at -16.51 -5.08 0)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "4"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at 16.51 -5.08 180)
+        (length 2.54)
+        (name
+          "EN"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "5"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at 16.51 -2.54 180)
+        (length 2.54)
+        (name
+          "VIN"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "6"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at 16.51 -0.0 180)
+        (length 2.54)
+        (name
+          "MODE/S-CONF"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "7"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at 16.51 2.54 180)
+        (length 2.54)
+        (name
+          "SS/TR"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "8"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at 16.51 5.08 180)
+        (length 2.54)
+        (name
+          "FB/VSET"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "9"
+          (effects
+            (font
+              (size 1.27 1.27)))))))
+  (symbol
+    "P_0402WGF1002TCE"
+    (property
+      "Reference"
+      "R"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "0402WGF1002TCE"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "C25744:R0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_10KR-1002-1_C25744.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "LCSC Part"
+      "C25744"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (in_bom yes)
+    (on_board yes)
+    (symbol
+      "P_0402WGF1002TCE_0_1"
+      (rectangle
+        (start -2.54 1.02)
+        (end 2.54 -1.02)
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type background)))
+      (pin
+        passive
+        line
+        (at 5.08 -0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -5.08 -0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_0402WGF2612TCE"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "R"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "0402WGF2612TCE"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-regulator:R0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_26-1KR-2612-1_C25875.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "UNI-ROYAL(厚声)"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "0402WGF2612TCE"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C25875"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Resistors"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_description"
+      "26.1KΩ (2612) ±1%"
+      (at 0 -22.86 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_0402WGF2612TCE_0_1"
+      (rectangle
+        (start -2.54 1.02)
+        (end 2.54 -1.02)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type background)))
+      (pin
+        passive
+        line
+        (at 5.08 -0.0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -5.08 -0.0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_0402B473K500NT"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "C"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "0402B473K500NT"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-power:C0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_47nF-473-10-50V_C82219.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "FH(风华)"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "0402B473K500NT"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C82219"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_0402B473K500NT_0_1"
+      (polyline
+        (pts
+          (xy -0.51 2.03)
+          (xy -0.51 -2.03))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy 0.51 2.03)
+          (xy 0.51 -2.03))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy -1.27 -0.0)
+          (xy -0.51 -0.0))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy 0.51 -0.0)
+          (xy 1.27 -0.0))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        passive
+        line
+        (at -3.81 -0.0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 3.81 -0.0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_MWSA0402S_1R0MT"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "L"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "MWSA0402S-1R0MT"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-regulator:IND-SMD_L4.4-W4.2"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Power-Inductors_Sunlord-MWSA0402S-1R0MT_C408332.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "Sunlord(顺络)"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "MWSA0402S-1R0MT"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C408332"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Power Inductors"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_MWSA0402S_1R0MT_0_1"
+      (arc
+        (start -2.27 0.02)
+        (mid -3.28 1.1)
+        (end -4.29 0.02)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (arc
+        (start -0.11 0.02)
+        (mid -1.12 1.1)
+        (end -2.13 0.02)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (arc
+        (start 2.04 0.02)
+        (mid 1.03 1.1)
+        (end 0.02 0.02)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (arc
+        (start 4.23 0.02)
+        (mid 3.22 1.1)
+        (end 2.21 0.02)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        passive
+        line
+        (at 5.08 -0.0 180)
+        (length 1.27)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -5.08 -0.0 0)
+        (length 1.27)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_CL31A106KBHNNNE"
+    (property
+      "Reference"
+      "C"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "CL31A106KBHNNNE"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "C13585:C1206"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL31A106KBHNNNE_10uF-106-10-50V_C13585.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "LCSC Part"
+      "C13585"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (in_bom yes)
+    (on_board yes)
+    (symbol
+      "P_CL31A106KBHNNNE_0_1"
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy -0.51 2.03)
+          (xy -0.51 -2.03)))
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy 0.51 2.03)
+          (xy 0.51 -2.03)))
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy -1.27 -0)
+          (xy -0.51 -0)))
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy 0.51 -0)
+          (xy 1.27 -0)))
+      (pin
+        passive
+        line
+        (at -3.81 -0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 3.81 -0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_CL21A226MAYNNNE"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "C"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "CL21A226MAYNNNE"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-power:C0805"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21A226MAYNNNE_C602037.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "SAMSUNG(三星)"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "CL21A226MAYNNNE"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C602037"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_CL21A226MAYNNNE_0_1"
+      (polyline
+        (pts
+          (xy -0.51 -2.03)
+          (xy -0.51 2.03))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy 2.54 -0.0)
+          (xy 0.51 -0.0))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy 0.51 2.03)
+          (xy 0.51 -2.03))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy -0.51 -0.0)
+          (xy -2.54 -0.0))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        passive
+        line
+        (at -5.08 -0.0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 5.08 -0.0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_CL05B104KB54PNC"
+    (property
+      "Reference"
+      "C"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "CL05B104KB54PNC"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "C307331:C0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Others_Samsung-Electro-Mechanics_CL05B104KB54PNC_Samsung-Electro-Mechanics-CL05B104KB54PNC_C307331.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "LCSC Part"
+      "C307331"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (in_bom yes)
+    (on_board yes)
+    (symbol
+      "P_CL05B104KB54PNC_0_1"
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy -0.51 2.03)
+          (xy -0.51 -2.03)))
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy 2.54 -0)
+          (xy 0.51 -0)))
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy 0.51 -2.03)
+          (xy 0.51 2.03)))
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy -0.51 -0)
+          (xy -2.54 -0)))
+      (pin
+        passive
+        line
+        (at -5.08 -0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 5.08 -0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide)))

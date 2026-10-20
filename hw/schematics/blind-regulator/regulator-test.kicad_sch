@@ -1,0 +1,2411 @@
+(kicad_sch
+  (version 20250114)
+  (generator "smart_blinds_schematic")
+  (uuid "e56b26d2-984e-569d-b19b-486d19666450")
+  (paper "A4")
+  (title_block
+    (title "Smart Blinds / 3.3 V logic supply")
+    (rev "BLOCK STUDY")
+    (comment 1 "Not a complete controller; not for fabrication"))
+  (lib_symbols
+    (symbol
+      "SmartBlinds:P_TPS62902RPJR"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "U"
+        (at 0 10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "TPS62902RPJR"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-core:VQFN-HR-9_L2.0-W1.5-P0.50-TL"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://www.lcsc.com/datasheet/C2870154.pdf"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "TI(德州仪器)"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "TPS62902RPJR"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C2870154"
+        (at 0 -22.86 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_TPS62902RPJR_0_1"
+        (rectangle
+          (start -13.97 7.62)
+          (end 13.97 -7.62)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type background)))
+        (circle
+          (center -12.7 6.35)
+          (radius 0.38)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (pin
+          open_collector
+          line
+          (at -16.51 2.54 0)
+          (length 2.54)
+          (name
+            "PG"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_out
+          line
+          (at -16.51 -0.0 0)
+          (length 2.54)
+          (name
+            "SW"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          input
+          line
+          (at -16.51 -2.54 0)
+          (length 2.54)
+          (name
+            "VOS"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at -16.51 -5.08 0)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          input
+          line
+          (at 16.51 -5.08 180)
+          (length 2.54)
+          (name
+            "EN"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "5"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 16.51 -2.54 180)
+          (length 2.54)
+          (name
+            "VIN"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "6"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          input
+          line
+          (at 16.51 -0.0 180)
+          (length 2.54)
+          (name
+            "MODE/S-CONF"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "7"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          input
+          line
+          (at 16.51 2.54 180)
+          (length 2.54)
+          (name
+            "SS/TR"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "8"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          input
+          line
+          (at 16.51 5.08 180)
+          (length 2.54)
+          (name
+            "FB/VSET"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "9"
+            (effects
+              (font
+                (size 1.27 1.27)))))))
+    (symbol
+      "SmartBlinds:P_0402WGF1002TCE"
+      (property
+        "Reference"
+        "R"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "0402WGF1002TCE"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "C25744:R0402"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_10KR-1002-1_C25744.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "LCSC Part"
+        "C25744"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (in_bom yes)
+      (on_board yes)
+      (symbol
+        "P_0402WGF1002TCE_0_1"
+        (rectangle
+          (start -2.54 1.02)
+          (end 2.54 -1.02)
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type background)))
+        (pin
+          passive
+          line
+          (at 5.08 -0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at -5.08 -0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_0402WGF2612TCE"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "R"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "0402WGF2612TCE"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-regulator:R0402"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_26-1KR-2612-1_C25875.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "UNI-ROYAL(厚声)"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "0402WGF2612TCE"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C25875"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "Resistors"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_description"
+        "26.1KΩ (2612) ±1%"
+        (at 0 -22.86 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_0402WGF2612TCE_0_1"
+        (rectangle
+          (start -2.54 1.02)
+          (end 2.54 -1.02)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type background)))
+        (pin
+          passive
+          line
+          (at 5.08 -0.0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at -5.08 -0.0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_0402B473K500NT"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "C"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "0402B473K500NT"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-power:C0402"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_47nF-473-10-50V_C82219.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "FH(风华)"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "0402B473K500NT"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C82219"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_0402B473K500NT_0_1"
+        (polyline
+          (pts
+            (xy -0.51 2.03)
+            (xy -0.51 -2.03))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0.51 2.03)
+            (xy 0.51 -2.03))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -1.27 -0.0)
+            (xy -0.51 -0.0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0.51 -0.0)
+            (xy 1.27 -0.0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (pin
+          passive
+          line
+          (at -3.81 -0.0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at 3.81 -0.0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_MWSA0402S_1R0MT"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "L"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "MWSA0402S-1R0MT"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-regulator:IND-SMD_L4.4-W4.2"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Power-Inductors_Sunlord-MWSA0402S-1R0MT_C408332.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "Sunlord(顺络)"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "MWSA0402S-1R0MT"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C408332"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "Power Inductors"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_MWSA0402S_1R0MT_0_1"
+        (arc
+          (start -2.27 0.02)
+          (mid -3.28 1.1)
+          (end -4.29 0.02)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start -0.11 0.02)
+          (mid -1.12 1.1)
+          (end -2.13 0.02)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start 2.04 0.02)
+          (mid 1.03 1.1)
+          (end 0.02 0.02)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (arc
+          (start 4.23 0.02)
+          (mid 3.22 1.1)
+          (end 2.21 0.02)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (pin
+          passive
+          line
+          (at 5.08 -0.0 180)
+          (length 1.27)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at -5.08 -0.0 0)
+          (length 1.27)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_CL31A106KBHNNNE"
+      (property
+        "Reference"
+        "C"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "CL31A106KBHNNNE"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "C13585:C1206"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_SAMSUNG_CL31A106KBHNNNE_10uF-106-10-50V_C13585.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "LCSC Part"
+        "C13585"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (in_bom yes)
+      (on_board yes)
+      (symbol
+        "P_CL31A106KBHNNNE_0_1"
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy -0.51 2.03)
+            (xy -0.51 -2.03)))
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy 0.51 2.03)
+            (xy 0.51 -2.03)))
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy -1.27 -0)
+            (xy -0.51 -0)))
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy 0.51 -0)
+            (xy 1.27 -0)))
+        (pin
+          passive
+          line
+          (at -3.81 -0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at 3.81 -0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_CL21A226MAYNNNE"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "C"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "CL21A226MAYNNNE"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-power:C0805"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21A226MAYNNNE_C602037.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "SAMSUNG(三星)"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "CL21A226MAYNNNE"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C602037"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_CL21A226MAYNNNE_0_1"
+        (polyline
+          (pts
+            (xy -0.51 -2.03)
+            (xy -0.51 2.03))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 2.54 -0.0)
+            (xy 0.51 -0.0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0.51 2.03)
+            (xy 0.51 -2.03))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -0.51 -0.0)
+            (xy -2.54 -0.0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (pin
+          passive
+          line
+          (at -5.08 -0.0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at 5.08 -0.0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_CL05B104KB54PNC"
+      (property
+        "Reference"
+        "C"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "CL05B104KB54PNC"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "C307331:C0402"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Others_Samsung-Electro-Mechanics_CL05B104KB54PNC_Samsung-Electro-Mechanics-CL05B104KB54PNC_C307331.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "LCSC Part"
+        "C307331"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (in_bom yes)
+      (on_board yes)
+      (symbol
+        "P_CL05B104KB54PNC_0_1"
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy -0.51 2.03)
+            (xy -0.51 -2.03)))
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy 2.54 -0)
+            (xy 0.51 -0)))
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy 0.51 -2.03)
+            (xy 0.51 2.03)))
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy -0.51 -0)
+            (xy -2.54 -0)))
+        (pin
+          passive
+          line
+          (at -5.08 -0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at 5.08 -0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide)))
+  (wire
+    (pts
+      (xy 116.84 149.86)
+      (xy 116.84 142.24))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "351d560b-da4c-560c-89a2-a769db56650f"))
+  (label
+    "SYS"
+    (at 116.84 142.24 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "95498f7c-a4f0-5516-ad20-d911b278cbb1"))
+  (wire
+    (pts
+      (xy 116.84 160.02)
+      (xy 116.84 167.64))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "765a2eda-7fad-54e9-87b9-6a5217fd74db"))
+  (label
+    "GND"
+    (at 116.84 167.64 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "70a34202-187a-5d1d-90f3-495b05a62870"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL05B104KB54PNC")
+    (at 116.84 154.94 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "78a8a084-1bca-5cca-8fb9-30be6e43e220")
+    (property
+      "Reference"
+      "C1"
+      (at 124.46000000000001 153.67 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "100n / 50V"
+      (at 124.46000000000001 156.20999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "SAMSUNG_CL05B104KB54PNC:C0402"
+      (at 116.84 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL05B104KB54PNC"
+      (at 116.84 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C307331"
+      (at 116.84 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.c_input_fast"
+      (at 116.84 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "C1")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "dd1563d3-6d60-579a-9d55-dc22ffe7c383"))
+    (pin
+      "2"
+      (uuid "6a2c7c99-a15a-57b6-b52c-c15a870216f3")))
+  (wire
+    (pts
+      (xy 35.56 151.13)
+      (xy 35.56 143.51))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "23e5e578-db1a-5ee8-9601-52cfc774ef71"))
+  (label
+    "SYS"
+    (at 35.56 143.51 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "6c812091-1ee1-50f9-9260-92c234c164ae"))
+  (wire
+    (pts
+      (xy 35.56 158.75)
+      (xy 35.56 166.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "7325572e-045c-5dc6-9d55-bfefeff4563a"))
+  (label
+    "GND"
+    (at 35.56 166.37 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "da724967-20fd-56df-84cd-deaca67e226f"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL31A106KBHNNNE")
+    (at 35.56 154.94 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "1a5ba8ec-20d0-5754-8c23-82cf78df0704")
+    (property
+      "Reference"
+      "C2"
+      (at 43.18 153.67 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "10u / 50V"
+      (at 43.18 156.20999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "SAMSUNG_CL31A106KBHNNNE:C1206"
+      (at 35.56 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL31A106KBHNNNE"
+      (at 35.56 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C13585"
+      (at 35.56 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.c_input"
+      (at 35.56 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "C2")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "d75b83e5-9336-5938-9faf-8e2a98f28c9e"))
+    (pin
+      "2"
+      (uuid "10782487-5ecd-588c-b767-d46b8faa1b84")))
+  (wire
+    (pts
+      (xy 198.12 50.8)
+      (xy 198.12 43.18))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "85b09dfd-efa3-5486-8755-fc502db008b0"))
+  (label
+    "3V3"
+    (at 198.12 43.18 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "bb3cfd21-d842-5db8-a2b3-2f8527dedbd8"))
+  (wire
+    (pts
+      (xy 198.12 60.96)
+      (xy 198.12 68.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "43a4f01c-a68e-51c6-8a2b-0ded3442300f"))
+  (label
+    "GND"
+    (at 198.12 68.58 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "c79597a6-5b9a-5db3-885e-2036cb9718b3"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL21A226MAYNNNE")
+    (at 198.12 55.88 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "48e38141-442b-5217-9f71-35bc610a199a")
+    (property
+      "Reference"
+      "C3"
+      (at 205.74 54.61 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "22u / 25V"
+      (at 205.74 57.15 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-power:C0805"
+      (at 198.12 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL21A226MAYNNNE"
+      (at 198.12 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C602037"
+      (at 198.12 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.c_output1"
+      (at 198.12 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "C3")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "118c22d1-29a7-5160-b582-b73883884d15"))
+    (pin
+      "2"
+      (uuid "56f70043-1503-57eb-978e-270b4818d9b5")))
+  (wire
+    (pts
+      (xy 238.76 50.8)
+      (xy 238.76 43.18))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "95f0ec07-611f-5b5a-9a89-c570b8bc82cb"))
+  (label
+    "3V3"
+    (at 238.76 43.18 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "9ffb9b27-c096-5aaf-b3ad-cebcd0e388d6"))
+  (wire
+    (pts
+      (xy 238.76 60.96)
+      (xy 238.76 68.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f4b73b2e-0998-5863-9f68-83be5aaa0c34"))
+  (label
+    "GND"
+    (at 238.76 68.58 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "e39dd451-17e5-592d-aca6-3af41912eaa5"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL21A226MAYNNNE")
+    (at 238.76 55.88 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "6efdaa75-e1d1-51d6-af6e-74aed01dffbe")
+    (property
+      "Reference"
+      "C4"
+      (at 246.38 54.61 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "22u / 25V"
+      (at 246.38 57.15 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-power:C0805"
+      (at 238.76 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL21A226MAYNNNE"
+      (at 238.76 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C602037"
+      (at 238.76 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.c_output2"
+      (at 238.76 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "C4")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "b9a8fd9c-cd9d-5197-bfe9-d9d675b66ea8"))
+    (pin
+      "2"
+      (uuid "af985780-a299-5931-900f-bf2333eaae31")))
+  (wire
+    (pts
+      (xy 238.76 100.33)
+      (xy 238.76 92.71))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "339f9561-f85f-5c7a-ae6e-e13846af5bcc"))
+  (label
+    "3V3"
+    (at 238.76 92.71 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "e90b048d-9c31-5c5d-a41f-2bff94c7f765"))
+  (wire
+    (pts
+      (xy 238.76 110.49)
+      (xy 238.76 118.11))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "bee0c8df-edcd-505d-99f5-ad6557e528ac"))
+  (label
+    "GND"
+    (at 238.76 118.11 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "43e37a5f-553e-531a-9833-ea3867f33578"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL05B104KB54PNC")
+    (at 238.76 105.41 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "a303e42b-c1ba-5dcf-9c9a-5d8cc41419b8")
+    (property
+      "Reference"
+      "C5"
+      (at 246.38 104.14 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "100n / 50V"
+      (at 246.38 106.68 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "SAMSUNG_CL05B104KB54PNC:C0402"
+      (at 238.76 105.41 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL05B104KB54PNC"
+      (at 238.76 105.41 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C307331"
+      (at 238.76 105.41 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.c_output_fast"
+      (at 238.76 105.41 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "C5")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "86c68a40-ca74-55b9-bba4-3c4036c944f2"))
+    (pin
+      "2"
+      (uuid "b61cdeae-72d2-53b9-a30a-649f0bd70c54")))
+  (wire
+    (pts
+      (xy 157.48 111.76)
+      (xy 157.48 104.14))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f2ca9802-7db5-526e-a48f-97b4b23cb907"))
+  (label
+    "SOFT_START"
+    (at 157.48 104.14 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "244d7388-c6fb-5c34-9883-62a050545f5d"))
+  (wire
+    (pts
+      (xy 157.48 119.38)
+      (xy 157.48 127.0))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0391f305-27ab-56bb-8320-7598838681f6"))
+  (label
+    "GND"
+    (at 157.48 127.0 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "27d022c7-0f2d-552b-a0a0-429fbb74c91a"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402B473K500NT")
+    (at 157.48 115.57 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "a1d6c993-24ba-5eaf-91bd-27d7d2dbe4b8")
+    (property
+      "Reference"
+      "C6"
+      (at 165.1 114.3 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "47n / 50V"
+      (at 165.1 116.84 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-power:C0402"
+      (at 157.48 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402B473K500NT"
+      (at 157.48 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C82219"
+      (at 157.48 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.c_softstart"
+      (at 157.48 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "C6")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "ac3e5001-50f6-5efa-8d8d-a18437f0f18b"))
+    (pin
+      "2"
+      (uuid "1d05b31e-9d60-5391-a699-8035704b2971")))
+  (wire
+    (pts
+      (xy 76.2 151.13)
+      (xy 76.2 143.51))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "299fce2e-61f5-567e-9bc8-c344dc219f5a"))
+  (label
+    "SYS"
+    (at 76.2 143.51 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "c835a6c2-81bb-563a-870c-dfd8d45cd7be"))
+  (wire
+    (pts
+      (xy 76.2 158.75)
+      (xy 76.2 166.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d936a61b-9e42-5b26-9663-15ba87d96980"))
+  (label
+    "GND"
+    (at 76.2 166.37 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "0fb1ee91-80e7-53f4-866f-18981ab818b0"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL31A106KBHNNNE")
+    (at 76.2 154.94 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "0118684d-0fe6-5aaa-81a7-c06e2c870048")
+    (property
+      "Reference"
+      "C7"
+      (at 83.82000000000001 153.67 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "10u / 50V"
+      (at 83.82000000000001 156.20999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "SAMSUNG_CL31A106KBHNNNE:C1206"
+      (at 76.2 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL31A106KBHNNNE"
+      (at 76.2 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C13585"
+      (at 76.2 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.c_input2"
+      (at 76.2 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "C7")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "0cfc956a-3435-5099-a693-f0f223eadff3"))
+    (pin
+      "2"
+      (uuid "06b5b063-7c98-51af-95bc-6f4ca2a9ad41")))
+  (wire
+    (pts
+      (xy 162.56 55.88)
+      (xy 170.18 55.88))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "5b12cea9-3f02-51dc-8c0f-8eb3d84fc6ac"))
+  (label
+    "3V3"
+    (at 170.18 55.88 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "246e76d5-11fd-5c17-81cd-bb5954c25992"))
+  (wire
+    (pts
+      (xy 152.4 55.88)
+      (xy 144.78 55.88))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fed1ac40-73cc-5a61-89c3-05bd74ca8b31"))
+  (label
+    "SW"
+    (at 144.78 55.88 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right bottom))
+    (uuid "3c3e8f98-5ff8-59e1-9221-468818422648"))
+  (symbol
+    (lib_id "SmartBlinds:P_MWSA0402S_1R0MT")
+    (at 157.48 55.88 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "2e9d35e0-bae2-56bb-803d-3dd958326600")
+    (property
+      "Reference"
+      "L1"
+      (at 157.48 45.72 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "1u / 5.6A@-20%L"
+      (at 157.48 48.26 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-regulator:IND-SMD_L4.4-W4.2"
+      (at 157.48 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "MWSA0402S-1R0MT"
+      (at 157.48 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C408332"
+      (at 157.48 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.inductor"
+      (at 157.48 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "L1")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "50e04192-8b86-52a3-bce9-565999d6e861"))
+    (pin
+      "1"
+      (uuid "dd18907d-052f-522e-ab51-e02a1b641a37")))
+  (wire
+    (pts
+      (xy 35.56 120.65)
+      (xy 35.56 128.27))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2011294e-bc16-5633-a4b8-d340267d28cb"))
+  (label
+    "REGULATOR_ENABLE"
+    (at 35.56 128.27 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "f0d399ee-a423-50ab-ad59-c6235ea7b4c2"))
+  (wire
+    (pts
+      (xy 35.56 110.49)
+      (xy 35.56 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "88c79e89-9b2b-525a-804b-d74666fb2e6a"))
+  (label
+    "SYS"
+    (at 35.56 102.87 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "c93c0f2b-72ad-5e25-877a-cc871792e449"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF1002TCE")
+    (at 35.56 115.57 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "bfcf3cad-9384-5eac-b13a-d53fd85cb722")
+    (property
+      "Reference"
+      "R1"
+      (at 43.18 114.3 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "10k"
+      (at 43.18 116.84 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "UNI_ROYAL_0402WGF1002TCE:R0402"
+      (at 35.56 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF1002TCE"
+      (at 35.56 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25744"
+      (at 35.56 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.r_enable"
+      (at 35.56 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "R1")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "18363ad5-84a2-56c1-865e-463e5ffbaae5"))
+    (pin
+      "1"
+      (uuid "d13afb64-55ff-597e-9f20-513f425b50df")))
+  (wire
+    (pts
+      (xy 76.2 120.65)
+      (xy 76.2 128.27))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d20946c1-61c5-5c63-aca1-eba9272a056f"))
+  (label
+    "GND"
+    (at 76.2 128.27 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "ca906890-dcfa-572e-a8fd-3d90d032b69f"))
+  (wire
+    (pts
+      (xy 76.2 110.49)
+      (xy 76.2 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "afad6430-0ad9-5d48-a0fe-49213bf61cca"))
+  (label
+    "MODE"
+    (at 76.2 102.87 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "35e62db6-a861-5858-812c-cd5e0764483c"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF2612TCE")
+    (at 76.2 115.57 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "a0fb9bc5-3f72-5c47-89e6-306c64eef03a")
+    (property
+      "Reference"
+      "R2"
+      (at 83.82000000000001 114.3 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "26.1k"
+      (at 83.82000000000001 116.84 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-regulator:R0402"
+      (at 76.2 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF2612TCE"
+      (at 76.2 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25875"
+      (at 76.2 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.r_mode"
+      (at 76.2 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "R2")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "8972817a-02f8-5917-a3e2-32f0eff62438"))
+    (pin
+      "1"
+      (uuid "151c9e8e-3660-5c9f-a018-fb22129572f0")))
+  (wire
+    (pts
+      (xy 116.84 120.65)
+      (xy 116.84 128.27))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "01a8a382-387f-52d8-bee6-e566b4c8da38"))
+  (label
+    "LOGIC_POWER_GOOD"
+    (at 116.84 128.27 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "087a54e7-7fc9-52a7-a754-d71969fe06fa"))
+  (wire
+    (pts
+      (xy 116.84 110.49)
+      (xy 116.84 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "03f4ee81-cd76-5381-9121-688b6482b76a"))
+  (label
+    "3V3"
+    (at 116.84 102.87 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "4fd77ec9-c594-5778-ba9a-b16745692cd0"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF1002TCE")
+    (at 116.84 115.57 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "f263b03b-e575-5b9c-bd24-4b5565662244")
+    (property
+      "Reference"
+      "R3"
+      (at 124.46000000000001 114.3 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "10k"
+      (at 124.46000000000001 116.84 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "UNI_ROYAL_0402WGF1002TCE:R0402"
+      (at 116.84 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF1002TCE"
+      (at 116.84 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25744"
+      (at 116.84 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.r_pg"
+      (at 116.84 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "R3")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "1f3267f6-5505-538e-bd02-3f27a4b774f8"))
+    (pin
+      "1"
+      (uuid "84abadfc-67d3-5120-a6a9-38fbee3e420a")))
+  (wire
+    (pts
+      (xy 67.31 72.39)
+      (xy 59.69 72.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "86ecb803-69ce-583b-bc8a-e3d870d52bb3"))
+  (label
+    "LOGIC_POWER_GOOD"
+    (at 59.69 72.39 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right bottom))
+    (uuid "4a4fd499-6715-5c32-af33-de87c706c3c1"))
+  (wire
+    (pts
+      (xy 67.31 74.93)
+      (xy 59.69 74.93))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b16f1cc8-b500-5a2c-bed7-161516c9ae2d"))
+  (label
+    "SW"
+    (at 59.69 74.93 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right bottom))
+    (uuid "161edfe7-a994-51d2-8a4d-affcc11a2369"))
+  (wire
+    (pts
+      (xy 67.31 77.47)
+      (xy 59.69 77.47))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "af8af71b-54f9-5691-898d-7d9cfb4398c7"))
+  (label
+    "3V3"
+    (at 59.69 77.47 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right bottom))
+    (uuid "f51c1f7b-3a9c-5680-94c9-f50bed6b3b6d"))
+  (wire
+    (pts
+      (xy 67.31 80.01)
+      (xy 59.69 80.01))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d0021b4b-441d-5be4-9911-bdc44dc6c854"))
+  (label
+    "GND"
+    (at 59.69 80.01 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right bottom))
+    (uuid "17f15323-42cc-514b-9beb-adedfad6b48f"))
+  (wire
+    (pts
+      (xy 100.33 80.01)
+      (xy 107.95 80.01))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4336ce66-c1e6-59ca-823f-f17b9a37e49d"))
+  (label
+    "REGULATOR_ENABLE"
+    (at 107.95 80.01 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "ecbf677f-68ac-5058-9f69-605bc1c38e6d"))
+  (wire
+    (pts
+      (xy 100.33 77.47)
+      (xy 107.95 77.47))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "46923a89-a5ea-53f1-a3f4-17015643b7be"))
+  (label
+    "SYS"
+    (at 107.95 77.47 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "a3ea453a-19f8-5470-ade8-113fe6a3a913"))
+  (wire
+    (pts
+      (xy 100.33 74.93)
+      (xy 107.95 74.93))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ed872579-cf39-5c71-afaf-8bc368b520c5"))
+  (label
+    "MODE"
+    (at 107.95 74.93 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "4d1b7e1a-8480-5ce5-b8d1-0985035d5393"))
+  (wire
+    (pts
+      (xy 100.33 72.39)
+      (xy 107.95 72.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "69207cdd-fc0f-5808-b827-61a3c1f0a7fe"))
+  (label
+    "SOFT_START"
+    (at 107.95 72.39 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "31252932-23f2-517f-9ab4-0ee926089864"))
+  (no_connect
+    (at 100.33 69.85)
+    (uuid "9f576e72-25f5-5c0f-8133-b108acbcfa42"))
+  (symbol
+    (lib_id "SmartBlinds:P_TPS62902RPJR")
+    (at 83.82 74.93 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "edf86bfa-8aec-594b-a087-d0bf7caf922c")
+    (property
+      "Reference"
+      "U1"
+      (at 83.82 53.34 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "TPS62902RPJR"
+      (at 83.82 55.88 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-core:VQFN-HR-9_L2.0-W1.5-P0.50-TL"
+      (at 83.82 74.93 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "TPS62902RPJR"
+      (at 83.82 74.93 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C2870154"
+      (at 83.82 74.93 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "regulator.ic"
+      (at 83.82 74.93 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "regulator-test"
+        (path
+          "/e56b26d2-984e-569d-b19b-486d19666450"
+          (reference "U1")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "b416e838-49d0-5ab1-b360-ea14b13588ab"))
+    (pin
+      "2"
+      (uuid "8a806689-9938-51d7-bdd7-7532856d0006"))
+    (pin
+      "3"
+      (uuid "d5152515-220c-5399-b012-791c2d52c0e4"))
+    (pin
+      "4"
+      (uuid "526d8180-27a6-5c59-9d79-a68e71bb4307"))
+    (pin
+      "5"
+      (uuid "9aacf814-87b6-5c9a-acf9-8cee6173644a"))
+    (pin
+      "6"
+      (uuid "b2cf8be9-2865-55cf-81bb-c3bd02b81bf1"))
+    (pin
+      "7"
+      (uuid "5fd4ab02-0ac9-5805-ad53-070341c49102"))
+    (pin
+      "8"
+      (uuid "012544bd-b225-5d26-aef6-8c3106f22fa2"))
+    (pin
+      "9"
+      (uuid "6cd661c2-9a8a-5ee6-8073-866482ed5d05")))
+  (text
+    "3.3 V LOGIC SUPPLY / CIRCUIT STUDY"
+    (at 15 15 0)
+    (effects
+      (font
+        (size 2 2))
+      (justify left))
+    (uuid "3dae01da-94f0-50ca-a470-61c085a3bcf3"))
+  (text
+    "TPS62902: charger SYS 8.8-13.2V input; 1A load design target. Internal 3.3V divider (VSET intentionally open)."
+    (at 15 24 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "a8bf7d8b-94de-5da0-9250-41cf974e7cf4"))
+  (text
+    "Capacitance is nominal. Typical DC-bias estimates and 65mV static reset margin do not prove load-transient behavior."
+    (at 15 33 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "5a0920e7-e74a-5734-871b-44c88b44aed2"))
+  (text
+    "Two external-power ERC findings retained. Unrouted subcircuit; not for fabrication or hardware operation."
+    (at 15 187 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "58c46b2f-0f63-59d3-867e-60ff6441f0ab"))
+  (sheet_instances
+    (path
+      "/"
+      (page "1"))))

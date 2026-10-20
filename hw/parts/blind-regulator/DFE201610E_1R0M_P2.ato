@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_DFE201610E_1R0M_P2:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Murata", partnumber="DFE201610E-1R0M=P2", footprint="L0806.kicad_mod", symbol="DFE201610E_1R0M_P2.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C161082", manufacturer="Murata", partno="DFE201610E-1R0M=P2">
+    trait has_designator_prefix<prefix="L">
+
+    pin 2
+    pin 1

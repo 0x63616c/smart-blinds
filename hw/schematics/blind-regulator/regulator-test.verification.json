@@ -1,0 +1,39 @@
+{
+  "status": "block_graph_verified_not_complete_controller",
+  "pin_connections_checked": 31,
+  "physical_components": 12,
+  "erc_clean": false,
+  "erc_findings": {
+    "power_pin_not_driven": 2
+  },
+  "erc_affected_items": {
+    "power_pin_not_driven": [
+      "Symbol U1 Pin 4 [GND, Power input, Line]",
+      "Symbol U1 Pin 6 [VIN, Power input, Line]"
+    ]
+  },
+  "erc_scope": "Two explicit external power inputs (SYS and GND); no exclusions or artificial power flags. External connections, full-board routing, thermal and load-transient qualification remain open.",
+  "source_sha256": {
+    "hw/layouts/blind-regulator/regulator-test/fp-lib-table": "ef37d67b3b83afc1ae33ce956ebd04df876ed48d8feac08c35494c95b364df83",
+    "hw/layouts/blind-regulator/regulator-test/regulator-test.kicad_pcb": "e9e563801038ebb8b53a404a94868432c03e890f551ffd3b36144b3d95c6cd3c",
+    "hw/parts/SAMSUNG_CL31A106KBHNNNE/CL31A106KBHNNNE.kicad_sym": "40e1b3f7f888a01317c8a7cee0eb7c1a5fe4a9a0278e0f389438e10b7491a4cd",
+    "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym": "81c087f94ceab9f615ba1aa036628532fbae2ff8c6cfc259e8361c72c016ccde",
+    "hw/parts/blind-controller-common/C0402.kicad_mod": "3ccf0309de5b72a57c2ebb81ff69201ddadd3ad0bcd5964a4d47a1e28bea0732",
+    "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym": "a6f837f69fafd8ed9ca31684a2e001d76e2bf3e35819f4b2858f7eb27127a83c",
+    "hw/parts/blind-controller-common/R0402.kicad_mod": "c47e3e203d4ad99b5e7194b9c283226505d323e35237c1461fde5a8fb8287e7e",
+    "hw/parts/blind-core/TPS62902RPJR.kicad_sym": "02a9420a7de8e5bbaeff2e83648c7a9d38e3c095cafd6a666c2e6d03b6efe21d",
+    "hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod": "27d5309641066833642528b52eeb588bf1255c28bfda59e68ba8f4e78b3e85b2",
+    "hw/parts/blind-power/0402B473K500NT.kicad_sym": "ec7732f4df2503a65a69cb52726d36dbc35f2942379a50f3ccc5806de7b40d85",
+    "hw/parts/blind-power/C0402.kicad_mod": "2748eb8d0dcb4118fb3aeaf29414ff122c4bf3c4c6ed81af20b6186f55283128",
+    "hw/parts/blind-power/C0805.kicad_mod": "7b86678e0c1f64c51f9d2333cda15bc26a93efef1ebb1eab68199eab48224540",
+    "hw/parts/blind-power/C1206.kicad_mod": "83c51e478db876b46ceb91d9ef84e842ae9cc32a8505f8bc8395118fbd2d0da9",
+    "hw/parts/blind-power/CL21A226MAYNNNE.kicad_sym": "386cf0deff97c9f97b6718ffbb3a68d1284cd3840da8079a3131fe8858899eb7",
+    "hw/parts/blind-regulator/0402WGF2612TCE.kicad_sym": "5dec0503702e8470524fb0efb88f257a4a76f992009e2af19f4a0cc1ce2d2da4",
+    "hw/parts/blind-regulator/IND-SMD_L4.4-W4.2.kicad_mod": "0184befc1c784d1bb74066ad611c43a2956a1819e6f55686531e69cf99da5591",
+    "hw/parts/blind-regulator/MWSA0402S_1R0MT.kicad_sym": "c6d2fd567927ec1db6365c2da03d393b83f8ff3c7818c3d2948888c989e3c8be",
+    "hw/parts/blind-regulator/R0402.kicad_mod": "f0c2cab49ae3541583b945907b2a72cd8dc47c8eead3a6770ff848f01495c4c5",
+    "hw/schematics/blind-regulator/regulator-test.layout.json": "c100c14bea96bc7ee988c5f2892427d6f1eb29e7c250e1cc60251d72f2efc8b8",
+    "tools/generate_schematics.py": "6408077718c479712f42f68b3bdbaab03a0d27eaef39dfa2d07800435ee2a73b",
+    "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583"
+  }
+}

@@ -1,4 +1,4 @@
-"""Integration regressions use KiCad itself to interpret the real motor schematic."""
+"""Integration regressions use KiCad itself to interpret the circuit drawings."""
 import copy
 import json
 from pathlib import Path
@@ -93,6 +93,49 @@ class SupervisorSchematicTests(unittest.TestCase):
     def test_reject_connected_pcb_pin_marked_nc(self):
         graph = copy.deepcopy(self.graph)
         graph["U4"]["pads"]["4"] = graph["U4"]["pads"]["5"]
+        with self.assertRaisesRegex(ValueError, "NC is connected in the PCB"):
+            self.check(self.source, graph)
+
+
+class ChargerSchematicTests(unittest.TestCase):
+    check = NativeSchematicTests.check
+
+    @classmethod
+    def setUpClass(cls):
+        cls.spec = json.loads((ROOT / "hw/schematics/blind-charger/charger-test.layout.json").read_text())
+        cls.graph = board_graph(ROOT / cls.spec["pcb"])
+        cls.source = parse((ROOT / cls.spec["output"]).read_text())
+        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+
+    def test_real_graph_roundtrip(self):
+        self.assertEqual(self.check(self.source), 101)
+
+    def test_reject_grounded_exposed_pmid_pad(self):
+        changed = copy.deepcopy(self.source)
+        for label in children(changed, "label"):
+            if label[1] == "PMID":
+                label[1] = "GND"
+                break
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+
+class RegulatorSchematicTests(unittest.TestCase):
+    check = NativeSchematicTests.check
+
+    @classmethod
+    def setUpClass(cls):
+        cls.spec = json.loads((ROOT / "hw/schematics/blind-regulator/regulator-test.layout.json").read_text())
+        cls.graph = board_graph(ROOT / cls.spec["pcb"])
+        cls.source = parse((ROOT / cls.spec["output"]).read_text())
+        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+
+    def test_real_graph_roundtrip(self):
+        self.assertEqual(self.check(self.source), 31)
+
+    def test_reject_connected_voltage_selection_pin(self):
+        graph = copy.deepcopy(self.graph)
+        graph["U1"]["pads"]["9"] = graph["U1"]["pads"]["4"]
         with self.assertRaisesRegex(ValueError, "NC is connected in the PCB"):
             self.check(self.source, graph)
 

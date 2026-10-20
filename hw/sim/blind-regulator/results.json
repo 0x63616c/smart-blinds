@@ -1,0 +1,27 @@
+{
+  "status": "PASS of source, optional local BOM, compiled physical pins and stated arithmetic",
+  "component_count": 12,
+  "physical_pin_count": 31,
+  "local_bom_policy": "Validate generated BOM when local build artifacts exist",
+  "internal_vset_static_range_v": [
+    3.25875,
+    3.3412499999999996
+  ],
+  "static_margin_above_supervisor_release_v": 0.06473750000000011,
+  "effective_inductance_planning_h": 6.4e-07,
+  "aee_ripple_planning_a_pp": 2.0624999999999996,
+  "one_amp_load_peak_planning_a": 2.03125,
+  "inductor_rms_planning_a": 1.1638265280960045,
+  "inductor_copper_loss_planning_w": 0.0365712890625,
+  "fault_peak_using_typical_delay_only_a": 4.93125,
+  "pg_pullup_max_a": 0.00033999999999999997,
+  "softstart_nominal_s": 0.015094999999999997,
+  "limits": "AEE coefficient and fault propagation are typical. Results are conditional estimates, not maximum transient guarantees.",
+  "release_gates": [
+    "Fault peak uses TI typical propagation delay, not a guaranteed bound; inductor temperature-dependent saturation and fault bench tests required",
+    "Bias curves are typical; vendor or bench confirmation of effective capacitance including aging required",
+    "Output regulation, ripple, stability and Wi-Fi burst load steps need assembled-board measurement; 65 mV static supervisor margin is not transient proof",
+    "17 V regulator input limit requires clamp/load-dump review; its source is charger SYS, not direct USB VBUS",
+    "PCB thermal, placement, switch-loop layout, antenna coupling, EMI and fabrication checks remain open"
+  ]
+}

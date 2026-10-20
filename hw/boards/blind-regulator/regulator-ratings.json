@@ -1,0 +1,140 @@
+{
+  "status": "Fixed-part preliminary engineering; no hardware or silicon-model validation",
+  "limits": {
+    "source_min_v": 8.8,
+    "source_max_v": 13.2,
+    "logic_nominal_v": 3.3,
+    "logic_target_tolerance": 0.02,
+    "load_max_a": 1.0,
+    "inductance_dc_drop_planning": 0.2,
+    "supervisor_release_worst_v": 3.1940125
+  },
+  "parts": {
+    "TPS62902RPJR": {
+      "wrapper": "../../parts/blind-core/TPS62902RPJR.ato",
+      "lcsc": "C2870154",
+      "instances": [
+        "ic"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/tps62902.pdf",
+      "revision": "SLVSFM1A, November 2023",
+      "recommended_input_min_v": 3,
+      "recommended_input_max_v": 17,
+      "vset_accuracy": 0.0125,
+      "high_side_limit_min_a": 2.7,
+      "high_side_limit_max_a": 3.9,
+      "propagation_delay_typ_s": 5e-08,
+      "aee_ton_coefficient_s": 1e-07,
+      "mode_resistance_ohm": 26100,
+      "resistor_tolerance_allowed": 0.04,
+      "input_effective_min_uf": 3,
+      "output_effective_min_uf": 10,
+      "output_effective_max_uf": 100,
+      "pg_sink_max_a": 0.001,
+      "softstart_current_typ_a": 2.5e-06,
+      "softstart_vref_nominal_v": 0.8,
+      "softstart_offset_typ_s": 5.5e-05
+    },
+    "MWSA0402S-1R0MT": {
+      "wrapper": "../../parts/blind-regulator/MWSA0402S_1R0MT.ato",
+      "lcsc": "C408332",
+      "instances": [
+        "inductor"
+      ],
+      "source": "https://www.sunlordinc.com/uploads/files/20230303/MWSA-S%C2%A0series%C2%A0of%C2%A0SMD%C2%A0Power%C2%A0Inductor.pdf",
+      "revision": "2022-10-12, published 2023; pages130-131 and footnotes",
+      "inductance_h": 1e-06,
+      "tolerance": 0.2,
+      "dcr_max_ohm": 0.027,
+      "current_at_20_percent_drop_a": 5.6,
+      "current_at_30_percent_drop_a": 7.0,
+      "current_at_20c_rise_a": 5.4,
+      "current_at_40c_rise_a": 6.0,
+      "evidence_limit": "The Max/Typ columns use different drop/rise criteria; they are not guaranteed min/typ bounds. Temperature and fault propagation-delay maxima remain unresolved.",
+      "body_max_mm": [
+        4.75,
+        4.45,
+        2.0
+      ],
+      "reviewed_pad_mm": [
+        1.5,
+        2.5
+      ],
+      "reviewed_pad_centres_x_mm": [
+        -1.85,
+        1.85
+      ]
+    },
+    "0402WGF2612TCE": {
+      "wrapper": "../../parts/blind-regulator/0402WGF2612TCE.ato",
+      "lcsc": "C25875",
+      "instances": [
+        "r_mode"
+      ],
+      "resistance_ohm": 26100,
+      "tolerance": 0.01,
+      "rated_power_w": 0.0625
+    },
+    "0402WGF1002TCE": {
+      "wrapper": "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato",
+      "lcsc": "C25744",
+      "instances": [
+        "r_enable",
+        "r_pg"
+      ],
+      "resistance_ohm": 10000,
+      "tolerance": 0.01,
+      "rated_power_w": 0.0625
+    },
+    "0402B473K500NT": {
+      "wrapper": "../../parts/blind-power/0402B473K500NT.ato",
+      "lcsc": "C82219",
+      "instances": [
+        "c_softstart"
+      ],
+      "capacitance_f": 4.7e-08,
+      "tolerance": 0.1,
+      "rated_voltage_v": 50
+    },
+    "CL31A106KBHNNNE": {
+      "wrapper": "../../parts/blind-power/SAMSUNG_CL31A106KBHNNNE.ato",
+      "lcsc": "C13585",
+      "instances": [
+        "c_input",
+        "c_input2"
+      ],
+      "capacitance_f": 1e-05,
+      "tolerance": 0.1,
+      "rated_voltage_v": 50
+    },
+    "CL21A226MAYNNNE": {
+      "wrapper": "../../parts/blind-power/CL21A226MAYNNNE.ato",
+      "lcsc": "C602037",
+      "instances": [
+        "c_output1",
+        "c_output2"
+      ],
+      "capacitance_f": 2.2e-05,
+      "tolerance": 0.2,
+      "rated_voltage_v": 25
+    },
+    "CL05B104KB54PNC": {
+      "wrapper": "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato",
+      "lcsc": "C307331",
+      "instances": [
+        "c_input_fast",
+        "c_output_fast"
+      ],
+      "capacitance_f": 1e-07,
+      "tolerance": 0.1,
+      "rated_voltage_v": 50
+    }
+  },
+  "unresolved": [
+    "Fault peak uses TI typical propagation delay, not a guaranteed bound; inductor temperature-dependent saturation and fault bench tests required",
+    "Bias curves are typical; vendor or bench confirmation of effective capacitance including aging required",
+    "Output regulation, ripple, stability and Wi-Fi burst load steps need assembled-board measurement; 65 mV static supervisor margin is not transient proof",
+    "17 V regulator input limit requires clamp/load-dump review; its source is charger SYS, not direct USB VBUS",
+    "PCB thermal, placement, switch-loop layout, antenna coupling, EMI and fabrication checks remain open"
+  ]
+}

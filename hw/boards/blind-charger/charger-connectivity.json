@@ -1,0 +1,214 @@
+{
+  "scope": "Independent physical pin net contract for standalone Charger3S; no layout or silicon validation",
+  "sources": [
+    {
+      "part": "BQ25798RQMR",
+      "url": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+      "evidence": "SLUSDV2C pin table pp4-6, single-input instructions and application bypass topology"
+    },
+    {
+      "part": "AO3400A",
+      "url": "https://www.aosmd.com/sites/default/files/res/data_sheets/AO3400A.pdf",
+      "evidence": "SOT23: 1 gate, 2 source, 3 drain"
+    },
+    {
+      "part": "MMBT3906LT1G",
+      "url": "https://www.onsemi.com/pdf/datasheet/mmbt3906lt1-d.pdf",
+      "evidence": "SOT23: 1 base, 2 emitter, 3 collector"
+    }
+  ],
+  "prefix": "charger",
+  "pins": {
+    "ic": {
+      "1": "STAT",
+      "2": "VBUS",
+      "3": "VBUS",
+      "4": "BTST1",
+      "5": "REGN",
+      "6": "NC_DP",
+      "7": "NC_DM",
+      "8": "VBUS",
+      "9": "VBUS",
+      "10": "GND",
+      "11": "GND",
+      "12": "NC_QON",
+      "13": "CE",
+      "14": "SCL",
+      "15": "SDA",
+      "16": "TS",
+      "17": "ILIM",
+      "18": "BATP",
+      "19": "BTST2",
+      "20": "PROG",
+      "21": "INT",
+      "22": "BAT",
+      "23": "BAT",
+      "24": "SDRV",
+      "25": "SYS",
+      "26": "SW2",
+      "27": "GND",
+      "28": "SW1",
+      "29": "PMID"
+    },
+    "inductor": {
+      "1": "SW1",
+      "2": "SW2"
+    },
+    "q_charge": {
+      "1": "CHARGE_GATE",
+      "2": "GND",
+      "3": "CE"
+    },
+    "q_permission": {
+      "1": "PERMISSION_BASE",
+      "2": "3V3",
+      "3": "CHARGE_GATE"
+    },
+    "r_permission_base": {
+      "1": "ALLOW_N",
+      "2": "PERMISSION_BASE"
+    },
+    "r_permission_off": {
+      "1": "PERMISSION_BASE",
+      "2": "3V3"
+    },
+    "r_charge_off": {
+      "1": "CHARGE_GATE",
+      "2": "GND"
+    },
+    "r_ce": {
+      "1": "REGN",
+      "2": "CE"
+    },
+    "r_prog": {
+      "1": "PROG",
+      "2": "GND"
+    },
+    "r_ilim_top": {
+      "1": "REGN",
+      "2": "ILIM"
+    },
+    "r_ilim_bottom": {
+      "1": "ILIM",
+      "2": "GND"
+    },
+    "r_ts_top": {
+      "1": "REGN",
+      "2": "TS"
+    },
+    "r_ts_bottom": {
+      "1": "TS",
+      "2": "GND"
+    },
+    "r_batp": {
+      "1": "BAT",
+      "2": "BATP"
+    },
+    "c_boot1": {
+      "1": "BTST1",
+      "2": "SW1"
+    },
+    "c_boot2": {
+      "1": "BTST2",
+      "2": "SW2"
+    },
+    "c_regn": {
+      "1": "REGN",
+      "2": "GND"
+    },
+    "c_sdrv": {
+      "1": "SDRV",
+      "2": "GND"
+    },
+    "c_ts": {
+      "1": "TS",
+      "2": "GND"
+    },
+    "c_batp": {
+      "1": "BATP",
+      "2": "GND"
+    },
+    "c_input1": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "c_input2": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "c_input_fast": {
+      "1": "VBUS",
+      "2": "GND"
+    },
+    "c_pmid1": {
+      "1": "PMID",
+      "2": "GND"
+    },
+    "c_pmid2": {
+      "1": "PMID",
+      "2": "GND"
+    },
+    "c_pmid3": {
+      "1": "PMID",
+      "2": "GND"
+    },
+    "c_pmid_fast": {
+      "1": "PMID",
+      "2": "GND"
+    },
+    "c_sys1": {
+      "1": "SYS",
+      "2": "GND"
+    },
+    "c_sys2": {
+      "1": "SYS",
+      "2": "GND"
+    },
+    "c_sys3": {
+      "1": "SYS",
+      "2": "GND"
+    },
+    "c_sys4": {
+      "1": "SYS",
+      "2": "GND"
+    },
+    "c_sys5": {
+      "1": "SYS",
+      "2": "GND"
+    },
+    "c_sys_fast": {
+      "1": "SYS",
+      "2": "GND"
+    },
+    "c_bat1": {
+      "1": "BAT",
+      "2": "GND"
+    },
+    "c_bat2": {
+      "1": "BAT",
+      "2": "GND"
+    },
+    "c_pmid4": {
+      "1": "PMID",
+      "2": "GND"
+    }
+  },
+  "intentional_no_connect": [
+    "ic.6",
+    "ic.7",
+    "ic.12"
+  ],
+  "external_ports": {
+    "VBUS": "source.hv",
+    "BAT": "battery.hv",
+    "SYS": "system.hv",
+    "3V3": "logic.hv",
+    "GND": "common return",
+    "ALLOW_N": "allow_charge_n.line",
+    "STAT": "status_n.line",
+    "INT": "irq_n.line",
+    "SCL": "scl",
+    "SDA": "sda",
+    "TS": "ntc"
+  }
+}

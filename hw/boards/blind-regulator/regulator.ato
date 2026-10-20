@@ -1,0 +1,75 @@
+import ElectricPower
+import ElectricLogic
+from "../../parts/blind-core/TPS62902RPJR.ato" import Part_TPS62902RPJR
+from "../../parts/blind-regulator/MWSA0402S_1R0MT.ato" import Part_MWSA0402S_1R0MT
+from "../../parts/blind-regulator/0402WGF2612TCE.ato" import Part_0402WGF2612TCE
+from "../../parts/blind-power/CL21A226MAYNNNE.ato" import Part_CL21A226MAYNNNE
+from "../../parts/blind-power/SAMSUNG_CL31A106KBHNNNE.ato" import SAMSUNG_CL31A106KBHNNNE_package
+from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
+from "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package
+from "../../parts/blind-power/0402B473K500NT.ato" import Part_0402B473K500NT
+
+module LogicSupply:
+    """UNVERIFIED fresh 3.3 V always-on buck from charger SYS, not raw USB VBUS.
+
+    1 A load design envelope; 2 A regulator rating is not a whole-board guarantee.
+    VSET intentionally open selects 3.3 V using the internal divider.
+    26.1k SmartConfig selects 2.5 MHz auto-PFM/PWM with AEE and discharge.
+    Static VSET accuracy +/-1.25%; +/-2% is a target total steady/ripple budget,
+    not measured load-transient performance. External supervisor owns reset.
+    """
+    source = new ElectricPower
+    logic = new ElectricPower
+    power_good = new ElectricLogic
+    source.voltage = 8.8V to 13.2V
+    logic.voltage = 3.3V +/- 2%
+    source.lv ~ logic.lv
+    power_good.reference ~ logic
+
+    ic = new Part_TPS62902RPJR
+    ic.VIN ~ source.hv
+    ic.GND ~ source.lv
+    ic.VOS ~ logic.hv
+    ic.PG ~ power_good.line
+    # FB_VSET intentionally NC: Table7-2 option16, internal3.3V divider.
+    r_enable = new UNI_ROYAL_0402WGF1002TCE_package
+    r_enable.1 ~ source.hv
+    r_enable.2 ~ ic.EN
+    r_mode = new Part_0402WGF2612TCE
+    r_mode.1 ~ ic.MODE_S_CONF
+    r_mode.2 ~ source.lv
+    r_pg = new UNI_ROYAL_0402WGF1002TCE_package
+    r_pg.1 ~ logic.hv
+    r_pg.2 ~ power_good.line
+    # 47 nF reuses a charger SKU; TI Eq14 predicts ~15.1 ms nominal ramp.
+    c_softstart = new Part_0402B473K500NT
+    c_softstart.1 ~ ic.SS_TR
+    c_softstart.2 ~ source.lv
+    inductor = new Part_MWSA0402S_1R0MT
+    inductor.1 ~ ic.SW
+    inductor.2 ~ logic.hv
+    c_input = new SAMSUNG_CL31A106KBHNNNE_package
+    c_input.1 ~ source.hv
+    c_input.2 ~ source.lv
+    c_input2 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_input2.1 ~ source.hv
+    c_input2.2 ~ source.lv
+    c_input_fast = new SAMSUNG_CL05B104KB54PNC_package
+    c_input_fast.1 ~ source.hv
+    c_input_fast.2 ~ source.lv
+    # Samsung typical DC-bias curve: each22u is~13.86u at3.3V.
+    # Two local caps plus MCU-local decoupling; biased/tolerance/aging and
+    # complete distributed capacitance remain a stability/transient gate.
+    c_output1 = new Part_CL21A226MAYNNNE
+    c_output2 = new Part_CL21A226MAYNNNE
+    c_output1.1 ~ logic.hv
+    c_output2.1 ~ logic.hv
+    c_output1.2 ~ source.lv
+    c_output2.2 ~ source.lv
+    c_output_fast = new SAMSUNG_CL05B104KB54PNC_package
+    c_output_fast.1 ~ logic.hv
+    c_output_fast.2 ~ source.lv
+
+module RegulatorTest:
+    """Unrouted subcircuit. External power/PG ports are intentional."""
+    regulator = new LogicSupply

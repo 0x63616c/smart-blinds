@@ -1,0 +1,102 @@
+{
+  "status": "PASS of stated planning assumptions only",
+  "sources": [
+    "https://www.ti.com/lit/ds/symlink/bq25798.pdf section6.3",
+    "https://www.ti.com/lit/ds/symlink/tps62902.pdf section6.3"
+  ],
+  "temperature_factor": 0.85,
+  "aging_planning_factor": 0.9,
+  "banks": [
+    {
+      "bank": "charger_vbus",
+      "mpn": "CL31A106KBHNNNE",
+      "instances": [
+        "c_input1",
+        "c_input2"
+      ],
+      "voltage_v": 20,
+      "nominal_total_uf": 20,
+      "typical_biased_total_uf": 3.50957,
+      "estimated_with_tolerance_temperature_aging_uf": 2.41634,
+      "ic_required_minimum_uf": 2,
+      "estimated_margin_percent": 20.82
+    },
+    {
+      "bank": "charger_pmid_no_backup",
+      "mpn": "CL31A106KBHNNNE",
+      "instances": [
+        "c_pmid1",
+        "c_pmid2",
+        "c_pmid3",
+        "c_pmid4"
+      ],
+      "voltage_v": 20,
+      "nominal_total_uf": 40,
+      "typical_biased_total_uf": 7.01914,
+      "estimated_with_tolerance_temperature_aging_uf": 4.83268,
+      "ic_required_minimum_uf": 4,
+      "estimated_margin_percent": 20.82
+    },
+    {
+      "bank": "charger_sys",
+      "mpn": "CL31A106KBHNNNE",
+      "instances": [
+        "c_sys1",
+        "c_sys2",
+        "c_sys3",
+        "c_sys4",
+        "c_sys5"
+      ],
+      "voltage_v": 13.2,
+      "nominal_total_uf": 50,
+      "typical_biased_total_uf": 15.07607,
+      "estimated_with_tolerance_temperature_aging_uf": 10.37987,
+      "ic_required_minimum_uf": 6,
+      "estimated_margin_percent": 73.0
+    },
+    {
+      "bank": "charger_bat",
+      "mpn": "CL31A106KBHNNNE",
+      "instances": [
+        "c_bat1",
+        "c_bat2"
+      ],
+      "voltage_v": 12.6,
+      "nominal_total_uf": 20,
+      "typical_biased_total_uf": 6.39183,
+      "estimated_with_tolerance_temperature_aging_uf": 4.40077,
+      "ic_required_minimum_uf": 3,
+      "estimated_margin_percent": 46.69
+    },
+    {
+      "bank": "regulator_input",
+      "mpn": "CL31A106KBHNNNE",
+      "instances": [
+        "c_input",
+        "c_input2"
+      ],
+      "voltage_v": 13.2,
+      "nominal_total_uf": 20,
+      "typical_biased_total_uf": 6.03043,
+      "estimated_with_tolerance_temperature_aging_uf": 4.15195,
+      "ic_required_minimum_uf": 3,
+      "estimated_margin_percent": 38.4
+    },
+    {
+      "bank": "regulator_output_local",
+      "mpn": "CL21A226MAYNNNE",
+      "instances": [
+        "c_output1",
+        "c_output2"
+      ],
+      "voltage_v": 3.366,
+      "nominal_total_uf": 44,
+      "typical_biased_total_uf": 27.30689,
+      "estimated_with_tolerance_temperature_aging_uf": 16.71181,
+      "ic_required_minimum_uf": 10,
+      "estimated_margin_percent": 67.12
+    }
+  ],
+  "excluded": "100 nF bypass contribution, unguaranteed bias/temperature interaction, actual aging duration, ESL/ESR, layout and load transients",
+  "release_gate": "Confirm effective capacitance and ripple/stability on assembled boards; disable BQ backup mode (70 uF minimum if enabled)."
+}

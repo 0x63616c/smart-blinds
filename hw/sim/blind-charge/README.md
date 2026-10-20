@@ -17,3 +17,13 @@ Charger, cell-protection and switching stability still require vendor-model work
 where available, a routed board, and instrumented physical tests. The existing
 `blind-control` ideal regenerative model is separate and does not implement an
 actual protective clamp.
+
+## Physical pin connectivity
+
+Run `python3 hw/sim/blind-charge/check_connectivity.py --check` from the repository.
+The independent physical-pin contract covers all 36 components / 101 pads in the
+compiled board. It compares complete net equivalence, including three isolated
+NC pins; negative controls deliberately introduce a PMID/GND swap, VBUS/BAT short,
+open CE path and grounded NC. It does not infer expectations from Ato signal names,
+and does not replace primary pin review, a fresh Ato build, native schematic ERC
+or routed DRC. `charger-connectivity.json` links the primary pin references.
