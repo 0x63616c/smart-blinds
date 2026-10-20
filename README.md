@@ -33,6 +33,9 @@ blinds are needed to test synchronization before committing to the eight-unit ba
 
 These images are generated from the design sources. [Preview generation and provenance](docs/previews.md).
 A green preview badge means the images generated successfully, not that the hardware is validated.
+The enclosure previews below still contain a [known PCB orientation error](docs/mechanical/pcb-orientation-review.md).
+The inward-facing board placement and its frame, ports and cable paths are being corrected;
+these images must not be used as physical PCB-fit evidence.
 
 <!-- previews:start -->
 ### Retained enclosure — current exterior
