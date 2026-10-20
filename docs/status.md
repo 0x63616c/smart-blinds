@@ -3,8 +3,8 @@
 Updated 20 October 2026. [Public repository](https://github.com/0x63616c/smart-blinds).
 
 **Prototype design in progress.** The enclosure, circuit captures and control software
-are reviewable. An experimental companion-carrier board is connected, and the primary carrier
-has its power and isolated current-sensing routes; the canonical captures remain
+are reviewable. Both experimental battery-carrier routes are fully connected;
+the main controller route is partial and the canonical circuit captures remain
 unrouted. No unit has been fabricated,
 powered, charged or installed. The next physical milestone is two prototypes,
 followed by an eight-unit build only after their tests pass.
@@ -28,11 +28,11 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All thirteen Design checks jobs passed for `f659635`](https://github.com/0x63616c/smart-blinds/actions/runs/39400827375),
-including the charger sensing/control extension, both mechanical assemblies and the updated material estimate,
+[All thirteen Design checks jobs passed for `cd44b28`](https://github.com/0x63616c/smart-blinds/actions/runs/39401944137),
+including the main-board via-to-solder-land margin, charger sensing/control extension, both mechanical assemblies and the updated material estimate,
 eighteen portable firmware targets with healthy-refresh retention, the C6 gauge adapter, and the separate
 Wi-Fi motion target's default/bench builds against the pinned real SDK.
-The enclosure, loading fixtures and charger routing [source-generated previews were published successfully](https://github.com/0x63616c/smart-blinds/actions/runs/39400827106).
+The enclosure, loading fixtures and charger routing [source-generated previews were published successfully](https://github.com/0x63616c/smart-blinds/actions/runs/39401944131).
 
 The new [portable local ownership core](firmware/local-ownership.md) passes
 all eighteen host targets, the same suite under ASan/UBSan, 59 native transport,
@@ -98,7 +98,7 @@ hole courtyard findings. The nominal balanced-current copper estimate is 1.410 W
 at 4 A pack / 2 A per cell, excluding components and contacts; it is not a
 thermal result. Both carriers still need electrical, assembly and physical
 qualification; the main board remains partially routed. This battery checkpoint
-has passed local checks and awaits its own CI run.
+has passed local checks; its [CI run](https://github.com/0x63616c/smart-blinds/actions/runs/39402872917) is in progress.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
 196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
@@ -111,7 +111,7 @@ route vias retain a 0.20 mm drill-to-solder-land margin, including same-net land
 The assembly pass moves twelve vias and preserves their connections with
 adjusted traces and five short stubs; components remain fixed. The control extension moves six electrical parts
 and one bootstrap via; all mechanical anchors remain fixed. Its latest route
-solder-land clearance checks are local; the CI link above precedes that final via adjustment.
+solder-land clearance checks pass locally and in the CI run linked above.
 Actual DRC retains 257 unconnected items, 260 silk/text findings, four library differences and five
 footprint-type findings. This is a reproducible partial checkpoint; critical-loop,
 current/thermal, USB, supervisory and full-routing work remain.
@@ -137,6 +137,17 @@ disabled and enabled build gates. Pinned C6 builds also pass, including the
 normally excluded attachment branch compiled separately against the real SDK.
 No application instantiates the adapter. Local response and physical conversion continuity still require
 qualification.
+
+The isolated [joint power mailbox](firmware/power-mailbox.md) now commits charger
+and gauge reports with one accepted serial. Healthy refreshes retain the previous
+fresh pair; a first detected fault or clean window close invalidates it. Readers
+receive immediate, single-use snapshots. A fresh parent build passes all nineteen
+portable targets; the source-bound checkpoint also passes three focused sanitizer
+targets, competing readers under ThreadSanitizer, nine restored-bug controls and
+both pinned real-SDK Wi-Fi builds. This new checkpoint awaits its own CI run.
+The C6 gate is compile-only: no application instantiates the mailbox yet, no
+qualification records are supplied and hardware permissions are unchanged.
+Runtime wiring, physical critical-section timing and sleep handoff remain.
 
 The separate [Wi-Fi motion target](firmware/wifi-motion.md) binds authenticated
 requests to the existing owned control runtime. Raw button STOP precedes ADC

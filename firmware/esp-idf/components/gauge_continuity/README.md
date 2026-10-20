@@ -93,6 +93,12 @@ a fail-closed interval in which the consumer's older copy rejects. Connecting
 the adapter needs a reviewed coherent report/serial handoff; accepting arbitrary
 older serials or bypassing `current` is not a solution.
 
+The separate [joint power mailbox](../../../../docs/firmware/power-mailbox.md)
+now implements a portable charger-first/coherent-publication alternative and
+a compile-only C6 critical-section backend. It does not change this adapter's
+standalone read mode or instantiate a joint session in either application.
+Runtime closure, power-lock handoff and physical timing remain integration gates.
+
 ## Requested timeouts versus physical timing
 
 The portable reader requests 10 ms per transfer and rejects any call whose

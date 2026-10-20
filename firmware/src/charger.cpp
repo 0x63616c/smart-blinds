@@ -29,19 +29,27 @@ Profile profile(SourceVoltage voltage) {
              {0x30,1,0xC0,0xFF}}}; // DP/DM ADC off; VAC1/2 available.
 }
 bool Bq25798::fail(Error error) {
-    error_ = error;
     configured_ = false;
+    if(first_error_==Error::none) {
+        first_error_=error;
+        if(sink_) sink_->failed(error);
+    }
+    error_ = error;
     // Independent OFF path must not depend on a healthy I2C bus. Surface failure
     // to establish even the requested GPIO state instead of claiming it is off.
-    if (!inhibit_.hold_off()) error_ = Error::inhibit;
+    if (!inhibit_.hold_off()) { inhibit_failed_=true;error_ = Error::inhibit; }
     return false;
 }
 bool Bq25798::begin() {
     error_ = Error::none;
+    first_error_=Error::none;
+    inhibit_failed_=false;
     const auto now = bus_.now_ms();
     if (now < last_ms_) return fail(Error::clock);
     started_ms_ = last_ms_ = now;
-    return inhibit_.hold_off() || fail(Error::inhibit);
+    if(inhibit_.hold_off()) return true;
+    inhibit_failed_=true;
+    return fail(Error::inhibit);
 }
 bool Bq25798::within_budget() {
     const auto now = bus_.now_ms();

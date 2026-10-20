@@ -73,7 +73,7 @@ add_executable(gauge_continuity_tests tests/gauge_continuity_tests.cpp src/gauge
 target_include_directories(gauge_continuity_tests PRIVATE include)
 target_compile_options(gauge_continuity_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_test(NAME gauge_continuity_tests COMMAND gauge_continuity_tests)
-add_executable(gauge_bus_session_tests tests/gauge_bus_session_tests.cpp src/gauge_bus_session.cpp src/gauge_continuity.cpp)
+add_executable(gauge_bus_session_tests tests/gauge_bus_session_tests.cpp src/gauge_bus_session.cpp src/gauge_continuity.cpp src/power_mailbox.cpp src/charger.cpp)
 target_include_directories(gauge_bus_session_tests PRIVATE include)
 target_link_libraries(gauge_bus_session_tests PRIVATE Threads::Threads)
 target_compile_options(gauge_bus_session_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
@@ -82,7 +82,7 @@ foreach(GAUGE_BENCH IN ITEMS 0 1)
   set(GAUGE_TARGET c6_gauge_adapter_gate_${GAUGE_BENCH}_tests)
   add_executable(${GAUGE_TARGET} tests/c6_gauge_adapter_tests.cpp
     esp-idf/components/gauge_continuity/c6_gauge_continuity.cpp
-    src/gauge_bus_session.cpp src/gauge_continuity.cpp)
+    src/gauge_bus_session.cpp src/gauge_continuity.cpp src/power_mailbox.cpp src/charger.cpp)
   target_include_directories(${GAUGE_TARGET} PRIVATE tests/fakes/gauge_idf include
     esp-idf/components/gauge_continuity/include)
   target_compile_definitions(${GAUGE_TARGET} PRIVATE CONFIG_BLINDS_GAUGE_CONTINUITY_BENCH=${GAUGE_BENCH})
@@ -93,3 +93,9 @@ add_executable(wifi_motion_tests tests/wifi_motion_tests.cpp)
 target_link_libraries(wifi_motion_tests PRIVATE blinds_motion)
 target_compile_options(wifi_motion_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_test(NAME wifi_motion_tests COMMAND wifi_motion_tests)
+add_executable(power_mailbox_tests tests/power_mailbox_tests.cpp src/power_mailbox.cpp
+  src/gauge_bus_session.cpp src/gauge_continuity.cpp src/charger.cpp)
+target_include_directories(power_mailbox_tests PRIVATE include)
+target_link_libraries(power_mailbox_tests PRIVATE Threads::Threads)
+target_compile_options(power_mailbox_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
+add_test(NAME power_mailbox_tests COMMAND power_mailbox_tests)

@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <iostream>
+#include <functional>
 #include <vector>
 #include <utility>
 using namespace smart_blinds::charger;
@@ -10,7 +11,8 @@ void require(bool value, const char* message) { if (!value) { std::cerr << messa
 struct Gate final : Inhibit {
     bool off = false, works = true;
     unsigned requests = 0;
-    bool hold_off() override { ++requests; off = works; return works; }
+    std::function<void()> during;
+    bool hold_off() override { ++requests;if(during) during();off = works; return works; }
 };
 struct FakeBus final : Bus {
     Gate& gate;
@@ -186,7 +188,44 @@ void battery_only_status() {
     Fixture unknown;
     require(unknown.device.capture_off().error==Error::unconfigured && unknown.bus.writes.empty(),"unconfigured off capture wrote registers");
 }
+void first_failure_notice() {
+    struct Notice final:FailureSink {
+        Error first=Error::none;unsigned calls=0;
+        void failed(Error reason) noexcept override { if(!calls) first=reason;++calls; }
+    };
+    for(unsigned kind=0;kind<6;++kind) {
+        Gate gate;FakeBus bus(gate);Notice notice;Bq25798 device(bus,gate,&notice);
+        require(device.configure(SourceVoltage::nine)==Error::none && notice.calls==0,
+                "healthy configure emitted failure");
+        bus.calls=0;
+        Error expected=Error::bus;
+        if(kind==0) bus.fail_at=1;
+        if(kind==1) { bus.memory[0x48]=0;expected=Error::identity; }
+        if(kind==2) { bus.memory[0x12]=0x40;expected=Error::readback; }
+        if(kind==3) { bus.step_ms=20;expected=Error::timeout; }
+        if(kind==4) { bus.time=0;expected=Error::clock; }
+        if(kind==5) { gate.works=false;expected=Error::inhibit; }
+        bool cleanup_seen=false;
+        gate.during=[&]{
+            if(notice.calls) {
+                cleanup_seen=true;
+                require(notice.calls==1 && notice.first==expected && device.first_error()==expected &&
+                        !device.configured(),"first notice delayed until after inhibit/return");
+                gate.works=false; // Secondary OFF failure is diagnostic, not primary.
+            }
+        };
+        const auto result=device.capture_off();
+        require(cleanup_seen && result.error==Error::inhibit && device.inhibit_failed() &&
+                device.first_error()==expected && notice.calls==1 && notice.first==expected,
+                "secondary inhibit replaced first failure or emitted duplicate notice");
+    }
+    // With no sink, existing caller-visible inhibit precedence is unchanged.
+    Fixture legacy;legacy.configure();legacy.bus.fail_at=legacy.bus.calls+1;
+    legacy.gate.during=[&]{if(legacy.bus.calls==legacy.bus.fail_at) legacy.gate.works=false;};
+    require(legacy.device.capture_off().error==Error::inhibit && legacy.device.first_error()==Error::bus,
+            "optional sink changed legacy error contract");
+}
 int main() {
-    profile_and_faults(); captures(); readiness(); battery_only_status();
+    profile_and_faults(); captures(); readiness(); battery_only_status();first_failure_notice();
     std::cout << "charger profile, every-transfer faults, fresh ADC and readiness boundaries passed\n";
 }

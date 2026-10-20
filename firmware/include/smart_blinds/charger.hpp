@@ -23,6 +23,13 @@ public:
 enum class SourceVoltage : std::uint16_t { nine = 9000, fifteen = 15000 };
 enum class Error { none, inhibit, identity, strap, bus, timeout, clock, readback,
                    unconfigured, adc, status, fault, temperature };
+// Optional synchronous first-failure notice, before independent OFF cleanup.
+// Must be bounded/noexcept, and must not call back into charger or bus.
+class FailureSink {
+public:
+    virtual ~FailureSink()=default;
+    virtual void failed(Error reason) noexcept=0;
+};
 struct Register {
     std::uint8_t address, size;
     std::uint16_t value, mask;
@@ -57,11 +64,16 @@ class Bq25798 {
 public:
     static constexpr std::uint8_t address = 0x6B;
     static constexpr std::uint64_t operation_budget_ms = 750;
-    Bq25798(Bus& bus, Inhibit& inhibit) : bus_(bus), inhibit_(inhibit) {}
+    Bq25798(Bus& bus, Inhibit& inhibit,FailureSink* sink=nullptr)
+        : bus_(bus), inhibit_(inhibit),sink_(sink) {}
     Error configure(SourceVoltage voltage);
     Capture capture();
     OffCapture capture_off();
     bool configured() const { return configured_; }
+    bool reports_to(const FailureSink& sink) const { return sink_==&sink; }
+    // Owner-only diagnostics; primary cause remains separate from OFF failure.
+    Error first_error() const { return first_error_; }
+    bool inhibit_failed() const { return inhibit_failed_; }
     void invalidate() { fail(Error::unconfigured); }
 private:
     bool begin();
@@ -74,9 +86,12 @@ private:
     bool fail(Error error);
     Bus& bus_;
     Inhibit& inhibit_;
+    FailureSink* const sink_;
     Profile profile_{};
     SourceVoltage source_ = SourceVoltage::nine;
     Error error_ = Error::unconfigured;
+    Error first_error_=Error::none;
+    bool inhibit_failed_=false;
     std::uint64_t started_ms_ = 0, last_ms_ = 0;
     bool configured_ = false;
 };
