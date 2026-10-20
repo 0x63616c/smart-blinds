@@ -98,7 +98,9 @@ hole courtyard findings. The nominal balanced-current copper estimate is 1.410 W
 at 4 A pack / 2 A per cell, excluding components and contacts; it is not a
 thermal result. Both carriers still need electrical, assembly and physical
 qualification; the main board remains partially routed. This battery checkpoint
-has passed local checks; its [CI run](https://github.com/0x63616c/smart-blinds/actions/runs/39402872917) is in progress.
+passes locally and in the native-circuit job of the [corrected CI run](https://github.com/0x63616c/smart-blinds/actions/runs/39403449107).
+The first run caught a stale source hash in the captured parts list; refreshing it
+changed no quantities or prices. The complete corrected run is still in progress.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
 196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
@@ -144,7 +146,8 @@ fresh pair; a first detected fault or clean window close invalidates it. Readers
 receive immediate, single-use snapshots. A fresh parent build passes all nineteen
 portable targets; the source-bound checkpoint also passes three focused sanitizer
 targets, competing readers under ThreadSanitizer, nine restored-bug controls and
-both pinned real-SDK Wi-Fi builds. This new checkpoint awaits its own CI run.
+both pinned real-SDK Wi-Fi builds. The nineteen-target suite and pinned builds
+also pass in the [corrected CI run](https://github.com/0x63616c/smart-blinds/actions/runs/39403449107); its remaining geometry jobs are still in progress.
 The C6 gate is compile-only: no application instantiates the mailbox yet, no
 qualification records are supplied and hardware permissions are unchanged.
 Runtime wiring, physical critical-section timing and sleep handoff remain.
