@@ -49,6 +49,20 @@ std::optional<double> Calibration::height_at(double count) const {
 std::optional<double> Calibration::count_at(double height) const {
     return interpolate(knots_, size_, height, true);
 }
+std::optional<double> Calibration::count_rate(double count, double velocity) const {
+    if(!height_at(count) || !finite(velocity)) return std::nullopt;
+    if(velocity==0) return 0.;
+    if((velocity>0 && count>=knots_[size_-1].count) ||
+       (velocity<0 && count<=knots_[0].count)) return std::nullopt;
+    for(std::size_t i=1;i<size_;++i) {
+        if(count<knots_[i].count || (count==knots_[i].count && velocity<0)) {
+            const auto rate=velocity*(knots_[i].count-knots_[i-1].count)/
+                (knots_[i].height_mm-knots_[i-1].height_mm);
+            return finite(rate) ? std::optional<double>(rate) : std::nullopt;
+        }
+    }
+    return std::nullopt;
+}
 double Calibration::low() const { return valid() ? knots_[0].height_mm : NAN; }
 double Calibration::high() const { return valid() ? knots_[size_ - 1].height_mm : NAN; }
 std::optional<Range> common_range(const Calibration* c, std::size_t size) {

@@ -16,6 +16,9 @@ public:
     bool assign(const Knot* knots, std::size_t size, std::uint32_t revision);
     std::optional<double> height_at(double count) const;
     std::optional<double> count_at(double height_mm) const;
+    // Directional local slope; positive travel at an interior knot uses the
+    // next segment, negative travel the previous one. Reject outward endpoints.
+    std::optional<double> count_rate(double count, double velocity_mm_s) const;
     double low() const;
     double high() const;
     std::uint32_t revision() const { return revision_; }

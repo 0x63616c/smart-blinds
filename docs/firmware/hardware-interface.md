@@ -2,6 +2,10 @@
 
 Status: provisional resources for the electronics design. ESP32-C6-WROOM-1-N4 is the electrical candidate; a motor-disabled C6 bring-up application is under `firmware/esp-idf`. The following allocation is proposed for schematic review; the application does not configure these pins yet. Leave GPIO4/5, GPIO8/9 and GPIO15 free of loaded control signals because they are strap-sensitive. GPIO14 is not exposed on this module. The electronics review owns the final pin map. [Module pin and strap tables](https://documentation.espressif.com/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf)
 
+The [disabled C6 I/O component](../../firmware/esp-idf/components/board_io/README.md) now compiles real GPIO, stopped PCNT and permanently LOW MCPWM setup for this allocation. The application still does not instantiate it. Its portable initialization/error ordering and button gesture policy have host tests; this is not an enabled motor port or physical validation.
+
+The [portable motion executor](motion-executor.md) now implements the active lifecycle against injected I/O, including calibrated count-rate control, watchdog ordering, reversal and fault cleanup. Its explicit bench profile is disabled by default; no active C6 adapter or application entry is bound to it.
+
 | Proposed GPIO | Board signal | Default and constraint |
 |---|---|---|
 | 0 / 1 | Up / Down buttons | Wake-capable, active low; excludes an external 32 kHz crystal on these pins |
@@ -11,7 +15,7 @@ Status: provisional resources for the electronics design. ESP32-C6-WROOM-1-N4 is
 | 10 / 11 | I2C SDA / SCL | External pull-ups; bounded worker transactions |
 | 12 / 13 | Native USB D− / D+ | Preserve programming/recovery access |
 | 18 / 19 | DRV8874 IN1 / IN2 | External pull-downs; PWM-mode truth table below |
-| 20 / 21 | MOTOR_REQUEST_N / driver nFAULT | Request active LOW with pull-up, into independent supervised gate; never directly to nSLEEP |
+| 20 / 21 | MOTOR_REQUEST_N / shared motor fault | Request active LOW with pull-up, into independent supervised gate; never directly to nSLEEP. Fault LOW means driver nFAULT or latched regeneration overtemperature; firmware cannot distinguish them from this pin |
 | 22 | CHARGE_ALLOW_N | Active LOW with external 3.3 V pull-up and PNP inversion to CE NFET; reset pull-up reinforces OFF |
 | 23 | ENCODER_ALLOW_N | Active LOW with pull-up/inversion, default OFF; gating subject to reference/holding policy |
 | 17 | Optional charger INT | GPIO input; shared gauge alert requires a changed carrier connector |
