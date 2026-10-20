@@ -148,6 +148,17 @@ Four ICs and ten passive parts. All 49 physical pin connections checked against 
 </details>
 
 <details>
+<summary>Regenerative clamp and thermal latch — native KiCad circuit study</summary>
+
+38 parts and 105 physical pins checked. Two explicit external-power ERC findings. Pulse energy, response time, thermal coupling and sustained back-drive remain unqualified.
+
+![Regenerative clamp and thermal latch — native KiCad circuit study](docs/generated/regen-schematic/regen-test.svg)
+
+[Source](hw/schematics/blind-regen/regen-test.kicad_sch) · [Generated files](docs/generated/regen-schematic/)
+
+</details>
+
+<details>
 <summary>3.3 V logic supply — native KiCad circuit study</summary>
 
 12 parts and 31 physical pins checked. Internal 3.3 V divider; 1 A design envelope. Two external-power ERC findings. Biased capacitance, load transients, layout and hardware qualification remain open.
