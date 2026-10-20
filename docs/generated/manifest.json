@@ -1,11 +1,11 @@
 {
   "schema": 1,
-  "source_commit": "0d35080f634c1004ad6b5bf9bec7bb099641d081",
+  "source_commit": "653d50ca846d1ad7bcd727299404bb264687d10f",
   "tools": {
     "kicad": "10.0.7",
     "openscad": "OpenSCAD version 2021.01"
   },
-  "manifest_sha256": "ff839964b170ef842b0c029626f59a53e2014f71446ab6c4669f04141e018ed3",
+  "manifest_sha256": "b873ecaf6420a174649080a10e8a8f38bde58babd4573e10cc494eb1016eb810",
   "renderer_sha256": "a21ec1f19388e517a7ce19fc41ebe39f7be6143eee9f25f58fdd99b948176a43",
   "validation": "preview generation only; no physical validation",
   "designs": [
@@ -26,7 +26,7 @@
       "outputs": [
         {
           "path": "compact-holder-closed/assembly.png",
-          "sha256": "6454314a9b936006deecd11872c73c10037414c74df73aacdeec97235066fc1f"
+          "sha256": "ff76d67b5824e04c91ce4abe95dd98b928f450f8b69b45212691c3acf744af39"
         }
       ]
     },
@@ -47,7 +47,7 @@
       "outputs": [
         {
           "path": "compact-holder-assembly/assembly.png",
-          "sha256": "113559989545cd1c79b82044182057912d6084738e8794e7f2f988b449527cac"
+          "sha256": "6d73c9b1602f9aa3fb3bac68c367d1ebd66e0c47b9d41b518654b49bd122eb64"
         }
       ]
     },
@@ -68,7 +68,7 @@
       "outputs": [
         {
           "path": "compact-holder-exploded/assembly.png",
-          "sha256": "94ab789f9c97d23cfb4278e88715970592703f7ea9568d58c9bafca831b9686b"
+          "sha256": "3a84689f849612305b275817e8dd065fffbf37c10c2bcb277521989d0bf53c14"
         }
       ]
     },
@@ -86,11 +86,11 @@
       "outputs": [
         {
           "path": "main-controller-placement/assembly.png",
-          "sha256": "0f71e53d60d55e81530bc5c07b961273757c82c24eaa4f621e6d41b44eaf5da5"
+          "sha256": "a1a43aa38806e1f759c77a43387fed4d2a999051cbfe38e0cc9a9c37ebf752e1"
         },
         {
           "path": "main-controller-placement/top.svg",
-          "sha256": "fca956cde7ead897fcccec823bd31fcbb050dc9886800ceb451d7e5d0c6f157e"
+          "sha256": "1d6dfb8ca309ea207b4fd1cb1eaa53197e55d33171088506bbb2d06585cfc31e"
         }
       ],
       "models_sha256": {
@@ -148,29 +148,31 @@
       "source": "hw/routing/blind-main/main-routed.kicad_pcb",
       "inputs_sha256": {
         "hw/routing/blind-main/charger.py": "63c7a84fb2b46b3627ccba3e7369fcc0e94ef023af4c7166adadbd659f3fdf0a",
-        "hw/routing/blind-main/checks.json": "f36448a071fb32dd0b8c8d5d54a1c1e54dce3c0ec5961dc9b2289e6e11076738",
-        "hw/routing/blind-main/checks.py": "e7c1d540445aa71a8398ecb02aae2fee751276605b7d51a5edbc6c43f58d9ccc",
+        "hw/routing/blind-main/checks.json": "08d3523ca30e008aff709ced01747bcff09194bc3308ab7603e6bdba5cae1be3",
+        "hw/routing/blind-main/checks.py": "760d103f61b8222e7db457b72cc069dc532de3b44f49f80c188e14bc5ddf6cda",
         "hw/routing/blind-main/local_power.py": "a0c8e2895494d882b5092b7835278c0d18389707236a41bf666bd4c5648e81a0",
-        "hw/routing/blind-main/main-routed.kicad_pcb": "2f63ca901a88ab404389fcf0b7488d7bf1c8d815253bbff6af2b5ef0ee168659",
+        "hw/routing/blind-main/main-routed.kicad_pcb": "87edfd92aa292a70a52eff9bea7144c86ffd2eb30b03f0ab46e1846c79a80436",
         "hw/routing/blind-main/main-routed.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
         "hw/routing/blind-main/module_supply.py": "a981469772987b5d1d078f98fe5c61948f5a47e9b4ddcbb5879eabf44767bba2",
         "hw/routing/blind-main/place.py": "95077c4d892a6b49814f3c476dfdc7a6f3397973fbf7215a9e8af65ea41b736d",
-        "hw/routing/blind-main/placement.json": "e3e9c513cc38c7744bf52ee9e601c8ab29220ad782e25c71c06165b44d8102f1",
+        "hw/routing/blind-main/placement.json": "81d5eac178976e949dcd88375cd9421c0a24ddd5817ba9f5665a29688a572590",
         "hw/routing/blind-main/project-template.json": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
-        "hw/routing/blind-main/route-record.json": "43031adebfa955d1531ab410f2d7a4f14dc20d7e015e6698fa0bcef8b50d1282",
-        "hw/routing/blind-main/route.py": "9003fc32264c083ea6648cd4ef1aa91042a54a91216f4cc43b433790f6ded886",
+        "hw/routing/blind-main/route-record.json": "e7e4144ea8bb2f06afe0448c61594bb04b6d55bf5d1a73f27c6ab622125dab20",
+        "hw/routing/blind-main/route.py": "41430ad3bac5c2a56b42e0503a52e60fc0c4e7258d22951d53c5008d2710a2fe",
+        "hw/routing/blind-main/usb-control-routes.json": "d82fc7bdd42d071cc7769220493cdfe7c7cb0a7d05ed4dc5e0a774844449af09",
+        "hw/routing/blind-main/usb_controls.py": "b38d943dd3d520804f3138bfee971391af7ff6f1893644b2cb5c72c881302edd",
         "hw/routing/blind-main/usb_input.py": "710f7aa2629d8307c0b00afcf956194c4ad979050f5fd68c6e9fa44305b826fa"
       },
       "source_files_dirty": false,
-      "role": "Experimental four-layer route with 344 segments and 100 vias: local charger, motor, regulator, radio supply and USB power/protection paths. 38 physical connection groups and ten injected-fault checks pass; 322 unconnected items remain. USB data, enable and other control routing, current/thermal review and final manufacturing checks are unfinished.",
+      "role": "Experimental four-layer route with 457 segments and 124 vias: local charger, motor, regulator, radio and USB power/control paths. 60 physical connection groups and fourteen injected-fault checks pass; 292 unconnected items remain. USB data/factory access, remaining current/signal routes, thermal review and manufacturing checks are unfinished.",
       "outputs": [
         {
           "path": "main-power-route/assembly.png",
-          "sha256": "89143ba18778b3cd6c98ef0c5e8f8e39f9100259e3f7d1d13035f0116bbd1efa"
+          "sha256": "3957dea0ce61f7048300cdd772f84ff776fabbb4070ad0d371622a2bab87fb64"
         },
         {
           "path": "main-power-route/top.svg",
-          "sha256": "a4eda6c71f35f73a970dce39fbf76e0d281fb64ff46e9a9e686f6a745d579d3e"
+          "sha256": "b26744e9cb2d39443eae5941b4ac9a1134db2e0601ffacf28f3288192eb41292"
         }
       ],
       "models_sha256": {
@@ -240,11 +242,11 @@
       "outputs": [
         {
           "path": "companion-routed/assembly.png",
-          "sha256": "bb0c0e398a911b8cbcda2d67e787b3652421c605d6960403db79b762fc42b556"
+          "sha256": "0a3ea135701fc70cb320b78f73de4a5ea4723fa903baf9a4f77ba496b941b616"
         },
         {
           "path": "companion-routed/top.svg",
-          "sha256": "39a42bd684aaf0d0ee94da18e298edc8a40cf3a66dbdbc798170972b63512348"
+          "sha256": "630b6e9a279d1952b6b58e2ff960f0e43475605181130b7d41b557c1444d2cca"
         }
       ],
       "models_sha256": {
@@ -270,11 +272,11 @@
       "outputs": [
         {
           "path": "primary-current-route/assembly.png",
-          "sha256": "c9597c26578d2f62620659a944eab164661b35d51b235289013446d5a3decc34"
+          "sha256": "a9678f3b9d8850978d810683c99f0226c4874dabd9b4cf76176937fbf907ce30"
         },
         {
           "path": "primary-current-route/top.svg",
-          "sha256": "1088009b887bc871969f7daca92382523596e714a3bc3e4c5f99cdc8687766ba"
+          "sha256": "6283aa063597bd7bc349f8af109de09880228ca0c868a53bdb9cda1094c8df8f"
         }
       ],
       "models_sha256": {
@@ -309,7 +311,7 @@
       "outputs": [
         {
           "path": "holder-service-fixture/assembly.png",
-          "sha256": "aaa876cfa94384d90918d1873db7c3270d8dacba5930a83539d4dea3c99093c5"
+          "sha256": "313989064ba1be2a2f6d75c43cf69daba8126403bc93980f0a7e19ce901fb4f8"
         }
       ]
     },
@@ -344,51 +346,51 @@
       "outputs": [
         {
           "path": "main-controller-schematic/schematic.pdf",
-          "sha256": "9bf9e9c2800153dfa53f62c822a4d7be6d743edb87504c86a6e0ce842f7b6dd7"
+          "sha256": "6ac4eb89e40fc67c30335c4e742197f2a36d42b5827dfc893e6397e9c56d9edc"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-3S charger.svg",
-          "sha256": "faf61ffaae169cd1d80f4b0f61bc512488b7bb4cdb1bc122c212dfdb800bcf5b"
+          "sha256": "f23c1619a741a2dc3f3c89d681a643c47d47f318cc9aa6482126dc6a3d4f9031"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Buttons and home input.svg",
-          "sha256": "c45580232fd1ba6421fcbe7e1d6c908807e6034f8959c4f08a71133c27b63b13"
+          "sha256": "0046db90fcbea28fe4b6e07219d42f89ddb335e86eef5ee41e861ae965cafafd"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Encoder input.svg",
-          "sha256": "8dde0a76150dba45e2f29906feb6557cc39b5b9c7c235a3b0ce061f37f774bd9"
+          "sha256": "0e8d57cf3f38c71447fb7fec0e1682d6f9f862fd49da46f8930d03581a998608"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Logic supply.svg",
-          "sha256": "3791767735705c23ab4928bf96de4e47b52aff2ab4c288a9893a8c5ac8e9ae18"
+          "sha256": "07bd10af6ffc093c67f5d4deeebbcf3111aa335e73e71447bc891ddad401fb22"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Motor bridge.svg",
-          "sha256": "ce77cafb2945878748dcf0f07ef0396734c9cc87a28a2f677ac51e6f34f05741"
+          "sha256": "697897eed0143974a79a06470177e0b113a4c5d276f26f824f7b4d24af353467"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Motor supervision.svg",
-          "sha256": "5301fed6a8c5807fc06efe6178f13d320c3a51e1877a5a01e662fced99f57a33"
+          "sha256": "c6af01c6fb6794febdcefaa1ae5382e421c070f0a842cc2310b16ac07e64b25e"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Power and motor permission.svg",
-          "sha256": "2e29d8e3de4b6419cfa1b3613e9a80a1b553ba48243add96a46286c73760759f"
+          "sha256": "7e9ceb1c9de54b47e096098e3803222b9e84c0f7929137ccb51c01385c321da3"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Radio and USB data.svg",
-          "sha256": "13f18b6401a0b470b5efbece46c1593918f2f44fd96c16888fc30ab564f6a057"
+          "sha256": "4dcb29d6fe2ed6c60dbab632c5d7dfc65efc5c46863d848014595b93717b6c53"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Regenerative clamp.svg",
-          "sha256": "685c738241bd038a19ec24b55cfaece1a5ffb08857ac958c05206e618272ec41"
+          "sha256": "602b3a2b8f106a2ec7fa9e49171f9eec6ff35abd5f2d1b7d4cfea7023b6d2a64"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-USB-C input.svg",
-          "sha256": "9f450ba1739f7224664a3105cce807945c6cdecd1d61d632319405306d670053"
+          "sha256": "4ea43ad6aa7bf302742576c9ca2a5aff482aa9961d4eec45168461dc2233691c"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main.svg",
-          "sha256": "86c1079323bf3388d2b3849ea1fab8bca714c386e43887521f0ce7368f9b94f6"
+          "sha256": "caa865d3f47f505712d2f68c481a0d54b92b42dbb5dc224800eddabfd9cc4196"
         }
       ]
     },
@@ -430,7 +432,7 @@
       "outputs": [
         {
           "path": "retained-cassette/assembly.png",
-          "sha256": "d732bbdb1d2864ced673049cefd2050b7bd8826f3d50dde57292d704907f0dd7"
+          "sha256": "42ce09807bd0a210a46f05782c95bea353614c4581b45298933aab13829f4a88"
         }
       ]
     },
@@ -469,7 +471,7 @@
       "outputs": [
         {
           "path": "holder-closed/assembly.png",
-          "sha256": "a22bbb250b13db8d9f85613e0f4e3c0525470f33cf6c24201be4c9b3f5b2f9e6"
+          "sha256": "3025a0dea92d21cd5ba896e48e592fa508ebd6fab1adb2835686a7ce66eda672"
         }
       ]
     },
@@ -503,7 +505,7 @@
       "outputs": [
         {
           "path": "holder-exploded/assembly.png",
-          "sha256": "fbe236620bb8770be5fc2905bb80622172155a198f7abb0798e72cc2b7433231"
+          "sha256": "238e027f2ffe807920b6de1fec5964e647a764d2a74d6e9ad291c816cb34f567"
         }
       ]
     },
@@ -540,7 +542,7 @@
       "outputs": [
         {
           "path": "motor-schematic/motor-test.svg",
-          "sha256": "03cb5829aa3e4636c7fea0fea8f3c9b216d85f6d79408ea7e50bc7113433befe"
+          "sha256": "7c91dbef57feb5cc598f291c652572f6709d1524fb886db30996f24bffd08cd3"
         }
       ]
     },
@@ -557,7 +559,7 @@
       "outputs": [
         {
           "path": "supervisor-schematic/supervisor-test.svg",
-          "sha256": "d0d25c479bf57cc26a13cc977f92b8cd502f9ba23756a1c9b7487e424b1cd873"
+          "sha256": "f5e372e4ea31d0f62288e42665e1e184ef6fcb19254db46f71e244f8709e766a"
         }
       ]
     },
@@ -574,7 +576,7 @@
       "outputs": [
         {
           "path": "charger-schematic/charger-test.svg",
-          "sha256": "9042e0965e975791e736fb35e06cef0544800961310675516103fabbd90eae7f"
+          "sha256": "cf6905807acdbb1b2d83e1fe8c301247b79f0f165fb0cbcb80713a44a6f8900b"
         }
       ]
     },
@@ -591,7 +593,7 @@
       "outputs": [
         {
           "path": "regen-schematic/regen-test.svg",
-          "sha256": "674f689e719ad0c4bf39f5cb518d86533b7a2aa15ee888fa1c0ddb9617362d00"
+          "sha256": "7a7c532a4ed2c7c156693218d3f062fd8562856514d30276466f6fc851a235e5"
         }
       ]
     },
@@ -608,7 +610,7 @@
       "outputs": [
         {
           "path": "regulator-schematic/regulator-test.svg",
-          "sha256": "516a7dab1ba79ce434c493795f4e842d320570799c73ef37a05732a0745d1d38"
+          "sha256": "7cd6bd01a1d950ae2eb644ccdd5cbd8c7da161840136f525648c341a7a84494b"
         }
       ]
     },
@@ -625,7 +627,7 @@
       "outputs": [
         {
           "path": "carrier-schematic/carrier-test.svg",
-          "sha256": "e2f23ff2747c72e724323f0da09ce235ebb52afebac99ddba69c36b81d30fbde"
+          "sha256": "1d886da2a91a8943079bd3e5a35a139f4e126f853d0c4029a8863c1112ac77b8"
         }
       ]
     },
@@ -642,7 +644,7 @@
       "outputs": [
         {
           "path": "usb-schematic/usb-test.svg",
-          "sha256": "b6ece4c23f8f9349a6e9783dc7aade6bae8f0e836b016d3e98b734be87b81625"
+          "sha256": "bf0e923e8ef8056653254046eaad1fa97ca2504735500d02068af41ec3e0fe72"
         }
       ]
     },
@@ -660,7 +662,7 @@
       "outputs": [
         {
           "path": "compact-closed/assembly.png",
-          "sha256": "7adaa4723f2a9a8153fed08c5f89602d806a704d73662f7475920bc8d1c0edcf"
+          "sha256": "8e851ac0bcb953aa1deaad09d0c57dccf5617e03fa3e9ab471205ae4bdfadbe6"
         }
       ]
     },
@@ -694,7 +696,7 @@
       "outputs": [
         {
           "path": "compact-exploded/assembly.png",
-          "sha256": "026897ce1e193dc1a0ce9276ebb3e6442e068183d394ebb840148b71c0ffe829"
+          "sha256": "6506f71de19054926ab3bb82809003c7cc247f1109fe7d29ff3da0b15d76903c"
         }
       ]
     },
@@ -712,7 +714,7 @@
       "outputs": [
         {
           "path": "compact-assembly/assembly.png",
-          "sha256": "7d2179bfcc516d40605481cbb8021479e9d3acaea0303d712ef198056ec8774c"
+          "sha256": "21a0ffed54639bd48c3eb4731342d08aeb47a212412e4e858fcd7772f6254cc2"
         }
       ]
     },
@@ -730,7 +732,7 @@
       "outputs": [
         {
           "path": "broad-assembly/assembly.png",
-          "sha256": "77042e78afb73b6d05e7352a49b8d0527bc045578d28910d7f6c62b62dee160d"
+          "sha256": "4bf741e9f74f050d820ef6ab69890a513fa0e7cbca20b8912640e944bccc5a54"
         }
       ]
     },
@@ -748,7 +750,7 @@
       "outputs": [
         {
           "path": "narrow-assembly/assembly.png",
-          "sha256": "9d29426fcb427ecf071e67943f2dd68a0da7e97c12951acbc3e6359a56f82513"
+          "sha256": "5e6012464014b47f11f28caa3b519a28c5bc4251ec8dc7158046beb5933140a1"
         }
       ]
     },
@@ -766,7 +768,7 @@
       "outputs": [
         {
           "path": "slim-assembly/assembly.png",
-          "sha256": "44f041b06fadad05a59a72936e82dec8cef0a42d77d9c81e748edd5f6958ede1"
+          "sha256": "7f14e9133b167bcbeed023ba4c6d5ed34309b28cd2decef924e7a4fd1ea63f40"
         }
       ]
     },
@@ -781,11 +783,11 @@
       "outputs": [
         {
           "path": "pd12v6mini-reference/assembly.png",
-          "sha256": "0c9d0aa450cc573de95bb2b0d33945e8477eddf013c29cd506069d6aaf9b9e43"
+          "sha256": "fe367765dd870f768f85469773906d358c2c5a1ced24b0186d3afe27a67d4303"
         },
         {
           "path": "pd12v6mini-reference/top.svg",
-          "sha256": "7520055c2da13b79c6410b9cecca3a9434efbaec94f19f504d259db505823f74"
+          "sha256": "34f92cc6124019d5996069e84937d57e4cc5d4ff5d8faddf4c940592cd9a45aa"
         }
       ],
       "models_sha256": {
