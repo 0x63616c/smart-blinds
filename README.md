@@ -376,6 +376,17 @@ Earlier study, before PCB-mounted holders and independent shaft support. Two ver
 </details>
 
 <details>
+<summary>Battery life and wake-up cost</summary>
+
+Source-generated energy scenarios, not measured runtime. Motor-branch current and awake logic are counted separately. Additional service wake time replaces idle; use zero if already included in a measured idle average.
+
+![Battery life and wake-up cost](docs/generated/battery-energy/energy.png)
+
+[Source](hw/sim/blind-control/plot_energy.py) · [Generated files](docs/generated/battery-energy/)
+
+</details>
+
+<details>
 <summary>PD12V6Mini — inherited power-board reference</summary>
 
 Existing e8s USB-C PD to 12.6 V power supply. This is not the new controller or a battery charger; no new hardware validation is implied.
