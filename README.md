@@ -81,7 +81,7 @@ Experimental four-layer route with 636 segments and 178 vias: local charger, mot
 <details>
 <summary>Companion battery carrier — experimental copper</summary>
 
-Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected nets. Four mounting-hole courtyard and six inherited silkscreen findings remain. Experimental only: current capacity, holder loading, insulation and pack assembly still require qualification.
+Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected nets. Silkscreen and library comparisons pass; four mounting-hole courtyard findings remain. Experimental only: current capacity, holder loading, insulation and pack assembly still require qualification.
 
 ![Companion battery carrier — experimental copper](docs/generated/companion-routed/assembly.png)
 
@@ -92,7 +92,7 @@ Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected
 <details>
 <summary>Primary battery carrier — connected routing study</summary>
 
-Experimental 451-segment, 129-via route with all 35 nets physically connected and zero unconnected items. Eleven injected-fault checks cover current/Kelvin topology, protected-ground communication clamps and same-net solder-land clearance. Twenty-two drawing/mechanical findings and thermal, transient, holder and assembly qualification remain. Not a fabrication release.
+Experimental 451-segment, 129-via route with all 35 nets physically connected and zero unconnected items. Eleven injected-fault checks cover current/Kelvin topology, protected-ground communication clamps and same-net solder-land clearance. Silkscreen and library comparisons pass. Four mounting-hole courtyard findings and thermal, transient, holder and assembly qualification remain. Not a fabrication release.
 
 ![Primary battery carrier — connected routing study](docs/generated/primary-current-route/assembly.png)
 
