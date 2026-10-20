@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "source_commit": "061805c1f2f41e575c50881a77a056e0747c7e07",
+  "source_commit": "897568775fea15030a20dd3b17ec13105c2a4447",
   "tools": {
     "kicad": "10.0.7",
     "openscad": "OpenSCAD version 2021.01"
@@ -47,7 +47,7 @@
       "outputs": [
         {
           "path": "compact-holder-assembly/assembly.png",
-          "sha256": "9521f52ce492931a62d0369bacc1365b8799e13aa0e3bcee243282690bf008f2"
+          "sha256": "644332ab6b9b2bde0b89e16d24feeac0acaf7011a3aef9521247f3b06b4b449a"
         }
       ]
     },
@@ -68,7 +68,7 @@
       "outputs": [
         {
           "path": "compact-holder-exploded/assembly.png",
-          "sha256": "62ce7a704c8e417d91c401995b9271210ce6140fea1ead5db4fbfa7976af46ba"
+          "sha256": "754e9e0df372bfa87198cc8c8db2031c6487c50c25ab293d38f2dee18b01ab61"
         }
       ]
     },
@@ -77,8 +77,8 @@
       "source": "hw/layouts/blind-main/main-test/main-test.kicad_pcb",
       "inputs_sha256": {
         "cad/parameters/retained-interfaces.json": "9e0a64f66b19123973ba59b6f0662d8b1510a2c5d6a60777f5b824af9f24a6a4",
-        "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "1b8a938153b6b64dfe45fd4965172a2b2aeade21cbd200ccc4f8040c00c6aa7b",
-        "hw/placement/blind-main/placement.json": "a118715fb4fa6ce8c9a20e191d0afd6f440741bab78d80db01df19e39c7ee623",
+        "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "ba633546b9834325b132ba6cf606e7b5bb5817b4b9ca7f4ac7568eda448de4f5",
+        "hw/placement/blind-main/placement.json": "624cb12716d69e821f3ffb3ceb167cbc1ccc56ec335d55c0f25eca250cde3a86",
         "tools/check_main_placement.py": "e74b60f6af34ce36f64b498137290a44bf3e4c1637d27d980a7444e7ed6b91b2"
       },
       "source_files_dirty": false,
@@ -86,11 +86,11 @@
       "outputs": [
         {
           "path": "main-controller-placement/assembly.png",
-          "sha256": "25bffccc974a4d31b51da69690f1e966952efba48ea3ba4ce131c0bfb21db182"
+          "sha256": "2fb74ff5becd31daff0b026d29105f8a9a3d908ea488a45df00c86b81516495e"
         },
         {
           "path": "main-controller-placement/top.svg",
-          "sha256": "5ec9c8fe15c2e986f4c19498cfa52748bc08e364c89d220b11b7ddda819f3699"
+          "sha256": "a551ede0649face334999c77bd483f4957239d3522e49306c20749b396529f98"
         }
       ],
       "models_sha256": {
@@ -162,7 +162,7 @@
         "hw/schematics/blind-main/main.layout.json": "f9fae4fb90f892ba2697bfb520fdb52550021944103d793ee77aa1a41d711bca",
         "hw/schematics/blind-main/smart-blinds-main.kicad_pro": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
         "hw/schematics/blind-main/smart-blinds-main.kicad_sch": "ce17d7e20f958f8e129ccfef492d673f21c4068beb73cc33722ad2d1a9cf23a1",
-        "hw/schematics/blind-main/smart-blinds-main.verification.json": "b408d314e6bc0da1542b9ff108deb82be480411886c2305236f08e5624282d4a",
+        "hw/schematics/blind-main/smart-blinds-main.verification.json": "453e94faff7ffaf4f997915d90f9e76b508243d0db6f2d2a97b4a1dc4718986d",
         "hw/schematics/blind-main/sym-lib-table": "1fed0cafbb778d6b3cdbfecb631b8b3ca4615bb53378f1ad252fa090e730e581",
         "tools/generate_main_schematic.py": "030184c8beec906657f423f97771c882f69004b0bcbe1ad2c13a5ffcc965b442",
         "tools/generate_schematics.py": "6b0bb74769beba19d64df3178c2d15762a7dc9cd6c8ff205e90841303116eb80",
@@ -174,51 +174,51 @@
       "outputs": [
         {
           "path": "main-controller-schematic/schematic.pdf",
-          "sha256": "fd04471399d97a74e771ead242f0a9024be9cb6b06606b762a51ca4f2433da48"
+          "sha256": "6827e4491b0cea498acb2c7fafbb6a518e5bd671ffd7b85b3a2066721b9afd0e"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-3S charger.svg",
-          "sha256": "bb6fdc9310a3bfdf12da5a78c9d4042573d1b3bbed4c39f4cc5d415e70e8fc1d"
+          "sha256": "de8ab4560c26f1de9674a4ecef404f88b15406d6381f04d849ddb86ad4ddf62b"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Buttons and home input.svg",
-          "sha256": "7edf641e2352647bf5da4b41005f424e1d031930b9c92daa4c72cd07930a4a78"
+          "sha256": "767df96b1713c22fb46f83f443cb389dff8fdc9276c83c84468e17c738f3e628"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Encoder input.svg",
-          "sha256": "3c6983fcb6312aa044b3db410f2c755c5b4de3a02396e38b0cc50aae8d6305cb"
+          "sha256": "f78757de11df8bbf742508e8893ccc22888eaa23969b029183f05a9ba059c72c"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Logic supply.svg",
-          "sha256": "12288e2d56a853991358c73c8dfe87dbc473f46d9d4029c1210f619ddaa14aeb"
+          "sha256": "f742ed08cb1c05acb2e269aff16857dd4efa7f2998302e3b2402c345b09a5cb3"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Motor bridge.svg",
-          "sha256": "b95676d353b669b9e509778bae3450772986bfdb9f66dee107a11c6f14502f91"
+          "sha256": "171f34700d9e2955f60f5a68463641eff48d11766e291031076a8d60c004effd"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Motor supervision.svg",
-          "sha256": "721079c5178ddb1b0af196fcec95e4f21255feff008c3dfd1fe95dcc14e5263a"
+          "sha256": "c4e253098db2963996819cf9ef439cc014002b6a6c6cd37579c6a0bb416a22af"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Power and motor permission.svg",
-          "sha256": "ebd227f98e13ab3197b633f2bc956cddb8fe0c3416c7c8463619849eabacd2fd"
+          "sha256": "162a42cccf45ac4652b200e0641f2133558165223da3ca0d42f13409bd621169"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Radio and USB data.svg",
-          "sha256": "06486ecd94454d1ee546a68ba54f0168d3401d7711fe978dfb8c9b5f0c1ed3fa"
+          "sha256": "51cdbdd8cbaa2e1c77fdb1a4821480d21c500dec1cab5bc7d973115406f1a0c3"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Regenerative clamp.svg",
-          "sha256": "e31604587b72ab97040d086853cf38e9cb9f797c54421c2c709785b7414163aa"
+          "sha256": "4d59ded0255957be2a587b4d5bdda6e2ef3d8244487168c39fa20ca176dbac80"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-USB-C input.svg",
-          "sha256": "f37b94e150a4858de8f01b48ebb02988e01c0006be8075b4baa5069712950580"
+          "sha256": "98a2e0b83cf2e847efcd9e906a04f2a3a90f76d5abbbeebd67ceb6649d49de80"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main.svg",
-          "sha256": "7699e58f41bb24aa8cfc38a4f6335f1a9285ed36813c611f5eaceb96977432ad"
+          "sha256": "966eb5bef7b91f30fcf4d92799d5128e0b82273d7c8edb87ce84cd50f46fbf9c"
         }
       ]
     },
@@ -260,7 +260,7 @@
       "outputs": [
         {
           "path": "retained-cassette/assembly.png",
-          "sha256": "4b34750f8c73e13f16eb509199899ba62bcf5dc0068ef0d8bf7fd512b5899933"
+          "sha256": "014ca099fb9b634b52f68509d94559cb1600b7d84738281f9e1934660b900eeb"
         }
       ]
     },
@@ -281,7 +281,7 @@
       "outputs": [
         {
           "path": "retained-cleat-section/assembly.png",
-          "sha256": "a698e2ce0d246379b77d0d87f1aa99c3035a6595ee880ea0a13814f6072df74f"
+          "sha256": "0b6baefec703a1a971c4250c94dd5ae27d7649fdeccb53e56ce8289f06bbc643"
         }
       ]
     },
@@ -299,7 +299,7 @@
       "outputs": [
         {
           "path": "holder-closed/assembly.png",
-          "sha256": "283b395826ad6b027f0c234355a5f7fff80a1f26a1233a7f83223d377683b2bb"
+          "sha256": "a22bbb250b13db8d9f85613e0f4e3c0525470f33cf6c24201be4c9b3f5b2f9e6"
         }
       ]
     },
@@ -333,7 +333,7 @@
       "outputs": [
         {
           "path": "holder-exploded/assembly.png",
-          "sha256": "27d03fd33a2fcfba7e4b6c28469cedc7d0b12b941f8d3c16f316eb818297b8c8"
+          "sha256": "238e027f2ffe807920b6de1fec5964e647a764d2a74d6e9ad291c816cb34f567"
         }
       ]
     },
@@ -361,7 +361,7 @@
       "inputs_sha256": {
         "hw/schematics/blind-controller/motor-test.kicad_sch": "1c050aad38cfe625254fa7fba9e60b2f228d436a957801b8f69d7851ce4cbb05",
         "hw/schematics/blind-controller/motor-test.layout.json": "7f416ab6f0583848ade80e02d74009b905e2fb2637ac6950ef137f9ac41ed8f0",
-        "hw/schematics/blind-controller/motor-test.verification.json": "163a6d88de4a5a4b7cb45debda4741fc2b237a1e5eb9802be624c4c2d972d9db",
+        "hw/schematics/blind-controller/motor-test.verification.json": "a2c2bd93319f71be15635abb558d8818ab837915672b3e88921a1342724e7b50",
         "tools/generate_schematics.py": "6b0bb74769beba19d64df3178c2d15762a7dc9cd6c8ff205e90841303116eb80",
         "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583"
       },
@@ -370,7 +370,7 @@
       "outputs": [
         {
           "path": "motor-schematic/motor-test.svg",
-          "sha256": "6944ddfcad7a00b616723806e4f4f005ed457998fd10c8fcae6251a0a36ab832"
+          "sha256": "f202a250ae71481a8d018413a45d00cf0827909732143c71c2c866d8cc4c5176"
         }
       ]
     },
@@ -380,14 +380,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-supervisor/supervisor-test.kicad_sch": "5281fe58b3e0fbbf00c8839b86ae6cd70ad559d761f3f9f77e4b6c332786d9ee",
         "hw/schematics/blind-supervisor/supervisor-test.layout.json": "308e5e6ee828e34748e2c764cac87b860fc260abecb5ffd7636a9a8ef233cb01",
-        "hw/schematics/blind-supervisor/supervisor-test.verification.json": "61d209d8d98a861275ef862f67f35d59c78d339822221eb228f5d7f2e7b49327"
+        "hw/schematics/blind-supervisor/supervisor-test.verification.json": "0d00b7b85049e77e2884fc5c62126f8cace641615e424553b60f42059a74a1e2"
       },
       "source_files_dirty": false,
       "role": "Four ICs and ten passive parts. All 49 physical pin connections checked against the compiled circuit; two explicit external-power ERC findings. Physical cutoff and full-board qualification remain open.",
       "outputs": [
         {
           "path": "supervisor-schematic/supervisor-test.svg",
-          "sha256": "7bd35946ff23048852238e8cb6e53099a6fd38de97fbf4e22ec6c4fc4df389d5"
+          "sha256": "5632939acc1d47dff717e161a00880b383c04a22c4c275c1876d8df0a62ee9ff"
         }
       ]
     },
@@ -397,14 +397,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-charger/charger-test.kicad_sch": "cfb0c271e74e0f0cfba378de2aa40de711ef7cfa98411169c32b43b8b0820f06",
         "hw/schematics/blind-charger/charger-test.layout.json": "637355dd5ba0633a4e455c1d38d9cd5962089934e9ab7cde29f7f09e68315378",
-        "hw/schematics/blind-charger/charger-test.verification.json": "4e8e157a5b6dc8b402b54fde98c4bf3199f7ae330889dbe8fd3b5b8b251493fc"
+        "hw/schematics/blind-charger/charger-test.verification.json": "2aa084001d6c5e8cdf8d2597c728c177ba94d427c85ec0efb72e7854c0b1abb0"
       },
       "source_files_dirty": false,
       "role": "36-part capture with 101 physical pins checked. A fourth PMID capacitor follows DC-bias review; effective capacitance remains a curve-based planning estimate. Ten explicit ERC findings and unfinished power/pack integration. Not a charging or fabrication release.",
       "outputs": [
         {
           "path": "charger-schematic/charger-test.svg",
-          "sha256": "7c00fa84a37a022be54d878a35a73d1a6d3ffb5020604390ecfb298a49dc026f"
+          "sha256": "85ff1aabe8388e952a19ff63e8d88b9ba981f38dd0da1804e180870eb7f46bb9"
         }
       ]
     },
@@ -414,14 +414,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-regen/regen-test.kicad_sch": "4e7b82dbf0337e577bf886f704e9466a8282adcf03d1e90ab5c3f68f6d3a5f17",
         "hw/schematics/blind-regen/regen-test.layout.json": "b70ae421058a04558779af039ed33b3804e8b7e1695718df2982d0ed8564cbe4",
-        "hw/schematics/blind-regen/regen-test.verification.json": "ad1777a92bcead7d5eddd78a9bba64ab2c3367e1dc9b6456bcd77b554e1e5534"
+        "hw/schematics/blind-regen/regen-test.verification.json": "e2dcdcf63941d4e5e6ba48f97076c5dcc260e4b914c9374cacb1bb6fe9a78c16"
       },
       "source_files_dirty": false,
       "role": "38 parts and 105 physical pins checked. Two explicit external-power ERC findings. Pulse energy, response time, thermal coupling and sustained back-drive remain unqualified.",
       "outputs": [
         {
           "path": "regen-schematic/regen-test.svg",
-          "sha256": "2763cf89ee5be6d52cce33bc09486b8731970babd10708570c27fd179b1de14c"
+          "sha256": "e303a7caccbfcad098ff0de3c056fde6e88a7e014adcdda1ddd798612c77b02a"
         }
       ]
     },
@@ -431,14 +431,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-regulator/regulator-test.kicad_sch": "22e599594f25b2b81a052e7039bb6fb6bb354102df6c4d313dd557b282ab676c",
         "hw/schematics/blind-regulator/regulator-test.layout.json": "c100c14bea96bc7ee988c5f2892427d6f1eb29e7c250e1cc60251d72f2efc8b8",
-        "hw/schematics/blind-regulator/regulator-test.verification.json": "8d653b8cc3378a40469380303f34fd7b854f2dc873af0680dd5967c882e2e49a"
+        "hw/schematics/blind-regulator/regulator-test.verification.json": "1c306d1830750f1b5a2cffbbf6315396f37ad6ac06ccc8b8c3bef6adea7525a4"
       },
       "source_files_dirty": false,
       "role": "12 parts and 31 physical pins checked. Internal 3.3 V divider; 1 A design envelope. Two external-power ERC findings. Biased capacitance, load transients, layout and hardware qualification remain open.",
       "outputs": [
         {
           "path": "regulator-schematic/regulator-test.svg",
-          "sha256": "0beb8738e3ddb31fef8a6a866f0b03e8ceec0049a4fed2608ca8f66bb8cda470"
+          "sha256": "d01830be95dfe89f1bdbe853d9a0be0c6a0ae3fa1639755e0475935d6a2f7bcc"
         }
       ]
     },
@@ -448,14 +448,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-carrier/carrier-test.kicad_sch": "a5c9b4211d7988493d872846bec0deae22df6f5b04eff8e44b4656cab07e90f5",
         "hw/schematics/blind-carrier/carrier-test.layout.json": "9bb599c16efb9f8011d23672c71331ebc4dbb84ce222beab7526270b5fec56dc",
-        "hw/schematics/blind-carrier/carrier-test.verification.json": "14424e3d51cf29ef611dd994ee20eb74312950278452b1a673379311ef197982"
+        "hw/schematics/blind-carrier/carrier-test.verification.json": "285c5cd098474594e97a08fd371b76290fd4bb907da1a3e868c775aea5d8c67b"
       },
       "source_files_dirty": false,
       "role": "33 parts and 103 physical pins checked, including three-cell sensing and six branch fuses. Fifteen explicit ERC boundary findings. Holder, thermistor, connector and secondary protection integration remain open; no battery fault safety or fabrication approval is implied.",
       "outputs": [
         {
           "path": "carrier-schematic/carrier-test.svg",
-          "sha256": "65c3956dfb500ff9ad18f9a8e0dc28bd1335366b2a0876f6298285d7233c647f"
+          "sha256": "3ff175f84197682144314263df75d3c58e37ecc89f0d01eedaedb9db52637938"
         }
       ]
     },
@@ -465,14 +465,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-usb/usb-test.kicad_sch": "3d4fbd4cfd2416ff711972fa4a30da7a5d754c81f4691419f7d532560f4a1959",
         "hw/schematics/blind-usb/usb-test.layout.json": "4711a87df21cdbe44cfd3fe1a440a92b8c825e078c70c1a15f132015cc16483c",
-        "hw/schematics/blind-usb/usb-test.verification.json": "d3f60dd0e8dd921cddf410cbeace675be5b43f4b847690a212998b504eeb5cb3"
+        "hw/schematics/blind-usb/usb-test.verification.json": "3cfdb51980ce86a70222023ff7dd5083e41860bcd5760047d5dfe2533a6674b9"
       },
       "source_files_dirty": false,
       "role": "33 parts and 113 physical pins checked. Three explicit external-power ERC findings. Mandatory factory PD profile, surge behavior, startup and integrated charging remain unqualified; not a fabrication release.",
       "outputs": [
         {
           "path": "usb-schematic/usb-test.svg",
-          "sha256": "339969d09beabd9b8af7c2602a0e42e9f1d5317c53e9daa8f0f6c6e3613d7e7d"
+          "sha256": "2ada1dce9267e24fb74ffad0bba6ae137604b510788fac723da6ac5f75d5605e"
         }
       ]
     },
@@ -524,7 +524,7 @@
       "outputs": [
         {
           "path": "compact-exploded/assembly.png",
-          "sha256": "cbc27785a6a47da0b439c25449bc40673de8263f0b4c073a973bd5f008c81f57"
+          "sha256": "508e0a17d0a2ef2a203b4c3a0a295d42c9fa54bfaee242891fbde488ff552264"
         }
       ]
     },
@@ -542,7 +542,7 @@
       "outputs": [
         {
           "path": "compact-assembly/assembly.png",
-          "sha256": "b2ef6203b771badfcc5150cead3e5eea07546ae7a17ea0bbd7872d6027a71f45"
+          "sha256": "782a0da6d67876dde7583071aa4041412601e6f9c554253598ca0604ed8be0dd"
         }
       ]
     },
@@ -560,7 +560,7 @@
       "outputs": [
         {
           "path": "broad-assembly/assembly.png",
-          "sha256": "78c0559bf8a0747368d9aea1019f2ffe92a156d551a88cda80ccee0c5fe892ca"
+          "sha256": "52016de76460c50c9b5f89aaa029014a9ce8365cadd08c7e14dd4ed9e3ccc81a"
         }
       ]
     },
@@ -578,7 +578,7 @@
       "outputs": [
         {
           "path": "narrow-assembly/assembly.png",
-          "sha256": "9d29426fcb427ecf071e67943f2dd68a0da7e97c12951acbc3e6359a56f82513"
+          "sha256": "30419e22db9552cf3097ae360bbbe1bd0671e42a89428a5cec51d78ce2bf1a34"
         }
       ]
     },
@@ -611,11 +611,11 @@
       "outputs": [
         {
           "path": "pd12v6mini-reference/assembly.png",
-          "sha256": "1950d39e5b0e649bf4ea5606c0d698e03710665e50de7dfc36269baf49c631b1"
+          "sha256": "0f379ffaaac3f035c9a33f61e3c4cbafc178d1381c4efedf5680238433353eef"
         },
         {
           "path": "pd12v6mini-reference/top.svg",
-          "sha256": "a38d421f55ec9769afcd102c1f061373a86c4531b47451649f823466bdb13162"
+          "sha256": "aba492a76c08e4725e3e20740d2ed6716f17aa18e8194f65bbfaabd1db01aed4"
         }
       ],
       "models_sha256": {
