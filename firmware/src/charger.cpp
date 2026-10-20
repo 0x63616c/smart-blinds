@@ -31,6 +31,7 @@ Profile profile(SourceVoltage voltage) {
 bool Bq25798::fail(Error error) {
     configured_ = false;
     parked_=false;
+    reconciliation_authorized_=false;
     if(transition_guard_ && transition_failure_==Error::none) transition_failure_=error;
     if(first_error_==Error::none) {
         first_error_=error;
@@ -44,8 +45,12 @@ bool Bq25798::fail(Error error) {
 }
 bool Bq25798::begin() {
     error_ = Error::none;
-    first_error_=Error::none;
-    inhibit_failed_=false;
+    // A failed transition is terminal. Later calls must not erase its cause
+    // or emit a replacement first-failure notice while refusing recovery.
+    if(transition_failure_==Error::none) {
+        first_error_=Error::none;
+        inhibit_failed_=false;
+    }
     const auto now = bus_.now_ms();
     if (now < last_ms_) return fail(Error::clock);
     started_ms_ = last_ms_ = now;
@@ -130,13 +135,19 @@ Error Bq25798::configure(SourceVoltage voltage) {
 }
 bool Bq25798::off_guards() {
     if(!transition_guard_) return true;
+    if(park_guard_ && (!operation_identity_.valid() ||
+                      !(park_guard_->identity()==operation_identity_)))
+        return fail(Error::unconfigured);
     if(!inhibit_.hold_off() || !transition_guard_->hold_off()) return fail(Error::inhibit);
+    if(park_guard_ && !(park_guard_->identity()==operation_identity_))
+        return fail(Error::unconfigured);
     return true;
 }
-bool Bq25798::inspect_off(OffCapture& result) {
+bool Bq25798::inspect_off(OffCapture& result,std::array<std::uint8_t,6>* latest_flags) {
     if(!read(0x1B,result.status.data(),result.status.size())) return false;
     std::array<std::uint8_t,6> flags{};
     if(!read(0x22,flags.data(),flags.size())) return false;
+    if(latest_flags) *latest_flags=flags;
     for(std::size_t i=0;i<flags.size();++i) result.flags[i]|=flags[i];
         const auto mode=(result.status[1]>>1)&0x0F;
         // PG and adapter insertion/removal may change while operating from the
@@ -148,6 +159,89 @@ bool Bq25798::inspect_off(OffCapture& result) {
         if(result.status[5] || result.status[6] || result.flags[4] || result.flags[5]) return fail(Error::fault);
         if((result.status[4]|result.flags[3])&0x0F) return fail(Error::temperature);
         return true;
+}
+bool Bq25798::verify_parked_source(std::uint8_t& vindpm) {
+    std::uint8_t identity=0;
+    if(!read(0x48,&identity,1)) return false;
+    if(identity!=0x19) return fail(Error::identity);
+    for(const auto& reg:profile_) {
+        if(reg.address==0x05) {
+            if(!read(0x05,&vindpm,1)) return false;
+        } else if(!verify_register(reg)) return false;
+    }
+    return verify_register({0x47,1,0,0xFF});
+}
+OffCapture Bq25798::park_off(ParkGuard& guard) {
+    park_guard_=&guard;operation_identity_=guard.identity();
+    auto result=transition_off(guard,true);
+    transition_guard_=&guard;
+    if(result.valid()) {
+        const auto prior_source=result.status[0]&0x0F;
+        std::array<std::uint8_t,6> latest{};
+        if(verify_profile() && inspect_off(result,&latest) && within_budget() && off_guards()) {
+            if((result.flags[0]&0x10) || (latest[0]&0x0F) ||
+               (result.status[0]&0x0F)!=prior_source) fail(Error::status);
+            else if(last_ms_-started_ms_>250) fail(Error::timeout);
+            else {
+                parked_identity_=operation_identity_;
+                parked_source_=result.status[0]&0x0F;
+                reconciliation_authorized_=true;
+            }
+        }
+    }
+    result.finished_ms=last_ms_;result.error=error_;
+    transition_guard_=nullptr;park_guard_=nullptr;
+    return result;
+}
+ParkReconciliation Bq25798::reconcile_parked(ParkGuard& guard) {
+    ParkReconciliation result;
+    for(const auto& reg:profile_) if(reg.address==0x05)
+        result.previous_vindpm=static_cast<std::uint8_t>(reg.value);
+    const bool allowed=parked_ && !configured_ && reconciliation_authorized_ &&
+        transition_failure_==Error::none && first_error_==Error::none;
+    transition_guard_=&guard;park_guard_=&guard;operation_identity_=parked_identity_;
+    const auto work=[&] {
+        // Reject before begin(), so an earlier failure remains the first cause.
+        if(!allowed) { fail(Error::unconfigured);return; }
+        if(!begin()) return;
+        result.observation.started_ms=started_ms_;
+        if(!off_guards() || !inspect_off(result.observation)) return;
+        const auto first_source=static_cast<std::uint8_t>(result.observation.status[0]&0x0F);
+        const bool vbus_edge=(result.observation.flags[0]&1) ||
+                             ((first_source^parked_source_)&1);
+        result.source_event=(result.observation.flags[0]&0x0F) ||
+                            first_source!=parked_source_;
+        // Poor-source history is not a clean plug/unplug event in this slice.
+        if(result.observation.flags[0]&0x10) { fail(Error::status);return; }
+        std::uint8_t first_value=0,second_value=0;
+        if(!verify_parked_source(first_value)) return;
+        std::array<std::uint8_t,6> latest{};
+        const auto stable=[&] {
+            if(!inspect_off(result.observation,&latest)) return false;
+            return (!((latest[0])&0x1F) &&
+                    (result.observation.status[0]&0x0F)==first_source) || fail(Error::status);
+        };
+        if(!stable() || !verify_parked_source(second_value) || !stable()) return;
+        result.observed_vindpm=second_value;
+        if(first_value!=second_value || second_value<36 || second_value>220) {
+            fail(Error::readback);return;
+        }
+        const bool changed=second_value!=result.previous_vindpm;
+        if(changed && !vbus_edge) { fail(Error::readback);return; }
+        if((changed || result.source_event) && !(first_source&1) &&
+           (second_value!=36 || (first_source&8))) { fail(Error::status);return; }
+        if(!within_budget() || !off_guards()) return;
+        if(last_ms_-started_ms_>250) { fail(Error::timeout);return; }
+        // Exact future readback, not a permanent REG05 mask. No source voltage
+        // enum, current allowance or hardware register is changed.
+        for(auto& reg:profile_) if(reg.address==0x05) reg.value=second_value;
+        parked_source_=first_source;
+    };
+    work();
+    result.observation.finished_ms=last_ms_;
+    result.observation.error=error_;
+    transition_guard_=nullptr;park_guard_=nullptr;
+    return result;
 }
 OffCapture Bq25798::adopt_parked(SourceVoltage voltage,Inhibit& motor_off) {
     OffCapture result;
@@ -171,21 +265,37 @@ OffCapture Bq25798::adopt_parked(SourceVoltage voltage,Inhibit& motor_off) {
 }
 OffCapture Bq25798::park_off(Inhibit& guard) { return transition_off(guard,true); }
 OffCapture Bq25798::resume_off(Inhibit& guard) { return transition_off(guard,false); }
+OffCapture Bq25798::resume_off(ParkGuard& guard) {
+    park_guard_=&guard;operation_identity_=parked_identity_;
+    auto result=transition_off(guard,false);
+    park_guard_=nullptr;
+    return result;
+}
 OffCapture Bq25798::transition_off(Inhibit& motor_off,bool park) {
     OffCapture result;
-    const bool allowed=transition_failure_==Error::none && (park ? configured_ && !parked_:parked_ && !configured_);
+    const bool allowed=transition_failure_==Error::none &&
+        (!reconciliation_authorized_ || park_guard_) &&
+        (park ? configured_ && !parked_:parked_ && !configured_);
+    reconciliation_authorized_=false;
     transition_guard_=&motor_off;
+    const auto same_source=[&] {
+        return !park_guard_ || park ||
+               (!(result.flags[0]&0x1F) && (result.status[0]&0x0F)==parked_source_) ||
+               fail(Error::status);
+    };
     const auto work=[&] {
         if(!begin()) return;
         result.started_ms=started_ms_;
         if(!allowed) { fail(Error::unconfigured);return; }
         // Read-to-clear history precedes any write AND any profile mismatch.
         // An expected watchdog expiry has no bypass here: it remains a fault.
-        if(!inspect_off(result) || !verify_profile() || !off_guards()) return;
+        if(!inspect_off(result) || !same_source() || !verify_profile() || !off_guards()) return;
         const auto value=static_cast<std::uint16_t>(park ? 0x90:0x93);
         if(!write_register({0x10,1,value,0xFF})) return;
         for(auto& reg:profile_) if(reg.address==0x10) reg.value=value;
-        if(!inspect_off(result) || !verify_profile() || !off_guards()) return;
+        if(!inspect_off(result) || !same_source() || !verify_profile() || !off_guards()) return;
+        // Bound resume keeps a final read-to-clear event cut after verification.
+        if(park_guard_ && !park && (!inspect_off(result) || !same_source() || !off_guards())) return;
         if(last_ms_-started_ms_>250) { fail(Error::timeout);return; }
         configured_=!park;parked_=park;
     };

@@ -20,6 +20,24 @@ public:
     // Caller implements reviewed board OFF request/readback. No enable method.
     virtual bool hold_off() = 0;
 };
+// Existing owner/session identities, not a new counter or source entitlement.
+struct ParkIdentity {
+    std::uint64_t boot=0, pack=0, qualification=0;
+    std::uint32_t epoch=0;
+    std::uintptr_t owner=0;
+    bool valid() const { return boot && pack && qualification && epoch && owner; }
+    bool operator==(const ParkIdentity& other) const {
+        return boot==other.boot && pack==other.pack && qualification==other.qualification &&
+               epoch==other.epoch && owner==other.owner;
+    }
+};
+class ParkGuard : public Inhibit {
+public:
+    // Owner supplies current identities and fresh actual settled motor OFF,
+    // with no active/settling or queued command authority. Both are rechecked
+    // around every transfer. No application currently implements this guard.
+    virtual ParkIdentity identity() const = 0;
+};
 enum class SourceVoltage : std::uint16_t { nine = 9000, fifteen = 15000 };
 enum class Error { none, inhibit, identity, strap, bus, timeout, clock, readback,
                    unconfigured, adc, status, fault, temperature };
@@ -60,6 +78,13 @@ struct OffCapture {
     bool valid() const { return error==Error::none; }
     bool source_present() const { return status[0]&0x01; }
 };
+struct ParkReconciliation {
+    OffCapture observation{};
+    std::uint8_t previous_vindpm=0, observed_vindpm=0;
+    bool source_event=false;
+    bool valid() const { return observation.valid(); }
+    // VINDPM is an opaque OFF-monitor value, never an inferred USB contract.
+};
 class Bq25798 {
 public:
     static constexpr std::uint8_t address = 0x6B;
@@ -74,10 +99,19 @@ public:
     // A failed transition is terminal for this object, even if configure() is
     // called later. A clean cold session may use a new object, never this one.
     OffCapture park_off(Inhibit& motor_off);
+    // Only this successful, explicitly bound park grants same-object
+    // reconciliation authority. Enum-only adoption and ordinary park do not.
+    OffCapture park_off(ParkGuard& guard);
+    // No writes. Chatter/incoherent observation is a terminal refusal; there
+    // are no internal retries. Cannot revive an object after a real failure.
+    ParkReconciliation reconcile_parked(ParkGuard& guard);
     // New owner-session object, same proven stationary hardware park. Read-only
     // adoption; never accepts a watchdog-reset/default image as parked.
     OffCapture adopt_parked(SourceVoltage voltage,Inhibit& motor_off);
     OffCapture resume_off(Inhibit& motor_off);
+    // Bound parks require the same current guard through watchdog restoration.
+    // The unbound Inhibit overload cannot bypass that requirement.
+    OffCapture resume_off(ParkGuard& guard);
     bool parked() const { return parked_; }
     Error transition_failure() const { return transition_failure_; }
     bool configured() const { return configured_; }
@@ -96,7 +130,8 @@ private:
     bool verify_profile();
     bool fail(Error error);
     bool off_guards();
-    bool inspect_off(OffCapture& result);
+    bool inspect_off(OffCapture& result,std::array<std::uint8_t,6>* latest_flags=nullptr);
+    bool verify_parked_source(std::uint8_t& vindpm);
     OffCapture transition_off(Inhibit& motor_off,bool park);
     Bus& bus_;
     Inhibit& inhibit_;
@@ -109,6 +144,10 @@ private:
     std::uint64_t started_ms_ = 0, last_ms_ = 0;
     bool configured_ = false,parked_=false;
     Inhibit* transition_guard_=nullptr;
+    ParkGuard* park_guard_=nullptr;
+    ParkIdentity operation_identity_{},parked_identity_{};
+    std::uint8_t parked_source_=0;
+    bool reconciliation_authorized_=false;
     Error transition_failure_=Error::none;
 };
 

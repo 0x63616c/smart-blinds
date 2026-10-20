@@ -190,6 +190,15 @@ request to 100 mA so it fits the board's low startup clamp. The external limit
 remains enabled; clamp-aware tests reject the former 1.5 A request. Normal
 charging and USB source-change handling remain unfinished.
 
+The subsequent [parked source-reconciliation helper](firmware/charger-source-reconciliation.md)
+accepts only a documented autonomous voltage-threshold change while charging and
+motion remain inhibited. It preserves the exact current/protection settings and
+first fault history, and requires the same live owner and session. All 22 host
+targets pass in an independent parent build; the source-bound record also includes
+Linux GCC, focused sanitizers, six restored-bug controls and both pinned C6 builds.
+This helper is not yet called by the application. Cold-session transfer, normal
+cable recovery and actual charging remain unfinished.
+
 The separate [Wi-Fi motion target](firmware/wifi-motion.md) binds authenticated
 requests to the existing owned control runtime. Raw button STOP precedes ADC
 sampling; revocation and request generations prevent stale readiness or parking
