@@ -3,19 +3,19 @@
 This is a **partial four-layer routing study**, not a manufacturing release.
 The canonical circuit and first placement remain under `hw/layouts/blind-main/`.
 The derivative retains the 54 × 68.5 mm outline with its USB tab, all 196
-footprints, 609 physical pin identities, 142 net partitions, 17 mechanical/thermal
+footprints, 609 physical pin identities, 139 net partitions, 17 mechanical/thermal
 anchors and 13 RF, connector-foot and clamp reservations.
 
-The checkpoint contains 1022 segments and 257 vias. It routes the local charger
+The checkpoint contains 1013 segments and 255 vias. It routes the local charger
 switching/bypass network, motor-driver fly/pump/VM and output paths, regulator
 bypass/output/sense paths, and a 3.3 V feed to the radio module. In1 remains a
 continuous filled ground-return island; no signal traces use that layer. The
 module power feed uses In2 beneath the permitted module body, with vias outside
 its solder lands and unchanged antenna keepouts.
 
-Actual KiCad 10 DRC reports **114 unconnected items**. No short, copper/edge/hole
+Actual KiCad 10 DRC reports **122 unconnected items**. No short, copper/edge/hole
 clearance, track-width, courtyard-overlap, keepout, mask-bridge or dangling-route
-failure is accepted. The report retains 260 silkscreen/text findings, four
+failure is accepted. The report retains 258 silkscreen/text findings, four
 library-footprint differences and five footprint-type findings. The latter
 include mixed through-hole/thermal features and incorrectly classified library
 attributes; they require footprint/assembly review, not a blanket waiver.
@@ -24,7 +24,7 @@ Three unrelated default-disabled DRC categories are listed in `checks.json`.
 `checks.py` independently checks actual pad shapes, masks/paste settings, net
 partitions, layer/rotation/placement, outline, keepouts, courtyard bounds and
 encoder-wire height clearance. It also follows physical copper shapes through
-72 required connection groups, including the ground fill. A matching net name
+70 required connection groups, including the ground fill. A matching net name
 alone cannot pass. Twenty-six earlier injected faults are rejected: moved USB connector, changed motor pad,
 weakened RF reservation, cut module supply, removed return plane, cut charger
 bypass return, cut PD bypass, cut USB input, removed quiet return via, and an
@@ -88,7 +88,7 @@ charge-permission wiring remain unfinished.
 A subsequent assembly-clearance pass moves twelve ordinary vias by at most
 0.35 mm and adjusts their sixteen incident traces. Five short top-layer stubs
 preserve connections that previously relied on via copper touching a solder
-land. No component moves. That earlier stage checked 178 routed vias. The clamp, USB and local supervision stages extend this to all 257 via drills, which remain at least 0.20 mm
+land. No component moves. That earlier stage checked 178 routed vias. The clamp, USB and local supervision stages extend this to all 255 via drills, which remain at least 0.20 mm
 from every top solder land, including lands on the same net; the ordinary
 KiCad same-net clearance check alone does not ensure this. A deliberate
 same-net intrusion at the USB input capacitor is rejected. The explicit
@@ -199,6 +199,14 @@ It preserves the incoming copper and moves fourteen previously unwired small
 parts. The local encoder returns meet at the regulator GND land, checked by
 physically cutting that land from the graph. Longer bypass/pull-up paths and the
 unfinished ADC connection remain explicit layout limitations.
+
+
+The [monitored-PD revision](../../../docs/electrical/monitored-pd-revision.md)
+removes the obsolete VSYS-ground branch and two factory bus pull-downs from the
+maintained stages. It preserves all1268 surviving copper items and all194 common
+footprint placements. The two new parts are staged but unrouted; shared SDA/SCL,
+ALERT and the new VSYS bypass still need physical routing. All47 existing fault
+controls pass against the revised graph. No new feeder SKU is introduced.
 
 ## Reproduce
 

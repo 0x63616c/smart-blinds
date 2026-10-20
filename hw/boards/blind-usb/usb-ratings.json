@@ -26,7 +26,9 @@
       ]
     ],
     "power_only_above_5v": true,
-    "req_src_current": false
+    "req_src_current": false,
+    "host_rail_min_v": 3.234,
+    "host_rail_max_v": 3.366
   },
   "parts": {
     "TYPE-C-31-M-12": {
@@ -55,7 +57,12 @@
       "monitor_discharge_max_a": 0.05,
       "system_discharge_max_a": 0.5,
       "internal_reg_cap_min_uf": 0.5,
-      "internal_reg_cap_max_uf": 10
+      "internal_reg_cap_max_uf": 10,
+      "vsys_op_min_v": 3.0,
+      "vsys_op_max_v": 5.5,
+      "io_op_max_v": 4.5,
+      "vsys_idle_typ_a_at_25c": 0.00014,
+      "vsys_idle_max_a_at_25c": 0.000165
     },
     "0402WGF1003TCE": {
       "wrapper": "../../parts/blind-control-io/0402WGF1003TCE.ato",
@@ -63,8 +70,6 @@
       "instances": [
         "r_addr0",
         "r_addr1",
-        "r_scl",
-        "r_sda",
         "r_base_pull",
         "r_uv_top2",
         "r_uv_bottom"
@@ -136,7 +141,8 @@
       "instances": [
         "c_vdd",
         "c_1v2",
-        "c_2v7"
+        "c_2v7",
+        "c_vsys"
       ],
       "capacitance_f": 1e-06,
       "rated_voltage_v": 50,
@@ -256,6 +262,9 @@
     "Discharge timing depends on charger reverse paths and total effective capacitance; final timer profile and USB timing compliance remain open.",
     "PNP saturation, eFuse slew/overshoot, resistor pulse/temperature and input inductance require physical validation.",
     "Output capacitor bank resides in the charger block and must be placed at the eFuse/charger boundary; output negative transients remain unqualified.",
-    "Connector and IC land patterns, 3D envelope, factory test pads, placement/routing, thermal/EMI and integrated-board tests remain open."
+    "Connector and IC land patterns, 3D envelope, factory test pads, placement/routing, thermal/EMI and integrated-board tests remain open.",
+    "Direct VSYS reverse current, USB-only/dead-pack/brownout handover and shared unpowered bus behavior require physical qualification.",
+    "ST specifies no ALERT leakage maximum; shared interrupt high margin is conditional on total measured leakage. I2C VIL0.35V versus other devices VOL0.4V requires actual low-level and rise-time validation.",
+    "Physical shared service pads and fixture CE inhibit/downstream isolation remain to be placed; exposed source interfaces are not manufactured test access."
   ]
 }

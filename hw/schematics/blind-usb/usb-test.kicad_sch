@@ -3033,6 +3033,105 @@
       (uuid "86c68a40-ca74-55b9-bba4-3c4036c944f2")))
   (wire
     (pts
+      (xy 144.78 124.46)
+      (xy 144.78 132.08))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0391f305-27ab-56bb-8320-7598838681f6"))
+  (label
+    "GND"
+    (at 144.78 132.08 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "27d022c7-0f2d-552b-a0a0-429fbb74c91a"))
+  (wire
+    (pts
+      (xy 144.78 114.3)
+      (xy 144.78 106.68))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f2ca9802-7db5-526e-a48f-97b4b23cb907"))
+  (label
+    "HOST_3V3"
+    (at 144.78 106.68 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "244d7388-c6fb-5c34-9883-62a050545f5d"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL10A105KB8NNNC")
+    (at 144.78 119.38 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "a1d6c993-24ba-5eaf-91bd-27d7d2dbe4b8")
+    (property
+      "Reference"
+      "C6"
+      (at 152.4 118.11 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "1u / 50V (VSYS)"
+      (at 152.4 120.65 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "SAMSUNG_CL10A105KB8NNNC:C0603"
+      (at 144.78 119.38 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL10A105KB8NNNC"
+      (at 144.78 119.38 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C15849"
+      (at 144.78 119.38 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "usb.c_vsys"
+      (at 144.78 119.38 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "usb-test"
+        (path
+          "/55aff08a-e9ee-5259-a283-dc8e6e73fd3a"
+          (reference "C6")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "1d05b31e-9d60-5391-a699-8035704b2971"))
+    (pin
+      "1"
+      (uuid "ac3e5001-50f6-5efa-8d8d-a18437f0f18b")))
+  (wire
+    (pts
       (xy 90.17 157.48)
       (xy 90.17 165.1))
     (stroke
@@ -4257,204 +4356,6 @@
     (pin
       "1"
       (uuid "435789c7-a0fb-5d8c-8f37-b512c36f765b")))
-  (wire
-    (pts
-      (xy 144.78 124.46)
-      (xy 144.78 132.08))
-    (stroke
-      (width 0)
-      (type default))
-    (uuid "39572668-af64-57bc-997a-1d5705a4c14c"))
-  (label
-    "GND"
-    (at 144.78 132.08 0)
-    (effects
-      (font
-        (size 1.0 1.0))
-      (justify left bottom))
-    (uuid "4f82da74-15be-57cc-8da2-5f1aefe30096"))
-  (wire
-    (pts
-      (xy 144.78 114.3)
-      (xy 144.78 106.68))
-    (stroke
-      (width 0)
-      (type default))
-    (uuid "d4c1167e-ef77-506e-b7eb-7c63163da98e"))
-  (label
-    "FACTORY_SCL"
-    (at 144.78 106.68 0)
-    (effects
-      (font
-        (size 1.0 1.0))
-      (justify left bottom))
-    (uuid "32ddb425-706c-5941-a963-b21098f2204d"))
-  (symbol
-    (lib_id "SmartBlinds:P_0402WGF1003TCE")
-    (at 144.78 119.38 270)
-    (unit 1)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (uuid "1201c7ed-8bec-5eab-bf79-d3d8c244817c")
-    (property
-      "Reference"
-      "R17"
-      (at 152.4 118.11 270)
-      (effects
-        (font
-          (size 1.27 1.27))))
-    (property
-      "Value"
-      "100k"
-      (at 152.4 120.65 270)
-      (effects
-        (font
-          (size 1.27 1.27))))
-    (property
-      "Footprint"
-      "blind-control-io:R0402"
-      (at 144.78 119.38 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property
-      "MPN"
-      "0402WGF1003TCE"
-      (at 144.78 119.38 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property
-      "LCSC"
-      "C25741"
-      (at 144.78 119.38 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property
-      "atopile_address"
-      "usb.r_scl"
-      (at 144.78 119.38 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (instances
-      (project
-        "usb-test"
-        (path
-          "/55aff08a-e9ee-5259-a283-dc8e6e73fd3a"
-          (reference "R17")
-          (unit 1))))
-    (pin
-      "2"
-      (uuid "e8a0943c-82ba-53cf-bcf2-0753bcf61fd6"))
-    (pin
-      "1"
-      (uuid "8c9e8a51-98d9-5c9f-8659-654bba5386c2")))
-  (wire
-    (pts
-      (xy 199.39 124.46)
-      (xy 199.39 132.08))
-    (stroke
-      (width 0)
-      (type default))
-    (uuid "1d40d14e-73ab-54e9-85cf-56fb844de996"))
-  (label
-    "GND"
-    (at 199.39 132.08 0)
-    (effects
-      (font
-        (size 1.0 1.0))
-      (justify left bottom))
-    (uuid "0552fddd-8368-59f2-9b2e-8a5e4232bb2b"))
-  (wire
-    (pts
-      (xy 199.39 114.3)
-      (xy 199.39 106.68))
-    (stroke
-      (width 0)
-      (type default))
-    (uuid "e167fcae-fd38-5c90-8498-a72e2847d2a7"))
-  (label
-    "FACTORY_SDA"
-    (at 199.39 106.68 0)
-    (effects
-      (font
-        (size 1.0 1.0))
-      (justify left bottom))
-    (uuid "0050eb2e-c9a7-5de7-9bf4-b063c07d3128"))
-  (symbol
-    (lib_id "SmartBlinds:P_0402WGF1003TCE")
-    (at 199.39 119.38 270)
-    (unit 1)
-    (in_bom yes)
-    (on_board yes)
-    (dnp no)
-    (uuid "dc14ab56-83a7-50b6-b12c-5c9ece7dc97b")
-    (property
-      "Reference"
-      "R18"
-      (at 207.01 118.11 270)
-      (effects
-        (font
-          (size 1.27 1.27))))
-    (property
-      "Value"
-      "100k"
-      (at 207.01 120.65 270)
-      (effects
-        (font
-          (size 1.27 1.27))))
-    (property
-      "Footprint"
-      "blind-control-io:R0402"
-      (at 199.39 119.38 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property
-      "MPN"
-      "0402WGF1003TCE"
-      (at 199.39 119.38 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property
-      "LCSC"
-      "C25741"
-      (at 199.39 119.38 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (property
-      "atopile_address"
-      "usb.r_sda"
-      (at 199.39 119.38 0)
-      (effects
-        (font
-          (size 1.27 1.27))
-        (hide yes)))
-    (instances
-      (project
-        "usb-test"
-        (path
-          "/55aff08a-e9ee-5259-a283-dc8e6e73fd3a"
-          (reference "R18")
-          (unit 1))))
-    (pin
-      "2"
-      (uuid "6b7efb28-92b7-5ffc-875a-d8ccbcc664a1"))
-    (pin
-      "1"
-      (uuid "854aae60-4254-59ba-aaa0-01f3ebecbf90")))
   (wire
     (pts
       (xy 199.39 190.5)
@@ -5848,7 +5749,7 @@
       (type default))
     (uuid "5c6ccf73-06e1-52c4-99f4-1eb9ce55e4a5"))
   (label
-    "FACTORY_SCL"
+    "HOST_SCL"
     (at 134.62 74.93 0)
     (effects
       (font
@@ -5864,7 +5765,7 @@
       (type default))
     (uuid "d771ac77-f421-5887-8549-198fa256bd6d"))
   (label
-    "FACTORY_SDA"
+    "HOST_SDA"
     (at 134.62 77.47 0)
     (effects
       (font
@@ -5979,9 +5880,22 @@
         (size 1.0 1.0))
       (justify left bottom))
     (uuid "703fb2af-6e9c-534d-8af1-46f2105699cd"))
-  (no_connect
-    (at 182.88 72.39)
+  (wire
+    (pts
+      (xy 182.88 72.39)
+      (xy 190.5 72.39))
+    (stroke
+      (width 0)
+      (type default))
     (uuid "d3867f88-eadc-559a-ba44-598bdfbdaed5"))
+  (label
+    "POWER_ALERT_N"
+    (at 190.5 72.39 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "27107711-2102-5f18-b484-302d3de9eb60"))
   (no_connect
     (at 182.88 69.85)
     (uuid "bae09584-07d8-55c7-abe0-73ed3aa5a4d3"))
@@ -6010,7 +5924,7 @@
       (type default))
     (uuid "cca9973a-cb32-5f04-a555-07f6d06beef0"))
   (label
-    "GND"
+    "HOST_3V3"
     (at 190.5 64.77 0)
     (effects
       (font
@@ -6549,7 +6463,7 @@
       (justify left))
     (uuid "3dae01da-94f0-50ca-a470-61c085a3bcf3"))
   (text
-    "Factory NVM required: 5V/1.5A, 9V/2.5A, 15V/2.5A; POWER_ONLY_ABOVE_5V=1. Factory bus is separate from the MCU bus."
+    "Owned MCU I2C at 0x28; VSYS=3.3V. Factory access holds MCU reset, inhibits CE and isolates downstream USB load."
     (at 15 24 0)
     (effects
       (font
@@ -6565,7 +6479,7 @@
       (justify left))
     (uuid "5a0920e7-e74a-5734-871b-44c88b44aed2"))
   (text
-    "33-part unrouted capture. Native pin equivalence is not PD protocol, ESD/surge or fabrication approval."
+    "32-part unrouted capture. External host logic/pullups and factory access remain open; no physical qualification."
     (at 15 281 0)
     (effects
       (font

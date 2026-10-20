@@ -6,8 +6,8 @@
   "pages": [
     {
       "file": "01-usb.kicad_sch",
-      "components": 33,
-      "pins": 113
+      "components": 32,
+      "pins": 111
     },
     {
       "file": "02-charger.kicad_sch",
@@ -36,8 +36,8 @@
     },
     {
       "file": "07-radio.kicad_sch",
-      "components": 15,
-      "pins": 68
+      "components": 16,
+      "pins": 70
     },
     {
       "file": "08-encoder-input.kicad_sch",
@@ -120,17 +120,17 @@
     "blocks": 8
   },
   "source_sha256": {
-    "hw/boards/blind-main/check_main.py": "e8b5149e2f76cd4978fff9c78a5329a5fe5d744125820036f77dd11f02c9fc33",
+    "hw/boards/blind-main/check_main.py": "5d414a6b207c91df7fd00b769cac7f10c5ad269aa2be6571c7f84b35cfe96e3a",
     "hw/layouts/blind-charger/charger-test/charger-test.kicad_pcb": "048a700b0cb0d49a9ec7bedac25075a992681998cd9d72d011553aaaf3838a23",
     "hw/layouts/blind-controller/motor-test/motor-test.kicad_pcb": "1d65b374cd8c102c70ce1efdbe83c096d913122d9fa84a14de341cd5689c4699",
     "hw/layouts/blind-encoder/encoder-test/encoder-test.kicad_pcb": "faf1231c54bd8ca2c83fbcd13362a0785fec8f2dd32f18882f53cd998048b338",
     "hw/layouts/blind-io/controller-test/controller-test.kicad_pcb": "ee2ebd83164b3ff00d6ec073f013ac1101d0bffbfa34a4c1614aebb4b02f7090",
     "hw/layouts/blind-main/main-test/fp-lib-table": "9ad8b88842d99ef1ad3e3099a74429cedf109a7b9d4dade19d12c07f8445a671",
-    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "ba633546b9834325b132ba6cf606e7b5bb5817b4b9ca7f4ac7568eda448de4f5",
+    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "2ef8c8d6168420d0de25bb6a4c4b3d778d73c1fd55e97ca068adafe70fbeadd7",
     "hw/layouts/blind-regen/regen-test/regen-test.kicad_pcb": "062c23cdecf8e3e423f400c75c7705aecce58221ccfc6963ee4cf13d7f700ef7",
     "hw/layouts/blind-regulator/regulator-test/regulator-test.kicad_pcb": "c8cc2ae18fbdc78acce5624c854d55769a3c948be74dcbd48ad517f6dc9dd260",
     "hw/layouts/blind-supervisor/supervisor-test/supervisor-test.kicad_pcb": "2f2e03f8c2d22500b7eaeb248136a1b0e902fb326b83b2b920eaa7a07999d560",
-    "hw/layouts/blind-usb/usb-test/usb-test.kicad_pcb": "4e97de2d9a75cfeff0e59284c43141576b0f9df0c4ca7528ae774cb23a04e7dc",
+    "hw/layouts/blind-usb/usb-test/usb-test.kicad_pcb": "952e8ff980474fc6c70251c388ccfb6f919b1816f60d699c4c069aebe5aaa9fc",
     "hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod": "60561548bc05514cd55938492ccae68aa630ea1742c8277c95415d483a80981c",
     "hw/parts/SAMSUNG_CL10A105KB8NNNC/CL10A105KB8NNNC.kicad_sym": "0f9c31587bdbbac3fcb3161be32872394822fff5598d040a2617171b64be3521",
     "hw/parts/SAMSUNG_CL31A106KBHNNNE/CL31A106KBHNNNE.kicad_sym": "40e1b3f7f888a01317c8a7cee0eb7c1a5fe4a9a0278e0f389438e10b7491a4cd",
@@ -240,11 +240,11 @@
     "hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": "664d94e61dc8889492739d700cc4ca5fd73979572489afc2c2092269f4765973",
     "hw/schematics/blind-charger/charger-test.layout.json": "637355dd5ba0633a4e455c1d38d9cd5962089934e9ab7cde29f7f09e68315378",
     "hw/schematics/blind-controller/motor-test.layout.json": "7f416ab6f0583848ade80e02d74009b905e2fb2637ac6950ef137f9ac41ed8f0",
-    "hw/schematics/blind-main/main.layout.json": "f9fae4fb90f892ba2697bfb520fdb52550021944103d793ee77aa1a41d711bca",
+    "hw/schematics/blind-main/main.layout.json": "1deb8d6e9a5bb103dcb71de7658be053d59f051feb493b90e6b84d7b3a18b04a",
     "hw/schematics/blind-regen/regen-test.layout.json": "b70ae421058a04558779af039ed33b3804e8b7e1695718df2982d0ed8564cbe4",
     "hw/schematics/blind-regulator/regulator-test.layout.json": "c100c14bea96bc7ee988c5f2892427d6f1eb29e7c250e1cc60251d72f2efc8b8",
     "hw/schematics/blind-supervisor/supervisor-test.layout.json": "308e5e6ee828e34748e2c764cac87b860fc260abecb5ffd7636a9a8ef233cb01",
-    "hw/schematics/blind-usb/usb-test.layout.json": "4711a87df21cdbe44cfd3fe1a440a92b8c825e078c70c1a15f132015cc16483c",
+    "hw/schematics/blind-usb/usb-test.layout.json": "6aa49f314090ce18e71be3b9053c89857f26c4945057a9edf1b338a695ec0c6c",
     "tools/generate_main_schematic.py": "030184c8beec906657f423f97771c882f69004b0bcbe1ad2c13a5ffcc965b442",
     "tools/generate_schematics.py": "cda24e8995e1fff8431022d10cd4ae228bf70035c5206ae970e09aa4ffcedee3",
     "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",

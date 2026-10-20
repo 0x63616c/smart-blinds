@@ -134,7 +134,7 @@ def verify_copper(b):
  [('usb.connector','A5'),('usb.tvs_cc',1),('usb.pd',1),('usb.pd',2)],
  [('usb.connector','B5'),('usb.tvs_cc',2),('usb.pd',4),('usb.pd',5)],
  [('usb.efuse',8),('usb.r_uv_bottom',2),('usb.r_ov_bottom',2),('usb.c_slew',2),('usb.r_limit',2),
-  ('usb.c_raw',2),('usb.tvs_vbus',2),('charger.c_input2',2),('usb.pd',10),('usb.pd',22),('usb.pd',25),
+  ('usb.c_raw',2),('usb.tvs_vbus',2),('charger.c_input2',2),('usb.pd',10),('usb.pd',25),
   ('usb.c_vdd',2),('usb.c_1v2',2),('usb.c_2v7',2),('usb.tvs_cc',3),('controller.usb_esd',1),('controller.usb_esd',2),('controller.usb_esd',4),
   *[('usb.connector',n) for n in ('1','2','3','4','A1B12','B1A12')]],
 
@@ -157,9 +157,7 @@ def verify_copper(b):
  [('usb.pd',12),('usb.r_addr0',1)],
  [('usb.pd',13),('usb.r_addr1',1)],
  [('usb.pd',6),('usb.r_reset',1)],
- [('usb.pd',7),('usb.r_scl',1)],
- [('usb.pd',8),('usb.r_sda',1)],
- [('usb.pd',25),*[(a,2) for a in ['usb.r_addr0','usb.r_addr1','usb.r_reset','usb.r_scl','usb.r_sda']]],
+ [('usb.pd',25),*[(a,2) for a in ['usb.r_addr0','usb.r_addr1','usb.r_reset']]],
 
  [('usb.efuse',6),('charger.c_input1',1),('charger.c_input2',1),('charger.c_input_fast',1),('charger.ic',2),('charger.ic',3)],
  [('charger.ic',29),('charger.c_pmid_fast',1),*[(f'charger.c_pmid{i}',1) for i in range(1,5)]],
@@ -267,7 +265,7 @@ def verify_all_via_lands(b):
     if land.IsOnLayer(pcbnew.F_Cu):
      assert not probe.GetEffectiveShape(pcbnew.F_Cu).Collide(land.GetEffectiveShape(pcbnew.F_Cu),200000),'Ordinary via drill too close to solder land'
   count+=1
- assert count==257,'Unexpected ordinary via inventory'
+ assert count==255,'Unexpected ordinary via inventory'
  return {'checked_vias':count,'minimum_drill_to_solder_land_mm':.2,'scope':'All route vias, including same-net lands; footprint thermal holes require separate process review'}
 
 def run_drc(path):

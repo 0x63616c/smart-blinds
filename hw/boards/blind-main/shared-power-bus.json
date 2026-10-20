@@ -1,0 +1,43 @@
+{
+  "status": "Conditional electrical review; no physical bus or power-sequencing qualification",
+  "sources": {
+    "STUSB4500": "ST DS12499 Rev8 Tables1,21,22 and section2.2.14; https://www.st.com/resource/en/datasheet/stusb4500.pdf",
+    "BQ25798": "TI SLUSDV2C pin21 and section6.5 Digital IO; https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+    "ESP32-C6": "ESP32-C6-WROOM-1 v1.4 Table6-3, stated3.3V/25C conditions; https://documentation.espressif.com/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf"
+  },
+  "rail_v": [3.234, 3.366],
+  "pullup": {"address": "r_power_irq", "mpn": "0402WGF1002TCE", "lcsc": "C25744", "resistance_ohm": 10000, "tolerance": 0.01, "temperature_allowance": 0.0075, "rated_power_w": 0.0625},
+  "interrupt": {
+    "physical_pins": ["controller.mcu.24", "charger.ic.21", "usb.pd.19", "r_power_irq.2"],
+    "st_vol_v_at_3ma": 0.4,
+    "bq_vol_v_at_5ma": 0.4,
+    "mcu_vil_vdd_fraction": 0.25,
+    "mcu_vih_vdd_fraction": 0.75,
+    "mcu_input_leakage_a_at_3v3_25c": 5e-8,
+    "bq_int_leakage_a_at_1v8_pullup": 1e-6,
+    "conditional_total_high_sink_allowance_a": 1e-5,
+    "missing_bound": "ST ALERT leakage is unspecified. BQ leakage is tested at1.8V and MCU DC table at3.3V/25C. The10uA total is a qualification allowance, not a guaranteed part maximum."
+  },
+  "i2c": {
+    "frequency_hz": 100000,
+    "host_pullup_ohm": 4700,
+    "st_address_7bit": 40,
+    "bq_address_7bit": 107,
+    "max_addresses_7bit": [54,11],
+    "st_vil_max_v": 0.35,
+    "bq_sda_vol_max_v_at_5ma": 0.4,
+    "st_sda_vol_max_v_at_3ma": 0.4,
+    "limit": "The maximum-table low levels do not establish positive ST input margin. Qualify actual low level, 100kHz rise/fall, cable capacitance, 150ohm pack series drop and all powered/unpowered states."
+  },
+  "vsys": {
+    "connection": "Direct host3.3V to ST pin22; raw VDD/deadbattery retained",
+    "bypass_address": "usb.c_vsys",
+    "bypass_mpn": "CL10A105KB8NNNC",
+    "bypass_nominal_uf": 1,
+    "bypass_rated_v": 50,
+    "idle_typ_a_25c": 0.00014,
+    "idle_max_a_25c": 0.000165,
+    "power_efficiency_assumption": 0.85,
+    "limits": "No reverse-current bound, USB-to-host backfeed, rail-collapse or depleted-pack startup proof. New VSYS capacitance is on host rail, not directly rawVBUS; the old raw-local capacitance subtotal is not a system inrush bound."
+  }
+}

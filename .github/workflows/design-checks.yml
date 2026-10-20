@@ -252,6 +252,8 @@ jobs:
         run: |
           ato build hw/boards/blind-main -b main-test --frozen -v
           python hw/boards/blind-main/check_main.py
+          python hw/boards/blind-main/check_shared_power_bus.py
+          git diff --exit-code -- hw/boards/blind-main/shared-power-bus-results.json
           python hw/sim/blind-usb/check_footprint.py
           python tools/check_core_lands.py
           python tools/check_main_placement.py

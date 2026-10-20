@@ -48,7 +48,8 @@ def verify(graph):
             for prop in ('Partnumber','LCSC'):
                 assert c['properties'][prop]==projected[name]['properties'][prop],f'{name}: part changed'
         assert groups(reference)==groups(projected),f'{prefix}: internal nets changed'
-    extra={'thermal_gate':('SN74AUP1G97DCKR','C2682139'),
+    extra={'r_power_irq':('0402WGF1002TCE','C25744'),
+           'thermal_gate':('SN74AUP1G97DCKR','C2682139'),
            'r_thermal_sleep':('0402WGF1001TCE','C11702'),
            'c_thermal_gate':('CL05B104KB54PNC','C307331'),
            'q_thermal_fault':('AO3400A','C20917'),
@@ -57,7 +58,7 @@ def verify(graph):
            'home_port.header':('532610371','C293630'),
            'home_esd':('TPD2E2U06DRLR','C1972959')}
     bare_features={'motor_output.landing1','motor_output.landing2'}
-    extra_pad_numbers={'thermal_gate':range(1,7),'r_thermal_sleep':range(1,3),
+    extra_pad_numbers={'r_power_irq':range(1,3),'thermal_gate':range(1,7),'r_thermal_sleep':range(1,3),
         'c_thermal_gate':range(1,3),'q_thermal_fault':range(1,4),
         'pack_connector.header':range(1,7),'encoder_port.header':range(1,5),
         'home_port.header':range(1,4),'home_esd':range(1,6),
@@ -94,11 +95,11 @@ def verify(graph):
         ['charger.ic.22','charger.ic.23','motor.ic.11','regen.detector.5','regen.thermal_supply.1'],
         ['charger.ic.25','logic_supply.ic.6','encoder.ic.1'],
         ['logic_supply.ic.3','controller.mcu.2','encoder.gate.5','thermal_gate.5','c_thermal_gate.1',
-         'charger.q_permission.2','motor.r_fault.1','supervision.c_gate.1'],
+         'charger.q_permission.2','motor.r_fault.1','supervision.c_gate.1','usb.pd.22','r_power_irq.1'],
         ['controller.mcu.20','charger.r_permission_base.1'],
-        ['controller.mcu.24','charger.ic.21'],
-        ['controller.mcu.11','charger.ic.15'],
-        ['controller.mcu.12','charger.ic.14'],
+        ['controller.mcu.24','charger.ic.21','usb.pd.19','r_power_irq.2'],
+        ['controller.mcu.11','charger.ic.15','usb.pd.8'],
+        ['controller.mcu.12','charger.ic.14','usb.pd.7'],
         ['usb.connector.A6','usb.connector.B6','controller.r_dp.2'],
         ['usb.connector.A7','usb.connector.B7','controller.r_dm.2'],
         ['encoder.ic.5','controller.r_a_up.1','controller.r_b_up.1'],
@@ -145,10 +146,11 @@ def verify(graph):
     isolated=['usb.efuse.5','usb.efuse.6','charger.ic.22','charger.ic.25',
               'logic_supply.ic.3','encoder.ic.5','charger.ic.29','charger.ic.10']
     assert len({pins[p] for p in isolated})==len(isolated),'Power domains shorted'
-    # The unpowered PD factory bus must not join the always-on host/gauge bus.
+    # Powered PD shares the owned bus; SDA and SCL remain distinct.
     assert pins['supervision.gate.4']!=pins['motor.ic.3'],'Thermal motor inhibit bypassed'
-    buses=['usb.pd.7','usb.pd.8','charger.ic.14','charger.ic.15']
-    assert len({pins[p] for p in buses})==4,'Factory/host buses shorted'
+    assert pins['usb.pd.7'] != pins['usb.pd.8'],'SDA/SCL shorted'
+    assert pins['usb.pd.22'] != pins['usb.pd.24'],'VSYS/raw VDD shorted'
+    assert pins['usb.pd.19'] != pins['usb.pd.16'],'Interrupt incorrectly uses autonomous gate'
     assert list(pins.values()).count(pins['home_port.header.2'])==1,'Reserved home pin is connected'
     assert pins['motor_output.landing1.1']!=pins['motor_output.landing2.1'],'Motor leads shorted'
     assert pins['encoder_port.header.3']!=pins['encoder_port.header.4'],'Encoder channels shorted'

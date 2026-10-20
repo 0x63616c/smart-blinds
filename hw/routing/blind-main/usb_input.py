@@ -17,7 +17,7 @@ def via(net,p,diam=.6,drill=.3):
 def link(a,n,c,m,pts=(),w=.2,layer=pcbnew.F_Cu):
  p,q=pad(a,n),pad(c,m);assert p.GetNetCode()==q.GetNetCode(),(a,n,c,m)
  trace(p.GetNetCode(),[uv(p),*pts,uv(q)],w,layer)
-gn=pad('usb.pd',22).GetNetCode()
+gn=pad('usb.pd',25).GetNetCode()
 def ground(a,n,at):
  p=pad(a,n);assert p.GetNetCode()==gn
  trace(gn,[uv(p),at],.25);via(gn,at)
@@ -26,7 +26,6 @@ link('usb.pd',24,'usb.c_vdd',1,[(37.4,8.25),(36.75,7.6)])
 link('usb.pd',23,'usb.c_2v7',1,[(37.45,8.75),(36.9,9.3)])
 link('usb.pd',21,'usb.c_1v2',1,[(37.45,9.75)])
 for a,v in [('usb.c_vdd',8.4),('usb.c_2v7',10.1),('usb.c_1v2',11.8)]:ground(a,2,(34.6,v))
-link('usb.pd',22,'usb.pd',25,[(38.7,9.25),(39,9.5)])
 link('usb.pd',25,'usb.pd',10,[(41.3,9.75)])
 trace(gn,[uv(pad('usb.pd',10)),(42.65,9.75)],.2);via(gn,(42.65,9.75),.5,.25)
 # Matched small series resistor placement immediately at the MCU's USB pins.

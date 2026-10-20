@@ -2,7 +2,7 @@
   "status": "Captured components only; not an order-ready BOM or manufacturing quote",
   "currency": "USD",
   "board_source_sha256": {
-    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "ba633546b9834325b132ba6cf606e7b5bb5817b4b9ca7f4ac7568eda448de4f5",
+    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "2ef8c8d6168420d0de25bb6a4c4b3d778d73c1fd55e97ca068adafe70fbeadd7",
     "hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb": "a93f5b45b81767ffaaa44e7ff29bcc5edda26651cc63edd8132b4aa51cbd1197",
     "hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb": "629badeee425db788ad6c0246485f998eafa8df5b7ab3ce49790716f5382a712"
   },
@@ -136,8 +136,8 @@
   },
   "unique_part_numbers": 67,
   "batch_totals_usd": {
-    "2": "95.0560",
-    "8": "363.0752"
+    "2": "95.0836",
+    "8": "363.1856"
   },
   "exclusions": [
     "PCB fabrication, setup, feeders, stencil, X-ray and assembly",
@@ -429,11 +429,12 @@
       "lcsc": "C15849",
       "mpn": "CL10A105KB8NNNC",
       "counts": {
-        "main": 4
+        "main": 5
       },
       "references": {
         "main": [
           "C47",
+          "C61",
           "C51",
           "C48",
           "C53"
@@ -444,14 +445,14 @@
       "url": "https://jlcpcb.com/partdetail/CL10A105KB8NNNC/C15849",
       "batches": {
         "2": {
-          "quantity": 8,
+          "quantity": 10,
           "unit_price_usd": "0.0153",
-          "extension_usd": "0.1224"
+          "extension_usd": "0.1530"
         },
         "8": {
-          "quantity": 32,
+          "quantity": 40,
           "unit_price_usd": "0.0153",
-          "extension_usd": "0.4896"
+          "extension_usd": "0.6120"
         }
       }
     },
@@ -868,13 +869,11 @@
       "lcsc": "C25741",
       "mpn": "0402WGF1003TCE",
       "counts": {
-        "main": 18
+        "main": 16
       },
       "references": {
         "main": [
           "R41",
-          "R64",
-          "R63",
           "R51",
           "R77",
           "R15",
@@ -897,14 +896,14 @@
       "url": "https://jlcpcb.com/partdetail/0402WGF1003TCE/C25741",
       "batches": {
         "2": {
-          "quantity": 36,
+          "quantity": 32,
           "unit_price_usd": "0.0015",
-          "extension_usd": "0.0540"
+          "extension_usd": "0.0480"
         },
         "8": {
-          "quantity": 144,
+          "quantity": 128,
           "unit_price_usd": "0.0015",
-          "extension_usd": "0.2160"
+          "extension_usd": "0.1920"
         }
       }
     },
@@ -912,7 +911,7 @@
       "lcsc": "C25744",
       "mpn": "0402WGF1002TCE",
       "counts": {
-        "main": 35,
+        "main": 36,
         "pack_primary": 1
       },
       "references": {
@@ -942,6 +941,7 @@
           "R62",
           "R20",
           "R2",
+          "R63",
           "R4",
           "R36",
           "R50",
@@ -962,14 +962,14 @@
       "url": "https://jlcpcb.com/partdetail/0402WGF1002TCE/C25744",
       "batches": {
         "2": {
-          "quantity": 72,
+          "quantity": 74,
           "unit_price_usd": "0.0015",
-          "extension_usd": "0.1080"
+          "extension_usd": "0.1110"
         },
         "8": {
-          "quantity": 288,
+          "quantity": 296,
           "unit_price_usd": "0.0015",
-          "extension_usd": "0.4320"
+          "extension_usd": "0.4440"
         }
       }
     },

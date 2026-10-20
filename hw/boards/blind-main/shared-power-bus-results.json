@@ -1,0 +1,17 @@
+{
+  "status": "Physical nets/selected pullup PASS; high-state and bus level bounds remain conditional",
+  "interrupt_pullup_sink_ceiling_a": 0.00034259541984732824,
+  "interrupt_low_margin_to_mcu_v": 0.4085,
+  "total_sink_leakage_budget_for_mcu_high_a": 7.945945945945946e-05,
+  "high_margin_if_total_sink_leakage_at_most_10ua_v": 0.70675,
+  "pullup_power_upper_w": 0.0011531761832061069,
+  "unproven_high_bound": "ST ALERT leakage is unspecified. BQ leakage is tested at1.8V and MCU DC table at3.3V/25C. The10uA total is a qualification allowance, not a guaranteed part maximum.",
+  "i2c_worst_table_low_margin_v": -0.050000000000000044,
+  "i2c_qualification_required": true,
+  "energy_wh_60d_typ_max_at_stated_conditions": [
+    0.7826823529411765,
+    0.9224470588235294
+  ],
+  "vsys_bypass_planning_estimate_uf_at_higher_5v_curve": 0.4514520717710932,
+  "hardware_qualified": false
+}

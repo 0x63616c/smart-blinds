@@ -55,3 +55,10 @@ session after a longer clean idle. Motor and charge outputs remain OFF during
 charger park/resume, and control keeps its power locks until sensor closure and
 actual OFF readback agree. These are implemented lifetimes, not measured wake
 latency or battery life; see the [sensor runtime](../docs/firmware/sensor-runtime.md).
+
+The experimental shared-bus revision also has an [owned PD/source monitor](../docs/firmware/pd-source-runtime.md).
+Cable-only service leaves the gauge asleep, retains the real parked interval,
+and preserves the exact charger image through a clean cold owner replacement.
+Its current-policy evidence is internal; the strict motion wire response remains
+unchanged. Physical records are empty, charging remains inhibited, and
+USB-only/depleted-pack radio startup is still unqualified.

@@ -2966,6 +2966,107 @@
       (uuid "e9c4a560-605d-5c80-8692-85720075dba4")))
   (wire
     (pts
+      (xy 320.04 219.71)
+      (xy 320.04 227.33))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "31c56fe0-2cdc-5eb3-a30f-2fd308bd55e2"))
+  (global_label
+    "POWER_IRQ_N"
+    (shape bidirectional)
+    (at 320.04 227.33 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "e39639ac-f502-534e-8e83-6145df8c514b"))
+  (wire
+    (pts
+      (xy 320.04 209.55)
+      (xy 320.04 201.93))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "333e3452-7e22-5973-ae04-50e16ed30022"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 320.04 201.93 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "85ef9f26-489e-5e30-aa61-15e0eb19f2e4"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF1002TCE")
+    (at 320.04 214.63 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "baa34f11-7f9a-566e-b912-2682c4c2e6ee")
+    (property
+      "Reference"
+      "R63"
+      (at 327.66 213.35999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "10k / SHARED IRQ"
+      (at 327.66 215.89999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "UNI_ROYAL_0402WGF1002TCE:R0402"
+      (at 320.04 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF1002TCE"
+      (at 320.04 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25744"
+      (at 320.04 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "r_power_irq"
+      (at 320.04 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R63")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "ce3b2ce2-17fe-535b-a8a5-656d5235fe1b"))
+    (pin
+      "1"
+      (uuid "50922883-a715-5908-b927-c70d4bf06c41")))
+  (wire
+    (pts
       (xy 73.66 67.31)
       (xy 66.04 67.31))
     (stroke
@@ -3304,7 +3405,7 @@
       (type default))
     (uuid "61ed3da3-fba9-5323-9db0-0efea8535300"))
   (global_label
-    "CHARGER_IRQ_N"
+    "POWER_IRQ_N"
     (shape bidirectional)
     (at 104.14 101.6 0)
     (effects
@@ -3713,7 +3814,7 @@
       (justify left))
     (uuid "cc61d79b-f1c5-5a0e-8818-087dda81c017"))
   (text
-    "ESP32-C6. USB programming shares the USB-C port. Strap-only GPIO4/5/15 are intentionally left open."
+    "ESP32-C6. GPIO17 shares PD ALERT + charger INT; one 10k pull-up. SDA/SCL share the single owned 3.3V bus."
     (at 15 26 0)
     (effects
       (font

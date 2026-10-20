@@ -1,0 +1,221 @@
+{
+  "status": "PROPOSED ONLY; no pad in source/PCB/BOM, no route or fixture qualification",
+  "pcb_sha256": "40e40339f7262ca2d37e92a5663b63cf5f42d60db62e923a32f9faa7c2f4c393",
+  "geometry": {
+    "layer": "B.Cu",
+    "copper_diameter_mm": 1.2,
+    "solder_mask_diameter_mm": 1.4,
+    "drill": null,
+    "minimum_screened_copper_clearance_mm": 0.25,
+    "minimum_target_center_spacing_mm": 2
+  },
+  "access": "Detached controller PCB on a locating/support fixture; no assembled-case access claim",
+  "screen": "Round copper target vs all existing B.Cu pads/tracks/vias and all rule areas; global coordinates x=100+u, y=175-v. No copper added; future landing/routing requires independent DRC and fixture/support review.",
+  "targets": [
+    {
+      "name": "GND",
+      "endpoint": [
+        "usb.pd",
+        "10"
+      ],
+      "net": "lv",
+      "uv_mm": [
+        46.0,
+        8.0
+      ],
+      "endpoint_uv_mm": [
+        42.0,
+        9.75
+      ],
+      "straight_distance_mm": 4.366062299143245,
+      "role": "Ground reference"
+    },
+    {
+      "name": "3V3",
+      "endpoint": [
+        "usb.pd",
+        "22"
+      ],
+      "net": "host_logic-hv",
+      "uv_mm": [
+        34.0,
+        14.0
+      ],
+      "endpoint_uv_mm": [
+        38.0,
+        9.25
+      ],
+      "straight_distance_mm": 6.209871174187111,
+      "role": "Observe / fixture current-limited supply"
+    },
+    {
+      "name": "MCU_EN",
+      "endpoint": [
+        "controller.mcu",
+        "3"
+      ],
+      "net": "reset_n",
+      "uv_mm": [
+        6.0,
+        50.0
+      ],
+      "endpoint_uv_mm": [
+        5.75,
+        64.97
+      ],
+      "straight_distance_mm": 14.972087362822858,
+      "role": "Open-drain low during fixture bus ownership"
+    },
+    {
+      "name": "PD_RESET",
+      "endpoint": [
+        "usb.pd",
+        "6"
+      ],
+      "net": "RESET",
+      "uv_mm": [
+        44.0,
+        4.0
+      ],
+      "endpoint_uv_mm": [
+        41.25,
+        7.5
+      ],
+      "straight_distance_mm": 4.451123453691213,
+      "role": "Drive high to reset; otherwise release"
+    },
+    {
+      "name": "SDA",
+      "endpoint": [
+        "usb.pd",
+        "8"
+      ],
+      "net": "SDA",
+      "uv_mm": [
+        44.0,
+        14.0
+      ],
+      "endpoint_uv_mm": [
+        42.0,
+        8.75
+      ],
+      "straight_distance_mm": 5.618051263561057,
+      "role": "Open-drain owned service bus"
+    },
+    {
+      "name": "SCL",
+      "endpoint": [
+        "usb.pd",
+        "7"
+      ],
+      "net": "SCL",
+      "uv_mm": [
+        46.0,
+        4.0
+      ],
+      "endpoint_uv_mm": [
+        42.0,
+        8.25
+      ],
+      "straight_distance_mm": 5.836308764964375,
+      "role": "Open-drain owned service bus"
+    },
+    {
+      "name": "CHARGE_ALLOW_N",
+      "endpoint": [
+        "controller.mcu",
+        "20"
+      ],
+      "net": "line",
+      "uv_mm": [
+        22.0,
+        50.0
+      ],
+      "endpoint_uv_mm": [
+        23.25,
+        57.349999999999994
+      ],
+      "straight_distance_mm": 7.4555348567356265,
+      "role": "Inactive high with MCU held reset"
+    },
+    {
+      "name": "CE_GATE",
+      "endpoint": [
+        "charger.q_charge",
+        "1"
+      ],
+      "net": "charger-1",
+      "uv_mm": [
+        22.0,
+        16.0
+      ],
+      "endpoint_uv_mm": [
+        23.36,
+        15.949999999999989
+      ],
+      "straight_distance_mm": 1.360918807276907,
+      "role": "Independent low clamp after permission verified inactive"
+    },
+    {
+      "name": "CE_N",
+      "endpoint": [
+        "charger.ic",
+        "13"
+      ],
+      "net": "CE_n",
+      "uv_mm": [
+        30.0,
+        28.0
+      ],
+      "endpoint_uv_mm": [
+        30.19999999999999,
+        22.400000000000006
+      ],
+      "straight_distance_mm": 5.603570290448753,
+      "role": "Observe REGN-level voltage; no force-high drive"
+    },
+    {
+      "name": "EFUSE_UVLO",
+      "endpoint": [
+        "usb.efuse",
+        "1"
+      ],
+      "net": "efuse-1",
+      "uv_mm": [
+        24.0,
+        8.0
+      ],
+      "endpoint_uv_mm": [
+        24.090000000000003,
+        9.900000000000006
+      ],
+      "straight_distance_mm": 1.9021303845951314,
+      "role": "Hold low before raw USB connection"
+    },
+    {
+      "name": "BOOT_N",
+      "endpoint": [
+        "controller.mcu",
+        "15"
+      ],
+      "net": "boot_n",
+      "uv_mm": [
+        26.0,
+        50.0
+      ],
+      "endpoint_uv_mm": [
+        23.25,
+        51.0
+      ],
+      "straight_distance_mm": 2.9261749776799064,
+      "role": "Optional low for controlled ROM recovery"
+    }
+  ],
+  "qualification": [
+    "Fixture mechanics/pogo travel/contact force and front-side support",
+    "No simultaneous power source or bus owner",
+    "Actual independent inhibit, sequencing and fault behavior",
+    "Routing to targets and all-layer drilled-via/solder clearances",
+    "Pad strength/finish and manufacturing test accessibility"
+  ]
+}

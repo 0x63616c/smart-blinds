@@ -2,6 +2,7 @@
 #include <array>
 #include <cstddef>
 #include <cstdint>
+#include <optional>
 
 namespace smart_blinds::charger {
 // Byte addresses/fields from TI BQ25798 SLUSDV2C. This module can only hold
@@ -25,7 +26,7 @@ struct ParkIdentity {
     std::uint64_t boot=0, pack=0, qualification=0;
     std::uint32_t epoch=0;
     std::uintptr_t owner=0;
-    bool valid() const { return boot && pack && qualification && epoch && owner; }
+    bool valid() const { return boot && pack && qualification && epoch && epoch<UINT32_MAX && owner; }
     bool operator==(const ParkIdentity& other) const {
         return boot==other.boot && pack==other.pack && qualification==other.qualification &&
                epoch==other.epoch && owner==other.owner;
@@ -35,7 +36,8 @@ class ParkGuard : public Inhibit {
 public:
     // Owner supplies current identities and fresh actual settled motor OFF,
     // with no active/settling or queued command authority. Both are rechecked
-    // around every transfer. No application currently implements this guard.
+    // around every transfer. The sensor owner binds these to actual OFF and its
+    // existing identities; empty qualification records still prevent entry.
     virtual ParkIdentity identity() const = 0;
 };
 enum class SourceVoltage : std::uint16_t { nine = 9000, fifteen = 15000 };
@@ -85,6 +87,17 @@ struct ParkReconciliation {
     bool valid() const { return observation.valid(); }
     // VINDPM is an opaque OFF-monitor value, never an inferred USB contract.
 };
+// Issued only by a successful bound park. Contents cannot be manufactured or
+// edited by callers. This carries an exact OFF image, never charge authority.
+class ParkedImage {
+    friend class Bq25798;
+    ParkedImage(Profile p,SourceVoltage v,ParkIdentity i,std::uint8_t source)
+        : profile_(p),voltage_(v),identity_(i),source_(source) {}
+    Profile profile_;
+    SourceVoltage voltage_;
+    ParkIdentity identity_;
+    std::uint8_t source_;
+};
 class Bq25798 {
 public:
     static constexpr std::uint8_t address = 0x6B;
@@ -94,6 +107,13 @@ public:
     Error configure(SourceVoltage voltage);
     Capture capture();
     OffCapture capture_off();
+    // Read-before-write source reconciliation in a proven stationary active
+    // OFF-monitor session, then ordinary unchanged watchdog service.
+    OffCapture capture_stationary_off(ParkGuard& guard);
+    // Owner closes the old mailbox before release, retires its epoch, then the
+    // successor object verifies this exact image. No enum/default reconstruction.
+    std::optional<ParkedImage> release_parked(ParkGuard& guard);
+    OffCapture adopt_parked(const ParkedImage& image,ParkGuard& guard);
     // Owner-only transitions. The second independent guard must verify actual
     // motor OFF; both guards are checked around each synchronous transfer.
     // A failed transition is terminal for this object, even if configure() is
@@ -146,6 +166,7 @@ private:
     Inhibit* transition_guard_=nullptr;
     ParkGuard* park_guard_=nullptr;
     ParkIdentity operation_identity_{},parked_identity_{};
+    bool released_=false;
     std::uint8_t parked_source_=0;
     bool reconciliation_authorized_=false;
     Error transition_failure_=Error::none;

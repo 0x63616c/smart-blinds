@@ -16,8 +16,8 @@
       "4": "CC2",
       "5": "CC2",
       "6": "RESET",
-      "7": "FACTORY_SCL",
-      "8": "FACTORY_SDA",
+      "7": "HOST_SCL",
+      "8": "HOST_SDA",
       "9": "DISCH",
       "10": "GND",
       "11": "NC_ATTACH",
@@ -28,10 +28,10 @@
       "16": "SINK_ENABLE_N",
       "17": "NC_ORIENTATION",
       "18": "MONITOR",
-      "19": "NC_ALERT",
+      "19": "POWER_ALERT_N",
       "20": "NC_OK2",
       "21": "VREG1V2",
-      "22": "GND",
+      "22": "HOST_3V3",
       "23": "VREG2V7",
       "24": "VDD",
       "25": "GND"
@@ -90,14 +90,6 @@
     },
     "r_addr1": {
       "1": "ADDR1",
-      "2": "GND"
-    },
-    "r_scl": {
-      "1": "FACTORY_SCL",
-      "2": "GND"
-    },
-    "r_sda": {
-      "1": "FACTORY_SDA",
       "2": "GND"
     },
     "r_reset": {
@@ -187,6 +179,10 @@
     "r_out_dis3": {
       "1": "OUT_DIS2",
       "2": "DISCH"
+    },
+    "c_vsys": {
+      "1": "HOST_3V3",
+      "2": "GND"
     }
   }
 }

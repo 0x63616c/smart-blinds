@@ -15,7 +15,7 @@ followed by an eight-unit build only after their tests pass.
 |---|---|---|
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | Native eleven-sheet schematic and partial four-layer power route; 1022 segments, 257 vias, 72 earlier groups plus USB, local clamp and 59 supervision branches, preserved circuit and mechanical anchors | 114 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
+| Main controller | Native eleven-sheet schematic and partial four-layer power route; 1013 segments, 255 vias, 70 checked groups plus USB, local clamp and 59 supervision branches, preserved circuit and mechanical anchors | 122 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
@@ -28,17 +28,28 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All thirteen Design checks jobs passed for `d50df47`](https://github.com/0x63616c/smart-blinds/actions/runs/39417753826),
+[All thirteen Design checks jobs passed for `de4f9a3`](https://github.com/0x63616c/smart-blinds/actions/runs/39419685205),
 including both carrier routes, the protected USB/main power route, mechanical
 assemblies and material estimate, all 22 host firmware targets and pinned real-SDK
-builds. This covers the long-idle sensor runtime, the corrected 100 mA OFF-only
-input-current profile, portable parked cable-event helper and 59 local supervision routing branches.
-The [source-generated previews from `d50df47` also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39417753949).
-All 33 preview entries' input and output hashes matched the routing checkpoint sources;
-actual KiCad images show the specified black board finish. The subsequent
-energy-accounting update passes its five local checks; its CI and new chart are pending.
+builds. This also covers the five battery-energy checks and the unchanged local
+supervision routing checkpoint.
+The [source-generated previews from `de4f9a3` also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39419685203).
+All 34 preview entries' input and output hashes matched their sources after
+publication in `fb6a774`, including the new battery wake-cost chart. Actual KiCad
+images show the specified black board finish.
 Preview publication revalidates source inputs
 when another commit arrives during rendering.
+
+The subsequent monitored-PD checkpoint passes locally: fresh23/23 host firmware
+targets, six behavioral fault controls and both pinned C6 applications. The
+sensor owner now monitors USB source events and reconciles parked/stationary
+cable changes while keeping charging inhibited. Its board revision shares the
+existing bus and adds one bypass capacitor and one interrupt pull-up, removing
+two resistors; all three SKUs already occur in the design. The maintained route
+rebuild preserves1268 surviving copper items and194 existing footprint geometries,
+removing only nine obsolete segments and two vias. All47 physical routing fault
+controls,23 integrated circuit controls and nine native schematic controls pass.
+New PD supply/bus/interrupt routing remains open. Publication CI is pending.
 
 The carrier silkscreen cleanup passes both native routing checks locally and in
 the CI run above, including all sixteen injected-fault controls. It preserves
@@ -113,11 +124,16 @@ The first run caught a stale source hash in the captured parts list; refreshing 
 changed no quantities or prices. All thirteen jobs in the corrected run passed.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
-196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
-reservations. Its 1022 segments and 257 vias connect 72 earlier checked copper groups,
+196 footprints, the 609-pin/139-net graph, 17 mechanical/thermal anchors and 13
+reservations. Its 1013 segments and 255 vias connect 70 checked copper groups,
 including local charger/motor/regulator paths, radio power, USB input/CC/bypass
 connections, negotiated-enable/divider/discharge chains, the charger input and
 PMID/SYS capacitor banks, ground return, VAC/BATP sensing, TS/ILIM and PROG networks.
+The [monitored-PD migration](electrical/monitored-pd-revision.md) updates the
+circuit and every maintained routing stage. VSYS is no longer grounded; the
+old two factory pull-downs are removed. Its two new staged components and shared
+bus/interrupt connections are not yet routed. This explains the increase in
+open connections despite preserving all surviving previous copper.
 The local regenerative-clamp extension adds 19 connected local nets and eight load
 groups. The subsequent [supervision stage](../hw/routing/blind-main/local-supervision.md)
 adds 59 checked local branches, including watchdog timing/reset and encoder
@@ -125,14 +141,14 @@ regulator returns. It moves fourteen previously unwired small parts and preserve
 all incoming copper. The USB extension connects both reversible data pairs through their
 protection pads and module resistors. Forty-seven injected geometric/copper failures
 are rejected locally,
-including same-net via-to-solder-land intrusion. All 257 ordinary
+including same-net via-to-solder-land intrusion. All 255 ordinary
 route vias retain a 0.20 mm drill-to-solder-land margin, including same-net lands.
 The assembly pass moves twelve vias and preserves their connections with
 adjusted traces and five short stubs; components remain fixed. The control extension moves six electrical parts
 and one bootstrap via; all mechanical anchors remain fixed. The preceding 178-via
 assembly-clearance pass is covered by the CI run linked above; the new 218-via
 clamp and USB extensions are covered by the CI run above.
-Actual DRC retains 114 unconnected items, 260 silk/text findings, four library differences and five
+Actual DRC retains 122 unconnected items, 258 silk/text findings, four library differences and five
 footprint-type findings. The maintained clamp stage rebuilds identically twice and preserves the prior
 copper except twelve explicit low-current segment replacements and one obsolete
 NTC via. The selected power feed and actual filled-plane return corridor are
@@ -247,10 +263,14 @@ measurements remain required before deployment or a battery-life claim.
   standby current. With 1.5 A motor-branch current, an assumed 150 mA awake MCU/radio at 3.3 V
   and 0.5 mA whole-pack standby, the updated energy scenario estimates about
   55.6 days. It is a planning calculation, not a measured runtime.
-- Current component demand is **$363.08 for eight units** (about $45.38 each), excluding
+- Current component demand is **$363.19 for eight units** (about $45.40 each), excluding
   boards, assembly, cells, motors, cables, mechanics, shipping and tax. This is not a quote.
-- USB transients, charge/protection behavior, regenerative energy, sustained back-drive,
-  current limiting, thermal performance and fault clearing remain qualification gates.
+- USB input protection needs a design correction: the current suppressor clamp
+  exceeds both28 V input limits. A replacement front end is under review.
+- A stuck dump switch dissipates about32 W, and thermal cutoff removes the
+  absorber while coasting. Sustained back-drive needs a complete holding/braking
+  solution; these are design gaps, not passed simulation or prototype checks.
+- Charge/protection behavior, current limiting and physical thermal/fault testing remain open.
   Simulation and datasheet calculations cannot prove the finished hardware works.
 
 ## Next work

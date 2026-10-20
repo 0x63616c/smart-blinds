@@ -13,9 +13,9 @@ GaugeContinuity::GaugeContinuity(power::continuity::Profile profile,Context cont
         smart_blinds::charger::Bq25798& charger)
     : owner_(xTaskGetCurrentTaskHandle()),
       session_(profile,context,*this,epoch,reinterpret_cast<power::continuity::Owner>(owner_),joint,charger) {}
-power::continuity::Refresh GaugeContinuity::refresh(Context context,power::continuity::Window window) {
+power::continuity::Refresh GaugeContinuity::refresh(Context context,power::continuity::Window window,smart_blinds::charger::ParkGuard* stationary) {
     if(xTaskGetCurrentTaskHandle()!=owner_ || !attached_) { retire();return power::continuity::Refresh::failed; }
-    return session_.refresh(context,window);
+    return session_.refresh(context,window,stationary);
 }
 GaugeContinuity::~GaugeContinuity() {
     // Destruction must be after all users stop and on the owning task. A

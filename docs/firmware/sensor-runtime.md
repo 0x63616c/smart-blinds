@@ -72,11 +72,13 @@ Clamp-aware charger and runtime fakes reject the prior source; the final
 
 ## Remaining behavior
 
-A normal USB cable change can alter the charger's input-voltage limit. This
-checkpoint rejects an unexplained changed configuration; a separate stationary
-source/connection policy is still needed for ordinary plug/unplug use. It cannot
-invent a negotiated USB power contract or enable charging. Legacy watchdog-expiry
-recovery is also absent.
+The owned PD/cable checkpoint now integrates shared-bus source monitoring,
+source-only parked service, guarded awake-stationary REG05 reconciliation and
+exact parked-image handoff across cold owner replacement. See
+[owned USB source monitoring](pd-source-runtime.md) for the implemented boundaries,
+5 s idle cadence and unresolved charging/startup gates. Unexpected configuration
+changes, chatter and faults still cannot revive a retired owner. Legacy
+watchdog-expiry recovery remains absent.
 
 Physical qualification, pack commissioning, local endpoint gestures, persistent
 calibration, homing, charge permission, live Home Assistant transport binding and

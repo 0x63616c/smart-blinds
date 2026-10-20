@@ -3,6 +3,7 @@
 #include "smart_blinds/port_checks.hpp"
 #include "smart_blinds/runtime_lifecycle.hpp"
 #include "smart_blinds/gauge_continuity.hpp"
+#include "smart_blinds/pd_monitor.hpp"
 #include <cinttypes>
 #include <cstdio>
 #include <type_traits>
@@ -19,6 +20,9 @@ struct Configuration {
     Limits limits{};
     power::continuity::Profile gauge{};
     smart_blinds::ClockModel clock{};
+    // Independent board revision qualification, never inferred from chip ACK.
+    bool pd_shared_bus_verified=false;
+    smart_blinds::pd::FactoryRecord pd_factory{};
     bool valid(std::uint64_t boot) const {
         return boot && verified_for_boot==boot && task_timing_verified && bus_readback_verified && sensor_handoff_verified &&
             port.valid() && motion.bench_qualified && motion.holding_qualified &&

@@ -37,7 +37,7 @@ struct Chip:Bus {
     ChargeGate& charge;
     std::array<std::uint8_t,0x49> memory{};
     std::uint64_t time=1000;
-    unsigned calls=0,fail_at=0;
+    unsigned calls=0,fail_at=0,read_bytes=0;
     std::vector<unsigned> writes;
     bool no_writes=false, require_motor=false;
     Stationary* motor=nullptr;
@@ -68,7 +68,7 @@ struct Chip:Bus {
     }
     bool read(std::uint8_t reg,std::uint8_t* bytes,std::size_t size) override {
         if(!step(reg,false)) return false;
-        check(reg+size<=memory.size(),"bad read shape");
+        check(reg+size<=memory.size(),"bad read shape");read_bytes+=size;
         std::copy_n(memory.data()+reg,size,bytes);
         for(std::size_t n=0;n<size;++n)
             if(reg+n>=0x22 && reg+n<=0x27) memory[reg+n]=0;
@@ -310,9 +310,67 @@ void edge_races_and_time() {
               "resume lost parked ownership");
     }
 }
+void exact_descriptor_handoff() {
+    Fixture f;f.chip.unplug();f.chip.plug(136);
+    const auto issued=f.device.release_parked(f.motor);
+    check(bool(issued),"exact parked descriptor not issued");
+    check(!f.device.reconcile_parked(f.motor).valid(),"released owner resumed authority");
+    ++f.motor.current.epoch;
+    Bq25798 next(f.chip,f.charge);
+    check(next.adopt_parked(*issued,f.motor).valid(),"next epoch exact image adoption failed");
+    f.chip.no_writes=false;
+    check(next.resume_off(f.motor).valid() && next.capture_stationary_off(f.motor).valid(),
+          "dynamic REG05 lost during cold handoff");
+    check(f.chip.memory[5]==136 && f.chip.memory[7]==10 && f.chip.memory[0x14]==0x16,
+          "adoption rewrote opaque source or lifted limit");
+    for(unsigned field=0;field<6;++field) {
+        Fixture x;const auto image=x.device.release_parked(x.motor);check(bool(image),"release setup failed");
+        ++x.motor.current.epoch;
+        if(field==0) ++x.motor.current.boot;
+        if(field==1) ++x.motor.current.pack;
+        if(field==2) ++x.motor.current.qualification;
+        if(field==3) ++x.motor.current.owner;
+        if(field==4) ++x.motor.current.epoch;
+        if(field==5) --x.motor.current.epoch;
+        x.chip.calls=0;Bq25798 rejected(x.chip,x.charge);
+        check(!rejected.adopt_parked(*image,x.motor).valid() && !x.chip.calls,
+              "wrong-bound descriptor read or adopted hardware");
+    }
+    Fixture edge;const auto image=edge.device.release_parked(edge.motor);++edge.motor.current.epoch;
+    edge.chip.unplug();Bq25798 stale(edge.chip,edge.charge);
+    check(!stale.adopt_parked(*image,edge.motor).valid(),"post-release cable change hidden by adoption");
+}
+void active_stationary_acquisition() {
+    ChargeGate charge;Stationary motor;Notice notice;Chip chip(charge);Bq25798 device(chip,charge,&notice);
+    check(device.configure(SourceVoltage::nine)==Error::none,"active setup failed");
+    chip.motor=&motor;chip.require_motor=true;chip.unplug();chip.plug(76);chip.calls=0;chip.writes.clear();
+    auto value=device.capture_stationary_off(motor);
+    check(value.valid() && value.flags[0]==15 && chip.memory[5]==76 && chip.memory[0x10]==0x93 &&
+          chip.writes==std::vector<unsigned>{0x10},"active source changed protection/image/history");
+    const auto count=chip.calls;
+    check(device.park_off(motor).valid(),"stationary acquisition prevented bound park");
+    for(unsigned at=1;at<=count;++at) {
+        ChargeGate g;Stationary m;Notice n;Chip b(g);Bq25798 d(b,g,&n);
+        check(d.configure(SourceVoltage::nine)==Error::none,"failure setup failed");
+        b.motor=&m;b.require_motor=true;b.unplug();b.plug(136);b.calls=0;b.fail_at=at;
+        check(!d.capture_stationary_off(m).valid() && d.first_error()==Error::bus && n.calls==1,
+              "active first-transfer failure ignored");
+        b.fail_at=0;
+        check(!d.capture_stationary_off(m).valid() && d.first_error()==Error::bus && n.calls==1,
+              "later active capture repaired failure");
+    }
+    // A failed ordinary capture may NOT be repaired through the transition API.
+    ChargeGate g;Stationary m;Chip b(g);Bq25798 d(b,g);
+    check(d.configure(SourceVoltage::nine)==Error::none,"ordinary setup failed");b.unplug();
+    check(!d.capture_off().valid() && !d.capture_stationary_off(m).valid(),"failed epoch revived");
+}
+
 }
 int main() {
     accepted_events();no_implicit_authority();bound_park_guards();refusal_table();
-    transfer_and_context_faults();edge_races_and_time();
+    transfer_and_context_faults();edge_races_and_time();exact_descriptor_handoff();active_stationary_acquisition();
+    Fixture meter;meter.chip.calls=0;meter.chip.read_bytes=0;
+    check(meter.device.reconcile_parked(meter.motor).valid(),"meter failed");
+    std::cout<<"parked BQ service: "<<meter.chip.calls<<" reads, "<<meter.chip.read_bytes<<" payload bytes\n";
     std::cout<<"parked source reconciliation tests passed\n";
 }

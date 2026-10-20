@@ -46,7 +46,7 @@ module ControllerIO:
     charge_allow_n = new ElectricLogic
     encoder_allow_n = new ElectricLogic
     watchdog_heartbeat = new ElectricLogic
-    charger_interrupt_n = new ElectricLogic
+    power_interrupt_n = new ElectricLogic
     i2c_sda.reference ~ rail
     i2c_scl.reference ~ rail
     motor_in1.reference ~ rail
@@ -56,7 +56,7 @@ module ControllerIO:
     charge_allow_n.reference ~ rail
     encoder_allow_n.reference ~ rail
     watchdog_heartbeat.reference ~ rail
-    charger_interrupt_n.reference ~ rail
+    power_interrupt_n.reference ~ rail
 
     mcu = new Part_ESP32_C6_WROOM_1_N4
     mcu.GND ~ rail.lv
@@ -72,7 +72,7 @@ module ControllerIO:
     mcu.IO22 ~ charge_allow_n.line
     mcu.IO23 ~ encoder_allow_n.line
     mcu.TXD0 ~ watchdog_heartbeat.line
-    mcu.RXD0 ~ charger_interrupt_n.line
+    mcu.RXD0 ~ power_interrupt_n.line
     # IO4/5/15 remain strap-only; module pin22 (NC) remains unconnected.
     # No external 32 kHz crystal: GPIO0/1 are physical buttons.
 

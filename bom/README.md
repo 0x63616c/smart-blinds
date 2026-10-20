@@ -32,7 +32,7 @@ insertion, assembly fees and the extra interconnect must be included in this com
 
 The main controller and two holder-carrier graphs contain **233 purchased
 components across 67 unique part numbers per device**. The dated catalog calculation
-gives **$95.06 for two** or **$363.08 for eight** ($45.38 per device at eight).
+gives **$95.08 for two** or **$363.19 for eight** ($45.40 per device at eight).
 This includes six holders, six branch fuses and captured board connectors per unit.
 Bare solder landings are explicitly excluded from purchased quantities.
 

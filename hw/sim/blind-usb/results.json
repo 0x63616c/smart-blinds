@@ -1,7 +1,7 @@
 {
   "status": "PASS of source, selected parts, physical pins and conditional arithmetic only",
-  "components": 33,
-  "physical_pins": 113,
+  "components": 32,
+  "physical_pins": 111,
   "negative_controls_detected": [
     "auxoff_output_grounded",
     "cc_protection_shorts_channels",
@@ -9,7 +9,7 @@
     "load_switch_bypassed",
     "vdd_diode_reversed"
   ],
-  "semantic_graph_sha256": "f1d276281c1ff5f81e8cbe633329f467298ebb3fdc47d968c14a9141d1ac0ca0",
+  "semantic_graph_sha256": "7b0054d8f559b61f310022e1f736a765a4857422732d3944b747d18ec8948388",
   "local_bom_policy": "Validate ignored local BOM if present; absence is not a build claim",
   "ilim_planning_a": [
     1.769041769041769,
@@ -47,6 +47,9 @@
     "Discharge timing depends on charger reverse paths and total effective capacitance; final timer profile and USB timing compliance remain open.",
     "PNP saturation, eFuse slew/overshoot, resistor pulse/temperature and input inductance require physical validation.",
     "Output capacitor bank resides in the charger block and must be placed at the eFuse/charger boundary; output negative transients remain unqualified.",
-    "Connector and IC land patterns, 3D envelope, factory test pads, placement/routing, thermal/EMI and integrated-board tests remain open."
+    "Connector and IC land patterns, 3D envelope, factory test pads, placement/routing, thermal/EMI and integrated-board tests remain open.",
+    "Direct VSYS reverse current, USB-only/dead-pack/brownout handover and shared unpowered bus behavior require physical qualification.",
+    "ST specifies no ALERT leakage maximum; shared interrupt high margin is conditional on total measured leakage. I2C VIL0.35V versus other devices VOL0.4V requires actual low-level and rise-time validation.",
+    "Physical shared service pads and fixture CE inhibit/downstream isolation remain to be placed; exposed source interfaces are not manufactured test access."
   ]
 }

@@ -114,10 +114,15 @@ add_executable(c6_runtime_owner_tests tests/c6_runtime_owner_tests.cpp
   esp-idf/components/gauge_continuity/c6_gauge_continuity.cpp
   esp-idf/components/gauge_continuity/c6_power_mailbox.cpp
   esp-idf/components/charger_config/bq25798_config.cpp
+  esp-idf/components/pd_monitor/c6_pd_monitor.cpp src/pd_monitor.cpp
   src/gauge_bus_session.cpp src/power_mailbox.cpp src/charger.cpp)
 target_include_directories(c6_runtime_owner_tests PRIVATE tests/fakes/runtime_idf include
   esp-idf/components/motion_runtime/include esp-idf/components/gauge_continuity/include
-  esp-idf/components/charger_config/include)
+  esp-idf/components/charger_config/include esp-idf/components/pd_monitor/include)
 target_link_libraries(c6_runtime_owner_tests PRIVATE blinds_motion Threads::Threads)
 target_compile_options(c6_runtime_owner_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_test(NAME c6_runtime_owner_tests COMMAND c6_runtime_owner_tests)
+add_executable(pd_monitor_tests tests/pd_monitor_tests.cpp src/pd_monitor.cpp)
+target_include_directories(pd_monitor_tests PRIVATE include)
+target_compile_options(pd_monitor_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
+add_test(NAME pd_monitor_tests COMMAND pd_monitor_tests)

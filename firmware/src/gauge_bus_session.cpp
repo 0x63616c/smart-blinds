@@ -103,12 +103,12 @@ Publication OwnedSession::read(Context context) {
     }
     return {evidence,expected_,0};
 }
-Refresh OwnedSession::refresh(Context context,Window window) {
+Refresh OwnedSession::refresh(Context context,Window window,smart_blinds::charger::ParkGuard* stationary) {
     if(!joint_ || !charger_ || !allowed(context)) { failed(Fault::context);return Refresh::failed; }
     if(monitor_.phase()==Phase::invalid) { failed(monitor_.fault());return Refresh::failed; }
     if(!joint_->begin(window)) return joint_->healthy() ? Refresh::closed:Refresh::failed;
     const auto acquire=[&]() {
-        const auto charger=charger_->capture_off();
+        const auto charger=stationary ? charger_->capture_stationary_off(*stationary):charger_->capture_off();
         if(!charger.valid()) { joint_->failed(charger_->first_error());return Refresh::failed; }
         if(!joint_->healthy()) return Refresh::failed;
         if(!joint_->active(window)) return Refresh::closed;

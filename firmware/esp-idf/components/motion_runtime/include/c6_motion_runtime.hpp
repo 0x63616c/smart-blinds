@@ -28,6 +28,8 @@ public:
     void revoke(); // Any task; never calls inbox/ingress or I/O.
     void transport_fault(); // Permanent asynchronous delivery/ownership failure.
     void local_stop_from_isr();
+    void source_irq_from_isr();
+    bool source_status(smart_blinds::pd::Observation& out,std::uint64_t now) const;
     bool parked_off(std::uint64_t now) const;
     // Trusted LOCAL workflow only, never exposed as a CoAP resource. A full
     // recovery workflow must supply independent physical evidence.
@@ -36,6 +38,7 @@ private:
     struct SensorRequest {
         std::uint32_t sequence=0,activity=0,revocation=0;
         bool enabled=false;
+        std::uint32_t source_event=0;
     };
     struct SensorPark {
         SensorRequest request{};
@@ -43,7 +46,8 @@ private:
         std::uint64_t parked_us=0;
         bool clean=false,continuity=false;
     };
-    struct PhysicalOff { std::uint64_t sampled_us=0;bool off=false; };
+    struct PhysicalOff { std::uint64_t sampled_us=0;bool off=false;std::uint32_t activity=0,revocation=0; };
+    struct SourceStatus { smart_blinds::pd::Observation observation{};std::uint32_t event=0,bus_epoch=0; };
     runtime::Power power_snapshot();
     bool sensor_closed() const;
     static void control_entry(void* context);
@@ -52,12 +56,16 @@ private:
     void power();
     bool wake_radio();
     static void button_irq(void* context);
+    static void source_irq(void* context);
     const std::uint64_t boot_;
     const runtime::Configuration config_;
     MotionSession::Inbox inbox_;
     runtime::Ingress ingress_;
     TaskHandle_t control_task_=nullptr,power_task_=nullptr,radio_task_=nullptr;
     QueueHandle_t network_queue_=nullptr,status_queue_=nullptr,reference_queue_=nullptr;
+    QueueHandle_t source_queue_=nullptr;
+    std::atomic<std::uint32_t> source_event_{0},source_ack_{0};
+    std::atomic<bool> source_busy_{false};
     QueueHandle_t sensor_request_queue_=nullptr,sensor_park_queue_=nullptr,physical_off_queue_=nullptr;
     power::continuity::BusEpoch bus_epoch_;
     PowerMailboxGate selector_gate_,mailbox_gate_;

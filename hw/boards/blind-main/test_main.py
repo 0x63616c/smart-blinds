@@ -37,7 +37,7 @@ class IntegrationTests(unittest.TestCase):
         cases=[('motor_output.landing1','1','encoder_port.header','3'),
                ('motor_output.landing1','1','home_port.header','3'),
                ('motor_output.landing1','1','controller.r_dp','2'),
-               ('home_port.header','3','usb.pd','8')]
+               ('home_port.header','3','usb.pd','6')]
         for first,pin,second,other_pin in cases:
             with self.subTest(first=first,second=second):
                 graph=copy.deepcopy(self.graph)
@@ -76,8 +76,17 @@ class IntegrationTests(unittest.TestCase):
     def test_usb_switch_bypassed(self):
         self.change('charger.ic','8','usb.efuse','5')
 
-    def test_factory_bus_joined_to_host(self):
-        self.change('usb.pd','7','charger.ic','14')
+    def test_pd_bus_clock_data_swapped(self):
+        self.change('usb.pd','7','charger.ic','15')
+
+    def test_pd_vsys_grounded(self):
+        self.change('usb.pd','22','charger.ic','10')
+
+    def test_shared_alert_not_joined(self):
+        self.change('usb.pd','19','usb.pd','11')
+
+    def test_shared_irq_pullup_grounded(self):
+        self.change('r_power_irq','1','charger.ic','10')
 
     def test_charger_pmid_lead_grounded(self):
         self.change('charger.ic','29','charger.ic','10')

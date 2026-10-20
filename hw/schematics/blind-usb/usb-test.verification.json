@@ -1,22 +1,33 @@
 {
   "status": "block_graph_verified_not_complete_controller",
-  "pin_connections_checked": 113,
-  "physical_components": 33,
+  "pin_connections_checked": 111,
+  "physical_components": 32,
   "erc_clean": false,
   "erc_findings": {
-    "power_pin_not_driven": 3
+    "pin_not_driven": 1,
+    "power_pin_not_driven": 4,
+    "isolated_pin_label": 3
   },
   "erc_affected_items": {
+    "pin_not_driven": [
+      "Symbol U2 Pin 7 [SCL, Input, Line]"
+    ],
     "power_pin_not_driven": [
       "Symbol U2 Pin 24 [VDD, Power input, Line]",
+      "Symbol U2 Pin 22 [VSYS, Power input, Line]",
       "Symbol U1 Pin 5 [IN, Power input, Line]",
       "Symbol U1 Pin 8 [GND, Power input, Line]"
+    ],
+    "isolated_pin_label": [
+      "Label 'HOST_SCL'",
+      "Label 'HOST_SDA'",
+      "Label 'POWER_ALERT_N'"
     ]
   },
-  "erc_scope": "External USB source, factory fixture, MCU USB data and charger input bank remain open; no artificial drivers or hidden exclusions.",
+  "erc_scope": "External USB source, powered host supply/bus and shared interrupt pull-up are outside this block; no artificial drivers or hidden exclusions.",
   "source_sha256": {
     "hw/layouts/blind-usb/usb-test/fp-lib-table": "a9fabe712b578c67d39f6e70ec81a0e31fad0b65310c4bb8f816ad6c49fdd6cd",
-    "hw/layouts/blind-usb/usb-test/usb-test.kicad_pcb": "4e97de2d9a75cfeff0e59284c43141576b0f9df0c4ca7528ae774cb23a04e7dc",
+    "hw/layouts/blind-usb/usb-test/usb-test.kicad_pcb": "952e8ff980474fc6c70251c388ccfb6f919b1816f60d699c4c069aebe5aaa9fc",
     "hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod": "60561548bc05514cd55938492ccae68aa630ea1742c8277c95415d483a80981c",
     "hw/parts/SAMSUNG_CL10A105KB8NNNC/CL10A105KB8NNNC.kicad_sym": "0f9c31587bdbbac3fcb3161be32872394822fff5598d040a2617171b64be3521",
     "hw/parts/UNI_ROYAL_0402WGF3903TCE/0402WGF3903TCE.kicad_sym": "957f46e8df73fce9ff0bd6f61a6c50bff0f94e7d8805d9efeb5f9739760e445c",
@@ -51,7 +62,7 @@
     "hw/parts/blind-usb/TPS259470LRPWR.kicad_sym": "c323b5d211ce258bc2dbc2c5fd35df089e33e447e290dabe3250d7edece8fa4f",
     "hw/parts/blind-usb/TYPE_C_31_M_12.kicad_sym": "a4dce2c121a3deca97b65f4d3ab66bcfa64781bf156f1f329d3cfd9c1629b0ed",
     "hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": "664d94e61dc8889492739d700cc4ca5fd73979572489afc2c2092269f4765973",
-    "hw/schematics/blind-usb/usb-test.layout.json": "4711a87df21cdbe44cfd3fe1a440a92b8c825e078c70c1a15f132015cc16483c",
+    "hw/schematics/blind-usb/usb-test.layout.json": "6aa49f314090ce18e71be3b9053c89857f26c4945057a9edf1b338a695ec0c6c",
     "tools/generate_schematics.py": "cda24e8995e1fff8431022d10cd4ae228bf70035c5206ae970e09aa4ffcedee3",
     "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583"
   }

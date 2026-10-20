@@ -96,7 +96,7 @@ bool Bq25798::verify_profile() {
 Error Bq25798::configure(SourceVoltage voltage) {
     configured_ = false;
     if (!begin()) return error_;
-    if(transition_failure_!=Error::none || parked_) {
+    if(transition_failure_!=Error::none || parked_ || released_) {
         if(transition_failure_==Error::none) transition_failure_=Error::unconfigured;
         fail(Error::unconfigured);return error_;
     }
@@ -243,9 +243,69 @@ ParkReconciliation Bq25798::reconcile_parked(ParkGuard& guard) {
     transition_guard_=nullptr;park_guard_=nullptr;
     return result;
 }
+std::optional<ParkedImage> Bq25798::release_parked(ParkGuard& guard) {
+    if(released_ || !reconcile_parked(guard).valid() || parked_identity_.epoch>=UINT32_MAX-1) return {};
+    const ParkedImage image(profile_,source_,parked_identity_,parked_source_);
+    released_=true;reconciliation_authorized_=false;parked_=false;
+    return image;
+}
+OffCapture Bq25798::adopt_parked(const ParkedImage& image,ParkGuard& guard) {
+    OffCapture out;
+    const auto current=guard.identity(),prior=image.identity_;
+    const bool allowed=!configured_ && !parked_ && !released_ && first_error_==Error::none &&
+        transition_failure_==Error::none && current.valid() && prior.valid() &&
+        prior.epoch<UINT32_MAX-1 && current.epoch==prior.epoch+1 &&
+        current.boot==prior.boot && current.pack==prior.pack &&
+        current.qualification==prior.qualification && current.owner==prior.owner;
+    transition_guard_=&guard;park_guard_=&guard;operation_identity_=current;
+    const auto work=[&] {
+        if(!allowed) { fail(Error::unconfigured);return; }
+        if(!begin()) return;
+        out.started_ms=started_ms_;
+        profile_=image.profile_;source_=image.voltage_;
+        // Verify original image and all fault history without a configuration
+        // write. Any edge since release is ambiguous and remains terminal here.
+        if(!inspect_off(out) || !verify_profile() || !inspect_off(out) || !off_guards()) return;
+        if((out.flags[0]&0x1F) || (out.status[0]&0x0F)!=image.source_) { fail(Error::status);return; }
+        if(last_ms_-started_ms_>250) { fail(Error::timeout);return; }
+        parked_=true;parked_identity_=current;parked_source_=image.source_;
+        reconciliation_authorized_=true;
+    };
+    work();out.finished_ms=last_ms_;out.error=error_;
+    transition_guard_=nullptr;park_guard_=nullptr;return out;
+}
+OffCapture Bq25798::capture_stationary_off(ParkGuard& guard) {
+    // This is a guarded transition, never a recovery path after a mismatch.
+    const bool allowed=configured_ && !parked_ && !released_ &&
+        transition_failure_==Error::none && first_error_==Error::none;
+    OffCapture out;
+    if(!allowed) {
+        transition_guard_=&guard;fail(Error::unconfigured);transition_guard_=nullptr;
+        out.error=error_;return out;
+    }
+    // The same strict predicate used for parked reconciliation is applied to
+    // the ACTIVE watchdog image; no field mask or off-profile rewrite occurs.
+    parked_=true;configured_=false;reconciliation_authorized_=true;
+    parked_identity_=guard.identity();
+    const auto r=reconcile_parked(guard);
+    out=r.observation;
+    if(!out.valid()) return out;
+    parked_=false;configured_=true;reconciliation_authorized_=false;
+    transition_guard_=&guard;park_guard_=&guard;operation_identity_=guard.identity();
+    // Keep the original acquisition start/history; do not call begin() again.
+    if(write_register({0x10,1,0x9B,0xF7}) && verify_profile()) {
+        std::array<std::uint8_t,6> latest{};
+        if(inspect_off(out,&latest) && off_guards()) {
+            if((latest[0]&0x1F) || (out.status[0]&0x0F)!=parked_source_) fail(Error::status);
+            else if(last_ms_-started_ms_>250) fail(Error::timeout);
+        }
+    }
+    out.finished_ms=last_ms_;out.error=error_;
+    transition_guard_=nullptr;park_guard_=nullptr;return out;
+}
 OffCapture Bq25798::adopt_parked(SourceVoltage voltage,Inhibit& motor_off) {
     OffCapture result;
-    const bool allowed=!configured_ && !parked_ && transition_failure_==Error::none &&
+    const bool allowed=!configured_ && !parked_ && !released_ && transition_failure_==Error::none &&
         (voltage==SourceVoltage::nine || voltage==SourceVoltage::fifteen);
     transition_guard_=&motor_off;
     if(begin()) {

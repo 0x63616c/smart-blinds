@@ -270,7 +270,6 @@
         "14",
         "15",
         "17",
-        "19",
         "20"
       ]
     },
@@ -294,34 +293,6 @@
       "value": "100k",
       "at": [
         90.17,
-        119.38,
-        270
-      ],
-      "text_offset": [
-        7.62,
-        -1.27
-      ]
-    },
-    "R17": {
-      "symbol": "P_0402WGF1003TCE",
-      "mpn": "0402WGF1003TCE",
-      "value": "100k",
-      "at": [
-        144.78,
-        119.38,
-        270
-      ],
-      "text_offset": [
-        7.62,
-        -1.27
-      ]
-    },
-    "R18": {
-      "symbol": "P_0402WGF1003TCE",
-      "mpn": "0402WGF1003TCE",
-      "value": "100k",
-      "at": [
-        199.39,
         119.38,
         270
       ],
@@ -712,6 +683,20 @@
         7.62,
         -1.27
       ]
+    },
+    "C6": {
+      "symbol": "P_CL10A105KB8NNNC",
+      "mpn": "CL10A105KB8NNNC",
+      "value": "1u / 50V (VSYS)",
+      "at": [
+        144.78,
+        119.38,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
     }
   },
   "net_names": {
@@ -722,11 +707,11 @@
     "A8": "NC_SBU1",
     "CC2": "CC2",
     "lv": "GND",
-    "hv": "RAW",
+    "raw-hv": "RAW",
     "NC": "NC_PD3",
     "RESET": "RESET",
-    "SCL": "FACTORY_SCL",
-    "SDA": "FACTORY_SDA",
+    "SCL": "HOST_SCL",
+    "SDA": "HOST_SDA",
     "DISCH": "DISCH",
     "ATTACH": "NC_ATTACH",
     "usb-1-4": "ADDR0",
@@ -736,9 +721,10 @@
     "VBUS_EN_SNK": "SINK_ENABLE_N",
     "A_B_SIDE": "NC_ORIENTATION",
     "VBUS_VS_DISCH": "MONITOR",
-    "ALERT": "NC_ALERT",
+    "ALERT": "POWER_ALERT_N",
     "20": "NC_OK2",
     "1": "VREG1V2",
+    "hv": "HOST_3V3",
     "usb-1": "VREG2V7",
     "usb-1-1": "VDD",
     "usb-1-6": "PNP_BASE",
@@ -773,7 +759,7 @@
         15,
         24
       ],
-      "text": "Factory NVM required: 5V/1.5A, 9V/2.5A, 15V/2.5A; POWER_ONLY_ABOVE_5V=1. Factory bus is separate from the MCU bus.",
+      "text": "Owned MCU I2C at 0x28; VSYS=3.3V. Factory access holds MCU reset, inhibits CE and isolates downstream USB load.",
       "size": 1.27
     },
     {
@@ -789,19 +775,30 @@
         15,
         281
       ],
-      "text": "33-part unrouted capture. Native pin equivalence is not PD protocol, ESD/surge or fabrication approval.",
+      "text": "32-part unrouted capture. External host logic/pullups and factory access remain open; no physical qualification.",
       "size": 1.27
     }
   ],
   "expected_erc_types": {
-    "power_pin_not_driven": 3
+    "power_pin_not_driven": 4,
+    "pin_not_driven": 1,
+    "isolated_pin_label": 3
   },
   "expected_erc_items": {
     "power_pin_not_driven": [
       "Symbol U2 Pin 24 [VDD, Power input, Line]",
       "Symbol U1 Pin 5 [IN, Power input, Line]",
-      "Symbol U1 Pin 8 [GND, Power input, Line]"
+      "Symbol U1 Pin 8 [GND, Power input, Line]",
+      "Symbol U2 Pin 22 [VSYS, Power input, Line]"
+    ],
+    "pin_not_driven": [
+      "Symbol U2 Pin 7 [SCL, Input, Line]"
+    ],
+    "isolated_pin_label": [
+      "Label 'HOST_SCL'",
+      "Label 'HOST_SDA'",
+      "Label 'POWER_ALERT_N'"
     ]
   },
-  "erc_scope": "External USB source, factory fixture, MCU USB data and charger input bank remain open; no artificial drivers or hidden exclusions."
+  "erc_scope": "External USB source, powered host supply/bus and shared interrupt pull-up are outside this block; no artificial drivers or hidden exclusions."
 }

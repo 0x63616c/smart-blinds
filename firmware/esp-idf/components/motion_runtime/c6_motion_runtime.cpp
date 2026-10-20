@@ -3,6 +3,7 @@
 #include "c6_gauge_continuity.hpp"
 #include <optional>
 #include "bq25798_config.hpp"
+#include "c6_pd_monitor.hpp"
 #include "esp_timer.h"
 #include "esp_pm.h"
 #include "esp_sleep.h"
@@ -46,7 +47,8 @@ bool MotionRuntime::start(runtime::WakeSink sink,bool local_buttons) {
     physical_off_queue_=xQueueCreate(1,sizeof(PhysicalOff));
     status_queue_=xQueueCreate(1,sizeof(runtime::Snapshot));
     reference_queue_=xQueueCreate(1,sizeof(PhysicalReference));
-    if(!network_queue_ || !sensor_request_queue_ || !sensor_park_queue_ || !physical_off_queue_ || !status_queue_ || !reference_queue_) return false;
+    source_queue_=xQueueCreate(1,sizeof(SourceStatus));
+    if(!network_queue_ || !sensor_request_queue_ || !sensor_park_queue_ || !physical_off_queue_ || !status_queue_ || !reference_queue_ || !source_queue_) return false;
     // Lower-priority I2C work cannot block the only motor owner. Hardware enable
     // still requires CONFIG_BLINDS_BENCH_MOTION and all local records.
     if(xTaskCreate(power_entry,"blind_power",6144,this,3,&power_task_)!=pdPASS) return false;
@@ -74,6 +76,25 @@ void MotionRuntime::local_stop_from_isr() {
     // Wi-Fi uses a nonblocking notification relay. No eventfd mutex in this ISR.
     if(!wake_sink_.notify()) signals_.fail();
     if(wake) portYIELD_FROM_ISR();
+}
+void MotionRuntime::source_irq(void* context) { static_cast<MotionRuntime*>(context)->source_irq_from_isr(); }
+void MotionRuntime::source_irq_from_isr() {
+    auto old=source_event_.load(std::memory_order_acquire);
+    while(old!=UINT32_MAX && !source_event_.compare_exchange_weak(old,old+1,std::memory_order_acq_rel)) {}
+    if(old==UINT32_MAX) signals_.fail();
+    BaseType_t wake=pdFALSE;
+    if(control_task_) vTaskNotifyGiveFromISR(control_task_,&wake);
+    if(wake) portYIELD_FROM_ISR();
+}
+bool MotionRuntime::source_status(smart_blinds::pd::Observation& out,std::uint64_t now) const {
+    SourceStatus source{};
+    if(!source_queue_ || xQueuePeek(source_queue_,&source,0)!=pdPASS ||
+       source.event!=source_event_.load(std::memory_order_acquire) || source_busy_.load(std::memory_order_acquire) ||
+       !bus_epoch_.matches(source.bus_epoch) || !io_qualified()) return false;
+    const auto& o=source.observation;
+    if(o.error!=smart_blinds::pd::Error::none || !o.serial || o.started_ms>o.finished_ms ||
+       o.finished_ms>now/1000 || now/1000-o.started_ms>smart_blinds::pd::Monitor::max_age_ms) return false;
+    out=o;return true;
 }
 bool MotionRuntime::wake_radio() {
     if(wake_sink_.notify()) return true;
@@ -105,7 +126,9 @@ bool MotionRuntime::sensor_closed() const {
         xQueuePeek(sensor_park_queue_,&parked,0)==pdPASS && parked.clean &&
         request.sequence==parked.request.sequence && request.activity==parked.request.activity &&
         request.revocation==parked.request.revocation && request.activity==ingress_.activity() &&
-        request.revocation==signals_.generation() && bus_epoch_.matches(parked.epoch);
+        request.revocation==signals_.generation() && bus_epoch_.matches(parked.epoch) &&
+        request.source_event==source_event_.load(std::memory_order_acquire) &&
+        request.source_event==source_ack_.load(std::memory_order_acquire);
 }
 runtime::Power MotionRuntime::power_snapshot() {
     if(!sampling_.load(std::memory_order_acquire)) return {};
@@ -141,12 +164,24 @@ void MotionRuntime::control() {
     const auto profile=qualified ? config_.motion : BenchMotionProfile{};
     MotionSession session(io,io,config_.calibration,config_.limits,profile,boot_);
     bool initialized=qualified && locks && io.initialize();
-    if(initialized && local_buttons_) {
+    if(initialized && (local_buttons_ || config_.pd_shared_bus_verified)) {
         bool ok=gpio_install_isr_service(0)==ESP_OK;
         for(const int number:{io::Pins::up,io::Pins::down}) {
+            if(!local_buttons_) continue;
             const auto pin=static_cast<gpio_num_t>(number);
             ok=(gpio_set_intr_type(pin,GPIO_INTR_ANYEDGE)==ESP_OK) && ok;
             ok=(gpio_isr_handler_add(pin,button_irq,this)==ESP_OK) && ok;
+            ok=(gpio_wakeup_enable(pin,GPIO_INTR_LOW_LEVEL)==ESP_OK) && ok;
+        }
+        if(config_.pd_shared_bus_verified) {
+            const auto pin=static_cast<gpio_num_t>(io::Pins::charger_int);
+            gpio_config_t input{};input.pin_bit_mask=1ULL<<io::Pins::charger_int;
+            input.mode=GPIO_MODE_INPUT;input.intr_type=GPIO_INTR_DISABLE;
+            input.pull_up_en=GPIO_PULLUP_DISABLE;input.pull_down_en=GPIO_PULLDOWN_DISABLE;
+            ok=(gpio_config(&input)==ESP_OK) && ok;
+            ok=((GPIO.enable.val&(1U<<io::Pins::charger_int))==0) && ok;
+            ok=(gpio_set_intr_type(pin,GPIO_INTR_NEGEDGE)==ESP_OK) && ok;
+            ok=(gpio_isr_handler_add(pin,source_irq,this)==ESP_OK) && ok;
             ok=(gpio_wakeup_enable(pin,GPIO_INTR_LOW_LEVEL)==ESP_OK) && ok;
         }
         ok=(esp_sleep_enable_gpio_wakeup()==ESP_OK) && ok;
@@ -157,12 +192,15 @@ void MotionRuntime::control() {
     auto previous=session.status();
     runtime::Parked prior_parking{};
     SensorRequest requested{};
+    std::uint64_t source_poll_us=0;
+    if(initialized && config_.pd_shared_bus_verified) source_event_.store(1,std::memory_order_release);
     const auto sampling=[&](bool enabled) {
         const auto activity=ingress_.activity(),revocation=signals_.generation();
-        if(requested.sequence && enabled==requested.enabled &&
+        const auto source=source_event_.load(std::memory_order_acquire);
+        if(requested.sequence && (source==requested.source_event || enabled) && enabled==requested.enabled &&
            (enabled || (activity==requested.activity && revocation==requested.revocation))) return;
         if(requested.sequence==UINT32_MAX) { signals_.fail();return; }
-        requested={requested.sequence+1,activity,revocation,enabled};
+        requested={requested.sequence+1,activity,revocation,enabled,source};
         sensing_window_.store(requested.sequence,std::memory_order_release);
         sampling_.store(enabled,std::memory_order_release);
         // Withdraw before another control iteration can consume old evidence.
@@ -175,8 +213,18 @@ void MotionRuntime::control() {
         runtime::Power evidence{};
         xQueuePeek(network_queue_,&network,0);
         const auto revocation=signals_.generation();
+        const auto poll_now=now_us();
+        if(initialized && config_.pd_shared_bus_verified &&
+           source_event_.load(std::memory_order_acquire)==source_ack_.load(std::memory_order_acquire) &&
+           (!source_poll_us || poll_now-source_poll_us>=5000000)) {
+            auto old=source_event_.load(std::memory_order_acquire);
+            if(old==UINT32_MAX) signals_.fail();
+            else source_event_.compare_exchange_strong(old,old+1,std::memory_order_acq_rel);
+            source_poll_us=poll_now;
+        }
+        const bool source_pending=source_event_.load(std::memory_order_acquire)!=source_ack_.load(std::memory_order_acquire);
         network=runtime::admitted_network(network,signals_);
-        if(initialized && (network.awake || previous.awake_required) && !acquire()) signals_.fail();
+        if(initialized && (network.awake || previous.awake_required || source_pending) && !acquire()) signals_.fail();
         // Request a sensor transition only after this iteration publishes fresh
         // physical OFF below. SDK calls can yield even on the priority-8 owner.
         PhysicalReference ref{};
@@ -198,7 +246,7 @@ void MotionRuntime::control() {
         if(initialized && !status.awake_required && !off) {
             signals_.fail(); io_ready_.store(false,std::memory_order_release);
         }
-        const PhysicalOff physical{now_us(),off};
+        const PhysicalOff physical{now_us(),off && activity==ingress_.activity(),activity,signals_.generation()};
         if(xQueueOverwrite(physical_off_queue_,&physical)!=pdPASS) abort();
         sampling(initialized && (network.awake || status.awake_required));
         const auto parking=runtime::parked(now_us(),activity,ingress_.activity(),revocation,
@@ -212,7 +260,7 @@ void MotionRuntime::control() {
             parking.revocation!=prior_parking.revocation || parking.off!=prior_parking.off ||
             parking.healthy!=prior_parking.healthy;
         const bool notified=!changed || wake_radio();
-        if(held && !network.awake && parking.current(now_us(),ingress_.activity(),signals_) && notified) {
+        if(held && !network.awake && !source_pending && parking.current(now_us(),ingress_.activity(),signals_) && notified) {
             if(esp_pm_lock_release(max_speed)!=ESP_OK || esp_pm_lock_release(no_sleep)!=ESP_OK)
                 signals_.fail(); // Failed teardown never creates another OFF grant.
             else held=false;
@@ -222,7 +270,8 @@ void MotionRuntime::control() {
         // No catch-up control iterations or background watchdog feeds. Active
         // commands are checked against their own <=20 ms real-time deadline.
         // Idle uses notifications; default/unqualified operation never polls ADC.
-        const auto timeout=(initialized && (network.awake || status.awake_required || !sensor_closed())) ? pdMS_TO_TICKS(10) : portMAX_DELAY;
+        const auto timeout=(initialized && (network.awake || status.awake_required || !sensor_closed() || source_pending)) ? pdMS_TO_TICKS(10) :
+            (initialized && config_.pd_shared_bus_verified ? pdMS_TO_TICKS(5000):portMAX_DELAY);
         ulTaskNotifyTake(pdTRUE,timeout);
     }
 }
@@ -233,38 +282,52 @@ void MotionRuntime::power() {
     ReadOnlyChargeInhibit inhibit(io_ready_);
     // The control owner supplies fresh full peripheral OFF readback. Verify the
     // physical permission/pads again here around each charger transition.
-    class MotorOff final:public ch::Inhibit {
+    class MotorOff final:public ch::ParkGuard {
     public:
-        MotorOff(QueueHandle_t queue,const std::atomic<bool>& ready):queue_(queue),ready_(ready) {}
+        MotorOff(MotionRuntime& runtime):runtime_(runtime),queue_(runtime.physical_off_queue_),ready_(runtime.io_ready_) {}
+        ch::ParkIdentity identity() const override {
+            return {runtime_.boot_,runtime_.config_.gauge.pack.pack_binding,
+                    runtime_.config_.gauge.pack.qualification_id,runtime_.bus_epoch_.value(),
+                    reinterpret_cast<std::uintptr_t>(xTaskGetCurrentTaskHandle())};
+        }
         bool hold_off() override {
             PhysicalOff value{};const auto now=now_us();
             return ready_.load(std::memory_order_acquire) && xQueuePeek(queue_,&value,0)==pdPASS &&
-                value.off && value.sampled_us && value.sampled_us<=now && now-value.sampled_us<=30000 &&
+                value.off && value.activity==runtime_.ingress_.activity() &&
+                value.revocation==runtime_.signals_.generation() && !runtime_.signals_.failed() && value.sampled_us && value.sampled_us<=now && now-value.sampled_us<=30000 &&
                 gpio_get_level(static_cast<gpio_num_t>(io::Pins::request_n)) &&
                 !gpio_get_level(static_cast<gpio_num_t>(io::Pins::in1)) &&
                 !gpio_get_level(static_cast<gpio_num_t>(io::Pins::in2));
         }
-    private: QueueHandle_t queue_;const std::atomic<bool>& ready_;
-    } motor_off(physical_off_queue_,io_ready_);
+    private: MotionRuntime& runtime_;QueueHandle_t queue_;const std::atomic<bool>& ready_;
+    } motor_off(*this);
     struct Session {
         const gc::Context context;
         gc::JointMailbox box;
         Bq25798Config charger;
         GaugeContinuity gauge;
+        PdMonitor pd;
         gc::Window window{};
         ch::OffCapture transition{}; // Retained on terminal failure; raw clear-on-read flags survive.
         bool ticket=false;
         std::uint64_t parked_us=0,last_ready_us=0;
-        Session(gc::Profile profile,gc::Context c,PowerMailboxGate& gate,gc::BusEpoch& epoch,ch::Inhibit& inhibit)
-            :context(c),box(gate,epoch,c),charger(inhibit,box,epoch),gauge(profile,c,epoch,box,charger.policy()) {}
+        Session(gc::Profile profile,gc::Context c,PowerMailboxGate& gate,gc::BusEpoch& epoch,ch::Inhibit& inhibit,smart_blinds::pd::FactoryRecord record)
+            :context(c),box(gate,epoch,c),charger(inhibit,box,epoch),gauge(profile,c,epoch,box,charger.policy()),pd(record,epoch) {}
     };
     std::optional<Session> session;
+    std::optional<ch::ParkedImage> parked_image;
+    std::optional<std::uint8_t> pd_alert_mask;
     bool failed=false,attempted=false,hardware_parked=false;
     std::uint32_t active_request=0;
+    std::optional<std::uint64_t> alert_drain_started;
     gc::Failure first_failure{};
     const auto terminal=[&](gc::Failure failure) {
         if(failure.kind==gc::FailureKind::none) failure={gc::FailureKind::lifecycle,19};
-        if(first_failure.kind==gc::FailureKind::none) first_failure=failure;
+        if(first_failure.kind==gc::FailureKind::none) { first_failure=failure;
+#ifndef ESP_PLATFORM
+            std::fprintf(stderr,"sensor first failure %u/%u BQ=%u PD=%u\n",unsigned(failure.kind),failure.code,session?unsigned(session->charger.policy().first_error()):999,session?unsigned(session->pd.policy().first_error()):999);
+#endif
+        }
         failed=true;sensors_.withdraw();
         if(session) session->box.retire(first_failure);
         signals_.fail();notify_request();
@@ -274,6 +337,8 @@ void MotionRuntime::power() {
         if(session) {
             session->box.close_window(session->window);
             if(!session->box.healthy()) { terminal(session->box.failure());return false; }
+            parked_image=session->charger.policy().release_parked(motor_off);
+            if(!parked_image) { terminal(session->box.failure());return false; }
             // This expected lifecycle retirement occurs only after owner I/O is
             // complete, so it cannot outrun a failure still returning from I2C.
             session->box.retire({gc::FailureKind::lifecycle,10});
@@ -284,17 +349,22 @@ void MotionRuntime::power() {
             if(now<began || now-began>20000) { terminal({gc::FailureKind::lifecycle,11});return false; }
             vTaskDelay(1); // No busy wait and no control-owner wait.
         }
-        if(session && (session->gauge.close()!=ESP_OK || session->charger.detach()!=ESP_OK)) {
+        if(session && (session->pd.close()!=ESP_OK || session->gauge.close()!=ESP_OK || session->charger.detach()!=ESP_OK)) {
             terminal({gc::FailureKind::lifecycle,12});return false;
         }
         session.reset();return true;
     };
     const auto park_session=[&]() {
         if(!session || hardware_parked) return true;
-        sensors_.withdraw();session->box.close_window(session->window);
-        if(!session->box.closure_acknowledged(session->window)) {
-            terminal(session->box.failure());return false;
-        }
+        sensors_.withdraw();
+        if(session->window) {
+            session->box.close_window(session->window);
+            if(!session->box.closure_acknowledged(session->window)) {
+                terminal(session->box.failure());return false;
+            }
+        } else if(!session->box.healthy()) { terminal(session->box.failure());return false; }
+        session->transition=session->charger.policy().capture_stationary_off(motor_off);
+        if(!session->transition.valid()) { terminal(session->box.failure());return false; }
         session->transition=session->charger.policy().park_off(motor_off);
         if(!session->transition.valid()) { terminal(session->box.failure());return false; }
         hardware_parked=true;
@@ -307,15 +377,58 @@ void MotionRuntime::power() {
         session->parked_us=now; // Once per real park, never renewed by DTIM/status wakes.
         return true;
     };
+    const auto alert_clear=[&]() {
+        if(!config_.pd_shared_bus_verified || gpio_get_level(static_cast<gpio_num_t>(io::Pins::charger_int))) {
+            alert_drain_started.reset();return true;
+        }
+        // A shared line may reassert as another normal PD message arrives.
+        // Preserve the first pending time; repeated events cannot extend it.
+        const auto now=now_us();
+        if(!alert_drain_started) alert_drain_started=now;
+        else if(now<*alert_drain_started || now-*alert_drain_started>=500000)
+            terminal({gc::FailureKind::lifecycle,42});
+        return false;
+    };
+    const auto source_poll=[&]() {
+        if(!config_.pd_shared_bus_verified || !session) return true;
+        const auto event=source_event_.load(std::memory_order_acquire);
+        source_busy_.store(true,std::memory_order_release);
+        const auto previous_source=session->pd.policy().last();
+        const auto value=session->pd.policy().poll();
+        if(value.error!=smart_blinds::pd::Error::none) {
+            terminal({gc::FailureKind::lifecycle,static_cast<std::uint16_t>(30+static_cast<unsigned>(value.error))});return false;
+        }
+        const bool changed=smart_blinds::pd::discontinuity(previous_source,value);
+        if(changed && !motor_off.hold_off()) {
+            // An actual source discontinuity outside a settled OFF boundary
+            // requests the global STOP path, including local execution. A
+            // normal received PD message alone is not a movement cancellation.
+            signals_.local_stop();notify_request();
+        }
+        const SourceStatus report{value,event,bus_epoch_.value()};
+        if(xQueueOverwrite(source_queue_,&report)!=pdPASS) abort();
+        return true;
+    };
     for(;;) {
         if(signals_.failed() && !failed) terminal({gc::FailureKind::lifecycle,20});
         SensorRequest request{};
         if(xQueuePeek(sensor_request_queue_,&request,0)!=pdPASS || !request.sequence || failed) {
             ulTaskNotifyTake(pdTRUE,portMAX_DELAY);continue;
         }
-        if(!request.enabled) {
+        if(!request.enabled && (session || !config_.pd_shared_bus_verified)) {
             sensors_.withdraw();
             if(!park_session()) continue;
+            const auto serviced=source_event_.load(std::memory_order_acquire);
+            if(session) {
+                const auto reconciled=session->charger.policy().reconcile_parked(motor_off);
+                session->transition=reconciled.observation;
+                if(!reconciled.valid() || !source_poll()) { if(!failed) terminal(session->box.failure());continue; }
+            }
+            // Both owners were serviced. A still-low shared line means another
+            // pending/fault condition; do not acknowledge it or release PM.
+            if(!alert_clear()) { if(!failed) ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue; }
+            source_ack_.store(serviced,std::memory_order_release);
+            source_busy_.store(false,std::memory_order_release);
             if(!motor_off.hold_off() || !inhibit.hold_off()) {
                 terminal({gc::FailureKind::lifecycle,13});continue;
             }
@@ -350,18 +463,33 @@ void MotionRuntime::power() {
                 }
                 const auto epoch=bus_epoch_.value();
                 const gc::Context context{boot_,epoch,epoch,config_.gauge.pack.pack_binding,config_.gauge.pack.qualification_id};
-                session.emplace(config_.gauge,context,mailbox_gate_,bus_epoch_,inhibit);
+                auto record=config_.pd_factory;
+                if(record.boot!=boot_ || record.qualification!=config_.port.qualification_id) record={};
+                session.emplace(config_.gauge,context,mailbox_gate_,bus_epoch_,inhibit,record);
                 if(session->gauge.attach(bus,context)!=ESP_OK || session->charger.attach(bus)!=ESP_OK) {
                     terminal(session->box.failure());continue;
                 }
                 ch::Error result;
                 if(hardware_parked) {
-                    session->transition=session->charger.policy().adopt_parked(ch::SourceVoltage::nine,motor_off);
+                    if(!parked_image) { terminal({gc::FailureKind::lifecycle,43});continue; }
+                    session->transition=session->charger.policy().adopt_parked(*parked_image,motor_off);
+                    parked_image.reset();
                     result=session->transition.error;
                 } else result=session->charger.configure(ch::SourceVoltage::nine);
                 if(result!=ch::Error::none) { terminal(session->box.failure());continue; }
+                if(config_.pd_shared_bus_verified) {
+                    if(session->pd.attach(bus)!=ESP_OK ||
+                       session->pd.policy().initialize(0,pd_alert_mask).error!=smart_blinds::pd::Error::none) {
+                        terminal({gc::FailureKind::lifecycle,44});continue;
+                    }
+                    pd_alert_mask=session->pd.policy().configured_mask();
+                }
             }
+            if(!request.enabled) { if(!park_session()) continue;continue; }
             if(hardware_parked) {
+                const auto reconciled=session->charger.policy().reconcile_parked(motor_off);
+                session->transition=reconciled.observation;
+                if(!reconciled.valid()) { terminal(session->box.failure());continue; }
                 session->transition=session->charger.policy().resume_off(motor_off);
                 if(!session->transition.valid() ||
                    (session->ticket && !session->gauge.resume_light_sleep(session->context))) {
@@ -384,7 +512,10 @@ void MotionRuntime::power() {
             }
             active_request=request.sequence;
         }
-        const auto result=session->gauge.refresh(session->context,session->window);
+        const auto source_event=source_event_.load(std::memory_order_acquire);
+        if(!source_poll()) continue;
+        const auto stationary=motor_off.hold_off();
+        const auto result=session->gauge.refresh(session->context,session->window,stationary?&motor_off:nullptr);
         if(result==gc::Refresh::failed) { terminal(session->box.failure());continue; }
         if(result==gc::Refresh::published) {
             auto read=session->box.read_latest(session->window,now_us());
@@ -392,6 +523,9 @@ void MotionRuntime::power() {
             if(!record) { terminal({gc::FailureKind::lifecycle,18});continue; }
             session->last_ready_us=record->gauge.evidence.report.observed_us;
         }
+        if(!alert_clear()) { if(!failed) ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue; }
+        source_ack_.store(source_event,std::memory_order_release);
+        source_busy_.store(false,std::memory_order_release);
         notify_request();
         ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(100));
     }

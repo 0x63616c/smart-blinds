@@ -29,8 +29,13 @@ module UsbPdInput:
     Hardware UVLO/OVLO and the 1.65k eFuse limit supplement that contract.
     Connect output to Charger3S.source with its local input capacitor bank;
     connect USB D+/D- to the controller's protected USB interface.
-    Factory I2C and RESET remain separate from the always-on controller bus.
-    The fixture supplies 3.3 V logic/pullups, while USB powers the PD chip.
+    VSYS uses the always-on host 3.3 V supply with a local 1 uF bypass.
+    host_bus shares the owned MCU/gauge/charger I2C bus at address 0x28.
+    Parent supplies the shared open-drain ALERT/INT pull-up. Factory access
+    requires MCU held reset, CE physically inhibited and downstream input
+    isolated during unknown NVM programming. Never back-power a dead rail.
+    service_reset is active HIGH; the local 10k normally holds it LOW.
+    Retain raw-USB VDD and CC dead-battery paths for absent-pack startup.
 
     Graph/rating checks cannot prove PD behavior or surge immunity. TVS
     clamping exceeds the IC DC absolute rating under some specified pulses;
@@ -39,21 +44,23 @@ module UsbPdInput:
     """
     raw = new ElectricPower
     output = new ElectricPower
-    factory_logic = new ElectricPower
-    factory_bus = new I2C
-    factory_reset = new ElectricLogic
+    host_logic = new ElectricPower
+    host_bus = new I2C
+    service_reset = new ElectricLogic
+    alert_n = new ElectricLogic
     usb_dp = new Electrical
     usb_dn = new Electrical
     raw.voltage = 4.75V to 21V
     output.voltage = 8.1V to 18.8V
-    factory_logic.voltage = 3.3V +/- 3%
-    factory_bus.frequency = 100kHz
-    factory_bus.address = 40
+    host_logic.voltage = 3.3V +/- 2%
+    host_bus.frequency = 100kHz
+    host_bus.address = 40
     raw.lv ~ output.lv
-    raw.lv ~ factory_logic.lv
-    factory_bus.scl.reference ~ factory_logic
-    factory_bus.sda.reference ~ factory_logic
-    factory_reset.reference ~ factory_logic
+    raw.lv ~ host_logic.lv
+    host_bus.scl.reference ~ host_logic
+    host_bus.sda.reference ~ host_logic
+    service_reset.reference ~ host_logic
+    alert_n.reference ~ host_logic
 
     # Connector shell is tied to PCB ground; enclosure has no metal chassis.
     connector = new Part_TYPE_C_31_M_12
@@ -72,27 +79,26 @@ module UsbPdInput:
     pd.CC2DB ~ connector.CC2
     pd.GND ~ raw.lv
     pd.EP ~ raw.lv
-    pd.VSYS ~ raw.lv
-    pd.SCL ~ factory_bus.scl.line
-    pd.SDA ~ factory_bus.sda.line
-    pd.RESET ~ factory_reset.line
+    pd.VSYS ~ host_logic.hv
+    pd.ALERT ~ alert_n.line
+    c_vsys = new SAMSUNG_CL10A105KB8NNNC_package
+    c_vsys.1 ~ host_logic.hv
+    c_vsys.2 ~ raw.lv
+    pd.SCL ~ host_bus.scl.line
+    pd.SDA ~ host_bus.sda.line
+    pd.RESET ~ service_reset.line
+    # Host provides 4.7k SDA/SCL pull-ups; no factory pulldowns or extra pulls.
     # Pin3 is NC per the pin table, despite an older reference drawing.
-    # ATTACH, POWER_OK2/3, GPIO, A_B_SIDE and ALERT are unused.
+    # ATTACH, POWER_OK2/3, GPIO and A_B_SIDE are unused.
     # POWER_OK outputs alone are not valid detach-safe enable signals.
     r_addr0 = new Part_0402WGF1003TCE
     r_addr1 = new Part_0402WGF1003TCE
-    r_scl = new Part_0402WGF1003TCE
-    r_sda = new Part_0402WGF1003TCE
     r_reset = new UNI_ROYAL_0402WGF1002TCE_package
     r_addr0.1 ~ pd.ADDR0
     r_addr1.1 ~ pd.ADDR1
-    r_scl.1 ~ pd.SCL
-    r_sda.1 ~ pd.SDA
     r_reset.1 ~ pd.RESET
     r_addr0.2 ~ raw.lv
     r_addr1.2 ~ raw.lv
-    r_scl.2 ~ raw.lv
-    r_sda.2 ~ raw.lv
     r_reset.2 ~ raw.lv
 
     tvs_vbus = new Part_ESDA25P35_1U1M

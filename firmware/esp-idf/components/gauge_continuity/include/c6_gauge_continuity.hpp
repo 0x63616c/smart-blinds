@@ -21,7 +21,7 @@ public:
     esp_err_t attach(i2c_master_bus_handle_t bus,Context context);
     esp_err_t close(); // Only owner removes handles; wrong-task call retires.
     Publication read(Context context);
-    power::continuity::Refresh refresh(Context context,power::continuity::Window window);
+    power::continuity::Refresh refresh(Context context,power::continuity::Window window,smart_blinds::charger::ParkGuard* stationary=nullptr);
     bool park_light_sleep(Context context);
     bool resume_light_sleep(Context context);
     void retire() { session_.retire(); } // Atomic cancellation, any task.

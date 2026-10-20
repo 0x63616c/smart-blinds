@@ -6,7 +6,8 @@ radio/USB data, encoder input, buttons/home input, and final power/permission in
 The preview workflow publishes all sheets as SVG and one eleven-page PDF.
 
 This is the **complete captured main-controller circuit**, including 194 purchased parts
-and two motor-wire solder landings. It is an unrouted, unpowered design study. The battery
+and two motor-wire solder landings. Its circuit capture is unrouted and unpowered; the separate partial routed
+derivative requires explicit migration for this revision. The battery
 carriers are separate boards and are not implicitly included in this schematic.
 
 ## Connectivity evidence
@@ -18,7 +19,7 @@ the compiled PCB owns connectivity. Six existing block layouts are reused as dra
 not as a second wiring source. Only cross-sheet nets use global labels.
 
 KiCad independently exports the full hierarchy. Verification compares all 196 circuit
-features, **609 unique physical pin identities**, and all 142 net partitions with the PCB.
+features, **609 unique physical pin identities**, and all 139 net partitions with the PCB.
 Repeated thermal-pad numbers represent a single logical pin identity. It rejects missing,
 duplicate, split or merged nets, even if split nets retain the same visible label.
 The separate main-board integration contract is also rerun against eight preserved blocks
@@ -58,3 +59,8 @@ The new page pin maps follow the local ESP32-C6 module, TPS70950, SN74LVC2G17,
 SN74AUP1G97 and TPD2E2U06 manufacturer evidence already used by the captured blocks.
 The side-switch terminal-pairing and purchased motor encoder pinout still require sample
 checks. Simulation, ERC and netlist agreement do not substitute for those checks.
+
+The monitored-PD revision powers ST VSYS from 3.3 V, joins its SDA/SCL to the owned
+bus, and shares GPIO17 ALERT/INT with one explicit 10 kΩ pull-up. Factory access
+requires reset/inhibit; actual shared service pads and physical qualification
+remain pending. No schematic-only test authorizes charge enable.

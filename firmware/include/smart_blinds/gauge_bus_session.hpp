@@ -83,7 +83,7 @@ public:
     bool can_attach(Context context) const;
     Publication read(Context context);
     // Joint mode only: owns charger-first acquisition and final joint commit.
-    Refresh refresh(Context context,Window window);
+    Refresh refresh(Context context,Window window,smart_blinds::charger::ParkGuard* stationary=nullptr);
     bool park_light_sleep(Context context);
     bool resume_light_sleep(Context context);
     // Thread-safe cancellation only. No monitor mutation/driver teardown here.

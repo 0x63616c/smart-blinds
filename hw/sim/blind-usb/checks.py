@@ -54,7 +54,10 @@ def calculate():
             selected[name] = mpn
     assert set(selected) == {n for n, c in instances.items() if c in imports}, 'Unrated part'
     assert 'raw.voltage = 4.75V to 21V' in source
-    assert 'factory_bus.address = 40' in source
+    assert 'host_bus.address = 40' in source
+    assert 'pd.VSYS ~ host_logic.hv' in source
+    assert 'pd.ALERT ~ alert_n.line' in source
+    assert 'r_sda = new' not in source and 'r_scl = new' not in source
     bom = BOARD / 'build/builds/usb-test/usb-test.bom.json'
     if bom.exists():
         actual_parts = {}
@@ -87,6 +90,9 @@ def calculate():
             raise AssertionError('Undetected fault: ' + label)
 
     efuse = parts['TPS259470LRPWR']; pd = parts['STUSB4500QTR']
+    assert pd['vsys_op_min_v'] < lim['host_rail_min_v'] < lim['host_rail_max_v'] < pd['vsys_op_max_v']
+    assert lim['host_rail_max_v'] < pd['io_op_max_v']
+    assert parts['CL10A105KB8NNNC']['rated_voltage_v'] > lim['host_rail_max_v']
     error = .01 + .0001 * lim['resistor_temperature_excursion_c']
     r = lambda name: parts[name]['resistance_ohm']
     assert r('0402WGF1651TCE') == 1650  # The TI min/max specification is for this exact nominal value.
