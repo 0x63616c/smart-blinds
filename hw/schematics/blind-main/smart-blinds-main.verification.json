@@ -1,0 +1,253 @@
+{
+  "status": "integrated_graph_verified_unrouted_unpowered",
+  "components": 196,
+  "pin_connections_checked": 609,
+  "child_sheets": 10,
+  "pages": [
+    {
+      "file": "01-usb.kicad_sch",
+      "components": 33,
+      "pins": 113
+    },
+    {
+      "file": "02-charger.kicad_sch",
+      "components": 36,
+      "pins": 101
+    },
+    {
+      "file": "03-logic.kicad_sch",
+      "components": 12,
+      "pins": 31
+    },
+    {
+      "file": "04-motor.kicad_sch",
+      "components": 14,
+      "pins": 43
+    },
+    {
+      "file": "05-supervision.kicad_sch",
+      "components": 14,
+      "pins": 49
+    },
+    {
+      "file": "06-regen.kicad_sch",
+      "components": 38,
+      "pins": 105
+    },
+    {
+      "file": "07-radio.kicad_sch",
+      "components": 15,
+      "pins": 68
+    },
+    {
+      "file": "08-encoder-input.kicad_sch",
+      "components": 10,
+      "pins": 29
+    },
+    {
+      "file": "09-local-input.kicad_sch",
+      "components": 11,
+      "pins": 30
+    },
+    {
+      "file": "10-interfaces.kicad_sch",
+      "components": 13,
+      "pins": 40
+    }
+  ],
+  "erc_clean": false,
+  "erc_counts": {
+    "isolated_pin_label": 1,
+    "power_pin_not_driven": 5,
+    "pin_to_pin": 1
+  },
+  "erc_findings": [
+    {
+      "sheet": "/",
+      "type": "isolated_pin_label",
+      "items": [
+        "Label 'CHARGER_STATUS_N'"
+      ]
+    },
+    {
+      "sheet": "/3S charger/",
+      "type": "pin_to_pin",
+      "items": [
+        "Symbol U1 Pin 10 [ACDRV2, Output, Line]",
+        "Symbol U1 Pin 11 [ACDRV1, Output, Line]"
+      ]
+    },
+    {
+      "sheet": "/3S charger/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U1 Pin 22 [BAT, Power input, Line]"
+      ]
+    },
+    {
+      "sheet": "/3S charger/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U1 Pin 27 [GND, Power input, Line]"
+      ]
+    },
+    {
+      "sheet": "/USB-C input/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U10 Pin 5 [IN, Power input, Line]"
+      ]
+    },
+    {
+      "sheet": "/USB-C input/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U11 Pin 24 [VDD, Power input, Line]"
+      ]
+    },
+    {
+      "sheet": "/Encoder input/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U2 Pin 5 [VCC, Power input, Line]"
+      ]
+    }
+  ],
+  "integration_contract": {
+    "status": "PASS: block preservation and integration boundaries, not a routed or tested board",
+    "components": 196,
+    "physical_pins": 609,
+    "blocks": 8
+  },
+  "source_sha256": {
+    "hw/boards/blind-main/check_main.py": "e8b5149e2f76cd4978fff9c78a5329a5fe5d744125820036f77dd11f02c9fc33",
+    "hw/layouts/blind-charger/charger-test/charger-test.kicad_pcb": "9850a5bfee1b1ec3f0b7d0b475b5da4b7c500a1268803b96c1bf4cbf2fa3b489",
+    "hw/layouts/blind-controller/motor-test/motor-test.kicad_pcb": "ba5abc04021082e8b222db8ce5024164050fd150b2e5854243987206f73a66e8",
+    "hw/layouts/blind-encoder/encoder-test/encoder-test.kicad_pcb": "0413dd128649f11baed31588b91bad92338d5f1b7fb4aa1b63333ec2a7147345",
+    "hw/layouts/blind-io/controller-test/controller-test.kicad_pcb": "cade6e78cbacaff5b06c87fb042cbe8d0828757dd44ce9107e4a5b202443f14b",
+    "hw/layouts/blind-main/main-test/fp-lib-table": "9ad8b88842d99ef1ad3e3099a74429cedf109a7b9d4dade19d12c07f8445a671",
+    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "283e148a1408ab6f419386e171013d380cd9e3e5775a8f318f6b4434222a3c11",
+    "hw/layouts/blind-regen/regen-test/regen-test.kicad_pcb": "b0bdf0fb176dc5972e6535b150bb245a59aa626e3c892d3f4b089fc17084d826",
+    "hw/layouts/blind-regulator/regulator-test/regulator-test.kicad_pcb": "e9e563801038ebb8b53a404a94868432c03e890f551ffd3b36144b3d95c6cd3c",
+    "hw/layouts/blind-supervisor/supervisor-test/supervisor-test.kicad_pcb": "6b8282852f7fb6316c2f16d713027a8b2034be9a3836591906d4fdefada8ccb9",
+    "hw/layouts/blind-usb/usb-test/usb-test.kicad_pcb": "ab06d17255b74c821ca009d073929abbb42d7281d7e10e9f37a6563d5f78d2f7",
+    "hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod": "67b74c66f64ac6997290a223541e7a12d91c898cd70c3eceac22b91ad618562f",
+    "hw/parts/SAMSUNG_CL10A105KB8NNNC/CL10A105KB8NNNC.kicad_sym": "0f9c31587bdbbac3fcb3161be32872394822fff5598d040a2617171b64be3521",
+    "hw/parts/SAMSUNG_CL31A106KBHNNNE/CL31A106KBHNNNE.kicad_sym": "40e1b3f7f888a01317c8a7cee0eb7c1a5fe4a9a0278e0f389438e10b7491a4cd",
+    "hw/parts/UNI_ROYAL_0402WGF3903TCE/0402WGF3903TCE.kicad_sym": "957f46e8df73fce9ff0bd6f61a6c50bff0f94e7d8805d9efeb5f9739760e445c",
+    "hw/parts/UNI_ROYAL_0402WGF3903TCE/R0402.kicad_mod": "a34afe57c8735f7973a55ecb22c5e772972a43ef4b8fca92282ed0f07d605903",
+    "hw/parts/UNI_ROYAL_0603WAF1001T5E/0603WAF1001T5E.kicad_sym": "b9619e2853e8666c33fcb113374690a1d8352a7b55fb360d32e4c824ec25824b",
+    "hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod": "372acfdfb498c5222664be9ddbeda0bc82510ff50cf1ba8075367a319f97281d",
+    "hw/parts/blind-carrier/AON7400A.kicad_sym": "47426a6da9e9a535913f1d9e5f572c884e70bb30c5983e9bcac2f9f249e97c90",
+    "hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": "d3ec729cbdc7e4a784ce039ab8d5a4cf02d2718add610d2cb7484043da5d5d5c",
+    "hw/parts/blind-connectors/430450600.kicad_sym": "f8fa6e3d7923efa5acb61775f95abeaa9c09e2b3b933d673665a4b2c4427835e",
+    "hw/parts/blind-connectors/CONN-TH_43045-0600.kicad_mod": "b558e3da5ea25cdccf28f71d8f534150719f582ff997358d61c8d99dddae76c9",
+    "hw/parts/blind-control-io/0402WGF1001TCE.kicad_sym": "a4c3643679774d1d34924509b61e529c2ecdbb77d45d8b0642c280dbef633a9d",
+    "hw/parts/blind-control-io/0402WGF1003TCE.kicad_sym": "3bbae4360bde7e5395961949fc18d2a37e3d901bda0dff4cc6f970750942d5dd",
+    "hw/parts/blind-control-io/0402WGF220JTCE.kicad_sym": "88da13a363095fd5ce19b8b0cee07c60ec6ee503b0806e5e2919243c33f70df8",
+    "hw/parts/blind-control-io/0402WGF4701TCE.kicad_sym": "85c6db77ab5264fe5d9b2e8ca25ad6c6e5b4d73e822707afc6f7bb2b39c5a843",
+    "hw/parts/blind-control-io/R0402.kicad_mod": "3499f9017972c1e9b8a23188427d5c1bfbf31ac56474099aa37992f5d3aff816",
+    "hw/parts/blind-control-io/SN74LVC2G17DCKR.kicad_sym": "1874d532b93895ddb95c20a8459e897a74fef3a02f66ff9d87224dc565f40e58",
+    "hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "bf3653cb10cd497bb89e5a159613d257b32cbb60970d10021149a26ac0ce694b",
+    "hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod": "fa25e1699b84df4348afa7ba5d59adf548731c65b37bc27a117528e1796376ed",
+    "hw/parts/blind-control-io/SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod": "bf8e1c7d56931d205865afebb79ca8a7ee790e8ceebe8746285b8ebd4bdee8b4",
+    "hw/parts/blind-control-io/TPD2E2U06DRLR.kicad_sym": "badb4185ed72c0da58686d46a3cb50cdec4bdf99687ed973736d870693c48500",
+    "hw/parts/blind-control-io/TS_1081S_AC01326.kicad_sym": "2291b60886793e2c0f019514bc12476e16f21996728aea108c9961046b627c52",
+    "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym": "81c087f94ceab9f615ba1aa036628532fbae2ff8c6cfc259e8361c72c016ccde",
+    "hw/parts/blind-controller-common/C0402.kicad_mod": "3ccf0309de5b72a57c2ebb81ff69201ddadd3ad0bcd5964a4d47a1e28bea0732",
+    "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym": "a6f837f69fafd8ed9ca31684a2e001d76e2bf3e35819f4b2858f7eb27127a83c",
+    "hw/parts/blind-controller-common/R0402.kicad_mod": "c47e3e203d4ad99b5e7194b9c283226505d323e35237c1461fde5a8fb8287e7e",
+    "hw/parts/blind-core/0402B223K500NT.kicad_sym": "835e2a757277bc2cc70e39cee0c8391344afc9363555bb0c5fa69468d64b5e53",
+    "hw/parts/blind-core/0402WGF1201TCE.kicad_sym": "5d4a0ef19515edff3a68490409f144435f69dc334db11e8b0a332e0d3e471f19",
+    "hw/parts/blind-core/BQ25798RQMR.kicad_sym": "8735eb87218b368f940a728d29a46f831a13b61ec5767bb170eb7625571d1da5",
+    "hw/parts/blind-core/C0402.kicad_mod": "c74ec0c6e83f91dd96a6586619e7d7436ade6cbb9d2ba3165d85af83764b3b63",
+    "hw/parts/blind-core/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod": "1173e2b2a4dbfe6c269bd9229a6da3e521cc6d8b4d7e79136bdf6b78307ade33",
+    "hw/parts/blind-core/DRV8874PWPR.kicad_sym": "5d4767e475b10a462964b13c7d7127cf276955d80fbf034d26485ec83033bb37",
+    "hw/parts/blind-core/ESP32_C6_WROOM_1_N4.kicad_sym": "ab40fe9e9b7555ba6082d65b93a8dbdb21ab9937f8c82be49877e2b579b6614b",
+    "hw/parts/blind-core/HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP.kicad_mod": "ac62f2206fb3d0b4178a577114d08baaca0c1b388e43c17869f7c3cf83c6bd4f",
+    "hw/parts/blind-core/QFN-29_L4.0-W4.0-P0.40-TL-BQ25792RQMR.kicad_mod": "dc233b92e5f3bdd07c4beef6b23b38bf1045fa5b13e7608d1ac7d63fcfe94e23",
+    "hw/parts/blind-core/R0402.kicad_mod": "028f2fee8f92e33529ad2da791a25bbaffb4b2963ba1c0fcf1c1c544674ba3e9",
+    "hw/parts/blind-core/TPS62902RPJR.kicad_sym": "02a9420a7de8e5bbaeff2e83648c7a9d38e3c095cafd6a666c2e6d03b6efe21d",
+    "hw/parts/blind-core/UCM1E221MCL1GS.kicad_sym": "70e42f747bf82fab614416705202350ddd520fcb92511bdfcf1123737e7ddee1",
+    "hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod": "27d5309641066833642528b52eeb588bf1255c28bfda59e68ba8f4e78b3e85b2",
+    "hw/parts/blind-core/WIRELM-SMD_ESP32-C6-WROOM-1.kicad_mod": "e7c48df537193bcdffbab23e60cf19e017e91bdb2c388fe2927e7cfaadc6e747",
+    "hw/parts/blind-encoder/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": "8aced2f720b288a96bd5186c7998ef8a2fc23b7483af6ca831d3cf8cfbc1703e",
+    "hw/parts/blind-encoder/TPS70950DBVR.kicad_sym": "0aee6a2aabbb04b756c722b7deffa3848fb2295136c925a4d1c50df630f6e66a",
+    "hw/parts/blind-harness/532610371.kicad_sym": "f81cc904249681abe0e595a0644cdc5adc4d73f7c1d063228f707a4014dd3a20",
+    "hw/parts/blind-harness/532610471.kicad_sym": "b01cb381c2bc1b046d3a8a5f25a0927b1a0b13725f758a7267ee6baec9298d04",
+    "hw/parts/blind-harness/CONN-SMD_4P-P1.25_53261-0471.kicad_mod": "48b39aebd98b89764c3d29f055de29fa3c7991c5209c8f04cfc282f38f6ff949",
+    "hw/parts/blind-harness/CONN-TH_532610371.kicad_mod": "e2553b4ef0e9180d9cf631f3e3fb2d9e32a87bf290a722062edfb89d1b74101d",
+    "hw/parts/blind-pack-features/WirePad18.kicad_mod": "6197d4165079dbc9327970025e7c6c744721154bf95adf6a69e3bf163116c815",
+    "hw/parts/blind-pack-features/WirePad18.kicad_sym": "b9bf755d06f617cac972e97b8b8a72027709aa56d23448f515d7fd428c39c085",
+    "hw/parts/blind-power/0402B102K500NT.kicad_sym": "004346f1956ebabcf243d83e758b86c5be10526b7547fdb8b35d68f251f8d73a",
+    "hw/parts/blind-power/0402B473K500NT.kicad_sym": "ec7732f4df2503a65a69cb52726d36dbc35f2942379a50f3ccc5806de7b40d85",
+    "hw/parts/blind-power/0402WGF1000TCE.kicad_sym": "c55ed8813f375c19d6198047811b77095ac3875bb2d0819dc71b2340a20ddd5a",
+    "hw/parts/blind-power/0402WGF3012TCE.kicad_sym": "e400e4e5b5c8a231f5cbec96f3c531973d3ef566391cf3b2a5fcd54278d04be9",
+    "hw/parts/blind-power/0402WGF3302TCE.kicad_sym": "5405c7b5e691c780800569ba2a9bcb0e7ae9a74f07c6bdd9e33f8ba7bc518e8f",
+    "hw/parts/blind-power/0402WGF5231TCE.kicad_sym": "8fcf3fb750e47fa9ad435d8d605e396a4fe775c0d8644f4a97ca32fa5d2dee4f",
+    "hw/parts/blind-power/AO3400A.kicad_sym": "821869ea2c0f569860b3c3b53fb0dc2cac9aa617fee6f5940f47f3e295b62e09",
+    "hw/parts/blind-power/C0402.kicad_mod": "2748eb8d0dcb4118fb3aeaf29414ff122c4bf3c4c6ed81af20b6186f55283128",
+    "hw/parts/blind-power/C0805.kicad_mod": "7b86678e0c1f64c51f9d2333cda15bc26a93efef1ebb1eab68199eab48224540",
+    "hw/parts/blind-power/C1206.kicad_mod": "83c51e478db876b46ceb91d9ef84e842ae9cc32a8505f8bc8395118fbd2d0da9",
+    "hw/parts/blind-power/CL21A226MAYNNNE.kicad_sym": "386cf0deff97c9f97b6718ffbb3a68d1284cd3840da8079a3131fe8858899eb7",
+    "hw/parts/blind-power/CL21A475KAQNNNE.kicad_sym": "0d54da5b6780a3e2b5a7f46b328ffe59c6d20e011e878349da2d9be7ba3f5f53",
+    "hw/parts/blind-power/CYA0630_2_2UH.kicad_sym": "39dad5ff37acd014f3ca368070c313295d6215e6143913af1e015d4d4681e46c",
+    "hw/parts/blind-power/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod": "72c1742e6d59f99c61a1d9e215e7468e0cb6cd43d1a7d4b1b4acc4bc3899463a",
+    "hw/parts/blind-power/MMBT3906LT1G.kicad_sym": "0acb43bf82bb5e79513e311ef948d900c49725389f5729ca09fb352f298714e9",
+    "hw/parts/blind-power/R0402.kicad_mod": "5a8827091d39c40103a10c953f75992bb4d1c60e956ed2e0449cc8f1eba958fa",
+    "hw/parts/blind-power/RC0402FR_0713K7L.kicad_sym": "b5b1845862a0602a0ee5824a945f5db15ca19dba442628ddd3a6b95677c39645",
+    "hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod": "6de3772861241a2bf9603ef6daaf7ba8994c9537e825770974175a175e5c4776",
+    "hw/parts/blind-regen/0402WGF3303TCE.kicad_sym": "2f602c0971bf8e6ac66777ad2008dae50c0dd4c365eef4a8080384630461e4d1",
+    "hw/parts/blind-regen/0402WGF8202TCE.kicad_sym": "dc89e4aa97b7142049f163eb3de4f7fce0e1be991ae52e70abd71e19bb463651",
+    "hw/parts/blind-regen/0603WAF1005T5E.kicad_sym": "619e10a1180ca1d1eb44c59bc0767bb1fe40c955e97bce4653ebbf8f7a6132a5",
+    "hw/parts/blind-regen/CRM2512_FX_10R0ELF.kicad_sym": "5653c1e3eb9b45792b500bcd03bfbf63ce8051715e0bd7a9e2f47b29a5e64457",
+    "hw/parts/blind-regen/R0402.kicad_mod": "7384c35d5e34e13f302d3652df19501f7c458b19a2f55dd95403592b80e32ddb",
+    "hw/parts/blind-regen/R0603.kicad_mod": "d04892aafd7524e2fdd89da695fe2ffe714de2e092a65ef6f18cadd5b039823b",
+    "hw/parts/blind-regen/R2512.kicad_mod": "5bc8d25103671a2761a1a6ca7136962de11f2c5bf61d9ed691fe163060bcdcb9",
+    "hw/parts/blind-regen/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": "1c046aacce43d667febd9f494e040670a9ff2509889d5b25dc55342c65675982",
+    "hw/parts/blind-regen/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod": "f53c9f7a007263bfe4adc082950a23f034f1c7b17237bdec727074fa1ae27371",
+    "hw/parts/blind-regen/TLV6710DDCR.kicad_sym": "386e57cc98b642cd9f9fe24dc75fad087fb712257d45f3535d8896d863c352c3",
+    "hw/parts/blind-regen/TMP302ADRLR.kicad_sym": "b9ccda7aeb21fd9e5184ff1baab14b30c38234b3d9804d8112ec55e8234c4b83",
+    "hw/parts/blind-regen/TPS70933DBVR.kicad_sym": "651b4c3c41dec835011093aae5ceed48908db19cd09489b4fa35d262f69a142a",
+    "hw/parts/blind-regen/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": "8099aff06bbb8fd6994b4932d9376e17738f019af5286365d0568e81e1b461d7",
+    "hw/parts/blind-regulator/0402WGF2612TCE.kicad_sym": "5dec0503702e8470524fb0efb88f257a4a76f992009e2af19f4a0cc1ce2d2da4",
+    "hw/parts/blind-regulator/IND-SMD_L4.4-W4.2.kicad_mod": "0184befc1c784d1bb74066ad611c43a2956a1819e6f55686531e69cf99da5591",
+    "hw/parts/blind-regulator/MWSA0402S_1R0MT.kicad_sym": "c6d2fd567927ec1db6365c2da03d393b83f8ff3c7818c3d2948888c989e3c8be",
+    "hw/parts/blind-regulator/R0402.kicad_mod": "f0c2cab49ae3541583b945907b2a72cd8dc47c8eead3a6770ff848f01495c4c5",
+    "hw/parts/blind-supervisor/C0402.kicad_mod": "0a21ccc6df0e8f4f5da23a9fd3dede16fe84fa63593b77f3e30f56ed087d952b",
+    "hw/parts/blind-supervisor/CL05C121JB5NNNC.kicad_sym": "245d05b4116521569697ca9ab06879c1204f10bc5d4e99b50322fef01422ff5a",
+    "hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "49f64c384cbf7fa64a36cc6450d774c234be555acbbe7b5136a64f0659cf6ae5",
+    "hw/parts/blind-supervisor/SN74AUP1G97DCKR.kicad_sym": "b9787f1c42f088b9a1be93aad8aaae934cb2bc9b84b5f0993bbee58b45d91cf5",
+    "hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": "a86a131e16cc07518367f1e52df861a24efc7b47ad8607f70b2c2c78a112351c",
+    "hw/parts/blind-supervisor/TPS3430WDRCR.kicad_sym": "0572c5494968a8440b3548a702fe255b3e42eee4f98208080d456c38b7c7234b",
+    "hw/parts/blind-supervisor/TPS3808G33DBVR.kicad_sym": "bc6aaba4eee9cde99f4325c3012f7d29556c26d1762ab4ec0d1ffeecee9ee917",
+    "hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": "1dd8e14672b1e6fbff9ba1ae7f5ac50af4604bb80d4b1db4e5facb21f1868b26",
+    "hw/parts/blind-usb/0402WGF1651TCE.kicad_sym": "4e542733c2757c1847528bc2e491ea2dbc94d3183dcde3ebf7b6f25d64489a9f",
+    "hw/parts/blind-usb/C1206.kicad_mod": "8acfe45eece1ee0f543348b3b8709ffa9c4e67ad395780b7eb21162859ef1715",
+    "hw/parts/blind-usb/CL31A475KBHNNNE.kicad_sym": "3bd5d17bc5b30b05f0b7ba34298fe12fb6b351cac6e8acdc92ce25421935a3bb",
+    "hw/parts/blind-usb/DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod": "8010a0533c9492185fa1bc9ce1276ab2fca4c120f59a9c2bd4f8cf6d4dfe7250",
+    "hw/parts/blind-usb/ESDA25P35_1U1M.kicad_sym": "4990a7aa9427878d1d63436e0b4ffbe378a4a606abd97ce7d7f2370adbd840b6",
+    "hw/parts/blind-usb/ESDA25W.kicad_sym": "4d083d5111f1bebb5fd7d0890e9fe4e5159d04947760c3f70edb909c9cbbb488",
+    "hw/parts/blind-usb/HRO_TYPE_C_31_M_12.kicad_mod": "d606f46be93e54339a6c835683e5b53174640cbe87805f6fff6feec794e7dc3b",
+    "hw/parts/blind-usb/QFN-24_L4.0-W4.0-P0.50-BL-EP2.8.kicad_mod": "ed521f310eaaada42f52660616b116ea3fbb35d8ec50b10158934ec519326203",
+    "hw/parts/blind-usb/R0402.kicad_mod": "a06de60d9ed21b49292c6bb982ef9ec4f04bdbd435f013311eda59642f79e3ee",
+    "hw/parts/blind-usb/RB521S30T1G.kicad_sym": "25cf7b68effda54e7fbd618a31cafccffa852801b91bd94c2df73b829e80a414",
+    "hw/parts/blind-usb/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod": "5442dd8274796f3c25fbb317541cfde4d6c618f47b2dfd122d194b644b3914b2",
+    "hw/parts/blind-usb/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod": "27ba5dab1d82a03f56b985e684914fd47069e9c96b2fe4f2c0f16792ec1127d2",
+    "hw/parts/blind-usb/STUSB4500QTR.kicad_sym": "5fbf4234abe0f46dcba19f1605b5bc8530f70c3b17a57750ae6938d1bb8428f6",
+    "hw/parts/blind-usb/TPS259470LRPWR.kicad_sym": "c323b5d211ce258bc2dbc2c5fd35df089e33e447e290dabe3250d7edece8fa4f",
+    "hw/parts/blind-usb/TYPE_C_31_M_12.kicad_sym": "a4dce2c121a3deca97b65f4d3ab66bcfa64781bf156f1f329d3cfd9c1629b0ed",
+    "hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": "501c60098d776b34e461e88359812abdf0d3070860e376d1fc9b9b8ee85184d2",
+    "hw/schematics/blind-charger/charger-test.layout.json": "637355dd5ba0633a4e455c1d38d9cd5962089934e9ab7cde29f7f09e68315378",
+    "hw/schematics/blind-controller/motor-test.layout.json": "7f416ab6f0583848ade80e02d74009b905e2fb2637ac6950ef137f9ac41ed8f0",
+    "hw/schematics/blind-main/main.layout.json": "f9fae4fb90f892ba2697bfb520fdb52550021944103d793ee77aa1a41d711bca",
+    "hw/schematics/blind-regen/regen-test.layout.json": "b70ae421058a04558779af039ed33b3804e8b7e1695718df2982d0ed8564cbe4",
+    "hw/schematics/blind-regulator/regulator-test.layout.json": "c100c14bea96bc7ee988c5f2892427d6f1eb29e7c250e1cc60251d72f2efc8b8",
+    "hw/schematics/blind-supervisor/supervisor-test.layout.json": "308e5e6ee828e34748e2c764cac87b860fc260abecb5ffd7636a9a8ef233cb01",
+    "hw/schematics/blind-usb/usb-test.layout.json": "4711a87df21cdbe44cfd3fe1a440a92b8c825e078c70c1a15f132015cc16483c",
+    "tools/generate_main_schematic.py": "030184c8beec906657f423f97771c882f69004b0bcbe1ad2c13a5ffcc965b442",
+    "tools/generate_schematics.py": "6b0bb74769beba19d64df3178c2d15762a7dc9cd6c8ff205e90841303116eb80",
+    "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+    "tools/main_schematic_page.py": "6d6dcafe1036ff3b8b296a24078e4cdb80dfacb52f010fe19cb45a30a6545e30"
+  }
+}

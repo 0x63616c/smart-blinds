@@ -1,0 +1,88 @@
+{
+  "status": "PASS: isolated frozen circuits and separate full canonical placement checks",
+  "atopile": "0.15.9",
+  "validation_sources_sha256": {
+    "cad/parameters/retained-interfaces.json": "3e52e9bb9fa29d1734e6f36ef27d92d4b982f122f206f706ec66dd0607184453",
+    "hw/boards/blind-carrier/carrier-connectivity.json": "5c27f179cecae31d7e4984c43f96c47e049a2c9891c7598f13ed601d19f7ab07",
+    "hw/boards/blind-pack-companion/ato.yaml": "397a0949894239b7866da56f06830b42e7398d09c075a976e120451db48d18e2",
+    "hw/boards/blind-pack-companion/carrier.ato": "9601d1965d3b1d4341ee4f07fada095047a8ae92119cb128e3a1857610c357fd",
+    "hw/boards/blind-pack-primary/ato.yaml": "62616b5aa05aa3d51e33f2e0601ff242d6b0bac3080dc20424e6a4901d0dcd72",
+    "hw/boards/blind-pack-primary/carrier.ato": "68814121661dbb2e16896f45edbd531c04707289d5ea9abfef9dbbb5184a2166",
+    "hw/boards/blind-pack-primary/protection.ato": "6cb5a22b461760ee065bbe1eedc50e39dc9b367c9eb4eb03e20688a444d32520",
+    "hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb": "cc51213c20aa1de399b84f003214cfe2d14ae6b8123fc8265a59f85d3ba5e625",
+    "hw/layouts/blind-pack-companion/companion-test/fp-lib-table": "c7b4f997b15789296aebd4ee8c14b529b9f0e6c85939c233a0f415dca87a1f10",
+    "hw/layouts/blind-pack-primary/primary-test/fp-lib-table": "1f341bf44f582097cc52ed50021a04bf0481fd6937572c8a0c764022e2933ceb",
+    "hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb": "71b36b334e1f07c66bb75e551272a91088f0a4fb8e6175343b2dc0509ebd6f5f",
+    "hw/placement/blind-pack/checks.py": "d19cfc269ca4be3078b2c95b34055b499b9306e5a89f42f1de4df4e2baf4df5f",
+    "hw/placement/blind-pack/placement.json": "e6f31c4c81ed4b246d84898c1b9a65b68aa4bd48a514259a253fd1cb86eaf091",
+    "hw/sim/blind-pack/checks.py": "cb05ed4bb670c2c6461fc63dadea06774aa9a1703beaee5b863bae851ef048e0",
+    "tools/check_pack_frozen.py": "a615aca963e9662964843e38b6225d2ef977f60e81852b6390830cc4c4fd7f88",
+    "tools/generate_schematics.py": "6b0bb74769beba19d64df3178c2d15762a7dc9cd6c8ff205e90841303116eb80",
+    "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+    "tools/restore_pack_holes.py": "c6637dcf1ff13ad7ed4e2f70997895cee130a0cadbf8290a90f55516d91880de"
+  },
+  "copied_parts_tree_sha256": "94ed52e7609f3398a57a3ee4f3c6ca5dcf08655b04ba7682e6c9d84c4a6dfbdc",
+  "copied_parts_files": 636,
+  "source_snapshot_rechecked": true,
+  "boards": {
+    "primary": {
+      "status": "PASS: isolated circuit-only frozen build",
+      "removed_mechanical_holes_in_copy": 4,
+      "electrical_footprints": 50,
+      "build_id": "937a53c4254eb9c5",
+      "canonical_pcb_sha256": "71b36b334e1f07c66bb75e551272a91088f0a4fb8e6175343b2dc0509ebd6f5f",
+      "source_sha256": {
+        "hw/boards/blind-pack-primary/ato.yaml": "62616b5aa05aa3d51e33f2e0601ff242d6b0bac3080dc20424e6a4901d0dcd72",
+        "hw/boards/blind-pack-primary/carrier.ato": "68814121661dbb2e16896f45edbd531c04707289d5ea9abfef9dbbb5184a2166",
+        "hw/boards/blind-pack-primary/protection.ato": "6cb5a22b461760ee065bbe1eedc50e39dc9b367c9eb4eb03e20688a444d32520"
+      }
+    },
+    "companion": {
+      "status": "PASS: isolated circuit-only frozen build",
+      "removed_mechanical_holes_in_copy": 4,
+      "electrical_footprints": 10,
+      "build_id": "385810d98ff8c51d",
+      "canonical_pcb_sha256": "cc51213c20aa1de399b84f003214cfe2d14ae6b8123fc8265a59f85d3ba5e625",
+      "source_sha256": {
+        "hw/boards/blind-pack-companion/ato.yaml": "397a0949894239b7866da56f06830b42e7398d09c075a976e120451db48d18e2",
+        "hw/boards/blind-pack-companion/carrier.ato": "9601d1965d3b1d4341ee4f07fada095047a8ae92119cb128e3a1857610c357fd"
+      }
+    }
+  },
+  "final_placement": {
+    "primary": {
+      "electrical_footprints": 50,
+      "board_only_mounting_holes": 4,
+      "physical_electrical_pins": 120,
+      "courtyard_coverage": {
+        "present": 44,
+        "missing_addresses": [
+          "carrier.protection.c_cell1",
+          "carrier.protection.c_cell3",
+          "carrier.protection.c_cell4",
+          "carrier.protection.c_charge_gate",
+          "carrier.protection.c_supply",
+          "carrier.protection.r_aoldo"
+        ]
+      },
+      "side": "all front/component-side; primary faces +Z, companion faces -Z",
+      "board_sha256": "71b36b334e1f07c66bb75e551272a91088f0a4fb8e6175343b2dc0509ebd6f5f"
+    },
+    "companion": {
+      "electrical_footprints": 10,
+      "board_only_mounting_holes": 4,
+      "physical_electrical_pins": 16,
+      "courtyard_coverage": {
+        "present": 10,
+        "missing_addresses": []
+      },
+      "side": "all front/component-side; primary faces +Z, companion faces -Z",
+      "board_sha256": "cc51213c20aa1de399b84f003214cfe2d14ae6b8123fc8265a59f85d3ba5e625"
+    }
+  },
+  "limits": [
+    "Frozen compilation deliberately excludes only the four reviewed NPTH holes in a temporary copy.",
+    "Final placement checks include those holes, support/RF restrictions and the independent electrical contract.",
+    "This does not route or qualify the pack. KiCad DRC and physical/thermal tests remain separate."
+  ]
+}

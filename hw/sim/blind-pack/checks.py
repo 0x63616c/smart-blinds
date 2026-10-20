@@ -87,9 +87,27 @@ def check_holder():
     assert mechanical == {((34.3,-8.5),4.),((-34.3,8.5),4.),((-38.75,-11.5),2.)}
     assert all(p[2]=='np_thru_hole' for p in pads if not p[1])
 
+def check_wire_features():
+    for name in ('WirePad18','WirePadSignal'):
+        library=parse((ROOT/f'hw/parts/blind-pack-features/{name}.kicad_sym').read_text())
+        symbol=one(library,'symbol');assert symbol[1]==name
+        units=children(symbol,'symbol');assert len(units)==2
+        assert [u[1] for u in units]==[name+'_0_1',name+'_1_1']
+        assert len(children(units[0],'circle'))==1 and not children(units[0],'symbol')
+        pin=one(units[1],'pin');assert pin[1:3]==['passive','line']
+        assert one(pin,'number')[1]=='1'
+        assert one(pin,'at')[1:]==['-3.81','0','0']
+        footprint=next(p for p in children(symbol,'property') if p[1]=='Footprint')
+        assert footprint[2]=='blind-pack-features:'+name
+    mechanical=parse((ROOT/'hw/parts/blind-pack-features/MountingHole_M3_3.4mm.kicad_mod').read_text())
+    assert set(one(mechanical,'attr')[1:])=={'board_only','exclude_from_pos_files','exclude_from_bom'}
+    pads=children(mechanical,'pad');assert len(pads)==1
+    assert pads[0][1:4]==['','np_thru_hole','circle']
+    assert not children(pads[0],'net') and one(pads[0],'drill')[1:] == ['3.4']
+
 def calculate():
     graphs, raw = collect(); actual = join_rails(raw); expected = expected_graph()
-    verify(actual, expected); check_holder()
+    verify(actual, expected); check_holder(); check_wire_features()
     original=(ROOT/'hw/boards/blind-carrier/carrier.ato').read_text().split('    gauge = new Part_MAX17320G22_')[1].split('\nmodule CarrierTest:')[0]
     extracted=(ROOT/'hw/boards/blind-pack-primary/protection.ato').read_text().split('    gauge = new Part_MAX17320G22_')[1]
     assert extracted==original, 'Extracted protection core changed; independent review required'
@@ -131,7 +149,7 @@ def calculate():
             'semantic_graph_sha256':hashlib.sha256(json.dumps(canonical).encode()).hexdigest(),
             'negative_controls_detected':sorted(mutations),
             'input_sha256':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files if p.is_file()},
-            'limits':['Not routed or mechanically placed. No DRC/thermal/current qualification.',
+            'limits':['Unrouted. Geometric placement checks are separate; no thermal/current or physical-fit qualification.',
                       'Wire landing diameter is a design choice; actual stripped 18 AWG strand/tinning fit must be checked.',
                       'Holder drawing gives no current rating and no validated reverse-insertion protection.',
                       'Fuse clearing, mismatched-cell equalization, failed-short FET faults, complete NVM settings and physical cell temperature sensing remain unresolved.',

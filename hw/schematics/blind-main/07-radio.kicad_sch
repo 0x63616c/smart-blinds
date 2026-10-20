@@ -1,0 +1,3730 @@
+(kicad_sch
+  (version 20250114)
+  (generator "smart_blinds_schematic")
+  (uuid "148e17ab-c479-5f8b-877f-7925b7abf838")
+  (paper "A3")
+  (title_block
+    (title "Smart Blinds / Radio and USB data")
+    (rev "STUDY")
+    (comment 1 "Unrouted integrated circuit; not for fabrication"))
+  (lib_symbols
+    (symbol
+      "SmartBlinds:P_0402WGF1002TCE"
+      (property
+        "Reference"
+        "R"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "0402WGF1002TCE"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "C25744:R0402"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_10KR-1002-1_C25744.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "LCSC Part"
+        "C25744"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (in_bom yes)
+      (on_board yes)
+      (symbol
+        "P_0402WGF1002TCE_0_1"
+        (rectangle
+          (start -2.54 1.02)
+          (end 2.54 -1.02)
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type background)))
+        (pin
+          passive
+          line
+          (at 5.08 -0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at -5.08 -0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_0402WGF1003TCE"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "R"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "0402WGF1003TCE"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-control-io:R0402"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_100KR-1003-1_C25741.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "UNI-ROYAL(厚声)"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "0402WGF1003TCE"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C25741"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "Resistors"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_description"
+        "100KΩ (1003) ±1%"
+        (at 0 -22.86 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_0402WGF1003TCE_0_1"
+        (rectangle
+          (start -2.54 1.02)
+          (end 2.54 -1.02)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type background)))
+        (pin
+          passive
+          line
+          (at 5.08 -0.0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at -5.08 -0.0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_0402WGF220JTCE"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "R"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "0402WGF220JTCE"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-control-io:R0402"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_22R-22R0-1_C25092.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "UNI-ROYAL(厚声)"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "0402WGF220JTCE"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C25092"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "Resistors"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_description"
+        "22Ω (22R0) ±1%"
+        (at 0 -22.86 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_0402WGF220JTCE_0_1"
+        (rectangle
+          (start -2.54 1.02)
+          (end 2.54 -1.02)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type background)))
+        (pin
+          passive
+          line
+          (at 5.08 -0.0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at -5.08 -0.0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_0402WGF4701TCE"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "R"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "0402WGF4701TCE"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-control-io:R0402"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_4-7KR-4701-1_C25900.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "UNI-ROYAL(厚声)"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "0402WGF4701TCE"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C25900"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "Resistors"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_description"
+        "4.7KΩ (4701) ±1%"
+        (at 0 -22.86 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_0402WGF4701TCE_0_1"
+        (rectangle
+          (start -2.54 1.02)
+          (end 2.54 -1.02)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type background)))
+        (pin
+          passive
+          line
+          (at 5.08 -0.0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at -5.08 -0.0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_CL05B104KB54PNC"
+      (property
+        "Reference"
+        "C"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "CL05B104KB54PNC"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "C307331:C0402"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Others_Samsung-Electro-Mechanics_CL05B104KB54PNC_Samsung-Electro-Mechanics-CL05B104KB54PNC_C307331.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "LCSC Part"
+        "C307331"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (in_bom yes)
+      (on_board yes)
+      (symbol
+        "P_CL05B104KB54PNC_0_1"
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy -0.51 2.03)
+            (xy -0.51 -2.03)))
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy 2.54 -0)
+            (xy 0.51 -0)))
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy 0.51 -2.03)
+            (xy 0.51 2.03)))
+        (polyline
+          (stroke
+            (width 0)
+            (type default)
+            (color 0 0 0 0))
+          (fill
+            (type none))
+          (pts
+            (xy -0.51 -0)
+            (xy -2.54 -0)))
+        (pin
+          passive
+          line
+          (at -5.08 -0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at 5.08 -0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_CL21A226MAYNNNE"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "C"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "CL21A226MAYNNNE"
+        (at 0 -5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-power:C0805"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_Samsung-Electro-Mechanics-CL21A226MAYNNNE_C602037.html"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "SAMSUNG(三星)"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "CL21A226MAYNNNE"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C602037"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_CL21A226MAYNNNE_0_1"
+        (polyline
+          (pts
+            (xy -0.51 -2.03)
+            (xy -0.51 2.03))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 2.54 -0.0)
+            (xy 0.51 -0.0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy 0.51 2.03)
+            (xy 0.51 -2.03))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -0.51 -0.0)
+            (xy -2.54 -0.0))
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (pin
+          passive
+          line
+          (at -5.08 -0.0 0)
+          (length 2.54)
+          (name
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at 5.08 -0.0 180)
+          (length 2.54)
+          (name
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (pin_names
+        (offset 0)
+        hide)
+      (pin_numbers hide))
+    (symbol
+      "SmartBlinds:P_ESP32_C6_WROOM_1_N4"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "U"
+        (at 0 27.94 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "ESP32-C6-WROOM-1-N4"
+        (at 0 -27.94 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-core:WIRELM-SMD_ESP32-C6-WROOM-1"
+        (at 0 -30.48 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://www.lcsc.com/datasheet/C6034714.pdf"
+        (at 0 -33.02 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "ESPRESSIF(乐鑫)"
+        (at 0 -35.56 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "ESP32-C6-WROOM-1-N4"
+        (at 0 -38.1 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C6034714"
+        (at 0 -40.64 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "WiFi Modules"
+        (at 0 -43.18 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_ESP32_C6_WROOM_1_N4_0_1"
+        (rectangle
+          (start -8.89 25.4)
+          (end 8.89 -25.4)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type background)))
+        (circle
+          (center -7.62 24.13)
+          (radius 0.38)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (pin
+          power_in
+          line
+          (at -11.43 22.86 0)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at -11.43 20.32 0)
+          (length 2.54)
+          (name
+            "3V3"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          input
+          line
+          (at -11.43 17.78 0)
+          (length 2.54)
+          (name
+            "EN"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 15.24 0)
+          (length 2.54)
+          (name
+            "IO4"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 12.7 0)
+          (length 2.54)
+          (name
+            "IO5"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "5"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 10.16 0)
+          (length 2.54)
+          (name
+            "IO6"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "6"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 7.62 0)
+          (length 2.54)
+          (name
+            "IO7"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "7"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 5.08 0)
+          (length 2.54)
+          (name
+            "IO0"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "8"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 2.54 0)
+          (length 2.54)
+          (name
+            "IO1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "9"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -0.0 0)
+          (length 2.54)
+          (name
+            "IO8"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "10"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -2.54 0)
+          (length 2.54)
+          (name
+            "IO10"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "11"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -5.08 0)
+          (length 2.54)
+          (name
+            "IO11"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "12"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -7.62 0)
+          (length 2.54)
+          (name
+            "IO12"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "13"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -10.16 0)
+          (length 2.54)
+          (name
+            "IO13"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "14"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -12.7 0)
+          (length 2.54)
+          (name
+            "IO9"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "15"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -15.24 0)
+          (length 2.54)
+          (name
+            "IO18"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "16"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -17.78 0)
+          (length 2.54)
+          (name
+            "IO19"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "17"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -20.32 0)
+          (length 2.54)
+          (name
+            "IO20"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "18"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at -11.43 -22.86 0)
+          (length 2.54)
+          (name
+            "IO21"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "19"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at 11.43 -21.59 180)
+          (length 2.54)
+          (name
+            "IO22"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "20"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at 11.43 -19.05 180)
+          (length 2.54)
+          (name
+            "IO23"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "21"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          no_connect
+          line
+          (at 11.43 -16.51 180)
+          (length 2.54)
+          (name
+            "NC"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "22"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at 11.43 -13.97 180)
+          (length 2.54)
+          (name
+            "IO15"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "23"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at 11.43 -11.43 180)
+          (length 2.54)
+          (name
+            "RXD0"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "24"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at 11.43 -8.89 180)
+          (length 2.54)
+          (name
+            "TXD0"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "25"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at 11.43 -6.35 180)
+          (length 2.54)
+          (name
+            "IO3"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "26"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          bidirectional
+          line
+          (at 11.43 -3.81 180)
+          (length 2.54)
+          (name
+            "IO2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "27"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 -1.27 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "28"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 1.27 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "29"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 3.81 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "30"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 6.35 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "31"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 8.89 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "32"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 11.43 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "33"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 13.97 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "34"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 16.51 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "35"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 19.05 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "36"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          power_in
+          line
+          (at 11.43 21.59 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "37"
+            (effects
+              (font
+                (size 1.27 1.27)))))))
+    (symbol
+      "SmartBlinds:P_TPD2E2U06DRLR"
+      (in_bom yes)
+      (on_board yes)
+      (property
+        "Reference"
+        "D"
+        (at 0 7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Value"
+        "TPD2E2U06DRLR"
+        (at 0 -7.62 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property
+        "Footprint"
+        "blind-control-io:SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1"
+        (at 0 -10.16 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Datasheet"
+        "https://www.lcsc.com/datasheet/C1972959.pdf"
+        (at 0 -12.7 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "Manufacturer"
+        "TI(德州仪器)"
+        (at 0 -15.24 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "MPN"
+        "TPD2E2U06DRLR"
+        (at 0 -17.78 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "LCSC Part"
+        "C1972959"
+        (at 0 -20.32 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (property
+        "ki_keywords"
+        "TVS"
+        (at 0 -22.86 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          hide))
+      (symbol
+        "P_TPD2E2U06DRLR_0_1"
+        (rectangle
+          (start -6.35 5.08)
+          (end 6.35 -5.08)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type background)))
+        (circle
+          (center -5.08 3.81)
+          (radius 0.38)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none)))
+        (pin
+          passive
+          line
+          (at -8.89 2.54 0)
+          (length 2.54)
+          (name
+            "NC"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at -8.89 -0.0 0)
+          (length 2.54)
+          (name
+            "NC"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at -8.89 -2.54 0)
+          (length 2.54)
+          (name
+            "IO1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at 8.89 -1.27 180)
+          (length 2.54)
+          (name
+            "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin
+          passive
+          line
+          (at 8.89 1.27 180)
+          (length 2.54)
+          (name
+            "IO2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number
+            "5"
+            (effects
+              (font
+                (size 1.27 1.27))))))))
+  (wire
+    (pts
+      (xy 260.35 209.55)
+      (xy 260.35 201.93))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "93f26fa3-0bdf-5767-ad53-c9b10e7fae87"))
+  (label
+    "MOTOR_CURRENT_ADC"
+    (at 260.35 201.93 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "38ee53df-032e-5969-92aa-f239b5dde5e8"))
+  (wire
+    (pts
+      (xy 260.35 219.71)
+      (xy 260.35 227.33))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a75c61fc-e7c0-5af7-be4b-a9b68b6ea3d8"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 260.35 227.33 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "d961a557-566f-5d3b-89f3-a89c5426ef2f"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL05B104KB54PNC")
+    (at 260.35 214.63 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "043d0b80-2199-57eb-bb0f-350e54c4ce3b")
+    (property
+      "Reference"
+      "C24"
+      (at 267.97 213.35999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "100n / 50V"
+      (at 267.97 215.89999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "SAMSUNG_CL05B104KB54PNC:C0402"
+      (at 260.35 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL05B104KB54PNC"
+      (at 260.35 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C307331"
+      (at 260.35 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.c_adc"
+      (at 260.35 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "C24")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "c8ef890b-d0d5-51cb-a310-dde5c6ba6139"))
+    (pin
+      "2"
+      (uuid "ec049f40-6f0d-59e7-902e-7729e397c1c9")))
+  (wire
+    (pts
+      (xy 199.39 59.69)
+      (xy 199.39 52.07))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "108410b5-9022-5292-a563-8d91db1e0201"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 199.39 52.07 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "36e91cdb-e629-59cc-b263-a61dcc3ed535"))
+  (wire
+    (pts
+      (xy 199.39 69.85)
+      (xy 199.39 77.47))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "da17b240-f0a4-5ac3-a8cb-656813aae984"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 199.39 77.47 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "cf0f5904-688b-54bd-b3f1-5306dd38bcf8"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL21A226MAYNNNE")
+    (at 199.39 64.77 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "b032f55d-9616-5e40-a423-438f9f0d09d2")
+    (property
+      "Reference"
+      "C25"
+      (at 207.01 63.49999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "22u / 25V"
+      (at 207.01 66.03999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-power:C0805"
+      (at 199.39 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL21A226MAYNNNE"
+      (at 199.39 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C602037"
+      (at 199.39 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.c_bulk"
+      (at 199.39 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "C25")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "2c51818a-090e-531c-8c45-c0c9db425ff6"))
+    (pin
+      "2"
+      (uuid "5eb5fe7b-72e5-542a-9636-413b171b428a")))
+  (wire
+    (pts
+      (xy 260.35 59.69)
+      (xy 260.35 52.07))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "257f7cdd-c450-550d-afd9-ac33a9b7cff1"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 260.35 52.07 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "2b0b05f5-b23a-5a59-8d36-9d8c36e5d00f"))
+  (wire
+    (pts
+      (xy 260.35 69.85)
+      (xy 260.35 77.47))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "27dff9fa-e91c-53c0-9227-c54fb77ffcc5"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 260.35 77.47 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "7b488799-bf11-5b40-b2d3-1b6009e4171f"))
+  (symbol
+    (lib_id "SmartBlinds:P_CL05B104KB54PNC")
+    (at 260.35 64.77 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "01c91b7b-cef5-590d-ade6-5f7ce9d17a6f")
+    (property
+      "Reference"
+      "C26"
+      (at 267.97 63.49999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "100n / 50V"
+      (at 267.97 66.03999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "SAMSUNG_CL05B104KB54PNC:C0402"
+      (at 260.35 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "CL05B104KB54PNC"
+      (at 260.35 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C307331"
+      (at 260.35 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.c_bypass"
+      (at 260.35 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "C26")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "aa0d8c59-3aa2-5ceb-b40f-92b9af0fa347"))
+    (pin
+      "2"
+      (uuid "a63e2292-06bb-5d23-a884-159a8088dd7c")))
+  (wire
+    (pts
+      (xy 311.15 162.56)
+      (xy 303.53 162.56))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "349205b9-bb9d-5a55-b30e-33d2f014fcc7"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 303.53 162.56 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "0ee48aab-b79d-59cd-9f6f-dfc70a4aca07"))
+  (wire
+    (pts
+      (xy 311.15 165.1)
+      (xy 303.53 165.1))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2cf33111-4dd4-5e86-ad02-eca833312f6a"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 303.53 165.1 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "29d9a919-14f2-5db6-bcfc-a89c16c06e90"))
+  (wire
+    (pts
+      (xy 311.15 167.64)
+      (xy 303.53 167.64))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "7b8c6789-8f9c-5f0d-9a75-76f48218bbfe"))
+  (global_label
+    "USB_DP"
+    (shape bidirectional)
+    (at 303.53 167.64 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "4fcfcb69-eb85-5741-9b9d-371a4a3421b9"))
+  (wire
+    (pts
+      (xy 328.93 166.37)
+      (xy 336.55 166.37))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c09e2bcb-e219-55a5-850c-d67283a2f516"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 336.55 166.37 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "c257df45-eb30-5976-9ab5-0e05c00c1152"))
+  (wire
+    (pts
+      (xy 328.93 163.83)
+      (xy 336.55 163.83))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fef54c66-2a3a-5aea-afdc-c23e08fd18c7"))
+  (global_label
+    "USB_DM"
+    (shape bidirectional)
+    (at 336.55 163.83 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "a73d10ae-bd82-5581-bbcf-d874a2e8f9bb"))
+  (symbol
+    (lib_id "SmartBlinds:P_TPD2E2U06DRLR")
+    (at 320.04 165.1 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "1de687f8-c9ea-58f5-bc19-3840d31074e5")
+    (property
+      "Reference"
+      "D2"
+      (at 320.04 152.4 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "TPD2E2U06DRLR"
+      (at 320.04 154.94 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1"
+      (at 320.04 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "TPD2E2U06DRLR"
+      (at 320.04 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C1972959"
+      (at 320.04 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.usb_esd"
+      (at 320.04 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "D2")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "7d7c9768-c0cf-5e0d-b0f5-1490407b559d"))
+    (pin
+      "2"
+      (uuid "b7ae9a5f-059f-54b2-8c9e-a265a4345a36"))
+    (pin
+      "3"
+      (uuid "62c64b9c-e7db-5bea-8686-8582221f5faf"))
+    (pin
+      "4"
+      (uuid "e60e096b-3b4f-548d-be0e-d0287c50eca5"))
+    (pin
+      "5"
+      (uuid "19963cb2-e650-5548-a7fe-09da274fd717")))
+  (wire
+    (pts
+      (xy 379.73 170.18)
+      (xy 379.73 177.8))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "e0ede07f-561f-5fd0-b594-50a7413cc5ee"))
+  (label
+    "MOTOR_CURRENT_ADC"
+    (at 379.73 177.8 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "2c52e60a-edca-5e6b-8275-b4ed73572724"))
+  (wire
+    (pts
+      (xy 379.73 160.02)
+      (xy 379.73 152.4))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6552ddf8-c8bc-5230-aa73-411e5842a38e"))
+  (global_label
+    "MOTOR_ISENSE"
+    (shape bidirectional)
+    (at 379.73 152.4 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "9c0a3185-d3e2-5ae3-b109-4a69a52690c8"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF1003TCE")
+    (at 379.73 165.1 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "7ca53816-3235-5fa8-a293-a64bec5de66c")
+    (property
+      "Reference"
+      "R14"
+      (at 387.35 163.82999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "100k"
+      (at 387.35 166.36999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:R0402"
+      (at 379.73 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF1003TCE"
+      (at 379.73 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25741"
+      (at 379.73 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_adc_hi"
+      (at 379.73 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R14")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "8f172f4e-1aab-587d-a19d-983a23e37a46"))
+    (pin
+      "1"
+      (uuid "620eb675-9fca-5332-b622-7e1d35d57acb")))
+  (wire
+    (pts
+      (xy 199.39 219.71)
+      (xy 199.39 227.33))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "9f7406fa-cde1-5135-9f0b-7be731b33e1a"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 199.39 227.33 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "8b1c3001-d99a-5614-8c6d-4916173d0407"))
+  (wire
+    (pts
+      (xy 199.39 209.55)
+      (xy 199.39 201.93))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "dbac52c8-b397-5d15-8e8b-8b0d14dbc35d"))
+  (label
+    "MOTOR_CURRENT_ADC"
+    (at 199.39 201.93 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "6a744d44-b4a0-56b1-9a2c-b590ad764972"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF1003TCE")
+    (at 199.39 214.63 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "fd94c003-0da6-54c9-b213-dea023ff0e00")
+    (property
+      "Reference"
+      "R15"
+      (at 207.01 213.35999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "100k"
+      (at 207.01 215.89999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:R0402"
+      (at 199.39 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF1003TCE"
+      (at 199.39 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25741"
+      (at 199.39 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_adc_lo"
+      (at 199.39 214.63 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R15")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "7823ca43-86b9-5728-bd82-a6c6836e318a"))
+    (pin
+      "1"
+      (uuid "80be8ecc-40b6-5a9f-b521-6c43b0d0e137")))
+  (wire
+    (pts
+      (xy 320.04 69.85)
+      (xy 320.04 77.47))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "eb6a0652-2a69-53e5-84bc-d32055b2a780"))
+  (label
+    "BOOT_N"
+    (at 320.04 77.47 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "cb8cf43e-0951-593c-be82-16b4c9d2349f"))
+  (wire
+    (pts
+      (xy 320.04 59.69)
+      (xy 320.04 52.07))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "3ddede8a-6489-527a-bdea-bce124e955df"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 320.04 52.07 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "5ffb9eab-1c5d-5985-8e81-a0dfe737879d"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF1002TCE")
+    (at 320.04 64.77 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "469d07f6-508d-508f-b51f-4f880e176e8b")
+    (property
+      "Reference"
+      "R19"
+      (at 327.66 63.49999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "10k"
+      (at 327.66 66.03999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "UNI_ROYAL_0402WGF1002TCE:R0402"
+      (at 320.04 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF1002TCE"
+      (at 320.04 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25744"
+      (at 320.04 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_boot"
+      (at 320.04 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R19")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "d4d88303-8e0e-5e70-a877-6bd3c1ec3f3d"))
+    (pin
+      "1"
+      (uuid "3bfd09a8-bd3e-5432-9c28-023739a7a370")))
+  (wire
+    (pts
+      (xy 199.39 120.65)
+      (xy 199.39 128.27))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6141c8dc-3d2b-593a-8d10-5eab56fbb116"))
+  (global_label
+    "CHARGE_ALLOW_N"
+    (shape bidirectional)
+    (at 199.39 128.27 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "8a732003-eb5a-59b6-b599-cfe8c281d77d"))
+  (wire
+    (pts
+      (xy 199.39 110.49)
+      (xy 199.39 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b9d89881-6fe3-5cf5-8426-00d2a4450600"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 199.39 102.87 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "7c85461e-f2ef-57a8-9926-a38c03baa787"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF1002TCE")
+    (at 199.39 115.57 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "6e7112f1-2586-52fe-8428-33bef27f91f0")
+    (property
+      "Reference"
+      "R20"
+      (at 207.01 114.3 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "10k"
+      (at 207.01 116.84 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "UNI_ROYAL_0402WGF1002TCE:R0402"
+      (at 199.39 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF1002TCE"
+      (at 199.39 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25744"
+      (at 199.39 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_charge"
+      (at 199.39 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R20")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "9cd05774-6a64-5536-a558-45e8e134603f"))
+    (pin
+      "1"
+      (uuid "3e63585b-7d87-5b7e-ad26-4b2f32fab7bc")))
+  (wire
+    (pts
+      (xy 260.35 170.18)
+      (xy 260.35 177.8))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "008cf61e-9b73-58de-862f-e3d74554d486"))
+  (global_label
+    "USB_DM"
+    (shape bidirectional)
+    (at 260.35 177.8 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "c6c8a930-b4cf-5d13-bb26-ba5ecc832a8f"))
+  (wire
+    (pts
+      (xy 260.35 160.02)
+      (xy 260.35 152.4))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "987115a3-7e21-5af1-9374-0b1fe36adbde"))
+  (label
+    "MCU_USB_DM"
+    (at 260.35 152.4 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "4ee43998-dd8d-5a9f-b9e2-7bd50c6a0aa6"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF220JTCE")
+    (at 260.35 165.1 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "a6e02c2a-b6d1-51d0-8d63-820fe71d7b54")
+    (property
+      "Reference"
+      "R21"
+      (at 267.97 163.82999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "22R"
+      (at 267.97 166.36999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:R0402"
+      (at 260.35 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF220JTCE"
+      (at 260.35 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25092"
+      (at 260.35 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_dm"
+      (at 260.35 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R21")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "0209ec55-fc0d-5031-b78c-eb3bbe381205"))
+    (pin
+      "1"
+      (uuid "f098ca47-f22d-5933-8c20-c5131dcd73a9")))
+  (wire
+    (pts
+      (xy 199.39 170.18)
+      (xy 199.39 177.8))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "61c7b8cd-6296-5a62-9606-f5b4138867ec"))
+  (global_label
+    "USB_DP"
+    (shape bidirectional)
+    (at 199.39 177.8 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "e1e588bb-e9df-5f63-9570-b9e976fd08cf"))
+  (wire
+    (pts
+      (xy 199.39 160.02)
+      (xy 199.39 152.4))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c06a21cd-092b-5b17-9cc9-e8566a9965d0"))
+  (label
+    "MCU_USB_DP"
+    (at 199.39 152.4 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "803ada6d-8cbd-5b67-8980-6873aad4be6e"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF220JTCE")
+    (at 199.39 165.1 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "6b06d7e6-0b14-52da-8dc1-e2f2e7c8ecdc")
+    (property
+      "Reference"
+      "R23"
+      (at 207.01 163.82999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "22R"
+      (at 207.01 166.36999999999998 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:R0402"
+      (at 199.39 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF220JTCE"
+      (at 199.39 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25092"
+      (at 199.39 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_dp"
+      (at 199.39 165.1 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R23")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "94efca2a-1eec-56c1-9ac3-abb0d2ee054a"))
+    (pin
+      "1"
+      (uuid "93ee0a3c-a9e4-5f60-b205-1d62908330b1")))
+  (wire
+    (pts
+      (xy 260.35 120.65)
+      (xy 260.35 128.27))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c5dd12ea-0861-522e-bd77-224baf327c93"))
+  (global_label
+    "ENCODER_ALLOW_N"
+    (shape bidirectional)
+    (at 260.35 128.27 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "62a5f896-d903-509b-a4a2-a8d76a492d84"))
+  (wire
+    (pts
+      (xy 260.35 110.49)
+      (xy 260.35 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "dda55eb0-4536-568a-8ea5-466147312429"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 260.35 102.87 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "388516a5-af14-5749-8697-d837e44f2e55"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF1002TCE")
+    (at 260.35 115.57 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "1c70f2a3-1958-51b6-a230-fad8dd54f3c0")
+    (property
+      "Reference"
+      "R24"
+      (at 267.97 114.3 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "10k"
+      (at 267.97 116.84 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "UNI_ROYAL_0402WGF1002TCE:R0402"
+      (at 260.35 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF1002TCE"
+      (at 260.35 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25744"
+      (at 260.35 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_encoder"
+      (at 260.35 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R24")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "ea796171-07e2-532b-a867-ebd14db1f477"))
+    (pin
+      "1"
+      (uuid "501a4f3a-8238-522f-becb-791ccb7dd910")))
+  (wire
+    (pts
+      (xy 379.73 120.65)
+      (xy 379.73 128.27))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "5a2122c7-e3c1-545e-a947-1344be1a2329"))
+  (global_label
+    "PACK_SCL"
+    (shape bidirectional)
+    (at 379.73 128.27 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "f7981d01-4107-54ea-9087-79617ea8ac56"))
+  (wire
+    (pts
+      (xy 379.73 110.49)
+      (xy 379.73 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "d942ba37-f83e-5af1-b06c-172ffd9e7618"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 379.73 102.87 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "3b262f4d-8ea4-5f86-a212-a6e671703787"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF4701TCE")
+    (at 379.73 115.57 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "4c3bcb73-f8ad-5de8-ae8e-79a7dd18a3e1")
+    (property
+      "Reference"
+      "R27"
+      (at 387.35 114.3 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "4.7k"
+      (at 387.35 116.84 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:R0402"
+      (at 379.73 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF4701TCE"
+      (at 379.73 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25900"
+      (at 379.73 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_scl"
+      (at 379.73 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R27")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "8cf1da82-8571-59a7-b75e-59396b9bdab3"))
+    (pin
+      "1"
+      (uuid "834dccbf-15bc-5b2d-a657-3453a83daed4")))
+  (wire
+    (pts
+      (xy 320.04 120.65)
+      (xy 320.04 128.27))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b8293676-0a29-5e4e-b118-c470cccc904d"))
+  (global_label
+    "PACK_SDA"
+    (shape bidirectional)
+    (at 320.04 128.27 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "134de797-4710-5fba-9136-dc58351596d1"))
+  (wire
+    (pts
+      (xy 320.04 110.49)
+      (xy 320.04 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "671e2111-abb5-5355-b1b3-b1cb967d50b2"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 320.04 102.87 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "6907b9f6-3b2b-5320-9553-8f2fcad8f9ab"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF4701TCE")
+    (at 320.04 115.57 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "34a3f80a-ed3c-5dfd-bf78-0822852b2618")
+    (property
+      "Reference"
+      "R28"
+      (at 327.66 114.3 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "4.7k"
+      (at 327.66 116.84 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:R0402"
+      (at 320.04 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF4701TCE"
+      (at 320.04 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25900"
+      (at 320.04 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_sda"
+      (at 320.04 115.57 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R28")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "1a48401a-fb05-53f0-a808-5a79c1fdc1b2"))
+    (pin
+      "1"
+      (uuid "3e7f87eb-2f64-5081-93a8-bcfd4973f834")))
+  (wire
+    (pts
+      (xy 379.73 69.85)
+      (xy 379.73 77.47))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "0b44cc51-ba22-5a78-bf9c-faf183c59d53"))
+  (label
+    "STRAP_IO8"
+    (at 379.73 77.47 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "394535e2-7f72-5b73-b060-95f29a720904"))
+  (wire
+    (pts
+      (xy 379.73 59.69)
+      (xy 379.73 52.07))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "b86aea32-0e28-5613-96a2-57be88ba7962"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 379.73 52.07 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "37fcac45-55a8-5352-be65-e5b324218472"))
+  (symbol
+    (lib_id "SmartBlinds:P_0402WGF1002TCE")
+    (at 379.73 64.77 270)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "e858d676-4953-5c7d-a7bf-4242b7c798cf")
+    (property
+      "Reference"
+      "R29"
+      (at 387.35 63.49999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "10k"
+      (at 387.35 66.03999999999999 270)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "UNI_ROYAL_0402WGF1002TCE:R0402"
+      (at 379.73 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "0402WGF1002TCE"
+      (at 379.73 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C25744"
+      (at 379.73 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.r_strap8"
+      (at 379.73 64.77 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "R29")
+          (unit 1))))
+    (pin
+      "2"
+      (uuid "ddc9d014-0384-5ea4-85fa-6869cc19d7db"))
+    (pin
+      "1"
+      (uuid "e9c4a560-605d-5c80-8692-85720075dba4")))
+  (wire
+    (pts
+      (xy 73.66 67.31)
+      (xy 66.04 67.31))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f80461b4-8294-5629-887f-08b504154364"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 66.04 67.31 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "449bf28e-966e-5809-b675-0ed4588db3f8"))
+  (wire
+    (pts
+      (xy 73.66 69.85)
+      (xy 66.04 69.85))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8ec2e55a-8182-5ad9-af20-5c350c9f5658"))
+  (global_label
+    "3V3"
+    (shape bidirectional)
+    (at 66.04 69.85 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "e60dd858-39e2-596b-ba9d-256281ee17f6"))
+  (wire
+    (pts
+      (xy 73.66 72.39)
+      (xy 66.04 72.39))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "93e87cd0-f84b-562c-9af6-9d695aa3e6a5"))
+  (global_label
+    "RESET_N"
+    (shape bidirectional)
+    (at 66.04 72.39 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "6cc3610c-66dc-55e8-9d80-c07c13c8b25a"))
+  (no_connect
+    (at 73.66 74.93)
+    (uuid "2c20311c-9634-5623-a3ff-f77c69bb1970"))
+  (no_connect
+    (at 73.66 77.47)
+    (uuid "fca25d4e-52eb-5140-a817-6eb6544ba121"))
+  (wire
+    (pts
+      (xy 73.66 80.01)
+      (xy 66.04 80.01))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4f860fea-52fd-5d44-87b9-2a698734e668"))
+  (global_label
+    "ENC_A"
+    (shape bidirectional)
+    (at 66.04 80.01 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "4efd06d0-ba3b-5116-811a-67c49b42a5a0"))
+  (wire
+    (pts
+      (xy 73.66 82.55)
+      (xy 66.04 82.55))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1baff058-a829-5bd6-a23b-c1c0bdc796cf"))
+  (global_label
+    "ENC_B"
+    (shape bidirectional)
+    (at 66.04 82.55 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "2b6c41c1-5cac-5b28-a9eb-0287ffa31ba7"))
+  (wire
+    (pts
+      (xy 73.66 85.09)
+      (xy 66.04 85.09))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "1106ae7c-74cb-5d3e-b55c-606c6e745612"))
+  (global_label
+    "BUTTON_UP_N"
+    (shape bidirectional)
+    (at 66.04 85.09 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "cdf76fc5-39a7-5cfe-9ce9-60134ba47c26"))
+  (wire
+    (pts
+      (xy 73.66 87.63)
+      (xy 66.04 87.63))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a0e77577-095f-59c4-841f-831210a46fd8"))
+  (global_label
+    "BUTTON_DOWN_N"
+    (shape bidirectional)
+    (at 66.04 87.63 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "602e7220-6b15-5c7c-a0cf-5922820e4a06"))
+  (wire
+    (pts
+      (xy 73.66 90.17)
+      (xy 66.04 90.17))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ba0661c3-2994-56d6-b28b-590c6706bb08"))
+  (label
+    "STRAP_IO8"
+    (at 66.04 90.17 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right bottom))
+    (uuid "afe1e6a6-8558-575a-a6c5-9db3cebf32bd"))
+  (wire
+    (pts
+      (xy 73.66 92.71)
+      (xy 66.04 92.71))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fc070c89-73cf-5d3b-ac46-82e298646b44"))
+  (global_label
+    "PACK_SDA"
+    (shape bidirectional)
+    (at 66.04 92.71 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "4de4ec26-8540-587e-b178-bce188022455"))
+  (wire
+    (pts
+      (xy 73.66 95.25)
+      (xy 66.04 95.25))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "fb3336c6-c5e4-5cb8-9b5c-6c46ff56ddf2"))
+  (global_label
+    "PACK_SCL"
+    (shape bidirectional)
+    (at 66.04 95.25 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "e3c05f57-b9b3-5af1-a601-1cf2f3b54fd3"))
+  (wire
+    (pts
+      (xy 73.66 97.79)
+      (xy 66.04 97.79))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "611348dd-b2d9-58a2-a1ae-39d6ef4437f3"))
+  (label
+    "MCU_USB_DM"
+    (at 66.04 97.79 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right bottom))
+    (uuid "00f890d2-df07-55a5-8ae6-c516bc3c04d0"))
+  (wire
+    (pts
+      (xy 73.66 100.33)
+      (xy 66.04 100.33))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "61ad9347-b850-5c80-9dde-c2723696f4cf"))
+  (label
+    "MCU_USB_DP"
+    (at 66.04 100.33 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right bottom))
+    (uuid "57024f77-4d46-5443-9675-3e46b08594fe"))
+  (wire
+    (pts
+      (xy 73.66 102.87)
+      (xy 66.04 102.87))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "eacd8c62-0e6c-54e8-b17b-81a20885831a"))
+  (label
+    "BOOT_N"
+    (at 66.04 102.87 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right bottom))
+    (uuid "9179e68d-7f23-5d96-8c2e-a3e2b39ea285"))
+  (wire
+    (pts
+      (xy 73.66 105.41)
+      (xy 66.04 105.41))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "df5cb9a3-f8ac-5eae-8069-13bcfa9549bf"))
+  (global_label
+    "MOTOR_IN1"
+    (shape bidirectional)
+    (at 66.04 105.41 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "a75bf0cc-5ce3-50db-8103-cfa6988dd0ad"))
+  (wire
+    (pts
+      (xy 73.66 107.95)
+      (xy 66.04 107.95))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "27e312e1-5523-5928-a295-95129d7d010f"))
+  (global_label
+    "MOTOR_IN2"
+    (shape bidirectional)
+    (at 66.04 107.95 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "f3967654-e485-5c4a-aa92-e94a340f124d"))
+  (wire
+    (pts
+      (xy 73.66 110.49)
+      (xy 66.04 110.49))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "ed7ad676-ca28-5fbb-96ca-da93c5cf581c"))
+  (global_label
+    "MOTOR_REQUEST_N"
+    (shape bidirectional)
+    (at 66.04 110.49 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "c41f9a62-d365-5c8c-86ea-680d7b9d1557"))
+  (wire
+    (pts
+      (xy 73.66 113.03)
+      (xy 66.04 113.03))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "cf6d2984-9c36-565d-a4fa-1074eb8976f0"))
+  (global_label
+    "MOTOR_FAULT_N"
+    (shape bidirectional)
+    (at 66.04 113.03 180)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify right))
+    (uuid "7236b37d-d7a4-534a-bbae-06812cf83028"))
+  (wire
+    (pts
+      (xy 96.52 111.76)
+      (xy 104.14 111.76))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "10951ca3-3631-53c5-8f74-c4d4e751d410"))
+  (global_label
+    "CHARGE_ALLOW_N"
+    (shape bidirectional)
+    (at 104.14 111.76 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "b753d115-a863-5602-a389-9df17620056d"))
+  (wire
+    (pts
+      (xy 96.52 109.22)
+      (xy 104.14 109.22))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "3b0fa484-6594-5c12-869f-4895c0582f2f"))
+  (global_label
+    "ENCODER_ALLOW_N"
+    (shape bidirectional)
+    (at 104.14 109.22 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "da8a46f6-7e71-59a2-960f-858ae3a9d70f"))
+  (no_connect
+    (at 96.52 106.68)
+    (uuid "d48f4063-2105-58ea-8abc-9f2654d89b02"))
+  (no_connect
+    (at 96.52 104.14)
+    (uuid "7ac40369-f30e-5713-b6ce-0819bcdca1fe"))
+  (wire
+    (pts
+      (xy 96.52 101.6)
+      (xy 104.14 101.6))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "61ed3da3-fba9-5323-9db0-0efea8535300"))
+  (global_label
+    "CHARGER_IRQ_N"
+    (shape bidirectional)
+    (at 104.14 101.6 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "e404232f-3d2d-5fbb-8ff9-06e62dd8ea89"))
+  (wire
+    (pts
+      (xy 96.52 99.06)
+      (xy 104.14 99.06))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "8ed2387c-361d-53cd-943d-7e6157ceecfa"))
+  (global_label
+    "WATCHDOG_HEARTBEAT"
+    (shape bidirectional)
+    (at 104.14 99.06 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "38fca132-4d8d-5756-92f5-79931a22bea8"))
+  (wire
+    (pts
+      (xy 96.52 96.52)
+      (xy 104.14 96.52))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "068fed26-0036-5974-afee-814d42dcf381"))
+  (global_label
+    "HOME_FILTERED_N"
+    (shape bidirectional)
+    (at 104.14 96.52 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "ad24118d-ab40-5255-a8f3-517bcdedbbeb"))
+  (wire
+    (pts
+      (xy 96.52 93.98)
+      (xy 104.14 93.98))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "cf0a5509-cfb9-598a-a98c-c35d3496c2c8"))
+  (label
+    "MOTOR_CURRENT_ADC"
+    (at 104.14 93.98 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left bottom))
+    (uuid "e1fb93f3-77be-54d0-92b9-c73fbd47e149"))
+  (wire
+    (pts
+      (xy 96.52 91.44)
+      (xy 104.14 91.44))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "6a07d2fa-94d0-5c7e-a381-2a607913d607"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 91.44 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "54369c02-30c1-5242-874c-6bdeee2cfa1b"))
+  (wire
+    (pts
+      (xy 96.52 88.9)
+      (xy 104.14 88.9))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a6964134-336e-5101-b79e-f2ebd5e43f37"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 88.9 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "52d0bfe2-1c02-53b5-9808-517f1488fa41"))
+  (wire
+    (pts
+      (xy 96.52 86.36)
+      (xy 104.14 86.36))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "2c037793-a426-5773-9bd3-4e72435217b9"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 86.36 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "be97c788-3edb-5502-8c1e-e9e3cf57bce7"))
+  (wire
+    (pts
+      (xy 96.52 83.82)
+      (xy 104.14 83.82))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "a6f63ab2-ed97-52b3-8485-d09b107017d6"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 83.82 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "57b85840-7265-5564-9539-ec1cbba99caa"))
+  (wire
+    (pts
+      (xy 96.52 81.28)
+      (xy 104.14 81.28))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "803b2a6c-2e74-570c-a97d-eb1adf1a39a7"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 81.28 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "4bb77940-d699-5195-ba26-f9a82745de12"))
+  (wire
+    (pts
+      (xy 96.52 78.74)
+      (xy 104.14 78.74))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f8b42216-6620-5117-a412-37b4139a246e"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 78.74 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "cd6dbf0c-18dd-5b32-89cb-d94f66d66b31"))
+  (wire
+    (pts
+      (xy 96.52 76.2)
+      (xy 104.14 76.2))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "408396d6-dd38-5b82-95d0-a96163119231"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 76.2 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "38b5f1c0-e5fd-5145-93d4-121f9d9fde23"))
+  (wire
+    (pts
+      (xy 96.52 73.66)
+      (xy 104.14 73.66))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "f3848e51-31dc-5e69-8574-5aad46b64429"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 73.66 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "ed841904-b5b7-5386-a9d2-bc0d4021ab6c"))
+  (wire
+    (pts
+      (xy 96.52 71.12)
+      (xy 104.14 71.12))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "c63e37d9-e436-530c-8a8a-8c4e8a430dbe"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 71.12 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "1383e0c7-5d13-570c-857d-22cb748b52e2"))
+  (wire
+    (pts
+      (xy 96.52 68.58)
+      (xy 104.14 68.58))
+    (stroke
+      (width 0)
+      (type default))
+    (uuid "4a824177-2a62-5ca2-9eaf-b89c953a7f7b"))
+  (global_label
+    "GND"
+    (shape bidirectional)
+    (at 104.14 68.58 0)
+    (effects
+      (font
+        (size 1.0 1.0))
+      (justify left))
+    (uuid "de07a9bb-ffcd-5f60-a526-2436bd222a0d"))
+  (symbol
+    (lib_id "SmartBlinds:P_ESP32_C6_WROOM_1_N4")
+    (at 85.09 90.17 0)
+    (unit 1)
+    (in_bom yes)
+    (on_board yes)
+    (dnp no)
+    (uuid "baeee9f5-80b8-5105-a4f9-7239220dd190")
+    (property
+      "Reference"
+      "U3"
+      (at 85.09 58.42 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "ESP32-C6-WROOM-1-N4"
+      (at 85.09 60.96 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-core:WIRELM-SMD_ESP32-C6-WROOM-1"
+      (at 85.09 90.17 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "MPN"
+      "ESP32-C6-WROOM-1-N4"
+      (at 85.09 90.17 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "LCSC"
+      "C6034714"
+      (at 85.09 90.17 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (property
+      "atopile_address"
+      "controller.mcu"
+      (at 85.09 90.17 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (hide yes)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc/c9255d8e-68b0-59dc-a1ca-036f9e076650"
+          (reference "U3")
+          (unit 1))))
+    (pin
+      "1"
+      (uuid "b21b7aef-1cae-5e8a-bfb5-ad3cedb88fbb"))
+    (pin
+      "2"
+      (uuid "56327629-54e6-549c-b9dc-a3f75eb9816a"))
+    (pin
+      "3"
+      (uuid "264d6e9e-e903-551f-98b0-0d01cbec47d5"))
+    (pin
+      "4"
+      (uuid "cd8c279e-370d-5bc4-a681-ec357c31a8e0"))
+    (pin
+      "5"
+      (uuid "5b874a75-81fc-526f-b1d1-277e9fc81661"))
+    (pin
+      "6"
+      (uuid "ef4bb9f6-d1c5-51c8-8388-414b8221446a"))
+    (pin
+      "7"
+      (uuid "fae12fb6-9274-5891-b65b-899134ad1357"))
+    (pin
+      "8"
+      (uuid "f5a6a938-402b-59c6-bc25-3f3d88ea002e"))
+    (pin
+      "9"
+      (uuid "414d7c16-d6b5-5966-a371-4688426c36c4"))
+    (pin
+      "10"
+      (uuid "ea9c8b03-aa5d-57c0-848f-cc0a2783eb39"))
+    (pin
+      "11"
+      (uuid "7294fd12-b77d-5e2f-b6c6-1af845f70904"))
+    (pin
+      "12"
+      (uuid "1af22693-b4da-50d1-98af-4381e0db27bc"))
+    (pin
+      "13"
+      (uuid "4016f918-6939-5271-9ac5-7327bd6ab9c7"))
+    (pin
+      "14"
+      (uuid "51916961-80a7-54cc-ab2d-09830a0248b1"))
+    (pin
+      "15"
+      (uuid "8dbda9c6-f58a-57d0-b82c-878bec3887f2"))
+    (pin
+      "16"
+      (uuid "8fea60e0-124a-55a8-886f-0ab80b00136b"))
+    (pin
+      "17"
+      (uuid "b95f34d8-4dd8-5dee-920b-9f3c45a67118"))
+    (pin
+      "18"
+      (uuid "5efecdae-3a95-5291-a013-aac7ce3f7599"))
+    (pin
+      "19"
+      (uuid "b322fab5-7721-5101-bde1-967031a25939"))
+    (pin
+      "20"
+      (uuid "a8ba3f4d-dba4-5448-8e8e-2c9ff2284aa5"))
+    (pin
+      "21"
+      (uuid "bdab21d1-50d0-5759-81f6-3c8578ad32ed"))
+    (pin
+      "22"
+      (uuid "d1eb63eb-42e6-5683-b716-1c127da0ed25"))
+    (pin
+      "23"
+      (uuid "13f8d791-04eb-5ecb-8da5-68405333ba68"))
+    (pin
+      "24"
+      (uuid "a454418b-e55f-5364-ad03-1ac2a9d3a26e"))
+    (pin
+      "25"
+      (uuid "e2692175-88b5-585d-aca5-6067432f321f"))
+    (pin
+      "26"
+      (uuid "b64a0ffb-521c-5c78-8c6e-10da3000af45"))
+    (pin
+      "27"
+      (uuid "3f2253fb-3cf5-5f09-8dc3-3a5a1bbe5b1d"))
+    (pin
+      "28"
+      (uuid "8d9457f2-cada-5f85-a1de-8412fe6bccea"))
+    (pin
+      "29"
+      (uuid "5213ede7-2dcc-52a9-9420-40e7416cde24"))
+    (pin
+      "30"
+      (uuid "ea19abc4-1447-5cc6-b9a5-48c5d46d6a3d"))
+    (pin
+      "31"
+      (uuid "f60dcbb8-ed1a-55b5-ba71-c4e38d97aa0d"))
+    (pin
+      "32"
+      (uuid "c3dffad0-fc10-53c7-adff-4b3f87006027"))
+    (pin
+      "33"
+      (uuid "8ffc7834-c0b0-5f2f-8556-463be60fc832"))
+    (pin
+      "34"
+      (uuid "b22e59cd-bf3c-5fe0-80a3-83393b870758"))
+    (pin
+      "35"
+      (uuid "f8089060-6bd8-5ec2-a3be-4788371c7cce"))
+    (pin
+      "36"
+      (uuid "53f6af70-3433-555f-8a17-0bd90edf251f"))
+    (pin
+      "37"
+      (uuid "f3a952f4-cbf8-5daf-9ecc-f4a67702013f")))
+  (text
+    "RADIO AND USB DATA / INTEGRATED CONTROLLER"
+    (at 15 15 0)
+    (effects
+      (font
+        (size 2 2))
+      (justify left))
+    (uuid "cc61d79b-f1c5-5a0e-8818-087dda81c017"))
+  (text
+    "ESP32-C6. USB programming shares the USB-C port. Strap-only GPIO4/5/15 are intentionally left open."
+    (at 15 26 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "ab08acd8-b872-50c5-a2f8-c50fd721c612"))
+  (text
+    "All pin connections independently exported and checked. Physical fit, routing and powered qualification remain open."
+    (at 15 276 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "0b2bdb4b-ccb6-58a5-89c9-ad0a52f95e86")))

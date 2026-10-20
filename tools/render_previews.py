@@ -145,7 +145,11 @@ def render() -> None:
                 pages = sorted(folder.glob('*.svg'))
                 if not pages:
                     raise RuntimeError('No schematic pages produced')
-                image = pages[0]
+                image = folder / entry['preview_page'] if 'preview_page' in entry else pages[0]
+                if image not in pages:
+                    raise ValueError('Requested schematic preview page was not exported')
+                if entry.get('export_pdf', False):
+                    run([kicad, 'sch', 'export', 'pdf', '--output', str(folder / 'schematic.pdf'), str(source)], env=env)
             elif entry['kind'] in ('footprints', 'holder-footprints'):
                 # The CAD study owns the comparison dimensions and SVG generator.
                 holder_study = entry['kind'] == 'holder-footprints'
@@ -159,8 +163,15 @@ def render() -> None:
                 mode = entry.get('render_mode', 'preview')
                 if mode not in ('preview', 'render'):
                     raise ValueError('OpenSCAD render_mode must be preview or render')
-                command = [openscad, '--' + mode, '--imgsize=1600,1000', '--viewall', '--autocenter',
+                command = [openscad, '--' + mode, '--imgsize=1600,1000',
                            '--projection=o', '--colorscheme=Tomorrow', '-o', str(image)]
+                auto_frame = entry.get('auto_frame', True)
+                if type(auto_frame) is not bool:
+                    raise ValueError('OpenSCAD auto_frame must be a boolean')
+                if auto_frame:
+                    command.extend(['--viewall', '--autocenter'])
+                elif 'camera' not in entry:
+                    raise ValueError('Fixed framing requires an explicit camera')
                 if 'camera' in entry:
                     camera = entry['camera']
                     if not isinstance(camera, list) or len(camera) != 7 or any(
@@ -189,9 +200,12 @@ def render() -> None:
                 gallery.extend(['<details>', f"<summary>{escape(entry['title'])}</summary>", ''])
             else:
                 gallery.extend([f"### {entry['title']}", ''])
+            links = f"[Source]({entry['source']}) · [Generated files](docs/generated/{entry['id']}/)"
+            if entry['kind'] == 'schematic' and entry.get('export_pdf', False):
+                links += f" · [PDF](docs/generated/{entry['id']}/schematic.pdf)"
             gallery.extend([entry['role'], '',
                             f"![{entry['title']}]({image_link})", '',
-                            f"[Source]({entry['source']}) · [Generated files](docs/generated/{entry['id']}/)", ''])
+                            links, ''])
             if entry.get('collapsed', False):
                 gallery.extend(['</details>', ''])
         final_paths = {MANIFEST, Path(__file__).resolve()}

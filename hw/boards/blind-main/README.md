@@ -19,10 +19,17 @@ BQ25798 pin 29 is an elongated perimeter PMID lead, not an exposed ground pad.
 Normal and frozen builds, twenty integration tests, manufacturer land-pattern
 checks, explicit placement and RF-rule checks pass locally. Injected wrong rails,
 swapped ports and shorted signals are rejected. The actual KiCad placement check
-has no courtyard overlap or keepout infringement. It remains **entirely unrouted**;
-manufacturing rules, silkscreen cleanup, power/thermal layout, full-board schematic,
-RF/EMI and prototype qualification remain unfinished. Passing these checks does
+has no reported courtyard overlap or keepout infringement, but 98 inherited
+footprints lack courtyards; full clearance coverage is still being completed.
+It remains **entirely unrouted**;
+manufacturing rules, silkscreen cleanup, power/thermal layout, RF/EMI and
+prototype qualification remain unfinished. Passing these checks does
 not establish physical function or fabrication readiness.
+
+The [complete native KiCad hierarchy](../../schematics/blind-main/README.md) now
+contains eleven sheets. Its independently exported netlist matches all 609 pin
+identities and all 142 nets. Nine fault-injection tests pass; seven exact ERC
+findings remain documented.
 
 The thermal latch independently gates motor permission and pulls the shared driver
 fault line low; firmware cannot distinguish those two faults on that pin alone.

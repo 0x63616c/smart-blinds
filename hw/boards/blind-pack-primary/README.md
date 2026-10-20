@@ -9,7 +9,9 @@ gauge/protection circuit, and solder landings for the retained wiring.
 `blind-carrier` study. The independent pack check compares every physical pin
 against that earlier contract and checks the new holder/fuse partition.
 The primary BOM contains 33 purchased components; its 17 solder features are
-not purchased components. The compiled board has 50 footprints and 120 pins.
+not purchased components. The compiled board has 50 electrical footprints and 120 pins, plus four
+board-only NPTH mounting holes. The [placement study](../../placement/blind-pack/README.md)
+puts the holder-facing components on the outward front face of the cassette.
 
 The four `link_*` pads permanently join the identically named companion pads:
 raw ground, series junction1, junction2 and raw top. They carry cell current,
@@ -35,11 +37,13 @@ The charger thermistor has two separate local landings wired only to cable
 contacts5/6. Its return is deliberately not tied to raw ground. The gauge alert
 is a factory test landing; it is not added to the six-way cable.
 
-Normal and frozen compilation passed with atopile 0.15.9. Run
+Normal compilation and isolated circuit-only frozen checks passed with atopile
+0.15.9. The four board-only holes are checked separately; the pinned compiler
+removes them during a direct build. Follow the placement README workflow. Run
 `python3 hw/sim/blind-pack/checks.py --check` from the repository for the
 136-pin combined graph, holder geometry and six fault regressions. Solder
-landings, holder holes and parts still need placement, routing, thermal and
-assembly qualification. No release or physical battery-safety claim follows
+landings, holder holes and parts are placed within the mechanical allocation;
+routing, thermal and assembly qualification remain open. No release or physical battery-safety claim follows
 from compilation. Complete NVM settings, thermistor selection/attachment,
 fuse clearing, cell matching, reverse insertion and failed-short protection
 remain open.

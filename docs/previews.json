@@ -102,6 +102,23 @@
       "role": "54 \u00d7 68.5 mm black-board study, with USB-C, protected battery connection, motor tails and encoder/home ports. All 196 footprints are placed; no copper is routed. Thermal design, manufacturing rules and physical qualification remain open."
     },
     {
+      "id": "main-controller-schematic",
+      "kind": "schematic",
+      "title": "Complete controller schematic",
+      "source": "hw/schematics/blind-main/smart-blinds-main.kicad_sch",
+      "dependencies": [
+        "hw/schematics/blind-main/*",
+        "tools/generate_main_schematic.py",
+        "tools/main_schematic_page.py",
+        "tools/generate_schematics.py",
+        "tools/kicad_sexpr.py"
+      ],
+      "preview_page": "smart-blinds-main.svg",
+      "export_pdf": true,
+      "collapsed": true,
+      "role": "Eleven native KiCad sheets cover all 196 circuit features and 609 pin identities. The exported net partition matches the PCB; seven documented ERC findings remain. Unrouted and unpowered."
+    },
+    {
       "kind": "openscad",
       "source": "cad/source/compact_direct.scad",
       "dependencies": [

@@ -1,0 +1,453 @@
+{
+  "status": "UNROUTED placement study, not thermal or assembly approval",
+  "coordinates": "Assembly-local x=global X\u22124.8, y=global Y\u22126; front primary component view. Companion is mirrored across X in KiCad because its outward component face points toward the wall.",
+  "kicad_mapping": {
+    "primary": "x=100+local_x, y=204\u2212local_y",
+    "companion": "x=186\u2212local_x, y=204\u2212local_y"
+  },
+  "outline_mm": [
+    86,
+    104
+  ],
+  "corner_radius_mm": 4,
+  "holder_positive_end": "lower local y end, towards branch fuse",
+  "boards": {
+    "primary": {
+      "component_face_global": "+Z",
+      "placements": {
+        "carrier.holder1": {
+          "xy": [
+            15,
+            49.9
+          ],
+          "rotation": 90
+        },
+        "carrier.fuse1": {
+          "xy": [
+            15,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.holder2": {
+          "xy": [
+            41,
+            49.9
+          ],
+          "rotation": 90
+        },
+        "carrier.fuse2": {
+          "xy": [
+            41,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.holder3": {
+          "xy": [
+            67,
+            49.9
+          ],
+          "rotation": 90
+        },
+        "carrier.fuse3": {
+          "xy": [
+            67,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.link_raw_ground": {
+          "xy": [
+            15.2,
+            100
+          ],
+          "rotation": 0
+        },
+        "carrier.link_junction1": {
+          "xy": [
+            33.2,
+            100
+          ],
+          "rotation": 0
+        },
+        "carrier.link_junction2": {
+          "xy": [
+            51.2,
+            100
+          ],
+          "rotation": 0
+        },
+        "carrier.link_raw_top": {
+          "xy": [
+            69.2,
+            100
+          ],
+          "rotation": 0
+        },
+        "carrier.harness_pack_positive": {
+          "xy": [
+            47,
+            94.8
+          ],
+          "rotation": 0
+        },
+        "carrier.harness_pack_ground": {
+          "xy": [
+            53,
+            94.8
+          ],
+          "rotation": 0
+        },
+        "carrier.harness_gauge_sda": {
+          "xy": [
+            59,
+            94.8
+          ],
+          "rotation": 0
+        },
+        "carrier.harness_gauge_scl": {
+          "xy": [
+            65,
+            94.8
+          ],
+          "rotation": 0
+        },
+        "carrier.harness_charger_ntc_sense": {
+          "xy": [
+            71,
+            94.8
+          ],
+          "rotation": 0
+        },
+        "carrier.harness_charger_ntc_return": {
+          "xy": [
+            77,
+            94.8
+          ],
+          "rotation": 0
+        },
+        "carrier.ntc1_sense": {
+          "xy": [
+            10,
+            94.5
+          ],
+          "rotation": 0
+        },
+        "carrier.ntc1_return": {
+          "xy": [
+            14,
+            94.5
+          ],
+          "rotation": 0
+        },
+        "carrier.ntc2_sense": {
+          "xy": [
+            18,
+            94.5
+          ],
+          "rotation": 0
+        },
+        "carrier.ntc2_return": {
+          "xy": [
+            22,
+            94.5
+          ],
+          "rotation": 0
+        },
+        "carrier.charger_ntc_sense": {
+          "xy": [
+            26,
+            94.5
+          ],
+          "rotation": 0
+        },
+        "carrier.charger_ntc_return": {
+          "xy": [
+            30,
+            94.5
+          ],
+          "rotation": 0
+        },
+        "carrier.gauge_alert_test": {
+          "xy": [
+            37.7,
+            100
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.gauge": {
+          "xy": [
+            28,
+            4.5
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.r_supply": {
+          "xy": [
+            24,
+            1.1
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.c_supply": {
+          "xy": [
+            26,
+            7.45
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.c_pump": {
+          "xy": [
+            32,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.c_reg2": {
+          "xy": [
+            23,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.c_reg3": {
+          "xy": [
+            28,
+            1.2
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.r_pfail": {
+          "xy": [
+            28,
+            7.45
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.r_aoldo": {
+          "xy": [
+            30,
+            7.45
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.shunt": {
+          "xy": [
+            73.0,
+            4.5
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.r_balance1": {
+          "xy": [
+            20,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.r_balance3": {
+          "xy": [
+            35,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.r_balance4": {
+          "xy": [
+            45.5,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.c_cell1": {
+          "xy": [
+            20,
+            7.45
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.c_cell3": {
+          "xy": [
+            22,
+            7.45
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.c_cell4": {
+          "xy": [
+            24,
+            7.45
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.charge_fet": {
+          "xy": [
+            54,
+            4.5
+          ],
+          "rotation": 270
+        },
+        "carrier.protection.discharge_fet": {
+          "xy": [
+            58,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.r_charge_gate": {
+          "xy": [
+            51,
+            4.0
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.r_discharge_gate": {
+          "xy": [
+            61,
+            4.0
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.c_charge_gate": {
+          "xy": [
+            51,
+            6.4
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.r_pack_sense": {
+          "xy": [
+            61,
+            6.4
+          ],
+          "rotation": 90
+        },
+        "carrier.protection.r_sda": {
+          "xy": [
+            46,
+            98.5
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.r_scl": {
+          "xy": [
+            46,
+            100.5
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.r_alert": {
+          "xy": [
+            38.5,
+            102.5
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.z_sda": {
+          "xy": [
+            42,
+            94.5
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.z_scl": {
+          "xy": [
+            42,
+            97.5
+          ],
+          "rotation": 0
+        },
+        "carrier.protection.z_alert": {
+          "xy": [
+            42,
+            100.5
+          ],
+          "rotation": 0
+        }
+      }
+    },
+    "companion": {
+      "component_face_global": "\u2212Z",
+      "placements": {
+        "carrier.holder1": {
+          "xy": [
+            15,
+            49.9
+          ],
+          "rotation": 90
+        },
+        "carrier.fuse1": {
+          "xy": [
+            15,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.holder2": {
+          "xy": [
+            41,
+            49.9
+          ],
+          "rotation": 90
+        },
+        "carrier.fuse2": {
+          "xy": [
+            41,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.holder3": {
+          "xy": [
+            67,
+            49.9
+          ],
+          "rotation": 90
+        },
+        "carrier.fuse3": {
+          "xy": [
+            67,
+            4.5
+          ],
+          "rotation": 90
+        },
+        "carrier.link_raw_ground": {
+          "xy": [
+            15.2,
+            100
+          ],
+          "rotation": 0
+        },
+        "carrier.link_junction1": {
+          "xy": [
+            33.2,
+            100
+          ],
+          "rotation": 0
+        },
+        "carrier.link_junction2": {
+          "xy": [
+            51.2,
+            100
+          ],
+          "rotation": 0
+        },
+        "carrier.link_raw_top": {
+          "xy": [
+            69.2,
+            100
+          ],
+          "rotation": 0
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Holder fastening and actual cell insertion loads remain unqualified.",
+    "All purchased components face outward; solder protrusion toward central barrier must remain <=1.5 mm.",
+    "Support interruptions must match revised retained-interfaces.json.",
+    "FET/shunt/fuse heat spreading and Kelvin routing have not been completed.",
+    "Four raw intercarrier links are permanent enclosed retained wiring; arbitrary open-link fault tolerance is absent."
+  ]
+}

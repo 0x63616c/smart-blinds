@@ -1,0 +1,1801 @@
+{
+  "pcb": "hw/layouts/blind-main/main-test/main-test.kicad_pcb",
+  "symbols": {
+    "P_": {
+      "source": "hw/parts/blind-pack-features/WirePad18.kicad_sym",
+      "name": "WirePad18",
+      "pins": {
+        "1": {
+          "name": "WIRE",
+          "type": "passive"
+        }
+      }
+    },
+    "P_0402WGF1001TCE": {
+      "source": "hw/parts/blind-control-io/0402WGF1001TCE.kicad_sym",
+      "name": "0402WGF1001TCE",
+      "type": "passive"
+    },
+    "P_0402WGF1002TCE": {
+      "source": "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym",
+      "name": "0402WGF1002TCE",
+      "type": "passive"
+    },
+    "P_0402WGF1003TCE": {
+      "source": "hw/parts/blind-control-io/0402WGF1003TCE.kicad_sym",
+      "name": "0402WGF1003TCE",
+      "type": "passive"
+    },
+    "P_0402WGF220JTCE": {
+      "source": "hw/parts/blind-control-io/0402WGF220JTCE.kicad_sym",
+      "name": "0402WGF220JTCE",
+      "type": "passive"
+    },
+    "P_0402WGF4701TCE": {
+      "source": "hw/parts/blind-control-io/0402WGF4701TCE.kicad_sym",
+      "name": "0402WGF4701TCE",
+      "type": "passive"
+    },
+    "P_430450600": {
+      "source": "hw/parts/blind-connectors/430450600.kicad_sym",
+      "name": "430450600",
+      "pins": {
+        "1": {
+          "name": "1",
+          "type": "passive"
+        },
+        "2": {
+          "name": "2",
+          "type": "passive"
+        },
+        "3": {
+          "name": "3",
+          "type": "passive"
+        },
+        "4": {
+          "name": "4",
+          "type": "passive"
+        },
+        "5": {
+          "name": "5",
+          "type": "passive"
+        },
+        "6": {
+          "name": "6",
+          "type": "passive"
+        }
+      }
+    },
+    "P_532610371": {
+      "source": "hw/parts/blind-harness/532610371.kicad_sym",
+      "name": "532610371",
+      "pins": {
+        "1": {
+          "name": "1",
+          "type": "passive"
+        },
+        "2": {
+          "name": "2",
+          "type": "passive"
+        },
+        "3": {
+          "name": "3",
+          "type": "passive"
+        }
+      }
+    },
+    "P_532610471": {
+      "source": "hw/parts/blind-harness/532610471.kicad_sym",
+      "name": "53261-0471",
+      "pins": {
+        "1": {
+          "name": "1",
+          "type": "passive"
+        },
+        "2": {
+          "name": "2",
+          "type": "passive"
+        },
+        "3": {
+          "name": "3",
+          "type": "passive"
+        },
+        "4": {
+          "name": "4",
+          "type": "passive"
+        }
+      }
+    },
+    "P_AO3400A": {
+      "source": "hw/parts/blind-power/AO3400A.kicad_sym",
+      "name": "AO3400A",
+      "type": "passive"
+    },
+    "P_CL05B104KB54PNC": {
+      "source": "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym",
+      "name": "CL05B104KB54PNC",
+      "type": "passive"
+    },
+    "P_CL10A105KB8NNNC": {
+      "source": "hw/parts/SAMSUNG_CL10A105KB8NNNC/CL10A105KB8NNNC.kicad_sym",
+      "name": "CL10A105KB8NNNC",
+      "type": "passive"
+    },
+    "P_CL21A226MAYNNNE": {
+      "source": "hw/parts/blind-power/CL21A226MAYNNNE.kicad_sym",
+      "name": "CL21A226MAYNNNE",
+      "type": "passive"
+    },
+    "P_CL31A475KBHNNNE": {
+      "source": "hw/parts/blind-usb/CL31A475KBHNNNE.kicad_sym",
+      "name": "CL31A475KBHNNNE",
+      "type": "passive"
+    },
+    "P_ESP32_C6_WROOM_1_N4": {
+      "source": "hw/parts/blind-core/ESP32_C6_WROOM_1_N4.kicad_sym",
+      "name": "ESP32-C6-WROOM-1-N4",
+      "pins": {
+        "1": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "2": {
+          "name": "3V3",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "EN",
+          "type": "input"
+        },
+        "4": {
+          "name": "IO4",
+          "type": "bidirectional"
+        },
+        "5": {
+          "name": "IO5",
+          "type": "bidirectional"
+        },
+        "6": {
+          "name": "IO6",
+          "type": "bidirectional"
+        },
+        "7": {
+          "name": "IO7",
+          "type": "bidirectional"
+        },
+        "8": {
+          "name": "IO0",
+          "type": "bidirectional"
+        },
+        "9": {
+          "name": "IO1",
+          "type": "bidirectional"
+        },
+        "10": {
+          "name": "IO8",
+          "type": "bidirectional"
+        },
+        "11": {
+          "name": "IO10",
+          "type": "bidirectional"
+        },
+        "12": {
+          "name": "IO11",
+          "type": "bidirectional"
+        },
+        "13": {
+          "name": "IO12",
+          "type": "bidirectional"
+        },
+        "14": {
+          "name": "IO13",
+          "type": "bidirectional"
+        },
+        "15": {
+          "name": "IO9",
+          "type": "bidirectional"
+        },
+        "16": {
+          "name": "IO18",
+          "type": "bidirectional"
+        },
+        "17": {
+          "name": "IO19",
+          "type": "bidirectional"
+        },
+        "18": {
+          "name": "IO20",
+          "type": "bidirectional"
+        },
+        "19": {
+          "name": "IO21",
+          "type": "bidirectional"
+        },
+        "20": {
+          "name": "IO22",
+          "type": "bidirectional"
+        },
+        "21": {
+          "name": "IO23",
+          "type": "bidirectional"
+        },
+        "22": {
+          "name": "NC",
+          "type": "no_connect"
+        },
+        "23": {
+          "name": "IO15",
+          "type": "bidirectional"
+        },
+        "24": {
+          "name": "RXD0",
+          "type": "bidirectional"
+        },
+        "25": {
+          "name": "TXD0",
+          "type": "bidirectional"
+        },
+        "26": {
+          "name": "IO3",
+          "type": "bidirectional"
+        },
+        "27": {
+          "name": "IO2",
+          "type": "bidirectional"
+        },
+        "28": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "29": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "30": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "31": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "32": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "33": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "34": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "35": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "36": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "37": {
+          "name": "GND",
+          "type": "power_in"
+        }
+      }
+    },
+    "P_SN74AUP1G97DCKR": {
+      "source": "hw/parts/blind-supervisor/SN74AUP1G97DCKR.kicad_sym",
+      "name": "SN74AUP1G97DCKR",
+      "pins": {
+        "1": {
+          "name": "B",
+          "type": "input"
+        },
+        "2": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "A",
+          "type": "input"
+        },
+        "4": {
+          "name": "Y",
+          "type": "output"
+        },
+        "5": {
+          "name": "VCC",
+          "type": "power_in"
+        },
+        "6": {
+          "name": "C",
+          "type": "input"
+        }
+      }
+    },
+    "P_SN74LVC2G17DCKR": {
+      "source": "hw/parts/blind-control-io/SN74LVC2G17DCKR.kicad_sym",
+      "name": "SN74LVC2G17DCKR",
+      "pins": {
+        "1": {
+          "name": "1A",
+          "type": "input"
+        },
+        "2": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "2A",
+          "type": "input"
+        },
+        "4": {
+          "name": "2Y",
+          "type": "output"
+        },
+        "5": {
+          "name": "VCC",
+          "type": "power_in"
+        },
+        "6": {
+          "name": "1Y",
+          "type": "output"
+        }
+      }
+    },
+    "P_TPD2E2U06DRLR": {
+      "source": "hw/parts/blind-control-io/TPD2E2U06DRLR.kicad_sym",
+      "name": "TPD2E2U06DRLR",
+      "pins": {
+        "1": {
+          "name": "NC",
+          "type": "passive"
+        },
+        "2": {
+          "name": "NC",
+          "type": "passive"
+        },
+        "3": {
+          "name": "IO1",
+          "type": "passive"
+        },
+        "4": {
+          "name": "GND",
+          "type": "passive"
+        },
+        "5": {
+          "name": "IO2",
+          "type": "passive"
+        }
+      }
+    },
+    "P_TPS70950DBVR": {
+      "source": "hw/parts/blind-encoder/TPS70950DBVR.kicad_sym",
+      "name": "TPS70950DBVR",
+      "pins": {
+        "1": {
+          "name": "IN",
+          "type": "power_in"
+        },
+        "2": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "EN",
+          "type": "input"
+        },
+        "4": {
+          "name": "NC",
+          "type": "no_connect"
+        },
+        "5": {
+          "name": "OUT",
+          "type": "power_out"
+        }
+      }
+    },
+    "P_TS_1081S_AC01326": {
+      "source": "hw/parts/blind-control-io/TS_1081S_AC01326.kicad_sym",
+      "name": "TS-1081S-AC01326",
+      "pins": {
+        "3": {
+          "name": "3",
+          "type": "passive"
+        },
+        "4": {
+          "name": "4",
+          "type": "passive"
+        },
+        "2": {
+          "name": "2",
+          "type": "passive"
+        },
+        "1": {
+          "name": "1",
+          "type": "passive"
+        }
+      }
+    }
+  },
+  "net_names": {
+    "1": "CHARGER_BTST1",
+    "10": "STRAP_IO8",
+    "14": "USB_NC_OK3",
+    "2": "CHARGER_SW2",
+    "20": "USB_NC_OK2",
+    "23": "NC_CONTROLLER_MCU_23",
+    "4": "ENC_B",
+    "5": "NC_CONTROLLER_MCU_5",
+    "6": "ENC_A",
+    "A8": "USB_NC_SBU1",
+    "ALERT": "USB_NC_ALERT",
+    "ATTACH": "USB_NC_ATTACH",
+    "AUXOFF": "USB_NC_AUXOFF",
+    "A_B_SIDE": "USB_NC_ORIENTATION",
+    "B8": "USB_NC_SBU2",
+    "BATP": "CHARGER_BATTERY_SENSE",
+    "C": "USB_UV_SOURCE",
+    "CC2": "USB_CC2",
+    "CE_n": "CHARGER_CHARGE_ENABLE_N",
+    "CPH": "CPH",
+    "CPL": "CPL",
+    "CRST": "SUP_NC_CRST",
+    "CT": "SUP_NC_CT",
+    "CWD": "SUP_TIMING",
+    "D": "MOTOR_FAULT_N",
+    "DISCH": "USB_DISCH",
+    "DM": "CHARGER_NC_DM",
+    "DP": "CHARGER_NC_DP",
+    "DVDT": "USB_SLEW",
+    "EN": "ENCODER_ENABLE",
+    "FB_VSET": "REG_NC_INTERNAL_3V3",
+    "FLT_N": "USB_NC_FLT",
+    "G": "THERMAL_TRIP",
+    "GPIO": "USB_NC_GPIO",
+    "ILIM_HIZ": "CHARGER_STARTUP_ILIM",
+    "ILM": "USB_ILM",
+    "IMODE": "MOTOR_IMODE_FLOAT",
+    "INT_n": "CHARGER_IRQ_N",
+    "ITIMER": "USB_NC_ITIMER",
+    "MODE_S_CONF": "REG_MODE",
+    "MR": "SUP_WATCHDOG_FAULT_N",
+    "NC": "NC_CONTROLLER_MCU_22",
+    "OUTA": "REGEN_NC_OUTA",
+    "OUTB": "REGEN_DETECT_N",
+    "PG": "REG_LOGIC_POWER_GOOD",
+    "PMODE": "MOTOR_PWM_MODE",
+    "PROG": "CHARGER_3S_PROGRAM",
+    "QON_n": "CHARGER_NC_QON",
+    "RESET": "USB_RESET",
+    "SCL": "USB_FACTORY_SCL",
+    "SDA": "USB_FACTORY_SDA",
+    "SDRV": "CHARGER_SDRV",
+    "SS_TR": "REG_SOFT_START",
+    "STAT": "CHARGER_STATUS_N",
+    "SW": "REG_SW",
+    "VBUS_EN_SNK": "USB_SINK_ENABLE_N",
+    "VBUS_VS_DISCH": "USB_MONITOR",
+    "VCP": "VCP",
+    "WDI": "SUP_WDI_BUFFERED",
+    "Y": "MOTOR_SLEEP_N",
+    "allow_n-line": "ENCODER_ALLOW_N",
+    "boot_n": "BOOT_N",
+    "c_1v2-1": "USB_VREG1V2",
+    "c_2v7-1": "USB_VREG2V7",
+    "c_adc-1": "MOTOR_CURRENT_ADC",
+    "c_boot1-1": "CHARGER_SW1",
+    "c_boot2-1": "CHARGER_BTST2",
+    "c_down-1": "BUTTON_DOWN_N",
+    "c_hot_filter-1": "REGEN_3V3",
+    "c_pmid1-1": "CHARGER_PMID",
+    "c_ref-1": "VREF_1V65",
+    "c_regn-1": "CHARGER_REGN",
+    "c_up-1": "BUTTON_UP_N",
+    "c_vdd-1": "USB_VDD",
+    "channel_a": "ENC_A_RAW",
+    "channel_b": "ENC_B_RAW",
+    "charger-1": "CHARGER_CE_GATE",
+    "charger-1-1": "CHARGER_PERMISSION_BASE",
+    "connector-1": "USB_CC1",
+    "controller-1": "ENC_A_FILTERED",
+    "controller-1-1": "ENC_B_FILTERED",
+    "controller-1-2": "MCU_USB_DM",
+    "controller-1-3": "MCU_USB_DP",
+    "controller-2": "HOME_FILTERED_N",
+    "controller.mcu-4": "NC_CONTROLLER_MCU_4",
+    "current_raw": "MOTOR_ISENSE",
+    "efuse-1": "USB_UVLO",
+    "encoder-output-hv": "VENC_5V",
+    "encoder.ic-NC": "NC_ENCODER_IC_4",
+    "heartbeat-line": "WATCHDOG_HEARTBEAT",
+    "home_contact_n": "HOME_CONTACT_N",
+    "hv": "PACK_PROTECTED",
+    "in1-1": "MOTOR_IN1",
+    "in2-line": "MOTOR_IN2",
+    "line": "CHARGE_ALLOW_N",
+    "logic_supply-EN": "REG_REGULATOR_ENABLE",
+    "lv": "GND",
+    "motor_a": "MOTOR_OUT1",
+    "motor_b": "MOTOR_OUT2",
+    "motor_request_n-line": "MOTOR_REQUEST_N",
+    "motor_sleep_n-Y": "SUPERVISED_PERMISSION",
+    "pack_ntc": "PACK_NTC",
+    "pack_scl": "PACK_SCL",
+    "pack_sda": "PACK_SDA",
+    "pd-1": "USB_ADDR0",
+    "pd-1-1": "USB_ADDR1",
+    "q_drive-1": "DUMP_GATE",
+    "q_enable-1": "USB_PNP_BASE",
+    "r_base1-1": "USB_BASE_MID",
+    "r_dump1a-1": "REGEN_BANK1",
+    "r_dump2a-1": "REGEN_BANK2",
+    "r_dump3a-1": "REGEN_BANK3",
+    "r_dump4a-1": "REGEN_BANK4",
+    "r_feedback1-1": "REGEN_FB_MID",
+    "r_out_dis1-1": "USB_OUT_DIS1",
+    "r_out_dis2-1": "USB_OUT_DIS2",
+    "r_ov_top1-1": "USB_OV_MID",
+    "r_raw_dis1-1": "USB_RAW_DIS1",
+    "r_raw_dis2-1": "USB_RAW_DIS2",
+    "r_threshold_top1-1": "REGEN_TOP_MID",
+    "r_uv_top1-1": "USB_UV_MID",
+    "rail-hv": "3V3",
+    "raw-hv": "USB_VBUS_RAW",
+    "regen-2": "REGEN_HOT_BASE",
+    "regen-2-1": "DUMP_LO",
+    "regen-2-2": "REGEN_DRIVE_BASE",
+    "regen.thermal_supply-EN": "REGEN_NC_EN",
+    "regen.thermal_supply-NC": "REGEN_NC_LDO",
+    "reset_n": "RESET_N",
+    "series_mid": "CLAMP_MID",
+    "source-hv": "SYS",
+    "supervision-6": "SUP_REQ_BUFFERED",
+    "supervision.watchdog-NC": "SUP_NC_WD",
+    "supply": "NC_HOME_PORT_HEADER_2",
+    "thermal_gate": "TRIP_GATE",
+    "thermal_ok": "THERMAL_OK",
+    "threshold": "REGEN_SENSE",
+    "usb-2": "USB_OVLO",
+    "usb-output-hv": "VBUS_ACCEPTED",
+    "usb.pd-NC": "USB_NC_PD3",
+    "usb_dm": "USB_DM",
+    "usb_dp": "USB_DP"
+  },
+  "pages": [
+    {
+      "id": "01-usb",
+      "short_title": "USB-C input",
+      "title": "Smart Blinds / USB-C input",
+      "block_layout": "hw/schematics/blind-usb/usb-test.layout.json",
+      "prefix": "usb",
+      "source_prefix": "usb",
+      "notes": [
+        {
+          "at": [
+            15,
+            15
+          ],
+          "text": "USB-C PD INPUT / CIRCUIT STUDY",
+          "size": 2
+        },
+        {
+          "at": [
+            15,
+            24
+          ],
+          "text": "Factory NVM required: 5V/1.5A, 9V/2.5A, 15V/2.5A; POWER_ONLY_ABOVE_5V=1. Factory bus is separate from the MCU bus.",
+          "size": 1.27
+        },
+        {
+          "at": [
+            15,
+            33
+          ],
+          "text": "Source/load protection, discharge timing and startup remain unqualified. Charger input capacitor bank is external.",
+          "size": 1.27
+        },
+        {
+          "at": [
+            15,
+            281
+          ],
+          "text": "33-part unrouted capture. Native pin equivalence is not PD protocol, ESD/surge or fabrication approval.",
+          "size": 1.27
+        }
+      ]
+    },
+    {
+      "id": "02-charger",
+      "short_title": "3S charger",
+      "title": "Smart Blinds / 3S charger",
+      "block_layout": "hw/schematics/blind-charger/charger-test.layout.json",
+      "prefix": "charger",
+      "source_prefix": "charger",
+      "notes": [
+        {
+          "at": [
+            15,
+            17
+          ],
+          "size": 2,
+          "text": "3S CHARGER / CIRCUIT STUDY"
+        },
+        {
+          "at": [
+            15,
+            26
+          ],
+          "text": "BQ25798: 3S, 750 kHz, 2.2 uH. Protected pack, USB-PD and logic regulator connect through named global nets."
+        },
+        {
+          "at": [
+            15,
+            34
+          ],
+          "text": "All capacitor values are nominal. DC bias, converter dynamics and thermal behavior require qualification."
+        },
+        {
+          "at": [
+            15,
+            190
+          ],
+          "text": "Active-LOW charging permission; absent 3V3 keeps the CE pull-down off."
+        },
+        {
+          "at": [
+            230,
+            215
+          ],
+          "text": "NTC: independent 10k / B3435 thermistor on cells (external).\nHost sets 40C warm suspend; independent pack protection required.\nDefault hard-hot is approximately 60C, not 45C."
+        },
+        {
+          "at": [
+            230,
+            240
+          ],
+          "text": "Motor uses protected PACK, not SYS.\nNo placement, routing, physical charging or fabrication approval."
+        },
+        {
+          "at": [
+            15,
+            278
+          ],
+          "text": "Integrated controller page. Native exported netlist checked against all PCB pins; unpowered and unrouted."
+        }
+      ]
+    },
+    {
+      "id": "03-logic",
+      "short_title": "Logic supply",
+      "title": "Smart Blinds / Logic supply",
+      "block_layout": "hw/schematics/blind-regulator/regulator-test.layout.json",
+      "prefix": "logic_supply",
+      "source_prefix": "regulator",
+      "notes": [
+        {
+          "at": [
+            15,
+            15
+          ],
+          "size": 2,
+          "text": "3.3 V LOGIC SUPPLY / CIRCUIT STUDY"
+        },
+        {
+          "at": [
+            15,
+            24
+          ],
+          "text": "TPS62902: charger SYS 8.8-13.2V input; 1A load design target. Internal 3.3V divider (VSET intentionally open)."
+        },
+        {
+          "at": [
+            15,
+            33
+          ],
+          "text": "Capacitance is nominal. Typical DC-bias estimates and 65mV static reset margin do not prove load-transient behavior."
+        },
+        {
+          "at": [
+            15,
+            187
+          ],
+          "text": "Integrated controller page. Native exported netlist checked against all PCB pins; unpowered and unrouted."
+        }
+      ]
+    },
+    {
+      "id": "04-motor",
+      "short_title": "Motor bridge",
+      "title": "Smart Blinds / Motor bridge",
+      "block_layout": "hw/schematics/blind-controller/motor-test.layout.json",
+      "prefix": "motor",
+      "source_prefix": "bridge",
+      "notes": [
+        {
+          "at": [
+            15.24,
+            17.78
+          ],
+          "size": 2,
+          "text": "MOTOR DRIVER / CIRCUIT STUDY"
+        },
+        {
+          "at": [
+            15.24,
+            25.4
+          ],
+          "text": "DRV8874; 9\u201312.6 V pack; 3.3 V logic. Global nets connect controller and protection sheets."
+        },
+        {
+          "at": [
+            15.24,
+            31.75
+          ],
+          "text": "Default off via pull-downs. IMODE floats deliberately: fixed off-time / latched overcurrent fault."
+        },
+        {
+          "at": [
+            20.32,
+            43.18
+          ],
+          "text": "Control and status"
+        },
+        {
+          "at": [
+            198.12,
+            43.18
+          ],
+          "text": "Supply and charge pump"
+        },
+        {
+          "at": [
+            15.24,
+            101.6
+          ],
+          "text": "Default-off inputs / fault pull-up / PWM mode"
+        },
+        {
+          "at": [
+            15.24,
+            142.24
+          ],
+          "text": "Current threshold and measurement"
+        },
+        {
+          "at": [
+            15.24,
+            172.72
+          ],
+          "text": "Nominal current limit about 3 A; integrated upper estimate 3.418 A before transient overshoot. Motor data unmeasured."
+        },
+        {
+          "at": [
+            15.24,
+            177.8
+          ],
+          "text": "Regenerative clamp appears on sheet 7. Thermal layout and powered qualification remain open."
+        }
+      ],
+      "component_overrides": {
+        "motor.c_vm": {
+          "at": [
+            248.92,
+            68.58,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "motor.c_fly": {
+          "at": [
+            200.66,
+            124.46,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "motor.c_pump": {
+          "at": [
+            248.92,
+            124.46,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "motor.c_ref": {
+          "at": [
+            238.76,
+            157.48,
+            0
+          ],
+          "text_offset": [
+            0,
+            -7.62
+          ]
+        }
+      }
+    },
+    {
+      "id": "05-supervision",
+      "short_title": "Motor supervision",
+      "title": "Smart Blinds / Motor supervision",
+      "block_layout": "hw/schematics/blind-supervisor/supervisor-test.layout.json",
+      "prefix": "supervision",
+      "source_prefix": "block",
+      "notes": [
+        {
+          "at": [
+            15,
+            17
+          ],
+          "size": 2,
+          "text": "MOTOR SUPERVISION / CIRCUIT STUDY"
+        },
+        {
+          "at": [
+            15,
+            26
+          ],
+          "text": "External 3.3 V supply. Reset and heartbeat boundary for ESP32-C6 and DRV8874."
+        },
+        {
+          "at": [
+            15,
+            32
+          ],
+          "text": "Request HIGH disables motor and watchdog. LOW requires healthy control-task falling edges."
+        },
+        {
+          "at": [
+            15,
+            187
+          ],
+          "text": "Upper window 57.74\u201371.35 ms; lower maximum 8.92 ms."
+        },
+        {
+          "at": [
+            15,
+            192
+          ],
+          "text": "No EN capacitor. Reset cancels motion. Not for fabrication."
+        }
+      ]
+    },
+    {
+      "id": "06-regen",
+      "short_title": "Regenerative clamp",
+      "title": "Smart Blinds / Regenerative clamp",
+      "block_layout": "hw/schematics/blind-regen/regen-test.layout.json",
+      "prefix": "regen",
+      "source_prefix": "regen",
+      "notes": [
+        {
+          "at": [
+            15,
+            15
+          ],
+          "text": "REGENERATIVE CLAMP / THERMAL LATCH STUDY",
+          "size": 2
+        },
+        {
+          "at": [
+            15,
+            24
+          ],
+          "text": "PACK-fed protection. 8 x 10R resistors: 2 series x 4 parallel = 5R. 65 C trip latches until PACK removal.",
+          "size": 1.27
+        },
+        {
+          "at": [
+            15,
+            33
+          ],
+          "text": "Pulse energy, switch delay, thermal coupling and sustained back-drive remain unqualified; simulation is conditional.",
+          "size": 1.27
+        },
+        {
+          "at": [
+            15,
+            281
+          ],
+          "text": "38-part unrouted capture. Native pin equivalence is not thermal, transient or fabrication approval.",
+          "size": 1.27
+        }
+      ]
+    },
+    {
+      "id": "07-radio",
+      "short_title": "Radio and USB data",
+      "title": "Smart Blinds / Radio and USB data",
+      "paper": "A3",
+      "components": {
+        "controller.mcu": {
+          "symbol": "P_ESP32_C6_WROOM_1_N4",
+          "mpn": "ESP32-C6-WROOM-1-N4",
+          "value": "ESP32-C6-WROOM-1-N4",
+          "at": [
+            85.09,
+            90.17,
+            0
+          ],
+          "text_offset": [
+            0,
+            -31.75
+          ],
+          "no_connect": [
+            "4",
+            "5",
+            "22",
+            "23"
+          ]
+        },
+        "controller.c_bulk": {
+          "symbol": "P_CL21A226MAYNNNE",
+          "mpn": "CL21A226MAYNNNE",
+          "value": "22u / 25V",
+          "at": [
+            199.39,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.c_bypass": {
+          "symbol": "P_CL05B104KB54PNC",
+          "mpn": "CL05B104KB54PNC",
+          "value": "100n / 50V",
+          "at": [
+            260.35,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_boot": {
+          "symbol": "P_0402WGF1002TCE",
+          "mpn": "0402WGF1002TCE",
+          "value": "10k",
+          "at": [
+            320.04,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_strap8": {
+          "symbol": "P_0402WGF1002TCE",
+          "mpn": "0402WGF1002TCE",
+          "value": "10k",
+          "at": [
+            379.73,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_charge": {
+          "symbol": "P_0402WGF1002TCE",
+          "mpn": "0402WGF1002TCE",
+          "value": "10k",
+          "at": [
+            199.39,
+            115.57,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_encoder": {
+          "symbol": "P_0402WGF1002TCE",
+          "mpn": "0402WGF1002TCE",
+          "value": "10k",
+          "at": [
+            260.35,
+            115.57,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_sda": {
+          "symbol": "P_0402WGF4701TCE",
+          "mpn": "0402WGF4701TCE",
+          "value": "4.7k",
+          "at": [
+            320.04,
+            115.57,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_scl": {
+          "symbol": "P_0402WGF4701TCE",
+          "mpn": "0402WGF4701TCE",
+          "value": "4.7k",
+          "at": [
+            379.73,
+            115.57,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_dp": {
+          "symbol": "P_0402WGF220JTCE",
+          "mpn": "0402WGF220JTCE",
+          "value": "22R",
+          "at": [
+            199.39,
+            165.1,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_dm": {
+          "symbol": "P_0402WGF220JTCE",
+          "mpn": "0402WGF220JTCE",
+          "value": "22R",
+          "at": [
+            260.35,
+            165.1,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.usb_esd": {
+          "symbol": "P_TPD2E2U06DRLR",
+          "mpn": "TPD2E2U06DRLR",
+          "value": "TPD2E2U06DRLR",
+          "at": [
+            320.04,
+            165.1,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "controller.r_adc_hi": {
+          "symbol": "P_0402WGF1003TCE",
+          "mpn": "0402WGF1003TCE",
+          "value": "100k",
+          "at": [
+            379.73,
+            165.1,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_adc_lo": {
+          "symbol": "P_0402WGF1003TCE",
+          "mpn": "0402WGF1003TCE",
+          "value": "100k",
+          "at": [
+            199.39,
+            214.63,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.c_adc": {
+          "symbol": "P_CL05B104KB54PNC",
+          "mpn": "CL05B104KB54PNC",
+          "value": "100n / 50V",
+          "at": [
+            260.35,
+            214.63,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        }
+      },
+      "notes": [
+        {
+          "at": [
+            15,
+            15
+          ],
+          "text": "RADIO AND USB DATA / INTEGRATED CONTROLLER",
+          "size": 2
+        },
+        {
+          "at": [
+            15,
+            26
+          ],
+          "text": "ESP32-C6. USB programming shares the USB-C port. Strap-only GPIO4/5/15 are intentionally left open."
+        },
+        {
+          "at": [
+            15,
+            276
+          ],
+          "text": "All pin connections independently exported and checked. Physical fit, routing and powered qualification remain open."
+        }
+      ]
+    },
+    {
+      "id": "08-encoder-input",
+      "short_title": "Encoder input",
+      "title": "Smart Blinds / Encoder input",
+      "paper": "A3",
+      "components": {
+        "controller.enc": {
+          "symbol": "P_SN74LVC2G17DCKR",
+          "mpn": "SN74LVC2G17DCKR",
+          "value": "SN74LVC2G17DCKR",
+          "at": [
+            44.45,
+            64.77,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "controller.c_enc": {
+          "symbol": "P_CL05B104KB54PNC",
+          "mpn": "CL05B104KB54PNC",
+          "value": "100n / 50V",
+          "at": [
+            124.46,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.enc_esd": {
+          "symbol": "P_TPD2E2U06DRLR",
+          "mpn": "TPD2E2U06DRLR",
+          "value": "TPD2E2U06DRLR",
+          "at": [
+            204.47,
+            64.77,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "controller.r_a_series": {
+          "symbol": "P_0402WGF1001TCE",
+          "mpn": "0402WGF1001TCE",
+          "value": "1k",
+          "at": [
+            284.48,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_a_up": {
+          "symbol": "P_0402WGF1002TCE",
+          "mpn": "0402WGF1002TCE",
+          "value": "10k",
+          "at": [
+            364.49,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_a_down": {
+          "symbol": "P_0402WGF1003TCE",
+          "mpn": "0402WGF1003TCE",
+          "value": "100k",
+          "at": [
+            44.45,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_b_series": {
+          "symbol": "P_0402WGF1001TCE",
+          "mpn": "0402WGF1001TCE",
+          "value": "1k",
+          "at": [
+            124.46,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_b_up": {
+          "symbol": "P_0402WGF1002TCE",
+          "mpn": "0402WGF1002TCE",
+          "value": "10k",
+          "at": [
+            204.47,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_b_down": {
+          "symbol": "P_0402WGF1003TCE",
+          "mpn": "0402WGF1003TCE",
+          "value": "100k",
+          "at": [
+            284.48,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "encoder_port.header": {
+          "symbol": "P_532610471",
+          "mpn": "532610471",
+          "value": "ENCODER / 4WAY",
+          "at": [
+            364.49,
+            119.38,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        }
+      },
+      "notes": [
+        {
+          "at": [
+            15,
+            15
+          ],
+          "text": "ENCODER INPUT / INTEGRATED CONTROLLER",
+          "size": 2
+        },
+        {
+          "at": [
+            15,
+            26
+          ],
+          "text": "5 V tolerant Schmitt inputs. Connector pinout and supply must be checked on the owned motor before connection."
+        },
+        {
+          "at": [
+            15,
+            276
+          ],
+          "text": "All pin connections independently exported and checked. Physical fit, routing and powered qualification remain open."
+        }
+      ]
+    },
+    {
+      "id": "09-local-input",
+      "short_title": "Buttons and home input",
+      "title": "Smart Blinds / Buttons and home input",
+      "paper": "A3",
+      "components": {
+        "controller.up": {
+          "symbol": "P_TS_1081S_AC01326",
+          "mpn": "TS-1081S-AC01326",
+          "value": "SIDE BUTTON",
+          "at": [
+            44.45,
+            64.77,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "controller.r_up": {
+          "symbol": "P_0402WGF1002TCE",
+          "mpn": "0402WGF1002TCE",
+          "value": "10k",
+          "at": [
+            124.46,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.c_up": {
+          "symbol": "P_CL05B104KB54PNC",
+          "mpn": "CL05B104KB54PNC",
+          "value": "100n / 50V",
+          "at": [
+            204.47,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.down": {
+          "symbol": "P_TS_1081S_AC01326",
+          "mpn": "TS-1081S-AC01326",
+          "value": "SIDE BUTTON",
+          "at": [
+            284.48,
+            64.77,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "controller.r_down": {
+          "symbol": "P_0402WGF1002TCE",
+          "mpn": "0402WGF1002TCE",
+          "value": "10k",
+          "at": [
+            364.49,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.c_down": {
+          "symbol": "P_CL05B104KB54PNC",
+          "mpn": "CL05B104KB54PNC",
+          "value": "100n / 50V",
+          "at": [
+            44.45,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_home_series": {
+          "symbol": "P_0402WGF1001TCE",
+          "mpn": "0402WGF1001TCE",
+          "value": "1k",
+          "at": [
+            124.46,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.r_home": {
+          "symbol": "P_0402WGF1002TCE",
+          "mpn": "0402WGF1002TCE",
+          "value": "10k",
+          "at": [
+            204.47,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "controller.c_home": {
+          "symbol": "P_CL05B104KB54PNC",
+          "mpn": "CL05B104KB54PNC",
+          "value": "100n / 50V",
+          "at": [
+            284.48,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "home_port.header": {
+          "symbol": "P_532610371",
+          "mpn": "532610371",
+          "value": "HOME / 3WAY",
+          "at": [
+            364.49,
+            119.38,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ],
+          "no_connect": [
+            "2"
+          ]
+        },
+        "home_esd": {
+          "symbol": "P_TPD2E2U06DRLR",
+          "mpn": "TPD2E2U06DRLR",
+          "value": "TPD2E2U06DRLR",
+          "at": [
+            44.45,
+            172.72,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        }
+      },
+      "notes": [
+        {
+          "at": [
+            15,
+            15
+          ],
+          "text": "BUTTONS AND HOME INPUT / INTEGRATED CONTROLLER",
+          "size": 2
+        },
+        {
+          "at": [
+            15,
+            26
+          ],
+          "text": "Home connector: pin1 GND, pin2 reserved/open, pin3 dry contact. Switch terminal pairing needs sample continuity check."
+        },
+        {
+          "at": [
+            15,
+            276
+          ],
+          "text": "All pin connections independently exported and checked. Physical fit, routing and powered qualification remain open."
+        }
+      ]
+    },
+    {
+      "id": "10-interfaces",
+      "short_title": "Power and motor permission",
+      "title": "Smart Blinds / Power and permission",
+      "paper": "A3",
+      "components": {
+        "encoder.ic": {
+          "symbol": "P_TPS70950DBVR",
+          "mpn": "TPS70950DBVR",
+          "value": "TPS70950DBVR",
+          "at": [
+            44.45,
+            64.77,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ],
+          "no_connect": [
+            "4"
+          ]
+        },
+        "encoder.gate": {
+          "symbol": "P_SN74AUP1G97DCKR",
+          "mpn": "SN74AUP1G97DCKR",
+          "value": "SN74AUP1G97DCKR",
+          "at": [
+            124.46,
+            64.77,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "encoder.c_input": {
+          "symbol": "P_CL10A105KB8NNNC",
+          "mpn": "CL10A105KB8NNNC",
+          "value": "1u / 50V",
+          "at": [
+            204.47,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "encoder.c_output": {
+          "symbol": "P_CL31A475KBHNNNE",
+          "mpn": "CL31A475KBHNNNE",
+          "value": "4.7u / 50V",
+          "at": [
+            284.48,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "encoder.c_gate": {
+          "symbol": "P_CL05B104KB54PNC",
+          "mpn": "CL05B104KB54PNC",
+          "value": "100n / 50V",
+          "at": [
+            364.49,
+            64.77,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "encoder.r_enable": {
+          "symbol": "P_0402WGF1001TCE",
+          "mpn": "0402WGF1001TCE",
+          "value": "1k",
+          "at": [
+            44.45,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "thermal_gate": {
+          "symbol": "P_SN74AUP1G97DCKR",
+          "mpn": "SN74AUP1G97DCKR",
+          "value": "SN74AUP1G97DCKR",
+          "at": [
+            124.46,
+            119.38,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "r_thermal_sleep": {
+          "symbol": "P_0402WGF1001TCE",
+          "mpn": "0402WGF1001TCE",
+          "value": "1k",
+          "at": [
+            204.47,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "c_thermal_gate": {
+          "symbol": "P_CL05B104KB54PNC",
+          "mpn": "CL05B104KB54PNC",
+          "value": "100n / 50V",
+          "at": [
+            284.48,
+            119.38,
+            270
+          ],
+          "text_offset": [
+            7.62,
+            -1.27
+          ]
+        },
+        "q_thermal_fault": {
+          "symbol": "P_AO3400A",
+          "mpn": "AO3400A",
+          "value": "AO3400A",
+          "at": [
+            364.49,
+            119.38,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "pack_connector.header": {
+          "symbol": "P_430450600",
+          "mpn": "430450600",
+          "value": "PROTECTED PACK / 6WAY",
+          "at": [
+            44.45,
+            172.72,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "motor_output.landing1": {
+          "symbol": "P_",
+          "mpn": "",
+          "value": "18AWG SOLDER TAIL",
+          "at": [
+            124.46,
+            172.72,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        },
+        "motor_output.landing2": {
+          "symbol": "P_",
+          "mpn": "",
+          "value": "18AWG SOLDER TAIL",
+          "at": [
+            204.47,
+            172.72,
+            0
+          ],
+          "text_offset": [
+            0,
+            -12.7
+          ]
+        }
+      },
+      "notes": [
+        {
+          "at": [
+            15,
+            15
+          ],
+          "text": "POWER AND MOTOR PERMISSION / INTEGRATED CONTROLLER",
+          "size": 2
+        },
+        {
+          "at": [
+            15,
+            26
+          ],
+          "text": "Encoder gate: RESET_N AND NOT ALLOW_N. Final motor gate: supervision AND thermal permission. No raw cell rails here."
+        },
+        {
+          "at": [
+            15,
+            276
+          ],
+          "text": "All pin connections independently exported and checked. Physical fit, routing and powered qualification remain open."
+        }
+      ]
+    }
+  ],
+  "expected_erc": [
+    {
+      "sheet": "/",
+      "type": "isolated_pin_label",
+      "items": [
+        "Label 'CHARGER_STATUS_N'"
+      ]
+    },
+    {
+      "sheet": "/3S charger/",
+      "type": "pin_to_pin",
+      "items": [
+        "Symbol U1 Pin 10 [ACDRV2, Output, Line]",
+        "Symbol U1 Pin 11 [ACDRV1, Output, Line]"
+      ]
+    },
+    {
+      "sheet": "/3S charger/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U1 Pin 22 [BAT, Power input, Line]"
+      ]
+    },
+    {
+      "sheet": "/3S charger/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U1 Pin 27 [GND, Power input, Line]"
+      ]
+    },
+    {
+      "sheet": "/USB-C input/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U10 Pin 5 [IN, Power input, Line]"
+      ]
+    },
+    {
+      "sheet": "/USB-C input/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U11 Pin 24 [VDD, Power input, Line]"
+      ]
+    },
+    {
+      "sheet": "/Encoder input/",
+      "type": "power_pin_not_driven",
+      "items": [
+        "Symbol U2 Pin 5 [VCC, Power input, Line]"
+      ]
+    }
+  ],
+  "erc_rationale": {
+    "isolated_pin_label": "Charger STAT output is retained and named for inspection but not connected to the MCU; charger status is read through I2C. It remains an isolated PCB pin.",
+    "pin_to_pin": "BQ25798 ACDRV1/ACDRV2 are both grounded as required for the selected no-external-ACFET topology; the generic output pin type produces the documented conflict. See charger block review.",
+    "power_pin_not_driven": "No artificial flags model external battery/USB ground and supply sources. PD VDD is fed through passive isolation and 3V3 through a passive regulator inductor; KiCad does not infer sources through those passives. Five affected nets are retained explicitly."
+  }
+}

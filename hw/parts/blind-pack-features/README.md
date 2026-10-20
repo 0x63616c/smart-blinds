@@ -13,3 +13,9 @@ Use one wire per hole and separate mechanical strain relief. Check actual
 stripped/tinned strand fit before release. Keep exposed ends and solder fillets
 within the cassette's opposed-board clearance; no uninsulated tail may approach
 the other carrier. Do not use solder joints as the wire-retention mechanism.
+
+`MountingHole_M3_3.4mm` is a local board-only mechanical footprint, not an
+atopile electrical component. Its single unnumbered 3.4 mm NPTH is excluded
+from the purchase and position files. The placement replayer creates four
+instances and adds the surrounding bare-support rule areas from the retained
+mechanical interface; it does not give these holes an electrical net.

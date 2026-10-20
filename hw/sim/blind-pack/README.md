@@ -6,7 +6,10 @@ physical pins with the earlier independently audited MAX17320 carrier
 contract plus the holder and pigtail assignments. It also verifies the
 unchanged protection-core source, the six holder/fuse branches, the holder's
 terminal slots and preserved mechanical holes, and exclusion of wire pads
-from the local generated BOM when that build artifact exists.
+from the local generated BOM when that build artifact exists. Both solder-pad
+symbol libraries must contain a valid body and sibling passive-pin unit; the
+local mounting-hole footprint must remain an unnumbered NPTH and excluded
+from the BOM and position files.
 
 Six negative controls cover swapped middle links, either board's bypassed
 cell fuse, raw-ground bypass of the protected output, the wrong 3S CELL2

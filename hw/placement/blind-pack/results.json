@@ -1,0 +1,52 @@
+{
+  "status": "PASS: actual unrouted placement geometry, component sides, mounting holes, holder polarity and independent pin contract",
+  "boards": {
+    "primary": {
+      "electrical_footprints": 50,
+      "board_only_mounting_holes": 4,
+      "physical_electrical_pins": 120,
+      "courtyard_coverage": {
+        "present": 44,
+        "missing_addresses": [
+          "carrier.protection.c_cell1",
+          "carrier.protection.c_cell3",
+          "carrier.protection.c_cell4",
+          "carrier.protection.c_charge_gate",
+          "carrier.protection.c_supply",
+          "carrier.protection.r_aoldo"
+        ]
+      },
+      "side": "all front/component-side; primary faces +Z, companion faces -Z",
+      "board_sha256": "71b36b334e1f07c66bb75e551272a91088f0a4fb8e6175343b2dc0509ebd6f5f"
+    },
+    "companion": {
+      "electrical_footprints": 10,
+      "board_only_mounting_holes": 4,
+      "physical_electrical_pins": 16,
+      "courtyard_coverage": {
+        "present": 10,
+        "missing_addresses": []
+      },
+      "side": "all front/component-side; primary faces +Z, companion faces -Z",
+      "board_sha256": "cc51213c20aa1de399b84f003214cfe2d14ae6b8123fc8265a59f85d3ba5e625"
+    }
+  },
+  "minimum_holder_to_corner_support_mm": 0.2,
+  "minimum_maximum_body_gap_between_holders_mm": 0.5,
+  "rejected_faults": [
+    "whole_raw_to_protected_positive_short",
+    "reversed_holder",
+    "plated_mounting_hole",
+    "duplicate_electrical_address",
+    "moved_outline_corner",
+    "missing_RF_keepout",
+    "RF_copper_allowed",
+    "shrunk_RF_keepout"
+  ],
+  "limits": [
+    "KiCad DRC is a separate step; six shared primary passives lack courtyards, so no-overlap results have incomplete coverage.",
+    "0.2 mm holder-to-boss margin is not a tolerance-qualified fit.",
+    "Holder fasteners and insertion backing fixture remain unresolved.",
+    "Solder tails must be trimmed/insulated to the 1.5 mm inner protrusion budget."
+  ]
+}

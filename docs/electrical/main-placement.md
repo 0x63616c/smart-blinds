@@ -26,6 +26,9 @@ and owned-motor compatibility remain physical qualification gates.
 - 196 placements and 609 circuit pin identities survive normal and frozen builds.
 - Manufacturer land checks cover the charger, motor driver, radio and USB input.
 - Actual KiCad DRC reports no courtyard overlap or keepout infringement in this placement.
+  However, 98 inherited footprints currently lack front courtyards, so that overlap
+  result has incomplete coverage. Their clearance outlines must be added and checked
+  before routing or a full component-clearance claim.
 - The board has no routed tracks/vias. Hundreds of unrouted connections remain.
 - Default DRC still reports the eFuse's 0.19 mm pad spacing against a 0.20 mm
   default, USB NPTH/edge clearances, 0.20 mm thermal drill size against a 0.30 mm

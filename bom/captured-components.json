@@ -3,8 +3,8 @@
   "currency": "USD",
   "board_source_sha256": {
     "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "283e148a1408ab6f419386e171013d380cd9e3e5775a8f318f6b4434222a3c11",
-    "hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb": "ce9c993ba20fa36bbbd470a9bfa4cc7c34cfbf2ade3e0d3dbd240b05df365e82",
-    "hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb": "82c07592730e2ccd01253a41d438348695d00f7f2c1a7f67ee963b3f99b8c29c"
+    "hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb": "71b36b334e1f07c66bb75e551272a91088f0a4fb8e6175343b2dc0509ebd6f5f",
+    "hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb": "cc51213c20aa1de399b84f003214cfe2d14ae6b8123fc8265a59f85d3ba5e625"
   },
   "counts_by_board": {
     "main": 194,
@@ -26,58 +26,13 @@
     ],
     "pack_primary": [
       {
-        "reference": "TP12",
-        "address": "carrier.link_raw_ground",
-        "footprint": "blind-pack-features:WirePad18"
-      },
-      {
-        "reference": "TP10",
-        "address": "carrier.link_junction1",
-        "footprint": "blind-pack-features:WirePad18"
-      },
-      {
-        "reference": "TP11",
-        "address": "carrier.link_junction2",
-        "footprint": "blind-pack-features:WirePad18"
-      },
-      {
-        "reference": "TP13",
-        "address": "carrier.link_raw_top",
-        "footprint": "blind-pack-features:WirePad18"
-      },
-      {
-        "reference": "TP9",
-        "address": "carrier.harness_pack_positive",
-        "footprint": "blind-pack-features:WirePad18"
-      },
-      {
-        "reference": "TP8",
-        "address": "carrier.harness_pack_ground",
-        "footprint": "blind-pack-features:WirePad18"
-      },
-      {
-        "reference": "TP7",
-        "address": "carrier.harness_gauge_sda",
-        "footprint": "blind-pack-features:WirePad18"
-      },
-      {
-        "reference": "TP6",
-        "address": "carrier.harness_gauge_scl",
-        "footprint": "blind-pack-features:WirePad18"
-      },
-      {
-        "reference": "TP15",
-        "address": "carrier.ntc1_sense",
+        "reference": "TP1",
+        "address": "carrier.charger_ntc_return",
         "footprint": "blind-pack-features:WirePadSignal"
       },
       {
-        "reference": "TP14",
-        "address": "carrier.ntc1_return",
-        "footprint": "blind-pack-features:WirePadSignal"
-      },
-      {
-        "reference": "TP17",
-        "address": "carrier.ntc2_sense",
+        "reference": "TP3",
+        "address": "carrier.gauge_alert_test",
         "footprint": "blind-pack-features:WirePadSignal"
       },
       {
@@ -86,19 +41,34 @@
         "footprint": "blind-pack-features:WirePadSignal"
       },
       {
-        "reference": "TP2",
-        "address": "carrier.charger_ntc_sense",
-        "footprint": "blind-pack-features:WirePadSignal"
-      },
-      {
         "reference": "TP5",
         "address": "carrier.harness_charger_ntc_sense",
         "footprint": "blind-pack-features:WirePad18"
       },
       {
-        "reference": "TP1",
-        "address": "carrier.charger_ntc_return",
+        "reference": "TP14",
+        "address": "carrier.ntc1_return",
         "footprint": "blind-pack-features:WirePadSignal"
+      },
+      {
+        "reference": "TP13",
+        "address": "carrier.link_raw_top",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP8",
+        "address": "carrier.harness_pack_ground",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP17",
+        "address": "carrier.ntc2_sense",
+        "footprint": "blind-pack-features:WirePadSignal"
+      },
+      {
+        "reference": "TP10",
+        "address": "carrier.link_junction1",
+        "footprint": "blind-pack-features:WirePad18"
       },
       {
         "reference": "TP4",
@@ -106,20 +76,50 @@
         "footprint": "blind-pack-features:WirePad18"
       },
       {
-        "reference": "TP3",
-        "address": "carrier.gauge_alert_test",
+        "reference": "TP12",
+        "address": "carrier.link_raw_ground",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP7",
+        "address": "carrier.harness_gauge_sda",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP15",
+        "address": "carrier.ntc1_sense",
+        "footprint": "blind-pack-features:WirePadSignal"
+      },
+      {
+        "reference": "TP11",
+        "address": "carrier.link_junction2",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP6",
+        "address": "carrier.harness_gauge_scl",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP9",
+        "address": "carrier.harness_pack_positive",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP2",
+        "address": "carrier.charger_ntc_sense",
         "footprint": "blind-pack-features:WirePadSignal"
       }
     ],
     "pack_companion": [
       {
-        "reference": "TP3",
-        "address": "carrier.link_raw_ground",
+        "reference": "TP1",
+        "address": "carrier.link_junction1",
         "footprint": "blind-pack-features:WirePad18"
       },
       {
-        "reference": "TP1",
-        "address": "carrier.link_junction1",
+        "reference": "TP4",
+        "address": "carrier.link_raw_top",
         "footprint": "blind-pack-features:WirePad18"
       },
       {
@@ -128,8 +128,8 @@
         "footprint": "blind-pack-features:WirePad18"
       },
       {
-        "reference": "TP4",
-        "address": "carrier.link_raw_top",
+        "reference": "TP3",
+        "address": "carrier.link_raw_ground",
         "footprint": "blind-pack-features:WirePad18"
       }
     ]
@@ -163,8 +163,8 @@
           "R68"
         ],
         "pack_primary": [
-          "R9",
-          "R8"
+          "R8",
+          "R9"
         ]
       },
       "source": "bom/electronics-controller-sourcing.json",
@@ -287,9 +287,9 @@
       },
       "references": {
         "pack_primary": [
-          "C5",
+          "C7",
           "C6",
-          "C7"
+          "C5"
         ]
       },
       "source": "bom/electronics-carrier-sourcing.json",
@@ -317,14 +317,14 @@
       },
       "references": {
         "pack_primary": [
-          "F1",
           "F2",
-          "F3"
+          "F3",
+          "F1"
         ],
         "pack_companion": [
+          "F3",
           "F1",
-          "F2",
-          "F3"
+          "F2"
         ]
       },
       "source": "bom/electronics-carrier-sourcing.json",
@@ -518,9 +518,9 @@
       },
       "references": {
         "pack_primary": [
+          "R5",
           "R3",
-          "R4",
-          "R5"
+          "R4"
         ]
       },
       "source": "bom/electronics-carrier-sourcing.json",
@@ -631,14 +631,14 @@
       },
       "references": {
         "pack_primary": [
-          "BT1",
           "BT2",
-          "BT3"
+          "BT3",
+          "BT1"
         ],
         "pack_companion": [
-          "BT1",
+          "BT3",
           "BT2",
-          "BT3"
+          "BT1"
         ]
       },
       "source": "bom/electronics-sourcing-snapshot.json",
@@ -816,8 +816,8 @@
       "references": {
         "pack_primary": [
           "R11",
-          "R10",
-          "R1"
+          "R1",
+          "R10"
         ]
       },
       "source": "bom/electronics-carrier-sourcing.json",
@@ -1555,10 +1555,10 @@
           "C21"
         ],
         "pack_primary": [
-          "C8",
-          "C1",
           "C2",
           "C3",
+          "C1",
+          "C8",
           "C4"
         ]
       },
@@ -2068,8 +2068,8 @@
           "Q9"
         ],
         "pack_primary": [
-          "Q1",
-          "Q2"
+          "Q2",
+          "Q1"
         ]
       },
       "source": "bom/electronics-carrier-sourcing.json",

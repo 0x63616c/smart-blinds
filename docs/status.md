@@ -69,7 +69,9 @@ A green preview result only confirms generation of the documented images.
   reset-gated 5 V encoder supply and an independent thermal latch. Eight preserved blocks and twenty integration tests
   check power-domain separation, factory-bus isolation and key control connections. Normal
   and frozen local builds pass. The keyed pack, motor, encoder and home connections are captured. An explicit
-  54 × 68.5 mm placement passes courtyard/keepout checks and rebuilds; routing remains open. Regeneration and
+  54 × 68.5 mm placement rebuilds and passes the present keepout checks. Courtyard coverage is
+  incomplete: 98 of 196 footprints lack those clearance outlines. They must be corrected before
+  relying on an overlap report; routing remains open. Regeneration and
   thermal models have explicit transient and sustained-backdrive limits, not hardware approval.
 - Offline STUSB4500 tooling checks documented PDO fields and full 40-byte readback. Static inspection of the pinned manufacturer GUI binary now identifies
   its above-5 V gate-policy field; unqualified discharge timers and device baseline still keep
@@ -87,10 +89,17 @@ A green preview result only confirms generation of the documented images.
 - Two opposing holder-carrier captures now contain 39 purchased parts per unit,
   including six holders and branch fuses. Their 136-pin contract and negative controls pass.
   Main and carrier raw component demand totals $363.08 for eight units, excluding assembly,
-  fabrication, cables and mechanics. Carrier placement is the next step.
+  fabrication, cables and mechanics. Both 86 × 104 mm carriers now have explicit placements,
+  with four mechanical holes per board, preserved support/RF restrictions and eight corruption
+  checks. The isolated circuit builds and full canonical-placement checks pass locally. The
+  primary still lacks six shared 0402 courtyards; both carriers remain unrouted.
 - The bounded motion session joins authenticated command ingress to the portable controller
   and executor, with source-timed leases and measured settling. All ten host targets and
   both pinned C6 builds pass CI for `2561ced`. The real application remains uninstantiated.
+- The complete main-controller native KiCad hierarchy now spans eleven sheets, with all
+  196 circuit features, 609 pin identities and 142 net partitions matching the PCB. Nine
+  export-verifier tests pass locally. Seven explicit ERC findings remain documented;
+  no physical operation or routed-board acceptance is implied.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
 - The exact motor listing is identified and partial seller dimensions are recorded. The owner is
@@ -116,7 +125,9 @@ and [motion-executor/C6 I/O checks](https://github.com/0x63616c/smart-blinds/act
 also passed all eight jobs. The C6 application still does not instantiate motion hardware.
 The [pack evidence and battery-only motion checks](https://github.com/0x63616c/smart-blinds/actions/runs/39368534452)
 also passed all eight jobs for `cd7b9be`. The [bounded session and stopping checks](https://github.com/0x63616c/smart-blinds/actions/runs/39369765494)
-passed all eight jobs for `2561ced`. Newer changes must be checked against their own runs.
+passed all eight jobs for `2561ced`. The [placed-controller and carrier-circuit checks](https://github.com/0x63616c/smart-blinds/actions/runs/39371568442)
+and [black-board preview](https://github.com/0x63616c/smart-blinds/actions/runs/39371568449)
+passed for `b3f0985`. Newer changes must be checked against their own runs.
 
 ## Inherited references
 

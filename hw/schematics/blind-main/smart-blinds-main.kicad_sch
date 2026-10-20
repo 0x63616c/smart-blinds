@@ -1,0 +1,436 @@
+(kicad_sch
+  (version 20250114)
+  (generator "smart_blinds_schematic")
+  (uuid "52fe1c56-423a-56fb-97b9-e2338cc62bcc")
+  (paper "A4")
+  (title_block
+    (title "Smart Blinds / integrated controller")
+    (rev "STUDY")
+    (comment 1 "Unrouted circuit; not for fabrication"))
+  (lib_symbols)
+  (sheet
+    (at 20 45)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "4153a6fc-3d10-5549-ba70-3e0a446016e5")
+    (property
+      "Sheetname"
+      "USB-C input"
+      (at 20 43.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "01-usb.kicad_sch"
+      (at 20 68.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "2")))))
+  (text
+    "33 parts / 113 pin identities"
+    (at 24 56 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "8dc84780-dfe3-51d4-9a9f-d39264dadf6b"))
+  (sheet
+    (at 110 45)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "3aad5448-ec21-5053-97ec-fab80148760b")
+    (property
+      "Sheetname"
+      "3S charger"
+      (at 110 43.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "02-charger.kicad_sch"
+      (at 110 68.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "3")))))
+  (text
+    "36 parts / 101 pin identities"
+    (at 114 56 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "48bf831d-9663-5178-848c-d95afc9a253b"))
+  (sheet
+    (at 200 45)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "78d77e6c-f046-58cc-a94d-141ba2bd09a1")
+    (property
+      "Sheetname"
+      "Logic supply"
+      (at 200 43.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "03-logic.kicad_sch"
+      (at 200 68.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "4")))))
+  (text
+    "12 parts / 31 pin identities"
+    (at 204 56 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "3c4f81f1-7f81-5da5-a9d4-1257264dfad3"))
+  (sheet
+    (at 20 80)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "5bc2a71a-b319-5c5c-b275-0ee68a3f237a")
+    (property
+      "Sheetname"
+      "Motor bridge"
+      (at 20 78.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "04-motor.kicad_sch"
+      (at 20 103.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "5")))))
+  (text
+    "14 parts / 43 pin identities"
+    (at 24 91 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "087b3253-d9d1-5c0e-ba02-713dcfcd71a9"))
+  (sheet
+    (at 110 80)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "bf3546b6-47ef-548e-b444-24defeee063e")
+    (property
+      "Sheetname"
+      "Motor supervision"
+      (at 110 78.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "05-supervision.kicad_sch"
+      (at 110 103.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "6")))))
+  (text
+    "14 parts / 49 pin identities"
+    (at 114 91 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "37c48214-9bf8-5ff3-9e26-88845c8fc93e"))
+  (sheet
+    (at 200 80)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "471bb6c4-b9e4-5c4c-ab6f-4fbe4418bc25")
+    (property
+      "Sheetname"
+      "Regenerative clamp"
+      (at 200 78.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "06-regen.kicad_sch"
+      (at 200 103.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "7")))))
+  (text
+    "38 parts / 105 pin identities"
+    (at 204 91 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "8e6079a5-9e91-5193-a997-3fa0cad19519"))
+  (sheet
+    (at 20 115)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "c9255d8e-68b0-59dc-a1ca-036f9e076650")
+    (property
+      "Sheetname"
+      "Radio and USB data"
+      (at 20 113.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "07-radio.kicad_sch"
+      (at 20 138.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "8")))))
+  (text
+    "15 parts / 68 pin identities"
+    (at 24 126 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "592d5f5e-890c-5b3a-be0d-cc350540a184"))
+  (sheet
+    (at 110 115)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "1bcc91c5-6036-5176-bedd-cf9aafef0897")
+    (property
+      "Sheetname"
+      "Encoder input"
+      (at 110 113.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "08-encoder-input.kicad_sch"
+      (at 110 138.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "9")))))
+  (text
+    "10 parts / 29 pin identities"
+    (at 114 126 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "aa4aac96-8579-51ab-aec5-1052f94e1177"))
+  (sheet
+    (at 200 115)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "a327d1c1-bb03-5f8f-94c0-14e536a91b31")
+    (property
+      "Sheetname"
+      "Buttons and home input"
+      (at 200 113.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "09-local-input.kicad_sch"
+      (at 200 138.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "10")))))
+  (text
+    "11 parts / 30 pin identities"
+    (at 204 126 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "7f43e2ab-8b90-53f3-bc01-e08cd4ca2b52"))
+  (sheet
+    (at 20 150)
+    (size 75 22)
+    (stroke
+      (width 0.1524)
+      (type default))
+    (fill
+      (color 0 0 0 0))
+    (uuid "89fe48b5-85df-5337-bb5f-b2fbe8e678fd")
+    (property
+      "Sheetname"
+      "Power and motor permission"
+      (at 20 148.73 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        (justify left bottom)))
+    (property
+      "Sheetfile"
+      "10-interfaces.kicad_sch"
+      (at 20 173.27 0)
+      (effects
+        (font
+          (size 1 1))
+        (justify left top)))
+    (instances
+      (project
+        "smart-blinds-main"
+        (path
+          "/52fe1c56-423a-56fb-97b9-e2338cc62bcc"
+          (page "11")))))
+  (text
+    "13 parts / 40 pin identities"
+    (at 24 161 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "eee7c146-251a-5372-a46c-797b6413b04f"))
+  (sheet_instances
+    (path
+      "/"
+      (page "1")))
+  (text
+    "SMART BLINDS / INTEGRATED CONTROLLER"
+    (at 15 16 0)
+    (effects
+      (font
+        (size 2 2))
+      (justify left))
+    (uuid "ba9b42ac-3746-5e1d-b2e8-64a4f7f4cc20"))
+  (text
+    "196 circuit features. USB-C charging, protected pack input, radio, motor and local controls."
+    (at 15 26 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "d0e136f8-f6a5-5b36-b9f4-bba37c87a3fb"))
+  (text
+    "Sheet labels share only the explicitly named global nets. Open a sheet to inspect every part."
+    (at 15 34 0)
+    (effects
+      (font
+        (size 1.27 1.27))
+      (justify left))
+    (uuid "69b1fc9d-b8b9-58b9-b9aa-683693241314"))
+  (text
+    "Captured circuit and native netlist are checked pin for pin. No routed or powered hardware acceptance."
+    (at 15 186 0)
+    (effects
+      (font
+        (size 1.1 1.1))
+      (justify left))
+    (uuid "69d180ff-98e4-58c5-9ca4-86bdfbd1afa4")))

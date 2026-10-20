@@ -54,6 +54,13 @@ baseline. The manufacturer's 15134 drawing maps contacts in reverse order
 between its two ends. **All wires are black: identify each cut tail by
 continuity, never by left-to-right appearance.**
 
+The exact [Molex cable drawing, Rev B1](https://www.molex.com/content/dam/molex/molex-dot-com/products/automated/en-us/salesdrawingpdf/151/15134/151340402_sd.pdf)
+specifies UL1061 wire and contact 500588000 but does not dimension the wire OD.
+That [contact's current manufacturer specification](https://www.molex.com/en-us/products/part-detail/500588000)
+accepts 0.50–1.00 mm insulation. A 1.00 mm per-wire allowance is therefore a
+conservative compatibility-based planning bound, not a measured cable OD.
+Actual bundle, strain-relief and bend fit still need checking.
+
 Optional home cabling can use a 151340302 150 mm three-way cable with the same
 controlled cutting/continuity process. Sensor selection and whether it is
 needed in each unit remain open. PicoBlade is polarized and friction-latched;
