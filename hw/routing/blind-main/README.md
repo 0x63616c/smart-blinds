@@ -6,14 +6,14 @@ The derivative retains the 54 × 68.5 mm outline with its USB tab, all 196
 footprints, 609 physical pin identities, 142 net partitions, 17 mechanical/thermal
 anchors and 13 RF, connector-foot and clamp reservations.
 
-The checkpoint contains 537 segments and 162 vias. It routes the local charger
+The checkpoint contains 631 segments and 178 vias. It routes the local charger
 switching/bypass network, motor-driver fly/pump/VM and output paths, regulator
 bypass/output/sense paths, and a 3.3 V feed to the radio module. In1 remains a
 continuous filled ground-return island; no signal traces use that layer. The
 module power feed uses In2 beneath the permitted module body, with vias outside
 its solder lands and unchanged antenna keepouts.
 
-Actual KiCad 10 DRC reports **275 unconnected items**. No short, copper/edge/hole
+Actual KiCad 10 DRC reports **257 unconnected items**. No short, copper/edge/hole
 clearance, track-width, courtyard-overlap, keepout, mask-bridge or dangling-route
 failure is accepted. The report retains 260 silkscreen/text findings, four
 library-footprint differences and five footprint-type findings. The latter
@@ -24,8 +24,8 @@ Three unrelated default-disabled DRC categories are listed in `checks.json`.
 `checks.py` independently checks actual pad shapes, masks/paste settings, net
 partitions, layer/rotation/placement, outline, keepouts, courtyard bounds and
 encoder-wire height clearance. It also follows physical copper shapes through
-64 required connection groups, including the ground fill. A matching net name
-alone cannot pass. Nineteen injected faults are rejected: moved USB connector, changed motor pad,
+72 required connection groups, including the ground fill. A matching net name
+alone cannot pass. Twenty-five injected faults are rejected: moved USB connector, changed motor pad,
 weakened RF reservation, cut module supply, removed return plane, cut charger
 bypass return, cut PD bypass, cut USB input, removed quiet return via, and an
 extra connection from the quiet return to the input-capacitor return, plus open
@@ -70,8 +70,20 @@ The previous 581 copper items are retained. Fifteen previously unwired parts mov
 to make room, including the encoder supply block; all mechanical anchors remain.
 These distributed reservoirs still need ripple-current, return-loop and thermal
 review. The 0.6–0.8 mm In2 traces use 15.2 µm copper, so geometric clearance is not
-a demonstrated continuous-current rating. The charger VAC sense pins, pack feed
-and onward SYS distribution remain open.
+a demonstrated continuous-current rating. Pack feed and onward SYS distribution
+remain open.
+
+The next extension connects both VAC inputs, BATP feedback, TS and ILIM networks,
+PROG and their local returns. Six previously unwired control parts move; no
+mechanical anchor changes. Its explicit paths in `charger-control-routes.json`
+are replayed by `charger_controls.py`. A bootstrap via moves 0.25 mm to provide
+two adjacent sensing escapes; its two incident traces follow it. The other 696
+previous copper items are retained exactly. Seventeen control-area vias
+(sixteen added and that relocated via) pass the same 0.20 mm drill-to-solder-land
+margin, including same-net lands. Five new deliberate opens and a same-net
+control-via intrusion are rejected. These connections need switch-noise,
+feedback accuracy, thermal and transient review; full charger control, bus and
+charge-permission wiring remain unfinished.
 
 The complete placement change list is in `checks.json`. Many support components
 have moved from the first placement to make local electrical loops possible.
@@ -92,7 +104,7 @@ fine-pitch escapes use 0.5/0.25 mm. Existing thermal holes require their own
 mask/paste/assembly-process review. These rules are not a current rating,
 impedance approval, assembly quote or final fabrication profile.
 
-Still unfinished: USB factory access and paired data routing, pack feed, charger VAC sensing and onward SYS
+Still unfinished: USB factory access and paired data routing, pack feed and onward SYS
 current distribution, regenerative-clamp and supervisor loops, complete signal
 routing, thermal and transient review, sparse silkscreen, final ERC/DRC and a
 manufacturing quote. A separate local 18-net digital congestion experiment is

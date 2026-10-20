@@ -2,11 +2,12 @@
   "status": "Partial route only; no manufacturing or physical acceptance",
   "source_hashes": {
     "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "ba633546b9834325b132ba6cf606e7b5bb5817b4b9ca7f4ac7568eda448de4f5",
-    "hw/routing/blind-main/placement.json": "35205a8ec26bb574056951863026c24598d22d37274d66bf9eb578fbb79f818d",
+    "hw/routing/blind-main/placement.json": "440fff29455bc75b17b530b7a9495e8c7add4f5b7c32414a531e7e145bd4b7cb",
     "hw/routing/blind-main/project-template.json": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
     "hw/routing/blind-main/usb-control-routes.json": "d82fc7bdd42d071cc7769220493cdfe7c7cb0a7d05ed4dc5e0a774844449af09",
     "hw/routing/blind-main/charger-power-banks.json": "6ada7f8425ff3ffc3c26ad5e47fd92b97b100ca8b5c43dbb0e0c858a6013fbe2",
-    "hw/routing/blind-main/route.py": "2adfcf1ff57bf9dde250b305a501e26e88173a3a7447f9b5ba1fa6480c76e82d",
+    "hw/routing/blind-main/charger-control-routes.json": "f721f259b16d30dc1a2246a4206158887be220d39f4b9de76efc589abb69fd90",
+    "hw/routing/blind-main/route.py": "ebf692241619d2bee2c4c53a397633e985da0655335bedce7e6e34827539da81",
     "hw/routing/blind-main/place.py": "95077c4d892a6b49814f3c476dfdc7a6f3397973fbf7215a9e8af65ea41b736d",
     "hw/routing/blind-main/charger.py": "63c7a84fb2b46b3627ccba3e7369fcc0e94ef023af4c7166adadbd659f3fdf0a",
     "hw/routing/blind-main/local_power.py": "a0c8e2895494d882b5092b7835278c0d18389707236a41bf666bd4c5648e81a0",
@@ -14,8 +15,9 @@
     "hw/routing/blind-main/usb_input.py": "710f7aa2629d8307c0b00afcf956194c4ad979050f5fd68c6e9fa44305b826fa",
     "hw/routing/blind-main/usb_controls.py": "b38d943dd3d520804f3138bfee971391af7ff6f1893644b2cb5c72c881302edd",
     "hw/routing/blind-main/distribution.py": "541c689b2e9459265031f97de88c9f1d475cae98bb6cd2ef0b39436806adf631",
-    "hw/routing/blind-main/main-routed.kicad_pcb": "1b31379531fa17256d9958a609907566e77fed962e620dc013365f9d7ed7f3e8",
-    "hw/routing/blind-main/checks.py": "e9343b024167b745fc2e00005e87b6cbb7c6224b2dc80747e8a3beb950396350",
+    "hw/routing/blind-main/charger_controls.py": "e070689368330cdd168a979e475e1bb8dcc0d3cdecc6b2f23a43a0e7d3d01a4b",
+    "hw/routing/blind-main/main-routed.kicad_pcb": "a20deb30cd2f9eef92d5625494b8bec348905d2aeadb58c5ffff0d819aa2a06b",
+    "hw/routing/blind-main/checks.py": "35dc8f5c6e7513f757749f147ebe7985c825bfb29ccaff28fbff0b7d009e96dc",
     "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422"
   },
   "kicad_version": "10.0.4",
@@ -34,6 +36,7 @@
       "encoder.c_gate",
       "usb.r_raw_dis3",
       "charger.c_bat2",
+      "charger.c_batp",
       "logic_supply.r_mode",
       "controller.r_up",
       "usb.r_out_dis1",
@@ -68,6 +71,7 @@
       "usb.c_raw",
       "usb.tvs_vbus",
       "logic_supply.c_output_fast",
+      "charger.r_prog",
       "charger.r_ts_top",
       "usb.r_base1",
       "motor.c_vm",
@@ -149,20 +153,24 @@
       "maximum_mounted_height_mm": 7.8,
       "reviewed_resistor_height_with_solder_allowance_mm": 0.55
     },
-    "unique_uuids": 5221
+    "unique_uuids": 5331
   },
   "copper": {
-    "connected_path_groups": 64,
+    "connected_path_groups": 72,
     "ground_fill_islands": 1,
     "charger_bypass_ground_vias": {
       "charger.c_regn": 2,
       "charger.c_input_fast": 2
     },
     "usb_quiet_ground_vias": 1,
-    "segments": 537,
-    "vias": 162,
+    "segments": 631,
+    "vias": 178,
     "distribution_via_solder_land_margin": {
       "checked_vias": 38,
+      "minimum_drill_to_solder_land_mm": 0.2
+    },
+    "control_via_solder_land_margin": {
+      "checked_vias": 17,
       "minimum_drill_to_solder_land_mm": 0.2
     }
   },
@@ -176,7 +184,7 @@
       "text_height": 1,
       "text_thickness": 1
     },
-    "unconnected_items": 275,
+    "unconnected_items": 257,
     "ignored_checks": [
       "footprint_filters_mismatch",
       "track_not_centered_on_via",
@@ -199,11 +207,17 @@
     }
   },
   "negative_controls": [
+    "cut_vac_sense_rejected",
+    "cut_batp_sense_rejected",
+    "cut_ilim_input_rejected",
+    "cut_ts_return_rejected",
+    "cut_prog_input_rejected",
     "cut_usb_charger_feed_rejected",
     "cut_pmid_bulk_rejected",
     "cut_sys_bulk_rejected",
     "cut_input_ground_rejected",
     "same_net_open_via_in_solder_land_rejected",
+    "same_net_control_via_in_solder_land_rejected",
     "cut_pd_enable_rejected",
     "cut_uv_divider_rejected",
     "cut_raw_discharge_rejected",

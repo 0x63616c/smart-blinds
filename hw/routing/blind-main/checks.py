@@ -165,6 +165,14 @@ def verify_copper(b):
  [('charger.ic',29),('charger.c_pmid_fast',1),*[(f'charger.c_pmid{i}',1) for i in range(1,5)]],
  [('charger.ic',25),('charger.c_sys_fast',1),*[(f'charger.c_sys{i}',1) for i in range(1,6)]],
  [('charger.ic',27),('charger.c_input1',2),*[(f'charger.c_pmid{i}',2) for i in range(1,5)],*[(f'charger.c_sys{i}',2) for i in range(1,6)]],
+ [('charger.ic',8),('charger.ic',9),('charger.c_input_fast',1)],
+ [('charger.ic',18),('charger.c_batp',1),('charger.r_batp',2)],
+ [('charger.ic',22),('charger.r_batp',1)],
+ [('charger.ic',16),('charger.c_ts',1),('charger.r_ts_bottom',1),('charger.r_ts_top',2)],
+ [('charger.ic',20),('charger.r_prog',1)],
+ [('charger.ic',17),('charger.r_ilim_bottom',1),('charger.r_ilim_top',2)],
+ [('charger.ic',5),('charger.r_ts_top',1),('charger.r_ilim_top',1)],
+ [('charger.ic',27),('charger.c_batp',2),('charger.c_ts',2),('charger.r_prog',2),('charger.r_ts_bottom',2),('charger.r_ilim_bottom',2)],
  ]
  cache={}
  for path in paths:
@@ -215,6 +223,34 @@ def verify_distribution_lands(b):
  assert len(inspected)==38
  return {'checked_vias':len(inspected),'minimum_drill_to_solder_land_mm':.2}
 
+def verify_control_lands(b):
+ """Ordinary unfilled control vias must also clear same-net solder lands."""
+ p=parts(b);expected={}
+ def add(uv,address,pin,diam=.5,drill=.25):
+  pad=next(x for x in p[address].Pads() if x.GetNumber()==str(pin))
+  key=(round((100+uv[0])*1e6),round((175-uv[1])*1e6))
+  value=(pad.GetNetCode(),diam,drill)
+  assert key not in expected or expected[key]==value,'Conflicting control via declaration'
+  expected[key]=value
+ for row in json.loads((HERE/'charger-control-routes.json').read_text()):
+  for a,c in zip(row['path'],row['path'][1:]):
+   if a[2]!=c[2]:
+    assert a[:2]==c[:2];add(a[:2],*row['start'])
+ add([24.7,21.4],'charger.ic',8)
+ add([35.2,24.15],'charger.c_boot2',2,.6,.3)
+ assert len(expected)==17,'Expected sixteen added and one relocated control-area vias'
+ probes=[]
+ for (x,y),(net,diam,drill) in expected.items():
+  matches=[v for v in b.GetTracks() if isinstance(v,pcbnew.PCB_VIA) and v.GetPosition()==pcbnew.VECTOR2I(x,y) and v.GetNetCode()==net]
+  assert len(matches)==1,'Missing or duplicate control via'
+  v=matches[0];assert v.GetWidth(pcbnew.F_Cu)==round(diam*1e6) and v.GetDrillValue()==round(drill*1e6)
+  probe=pcbnew.PCB_VIA(b);probe.SetPosition(v.GetPosition());probe.SetWidth(v.GetDrillValue());probes.append(probe)
+  for f in b.GetFootprints():
+   for land in f.Pads():
+    if land.IsOnLayer(pcbnew.F_Cu):
+     assert not probe.GetEffectiveShape(pcbnew.F_Cu).Collide(land.GetEffectiveShape(pcbnew.F_Cu),200000),'Control via drill too close to solder land'
+ return {'checked_vias':len(expected),'minimum_drill_to_solder_land_mm':.2}
+
 def run_drc(path):
  cli=shutil.which('kicad-cli') or '/Applications/KiCad.app/Contents/MacOS/kicad-cli'
  version=subprocess.check_output([cli,'version'],text=True).strip();assert version.startswith('10.')
@@ -249,12 +285,12 @@ def main():
  assert sha(BOARD)==record['pcb_sha256'] and sha(BOARD.with_suffix('.kicad_pro'))==record['project_sha256']
  readset=[BOARD,BOARD.with_suffix('.kicad_pro'),HERE/'checks.py',HERE/'fp-lib-table',ROOT/'cad/parameters/retained-interfaces.json',*[ROOT/p for p in record['source_hashes']]]
  snapshot={str(p.relative_to(ROOT)):sha(p) for p in readset}
- b,geometry=verify_geometry(BOARD);copper=verify_copper(b);copper['distribution_via_solder_land_margin']=verify_distribution_lands(b);version,report=run_drc(BOARD);drc=verify_drc(b,report);faults=[]
+ b,geometry=verify_geometry(BOARD);copper=verify_copper(b);copper['distribution_via_solder_land_margin']=verify_distribution_lands(b);copper['control_via_solder_land_margin']=verify_control_lands(b);version,report=run_drc(BOARD);drc=verify_drc(b,report);faults=[]
  if args.negative_tests:
   negative_boards=[];removed_items=[]
   with tempfile.TemporaryDirectory() as d:
    changed=Path(d)/'changed.kicad_pcb'
-   for mode,a,pin in [('cut_usb_charger_feed','charger.c_input_fast',1),('cut_pmid_bulk','charger.c_pmid4',1),('cut_sys_bulk','charger.c_sys5',1),('cut_input_ground','charger.c_input1',2)]:
+   for mode,a,pin in [('cut_vac_sense','charger.ic',9),('cut_batp_sense','charger.ic',18),('cut_ilim_input','charger.ic',17),('cut_ts_return','charger.c_ts',2),('cut_prog_input','charger.ic',20),('cut_usb_charger_feed','charger.c_input_fast',1),('cut_pmid_bulk','charger.c_pmid4',1),('cut_sys_bulk','charger.c_sys5',1),('cut_input_ground','charger.c_input1',2)]:
     bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
     pad=next(p for p in parts(bad)[a].Pads() if p.GetNumber()==str(pin))
     selected=[t for t in bad.GetTracks() if (isinstance(t,pcbnew.PCB_VIA) or t.GetLayer()==pcbnew.F_Cu) and t.GetNetCode()==pad.GetNetCode() and t.GetEffectiveShape(pcbnew.F_Cu).Collide(pad.GetEffectiveShape(pcbnew.F_Cu),0)]
@@ -272,6 +308,14 @@ def main():
     assert 'Distribution via drill too close to solder land' in str(error),error
     faults.append('same_net_open_via_in_solder_land_rejected')
    else:raise AssertionError('Accepted distribution via in solder land')
+   bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
+   via=next(t for t in bad.GetTracks() if isinstance(t,pcbnew.PCB_VIA) and t.GetPosition()==pcbnew.VECTOR2I(124700000,153600000))
+   pad=next(p for p in parts(bad)['charger.ic'].Pads() if p.GetNumber()=='8');pad.SetPosition(via.GetPosition())
+   try:verify_control_lands(bad)
+   except AssertionError as error:
+    assert 'Control via drill too close to solder land' in str(error),error
+    faults.append('same_net_control_via_in_solder_land_rejected')
+   else:raise AssertionError('Accepted control via in solder land')
    for mode,a,pin in [('cut_pd_enable','usb.pd',16),('cut_uv_divider','usb.r_uv_top2',2),('cut_raw_discharge','usb.pd',18),('cut_address_ground','usb.r_addr0',2)]:
     bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
     pad=next(p for p in parts(bad)[a].Pads() if p.GetNumber()==str(pin))

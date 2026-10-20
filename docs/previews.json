@@ -134,7 +134,9 @@
         "hw/routing/blind-main/usb_controls.py",
         "hw/routing/blind-main/usb-control-routes.json",
         "hw/routing/blind-main/distribution.py",
-        "hw/routing/blind-main/charger-power-banks.json"
+        "hw/routing/blind-main/charger-power-banks.json",
+        "hw/routing/blind-main/charger_controls.py",
+        "hw/routing/blind-main/charger-control-routes.json"
       ],
       "image_size": [
         1500,
@@ -147,7 +149,7 @@
       ],
       "zoom": 0.83,
       "collapsed": false,
-      "role": "Experimental four-layer route with 537 segments and 162 vias: local charger, motor, regulator, radio and USB power/control paths and charger capacitor banks. 64 physical connection groups and nineteen injected-fault checks pass; 275 unconnected items remain. USB data/factory access, remaining current/signal routes, thermal review and manufacturing checks are unfinished."
+      "role": "Experimental four-layer route with 631 segments and 178 vias: local charger, motor, regulator, radio and USB paths, charger capacitor banks, VAC/BATP sensing and TS/ILIM/PROG networks. 72 physical connection groups and twenty-five injected-fault checks pass; 257 unconnected items remain. USB data/factory access, remaining power/signal routes, thermal review and manufacturing checks are unfinished."
     },
     {
       "id": "companion-routed",

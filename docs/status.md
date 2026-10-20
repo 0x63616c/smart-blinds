@@ -15,7 +15,7 @@ followed by an eight-unit build only after their tests pass.
 |---|---|---|
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | Native eleven-sheet schematic and partial four-layer power route; 537 segments, 162 vias, 64 physical connection groups, preserved circuit and mechanical anchors | 275 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
+| Main controller | Native eleven-sheet schematic and partial four-layer power route; 631 segments, 178 vias, 72 physical connection groups, preserved circuit and mechanical anchors | 257 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete primary/main routing, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
@@ -28,11 +28,11 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All twelve Design checks jobs passed for `c89b8fc`](https://github.com/0x63616c/smart-blinds/actions/runs/39395322397),
-including the charger-distribution extension's nineteen injected failures,
-eighteen portable firmware targets, the C6 gauge adapter, and the separate
+[All thirteen Design checks jobs passed for `220aa74`](https://github.com/0x63616c/smart-blinds/actions/runs/39398463242),
+including both mechanical assemblies and the updated material estimate,
+eighteen portable firmware targets with healthy-refresh retention, the C6 gauge adapter, and the separate
 Wi-Fi motion target's default/bench builds against the pinned real SDK.
-The charger-routing [source-generated previews also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39393679663).
+The enclosure, loading fixtures and prior routing [source-generated previews were published successfully](https://github.com/0x63616c/smart-blinds/actions/runs/39399695721).
 
 The new [portable local ownership core](firmware/local-ownership.md) passes
 all eighteen host targets, the same suite under ASan/UBSan, 59 native transport,
@@ -45,7 +45,7 @@ wiring and qualification remain unfinished. Exact dependency pins and
 modified-source rejection remain enforced.
 
 The revised retained-enclosure artifact passes 40 named empty-intersection checks,
-three positive capture controls and ten closed printable mesh types locally. Its
+three positive capture controls and ten closed printable mesh types locally and in CI. Its
 eight CAD source hashes match the checked source. The service tests include a conservative
 2.5 mm cassette release and 72 mm forward removal envelope. These results establish
 what the nominal model does; they do not establish printed fit or load capacity.
@@ -54,7 +54,7 @@ solid PETG at 1.27 g/cm³. This is a CAD estimate, before infill, supports and w
 CI recalculates it from the freshly checked meshes. The separate eight-piece
 [paired-loading workshop set](mechanical/paired-loading.md) adds about 227.46 g
 once for the eight-unit build. Its 22 clearance checks, three positive controls
-and eight closed print meshes pass locally. The modeled sequence fits the rear
+and eight closed print meshes pass locally and in CI. The modeled sequence fits the rear
 tray before turning the carrier pair, with broad captive clamp pads and a
 supporting cradle. Practical catch release, protected-pigtail restraint, holder
 contact, insertion forces and actual loaded handling remain unfinished.
@@ -93,13 +93,16 @@ primary and main routes remain unfinished.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
 196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
-reservations. Its 537 segments and 162 vias connect 64 checked copper groups,
+reservations. Its 631 segments and 178 vias connect 72 checked copper groups,
 including local charger/motor/regulator paths, radio power, USB input/CC/bypass
 connections, negotiated-enable/divider/discharge chains, the charger input and
-PMID/SYS capacitor banks, and ground return. Nineteen injected geometric/copper
-failures are rejected, including same-net via-to-solder-land intrusion. All 38 new
-distribution vias retain a 0.20 mm drill-to-solder-land margin.
-Actual DRC retains 275 unconnected items, 260 silk/text findings, four library differences and five
+PMID/SYS capacitor banks, ground return, VAC/BATP sensing, TS/ILIM and PROG networks. Twenty-five injected geometric/copper
+failures are rejected locally, including same-net via-to-solder-land intrusion. All 38 new
+distribution vias and seventeen control-area vias retain a 0.20 mm
+drill-to-solder-land margin. The control extension moves six electrical parts
+and one bootstrap via; all mechanical anchors remain fixed. Its latest route
+checks are local; the CI link above precedes this extension.
+Actual DRC retains 257 unconnected items, 260 silk/text findings, four library differences and five
 footprint-type findings. This is a reproducible partial checkpoint; critical-loop,
 current/thermal, USB, supervisory and full-routing work remain.
 
