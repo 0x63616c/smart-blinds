@@ -9,7 +9,7 @@ from "../../parts/blind-usb/ESDA25P35_1U1M.ato" import Part_ESDA25P35_1U1M
 from "../../parts/blind-usb/ESDA25W.ato" import Part_ESDA25W
 from "../../parts/blind-usb/CL31A475KBHNNNE.ato" import Part_CL31A475KBHNNNE
 from "../../parts/blind-usb/0402WGF1651TCE.ato" import Part_0402WGF1651TCE
-from "../../parts/UNKNOWN_TYPE_C_31_M_12/UNKNOWN_TYPE_C_31_M_12.ato" import UNKNOWN_TYPE_C_31_M_12_package
+from "../../parts/blind-usb/TYPE_C_31_M_12.ato" import Part_TYPE_C_31_M_12
 from "../../parts/SAMSUNG_CL10A105KB8NNNC/SAMSUNG_CL10A105KB8NNNC.ato" import SAMSUNG_CL10A105KB8NNNC_package
 from "../../parts/UNI_ROYAL_0603WAF1001T5E/UNI_ROYAL_0603WAF1001T5E.ato" import UNI_ROYAL_0603WAF1001T5E_package
 from "../../parts/UNI_ROYAL_0402WGF3903TCE/UNI_ROYAL_0402WGF3903TCE.ato" import UNI_ROYAL_0402WGF3903TCE_package
@@ -56,7 +56,7 @@ module UsbPdInput:
     factory_reset.reference ~ factory_logic
 
     # Connector shell is tied to PCB ground; enclosure has no metal chassis.
-    connector = new UNKNOWN_TYPE_C_31_M_12_package
+    connector = new Part_TYPE_C_31_M_12
     connector.VBUS ~ raw.hv
     connector.GND ~ raw.lv
     connector.EH ~ raw.lv

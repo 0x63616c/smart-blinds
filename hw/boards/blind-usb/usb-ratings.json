@@ -30,13 +30,15 @@
   },
   "parts": {
     "TYPE-C-31-M-12": {
-      "wrapper": "../../parts/UNKNOWN_TYPE_C_31_M_12/UNKNOWN_TYPE_C_31_M_12.ato",
+      "wrapper": "../../parts/blind-usb/TYPE_C_31_M_12.ato",
       "lcsc": "C165948",
       "instances": [
         "connector"
       ],
-      "source": "https://jlcpcb.com/partdetail/TYPE-C-31-M-12/C165948",
-      "evidence_limit": "Supplier physical pad numbering used; exact connector drawing, footprint and enclosure opening remain to be qualified"
+      "source": "https://datasheet.lcsc.com/datasheet/pdf/9e56b777c022540fcce7c7f67825f55e.pdf?productCode=C165948",
+      "evidence_limit": "Manufacturer HRO drawing dated2020-12-08, RevA; exact land pattern transcribed. Footprint manufacturing tolerances, model alignment and real cable fit remain unqualified.",
+      "current_rating_a": 5,
+      "voltage_rating_v": 20
     },
     "STUSB4500QTR": {
       "wrapper": "../../parts/blind-usb/STUSB4500QTR.ato",

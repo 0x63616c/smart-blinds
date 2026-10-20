@@ -7,6 +7,7 @@ import tempfile
 import unittest
 
 import stusb4500 as st
+import stusb4500_gui_audit as audit
 
 
 # ST NVM technical note p19 reference, not a read from the owner's chip.
@@ -31,17 +32,29 @@ class FactoryTests(unittest.TestCase):
         self.assertEqual(data["pdo_count"], 3)
         self.assertEqual((data["discharge_to_zero_code"], data["discharge_to_lower_pdo_code"]), (9, 12))
 
-    def test_proposal_documented_bytes_and_blocked_safety_bit(self):
+    def test_proposal_documented_bytes_and_derived_gate_bit(self):
         raw = st.image(self.proposal["candidate_hex"])
         self.assertEqual(raw.hex(),
-                         "0000b0aa0045000010409c1cff013cdf02400f003200fcf1001957aff9955f00002d2c21430040fb")
+                         "0000b0aa0045000010409c1cff013cdf02400f003200fcf1001957aff9955f00002d2c21430048fb")
         decoded = st.decode(raw)
         self.assertEqual([(p["voltage_mv"], p["current_ma"]) for p in decoded["pdos"]], list(st.PDO_REQUIREMENTS))
         self.assertTrue(decoded["usb_communications_capable"])
         self.assertFalse(decoded["req_src_current"])
-        self.assertIsNone(decoded["power_only_above_5v"])
-        self.assertEqual(raw[0xE6-0xC0], 0x40)  # Do not guess a bit for required gating.
+        self.assertTrue(decoded["power_only_above_5v"])
+        self.assertEqual(raw[0xE6-0xC0], 0x48)
         self.assertFalse(self.proposal["programming_allowed"])
+
+    def test_gui_forward_inverse_and_isolated_bit_change(self):
+        self.assertEqual(audit.check_bijection()["forward_inverse_cases"], 16384)
+        for value in range(256):
+            baseline = bytearray(BASELINE)
+            baseline[38] = value
+            candidate = st.image(st.derive(bytes(baseline))["candidate_hex"])
+            self.assertEqual(candidate[38], (value & ~0x18) | 0x08)
+            self.assertTrue(st.decode(candidate)["power_only_above_5v"])
+            self.assertFalse(st.decode(candidate)["req_src_current"])
+        with self.assertRaises(ValueError):
+            audit.audit(b"not the pinned manufacturer artifact")
 
     def test_reserved_and_unmodified_bits_preserved_exhaustively(self):
         for byte in range(40):

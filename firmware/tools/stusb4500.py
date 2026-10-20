@@ -3,8 +3,9 @@
 
 NVM fields: ST's 39-page NVM technical note, pp22/25-28. Programming
 sequence: usb-c/STUSB4500 55d1109e7ef0cffc2ffef2494095d23306594601.
-POWER_ONLY_ABOVE_5V mapping and discharge timing are unresolved: every
-proposal remains INCOMPLETE_DO_NOT_PROGRAM, including matching readback.
+POWER_ONLY_ABOVE_5V: hash-bound static audit of ST GUI1.08 forward/inverse
+mapping. Discharge timing/hardware remain unqualified: every proposal stays
+INCOMPLETE_DO_NOT_PROGRAM, including matching readback.
 """
 from __future__ import annotations
 
@@ -13,19 +14,19 @@ import hashlib
 import json
 from pathlib import Path
 import re
+from stusb4500_gui_audit import GUI_SHA256
 
-SCHEMA = "smart-blinds/stusb4500-proposal/v1"
+SCHEMA = "smart-blinds/stusb4500-proposal/v2"
 UPSTREAM_COMMIT = "55d1109e7ef0cffc2ffef2494095d23306594601"
 PDO_REQUIREMENTS = ((5000, 1500), (9000, 2500), (15000, 2500))
 CURRENT_LUT_MA = (None, 500, 750, 1000, 1250, 1500, 1750, 2000,
                   2250, 2500, 2750, 3000, 3500, 4000, 4500, 5000)
-# Deliberately no mapping for POWER_ONLY_ABOVE_5V. ST's note says E6[3:0]
-# reserved; a forum experiment is not accepted as manufacturer approval.
+# E6[3] is from the manufacturer's GUI serializer AND inverse decoder; see
+# stusb4500_gui_audit.py and docs/firmware/stusb4500-gui-evidence.md.
 FIELD_MASKS = {0xC9: 0x20, 0xCA: 0xFF, 0xDA: 0xFF, 0xDC: 0x0F,
                0xDD: 0xF0, 0xE0: 0xC0, 0xE1: 0xFF, 0xE2: 0xFF,
-               0xE3: 0x03, 0xE6: 0x10}
+               0xE3: 0x03, 0xE6: 0x18}
 UNRESOLVED = [
-    "POWER_ONLY_ABOVE_5V=1 needs manufacturer/controlled GUI field evidence; preserved bits do not prove it",
     "Discharge timer choices require measured raw/output discharge with actual load, capacitance and reverse paths",
     "Baseline reserved bits, silicon revision and voltage-monitor thresholds require qualified fixture review",
     "Full NVM readback, reset/power-cycle reload and contract-loss/input-path tests have not run on hardware",
@@ -78,7 +79,7 @@ def decode(raw: bytes) -> dict:
         "automatic_discharge_enabled": not bool(at(0xC9) & 32),
         "discharge_to_zero_code": at(0xCA) >> 4,
         "discharge_to_lower_pdo_code": at(0xCA) & 15,
-        "power_only_above_5v": None,
+        "power_only_above_5v": bool(at(0xE6) & 8),
     }
 
 
@@ -108,7 +109,7 @@ def derive(baseline: bytes, *, to_zero: int | None = None,
     field(0xE1, 0xFF, pdo2 >> 2)
     field(0xE2, 0xFF, pdo3 & 255)
     field(0xE3, 0x03, pdo3 >> 8)  # Preserve unused flexible-current definition.
-    field(0xE6, 0x10, 0)  # Request sink current, not source's entire capability.
+    field(0xE6, 0x18, 8)  # Above-5V gating; request sink current, not source's entire capability.
     field(0xC9, 0x20, 0)  # Automatic discharge enabled, not forced discharge.
     if to_zero is not None:
         field(0xCA, 0xF0, to_zero << 4)
@@ -123,6 +124,8 @@ def derive(baseline: bytes, *, to_zero: int | None = None,
         "candidate_sha256": hashlib.sha256(candidate).hexdigest(),
         "decoded_documented_fields": decode(candidate),
         "required_power_only_above_5v": True,
+        "power_only_above_5v_evidence": {"method": "manufacturer GUI static forward/inverse audit",
+                                        "gui_sha256": GUI_SHA256, "hardware_validated": False},
         "timer_status": "UNQUALIFIED: preserved or explicitly proposed coefficients only",
         "timer_overrides": {"to_zero": to_zero, "to_lower_pdo": to_lower_pdo},
         "changes": [{"nvm_address": f"0x{0xC0+i:02X}", "before": a, "after": b}

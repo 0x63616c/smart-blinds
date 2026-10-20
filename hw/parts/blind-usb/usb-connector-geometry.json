@@ -1,0 +1,52 @@
+{
+  "manufacturer": "HRO",
+  "mpn": "TYPE-C-31-M-12",
+  "drawing_date": "2020-12-08",
+  "revision": "A",
+  "source": "https://datasheet.lcsc.com/datasheet/pdf/9e56b777c022540fcce7c7f67825f55e.pdf?productCode=C165948",
+  "source_sha256": "6ae33d50ac47820114661138dc4e4659f40fdc5d4f485b46685dfec338da1a9e",
+  "datum": "Component side; origin midway between locator holes, mouth along +Y",
+  "body_mm": {
+    "width": 8.94,
+    "length": 7.35,
+    "height_above_board": 3.26,
+    "rear_y": -1.1,
+    "mouth_y": 6.25
+  },
+  "pcb_edge_y": 5.79,
+  "mouth_overhang": 0.46,
+  "locator_holes": {
+    "x": [
+      -2.89,
+      2.89
+    ],
+    "y": 0,
+    "diameter": 0.6
+  },
+  "signal_row": {
+    "y": -1.07,
+    "length": 1.14,
+    "width": 0.3,
+    "merged_power_width": 0.6
+  },
+  "shell_slots": {
+    "x": [
+      -4.325,
+      4.325
+    ],
+    "rear_y": -0.5,
+    "front_y": 3.68,
+    "drill_width": 0.6,
+    "rear_drill_length": 1.7,
+    "front_drill_length": 1.4,
+    "land_width": 0.9,
+    "rear_land_length": 2.0,
+    "front_land_length": 1.7
+  },
+  "notes": [
+    "Drawing1.64mm is SMT pad TOP to locator-hole line, not pad length; minus0.50 gives1.14mm length.",
+    "Drawing4.18mm is SMT pad BOTTOM to front shell-slot centre; minus0.50 gives3.68mm from locator line.",
+    "The inherited STEP is retained only as approximate visualization, translated with new datum; it is not a clearance authority.",
+    "This new part is separate from the inherited e8s/reference library."
+  ]
+}

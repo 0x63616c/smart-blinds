@@ -70,9 +70,12 @@ A green preview result only confirms generation of the documented images.
   check power-domain separation, factory-bus isolation and key control connections. Normal
   and frozen local builds pass; connectors and actual layout are next. Regeneration and
   thermal models have explicit transient and sustained-backdrive limits, not hardware approval.
-- Offline STUSB4500 tooling checks documented PDO fields and full 40-byte readback. An
-  undocumented required gate-policy field and unqualified discharge timers keep its output
-  explicitly incomplete; no hardware has been accessed or programmed.
+- Offline STUSB4500 tooling checks documented PDO fields and full 40-byte readback. Static inspection of the pinned manufacturer GUI binary now identifies
+  its above-5 V gate-policy field; unqualified discharge timers and device baseline still keep
+  its output explicitly incomplete; no hardware has been accessed or programmed.
+- The USB-C footprint now follows the manufacturer drawing, including its 1.14 mm signal
+  lands, distinct shell slots and 0.46 mm mouth overhang. An independent pad/hole check
+  covers the standalone and integrated captures. Actual connector fit remains unverified.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
 - The exact motor listing is identified and partial seller dimensions are recorded. The owner is
@@ -93,6 +96,9 @@ passed for `495d01f` after fixing GCC signedness and ESP-IDF header warning comp
 The [USB-C schematic gallery](https://github.com/0x63616c/smart-blinds/actions/runs/39362552134)
 also refreshed successfully. The [main-controller and encoder checks](https://github.com/0x63616c/smart-blinds/actions/runs/39364197874)
 and [previews](https://github.com/0x63616c/smart-blinds/actions/runs/39364197877) passed for `9c74cb0`, including all eight jobs.
+The [regenerative-clamp and captured-cost checks](https://github.com/0x63616c/smart-blinds/actions/runs/39365428219)
+and [motion-executor/C6 I/O checks](https://github.com/0x63616c/smart-blinds/actions/runs/39365933426)
+also passed all eight jobs. The C6 application still does not instantiate motion hardware.
 Newer changes must be checked against their own runs.
 
 ## Inherited references

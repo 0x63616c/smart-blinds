@@ -159,6 +159,7 @@ jobs:
         run: |
           ato build hw/boards/blind-main -b main-test --frozen -v
           python hw/boards/blind-main/check_main.py
+          python hw/sim/blind-usb/check_footprint.py
           python -m unittest discover -s hw/boards/blind-main -p 'test_*.py' -v
       - name: Verify schematic source, physical graph and documented ERC boundaries
         run: |

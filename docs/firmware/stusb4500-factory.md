@@ -2,7 +2,7 @@
 
 The proposed port accepts **9 V/2.5 A or 15 V/2.5 A**, with a 5 V/1.5 A fallback that must leave the application power path blocked. Factory NVM must set `POWER_ONLY_ABOVE_5V=1` and `REQ_SRC_CURRENT=0`. The C6 does not share this I2C bus, so these settings must work autonomously after reset, including with an absent or depleted pack.
 
-The offline tool implements the manufacturer-documented PDO fields, preserves unspecified baseline bits, compares every NVM byte and checks an active PDO-register capture. It **cannot yet produce an approved programming image**. The manufacturer's retrieved NVM map omits the required `POWER_ONLY_ABOVE_5V` field, and discharge timing remains unqualified. Every generated proposal is marked `INCOMPLETE_DO_NOT_PROGRAM`; successful readback never changes that status. There is no hardware backend, erase/program command, flashing CLI or owner-device access.
+The offline tool implements the documented PDO fields and the `POWER_ONLY_ABOVE_5V` mapping independently traced through ST's GUI serializer and inverse decoder. It preserves unspecified baseline bits, compares every NVM byte and checks an active PDO-register capture. It **cannot yet produce an approved programming image**: discharge timing, baseline/silicon review and hardware acceptance remain unqualified. Every generated proposal is marked `INCOMPLETE_DO_NOT_PROGRAM`; successful readback never changes that status. There is no hardware backend, erase/program command, flashing CLI or owner-device access.
 
 ## Source evidence
 
@@ -11,7 +11,7 @@ The offline tool implements the manufacturer-documented PDO fields, preserves un
 - [UM2650 Rev 2](https://github.com/usb-c/STUSB4500/blob/55d1109e7ef0cffc2ffef2494095d23306594601/Doc/User_manuals/um2650-the-stusb4500-software-programing-guide-stmicroelectronics_v2.pdf), sections 3.60–72, supplies the active PDO count and byte addresses. SHA-256: `585c084b50fdb2075745d8904ae95f18a731ff50d02a328c3417d7f4e0bc2652`.
 - The [ST datasheet](https://www.st.com/resource/en/datasheet/stusb4500.pdf), sections 2.2.10, 3.3, 3.4.2 and 5, defines the required gate behavior, current lookup and discharge coefficients. The current circuit records DS12499 Rev 8; field semantics were also checked against the available Rev 7 text. These sources do not replace testing the selected silicon.
 
-The NVM note calls `E6[3:0]` reserved. A community contributor reports that toggling the GUI changes `E6[3]` for `POWER_ONLY_ABOVE_5V`, but that report is **not used as an implemented field definition**. Resolve this with manufacturer clarification or a recorded, controlled differential export from a suitable ST GUI, followed by independent contract/gate tests. Preserve that evidence with the reviewed factory image. The older GUI package in ST's GitHub repository has not been run or accepted as current field evidence.
+The NVM note calls `E6[3:0]` reserved. The [hash-bound manufacturer GUI audit](stusb4500-gui-evidence.md) now supplies the missing field evidence: its named checkbox maps to `E6[3]` in both the forward serializer and inverse decoder. The exact GUI 1.08 artifact was statically inspected without execution. The mapping is an inference from that primary binary, not a hardware test or a claim that the old note documents the field. Exhaustive forward/inverse and isolated-bit checks accompany it; actual contract/gate acceptance remains required.
 
 ## Documented proposal
 
@@ -30,7 +30,7 @@ NVM addresses `C0..E7` below are **image offsets**, not directly accessible I2C 
 | Request source current | `E6[4]` | 0; request the configured sink current |
 | Disable automatic discharge | `C9[5]` | 0; automatic discharge remains enabled |
 | Discharge to 0 V / lower PDO | `CA[7:4]` / `CA[3:0]` | Preserve baseline unless explicitly proposed; neither choice is qualified |
-| Power only above 5 V | Unresolved manufacturer map | Required 1; not patched or declared verified |
+| Power only above 5 V | `E6[3]`, static ST GUI evidence | 1; mapped and patched, hardware behavior untested |
 
 Voltage-monitor shifts, unused flexible current, GPIO/POWER_OK configuration and reserved bits remain unchanged. Their preservation does not establish that an arbitrary baseline is correct. The reference fixture is explicitly the note's page-19 example, **not a read from a physical device**. Full baseline review and controlled GUI comparison are required before adopting any image.
 
@@ -51,7 +51,7 @@ python3 firmware/tools/stusb4500.py compare-runtime \
 python3 -m unittest discover -s firmware/tools -p 'test_stusb4500.py' -v
 ```
 
-Optional `--to-zero 1..15` / `--to-lower-pdo 1..15` make explicit timer proposals, retaining the blocked status. There is intentionally no C-header or ready-to-flash export. Proposal validation recomputes the entire record from its baseline and overrides; changing the candidate, hash, approval flags or unresolved list is rejected.
+Optional `--to-zero 1..15` / `--to-lower-pdo 1..15` make explicit timer proposals, retaining the blocked status. There is intentionally no C-header or ready-to-flash export. Proposal schema v2 includes the GUI evidence hash and above-5 V bit; regenerate older v1 offline proposals. Validation recomputes the entire record from its baseline and overrides; changing the candidate, hash, evidence, approval flags or unresolved list is rejected.
 
 An offline active-register capture has this structure:
 
@@ -70,7 +70,7 @@ The example is synthetic. `device_id` comes from register `2F` (the pinned ST fi
 
 This is a fixture implementation specification, not an instruction to program the current proposal. No fixture exists or has been exercised. The following gates must be completed before an approved image is written:
 
-1. Resolve the missing field and timer choices, review all preserved baseline bits against the actual silicon, and retain the ST GUI/version/export evidence and final image digest. The current tool cannot release this gate.
+1. Qualify timer choices, review all preserved baseline bits against the actual silicon, and retain the static field audit plus a controlled ST GUI/version comparison and final image digest. The current tool cannot release the hardware gates.
 2. Use a reviewed fixture with a common ground, a 3.3 V I2C pull-up supply and address **0x28**. The fixture bus is isolated from the C6. USB supplies ST VDD; the fixture must not feed the chip's internal regulator outputs or energize an unpowered bus. The controller capture presently reserves factory I2C/reset interfaces; actual pogo pads and mechanical access remain a layout task.
 3. Keep cells, motor and charger enable isolated/inhibited using fixture hardware. A default or partly programmed chip cannot be trusted to enforce the final gate policy. Start from a controlled 5 V source, verify voltage/current and independent output isolation, then record board serial, silicon ID and a complete original NVM read before any destructive operation.
 4. Implement the manufacturer's sequence with explicit ACK/short-read handling, finite per-transfer deadlines, bounded polling, an overall deadline and cleanup. The tool's **read plan** supplies proposed 10 ms transfer, 100 ms request-poll and 1 s overall software budgets. These are conservative fixture abort policies, not measured silicon timing guarantees. Reading NVM writes its control registers; it is not an ordinary passive register dump.
@@ -93,4 +93,4 @@ The original source polls indefinitely and does not supply this project's timeou
 
 ## Verification boundary
 
-Fourteen host tests pass: documented baseline and candidate arithmetic, every preserved bit, all 40 readback-byte mutations, malformed inputs, proposal tampering, timer range/qualification, active PDO/flag/byte-order mutations, identity checks, nonzero mismatch exit codes and a bounded read plan without erase/program opcodes. These tests do not validate a programming fixture, USB compliance, undocumented fields, actual gate behavior or a physical device.
+Fifteen host tests pass: documented baseline and candidate arithmetic, the static GUI forward/inverse algebra and all E6 input-byte combinations, every preserved bit, all 40 readback-byte mutations, malformed inputs, proposal tampering, timer range/qualification, active PDO/flag/byte-order mutations, identity checks, nonzero mismatch exit codes and a bounded read plan without erase/program opcodes. The separate artifact audit passes against the exact manufacturer binary and checks its hash, resource and instruction signatures. These checks do not validate a programming fixture, USB compliance, actual gate behavior or a physical device.
