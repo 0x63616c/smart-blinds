@@ -211,8 +211,14 @@ def render() -> None:
         final_paths = {MANIFEST, Path(__file__).resolve()}
         for entry in entries:
             final_paths.update(entry_inputs(entry))
-        if final_paths != source_paths or any(digest(path) != value for path, value in source_snapshot.items()):
-            raise RuntimeError('Design sources changed during rendering; previous published previews preserved. Rerun from stable sources.')
+        added = final_paths - source_paths
+        removed = source_paths - final_paths
+        changed = {path for path in source_paths & final_paths if digest(path) != source_snapshot[path]}
+        if added or removed or changed:
+            details = '; '.join(f'{label}: ' + ', '.join(str(path.relative_to(ROOT)) for path in sorted(paths))
+                                for label, paths in [('added', added), ('removed', removed), ('changed', changed)] if paths)
+            raise RuntimeError('Design sources changed during rendering; previous published previews preserved. '
+                               'Rerun from stable sources. ' + details)
         for entry, item in zip(entries, metadata['designs']):
             if entry['kind'] == 'pcb' and model_files(local_source(entry['source']), env) != item['models_sha256']:
                 raise RuntimeError('PCB models changed during rendering; previous published previews preserved.')

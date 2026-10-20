@@ -107,7 +107,12 @@
       "title": "Complete controller schematic",
       "source": "hw/schematics/blind-main/smart-blinds-main.kicad_sch",
       "dependencies": [
-        "hw/schematics/blind-main/*",
+        "hw/schematics/blind-main/*.kicad_sch",
+        "hw/schematics/blind-main/*.kicad_sym",
+        "hw/schematics/blind-main/*.kicad_pro",
+        "hw/schematics/blind-main/*.json",
+        "hw/schematics/blind-main/fp-lib-table",
+        "hw/schematics/blind-main/sym-lib-table",
         "tools/generate_main_schematic.py",
         "tools/main_schematic_page.py",
         "tools/generate_schematics.py",
