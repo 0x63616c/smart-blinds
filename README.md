@@ -35,7 +35,43 @@ These images are generated from the design sources. [Preview generation and prov
 A green preview badge means the images generated successfully, not that the hardware is validated.
 
 <!-- previews:start -->
-### Holder carrier enclosure — provisional exterior
+### Compact holder enclosure — current exterior
+
+115 × 174 × 71 mm candidate, or 78 mm deep with untrimmed holder pins. Front buttons and underside USB-C; motor-family fit, printed tolerances and full fastening remain provisional.
+
+![Compact holder enclosure — current exterior](docs/generated/compact-holder-closed/assembly.png)
+
+[Source](cad/source/compact_direct.scad) · [Generated files](docs/generated/compact-holder-closed/)
+
+### Six cells and compact drive — current arrangement
+
+Two three-cell carrier boards with an insulating barrier, controller reservation and replaceable motor-fit parts. An outboard bearing shares radial load with the motor; it does not isolate the gearbox from chain force.
+
+![Six cells and compact drive — current arrangement](docs/generated/compact-holder-assembly/assembly.png)
+
+[Source](cad/source/compact_direct.scad) · [Generated files](docs/generated/compact-holder-assembly/)
+
+### Compact holder enclosure — exploded fit study
+
+Source geometry for the housing, holders and supported drive. Carrier/case fastening and full electrical placement remain unfinished; these are prototype-fit parts, not final manufacturing files.
+
+![Compact holder enclosure — exploded fit study](docs/generated/compact-holder-exploded/assembly.png)
+
+[Source](cad/source/compact_direct.scad) · [Generated files](docs/generated/compact-holder-exploded/)
+
+<details>
+<summary>Front buttons — section through the mechanism</summary>
+
+Straight plungers operate side-actuated board switches. Nominal gap 0.15 mm and mechanical stop 0.4 mm; printed tolerance, actuation and safe overtravel require qualification.
+
+![Front buttons — section through the mechanism](docs/generated/compact-holder-buttons/assembly.png)
+
+[Source](cad/source/compact_direct.scad) · [Generated files](docs/generated/compact-holder-buttons/)
+
+</details>
+
+<details>
+<summary>Holder carrier enclosure — provisional exterior</summary>
 
 Original 170 × 158 × 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.
 
@@ -43,7 +79,10 @@ Original 170 × 158 × 64 mm packaging study using six PCB-mounted holders and a
 
 [Source](cad/source/packaging_v2.scad) · [Generated files](docs/generated/holder-closed/)
 
-### Battery holders and supported drives, at the same scale
+</details>
+
+<details>
+<summary>Battery holders and supported drives, at the same scale</summary>
 
 Six packaging reservations. The two welded-pack options remain size references; the holder alternatives compare assembly effort, width and depth.
 
@@ -51,13 +90,18 @@ Six packaging reservations. The two welded-pack options remain size references; 
 
 [Source](cad/parameters/packaging-v2.json) · [Generated files](docs/generated/holder-comparison/)
 
-### Protected carrier and supported drive — exploded study
+</details>
+
+<details>
+<summary>Protected carrier and supported drive — exploded study</summary>
 
 Original 170 × 158 × 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.
 
 ![Protected carrier and supported drive — exploded study](docs/generated/holder-exploded/assembly.png)
 
 [Source](cad/source/packaging_v2.scad) · [Generated files](docs/generated/holder-exploded/)
+
+</details>
 
 <details>
 <summary>One protected carrier — internal arrangement</summary>
@@ -84,11 +128,33 @@ Fourteen components and 43 physical pin connections agree with the atopile board
 <details>
 <summary>Motor cutoff and reset — native KiCad circuit study</summary>
 
-Four ICs and ten passive parts. All49 physical pin connections checked against the compiled circuit; two explicit external-power ERC findings. Physical cutoff and full-board qualification remain open.
+Four ICs and ten passive parts. All 49 physical pin connections checked against the compiled circuit; two explicit external-power ERC findings. Physical cutoff and full-board qualification remain open.
 
 ![Motor cutoff and reset — native KiCad circuit study](docs/generated/supervisor-schematic/supervisor-test.svg)
 
 [Source](hw/schematics/blind-supervisor/supervisor-test.kicad_sch) · [Generated files](docs/generated/supervisor-schematic/)
+
+</details>
+
+<details>
+<summary>USB-C-fed 3S charger — native KiCad circuit study</summary>
+
+36-part capture with 101 physical pins checked. A fourth PMID capacitor follows DC-bias review; effective capacitance remains a curve-based planning estimate. Ten explicit ERC findings and unfinished power/pack integration. Not a charging or fabrication release.
+
+![USB-C-fed 3S charger — native KiCad circuit study](docs/generated/charger-schematic/charger-test.svg)
+
+[Source](hw/schematics/blind-charger/charger-test.kicad_sch) · [Generated files](docs/generated/charger-schematic/)
+
+</details>
+
+<details>
+<summary>3.3 V logic supply — native KiCad circuit study</summary>
+
+12 parts and 31 physical pins checked. Internal 3.3 V divider; 1 A design envelope. Two external-power ERC findings. Biased capacitance, load transients, layout and hardware qualification remain open.
+
+![3.3 V logic supply — native KiCad circuit study](docs/generated/regulator-schematic/regulator-test.svg)
+
+[Source](hw/schematics/blind-regulator/regulator-test.kicad_sch) · [Generated files](docs/generated/regulator-schematic/)
 
 </details>
 
