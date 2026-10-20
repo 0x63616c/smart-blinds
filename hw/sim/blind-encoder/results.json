@@ -1,0 +1,53 @@
+{
+  "status": "PASS: selected-part identity, physical graph and conditional calculations only",
+  "components": 6,
+  "physical_pins": 19,
+  "faults_detected": [
+    "enable_tied_to_sys",
+    "reset_bypassed",
+    "active_low_polarity_reversed",
+    "input_output_short"
+  ],
+  "effective_capacitance_estimates_uf": {
+    "CL10A105KB8NNNC": 0.17755262514045228,
+    "CL31A475KBHNNNE": 3.020336719011305
+  },
+  "output_planning_v": [
+    4.890000000000001,
+    5.109999999999999
+  ],
+  "load_planning_a": 0.03,
+  "ldo_dissipation_planning_w": 0.24929999999999997,
+  "reference_board_temperature_rise_c": 52.87652999999999,
+  "gate_max_pull_down_load_a": 0.0034259541984732822,
+  "logic_table": [
+    {
+      "reset_n": 0,
+      "allow_n": 0,
+      "enabled": 0
+    },
+    {
+      "reset_n": 0,
+      "allow_n": 1,
+      "enabled": 0
+    },
+    {
+      "reset_n": 1,
+      "allow_n": 0,
+      "enabled": 1
+    },
+    {
+      "reset_n": 1,
+      "allow_n": 1,
+      "enabled": 0
+    }
+  ],
+  "hardware_tested": false,
+  "limits": [
+    "Motor encoder voltage, pinout and current remain unmeasured.",
+    "Effective capacitance and thermal estimates do not qualify stability or enclosure temperature.",
+    "TPS709 EN pullup current and shutdown current have typical-only entries; startup, power-off leakage and output decay need bench checks.",
+    "No active output discharge; wait for measured encoder power-up and stable samples before accepting motion.",
+    "LDO short-circuit/thermal shutdown are not a 30mA harness current limit. Connector faults require system testing."
+  ]
+}

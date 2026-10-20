@@ -65,6 +65,13 @@ A green preview result only confirms generation of the documented images.
 - A host-tested BQ25798 component proposes and reads back charger settings, checks fresh ADC
   conversions, and rejects bus/register/timer/temperature faults. It has no charging-enable
   operation; the C6 application compiles but does not call it. No cell or device was programmed.
+- The partial main board now composes 148 components and 471 physical pins, including a
+  reset-gated 5 V encoder supply. Five preserved subassemblies and seven integration tests
+  check power-domain separation, factory-bus isolation and key control connections. Normal
+  and frozen local builds pass; regenerative protection, connectors and actual layout are next.
+- Offline STUSB4500 tooling checks documented PDO fields and full 40-byte readback. An
+  undocumented required gate-policy field and unqualified discharge timers keep its output
+  explicitly incomplete; no hardware has been accessed or programmed.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
 - The exact motor listing is identified and partial seller dimensions are recorded. The owner is
@@ -80,8 +87,10 @@ passed for `b01e5fb`. The [integrated cutoff/charger/Thread milestone checks](ht
 and [source previews](https://github.com/0x63616c/smart-blinds/actions/runs/39357729056) passed for `28433e1`,
 including the fresh hardened Thread build. The [protected-carrier milestone checks](https://github.com/0x63616c/smart-blinds/actions/runs/39361154907)
 and [source previews](https://github.com/0x63616c/smart-blinds/actions/runs/39361154969) passed for
-`757338e`, including all eight check jobs. The newer USB-C and charger-configuration work
-has local checks; its own CI results must be checked separately.
+`757338e`, including all eight check jobs. The [USB-C and charger build checks](https://github.com/0x63616c/smart-blinds/actions/runs/39362944646)
+passed for `495d01f` after fixing GCC signedness and ESP-IDF header warning compatibility.
+The [USB-C schematic gallery](https://github.com/0x63616c/smart-blinds/actions/runs/39362552134)
+also refreshed successfully. Newer changes must be checked against their own runs.
 
 ## Inherited references
 

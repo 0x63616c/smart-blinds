@@ -1,0 +1,56 @@
+import ElectricPower
+import ElectricLogic
+import Electrical
+from "../../parts/blind-encoder/TPS70950DBVR.ato" import Part_TPS70950DBVR
+from "../../parts/blind-supervisor/SN74AUP1G97DCKR.ato" import Part_SN74AUP1G97DCKR
+from "../../parts/blind-control-io/0402WGF1001TCE.ato" import Part_0402WGF1001TCE
+from "../../parts/blind-usb/CL31A475KBHNNNE.ato" import Part_CL31A475KBHNNNE
+from "../../parts/SAMSUNG_CL10A105KB8NNNC/SAMSUNG_CL10A105KB8NNNC.ato" import SAMSUNG_CL10A105KB8NNNC_package
+from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
+
+module EncoderSupply:
+    """Switched provisional 5 V encoder supply; measured motor pinout still unknown.
+
+    Logic gate implements RESET_N && !ALLOW_N, using the existing active-low
+    C6 request. EN is never connected to SYS. Nominal load envelope is 30 mA
+    including encoder pullups. It is a planning envelope, not a current limit.
+    No installed motor or regulator has been powered by this work.
+    """
+    source = new ElectricPower
+    logic = new ElectricPower
+    output = new ElectricPower
+    allow_n = new ElectricLogic
+    reset_n = new Electrical
+    source.voltage = 8.8V to 13.2V
+    logic.voltage = 3.3V +/- 2%
+    output.voltage = 5V +/- 5%
+    source.lv ~ logic.lv
+    output.lv ~ logic.lv
+    allow_n.reference ~ logic
+    ic = new Part_TPS70950DBVR
+    gate = new Part_SN74AUP1G97DCKR
+    ic.IN ~ source.hv
+    ic.GND ~ logic.lv
+    ic.OUT ~ output.hv
+    # TPS709 DBV pin 4 is NC; do not tie it to any plane.
+    gate.VCC ~ logic.hv
+    gate.GND ~ logic.lv
+    gate.IN0 ~ logic.lv
+    gate.IN1 ~ reset_n
+    gate.IN2 ~ allow_n.line
+    gate.Y ~ ic.EN
+    r_enable = new Part_0402WGF1001TCE
+    r_enable.1 ~ ic.EN
+    r_enable.2 ~ logic.lv
+    c_input = new SAMSUNG_CL10A105KB8NNNC_package
+    c_input.1 ~ source.hv
+    c_input.2 ~ logic.lv
+    c_output = new Part_CL31A475KBHNNNE
+    c_output.1 ~ output.hv
+    c_output.2 ~ logic.lv
+    c_gate = new SAMSUNG_CL05B104KB54PNC_package
+    c_gate.1 ~ logic.hv
+    c_gate.2 ~ logic.lv
+
+module EncoderTest:
+    encoder = new EncoderSupply

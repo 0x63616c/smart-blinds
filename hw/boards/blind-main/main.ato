@@ -1,0 +1,54 @@
+import ElectricPower
+import Electrical
+
+from "../blind-assembly/controller.ato" import ControllerAssembly
+from "../blind-usb/usb.ato" import UsbPdInput
+from "../blind-charger/charger.ato" import Charger3S
+from "../blind-regulator/regulator.ato" import LogicSupply
+from "../blind-encoder/encoder.ato" import EncoderSupply
+
+module MainController:
+    """INCOMPLETE integrated USB-C, charger, logic supply and motor controller.
+
+    Battery input is the protected carrier output, never raw cell rails.
+    Motor current bypasses charger SYS and is sensed by the carrier shunt.
+    The USB factory I2C bus stays separate from the always-on MCU/gauge bus.
+    Regen clamp, connectors and factory pads are still being
+    added. NVM settings, layout and physical qualification remain mandatory.
+    This unrouted capture must not be used to power hardware or fabricate.
+    """
+    control = new ControllerAssembly
+    usb = new UsbPdInput
+    charger = new Charger3S
+    logic_supply = new LogicSupply
+    encoder = new EncoderSupply
+    battery = new ElectricPower
+    battery.voltage = 9V to 12.6V
+    battery ~ charger.battery
+    battery ~ control.pack
+    usb.output ~ charger.source
+    charger.system ~ logic_supply.source
+    logic_supply.logic ~ control.rail
+    logic_supply.logic ~ charger.logic
+    charger.system ~ encoder.source
+    logic_supply.logic ~ encoder.logic
+    encoder.output ~ control.encoder_supply
+    encoder.allow_n ~ control.controller.encoder_allow_n
+    encoder.reset_n ~ control.controller.reset_n
+    usb.usb_dp ~ control.controller.usb_dp
+    usb.usb_dn ~ control.controller.usb_dm
+    control.controller.charge_allow_n ~ charger.allow_charge_n
+    control.controller.charger_interrupt_n ~ charger.irq_n
+    control.controller.i2c_sda.line ~ charger.sda
+    control.controller.i2c_scl.line ~ charger.scl
+
+    # External protected carrier telemetry and independent charger thermistor.
+    # GPIO isolation/absent-pack behavior remains an integration test gate.
+    pack_sda = new Electrical
+    pack_scl = new Electrical
+    pack_ntc = new Electrical
+    pack_ntc_return = new Electrical
+    pack_sda ~ charger.sda
+    pack_scl ~ charger.scl
+    pack_ntc ~ charger.ntc
+    pack_ntc_return ~ charger.ntc_return

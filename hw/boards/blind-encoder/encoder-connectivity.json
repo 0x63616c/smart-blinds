@@ -1,0 +1,40 @@
+{
+  "status": "Independent physical pin contract; TI SBVS186H DBV pin table and SCES505J gate function table",
+  "sources": [
+    "https://www.ti.com/lit/ds/symlink/tps709.pdf",
+    "https://www.ti.com/lit/ds/symlink/sn74aup1g97.pdf"
+  ],
+  "components": {
+    "ic": {
+      "1": "SYS",
+      "2": "GND",
+      "3": "ENABLE",
+      "4": "NC",
+      "5": "VENC"
+    },
+    "gate": {
+      "1": "RESET_N",
+      "2": "GND",
+      "3": "GND",
+      "4": "ENABLE",
+      "5": "3V3",
+      "6": "ALLOW_N"
+    },
+    "r_enable": {
+      "1": "ENABLE",
+      "2": "GND"
+    },
+    "c_input": {
+      "1": "SYS",
+      "2": "GND"
+    },
+    "c_output": {
+      "1": "VENC",
+      "2": "GND"
+    },
+    "c_gate": {
+      "1": "3V3",
+      "2": "GND"
+    }
+  }
+}
