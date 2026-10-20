@@ -128,37 +128,37 @@
   (net 2 "carrier-contact")
   (net 3 "1")
   (net 4 "carrier-1")
-  (net 5 "alert_n")
-  (net 6 "carrier-contact-1")
-  (net 7 "carrier-contact-2")
   (net 8 "hv")
   (net 9 "carrier-1-1")
   (net 10 "junction1")
-  (net 11 "carrier-contact-3")
-  (net 12 "carrier-contact-4")
-  (net 13 "carrier.protection-2-1")
+  (net 11 "carrier-contact-2")
+  (net 12 "carrier-contact-3")
+  (net 13 "carrier.protection-2")
   (net 14 "carrier.protection-1-1")
   (net 15 "carrier.protection-1-2")
-  (net 16 "2")
+  (net 16 "carrier-contact-1")
   (net 17 "raw_top")
   (net 18 "G")
   (net 19 "D")
   (net 20 "carrier.protection-1")
   (net 21 "AOLDO")
-  (net 22 "lv")
   (net 23 "CP")
   (net 24 "BATTS")
   (net 25 "CHG")
   (net 26 "DIS")
   (net 27 "ZVC")
   (net 28 "PCKP")
-  (net 29 "carrier.protection-2")
+  (net 29 "2")
   (net 30 "junction2")
   (net 31 "carrier.protection-G")
   (net 32 "PFAIL")
   (net 33 "ALRT")
-  (net 34 "K")
-  (net 35 "carrier.protection-K")
+  (net 34 "SCL_DOD")
+  (net 35 "SDA_DQ")
+  (net 36 "carrier-1-2")
+  (net 37 "carrier-1-4")
+  (net 38 "lv")
+  (net 39 "carrier-1-3")
   (footprint
     "blind-carrier:FUSE-SMD_L6.1-W2.7"
     (layer "F.Cu")
@@ -1075,7 +1075,7 @@
       (size 2.5 2.5)
       (drill 1.2)
       (layers "*.Cu" "*.Mask")
-      (net 5 "alert_n")
+      (net 36 "carrier-1-2")
       (uuid "8360c302-eb8a-472c-b3e4-771f84f87344")))
   (footprint
     "blind-core:QFN-24_L4.0-W4.0-P0.50-BL-EP2.6"
@@ -1362,7 +1362,7 @@
       (at 1.91 0.75)
       (size 0.665 0.28)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 34 "K")
+      (net 34 "SCL_DOD")
       (uuid "6a9648d0-4e93-40b9-a40f-4a4bbb2f442e"))
     (pad
       "9"
@@ -1371,7 +1371,7 @@
       (at 1.91 0.25)
       (size 0.665 0.28)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 35 "carrier.protection-K")
+      (net 35 "SDA_DQ")
       (uuid "4bc99e34-15e3-4896-9dd6-66a5a9d007e7"))
     (pad
       "10"
@@ -1380,7 +1380,7 @@
       (at 1.91 -0.25)
       (size 0.665 0.28)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 11 "carrier-contact-3")
+      (net 11 "carrier-contact-2")
       (uuid "5680553e-ac5d-4bce-b2c8-3f4da98ff782"))
     (pad
       "11"
@@ -1416,7 +1416,7 @@
       (at 0.75 -1.91)
       (size 0.28 0.665)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 22 "lv")
+      (net 38 "lv")
       (uuid "5502be4a-68a0-4c9a-9bcc-5c7a046f9916"))
     (pad
       "15"
@@ -1425,7 +1425,7 @@
       (at 0.25 -1.91)
       (size 0.28 0.665)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "779e5f10-0409-472c-8f36-8cf7073723b7"))
     (pad
       "16"
@@ -1434,7 +1434,7 @@
       (at -0.25 -1.91)
       (size 0.28 0.665)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 12 "carrier-contact-4")
+      (net 12 "carrier-contact-3")
       (uuid "0af89ea0-e72d-4861-9d8b-5eb5ff1d175d"))
     (pad
       "17"
@@ -1452,7 +1452,7 @@
       (at -1.25 -1.91)
       (size 0.28 0.665)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "c47f5162-ce7a-48e0-98f0-6d0ba1c6c8cf"))
     (pad
       "19"
@@ -1461,7 +1461,7 @@
       (at -1.91 -1.25)
       (size 0.665 0.28)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "6be3b96e-6020-4af5-afba-d2b8a8653ead"))
     (pad
       "20"
@@ -1470,7 +1470,7 @@
       (at -1.91 -0.75)
       (size 0.665 0.28)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "b89f1f92-b1eb-48db-8f97-60d5979e76b4"))
     (pad
       "21"
@@ -1479,7 +1479,7 @@
       (at -1.91 -0.25)
       (size 0.665 0.28)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 29 "carrier.protection-2")
+      (net 29 "2")
       (uuid "fb8c44d9-64d3-4779-af9e-f0b17d221b08"))
     (pad
       "22"
@@ -1488,7 +1488,7 @@
       (at -1.91 0.25)
       (size 0.665 0.28)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 29 "carrier.protection-2")
+      (net 29 "2")
       (uuid "10bdaa71-3549-4b8b-b1e1-9a77fb199a34"))
     (pad
       "23"
@@ -1497,7 +1497,7 @@
       (at -1.91 0.75)
       (size 0.665 0.28)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 13 "carrier.protection-2-1")
+      (net 13 "carrier.protection-2")
       (uuid "c993e4ca-3876-47a9-94c6-9eba65a3a01b"))
     (pad
       "24"
@@ -1515,7 +1515,7 @@
       (at 0 0)
       (size 2.55 2.55)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "e19578b2-dcd7-4cd5-8a15-1453a0cf65ed"))
     (embedded_fonts no)
     (model
@@ -1603,7 +1603,7 @@
       (size 2.5 2.5)
       (drill 1.2)
       (layers "*.Cu" "*.Mask")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "ed8780ca-159f-4633-b61c-fd78fea752e4")))
   (footprint
     "blind-pack-features:WirePad18"
@@ -1913,7 +1913,7 @@
       (at -0.42 0 0)
       (size 0.5 0.54)
       (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 13 "carrier.protection-2-1")
+      (net 13 "carrier.protection-2")
       (uuid "3a40e121-3c1a-4c20-886a-836ae1b9a20a"))
     (pad
       "2"
@@ -1922,7 +1922,7 @@
       (at 0.42 0 0)
       (size 0.5 0.54)
       (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 29 "carrier.protection-2")
+      (net 29 "2")
       (uuid "58eeb06c-d614-4036-a911-666c5f5ad222"))
     (embedded_fonts no)
     (model
@@ -2538,7 +2538,7 @@
       (at 0.43 0)
       (size 0.566 0.54)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "691c3e3c-39d5-4357-aaa4-3c63e89c6cbf"))
     (embedded_fonts no)
     (model
@@ -2626,7 +2626,7 @@
       (size 2.5 2.5)
       (drill 1.2)
       (layers "*.Cu" "*.Mask")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "b41a52b8-781b-437c-bade-000e14905b85")))
   (footprint
     "blind-carrier:R0402"
@@ -2806,7 +2806,7 @@
       (at -0.43 0)
       (size 0.566 0.54)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 7 "carrier-contact-2")
+      (net 37 "carrier-1-4")
       (uuid "b742fefe-e85a-4635-b31f-f00b8b9555a1"))
     (pad
       "2"
@@ -2815,7 +2815,7 @@
       (at 0.43 0)
       (size 0.566 0.54)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 35 "carrier.protection-K")
+      (net 35 "SDA_DQ")
       (uuid "2c2723b9-50a8-4669-b05b-1f8f0cb532a7"))
     (embedded_fonts no)
     (model
@@ -3013,7 +3013,7 @@
       (at 1.48 0 90)
       (size 1.208 1.701)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 29 "carrier.protection-2")
+      (net 29 "2")
       (uuid "0dda3dcb-d642-46e5-9e4c-3523b02690c0"))
     (embedded_fonts no)
     (model
@@ -3262,7 +3262,7 @@
       (at 0.42 0 0)
       (size 0.5 0.54)
       (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 13 "carrier.protection-2-1")
+      (net 13 "carrier.protection-2")
       (uuid "58eeb06c-d614-4036-a911-666c5f5ad222"))
     (embedded_fonts no)
     (model
@@ -3471,7 +3471,7 @@
       (at 0.43 0 0)
       (size 0.57 0.54)
       (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "d02c8a8b-a6ac-4c02-8c3b-3866ef8017c8"))
     (embedded_fonts no)
     (model
@@ -3724,7 +3724,7 @@
       (at -1.69 0)
       (size 0.95 1.15)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 35 "carrier.protection-K")
+      (net 37 "carrier-1-4")
       (uuid "b1907c6f-041d-4973-ae00-6ad4d5222e45"))
     (pad
       "2"
@@ -3733,7 +3733,7 @@
       (at 1.69 0)
       (size 0.95 1.15)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 38 "lv")
       (uuid "60c15a26-2c12-4bff-82ab-b56c295edeb7"))
     (embedded_fonts no)
     (model
@@ -3986,7 +3986,7 @@
       (at -1.69 0)
       (size 0.95 1.15)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 34 "K")
+      (net 39 "carrier-1-3")
       (uuid "b1907c6f-041d-4973-ae00-6ad4d5222e45"))
     (pad
       "2"
@@ -3995,7 +3995,7 @@
       (at 1.69 0)
       (size 0.95 1.15)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 38 "lv")
       (uuid "60c15a26-2c12-4bff-82ab-b56c295edeb7"))
     (embedded_fonts no)
     (model
@@ -4162,7 +4162,7 @@
       (size 4 4)
       (drill 1.5)
       (layers "*.Cu" "*.Mask")
-      (net 22 "lv")
+      (net 38 "lv")
       (uuid "cf38858b-5727-4e51-9bee-4a06948fd464")))
   (footprint
     "blind-pack-features:WirePadSignal"
@@ -4241,7 +4241,7 @@
       (size 2.5 2.5)
       (drill 1.2)
       (layers "*.Cu" "*.Mask")
-      (net 12 "carrier-contact-4")
+      (net 12 "carrier-contact-3")
       (uuid "5c79d1b7-a0cf-4655-b512-704b0220b324")))
   (footprint
     "blind-carrier:R0402"
@@ -4421,7 +4421,7 @@
       (at -0.43 0)
       (size 0.566 0.54)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 5 "alert_n")
+      (net 36 "carrier-1-2")
       (uuid "b742fefe-e85a-4635-b31f-f00b8b9555a1"))
     (pad
       "2"
@@ -4664,7 +4664,7 @@
       (at 1 0)
       (size 1.41 1.35)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "791b0404-14e2-42dd-af37-1f32fa31797d"))
     (embedded_fonts no)
     (model
@@ -5346,7 +5346,7 @@
       (at -0.42 0 0)
       (size 0.5 0.54)
       (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 29 "carrier.protection-2")
+      (net 29 "2")
       (uuid "3a40e121-3c1a-4c20-886a-836ae1b9a20a"))
     (pad
       "2"
@@ -5355,7 +5355,7 @@
       (at 0.42 0 0)
       (size 0.5 0.54)
       (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "58eeb06c-d614-4036-a911-666c5f5ad222"))
     (embedded_fonts no)
     (model
@@ -5443,7 +5443,7 @@
       (size 4 4)
       (drill 1.5)
       (layers "*.Cu" "*.Mask")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "9f228db3-166e-4886-8322-426336f7f5bd")))
   (footprint
     "blind-carrier:SOD-123_L2.8-W1.8-LS3.7-RD"
@@ -5687,7 +5687,7 @@
       (at -1.69 0)
       (size 0.95 1.15)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 33 "ALRT")
+      (net 36 "carrier-1-2")
       (uuid "b1907c6f-041d-4973-ae00-6ad4d5222e45"))
     (pad
       "2"
@@ -5696,7 +5696,7 @@
       (at 1.69 0)
       (size 0.95 1.15)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 38 "lv")
       (uuid "60c15a26-2c12-4bff-82ab-b56c295edeb7"))
     (embedded_fonts no)
     (model
@@ -5784,7 +5784,7 @@
       (size 4 4)
       (drill 1.5)
       (layers "*.Cu" "*.Mask")
-      (net 7 "carrier-contact-2")
+      (net 37 "carrier-1-4")
       (uuid "dcc98306-1532-4737-b7a0-29a47659c349")))
   (footprint
     "blind-carrier:R0402"
@@ -5964,7 +5964,7 @@
       (at -0.43 0)
       (size 0.566 0.54)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 6 "carrier-contact-1")
+      (net 39 "carrier-1-3")
       (uuid "b742fefe-e85a-4635-b31f-f00b8b9555a1"))
     (pad
       "2"
@@ -5973,7 +5973,7 @@
       (at 0.43 0)
       (size 0.566 0.54)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 34 "K")
+      (net 34 "SCL_DOD")
       (uuid "2c2723b9-50a8-4669-b05b-1f8f0cb532a7"))
     (embedded_fonts no)
     (model
@@ -6061,7 +6061,7 @@
       (size 2.5 2.5)
       (drill 1.2)
       (layers "*.Cu" "*.Mask")
-      (net 11 "carrier-contact-3")
+      (net 11 "carrier-contact-2")
       (uuid "97bf4094-f349-4461-991b-0149dcf91bc8")))
   (footprint
     "blind-pack-features:WirePad18"
@@ -6862,7 +6862,7 @@
       (at 0.42 0 0)
       (size 0.5 0.54)
       (layers "F.Cu" "F.Paste" "F.Mask")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "58eeb06c-d614-4036-a911-666c5f5ad222"))
     (embedded_fonts no)
     (model
@@ -7278,7 +7278,7 @@
       (size 4 4)
       (drill 1.5)
       (layers "*.Cu" "*.Mask")
-      (net 6 "carrier-contact-1")
+      (net 39 "carrier-1-3")
       (uuid "39c16a8d-57da-470c-8f63-9f024fe8a10b")))
   (footprint
     "SAMSUNG_CL05B104KB54PNC:C0402"
@@ -7904,7 +7904,7 @@
       (at -2.855 0)
       (size 1.65 3.68)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "eb0614e4-dfc8-4008-b082-8b2835225948"))
     (pad
       "2"
@@ -7913,7 +7913,7 @@
       (at 2.855 0)
       (size 1.65 3.68)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 22 "lv")
+      (net 38 "lv")
       (uuid "5312cdb9-12f2-4b5a-95d4-767d834686b2"))
     (embedded_fonts no)
     (model
@@ -8147,7 +8147,7 @@
       (at 1 0 90)
       (size 1.41 1.35)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "791b0404-14e2-42dd-af37-1f32fa31797d"))
     (embedded_fonts no)
     (model
@@ -8431,7 +8431,7 @@
       (drill oval 1 3.7)
       (layers "*.Cu" "*.Mask")
       (remove_unused_layers no)
-      (net 16 "2")
+      (net 16 "carrier-contact-1")
       (uuid "ee1b4d5e-c284-4c3a-aea9-3307f7878b81"))
     (embedded_fonts no)
     (model
@@ -8924,7 +8924,7 @@
       (at 1.48 0 90)
       (size 1.208 1.701)
       (layers "F.Cu" "F.Mask" "F.Paste")
-      (net 13 "carrier.protection-2-1")
+      (net 13 "carrier.protection-2")
       (uuid "0dda3dcb-d642-46e5-9e4c-3523b02690c0"))
     (embedded_fonts no)
     (model

@@ -1,9 +1,79 @@
 {
-  "status": "EXPERIMENTAL PARTIAL current/Kelvin route; signals/bypass/DRC and qualification incomplete",
-  "canonical_pcb_sha256": "fecc56c96206151d1abf174f17da5756d6655759b423a150b72ef37fc5cad8c6",
+  "status": "EXPERIMENTAL connected routing candidate; see independent checks and unresolved layout/physical qualification gates",
+  "canonical_pcb_sha256": "a93f5b45b81767ffaaa44e7ff29bcc5edda26651cc63edd8132b4aa51cbd1197",
   "mechanical_sha256": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
-  "route_source_sha256": "7449a67fcc9195a48722d1b4492a5e2609a0fe2341049c1258f31a35aa631e5c",
-  "routed_pcb_sha256": "0ef2d58956a3acbccee59725e92b9ace5af78f3b5448a74e3cfda8f264dd4d53",
+  "route_source_sha256": "02bdb521379e887c188000367c762fcda4c484585af3a04e901fa38193476e70",
+  "routed_pcb_sha256": "1a9ee1eee14edba4e1963ae44986007c30fdecdca094fa900ac88e7dfdea55fb",
+  "route_dependency_hashes": {
+    "route.py": "02bdb521379e887c188000367c762fcda4c484585af3a04e901fa38193476e70",
+    "signals.py": "d81a9adfb20de8c5ed685a58fc9353ce253277567568d048e34066cecad190af",
+    "gates.py": "f566f347a78dec9c8e8371a9e02797b0c2411fb4ba3547a40ea93d3dffb02d65",
+    "primary-routed.kicad_pro": "79ab62430a1f6aa6ce9d8a377a64d1285227f69e5f8618d022adc6f6d5eb6d45",
+    "primary-routed.kicad_dru": "1e08bd3635bb89b4943ad1e766505c31177e5e150424d10fd72709511661ab19"
+  },
+  "load_route_labels": [
+    "cell1-short-unfused",
+    "cell2-short-unfused",
+    "cell3-short-unfused",
+    "cell1-fused-exit",
+    "cell1-bank-F.Cu",
+    "cell1-bank-B.Cu",
+    "cell1-bank-extension",
+    "cell1-fanout",
+    "cell3-fused-exit",
+    "cell3-bank-F.Cu",
+    "cell3-bank-B.Cu",
+    "cell3-bank-extension",
+    "cell3-fanout",
+    "cell2-fused-front-crossing",
+    "cell2-bank-F.Cu",
+    "cell2-bank-B.Cu",
+    "junction2-current-rail",
+    "junction1-current-rail",
+    "junction2-link-approach",
+    "junction2-short-wire-row-neck",
+    "junction2-link",
+    "raw-top-current-rail",
+    "raw-top-short-wire-row-neck",
+    "raw-top-link",
+    "raw-ground-link",
+    "raw-ground-current-long",
+    "raw-ground-current-across",
+    "raw-ground-current-approach",
+    "shunt-raw-current-entry",
+    "charge-source-pin1",
+    "charge-source-pin2",
+    "charge-source-pin3",
+    "charge-source-bus",
+    "charge-source-bank-F.Cu",
+    "charge-source-bank-B.Cu",
+    "raw-top-feed-protection",
+    "raw-top-feed-across",
+    "discharge-source-pin1",
+    "discharge-source-pin2",
+    "discharge-source-pin3",
+    "discharge-source-bus",
+    "discharge-source-bus-wide",
+    "protected-positive-trunk",
+    "common-drain-spine",
+    "drain-paddle-tabs-54",
+    "drain-paddle-tabs-58",
+    "drain-peripheral-bus-55.5",
+    "drain-peripheral-bus-56.5",
+    "shunt-pack-current-exit",
+    "pack-ground-shunt-bank-F.Cu",
+    "pack-ground-shunt-bank-B.Cu",
+    "pack-ground-low-transition",
+    "pack-ground-low-approach",
+    "pack-ground-low",
+    "pack-ground-crossing-low-bank-F.Cu",
+    "pack-ground-crossing-low-bank-B.Cu",
+    "pack-ground-front-crossing",
+    "pack-ground-crossing-high-bank-F.Cu",
+    "pack-ground-crossing-high-bank-B.Cu",
+    "protected-ground-trunk",
+    "protected-ground-output-approach"
+  ],
   "placement_deltas": {
     "protection.shunt": [
       [
@@ -35,8 +105,78 @@
     ],
     "protection.r_pfail": [
       [
-        33.5,
-        1
+        31.8,
+        6.4
+      ],
+      90
+    ],
+    "protection.gauge": [
+      [
+        28,
+        4.8
+      ],
+      0
+    ],
+    "protection.r_aoldo": [
+      [
+        34,
+        6.9
+      ],
+      0
+    ],
+    "protection.r_balance3": [
+      [
+        10.5,
+        4.5
+      ],
+      90
+    ],
+    "protection.c_pump": [
+      [
+        27.75,
+        1.0
+      ],
+      0
+    ],
+    "protection.c_reg3": [
+      [
+        33.8,
+        3.2
+      ],
+      90
+    ],
+    "protection.c_reg2": [
+      [
+        22.5,
+        5.5
+      ],
+      0
+    ],
+    "protection.c_supply": [
+      [
+        24.7,
+        1.2
+      ],
+      180
+    ],
+    "protection.r_pack_sense": [
+      [
+        31.8,
+        1.6
+      ],
+      180
+    ],
+    "protection.r_supply": [
+      [
+        75.8,
+        6.5
+      ],
+      0
+    ],
+    "protection.r_balance1": [
+      [
+        21,
+        1.4
       ],
       0
     ]
@@ -46,7 +186,7 @@
     "Native KiCad 10 serialization, stable unique UUIDs and equivalent relative library/model paths",
     "Inward backing lands reject exposed features; no copper fills"
   ],
-  "segments": 102,
+  "segments": 451,
   "routes": [
     {
       "label": "cell1-short-unfused",
@@ -514,38 +654,38 @@
     },
     {
       "label": "raw-ground-link",
-      "net": "2",
+      "net": "carrier-contact-1",
       "layer": "B.Cu",
-      "width_mm": 3,
+      "width_mm": 1.5,
       "points_local_xy": [
         [
           15,
           89.9
         ],
         [
-          14,
-          90.9
+          7.6,
+          92.5
         ],
         [
-          14,
+          7.6,
           96
         ],
         [
-          15.2,
-          97.2
+          11.6,
+          100
         ],
         [
           15.2,
           100
         ]
       ],
-      "length_mm": 11.011269837220802
+      "length_mm": 20.60032286994341
     },
     {
-      "label": "raw-ground-current-to-shunt",
-      "net": "2",
+      "label": "raw-ground-current-long",
+      "net": "carrier-contact-1",
       "layer": "F.Cu",
-      "width_mm": 3,
+      "width_mm": 5,
       "points_local_xy": [
         [
           15,
@@ -562,7 +702,33 @@
         [
           11,
           20
+        ]
+      ],
+      "length_mm": 71.55685424949239
+    },
+    {
+      "label": "raw-ground-current-across",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 4,
+      "points_local_xy": [
+        [
+          11,
+          20
         ],
+        [
+          45.5,
+          20
+        ]
+      ],
+      "length_mm": 34.5
+    },
+    {
+      "label": "raw-ground-current-approach",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
         [
           45.5,
           20
@@ -572,11 +738,11 @@
           11
         ]
       ],
-      "length_mm": 115.05685424949239
+      "length_mm": 9.0
     },
     {
       "label": "shunt-raw-current-entry",
-      "net": "2",
+      "net": "carrier-contact-1",
       "layer": "F.Cu",
       "width_mm": 2,
       "points_local_xy": [
@@ -665,15 +831,15 @@
           6.1
         ],
         [
-          52.6,
-          6.9
+          53.2,
+          7.5
         ],
         [
-          52.6,
+          53.2,
           9.3
         ]
       ],
-      "length_mm": 5.45637084989848
+      "length_mm": 5.704898987322338
     },
     {
       "label": "charge-source-bank-F.Cu",
@@ -682,11 +848,11 @@
       "width_mm": 2,
       "points_local_xy": [
         [
-          52.6,
+          53.2,
           9.3
         ],
         [
-          52.6,
+          53.2,
           12
         ]
       ],
@@ -699,11 +865,11 @@
       "width_mm": 2,
       "points_local_xy": [
         [
-          52.6,
+          53.2,
           9.3
         ],
         [
-          52.6,
+          53.2,
           12
         ]
       ],
@@ -716,19 +882,32 @@
       "width_mm": 2,
       "points_local_xy": [
         [
-          52.6,
+          53.2,
           9.3
         ],
         [
-          52.6,
-          1.4
+          53.2,
+          3.0
+        ]
+      ],
+      "length_mm": 6.300000000000001
+    },
+    {
+      "label": "raw-top-feed-across",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          53.2,
+          3.0
         ],
         [
           69.4,
-          1.4
+          3.0
         ]
       ],
-      "length_mm": 24.700000000000003
+      "length_mm": 16.200000000000003
     },
     {
       "label": "discharge-source-pin1",
@@ -796,21 +975,38 @@
           2.5
         ],
         [
-          62.8,
+          63.5,
           2.5
+        ]
+      ],
+      "length_mm": 5.724999999999999
+    },
+    {
+      "label": "discharge-source-bus-wide",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          63.5,
+          2.5
+        ],
+        [
+          63.5,
+          11.3
         ],
         [
           62.8,
           12
         ]
       ],
-      "length_mm": 14.524999999999995
+      "length_mm": 9.789949493661169
     },
     {
       "label": "protected-positive-trunk",
       "net": "hv",
       "layer": "F.Cu",
-      "width_mm": 3,
+      "width_mm": 5,
       "points_local_xy": [
         [
           62.8,
@@ -972,7 +1168,7 @@
       "length_mm": 2.6999999999999993
     },
     {
-      "label": "pack-ground-low",
+      "label": "pack-ground-low-transition",
       "net": "lv",
       "layer": "B.Cu",
       "width_mm": 3,
@@ -984,6 +1180,36 @@
         [
           45.5,
           9.3
+        ]
+      ],
+      "length_mm": 4.354999999999997
+    },
+    {
+      "label": "pack-ground-low-approach",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          45.5,
+          9.3
+        ],
+        [
+          45.5,
+          19
+        ]
+      ],
+      "length_mm": 9.7
+    },
+    {
+      "label": "pack-ground-low",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 5,
+      "points_local_xy": [
+        [
+          45.5,
+          19
         ],
         [
           45.5,
@@ -994,7 +1220,7 @@
           24
         ]
       ],
-      "length_mm": 19.179264068711923
+      "length_mm": 5.124264068711926
     },
     {
       "label": "pack-ground-crossing-low-bank-F.Cu",
@@ -1034,7 +1260,7 @@
       "label": "pack-ground-front-crossing",
       "net": "lv",
       "layer": "F.Cu",
-      "width_mm": 3,
+      "width_mm": 5,
       "points_local_xy": [
         [
           45.8,
@@ -1085,7 +1311,7 @@
       "label": "protected-ground-trunk",
       "net": "lv",
       "layer": "B.Cu",
-      "width_mm": 3,
+      "width_mm": 5,
       "points_local_xy": [
         [
           45.8,
@@ -1097,64 +1323,52 @@
         ],
         [
           53,
+          88
+        ]
+      ],
+      "length_mm": 44.28233764908629
+    },
+    {
+      "label": "protected-ground-output-approach",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          53,
+          88
+        ],
+        [
+          53,
           94.8
         ]
       ],
-      "length_mm": 51.082337649086284
+      "length_mm": 6.799999999999997
     },
     {
       "label": "CSP-pin-escape",
-      "net": "2",
+      "net": "carrier-contact-1",
       "layer": "F.Cu",
       "width_mm": 0.2,
       "points_local_xy": [
         [
           28.25,
-          5.91
+          6.71
         ],
         [
           28.25,
-          6.45
+          7.25
         ],
         [
-          28.1,
-          6.8
+          28.4,
+          8.0
         ]
       ],
-      "length_mm": 0.9207886552931945
-    },
-    {
-      "label": "CSP-Kelvin-only",
-      "net": "2",
-      "layer": "B.Cu",
-      "width_mm": 0.2,
-      "points_local_xy": [
-        [
-          28.1,
-          6.8
-        ],
-        [
-          28.1,
-          6.2
-        ],
-        [
-          29,
-          5.3
-        ],
-        [
-          45.7,
-          5.3
-        ],
-        [
-          45.7,
-          4
-        ]
-      ],
-      "length_mm": 19.872792206135788
+      "length_mm": 1.3048529270389175
     },
     {
       "label": "CSP-inner-land",
-      "net": "2",
+      "net": "carrier-contact-1",
       "layer": "F.Cu",
       "width_mm": 0.2,
       "points_local_xy": [
@@ -1177,47 +1391,18 @@
       "points_local_xy": [
         [
           28.75,
-          5.91
+          6.71
         ],
         [
           28.75,
-          6.45
+          7.25
         ],
         [
-          28.95,
-          6.9
-        ],
-        [
-          28.95,
-          7.3
+          29.4,
+          8.6
         ]
       ],
-      "length_mm": 1.4324428900898045
-    },
-    {
-      "label": "CSN-Kelvin-only",
-      "net": "lv",
-      "layer": "B.Cu",
-      "width_mm": 0.2,
-      "points_local_xy": [
-        [
-          28.95,
-          7.3
-        ],
-        [
-          30,
-          6.25
-        ],
-        [
-          46.05,
-          6.25
-        ],
-        [
-          48.3,
-          4
-        ]
-      ],
-      "length_mm": 20.716904755831212
+      "length_mm": 2.038332406377169
     },
     {
       "label": "CSN-inner-land",
@@ -1235,6 +1420,3519 @@
         ]
       ],
       "length_mm": 0.8000000000000043
+    },
+    {
+      "label": "CP-local",
+      "net": "CP",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          27.25,
+          2.89
+        ],
+        [
+          27.25,
+          2.45
+        ],
+        [
+          26.75,
+          1.8
+        ],
+        [
+          26.75,
+          1
+        ]
+      ],
+      "length_mm": 2.0600609733428366
+    },
+    {
+      "label": "IN-local-bypass",
+      "net": "carrier.protection-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.75,
+          2.89
+        ],
+        [
+          25.4,
+          2.1
+        ],
+        [
+          25.12,
+          1.2
+        ]
+      ],
+      "length_mm": 2.5067108504567326
+    },
+    {
+      "label": "IN-pump-return",
+      "net": "carrier.protection-1",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          25.4,
+          2.1
+        ],
+        [
+          25.4,
+          0.65
+        ],
+        [
+          30.6,
+          0.65
+        ],
+        [
+          30.6,
+          0.65
+        ]
+      ],
+      "length_mm": 6.650000000000003
+    },
+    {
+      "label": "IN-pump-cap",
+      "net": "carrier.protection-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          30.6,
+          0.65
+        ],
+        [
+          28.75,
+          1
+        ]
+      ],
+      "length_mm": 1.8828170383762743
+    },
+    {
+      "label": "gauge-GND-local",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.75,
+          6.71
+        ],
+        [
+          26.75,
+          5.8
+        ],
+        [
+          28,
+          5.8
+        ]
+      ],
+      "length_mm": 2.16
+    },
+    {
+      "label": "gauge-GND-local",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.09,
+          6.05
+        ],
+        [
+          28,
+          6.05
+        ]
+      ],
+      "length_mm": 1.9100000000000001
+    },
+    {
+      "label": "gauge-GND-local",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.09,
+          5.55
+        ],
+        [
+          28,
+          5.55
+        ]
+      ],
+      "length_mm": 1.9100000000000001
+    },
+    {
+      "label": "GND-pin-escape",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.09,
+          5.55
+        ],
+        [
+          25.6,
+          5.55
+        ],
+        [
+          25.2,
+          6.0
+        ]
+      ],
+      "length_mm": 1.0920797289396147
+    },
+    {
+      "label": "GND-shunt-bottom-land",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.3,
+      "points_local_xy": [
+        [
+          46.1,
+          2
+        ],
+        [
+          44.145,
+          2.555
+        ]
+      ],
+      "length_mm": 2.032252444948706
+    },
+    {
+      "label": "REG2-quiet-return",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          23.5,
+          5.5
+        ],
+        [
+          24.3,
+          5.5
+        ],
+        [
+          25.2,
+          6.0
+        ]
+      ],
+      "length_mm": 1.8295630140986996
+    },
+    {
+      "label": "IN-quiet-ground",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          24.28,
+          1.2
+        ],
+        [
+          24.2,
+          2.5
+        ],
+        [
+          23.6,
+          3.5
+        ],
+        [
+          23.5,
+          5.5
+        ]
+      ],
+      "length_mm": 4.4711480308323335
+    },
+    {
+      "label": "quiet-right-return",
+      "net": "carrier-contact-1",
+      "layer": "B.Cu",
+      "width_mm": 0.3,
+      "points_local_xy": [
+        [
+          35.6,
+          3.5
+        ],
+        [
+          44.3,
+          3.5
+        ],
+        [
+          44.3,
+          2
+        ],
+        [
+          46.1,
+          2
+        ]
+      ],
+      "length_mm": 12.0
+    },
+    {
+      "label": "REG3-flipped-shunt-return",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          33.8,
+          4.2
+        ],
+        [
+          35.6,
+          3.5
+        ]
+      ],
+      "length_mm": 1.9313207915828006
+    },
+    {
+      "label": "CHG-pin-escape",
+      "net": "CHG",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          27.75,
+          2.89
+        ],
+        [
+          27.75,
+          2.1
+        ]
+      ],
+      "length_mm": 0.79
+    },
+    {
+      "label": "CHG-control",
+      "net": "CHG",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          27.75,
+          2.1
+        ],
+        [
+          28.55,
+          1.3
+        ],
+        [
+          34.6,
+          1.3
+        ],
+        [
+          35.2,
+          1.0
+        ],
+        [
+          43.8,
+          1.0
+        ],
+        [
+          44.1,
+          1.3
+        ],
+        [
+          44.7,
+          1.3
+        ],
+        [
+          45,
+          1.0
+        ],
+        [
+          49.7,
+          1.05
+        ]
+      ],
+      "length_mm": 22.60098533049468
+    },
+    {
+      "label": "CHG-control",
+      "net": "CHG",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          49.7,
+          1.05
+        ],
+        [
+          50.57,
+          1.0
+        ]
+      ],
+      "length_mm": 0.8714355971613711
+    },
+    {
+      "label": "charge-gate-resistor-escape",
+      "net": "G",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          51.43,
+          1
+        ],
+        [
+          52.3,
+          1.2
+        ]
+      ],
+      "length_mm": 0.8926925562588699
+    },
+    {
+      "label": "charge-gate-local-back",
+      "net": "G",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          52.3,
+          1.2
+        ],
+        [
+          51.3,
+          2.2
+        ],
+        [
+          51.3,
+          7.5
+        ],
+        [
+          51.4,
+          8
+        ]
+      ],
+      "length_mm": 7.224115513732373
+    },
+    {
+      "label": "charge-gate-FET-land",
+      "net": "G",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          51.3,
+          2.2
+        ],
+        [
+          52.6,
+          3.525
+        ]
+      ],
+      "length_mm": 1.8562394780846596
+    },
+    {
+      "label": "charge-gate-cap-land",
+      "net": "G",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          51.4,
+          8
+        ],
+        [
+          51.18,
+          7.1
+        ]
+      ],
+      "length_mm": 0.9264987857520375
+    },
+    {
+      "label": "charge-gate-source-return",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          52.02,
+          7.1
+        ],
+        [
+          52.55,
+          7.1
+        ]
+      ],
+      "length_mm": 0.529999999999994
+    },
+    {
+      "label": "discharge-gate-local",
+      "net": "carrier.protection-G",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          61,
+          4.43
+        ],
+        [
+          61,
+          5.6
+        ],
+        [
+          59.4,
+          5.6
+        ],
+        [
+          59.4,
+          5.475
+        ]
+      ],
+      "length_mm": 2.8950000000000014
+    },
+    {
+      "label": "PCKP-local-protected-input",
+      "net": "PCKP",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.25,
+          2.89
+        ],
+        [
+          30.2,
+          2.8
+        ],
+        [
+          30.7,
+          2.6
+        ],
+        [
+          31.37,
+          1.6
+        ]
+      ],
+      "length_mm": 2.6964727368423684
+    },
+    {
+      "label": "DIS-pin-escape",
+      "net": "DIS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          28.25,
+          2.89
+        ],
+        [
+          28.25,
+          2.5
+        ],
+        [
+          28.45,
+          2.15
+        ],
+        [
+          29.1,
+          2.15
+        ],
+        [
+          29.9,
+          2
+        ]
+      ],
+      "length_mm": 2.257053917219912
+    },
+    {
+      "label": "CELL2-CELL1-local",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.09,
+          5.05
+        ],
+        [
+          26.09,
+          4.55
+        ]
+      ],
+      "length_mm": 0.5
+    },
+    {
+      "label": "CELL3-return",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          22.42,
+          7.1
+        ],
+        [
+          22.0,
+          6.5
+        ],
+        [
+          20.0,
+          6.5
+        ],
+        [
+          19.58,
+          7.1
+        ]
+      ],
+      "length_mm": 3.464786673888046
+    },
+    {
+      "label": "CELL3-escape",
+      "net": "carrier.protection-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.09,
+          4.05
+        ],
+        [
+          25.5,
+          4.05
+        ],
+        [
+          24.8,
+          3.8
+        ]
+      ],
+      "length_mm": 1.3333034373659245
+    },
+    {
+      "label": "BATTS-escape",
+      "net": "BATTS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.09,
+          3.55
+        ],
+        [
+          25.5,
+          2.9
+        ]
+      ],
+      "length_mm": 0.8778382538941897
+    },
+    {
+      "label": "CELL1-local",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.09,
+          5.05
+        ],
+        [
+          25.2,
+          5.1
+        ],
+        [
+          24.1,
+          4.0
+        ],
+        [
+          24.1,
+          3.6
+        ],
+        [
+          24.7,
+          3.0
+        ]
+      ],
+      "length_mm": 3.6955664439569205
+    },
+    {
+      "label": "CELL1-local",
+      "net": "2",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          24.7,
+          3.0
+        ],
+        [
+          20.3,
+          6.3
+        ]
+      ],
+      "length_mm": 5.499999999999999
+    },
+    {
+      "label": "CELL1-local",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          20.3,
+          6.3
+        ],
+        [
+          19.8,
+          6.7
+        ],
+        [
+          19.58,
+          7.1
+        ]
+      ],
+      "length_mm": 1.0968209121638188
+    },
+    {
+      "label": "REG2-cap",
+      "net": "carrier.protection-1-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          27.25,
+          6.71
+        ],
+        [
+          27.2,
+          7.2
+        ],
+        [
+          27.0,
+          7.4
+        ],
+        [
+          25.9,
+          7.4
+        ],
+        [
+          24.8,
+          6.5
+        ],
+        [
+          22.6,
+          6.5
+        ],
+        [
+          21.7,
+          5.6
+        ],
+        [
+          21.5,
+          5.5
+        ]
+      ],
+      "length_mm": 6.993053170956563
+    },
+    {
+      "label": "CELL3-local",
+      "net": "carrier.protection-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.09,
+          4.05
+        ],
+        [
+          25.1,
+          4.1
+        ],
+        [
+          24.8,
+          3.8
+        ]
+      ],
+      "length_mm": 1.4155258908356285
+    },
+    {
+      "label": "CELL3-local",
+      "net": "carrier.protection-2",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          24.8,
+          3.8
+        ],
+        [
+          21.6,
+          7.9
+        ]
+      ],
+      "length_mm": 5.200961449578338
+    },
+    {
+      "label": "CELL3-local",
+      "net": "carrier.protection-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          21.6,
+          7.9
+        ],
+        [
+          21.58,
+          7.1
+        ]
+      ],
+      "length_mm": 0.8002499609497031
+    },
+    {
+      "label": "CELL4-return-escape",
+      "net": "carrier.protection-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          24.42,
+          7.1
+        ],
+        [
+          24.8,
+          7.9
+        ]
+      ],
+      "length_mm": 0.8856635930193814
+    },
+    {
+      "label": "CELL4-return-back",
+      "net": "carrier.protection-2",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          24.8,
+          7.9
+        ],
+        [
+          21.6,
+          7.9
+        ]
+      ],
+      "length_mm": 3.1999999999999993
+    },
+    {
+      "label": "BATTS-local",
+      "net": "BATTS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          23.58,
+          7.1
+        ],
+        [
+          23.6,
+          7.6
+        ],
+        [
+          24.5,
+          8.5
+        ],
+        [
+          24.8,
+          8.6
+        ],
+        [
+          25.1,
+          8.5
+        ],
+        [
+          25.6,
+          8.0
+        ]
+      ],
+      "length_mm": 3.1127543594838816
+    },
+    {
+      "label": "BATTS-local",
+      "net": "BATTS",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          25.6,
+          8.0
+        ],
+        [
+          24.5,
+          6.0
+        ],
+        [
+          25.5,
+          4.2
+        ],
+        [
+          25.5,
+          2.9
+        ]
+      ],
+      "length_mm": 5.641668470300067
+    },
+    {
+      "label": "BATTS-local",
+      "net": "BATTS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          25.5,
+          2.9
+        ],
+        [
+          26.09,
+          3.55
+        ]
+      ],
+      "length_mm": 0.8778382538941897
+    },
+    {
+      "label": "CELL1-balance",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          22.48,
+          1.4
+        ],
+        [
+          21.0,
+          2.9
+        ],
+        [
+          19.58,
+          7.1
+        ]
+      ],
+      "length_mm": 6.540779543458486
+    },
+    {
+      "label": "CELL1-quiet-return",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          20.42,
+          7.1
+        ],
+        [
+          20.0,
+          7.7
+        ],
+        [
+          19.2,
+          7.7
+        ],
+        [
+          19.0,
+          7.5
+        ],
+        [
+          19.0,
+          6.7
+        ],
+        [
+          19.4,
+          5.7
+        ]
+      ],
+      "length_mm": 3.692269010845543
+    },
+    {
+      "label": "CELL1-quiet-return",
+      "net": "carrier-contact-1",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          19.4,
+          5.7
+        ],
+        [
+          21.2,
+          4.3
+        ]
+      ],
+      "length_mm": 2.280350850198277
+    },
+    {
+      "label": "CELL1-quiet-return",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          21.2,
+          4.3
+        ],
+        [
+          22.2,
+          4.3
+        ],
+        [
+          23.5,
+          5.5
+        ]
+      ],
+      "length_mm": 2.769180601295414
+    },
+    {
+      "label": "CELL3-balance",
+      "net": "carrier.protection-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          10.5,
+          5.98
+        ],
+        [
+          12.7,
+          10.5
+        ],
+        [
+          13.1,
+          10.9
+        ],
+        [
+          14.9,
+          11.3
+        ],
+        [
+          16.5,
+          11.3
+        ],
+        [
+          21.58,
+          7.1
+        ]
+      ],
+      "length_mm": 15.627949914142485
+    },
+    {
+      "label": "J1-balance-tap",
+      "net": "junction1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          19.52,
+          1.4
+        ],
+        [
+          15.0,
+          1.545
+        ]
+      ],
+      "length_mm": 4.522325176278238
+    },
+    {
+      "label": "BATTS-power-tap",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          73.0,
+          3.02
+        ],
+        [
+          67.0,
+          1.545
+        ]
+      ],
+      "length_mm": 6.178642650291406
+    },
+    {
+      "label": "gauge-RAW-feed",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          75.37,
+          6.5
+        ],
+        [
+          73.0,
+          3.02
+        ]
+      ],
+      "length_mm": 4.210380030353558
+    },
+    {
+      "label": "ALRT-test",
+      "net": "carrier-1-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          37.7,
+          100.0
+        ],
+        [
+          38.07,
+          102.5
+        ]
+      ],
+      "length_mm": 2.5272316870441456
+    },
+    {
+      "label": "charger-NTC-return",
+      "net": "contact",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          77.0,
+          94.8
+        ],
+        [
+          71.6,
+          97.1
+        ],
+        [
+          71.1,
+          97.2
+        ],
+        [
+          50.7,
+          97.2
+        ],
+        [
+          46.9,
+          101.1
+        ],
+        [
+          44.3,
+          101.4
+        ],
+        [
+          42.7,
+          101.4
+        ],
+        [
+          40.9,
+          99.6
+        ],
+        [
+          30.0,
+          94.5
+        ]
+      ],
+      "length_mm": 51.02144858626625
+    },
+    {
+      "label": "charger-NTC-sense",
+      "net": "carrier-contact",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          71.0,
+          94.8
+        ],
+        [
+          65.6,
+          92.5
+        ],
+        [
+          65.1,
+          92.4
+        ],
+        [
+          50.1,
+          92.4
+        ]
+      ],
+      "length_mm": 21.37931418769095
+    },
+    {
+      "label": "charger-NTC-sense",
+      "net": "carrier-contact",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          50.1,
+          92.4
+        ],
+        [
+          41.4,
+          92.4
+        ]
+      ],
+      "length_mm": 8.700000000000003
+    },
+    {
+      "label": "charger-NTC-sense",
+      "net": "carrier-contact",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          41.4,
+          92.4
+        ],
+        [
+          28.1,
+          92.4
+        ],
+        [
+          26.0,
+          94.5
+        ]
+      ],
+      "length_mm": 16.269848480983494
+    },
+    {
+      "label": "NTC-return-link",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          14.0,
+          94.5
+        ],
+        [
+          17.6,
+          92.9
+        ],
+        [
+          19.6,
+          92.9
+        ],
+        [
+          22.0,
+          94.5
+        ]
+      ],
+      "length_mm": 8.823984141089628
+    },
+    {
+      "label": "interface-quiet-ground",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          43.7,
+          89.7
+        ],
+        [
+          29.0,
+          22.6
+        ]
+      ],
+      "length_mm": 68.69133860975487
+    },
+    {
+      "label": "interface-quiet-ground",
+      "net": "carrier-contact-1",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.0,
+          22.6
+        ],
+        [
+          26.0,
+          6.6
+        ]
+      ],
+      "length_mm": 16.278820596099706
+    },
+    {
+      "label": "interface-quiet-ground",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.0,
+          6.6
+        ],
+        [
+          23.7,
+          4.2
+        ],
+        [
+          23.6,
+          1.9
+        ],
+        [
+          24.28,
+          1.2
+        ]
+      ],
+      "length_mm": 6.602236746263668
+    },
+    {
+      "label": "BATTS-filter-link",
+      "net": "BATTS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          73.0,
+          5.98
+        ],
+        [
+          73.0,
+          7.3
+        ]
+      ],
+      "length_mm": 1.3199999999999994
+    },
+    {
+      "label": "BATTS-filter-link",
+      "net": "BATTS",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          73.0,
+          7.3
+        ],
+        [
+          73.6,
+          9.0
+        ]
+      ],
+      "length_mm": 1.8027756377319928
+    },
+    {
+      "label": "BATTS-filter-link",
+      "net": "BATTS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          73.6,
+          9.0
+        ],
+        [
+          69.4,
+          11.3
+        ],
+        [
+          65.8,
+          11.3
+        ]
+      ],
+      "length_mm": 8.38852795752515
+    },
+    {
+      "label": "BATTS-filter-link",
+      "net": "BATTS",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          65.8,
+          11.3
+        ],
+        [
+          46.3,
+          28.0
+        ],
+        [
+          44.6,
+          28.1
+        ],
+        [
+          39.4,
+          22.9
+        ]
+      ],
+      "length_mm": 34.73057113496681
+    },
+    {
+      "label": "BATTS-filter-link",
+      "net": "BATTS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          39.4,
+          22.9
+        ],
+        [
+          35.1,
+          22.6
+        ]
+      ],
+      "length_mm": 4.310452412450458
+    },
+    {
+      "label": "BATTS-filter-link",
+      "net": "BATTS",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          35.1,
+          22.6
+        ],
+        [
+          27.4,
+          10.4
+        ]
+      ],
+      "length_mm": 14.426711336961034
+    },
+    {
+      "label": "BATTS-filter-link",
+      "net": "BATTS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          27.4,
+          10.4
+        ],
+        [
+          24.5,
+          8.5
+        ],
+        [
+          24.2,
+          8.2
+        ],
+        [
+          23.58,
+          7.1
+        ]
+      ],
+      "length_mm": 5.153946762797039
+    },
+    {
+      "label": "TH2-sense-link",
+      "net": "carrier-contact-3",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          18.0,
+          94.5
+        ],
+        [
+          19.3,
+          93.6
+        ]
+      ],
+      "length_mm": 1.5811388300841933
+    },
+    {
+      "label": "TH2-sense-link",
+      "net": "carrier-contact-3",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          19.3,
+          93.6
+        ],
+        [
+          25.0,
+          29.4
+        ]
+      ],
+      "length_mm": 64.45254067916949
+    },
+    {
+      "label": "TH2-sense-link",
+      "net": "carrier-contact-3",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          25.0,
+          29.4
+        ],
+        [
+          25.0,
+          22.6
+        ]
+      ],
+      "length_mm": 6.799999999999997
+    },
+    {
+      "label": "TH2-sense-link",
+      "net": "carrier-contact-3",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          25.0,
+          22.6
+        ],
+        [
+          27.0,
+          15.6
+        ]
+      ],
+      "length_mm": 7.280109889280521
+    },
+    {
+      "label": "TH2-sense-link",
+      "net": "carrier-contact-3",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          27.0,
+          15.6
+        ],
+        [
+          29.9,
+          12.7
+        ]
+      ],
+      "length_mm": 4.101219330881975
+    },
+    {
+      "label": "TH2-sense-link",
+      "net": "carrier-contact-3",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.9,
+          12.7
+        ],
+        [
+          30.7,
+          11.9
+        ],
+        [
+          30.9,
+          11.5
+        ],
+        [
+          30.9,
+          10.6
+        ],
+        [
+          29.6,
+          9.3
+        ],
+        [
+          29.1,
+          9.2
+        ],
+        [
+          28.1,
+          8.6
+        ],
+        [
+          27.8,
+          8.3
+        ],
+        [
+          27.7,
+          7.6
+        ]
+      ],
+      "length_mm": 7.124525256710271
+    },
+    {
+      "label": "TH2-sense-link",
+      "net": "carrier-contact-3",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          27.7,
+          7.6
+        ],
+        [
+          27.75,
+          6.71
+        ]
+      ],
+      "length_mm": 0.8914033879226618
+    },
+    {
+      "label": "CSP-refined-isolated",
+      "net": "carrier-contact-1",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          28.4,
+          8
+        ],
+        [
+          31.3,
+          7.7
+        ],
+        [
+          45.7,
+          4
+        ]
+      ],
+      "length_mm": 17.783226281619147
+    },
+    {
+      "label": "CSN-refined-isolated",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.4,
+          8.6
+        ],
+        [
+          48.3,
+          4
+        ]
+      ],
+      "length_mm": 19.451735141112728
+    },
+    {
+      "label": "AOLDO-refined-local",
+      "net": "AOLDO",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.91,
+          6.05
+        ],
+        [
+          30.6,
+          6.3
+        ]
+      ],
+      "length_mm": 0.7338937252763521
+    },
+    {
+      "label": "AOLDO-refined-local",
+      "net": "AOLDO",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          30.6,
+          6.3
+        ],
+        [
+          31.2,
+          6.7
+        ],
+        [
+          32.9,
+          6.7
+        ],
+        [
+          33.3,
+          6.3
+        ]
+      ],
+      "length_mm": 2.9867956800420328
+    },
+    {
+      "label": "AOLDO-refined-local",
+      "net": "AOLDO",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          33.3,
+          6.3
+        ],
+        [
+          33.57,
+          6.9
+        ]
+      ],
+      "length_mm": 0.6579513659838411
+    },
+    {
+      "label": "PFAIL-refined-local",
+      "net": "PFAIL",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.91,
+          5.55
+        ],
+        [
+          30.9,
+          5.7
+        ],
+        [
+          31.2,
+          6.0
+        ],
+        [
+          31.8,
+          5.97
+        ]
+      ],
+      "length_mm": 2.0263127566436703
+    },
+    {
+      "label": "J2-balance-tap-open-corridor",
+      "net": "junction2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          10.5,
+          3.02
+        ],
+        [
+          9.3,
+          5.3
+        ],
+        [
+          9.3,
+          6.7
+        ],
+        [
+          12.2,
+          10.6
+        ],
+        [
+          12.9,
+          11.3
+        ],
+        [
+          14.9,
+          11.8
+        ],
+        [
+          26.9,
+          11.8
+        ],
+        [
+          28.9,
+          9.75
+        ],
+        [
+          30.3,
+          9.75
+        ],
+        [
+          31.6,
+          11.5
+        ],
+        [
+          37.2,
+          11.8
+        ]
+      ],
+      "length_mm": 35.94010631609629
+    },
+    {
+      "label": "DIS-refined-control",
+      "net": "DIS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          28.25,
+          2.89
+        ],
+        [
+          28.3,
+          2.4
+        ],
+        [
+          28.5,
+          2.2
+        ],
+        [
+          29.9,
+          2.0
+        ]
+      ],
+      "length_mm": 2.1896006890887025
+    },
+    {
+      "label": "DIS-refined-control",
+      "net": "DIS",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.9,
+          2.0
+        ],
+        [
+          43.1,
+          1.7
+        ]
+      ],
+      "length_mm": 13.203408650799236
+    },
+    {
+      "label": "DIS-refined-control",
+      "net": "DIS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          43.1,
+          1.7
+        ],
+        [
+          46.1,
+          1.3
+        ],
+        [
+          48.8,
+          1.7
+        ]
+      ],
+      "length_mm": 5.7560180028755425
+    },
+    {
+      "label": "DIS-refined-control",
+      "net": "DIS",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          48.8,
+          1.7
+        ],
+        [
+          50.9,
+          1.7
+        ],
+        [
+          52.0,
+          0.6
+        ],
+        [
+          52.3,
+          0.5
+        ],
+        [
+          58.1,
+          1.0
+        ]
+      ],
+      "length_mm": 9.7933745157584
+    },
+    {
+      "label": "DIS-refined-control",
+      "net": "DIS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          58.1,
+          1.0
+        ],
+        [
+          63.8,
+          1.0
+        ],
+        [
+          64.9,
+          2.0
+        ],
+        [
+          65.1,
+          2.5
+        ],
+        [
+          65.1,
+          7.9
+        ]
+      ],
+      "length_mm": 13.1251233554453
+    },
+    {
+      "label": "DIS-refined-control",
+      "net": "DIS",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          65.1,
+          7.9
+        ],
+        [
+          61.9,
+          5.1
+        ]
+      ],
+      "length_mm": 4.2520583250938575
+    },
+    {
+      "label": "DIS-refined-control",
+      "net": "DIS",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          61.9,
+          5.1
+        ],
+        [
+          61.6,
+          4.0
+        ],
+        [
+          61.0,
+          3.57
+        ]
+      ],
+      "length_mm": 1.878348846457561
+    },
+    {
+      "label": "SDA-final-uplink",
+      "net": "SDA_DQ",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.91,
+          4.55
+        ],
+        [
+          31.4,
+          4.7
+        ]
+      ],
+      "length_mm": 1.497531301843135
+    },
+    {
+      "label": "SDA-final-uplink",
+      "net": "SDA_DQ",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          31.4,
+          4.7
+        ],
+        [
+          35.2,
+          4.6
+        ],
+        [
+          35.6,
+          5.0
+        ],
+        [
+          35.6,
+          5.4
+        ],
+        [
+          34.9,
+          6.1
+        ],
+        [
+          34.8,
+          6.1
+        ]
+      ],
+      "length_mm": 5.856950480360053
+    },
+    {
+      "label": "SDA-final-uplink",
+      "net": "SDA_DQ",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          34.8,
+          6.1
+        ],
+        [
+          35.1,
+          6.6
+        ],
+        [
+          35.1,
+          8.3
+        ]
+      ],
+      "length_mm": 2.2830951894845333
+    },
+    {
+      "label": "SDA-final-uplink",
+      "net": "SDA_DQ",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          35.1,
+          8.3
+        ],
+        [
+          33.8,
+          12.3
+        ]
+      ],
+      "length_mm": 4.205948168962619
+    },
+    {
+      "label": "SDA-final-uplink",
+      "net": "SDA_DQ",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          33.8,
+          12.3
+        ],
+        [
+          30.8,
+          15.3
+        ],
+        [
+          30.6,
+          16.7
+        ]
+      ],
+      "length_mm": 5.656854249492376
+    },
+    {
+      "label": "SDA-final-uplink",
+      "net": "SDA_DQ",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          30.6,
+          16.7
+        ],
+        [
+          30.4,
+          17.4
+        ],
+        [
+          29.6,
+          28.2
+        ]
+      ],
+      "length_mm": 11.557600085472759
+    },
+    {
+      "label": "SDA-final-uplink",
+      "net": "SDA_DQ",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.6,
+          28.2
+        ],
+        [
+          30.1,
+          84.7
+        ],
+        [
+          31.6,
+          91.2
+        ]
+      ],
+      "length_mm": 63.17304437812977
+    },
+    {
+      "label": "TH1-final-uplink",
+      "net": "carrier-contact-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.91,
+          5.05
+        ],
+        [
+          32.3,
+          5.4
+        ],
+        [
+          32.7,
+          5.8
+        ],
+        [
+          32.7,
+          11.0
+        ]
+      ],
+      "length_mm": 8.181177093326507
+    },
+    {
+      "label": "TH1-final-uplink",
+      "net": "carrier-contact-2",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          32.7,
+          11.0
+        ],
+        [
+          32.1,
+          12.7
+        ]
+      ],
+      "length_mm": 1.8027756377319946
+    },
+    {
+      "label": "TH1-final-uplink",
+      "net": "carrier-contact-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          32.1,
+          12.7
+        ],
+        [
+          27.4,
+          17.4
+        ]
+      ],
+      "length_mm": 6.646803743153548
+    },
+    {
+      "label": "TH1-final-uplink",
+      "net": "carrier-contact-2",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          27.4,
+          17.4
+        ],
+        [
+          27.4,
+          26.0
+        ]
+      ],
+      "length_mm": 8.600000000000001
+    },
+    {
+      "label": "TH1-final-uplink",
+      "net": "carrier-contact-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          27.4,
+          26.0
+        ],
+        [
+          17.7,
+          90.9
+        ],
+        [
+          17.4,
+          91.5
+        ],
+        [
+          16.6,
+          92.3
+        ],
+        [
+          15.7,
+          92.7
+        ],
+        [
+          11.7,
+          92.8
+        ],
+        [
+          10.0,
+          94.5
+        ]
+      ],
+      "length_mm": 74.81337070721466
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "net": "ALRT",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.91,
+          3.55
+        ],
+        [
+          31.6,
+          3.4
+        ],
+        [
+          32.6,
+          4.1
+        ]
+      ],
+      "length_mm": 2.917299307325555
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "net": "ALRT",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          32.6,
+          4.1
+        ],
+        [
+          35.4,
+          4.2
+        ],
+        [
+          38.8,
+          5.1
+        ]
+      ],
+      "length_mm": 6.31888622423817
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "net": "ALRT",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          38.8,
+          5.1
+        ],
+        [
+          38.8,
+          8.9
+        ]
+      ],
+      "length_mm": 3.8000000000000007
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "net": "ALRT",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          38.8,
+          8.9
+        ],
+        [
+          38.5,
+          9.8
+        ],
+        [
+          39.2,
+          13.1
+        ],
+        [
+          40.2,
+          22.8
+        ]
+      ],
+      "length_mm": 14.073519011171188
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "net": "ALRT",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          40.2,
+          22.8
+        ],
+        [
+          36.6,
+          54.4
+        ]
+      ],
+      "length_mm": 31.80440221101475
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "net": "ALRT",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          36.6,
+          54.4
+        ],
+        [
+          34.9,
+          93.1
+        ]
+      ],
+      "length_mm": 38.73732050619918
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "net": "ALRT",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          34.9,
+          93.1
+        ],
+        [
+          37.0,
+          97.1
+        ]
+      ],
+      "length_mm": 4.517742799230608
+    },
+    {
+      "label": "REG3-flipped-local",
+      "net": "carrier.protection-1-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.25,
+          6.71
+        ],
+        [
+          29.8,
+          6.7
+        ]
+      ],
+      "length_mm": 0.5500909015790034
+    },
+    {
+      "label": "REG3-flipped-local",
+      "net": "carrier.protection-1-2",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.8,
+          6.7
+        ],
+        [
+          30.8,
+          3.8
+        ],
+        [
+          32.1,
+          2.5
+        ],
+        [
+          32.4,
+          2.5
+        ]
+      ],
+      "length_mm": 5.206049961120615
+    },
+    {
+      "label": "REG3-flipped-local",
+      "net": "carrier.protection-1-2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          32.4,
+          2.5
+        ],
+        [
+          33.8,
+          2.2
+        ]
+      ],
+      "length_mm": 1.4317821063276337
+    },
+    {
+      "label": "quiet-flipped-local",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          24.28,
+          1.2
+        ],
+        [
+          23.6,
+          3.6
+        ],
+        [
+          23.7,
+          4.2
+        ],
+        [
+          26.0,
+          6.6
+        ]
+      ],
+      "length_mm": 6.426904173175773
+    },
+    {
+      "label": "quiet-flipped-local",
+      "net": "carrier-contact-1",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          26.0,
+          6.6
+        ],
+        [
+          29.5,
+          7.3
+        ],
+        [
+          30.4,
+          7.2
+        ]
+      ],
+      "length_mm": 4.4748521733286895
+    },
+    {
+      "label": "quiet-flipped-local",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          30.4,
+          7.2
+        ],
+        [
+          31.8,
+          8.6
+        ]
+      ],
+      "length_mm": 1.9798989873223343
+    },
+    {
+      "label": "quiet-flipped-local",
+      "net": "carrier-contact-1",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          31.8,
+          8.6
+        ],
+        [
+          33.3,
+          8.3
+        ]
+      ],
+      "length_mm": 1.5297058540778317
+    },
+    {
+      "label": "quiet-flipped-local",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          33.3,
+          8.3
+        ],
+        [
+          34.2,
+          7.3
+        ],
+        [
+          34.2,
+          4.6
+        ],
+        [
+          33.8,
+          4.2
+        ]
+      ],
+      "length_mm": 4.611047829656617
+    },
+    {
+      "label": "SCL-relieved-final",
+      "net": "SCL_DOD",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          29.91,
+          4.05
+        ],
+        [
+          31.6,
+          4.1
+        ],
+        [
+          32.9,
+          5.4
+        ],
+        [
+          33.6,
+          5.4
+        ]
+      ],
+      "length_mm": 4.229217114269825
+    },
+    {
+      "label": "SCL-relieved-final",
+      "net": "SCL_DOD",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          33.6,
+          5.4
+        ],
+        [
+          34.8,
+          5.3
+        ]
+      ],
+      "length_mm": 1.2041594578792254
+    },
+    {
+      "label": "SCL-relieved-final",
+      "net": "SCL_DOD",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          34.8,
+          5.3
+        ],
+        [
+          35.4,
+          5.9
+        ],
+        [
+          35.6,
+          6.6
+        ],
+        [
+          35.7,
+          8.1
+        ],
+        [
+          35.7,
+          11.1
+        ]
+      ],
+      "length_mm": 6.079868764189201
+    },
+    {
+      "label": "SCL-relieved-final",
+      "net": "SCL_DOD",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          35.7,
+          11.1
+        ],
+        [
+          35.6,
+          12.4
+        ]
+      ],
+      "length_mm": 1.3038404810405304
+    },
+    {
+      "label": "SCL-relieved-final",
+      "net": "SCL_DOD",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          35.6,
+          12.4
+        ],
+        [
+          31.1,
+          17.4
+        ]
+      ],
+      "length_mm": 6.726812023536853
+    },
+    {
+      "label": "SCL-relieved-final",
+      "net": "SCL_DOD",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          31.1,
+          17.4
+        ],
+        [
+          31.1,
+          30.0
+        ],
+        [
+          42.6,
+          41.5
+        ],
+        [
+          42.9,
+          42.4
+        ],
+        [
+          42.9,
+          84.3
+        ],
+        [
+          50.7,
+          92.1
+        ],
+        [
+          50.8,
+          92.4
+        ]
+      ],
+      "length_mm": 83.05923281786811
+    },
+    {
+      "label": "PFAIL-final-return",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          31.8,
+          6.83
+        ],
+        [
+          30.4,
+          7.2
+        ]
+      ],
+      "length_mm": 1.448067677976415
+    },
+    {
+      "label": "AOLDO-final-return",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          34.43,
+          6.9
+        ],
+        [
+          34.2,
+          6.3
+        ]
+      ],
+      "length_mm": 0.6425729530566933
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          25.12,
+          1.2
+        ],
+        [
+          25.1,
+          1.1
+        ],
+        [
+          24.6,
+          0.6
+        ],
+        [
+          23.6,
+          0.6
+        ]
+      ],
+      "length_mm": 1.809087171458403
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          23.6,
+          0.6
+        ],
+        [
+          20.2,
+          3.3
+        ]
+      ],
+      "length_mm": 4.341658669218484
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          20.2,
+          3.3
+        ],
+        [
+          18.0,
+          5.3
+        ],
+        [
+          17.8,
+          5.4
+        ],
+        [
+          16.9,
+          5.4
+        ],
+        [
+          16.6,
+          5.1
+        ],
+        [
+          15.8,
+          4.9
+        ]
+      ],
+      "length_mm": 5.345705741049141
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          15.8,
+          4.9
+        ],
+        [
+          15.6,
+          6.1
+        ],
+        [
+          15.6,
+          7.1
+        ],
+        [
+          16.0,
+          7.8
+        ],
+        [
+          17.4,
+          9.2
+        ],
+        [
+          17.4,
+          12.5
+        ]
+      ],
+      "length_mm": 8.30267726821183
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          17.4,
+          12.5
+        ],
+        [
+          23.7,
+          12.5
+        ],
+        [
+          26.4,
+          15.2
+        ],
+        [
+          26.4,
+          15.8
+        ],
+        [
+          26.6,
+          16.1
+        ],
+        [
+          26.8,
+          16.2
+        ],
+        [
+          27.7,
+          16.2
+        ],
+        [
+          30.2,
+          13.7
+        ]
+      ],
+      "length_mm": 15.738072449636473
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          30.2,
+          13.7
+        ],
+        [
+          35.1,
+          13.9
+        ]
+      ],
+      "length_mm": 4.9040799340956935
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          35.1,
+          13.9
+        ],
+        [
+          40.3,
+          17.4
+        ]
+      ],
+      "length_mm": 6.268173577685922
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          40.3,
+          17.4
+        ],
+        [
+          42.4,
+          22.6
+        ]
+      ],
+      "length_mm": 5.608029957123985
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          42.4,
+          22.6
+        ],
+        [
+          53.9,
+          22.6
+        ]
+      ],
+      "length_mm": 11.5
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "B.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          53.9,
+          22.6
+        ],
+        [
+          69.4,
+          10.6
+        ]
+      ],
+      "length_mm": 19.602295783912666
+    },
+    {
+      "label": "IN-final-narrow",
+      "net": "carrier.protection-1",
+      "layer": "F.Cu",
+      "width_mm": 0.15,
+      "points_local_xy": [
+        [
+          69.4,
+          10.6
+        ],
+        [
+          76.0,
+          6.9
+        ],
+        [
+          76.23,
+          6.5
+        ]
+      ],
+      "length_mm": 8.02778385501315
+    },
+    {
+      "label": "PCKP-refined-final",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          32.23,
+          1.6
+        ],
+        [
+          33.1,
+          1.1
+        ],
+        [
+          34.5,
+          0.7
+        ]
+      ],
+      "length_mm": 2.4594660470498013
+    },
+    {
+      "label": "PCKP-refined-final",
+      "net": "hv",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          34.5,
+          0.7
+        ],
+        [
+          35.2,
+          0.5
+        ],
+        [
+          44.5,
+          0.6
+        ]
+      ],
+      "length_mm": 10.02854860779719
+    },
+    {
+      "label": "PCKP-refined-final",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          44.5,
+          0.6
+        ],
+        [
+          49.5,
+          0.4
+        ],
+        [
+          56.3,
+          0.4
+        ],
+        [
+          59.4,
+          3.525
+        ]
+      ],
+      "length_mm": 16.20577361135022
+    },
+    {
+      "label": "ESD-ground-front-bus",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "points_local_xy": [
+        [
+          43.69,
+          94.5
+        ],
+        [
+          43.69,
+          100.5
+        ]
+      ],
+      "length_mm": 6.0
+    },
+    {
+      "label": "ESD-ground-via-escape",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.6,
+      "points_local_xy": [
+        [
+          43.69,
+          98
+        ],
+        [
+          44.59,
+          98
+        ]
+      ],
+      "length_mm": 0.9000000000000057
+    },
+    {
+      "label": "ESD-pack-return",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 0.8,
+      "points_local_xy": [
+        [
+          44.59,
+          98
+        ],
+        [
+          49.5,
+          97.4
+        ],
+        [
+          53,
+          94.8
+        ]
+      ],
+      "length_mm": 9.30656990340389
+    },
+    {
+      "label": "NTC-separated-return",
+      "net": "carrier-contact-1",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          22.0,
+          94.5
+        ],
+        [
+          24.6,
+          91.9
+        ],
+        [
+          31.8,
+          91.9
+        ],
+        [
+          42.6,
+          91.0
+        ],
+        [
+          42.9,
+          90.9
+        ],
+        [
+          43.4,
+          90.3
+        ],
+        [
+          43.7,
+          89.7
+        ]
+      ],
+      "length_mm": 23.482463509940548
+    },
+    {
+      "label": "SDA-resistor-tail",
+      "net": "SDA_DQ",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          31.6,
+          91.2
+        ],
+        [
+          31.9,
+          96.1
+        ]
+      ],
+      "length_mm": 4.909175083453422
+    },
+    {
+      "label": "SDA-resistor-tail",
+      "net": "SDA_DQ",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          31.9,
+          96.1
+        ],
+        [
+          36.9,
+          98.4
+        ]
+      ],
+      "length_mm": 5.50363516232681
+    },
+    {
+      "label": "SDA-resistor-tail",
+      "net": "SDA_DQ",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          36.9,
+          98.4
+        ],
+        [
+          44.6,
+          98.8
+        ],
+        [
+          44.7,
+          98.9
+        ]
+      ],
+      "length_mm": 7.851803966717813
+    },
+    {
+      "label": "SDA-resistor-tail",
+      "net": "SDA_DQ",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          44.7,
+          98.9
+        ],
+        [
+          45.1,
+          99.1
+        ],
+        [
+          46.0,
+          99.1
+        ],
+        [
+          46.43,
+          98.5
+        ]
+      ],
+      "length_mm": 2.0853870168583684
+    },
+    {
+      "label": "SCL-resistor-tail",
+      "net": "SCL_DOD",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          50.8,
+          92.4
+        ],
+        [
+          50.6,
+          94.0
+        ]
+      ],
+      "length_mm": 1.6124515496597038
+    },
+    {
+      "label": "SCL-resistor-tail",
+      "net": "SCL_DOD",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          50.6,
+          94.0
+        ],
+        [
+          50.6,
+          95.8
+        ],
+        [
+          46.43,
+          100.5
+        ]
+      ],
+      "length_mm": 8.08322369488784
+    },
+    {
+      "label": "ALRT-resistor-tail",
+      "net": "ALRT",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          37,
+          97.1
+        ],
+        [
+          36.3,
+          98.1
+        ],
+        [
+          36.1,
+          100.4
+        ],
+        [
+          36.3,
+          100.8
+        ],
+        [
+          36.9,
+          101.4
+        ],
+        [
+          38.7,
+          101.85
+        ]
+      ],
+      "length_mm": 6.6804741021481835
+    },
+    {
+      "label": "ALRT-resistor-tail",
+      "net": "ALRT",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          38.7,
+          101.85
+        ],
+        [
+          38.93,
+          102.5
+        ]
+      ],
+      "length_mm": 0.6894925670375324
+    },
+    {
+      "label": "SDA-harness-clamp",
+      "net": "carrier-1-4",
+      "layer": "F.Cu",
+      "width_mm": 0.4,
+      "points_local_xy": [
+        [
+          59.0,
+          94.8
+        ],
+        [
+          57.4,
+          96.5
+        ]
+      ],
+      "length_mm": 2.334523505985753
+    },
+    {
+      "label": "SDA-harness-clamp",
+      "net": "carrier-1-4",
+      "layer": "B.Cu",
+      "width_mm": 0.4,
+      "points_local_xy": [
+        [
+          57.4,
+          96.5
+        ],
+        [
+          57.9,
+          97.4
+        ],
+        [
+          58.0,
+          98.1
+        ],
+        [
+          57.7,
+          99.0
+        ],
+        [
+          55.0,
+          101.7
+        ],
+        [
+          54.1,
+          102.0
+        ],
+        [
+          51.3,
+          102.5
+        ],
+        [
+          48.3,
+          102.5
+        ],
+        [
+          42.7,
+          99.4
+        ]
+      ],
+      "length_mm": 19.69748674278131
+    },
+    {
+      "label": "SDA-harness-clamp",
+      "net": "carrier-1-4",
+      "layer": "F.Cu",
+      "width_mm": 0.4,
+      "points_local_xy": [
+        [
+          42.7,
+          99.4
+        ],
+        [
+          40.31,
+          94.5
+        ]
+      ],
+      "length_mm": 5.451797868593448
+    },
+    {
+      "label": "SCL-harness-clamp",
+      "net": "carrier-1-3",
+      "layer": "F.Cu",
+      "width_mm": 0.4,
+      "points_local_xy": [
+        [
+          65.0,
+          94.8
+        ],
+        [
+          63.3,
+          96.5
+        ]
+      ],
+      "length_mm": 2.4041630560342657
+    },
+    {
+      "label": "SCL-harness-clamp",
+      "net": "carrier-1-3",
+      "layer": "B.Cu",
+      "width_mm": 0.4,
+      "points_local_xy": [
+        [
+          63.3,
+          96.5
+        ],
+        [
+          55.1,
+          102.4
+        ],
+        [
+          52.5,
+          103.0
+        ],
+        [
+          51.3,
+          103.2
+        ],
+        [
+          46.0,
+          103.2
+        ],
+        [
+          42.6,
+          100.2
+        ]
+      ],
+      "length_mm": 23.821178942326583
+    },
+    {
+      "label": "SCL-harness-clamp",
+      "net": "carrier-1-3",
+      "layer": "F.Cu",
+      "width_mm": 0.4,
+      "points_local_xy": [
+        [
+          42.6,
+          100.2
+        ],
+        [
+          42.4,
+          100.1
+        ],
+        [
+          42.0,
+          99.7
+        ],
+        [
+          40.31,
+          97.5
+        ]
+      ],
+      "length_mm": 3.563476787575895
+    },
+    {
+      "label": "SDA-series-connection",
+      "net": "carrier-1-4",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          45.57,
+          98.5
+        ],
+        [
+          44.7,
+          96.9
+        ]
+      ],
+      "length_mm": 1.8212358441453915
+    },
+    {
+      "label": "SDA-series-connection",
+      "net": "carrier-1-4",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          44.7,
+          96.9
+        ],
+        [
+          41.2,
+          94.6
+        ]
+      ],
+      "length_mm": 4.188078318274391
+    },
+    {
+      "label": "SDA-series-connection",
+      "net": "carrier-1-4",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          41.2,
+          94.6
+        ],
+        [
+          40.31,
+          94.5
+        ]
+      ],
+      "length_mm": 0.8956003573022958
+    },
+    {
+      "label": "SCL-series-connection",
+      "net": "carrier-1-3",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          45.57,
+          100.5
+        ],
+        [
+          45.7,
+          99.8
+        ]
+      ],
+      "length_mm": 0.7119691004531058
+    },
+    {
+      "label": "SCL-series-connection",
+      "net": "carrier-1-3",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          45.7,
+          99.8
+        ],
+        [
+          47.6,
+          101.3
+        ]
+      ],
+      "length_mm": 2.4207436873820396
+    },
+    {
+      "label": "SCL-series-connection",
+      "net": "carrier-1-3",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          47.6,
+          101.3
+        ],
+        [
+          46.9,
+          101.6
+        ],
+        [
+          45.3,
+          101.9
+        ]
+      ],
+      "length_mm": 2.3894593701963665
+    },
+    {
+      "label": "SCL-series-connection",
+      "net": "carrier-1-3",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          45.3,
+          101.9
+        ],
+        [
+          42.6,
+          100.2
+        ]
+      ],
+      "length_mm": 3.190611226708761
+    },
+    {
+      "label": "SCL-series-connection",
+      "net": "carrier-1-3",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          42.6,
+          100.2
+        ],
+        [
+          42.1,
+          99.7
+        ],
+        [
+          40.31,
+          97.5
+        ]
+      ],
+      "length_mm": 3.5433190440469997
+    },
+    {
+      "label": "ALRT-test-clamp",
+      "net": "carrier-1-2",
+      "layer": "F.Cu",
+      "width_mm": 0.4,
+      "points_local_xy": [
+        [
+          37.7,
+          100.0
+        ],
+        [
+          40.31,
+          100.5
+        ]
+      ],
+      "length_mm": 2.6574611944485658
     }
   ],
   "vias": [
@@ -1362,7 +5060,7 @@
       "label": "charge-source-0",
       "net": "raw_top",
       "xy": [
-        52.6,
+        53.2,
         9.3
       ],
       "diameter_mm": 0.9,
@@ -1372,7 +5070,7 @@
       "label": "charge-source-1",
       "net": "raw_top",
       "xy": [
-        52.6,
+        53.2,
         10.2
       ],
       "diameter_mm": 0.9,
@@ -1382,7 +5080,7 @@
       "label": "charge-source-2",
       "net": "raw_top",
       "xy": [
-        52.6,
+        53.2,
         11.1
       ],
       "diameter_mm": 0.9,
@@ -1392,7 +5090,7 @@
       "label": "charge-source-3",
       "net": "raw_top",
       "xy": [
-        52.6,
+        53.2,
         12
       ],
       "diameter_mm": 0.9,
@@ -1520,17 +5218,17 @@
     },
     {
       "label": "CSP-gauge",
-      "net": "2",
+      "net": "carrier-contact-1",
       "xy": [
-        28.1,
-        6.8
+        28.4,
+        8.0
       ],
       "diameter_mm": 0.6,
       "drill_mm": 0.3
     },
     {
       "label": "CSP-shunt",
-      "net": "2",
+      "net": "carrier-contact-1",
       "xy": [
         45.7,
         4
@@ -1542,8 +5240,8 @@
       "label": "CSN-gauge",
       "net": "lv",
       "xy": [
-        28.95,
-        7.3
+        29.4,
+        8.6
       ],
       "diameter_mm": 0.6,
       "drill_mm": 0.3
@@ -1554,6 +5252,976 @@
       "xy": [
         48.3,
         4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-local",
+      "net": "carrier.protection-1",
+      "xy": [
+        25.4,
+        2.1
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-pump",
+      "net": "carrier.protection-1",
+      "xy": [
+        30.6,
+        0.65
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "GND-shunt",
+      "net": "carrier-contact-1",
+      "xy": [
+        46.1,
+        2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "PFAIL-ground",
+      "net": "carrier-contact-1",
+      "xy": [
+        35.6,
+        3.5
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CHG-pin-transition",
+      "net": "CHG",
+      "xy": [
+        27.75,
+        2.1
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CHG-control-transition",
+      "net": "CHG",
+      "xy": [
+        49.7,
+        1.05
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "charge-gate-low",
+      "net": "G",
+      "xy": [
+        52.3,
+        1.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "charge-gate-FET",
+      "net": "G",
+      "xy": [
+        51.3,
+        2.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "charge-gate-cap",
+      "net": "G",
+      "xy": [
+        51.4,
+        8
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "DIS-pin-transition",
+      "net": "DIS",
+      "xy": [
+        29.9,
+        2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CELL3-input",
+      "net": "carrier.protection-2",
+      "xy": [
+        24.8,
+        3.8
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "BATTS-input",
+      "net": "BATTS",
+      "xy": [
+        25.5,
+        2.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CELL1-local-transition",
+      "net": "2",
+      "xy": [
+        24.7,
+        3.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CELL1-local-transition",
+      "net": "2",
+      "xy": [
+        20.3,
+        6.3
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CELL3-local-transition",
+      "net": "carrier.protection-2",
+      "xy": [
+        21.6,
+        7.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CELL4-return-via",
+      "net": "carrier.protection-2",
+      "xy": [
+        24.8,
+        7.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "BATTS-local-transition",
+      "net": "BATTS",
+      "xy": [
+        25.6,
+        8.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CELL1-quiet-return-transition",
+      "net": "carrier-contact-1",
+      "xy": [
+        19.4,
+        5.7
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CELL1-quiet-return-transition",
+      "net": "carrier-contact-1",
+      "xy": [
+        21.2,
+        4.3
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "charger-NTC-sense-transition",
+      "net": "carrier-contact",
+      "xy": [
+        50.1,
+        92.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "charger-NTC-sense-transition",
+      "net": "carrier-contact",
+      "xy": [
+        41.4,
+        92.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "interface-quiet-ground-transition",
+      "net": "carrier-contact-1",
+      "xy": [
+        29.0,
+        22.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "interface-quiet-ground-transition",
+      "net": "carrier-contact-1",
+      "xy": [
+        26.0,
+        6.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "BATTS-filter-link-transition",
+      "net": "BATTS",
+      "xy": [
+        73.0,
+        7.3
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "BATTS-filter-link-transition",
+      "net": "BATTS",
+      "xy": [
+        73.6,
+        9.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "BATTS-filter-link-transition",
+      "net": "BATTS",
+      "xy": [
+        65.8,
+        11.3
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "BATTS-filter-link-transition",
+      "net": "BATTS",
+      "xy": [
+        39.4,
+        22.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "BATTS-filter-link-transition",
+      "net": "BATTS",
+      "xy": [
+        35.1,
+        22.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "BATTS-filter-link-transition",
+      "net": "BATTS",
+      "xy": [
+        27.4,
+        10.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "TH2-sense-link-transition",
+      "net": "carrier-contact-3",
+      "xy": [
+        19.3,
+        93.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "TH2-sense-link-transition",
+      "net": "carrier-contact-3",
+      "xy": [
+        25.0,
+        29.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "TH2-sense-link-transition",
+      "net": "carrier-contact-3",
+      "xy": [
+        25.0,
+        22.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "TH2-sense-link-transition",
+      "net": "carrier-contact-3",
+      "xy": [
+        27.0,
+        15.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "TH2-sense-link-transition",
+      "net": "carrier-contact-3",
+      "xy": [
+        29.9,
+        12.7
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "TH2-sense-link-transition",
+      "net": "carrier-contact-3",
+      "xy": [
+        27.7,
+        7.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-pin-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        31.4,
+        4.7
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "AOLDO-refined-local-transition",
+      "net": "AOLDO",
+      "xy": [
+        30.6,
+        6.3
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "AOLDO-refined-local-transition",
+      "net": "AOLDO",
+      "xy": [
+        33.3,
+        6.3
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "DIS-refined-control-transition",
+      "net": "DIS",
+      "xy": [
+        43.1,
+        1.7
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "DIS-refined-control-transition",
+      "net": "DIS",
+      "xy": [
+        48.8,
+        1.7
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "DIS-refined-control-transition",
+      "net": "DIS",
+      "xy": [
+        58.1,
+        1.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "DIS-refined-control-transition",
+      "net": "DIS",
+      "xy": [
+        65.1,
+        7.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "DIS-refined-control-transition",
+      "net": "DIS",
+      "xy": [
+        61.9,
+        5.1
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-final-uplink-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        34.8,
+        6.1
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "SDA-final-uplink-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        35.1,
+        8.3
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "SDA-final-uplink-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        33.8,
+        12.3
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-final-uplink-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        30.6,
+        16.7
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-final-uplink-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        29.6,
+        28.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-final-uplink-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        31.6,
+        91.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "TH1-final-uplink-transition",
+      "net": "carrier-contact-2",
+      "xy": [
+        32.7,
+        11.0
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "TH1-final-uplink-transition",
+      "net": "carrier-contact-2",
+      "xy": [
+        32.1,
+        12.7
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "TH1-final-uplink-transition",
+      "net": "carrier-contact-2",
+      "xy": [
+        27.4,
+        17.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "TH1-final-uplink-transition",
+      "net": "carrier-contact-2",
+      "xy": [
+        27.4,
+        26.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "ALRT-refined-uplink-transition",
+      "net": "ALRT",
+      "xy": [
+        32.6,
+        4.1
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "ALRT-refined-uplink-transition",
+      "net": "ALRT",
+      "xy": [
+        38.8,
+        5.1
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "ALRT-refined-uplink-transition",
+      "net": "ALRT",
+      "xy": [
+        38.8,
+        8.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "ALRT-refined-uplink-transition",
+      "net": "ALRT",
+      "xy": [
+        40.2,
+        22.8
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "ALRT-refined-uplink-transition",
+      "net": "ALRT",
+      "xy": [
+        36.6,
+        54.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "ALRT-refined-uplink-transition",
+      "net": "ALRT",
+      "xy": [
+        34.9,
+        93.1
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "ALRT-refined-uplink-transition",
+      "net": "ALRT",
+      "xy": [
+        37.0,
+        97.1
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "REG3-flipped-local-transition",
+      "net": "carrier.protection-1-2",
+      "xy": [
+        29.8,
+        6.7
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "REG3-flipped-local-transition",
+      "net": "carrier.protection-1-2",
+      "xy": [
+        32.4,
+        2.5
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "quiet-flipped-local-transition",
+      "net": "carrier-contact-1",
+      "xy": [
+        30.4,
+        7.2
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "quiet-flipped-local-transition",
+      "net": "carrier-contact-1",
+      "xy": [
+        31.8,
+        8.6
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "quiet-flipped-local-transition",
+      "net": "carrier-contact-1",
+      "xy": [
+        33.3,
+        8.3
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "SCL-relieved-final-transition",
+      "net": "SCL_DOD",
+      "xy": [
+        33.6,
+        5.4
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "SCL-relieved-final-transition",
+      "net": "SCL_DOD",
+      "xy": [
+        34.8,
+        5.3
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "SCL-relieved-final-transition",
+      "net": "SCL_DOD",
+      "xy": [
+        35.7,
+        11.1
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "SCL-relieved-final-transition",
+      "net": "SCL_DOD",
+      "xy": [
+        35.6,
+        12.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SCL-relieved-final-transition",
+      "net": "SCL_DOD",
+      "xy": [
+        31.1,
+        17.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        23.6,
+        0.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        20.2,
+        3.3
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        15.8,
+        4.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        17.4,
+        12.5
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        30.2,
+        13.7
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        35.1,
+        13.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        40.3,
+        17.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        42.4,
+        22.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        53.9,
+        22.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "IN-final-narrow-transition",
+      "net": "carrier.protection-1",
+      "xy": [
+        69.4,
+        10.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "PCKP-refined-final-transition",
+      "net": "hv",
+      "xy": [
+        34.5,
+        0.7
+      ],
+      "diameter_mm": 0.5,
+      "drill_mm": 0.25
+    },
+    {
+      "label": "PCKP-refined-final-transition",
+      "net": "hv",
+      "xy": [
+        44.5,
+        0.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "ESD-ground-transition",
+      "net": "lv",
+      "xy": [
+        44.59,
+        98.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-resistor-tail-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        31.9,
+        96.1
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-resistor-tail-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        36.9,
+        98.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-resistor-tail-transition",
+      "net": "SDA_DQ",
+      "xy": [
+        44.7,
+        98.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SCL-resistor-tail-transition",
+      "net": "SCL_DOD",
+      "xy": [
+        50.6,
+        94.0
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "ALRT-resistor-tail-transition",
+      "net": "ALRT",
+      "xy": [
+        38.7,
+        101.85
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-harness-clamp-transition",
+      "net": "carrier-1-4",
+      "xy": [
+        57.4,
+        96.5
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-harness-clamp-transition",
+      "net": "carrier-1-4",
+      "xy": [
+        42.7,
+        99.4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SCL-harness-clamp-transition",
+      "net": "carrier-1-3",
+      "xy": [
+        63.3,
+        96.5
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SCL-harness-clamp-transition",
+      "net": "carrier-1-3",
+      "xy": [
+        42.6,
+        100.2
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-series-connection-transition",
+      "net": "carrier-1-4",
+      "xy": [
+        44.7,
+        96.9
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SDA-series-connection-transition",
+      "net": "carrier-1-4",
+      "xy": [
+        41.2,
+        94.6
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SCL-series-connection-transition",
+      "net": "carrier-1-3",
+      "xy": [
+        45.7,
+        99.8
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SCL-series-connection-transition",
+      "net": "carrier-1-3",
+      "xy": [
+        47.6,
+        101.3
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "SCL-series-connection-transition",
+      "net": "carrier-1-3",
+      "xy": [
+        45.3,
+        101.9
       ],
       "diameter_mm": 0.6,
       "drill_mm": 0.3

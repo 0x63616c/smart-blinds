@@ -1,5 +1,5 @@
 {
-  "status": "PASS: two-board circuit partition, independent reference pin contract, holder geometry and six negative controls",
+  "status": "PASS: two-board circuit partition, independent reference pin contract, holder geometry and twelve negative controls",
   "boards": {
     "primary": {
       "footprints": 50,
@@ -15,19 +15,25 @@
     "companion": 6
   },
   "permanent_intercarrier_wires": 4,
-  "semantic_graph_sha256": "3f443c645a60acb86cadf2b62e9d5c26702063f8ebea8bce4ca7eb015861e8ad",
+  "semantic_graph_sha256": "a55f093ffb1b22f38d8ae0eb02d3659bdf017d3b4f62b14403be21d82e97cd75",
   "negative_controls_detected": [
     "charger_ntc_return_joined_raw_ground",
     "companion_branch_fuse_bypass",
     "intercarrier_middle_rails_swapped",
     "primary_branch_fuse_bypass",
     "protected_ground_bypassed",
-    "wrong_cell2_short"
+    "wrong_cell2_short",
+    "z_alert_wrong_raw_return",
+    "z_alert_wrong_series_side",
+    "z_scl_wrong_raw_return",
+    "z_scl_wrong_series_side",
+    "z_sda_wrong_raw_return",
+    "z_sda_wrong_series_side"
   ],
   "input_sha256": {
     "hw/boards/blind-pack-companion/carrier.ato": "9601d1965d3b1d4341ee4f07fada095047a8ae92119cb128e3a1857610c357fd",
     "hw/boards/blind-pack-primary/carrier.ato": "68814121661dbb2e16896f45edbd531c04707289d5ea9abfef9dbbb5184a2166",
-    "hw/boards/blind-pack-primary/protection.ato": "6cb5a22b461760ee065bbe1eedc50e39dc9b367c9eb4eb03e20688a444d32520",
+    "hw/boards/blind-pack-primary/protection.ato": "168a958ffa0c804285bb12ace1e063f27e80d437baab6fdc8897c13e7275caa5",
     "hw/parts/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod": "e5af29e62bdfd0218d06bf79d2cdd8c8a112e91f8dbb0caf41441d0ae474b01b",
     "hw/parts/blind-holders/BH_21700_A5BJ001.ato": "d3a7ce4c0ab8eac1c69ec8b05b409d780194dfe890a522e8e48bfa25c1c3047b",
     "hw/parts/blind-pack-features/MountingHole_M3_3.4mm.kicad_mod": "e8b6dc9422809bac91e4e5ff4f9d3e79b0aa342c1510c9ed147e6be4b22ae155",

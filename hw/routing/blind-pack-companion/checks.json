@@ -8,7 +8,7 @@
     "hw/routing/blind-pack-companion/route.py": "7b6487a86c1d46d4b37bab1bd3f7bb4ee216246972ec4287e22bcdd4f11f31fd",
     "hw/routing/blind-pack-companion/companion-routed.kicad_dru": "71aff538f6f2edbdc91c9727aebe82def615cb7cb069d51d81fed469781c0250",
     "hw/routing/blind-pack-companion/companion-routed.kicad_pro": "92f42096681cfc65330e0f415788def7a50b57e0dbbcef66d212ff7fbe1d646d",
-    "hw/routing/blind-pack-companion/checks.py": "22b5775cf542db804a157866fa56d0ceddc9f8464685751dd7df09ed81331699",
+    "hw/routing/blind-pack-companion/checks.py": "2cc1b2eb08998cd3b9de6e6fc2be91b99faa20976e8cfca834c5e31eff24f9ee",
     "hw/placement/footprint-clearances.json": "f5fffb4b6e49529e8dbec5e3b98c78563ebc29c7626633817ec1581193539fe0",
     "tools/check_footprint_clearances.py": "45ac9559578af2da2b2074eaaaba6200296e0ca2c0b49a6dea2c951f1e63bf8a",
     "tools/complete_courtyards.py": "f68a33e3d64e880d1593ce1e4a779a05faaf2c0b7e8df28ae945aeaabb4b4b00",
@@ -527,7 +527,12 @@
           1.5449999999999875
         ]
       }
-    ]
+    ],
+    "via_solder_land_margin": {
+      "checked_vias": 12,
+      "minimum_drill_to_smd_land_mm": 0.2,
+      "same_net_lands_included": true
+    }
   },
   "drc": {
     "all_severities": [
@@ -554,6 +559,7 @@
     ]
   },
   "negative_controls": [
+    "same_net_via_drill_in_solder_land_rejected",
     "removed_current_rail_detected_by_actual_DRC",
     "support_via_permission_rejected",
     "new_soldermask_opening_rejected",

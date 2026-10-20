@@ -182,7 +182,7 @@
     {
       "id": "primary-current-route",
       "kind": "pcb",
-      "title": "Primary battery carrier \u2014 partial current and sensing route",
+      "title": "Primary battery carrier \u2014 connected routing study",
       "source": "hw/routing/blind-pack-primary/primary-routed.kicad_pcb",
       "dependencies": [
         "hw/routing/blind-pack-primary/primary-routed.kicad_pro",
@@ -191,9 +191,12 @@
         "hw/routing/blind-pack-primary/checks.json",
         "hw/routing/blind-pack-primary/route.py",
         "hw/routing/blind-pack-primary/checks.py",
+        "hw/routing/blind-pack-primary/route_geometry.py",
+        "hw/routing/blind-pack-primary/signals.py",
+        "hw/routing/blind-pack-primary/gates.py",
         "cad/parameters/retained-interfaces.json"
       ],
-      "role": "Experimental 102-segment, 32-via current/Kelvin checkpoint. Ten current-path groups and two isolated sense branches are physically connected; 55 signal/bypass connections and 30 documented DRC findings remain. Thermal, holder, protection and assembly qualification are unfinished. Not a fabrication release.",
+      "role": "Experimental 451-segment, 129-via route with all 35 nets physically connected and zero unconnected items. Eleven injected-fault checks cover current/Kelvin topology, protected-ground communication clamps and same-net solder-land clearance. Twenty-two drawing/mechanical findings and thermal, transient, holder and assembly qualification remain. Not a fabrication release.",
       "collapsed": true,
       "image_size": [
         1500,

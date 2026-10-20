@@ -3,4 +3,7 @@
 (rule "Primary copper to edge" (constraint edge_clearance (min 0.30mm)))
 (rule "Primary minimum signal track" (constraint track_width (min 0.15mm)))
 (rule "Primary hole to copper" (constraint hole_clearance (min 0.25mm)))
-(rule "Primary via annular ring" (condition "A.Type == 'Via'") (constraint annular_width (min 0.15mm)))
+(rule "Primary via annular ring" (condition "A.Type == 'Via' && A.Diameter > 0.50mm") (constraint annular_width (min 0.15mm)))
+
+# Bounded gauge escape exception: 0.50 mm diameter / 0.25 mm hole. Power banks unchanged.
+(rule "Gauge signal escape annular ring" (condition "A.Type == 'Via' && A.Diameter <= 0.50mm") (constraint annular_width (min 0.125mm)))

@@ -240,7 +240,7 @@ jobs:
         run: |
           xvfb-run -a /usr/bin/python3 hw/routing/blind-pack-companion/checks.py --negative-tests
           python3 hw/routing/blind-pack-companion/estimate_losses.py
-      - name: Check partial primary current and Kelvin routing
+      - name: Check connected primary routing, Kelvin topology and solder-land clearances
         run: |
           xvfb-run -a /usr/bin/python3 hw/routing/blind-pack-primary/checks.py --negative-tests
           python3 hw/routing/blind-pack-primary/estimate_losses.py

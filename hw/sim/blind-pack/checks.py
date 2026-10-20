@@ -125,6 +125,9 @@ def calculate():
         ('wrong_cell2_short','primary.protection.gauge.22','primary.protection.gauge.23'),
         ('charger_ntc_return_joined_raw_ground','primary.harness_charger_ntc_return.1','primary.link_raw_ground.1')]:
         changed = actual.copy(); changed[a] = actual[b]; mutations[label] = changed
+    for signal,pin in [('sda','9'),('scl','8'),('alert','7')]:
+        changed=actual.copy();changed['primary.protection.z_'+signal+'.2']=actual['primary.protection.gauge.20'];mutations['z_'+signal+'_wrong_raw_return']=changed
+        changed=actual.copy();changed['primary.protection.z_'+signal+'.1']=actual['primary.protection.gauge.'+pin];mutations['z_'+signal+'_wrong_series_side']=changed
     for label, changed in mutations.items():
         try:
             verify(changed,expected)
@@ -143,7 +146,7 @@ def calculate():
     canonical = sorted(sorted(g) for g in groups(expected))
     files = sorted([*ROOT.glob('hw/boards/blind-pack-*/*.ato'), *ROOT.glob('hw/parts/blind-holders/*.ato'),
                     *ROOT.glob('hw/parts/blind-holders/*.kicad_mod'), *ROOT.glob('hw/parts/blind-pack-features/*')])
-    return {'status':'PASS: two-board circuit partition, independent reference pin contract, holder geometry and six negative controls',
+    return {'status':'PASS: two-board circuit partition, independent reference pin contract, holder geometry and twelve negative controls',
             'boards':{k:{'footprints':len(g),'physical_pins':sum(len(c['pads']) for c in g.values())} for k,g in graphs.items()},
             'purchased_components':{'primary':33,'companion':6}, 'permanent_intercarrier_wires':4,
             'semantic_graph_sha256':hashlib.sha256(json.dumps(canonical).encode()).hexdigest(),

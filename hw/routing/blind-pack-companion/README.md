@@ -47,7 +47,8 @@ still need physical qualification.
 Long current routes are 3 mm wide; short fanout and unfused links are 2 mm.
 The provisional construction is 1.6 mm FR-4 with 1 oz outer copper. Via lands
 are 0.9 mm with 0.4 mm finished holes, four per fused branch, tented on both
-faces. No via is placed in a solder land. The project rules require 0.25 mm
+faces. Every via drill clears every top SMD solder land by at least 0.20 mm,
+including same-net lands; an intentional same-net intrusion is rejected. The project rules require 0.25 mm
 copper clearance and 0.30 mm edge clearance. These choices fit within the
 [JLC capability table](https://jlcpcb.com/capabilities/pcb-capabilities); they
 are not a 4 A current or thermal qualification.
@@ -64,7 +65,7 @@ approved continuous operation through a 3 A fuse or an unrated holder.
 `checks.py` compares actual footprint pads and electrical identities, mounting
 features, outline, all retained support/RF areas, reviewed courtyard envelopes,
 unique UUIDs and the exact covered-track exception. It also rejects mask
-openings in the protected region. Four fault controls remove a real current
+openings in the protected region. Five fault controls move a same-net via into a fuse land, remove a real current
 rail, permit a via in the recessed support strip, add a solder-mask opening,
 and misattribute a missing-courtyard finding to a purchased component.
 The removed rail is rejected by an actual KiCad DRC run, not merely a source

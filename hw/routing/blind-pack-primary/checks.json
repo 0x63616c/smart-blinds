@@ -1,14 +1,253 @@
 {
-  "status": "EXPERIMENTAL PARTIAL: current paths and isolated Kelvin copper checked; signal/bypass routing incomplete",
+  "geometry": {
+    "electrical_footprints": 50,
+    "board_only_holes": 4,
+    "courtyards": {
+      "electrical_footprints": 50,
+      "with_courtyards": 50,
+      "new_envelopes_checked": 30
+    },
+    "unique_uuids": 1576,
+    "mechanical_tail_rows": 12
+  },
+  "current_and_kelvin": {
+    "connected_power_paths": 10,
+    "kelvin_shape_partitions": {
+      "CSP": {
+        "physical_pads_with_shunt_land_removed": 1,
+        "route_items": 7
+      },
+      "CSN": {
+        "physical_pads_with_shunt_land_removed": 1,
+        "route_items": 6
+      }
+    }
+  },
+  "quiet_ground": {
+    "required_pad_groups": 12,
+    "shape_items": 71
+  },
+  "esd_return": {
+    "clamps": 3,
+    "branch_length_mm": 9.30656990340389,
+    "spine_length_mm": 6,
+    "width_mm": 0.8,
+    "via_escape_width_mm": 0.6,
+    "via_escape_length_mm": 0.9,
+    "limits": "Actual topology and geometry only; ESD waveform, via inductance and component survival remain untested."
+  },
+  "via_solder_margin": {
+    "vias_checked": 129,
+    "smd_lands_checked": 109,
+    "minimum_drill_edge_to_land_mm": 0.2,
+    "scope": "External copper lands on both faces, independent of net identity; no filled/capped via-in-pad exception."
+  },
+  "fine_signal_vias": [
+    {
+      "net": "carrier.protection-1-2",
+      "xy": [
+        29.8,
+        6.7
+      ]
+    },
+    {
+      "net": "carrier-contact-1",
+      "xy": [
+        30.4,
+        7.2
+      ]
+    },
+    {
+      "net": "AOLDO",
+      "xy": [
+        30.6,
+        6.3
+      ]
+    },
+    {
+      "net": "SDA_DQ",
+      "xy": [
+        31.4,
+        4.7
+      ]
+    },
+    {
+      "net": "carrier-contact-1",
+      "xy": [
+        31.8,
+        8.6
+      ]
+    },
+    {
+      "net": "carrier.protection-1-2",
+      "xy": [
+        32.4,
+        2.5
+      ]
+    },
+    {
+      "net": "ALRT",
+      "xy": [
+        32.6,
+        4.1
+      ]
+    },
+    {
+      "net": "carrier-contact-2",
+      "xy": [
+        32.699999,
+        11.0
+      ]
+    },
+    {
+      "net": "carrier-contact-1",
+      "xy": [
+        33.3,
+        8.3
+      ]
+    },
+    {
+      "net": "AOLDO",
+      "xy": [
+        33.3,
+        6.3
+      ]
+    },
+    {
+      "net": "SCL_DOD",
+      "xy": [
+        33.6,
+        5.4
+      ]
+    },
+    {
+      "net": "hv",
+      "xy": [
+        34.5,
+        0.7
+      ]
+    },
+    {
+      "net": "SDA_DQ",
+      "xy": [
+        34.8,
+        6.1
+      ]
+    },
+    {
+      "net": "SCL_DOD",
+      "xy": [
+        34.8,
+        5.3
+      ]
+    },
+    {
+      "net": "SDA_DQ",
+      "xy": [
+        35.1,
+        8.3
+      ]
+    },
+    {
+      "net": "SCL_DOD",
+      "xy": [
+        35.7,
+        11.1
+      ]
+    }
+  ],
+  "route_inventory": {
+    "segments": 451,
+    "vias": 129,
+    "narrow_trace_label": "IN-final-narrow",
+    "narrow_width_mm": 0.15
+  },
+  "all_physical_nets": {
+    "1": 3,
+    "2": 20,
+    "ALRT": 27,
+    "AOLDO": 9,
+    "BATTS": 33,
+    "CHG": 14,
+    "CP": 5,
+    "D": 19,
+    "DIS": 29,
+    "G": 12,
+    "PCKP": 5,
+    "PFAIL": 5,
+    "SCL_DOD": 27,
+    "SDA_DQ": 34,
+    "ZVC": 1,
+    "carrier-1": 3,
+    "carrier-1-1": 3,
+    "carrier-1-2": 5,
+    "carrier-1-3": 24,
+    "carrier-1-4": 20,
+    "carrier-contact": 10,
+    "carrier-contact-1": 94,
+    "carrier-contact-2": 18,
+    "carrier-contact-3": 22,
+    "carrier.protection-1": 49,
+    "carrier.protection-1-1": 9,
+    "carrier.protection-1-2": 9,
+    "carrier.protection-2": 20,
+    "carrier.protection-G": 5,
+    "contact": 10,
+    "hv": 25,
+    "junction1": 19,
+    "junction2": 30,
+    "lv": 44,
+    "raw_top": 42
+  },
+  "drc": {
+    "kicad": "10.0.4",
+    "unconnected": 0,
+    "violations": {
+      "missing_courtyard": 4,
+      "silk_edge_clearance": 3,
+      "silk_over_copper": 15
+    },
+    "ignored_checks": [
+      {
+        "description": "Track endpoint not centered on via",
+        "key": "track_not_centered_on_via"
+      },
+      {
+        "description": "Tuning profile track geometries",
+        "key": "tuning_profile_track_geometries"
+      },
+      {
+        "description": "Footprint doesn't match symbol's footprint filters",
+        "key": "footprint_filters_mismatch"
+      }
+    ]
+  },
+  "negative_controls": [
+    "open_CSP_branch",
+    "same_net_CSP_load_shortcut",
+    "open_ESD_PACK_return",
+    "same_net_via_in_SMD_land",
+    "open_SDA_uplink",
+    "open_quiet_shunt_return",
+    "quiet_ground_to_CSP_shortcut",
+    "unreviewed_signal_via_annulus",
+    "fine_via_outside_escape_region",
+    "load_trace_narrowed",
+    "holder_anchor_moved"
+  ],
   "source_hashes": {
-    "hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb": "fecc56c96206151d1abf174f17da5756d6655759b423a150b72ef37fc5cad8c6",
+    "hw/routing/blind-pack-primary/route.py": "02bdb521379e887c188000367c762fcda4c484585af3a04e901fa38193476e70",
+    "hw/routing/blind-pack-primary/signals.py": "d81a9adfb20de8c5ed685a58fc9353ce253277567568d048e34066cecad190af",
+    "hw/routing/blind-pack-primary/gates.py": "f566f347a78dec9c8e8371a9e02797b0c2411fb4ba3547a40ea93d3dffb02d65",
+    "hw/routing/blind-pack-primary/checks.py": "ddd11e48d5af1eeb4b443909d9a9f106a88fa4593040f521540fe809b278250c",
+    "hw/routing/blind-pack-primary/primary-routed.kicad_pcb": "1a9ee1eee14edba4e1963ae44986007c30fdecdca094fa900ac88e7dfdea55fb",
+    "hw/routing/blind-pack-primary/primary-routed.kicad_pro": "79ab62430a1f6aa6ce9d8a377a64d1285227f69e5f8618d022adc6f6d5eb6d45",
+    "hw/routing/blind-pack-primary/primary-routed.kicad_dru": "1e08bd3635bb89b4943ad1e766505c31177e5e150424d10fd72709511661ab19",
+    "hw/routing/blind-pack-primary/route-record.json": "a8b4ed350f54aaea4492c1341b9881e7490c6c4b428355b1f24baaf4bcfac7dd",
+    "hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb": "a93f5b45b81767ffaaa44e7ff29bcc5edda26651cc63edd8132b4aa51cbd1197",
+    "hw/layouts/blind-pack-primary/primary-test/fp-lib-table": "1f341bf44f582097cc52ed50021a04bf0481fd6937572c8a0c764022e2933ceb",
     "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
-    "hw/routing/blind-pack-primary/primary-routed.kicad_pcb": "0ef2d58956a3acbccee59725e92b9ace5af78f3b5448a74e3cfda8f264dd4d53",
-    "hw/routing/blind-pack-primary/route.py": "7449a67fcc9195a48722d1b4492a5e2609a0fe2341049c1258f31a35aa631e5c",
-    "hw/routing/blind-pack-primary/route-record.json": "f3fe4f84a46468c9bc0a545995ad153181a86157ec767e15fb74e205e0093926",
-    "hw/routing/blind-pack-primary/checks.py": "584067ae1c0972a2ecb1388ddcdd1d6aaa2ca77b7c25d3c7425474592703d16c",
-    "hw/routing/blind-pack-primary/primary-routed.kicad_pro": "886355c9cf1a7e042d67e129ae239335ecd7ebf89d6feeb20bf1ba812bf8114c",
-    "hw/routing/blind-pack-primary/primary-routed.kicad_dru": "b784ab84b669d670c630391f92c13988bf6790372df10500e6b863ae254d6027",
+    "hw/routing/blind-pack-primary/route_geometry.py": "bfed33d3252359e40b8d60401b47e4f1579af74e296564aeb5193a26fe3400fa",
     "tools/generate_schematics.py": "cda24e8995e1fff8431022d10cd4ae228bf70035c5206ae970e09aa4ffcedee3",
     "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
     "tools/check_footprint_clearances.py": "45ac9559578af2da2b2074eaaaba6200296e0ca2c0b49a6dea2c951f1e63bf8a",
@@ -60,54 +299,5 @@
     "hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": "ff3e4eb9e11d432090bb2ffa14aecf15bbc0aa15216833ed775a8b8a2be0e9e4",
     "hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": "48bec89ba9d01f14ffc3b3c1f2c759d53a3b0991a5abcd5472651b0be1227f01"
   },
-  "kicad_version": "10.0.4",
-  "geometry": {
-    "electrical_footprints": 50,
-    "board_only_holes": 4,
-    "courtyards": {
-      "electrical_footprints": 50,
-      "with_courtyards": 50,
-      "new_envelopes_checked": 30
-    },
-    "unique_uuids": 1130,
-    "mechanical_tail_rows": 12
-  },
-  "copper": {
-    "connected_power_paths": 10,
-    "kelvin_shape_partitions": {
-      "CSP": {
-        "physical_pads_with_shunt_land_removed": 1,
-        "route_items": 9
-      },
-      "CSN": {
-        "physical_pads_with_shunt_land_removed": 1,
-        "route_items": 9
-      }
-    }
-  },
-  "drc": {
-    "remaining_violations": {
-      "missing_courtyard": 4,
-      "silk_edge_clearance": 3,
-      "silk_over_copper": 15,
-      "silk_overlap": 8
-    },
-    "unconnected_items": 55,
-    "ignored_checks": [
-      "footprint_filters_mismatch",
-      "track_not_centered_on_via",
-      "tuning_profile_track_geometries"
-    ]
-  },
-  "negative_controls": [
-    "same_net_early_Kelvin_join_rejected_by_copper_shape_graph",
-    "open_Kelvin_route_rejected"
-  ],
-  "limits": [
-    "Not a complete route or fabrication release; all unconnected findings are retained.",
-    "Narrow current fanouts/1.5mm link necks and actual holders, fuses, shunt and FETs need thermal/fault qualification.",
-    "Gauge bypass/filter/ground-return and communication routes remain unfinished.",
-    "The independent Kelvin check uses actual pad/track/via shapes and removes each shunt landing; a shared net name alone cannot pass it.",
-    "Primary solder tails use the newly coordinated spacer removal; the 0.5mm barrier gap is nominal and requires physical inspection."
-  ]
+  "status": "EXPERIMENTAL CONNECTED ROUTE; retained manufacturing findings and physical qualification remain"
 }

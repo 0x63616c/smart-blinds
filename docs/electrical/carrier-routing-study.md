@@ -104,7 +104,7 @@ its anchors changed. The primary's current paths, Kelvin geometry, bypass
 loops and assembly clearances still require route-aware implementation and
 verification.
 
-### Subsequent partial primary route
+### Earlier partial primary route (superseded)
 
 The [primary derivative](../../hw/routing/blind-pack-primary/README.md) now records
 the approved shunt/gate moves, a PFAIL-pulldown move and three fuse rotations.
@@ -125,3 +125,20 @@ A conservative 4 A pack / 2 A per parallel-cell estimate gives about 1.73 W
 in primary copper. It overcounts some branched paths and excludes component
 and contact losses. Width, parallel-layer and 2 oz alternatives need comparison;
 this arithmetic neither predicts temperature nor qualifies a current rating.
+
+### Connected primary checkpoint
+
+The maintained [primary route](../../hw/routing/blind-pack-primary/README.md)
+now contains 451 segments and 129 vias with all 35 nets physically connected.
+Native DRC reports zero unconnected items, eighteen silk findings and four
+explicit board-only mounting-hole courtyard findings. Eleven deliberate faults
+exercise current/Kelvin separation, quiet return, communication-clamp topology,
+route inventory and same-net drill-to-solder-land clearance. All 129 ordinary
+via drills clear all 109 SMD lands by 0.20 mm.
+
+The [communication-clamp correction](pack-communication-clamps.md) changes
+exactly six pins across the three Zeners in both circuit captures. The return
+now enters protected PACK− near the harness, separately from gauge/NTC ground.
+The 1.410 W nominal copper-only estimate still assumes 4 A total and equal 2 A
+cell sharing. Connectivity and geometry do not qualify transient behavior,
+heat, protection settings, cell/holder faults or physical assembly.

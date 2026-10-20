@@ -16,7 +16,7 @@ followed by an eight-unit build only after their tests pass.
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
 | Main controller | Native eleven-sheet schematic and partial four-layer power route; 636 segments, 178 vias, 72 physical connection groups, preserved circuit and mechanical anchors | 257 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
-| Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete primary/main routing, holder load path, insulation and qualified protection settings |
+| Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
 | Radio transport | C6 Wi-Fi automatic-light-sleep evaluation and separate default-unqualified motion target; six real localhost DTLS tests; Thread target and seven-peer group adapter remain | Actual RF/power tests, physical qualification, temperature continuity, commissioned configuration and unattended recovery |
@@ -78,18 +78,27 @@ preserves the circuit graph, footprint pads and mechanical anchors. It has 35
 segments, 12 vias and zero unconnected items in actual KiCad DRC, with no copper,
 edge, hole, courtyard-overlap or keepout failures. Six inherited silkscreen
 findings and four explicitly enabled mounting-hole courtyard errors remain.
-Four injected failures are rejected. Covered inward-face tracks pass through a
+Five injected failures are rejected, including a same-net via intrusion into a
+fuse solder land. All twelve vias retain a 0.20 mm drill-to-SMD-land margin. Covered inward-face tracks pass through a
 coordinated 0.3 mm spacer recess; current, temperature and insulation wear remain
 physical qualification gates.
 
-The [partial primary route](../hw/routing/blind-pack-primary/README.md) has 102
-segments and 32 vias. Its ten current-path groups and two separate shunt-sense
-branches pass physical copper-shape checks, including deliberate shortcut/open
-failures. Actual KiCad DRC has no copper, edge, hole, keepout or overlap failures,
-but retains 55 unconnected signal/bypass items, 26 silk findings and four mounting
-hole courtyard errors. Its conservative copper-only loss estimate is 1.73 W at
-4 A pack current; width, parallel-layer and 2 oz alternatives need review. The
-primary and main routes remain unfinished.
+The [primary route](../hw/routing/blind-pack-primary/README.md) now has
+451 segments and 129 vias, with all 35 nets physically connected and zero
+native unconnected items. Ten load-path groups, two isolated Kelvin branches,
+quiet gauge/NTC returns and connector-side communication clamps pass independent
+copper-shape checks. Eleven injected faults are rejected. All 129 ordinary via
+drills clear all 109 SMD solder lands by 0.20 mm, including same-net lands.
+The [six-pin circuit correction](electrical/pack-communication-clamps.md) places
+the three Zeners on the external side of their resistors and returns them to
+PACK−. The corrected frozen circuits and native 103-pin schematic pass locally;
+the standalone schematic retains twelve explicit external-interface ERC findings.
+Native PCB DRC retains eighteen silk findings and four exact board-only mounting
+hole courtyard findings. The nominal balanced-current copper estimate is 1.410 W
+at 4 A pack / 2 A per cell, excluding components and contacts; it is not a
+thermal result. Both carriers still need electrical, assembly and physical
+qualification; the main board remains partially routed. This battery checkpoint
+has passed local checks and awaits its own CI run.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
 196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13

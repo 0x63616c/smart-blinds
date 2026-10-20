@@ -65,6 +65,10 @@ def calculate():
     wrong=actual.copy();wrong['gauge.22']=actual['gauge.23'];mutations['wrong_3S_cell_short']=wrong
     wrong=actual.copy();wrong['charge_fet.4']=actual['discharge_fet.4'];mutations['gate_controls_shorted']=wrong
     wrong=actual.copy();wrong['fuse1a.1']=actual['fuse1a.2'];mutations['cell_branch_fuse_bypassed']=wrong
+    # Independent six-fault guard for UG7177 Figure3 connector-side/PACK- clamps.
+    for signal,pin in [('sda','9'),('scl','8'),('alert','7')]:
+        wrong=actual.copy();wrong['z_'+signal+'.2']=actual['gauge.20'];mutations['z_'+signal+'_wrong_raw_return']=wrong
+        wrong=actual.copy();wrong['z_'+signal+'.1']=actual['gauge.'+pin];mutations['z_'+signal+'_wrong_series_side']=wrong
     for label,wrong in mutations.items():
         try:verify(wrong,expected)
         except AssertionError:pass

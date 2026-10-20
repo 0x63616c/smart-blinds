@@ -116,6 +116,19 @@ def verify_geometry(path):
  return {'footprints':len(a),'electrical_footprints':10,'board_only_holes':4,'tracks':len(tracks),'vias':vias,
  'covered_support_rail_nets':sorted(covered_nets),'copper_fill_zones':0,'courtyards':court,'unique_item_uuids':len(ids),'track_summary':tracks}
 
+def verify_via_solder_lands(board):
+ probes=[];count=0
+ for via in board.GetTracks():
+  if not isinstance(via,pcbnew.PCB_VIA):continue
+  probe=pcbnew.PCB_VIA(board);probe.SetPosition(via.GetPosition());probe.SetWidth(via.GetDrillValue());probes.append(probe)
+  for footprint in board.GetFootprints():
+   for land in footprint.Pads():
+    if land.GetAttribute()==pcbnew.PAD_ATTRIB_SMD and land.IsOnLayer(pcbnew.F_Cu):
+     assert not probe.GetEffectiveShape(pcbnew.F_Cu).Collide(land.GetEffectiveShape(pcbnew.F_Cu),200000),'Ordinary via drill too close to SMD solder land'
+  count+=1
+ assert count==12
+ return {'checked_vias':count,'minimum_drill_to_smd_land_mm':.2,'same_net_lands_included':True}
+
 def drc(path,output):
  cli=shutil.which('kicad-cli') or '/Users/calum/.local/bin/kicad-cli'
  version=subprocess.check_output([cli,'version'],text=True).strip();assert version.startswith('10.')
@@ -154,7 +167,7 @@ def main():
  assert sha(SOURCE)==record['canonical_pcb_sha256'] and sha(MECHANICAL)==record['mechanical_sha256'] and sha(BOARD)==record['routed_pcb_sha256']
  assert sha(HERE/'route.py')==record['route_source_sha256']
  start={str(p.relative_to(ROOT)):sha(p) for p in [SOURCE,MECHANICAL,BOARD,HERE/'route.py',HERE/'companion-routed.kicad_dru',HERE/'companion-routed.kicad_pro',HERE/'checks.py',ROOT/'hw/placement/footprint-clearances.json',ROOT/'tools/check_footprint_clearances.py',ROOT/'tools/complete_courtyards.py',ROOT/'hw/parts/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod',ROOT/'hw/parts/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod',ROOT/'hw/parts/blind-pack-features/WirePad18.kicad_mod',ROOT/'hw/parts/blind-pack-features/MountingHole_M3_3.4mm.kicad_mod']}
- geom=verify_geometry(BOARD);version,report=drc(BOARD,HERE/'drc.json')
+ geom=verify_geometry(BOARD);geom['via_solder_land_margin']=verify_via_solder_lands(pcbnew.LoadBoard(str(BOARD)));version,report=drc(BOARD,HERE/'drc.json')
  counts=dict(sorted(collections.Counter(x['type'] for x in report['violations']).items()))
  missing_mechanical=verify_remaining_findings(report,BOARD)
  assert not report['unconnected_items'],'Route remains unconnected'
@@ -165,6 +178,13 @@ def main():
  if args.negative_tests:
   with tempfile.TemporaryDirectory(prefix='companion-route-negative-') as folder:
    folder=Path(folder);base=parse(BOARD.read_text())
+   bad_board=pcbnew.LoadBoard(str(BOARD));pad=next(p for p in footprints(bad_board)['carrier.fuse1'].Pads() if p.GetNumber()=='2')
+   via=next(t for t in bad_board.GetTracks() if isinstance(t,pcbnew.PCB_VIA) and t.GetNetCode()==pad.GetNetCode());via.SetPosition(pad.GetPosition())
+   try:verify_via_solder_lands(bad_board)
+   except AssertionError as error:
+    assert 'Ordinary via drill too close to SMD solder land' in str(error),error
+    faults.append('same_net_via_drill_in_solder_land_rejected')
+   else:raise AssertionError('Accepted ordinary via drill in fuse solder land')
    # Real copper discontinuity: nominal source net labels remain unchanged.
    bad=copy.deepcopy(base);target=next(x for x in children(bad,'segment') if abs(float(one(x,'start')[2])-161.5)<1e-6 and abs(float(one(x,'end')[2])-114.1)<1e-6)
    bad.remove(target);p=folder/'open.kicad_pcb';p.write_text(dumps(bad)+'\n');shutil.copy2(HERE/'companion-routed.kicad_dru',p.with_suffix('.kicad_dru'));shutil.copy2(HERE/'companion-routed.kicad_pro',p.with_suffix('.kicad_pro'))

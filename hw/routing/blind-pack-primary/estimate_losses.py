@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Conservative balanced-current copper estimate for the partial primary route."""
+"""Conservative balanced-current copper estimate for the primary routing candidate."""
 import collections,hashlib,json,math,sys
 from pathlib import Path
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
@@ -26,7 +26,7 @@ def main():
    if a!=b:
     k=key(r['net'],r['layer'],r['width_mm'],a,b);planned.append(k);length+=lengths[k]
   label=r['label']
-  if label.startswith(('CSP','CSN')):current=0
+  if label not in record['load_route_labels']:current=0
   elif label.startswith(('junction1-current','junction2-current','cell','raw-top-current','raw-top-link','raw-top-short','raw-ground-link')):current=2
   elif label.startswith(('junction2-link','junction2-short')):current=0
   elif '-source-pin' in label:current=4/3
@@ -38,10 +38,10 @@ def main():
  assert collections.Counter(actual)==collections.Counter(planned),'Loss dimensions differ from actual copper'
  via_r=1.724e-5*1.6/(math.pi*.4*.018)
  via_power=(3*2**2+4*4**2)*via_r/4
- result={'status':'Conservative balanced-current estimate for partial routing, not a thermal/current qualification',
+ result={'status':'Conservative balanced-current estimate, not a thermal/current qualification',
  'source_hashes':{'board':sha(board),'route_record':sha(HERE/'route-record.json'),'checks':sha(HERE/'checks.json'),'calculator':sha(Path(__file__))},
  'assumed_pack_current_a':4,'assumed_each_parallel_cell_a':2,'nominal_finished_copper_um':35,
- 'trace_loss_25c_nominal_w':total,'via_loss_20c_nominal_w':via_power,'total_copper_loss_nominal_w':total+via_power,
+ 'trace_loss_25c_nominal_w':total,'same_width_70um_trace_loss_w':total/2,'via_loss_20c_nominal_w':via_power,'total_copper_loss_nominal_w':total+via_power,
  'trace_loss_70c_minus20pct_width_w':total*1.18/.8,'per_route':items,
  'sources':['https://www.ti.com/lit/pdf/sszp640','https://jlcpcb.com/capabilities/pcb-capabilities'],
  'limits':['Not a temperature prediction, current rating or verified equal-sharing result.',
@@ -49,7 +49,7 @@ def main():
  'Both faces of each via bank are counted at full branch current; junction1 inter-carrier tail also counts 2 A although balanced current is zero.',
  'Four power via barrels per bank use 18um average plating, not a specified minimum.',
  'Excludes cells, holder contacts, fuse elements, solder, harnesses, shunt and protection FET losses.',
- 'Signals/bypass and ground-return paths are unfinished; no complete board release is implied.']}
+ 'Signal and gauge-bypass losses are not modeled as load current. Physical thermal and fault qualification remain outstanding.']}
  (HERE/'copper-losses.json').write_text(json.dumps(result,indent=2)+'\n')
  print(json.dumps({k:v for k,v in result.items() if k not in ('per_route','source_hashes')},indent=2))
 if __name__=='__main__':main()

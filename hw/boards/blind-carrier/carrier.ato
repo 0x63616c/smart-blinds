@@ -144,24 +144,26 @@ module ProtectedCarrier:
     r_pack_sense = new Part_0402WGF1001TCE
     r_pack_sense.1 ~ pack.hv
     r_pack_sense.2 ~ gauge.PCKP
+    # ADI UG7177 Rev0 Figure3 p5: connector-side clamps return to PACK-.
+    # Gauge-side 150-ohm series isolation; RAW_GND/NTCs stay separate.
     r_sda = new Part_0402WGF1500TCE
     r_sda.1 ~ sda
     r_sda.2 ~ gauge.SDA_DQ
     z_sda = new Part_BZT52C4V7
-    z_sda.K ~ gauge.SDA_DQ
-    z_sda.A ~ raw_ground
+    z_sda.K ~ sda
+    z_sda.A ~ pack.lv
     r_scl = new Part_0402WGF1500TCE
     r_scl.1 ~ scl
     r_scl.2 ~ gauge.SCL_DOD
     z_scl = new Part_BZT52C4V7
-    z_scl.K ~ gauge.SCL_DOD
-    z_scl.A ~ raw_ground
+    z_scl.K ~ scl
+    z_scl.A ~ pack.lv
     r_alert = new Part_0402WGF1500TCE
     r_alert.1 ~ alert_n
     r_alert.2 ~ gauge.ALRT
     z_alert = new Part_BZT52C4V7
-    z_alert.K ~ gauge.ALRT
-    z_alert.A ~ raw_ground
+    z_alert.K ~ alert_n
+    z_alert.A ~ pack.lv
     # Host owns pullups to its 3.3 V; no pullup to the gauge's internal REG3.
     # ESD/zener capacitance, leakage and powered-off insertion need measurement.
 

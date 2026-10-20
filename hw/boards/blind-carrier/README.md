@@ -10,7 +10,10 @@ The circuit captures a MAX17320G22+ gauge/protector, two opposing high-side
 AON7400A N-FETs, a Kelvin-connected 10 mΩ shunt, three 100 Ω balancing resistors,
 differential 100 nF cell filters, internal regulator/charge-pump bypass, two pack
 NTC inputs, and six individual 3 A cell-positive fuses. Gauge telemetry has 150 Ω
-series resistors and 4.7 V zeners; the controller supplies the pullups. ZVC is open
+series resistors and 4.7 V Zeners; the clamps are on the external connector
+side and return to PACK−, following ADI UG7177 Figure 3. See the
+[review and remaining electrical limits](../../../docs/electrical/pack-communication-clamps.md).
+The controller supplies the pullups. ZVC is open
 and zero-volt recharge must remain disabled. PFAIL is terminated as the manufacturer
 instructs for an unused output; **no independent secondary protector or thermal
 fuse heater is implemented yet**.

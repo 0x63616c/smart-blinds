@@ -1,18 +1,19 @@
 {
-  "status": "Conservative balanced-current estimate for partial routing, not a thermal/current qualification",
+  "status": "Conservative balanced-current estimate, not a thermal/current qualification",
   "source_hashes": {
-    "board": "0ef2d58956a3acbccee59725e92b9ace5af78f3b5448a74e3cfda8f264dd4d53",
-    "route_record": "74043f71bdb423830336784df5b84311a9280facdc1989f4b2bf8a336e401ae0",
-    "checks": "f0d3b9b413d78425fce984e0dd8e198311e2123a135f1b3800b8ed3e533995c7",
-    "calculator": "f52288f77133b5937d583d3d11b79050f4de5acccd36711cb4bdcf2149ce460d"
+    "board": "1a9ee1eee14edba4e1963ae44986007c30fdecdca094fa900ac88e7dfdea55fb",
+    "route_record": "a8b4ed350f54aaea4492c1341b9881e7490c6c4b428355b1f24baaf4bcfac7dd",
+    "checks": "795aa3ca984c0ea11891594e8c77d105051a30bd12b070bb138029134a34db15",
+    "calculator": "b9264fadd019b55bc26a786fc8a8a334f00db74d6bf6cab687affe5fd6c778aa"
   },
   "assumed_pack_current_a": 4,
   "assumed_each_parallel_cell_a": 2,
   "nominal_finished_copper_um": 35,
-  "trace_loss_25c_nominal_w": 1.7092475533724736,
+  "trace_loss_25c_nominal_w": 1.3868369843868293,
+  "same_width_70um_trace_loss_w": 0.6934184921934147,
   "via_loss_20c_nominal_w": 0.02317013029296944,
-  "total_copper_loss_nominal_w": 1.732417683665443,
-  "trace_loss_70c_minus20pct_width_w": 2.5211401412243983,
+  "total_copper_loss_nominal_w": 1.4100071146797988,
+  "trace_loss_70c_minus20pct_width_w": 2.045584551970573,
   "per_route": [
     {
       "label": "cell1-short-unfused",
@@ -208,19 +209,35 @@
     },
     {
       "label": "raw-ground-link",
-      "width_mm": 3,
-      "length_mm": 11.011269837220805,
+      "width_mm": 1.5,
+      "length_mm": 20.600322869943422,
       "assumed_current_a": 2,
-      "resistance_ohm": 0.001835211639536801,
-      "loss_w": 0.007340846558147204
+      "resistance_ohm": 0.0068667742899811415,
+      "loss_w": 0.027467097159924566
     },
     {
-      "label": "raw-ground-current-to-shunt",
-      "width_mm": 3,
-      "length_mm": 115.05685424949239,
+      "label": "raw-ground-current-long",
+      "width_mm": 5,
+      "length_mm": 71.55685424949239,
       "assumed_current_a": 4,
-      "resistance_ohm": 0.019176142374915398,
-      "loss_w": 0.30681827799864636
+      "resistance_ohm": 0.007155685424949239,
+      "loss_w": 0.11449096679918783
+    },
+    {
+      "label": "raw-ground-current-across",
+      "width_mm": 4,
+      "length_mm": 34.5,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0043125,
+      "loss_w": 0.069
+    },
+    {
+      "label": "raw-ground-current-approach",
+      "width_mm": 3,
+      "length_mm": 9.0,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0015000000000000002,
+      "loss_w": 0.024000000000000004
     },
     {
       "label": "shunt-raw-current-entry",
@@ -257,10 +274,10 @@
     {
       "label": "charge-source-bus",
       "width_mm": 0.8,
-      "length_mm": 5.456370849898461,
+      "length_mm": 5.7048989873223155,
       "assumed_current_a": 4,
-      "resistance_ohm": 0.003410231781186538,
-      "loss_w": 0.054563708498984606
+      "resistance_ohm": 0.003565561867076447,
+      "loss_w": 0.057048989873223155
     },
     {
       "label": "charge-source-bank-F.Cu",
@@ -281,10 +298,18 @@
     {
       "label": "raw-top-feed-protection",
       "width_mm": 2,
-      "length_mm": 24.700000000000017,
+      "length_mm": 6.300000000000011,
       "assumed_current_a": 4,
-      "resistance_ohm": 0.006175000000000004,
-      "loss_w": 0.09880000000000007
+      "resistance_ohm": 0.0015750000000000028,
+      "loss_w": 0.025200000000000045
+    },
+    {
+      "label": "raw-top-feed-across",
+      "width_mm": 3,
+      "length_mm": 16.200000000000017,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0027000000000000027,
+      "loss_w": 0.043200000000000044
     },
     {
       "label": "discharge-source-pin1",
@@ -313,18 +338,26 @@
     {
       "label": "discharge-source-bus",
       "width_mm": 0.8,
-      "length_mm": 14.525000000000006,
+      "length_mm": 5.724999999999994,
       "assumed_current_a": 4,
-      "resistance_ohm": 0.009078125000000003,
-      "loss_w": 0.14525000000000005
+      "resistance_ohm": 0.0035781249999999967,
+      "loss_w": 0.05724999999999995
+    },
+    {
+      "label": "discharge-source-bus-wide",
+      "width_mm": 2,
+      "length_mm": 9.789949493661162,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0024474873734152904,
+      "loss_w": 0.039159797974644646
     },
     {
       "label": "protected-positive-trunk",
-      "width_mm": 3,
+      "width_mm": 5,
       "length_mm": 89.3445742854949,
       "assumed_current_a": 4,
-      "resistance_ohm": 0.014890762380915816,
-      "loss_w": 0.23825219809465306
+      "resistance_ohm": 0.00893445742854949,
+      "loss_w": 0.14295131885679185
     },
     {
       "label": "common-drain-spine",
@@ -391,12 +424,28 @@
       "loss_w": 0.010799999999999955
     },
     {
-      "label": "pack-ground-low",
+      "label": "pack-ground-low-transition",
       "width_mm": 3,
-      "length_mm": 19.179264068711912,
+      "length_mm": 4.35499999999999,
       "assumed_current_a": 4,
-      "resistance_ohm": 0.0031965440114519856,
-      "loss_w": 0.05114470418323177
+      "resistance_ohm": 0.0007258333333333317,
+      "loss_w": 0.011613333333333307
+    },
+    {
+      "label": "pack-ground-low-approach",
+      "width_mm": 3,
+      "length_mm": 9.699999999999989,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0016166666666666647,
+      "loss_w": 0.025866666666666635
+    },
+    {
+      "label": "pack-ground-low",
+      "width_mm": 5,
+      "length_mm": 5.124264068711933,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0005124264068711934,
+      "loss_w": 0.008198822509939094
     },
     {
       "label": "pack-ground-crossing-low-bank-F.Cu",
@@ -416,11 +465,11 @@
     },
     {
       "label": "pack-ground-front-crossing",
-      "width_mm": 3,
+      "width_mm": 5,
       "length_mm": 17.30000000000001,
       "assumed_current_a": 4,
-      "resistance_ohm": 0.0028833333333333354,
-      "loss_w": 0.046133333333333366
+      "resistance_ohm": 0.0017300000000000013,
+      "loss_w": 0.02768000000000002
     },
     {
       "label": "pack-ground-crossing-high-bank-F.Cu",
@@ -440,26 +489,26 @@
     },
     {
       "label": "protected-ground-trunk",
-      "width_mm": 3,
-      "length_mm": 51.082337649086284,
+      "width_mm": 5,
+      "length_mm": 44.28233764908629,
       "assumed_current_a": 4,
-      "resistance_ohm": 0.00851372294151438,
-      "loss_w": 0.13621956706423008
+      "resistance_ohm": 0.004428233764908629,
+      "loss_w": 0.07085174023853806
+    },
+    {
+      "label": "protected-ground-output-approach",
+      "width_mm": 3,
+      "length_mm": 6.799999999999997,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0011333333333333328,
+      "loss_w": 0.018133333333333324
     },
     {
       "label": "CSP-pin-escape",
       "width_mm": 0.2,
-      "length_mm": 0.9207886552932105,
+      "length_mm": 1.3048529270389109,
       "assumed_current_a": 0,
-      "resistance_ohm": 0.002301971638233026,
-      "loss_w": 0.0
-    },
-    {
-      "label": "CSP-Kelvin-only",
-      "width_mm": 0.2,
-      "length_mm": 19.872792206135795,
-      "assumed_current_a": 0,
-      "resistance_ohm": 0.04968198051533949,
+      "resistance_ohm": 0.003262132317597277,
       "loss_w": 0.0
     },
     {
@@ -473,17 +522,9 @@
     {
       "label": "CSN-pin-escape",
       "width_mm": 0.2,
-      "length_mm": 1.4324424839521968,
+      "length_mm": 2.038332406377159,
       "assumed_current_a": 0,
-      "resistance_ohm": 0.003581106209880492,
-      "loss_w": 0.0
-    },
-    {
-      "label": "CSN-Kelvin-only",
-      "width_mm": 0.2,
-      "length_mm": 20.71690546293819,
-      "assumed_current_a": 0,
-      "resistance_ohm": 0.05179226365734547,
+      "resistance_ohm": 0.0050958310159428975,
       "loss_w": 0.0
     },
     {
@@ -492,6 +533,1294 @@
       "length_mm": 0.799999999999983,
       "assumed_current_a": 0,
       "resistance_ohm": 0.0019999999999999575,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CP-local",
+      "width_mm": 0.2,
+      "length_mm": 2.0600609733428272,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.005150152433357068,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-local-bypass",
+      "width_mm": 0.2,
+      "length_mm": 2.506710850456729,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.006266777126141822,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-pump-return",
+      "width_mm": 0.2,
+      "length_mm": 6.649999999999977,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.016624999999999942,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-pump-cap",
+      "width_mm": 0.2,
+      "length_mm": 1.8828170383762663,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0047070425959406656,
+      "loss_w": 0.0
+    },
+    {
+      "label": "gauge-GND-local",
+      "width_mm": 0.2,
+      "length_mm": 2.1599999999999966,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.005399999999999991,
+      "loss_w": 0.0
+    },
+    {
+      "label": "gauge-GND-local",
+      "width_mm": 0.2,
+      "length_mm": 1.9099999999999966,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004774999999999991,
+      "loss_w": 0.0
+    },
+    {
+      "label": "gauge-GND-local",
+      "width_mm": 0.2,
+      "length_mm": 1.9099999999999966,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004774999999999991,
+      "loss_w": 0.0
+    },
+    {
+      "label": "GND-pin-escape",
+      "width_mm": 0.2,
+      "length_mm": 1.0920797289396096,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0027301993223490238,
+      "loss_w": 0.0
+    },
+    {
+      "label": "GND-shunt-bottom-land",
+      "width_mm": 0.3,
+      "length_mm": 2.032252444948694,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.003387087408247824,
+      "loss_w": 0.0
+    },
+    {
+      "label": "REG2-quiet-return",
+      "width_mm": 0.2,
+      "length_mm": 1.8295630140987023,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004573907535246755,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-quiet-ground",
+      "width_mm": 0.2,
+      "length_mm": 4.471148030832349,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.01117787007708087,
+      "loss_w": 0.0
+    },
+    {
+      "label": "quiet-right-return",
+      "width_mm": 0.3,
+      "length_mm": 12.0,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.02,
+      "loss_w": 0.0
+    },
+    {
+      "label": "REG3-flipped-shunt-return",
+      "width_mm": 0.2,
+      "length_mm": 1.9313207915827766,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004828301978956941,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CHG-pin-escape",
+      "width_mm": 0.2,
+      "length_mm": 0.789999999999992,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0019749999999999802,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CHG-control",
+      "width_mm": 0.2,
+      "length_mm": 22.600985330494673,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.05650246332623668,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CHG-control",
+      "width_mm": 0.2,
+      "length_mm": 0.8714355971613789,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.002178588992903447,
+      "loss_w": 0.0
+    },
+    {
+      "label": "charge-gate-resistor-escape",
+      "width_mm": 0.2,
+      "length_mm": 0.8926925562588742,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0022317313906471854,
+      "loss_w": 0.0
+    },
+    {
+      "label": "charge-gate-local-back",
+      "width_mm": 0.2,
+      "length_mm": 7.224115513732384,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.01806028878433096,
+      "loss_w": 0.0
+    },
+    {
+      "label": "charge-gate-FET-land",
+      "width_mm": 0.2,
+      "length_mm": 1.8562394780846574,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004640598695211643,
+      "loss_w": 0.0
+    },
+    {
+      "label": "charge-gate-cap-land",
+      "width_mm": 0.2,
+      "length_mm": 0.9264987857520428,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.002316246964380107,
+      "loss_w": 0.0
+    },
+    {
+      "label": "charge-gate-source-return",
+      "width_mm": 0.2,
+      "length_mm": 0.5300000000000011,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0013250000000000028,
+      "loss_w": 0.0
+    },
+    {
+      "label": "discharge-gate-local",
+      "width_mm": 0.2,
+      "length_mm": 2.894999999999982,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.007237499999999954,
+      "loss_w": 0.0
+    },
+    {
+      "label": "PCKP-local-protected-input",
+      "width_mm": 0.2,
+      "length_mm": 2.696472297916099,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.006741180744790247,
+      "loss_w": 0.0
+    },
+    {
+      "label": "DIS-pin-escape",
+      "width_mm": 0.2,
+      "length_mm": 2.257054421081902,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.005642636052704755,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL2-CELL1-local",
+      "width_mm": 0.2,
+      "length_mm": 0.5,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.00125,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL3-return",
+      "width_mm": 0.2,
+      "length_mm": 3.464786673888037,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.008661966684720091,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL3-escape",
+      "width_mm": 0.2,
+      "length_mm": 1.3333034373659314,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.003333258593414828,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-escape",
+      "width_mm": 0.2,
+      "length_mm": 0.8778382538941962,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0021945956347354904,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL1-local",
+      "width_mm": 0.2,
+      "length_mm": 3.695566443956933,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.009238916109892331,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL1-local",
+      "width_mm": 0.2,
+      "length_mm": 5.5000000000000115,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.01375000000000003,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL1-local",
+      "width_mm": 0.2,
+      "length_mm": 1.0968209121638082,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0027420522804095203,
+      "loss_w": 0.0
+    },
+    {
+      "label": "REG2-cap",
+      "width_mm": 0.2,
+      "length_mm": 6.993053170956563,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.017482632927391408,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL3-local",
+      "width_mm": 0.2,
+      "length_mm": 1.4155258908356236,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.003538814727089059,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL3-local",
+      "width_mm": 0.2,
+      "length_mm": 5.200961449578335,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.013002403623945837,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL3-local",
+      "width_mm": 0.2,
+      "length_mm": 0.8002499609497136,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.002000624902374284,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL4-return-escape",
+      "width_mm": 0.2,
+      "length_mm": 0.8856635930193895,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0022141589825484735,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL4-return-back",
+      "width_mm": 0.2,
+      "length_mm": 3.200000000000003,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.008000000000000007,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-local",
+      "width_mm": 0.2,
+      "length_mm": 3.1127543594838802,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0077818858987097,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-local",
+      "width_mm": 0.2,
+      "length_mm": 5.641668470300056,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.014104171175750139,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-local",
+      "width_mm": 0.2,
+      "length_mm": 0.8778382538941962,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0021945956347354904,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL1-balance",
+      "width_mm": 0.2,
+      "length_mm": 6.540779543458479,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.016351948858646197,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL1-quiet-return",
+      "width_mm": 0.2,
+      "length_mm": 3.692269010845543,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.009230672527113858,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL1-quiet-return",
+      "width_mm": 0.2,
+      "length_mm": 2.2803508501982597,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0057008771254956495,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL1-quiet-return",
+      "width_mm": 0.2,
+      "length_mm": 2.769180601295403,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.006922951503238507,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CELL3-balance",
+      "width_mm": 0.2,
+      "length_mm": 15.627949914142508,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.03906987478535627,
+      "loss_w": 0.0
+    },
+    {
+      "label": "J1-balance-tap",
+      "width_mm": 0.2,
+      "length_mm": 4.522325176278234,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.011305812940695584,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-power-tap",
+      "width_mm": 0.2,
+      "length_mm": 6.178642650291411,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.015446606625728526,
+      "loss_w": 0.0
+    },
+    {
+      "label": "gauge-RAW-feed",
+      "width_mm": 0.2,
+      "length_mm": 4.210380030353549,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.010525950075883873,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-test",
+      "width_mm": 0.2,
+      "length_mm": 2.5272316870441465,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.006318079217610365,
+      "loss_w": 0.0
+    },
+    {
+      "label": "charger-NTC-return",
+      "width_mm": 0.2,
+      "length_mm": 51.02144858626627,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.12755362146566565,
+      "loss_w": 0.0
+    },
+    {
+      "label": "charger-NTC-sense",
+      "width_mm": 0.2,
+      "length_mm": 21.37931418769096,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0534482854692274,
+      "loss_w": 0.0
+    },
+    {
+      "label": "charger-NTC-sense",
+      "width_mm": 0.2,
+      "length_mm": 8.699999999999989,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.02174999999999997,
+      "loss_w": 0.0
+    },
+    {
+      "label": "charger-NTC-sense",
+      "width_mm": 0.2,
+      "length_mm": 16.2698484809835,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.04067462120245875,
+      "loss_w": 0.0
+    },
+    {
+      "label": "NTC-return-link",
+      "width_mm": 0.2,
+      "length_mm": 8.823984141089628,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.02205996035272407,
+      "loss_w": 0.0
+    },
+    {
+      "label": "interface-quiet-ground",
+      "width_mm": 0.2,
+      "length_mm": 68.69133860975488,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.17172834652438718,
+      "loss_w": 0.0
+    },
+    {
+      "label": "interface-quiet-ground",
+      "width_mm": 0.2,
+      "length_mm": 16.278820596099706,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.04069705149024926,
+      "loss_w": 0.0
+    },
+    {
+      "label": "interface-quiet-ground",
+      "width_mm": 0.2,
+      "length_mm": 6.60223674626367,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.016505591865659173,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-filter-link",
+      "width_mm": 0.2,
+      "length_mm": 1.3200000000000216,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.003300000000000054,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-filter-link",
+      "width_mm": 0.2,
+      "length_mm": 1.8027756377319821,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004506939094329955,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-filter-link",
+      "width_mm": 0.2,
+      "length_mm": 8.388527957525142,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.020971319893812856,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-filter-link",
+      "width_mm": 0.2,
+      "length_mm": 34.7305711349668,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.08682642783741701,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-filter-link",
+      "width_mm": 0.2,
+      "length_mm": 4.3104524124504735,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.010776131031126183,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-filter-link",
+      "width_mm": 0.2,
+      "length_mm": 14.426711336961018,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.036066778342402545,
+      "loss_w": 0.0
+    },
+    {
+      "label": "BATTS-filter-link",
+      "width_mm": 0.2,
+      "length_mm": 5.153946762797051,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.012884866906992627,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH2-sense-link",
+      "width_mm": 0.2,
+      "length_mm": 1.5811388300841906,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0039528470752104765,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH2-sense-link",
+      "width_mm": 0.2,
+      "length_mm": 64.4525406791695,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.16113135169792375,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH2-sense-link",
+      "width_mm": 0.2,
+      "length_mm": 6.800000000000011,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.01700000000000003,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH2-sense-link",
+      "width_mm": 0.2,
+      "length_mm": 7.280109889280518,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.018200274723201293,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH2-sense-link",
+      "width_mm": 0.2,
+      "length_mm": 4.1012193308819835,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.010253048327204958,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH2-sense-link",
+      "width_mm": 0.2,
+      "length_mm": 7.124524996818197,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.01781131249204549,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH2-sense-link",
+      "width_mm": 0.2,
+      "length_mm": 0.8914033879226483,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.002228508469806621,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CSP-refined-isolated",
+      "width_mm": 0.2,
+      "length_mm": 17.78322628161913,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.044458065704047825,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CSN-refined-isolated",
+      "width_mm": 0.2,
+      "length_mm": 19.45173514111274,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.04862933785278184,
+      "loss_w": 0.0
+    },
+    {
+      "label": "AOLDO-refined-local",
+      "width_mm": 0.2,
+      "length_mm": 0.7338937252763488,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0018347343131908719,
+      "loss_w": 0.0
+    },
+    {
+      "label": "AOLDO-refined-local",
+      "width_mm": 0.2,
+      "length_mm": 2.986795847991942,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.007466989619979854,
+      "loss_w": 0.0
+    },
+    {
+      "label": "AOLDO-refined-local",
+      "width_mm": 0.2,
+      "length_mm": 0.6579513659838266,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0016448784149595665,
+      "loss_w": 0.0
+    },
+    {
+      "label": "PFAIL-refined-local",
+      "width_mm": 0.2,
+      "length_mm": 2.026313048289843,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.005065782620724607,
+      "loss_w": 0.0
+    },
+    {
+      "label": "J2-balance-tap-open-corridor",
+      "width_mm": 0.2,
+      "length_mm": 35.94010631609629,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.08985026579024073,
+      "loss_w": 0.0
+    },
+    {
+      "label": "DIS-refined-control",
+      "width_mm": 0.2,
+      "length_mm": 2.189600689088694,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.005474001722721735,
+      "loss_w": 0.0
+    },
+    {
+      "label": "DIS-refined-control",
+      "width_mm": 0.2,
+      "length_mm": 13.20340865079922,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.03300852162699805,
+      "loss_w": 0.0
+    },
+    {
+      "label": "DIS-refined-control",
+      "width_mm": 0.2,
+      "length_mm": 5.756018002875558,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.014390045007188894,
+      "loss_w": 0.0
+    },
+    {
+      "label": "DIS-refined-control",
+      "width_mm": 0.2,
+      "length_mm": 9.793374515758375,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.02448343628939594,
+      "loss_w": 0.0
+    },
+    {
+      "label": "DIS-refined-control",
+      "width_mm": 0.2,
+      "length_mm": 13.125123355445314,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.032812808388613286,
+      "loss_w": 0.0
+    },
+    {
+      "label": "DIS-refined-control",
+      "width_mm": 0.2,
+      "length_mm": 4.252058325093858,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.010630145812734646,
+      "loss_w": 0.0
+    },
+    {
+      "label": "DIS-refined-control",
+      "width_mm": 0.2,
+      "length_mm": 1.8783488464575577,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004695872116143894,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 1.4975313018431435,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.003743828254607859,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 5.856950480360021,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.014642376200900052,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 2.2830951894845386,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.005707737973711346,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 4.205948168962613,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.010514870422406532,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 5.65685424949236,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0141421356237309,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 11.557600085472757,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.02889400021368189,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 63.173044378129774,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.15793261094532443,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH1-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 8.181176386220159,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.020452940965550396,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH1-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 1.8027753049121118,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004506938262280279,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH1-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 6.6468037431535505,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.016617009357883874,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH1-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 8.599999999999994,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.021499999999999984,
+      "loss_w": 0.0
+    },
+    {
+      "label": "TH1-final-uplink",
+      "width_mm": 0.2,
+      "length_mm": 74.81337070721466,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.18703342676803666,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "width_mm": 0.2,
+      "length_mm": 2.9172993073255453,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.007293248268313864,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "width_mm": 0.2,
+      "length_mm": 6.318886224238193,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.015797215560595483,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "width_mm": 0.2,
+      "length_mm": 3.8000000000000114,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.009500000000000028,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "width_mm": 0.2,
+      "length_mm": 14.073519011171197,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.03518379752792799,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "width_mm": 0.2,
+      "length_mm": 31.804402211014747,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.07951100552753687,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "width_mm": 0.2,
+      "length_mm": 38.737320506199175,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.09684330126549794,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-refined-uplink",
+      "width_mm": 0.2,
+      "length_mm": 4.5177427992306045,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.01129435699807651,
+      "loss_w": 0.0
+    },
+    {
+      "label": "REG3-flipped-local",
+      "width_mm": 0.2,
+      "length_mm": 0.5500909015790144,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0013752272539475359,
+      "loss_w": 0.0
+    },
+    {
+      "label": "REG3-flipped-local",
+      "width_mm": 0.2,
+      "length_mm": 5.206049961120603,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.013015124902801507,
+      "loss_w": 0.0
+    },
+    {
+      "label": "REG3-flipped-local",
+      "width_mm": 0.2,
+      "length_mm": 1.4317821063276432,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.003579455265819108,
+      "loss_w": 0.0
+    },
+    {
+      "label": "quiet-flipped-local",
+      "width_mm": 0.2,
+      "length_mm": 6.426904173175778,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.016067260432939445,
+      "loss_w": 0.0
+    },
+    {
+      "label": "quiet-flipped-local",
+      "width_mm": 0.2,
+      "length_mm": 4.474852173328703,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.011187130433321755,
+      "loss_w": 0.0
+    },
+    {
+      "label": "quiet-flipped-local",
+      "width_mm": 0.2,
+      "length_mm": 1.9798989873223412,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004949747468305853,
+      "loss_w": 0.0
+    },
+    {
+      "label": "quiet-flipped-local",
+      "width_mm": 0.2,
+      "length_mm": 1.529705854077832,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0038242646351945805,
+      "loss_w": 0.0
+    },
+    {
+      "label": "quiet-flipped-local",
+      "width_mm": 0.2,
+      "length_mm": 4.611046453585736,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.01152761613396434,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-relieved-final",
+      "width_mm": 0.2,
+      "length_mm": 4.229217114269824,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.01057304278567456,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-relieved-final",
+      "width_mm": 0.2,
+      "length_mm": 1.204159457879246,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.003010398644698115,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-relieved-final",
+      "width_mm": 0.2,
+      "length_mm": 6.079868764189177,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.015199671910472943,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-relieved-final",
+      "width_mm": 0.2,
+      "length_mm": 1.3038404810405406,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0032596012026013515,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-relieved-final",
+      "width_mm": 0.2,
+      "length_mm": 6.726812023536855,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.016817030058842136,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-relieved-final",
+      "width_mm": 0.2,
+      "length_mm": 83.0592328178681,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.20764808204467022,
+      "loss_w": 0.0
+    },
+    {
+      "label": "PFAIL-final-return",
+      "width_mm": 0.2,
+      "length_mm": 1.4480676779764121,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0036201691949410302,
+      "loss_w": 0.0
+    },
+    {
+      "label": "AOLDO-final-return",
+      "width_mm": 0.2,
+      "length_mm": 0.6425733109933841,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0016064332774834602,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 1.8090871714583998,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.006030290571527999,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 4.341658669218486,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.01447219556406162,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 5.345705741049145,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.017819019136830486,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 8.302677268211838,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.02767559089403946,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 15.738071742529751,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.05246023914176584,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 4.9040809332637485,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.016346936444212496,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 6.268173577685942,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.020893911925619808,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 5.608029957123969,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.018693433190413233,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 11.5,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.03833333333333334,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 19.60229578391266,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.06534098594637554,
+      "loss_w": 0.0
+    },
+    {
+      "label": "IN-final-narrow",
+      "width_mm": 0.15,
+      "length_mm": 8.02778385501314,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.02675927951671047,
+      "loss_w": 0.0
+    },
+    {
+      "label": "PCKP-refined-final",
+      "width_mm": 0.2,
+      "length_mm": 2.4594669140638747,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.006148667285159687,
+      "loss_w": 0.0
+    },
+    {
+      "label": "PCKP-refined-final",
+      "width_mm": 0.2,
+      "length_mm": 10.028548607797186,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.025071371519492965,
+      "loss_w": 0.0
+    },
+    {
+      "label": "PCKP-refined-final",
+      "width_mm": 0.2,
+      "length_mm": 16.205773611350228,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.04051443402837557,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ESD-ground-front-bus",
+      "width_mm": 0.8,
+      "length_mm": 6.0,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.00375,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ESD-ground-via-escape",
+      "width_mm": 0.6,
+      "length_mm": 0.9000000000000057,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0007500000000000048,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ESD-pack-return",
+      "width_mm": 0.8,
+      "length_mm": 9.30656990340389,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.005816606189627431,
+      "loss_w": 0.0
+    },
+    {
+      "label": "NTC-separated-return",
+      "width_mm": 0.2,
+      "length_mm": 23.48246350994055,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.05870615877485137,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-resistor-tail",
+      "width_mm": 0.2,
+      "length_mm": 4.909175083453423,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.012272937708633557,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-resistor-tail",
+      "width_mm": 0.2,
+      "length_mm": 5.50363516232681,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.013759087905817024,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-resistor-tail",
+      "width_mm": 0.2,
+      "length_mm": 7.851803966717794,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.019629509916794484,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-resistor-tail",
+      "width_mm": 0.2,
+      "length_mm": 2.085387016858386,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.005213467542145965,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-resistor-tail",
+      "width_mm": 0.2,
+      "length_mm": 1.6124515496597065,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004031128874149266,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-resistor-tail",
+      "width_mm": 0.2,
+      "length_mm": 8.083223694887831,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.020208059237219578,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-resistor-tail",
+      "width_mm": 0.2,
+      "length_mm": 6.68047410214816,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0167011852553704,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-resistor-tail",
+      "width_mm": 0.2,
+      "length_mm": 0.6894925670375394,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0017237314175938484,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-harness-clamp",
+      "width_mm": 0.4,
+      "length_mm": 2.3345235059857488,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0029181543824821857,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-harness-clamp",
+      "width_mm": 0.4,
+      "length_mm": 19.697486742781315,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.024621858428476643,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-harness-clamp",
+      "width_mm": 0.4,
+      "length_mm": 5.451797868593442,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.006814747335741802,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-harness-clamp",
+      "width_mm": 0.4,
+      "length_mm": 2.4041630560342555,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0030052038200428194,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-harness-clamp",
+      "width_mm": 0.4,
+      "length_mm": 23.821178942326604,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.029776473677908255,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-harness-clamp",
+      "width_mm": 0.4,
+      "length_mm": 3.563476787575887,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004454345984469858,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-series-connection",
+      "width_mm": 0.2,
+      "length_mm": 1.821235844145395,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004553089610363488,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-series-connection",
+      "width_mm": 0.2,
+      "length_mm": 4.188078318274391,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.010470195795685977,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SDA-series-connection",
+      "width_mm": 0.2,
+      "length_mm": 0.8956003573022817,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0022390008932557043,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-series-connection",
+      "width_mm": 0.2,
+      "length_mm": 0.7119691004531045,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0017799227511327612,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-series-connection",
+      "width_mm": 0.2,
+      "length_mm": 2.4207436873820454,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.006051859218455113,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-series-connection",
+      "width_mm": 0.2,
+      "length_mm": 2.3894593701963465,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.005973648425490866,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-series-connection",
+      "width_mm": 0.2,
+      "length_mm": 3.1906112267087794,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.00797652806677195,
+      "loss_w": 0.0
+    },
+    {
+      "label": "SCL-series-connection",
+      "width_mm": 0.2,
+      "length_mm": 3.5433190440469957,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.008858297610117489,
+      "loss_w": 0.0
+    },
+    {
+      "label": "ALRT-test-clamp",
+      "width_mm": 0.4,
+      "length_mm": 2.6574611944485795,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.003321826493060724,
       "loss_w": 0.0
     }
   ],
@@ -505,6 +1834,6 @@
     "Both faces of each via bank are counted at full branch current; junction1 inter-carrier tail also counts 2 A although balanced current is zero.",
     "Four power via barrels per bank use 18um average plating, not a specified minimum.",
     "Excludes cells, holder contacts, fuse elements, solder, harnesses, shunt and protection FET losses.",
-    "Signals/bypass and ground-return paths are unfinished; no complete board release is implied."
+    "Signal and gauge-bypass losses are not modeled as load current. Physical thermal and fault qualification remain outstanding."
   ]
 }

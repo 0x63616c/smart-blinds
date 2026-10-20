@@ -655,8 +655,8 @@
     "ZVC": "NC_ZVC",
     "PCKP": "PCKP",
     "ALRT": "ALRT",
-    "K": "SCL_IC",
-    "carrier-K": "SDA_IC",
+    "SCL_DOD": "SCL_IC",
+    "SDA_DQ": "SDA_IC",
     "thermistor1": "NTC1",
     "PFAIL": "PFAIL",
     "AOLDO": "AOLDO",
@@ -713,7 +713,7 @@
   "expected_erc_types": {
     "power_pin_not_driven": 2,
     "pin_not_driven": 2,
-    "isolated_pin_label": 11
+    "isolated_pin_label": 8
   },
   "expected_erc_items": {
     "power_pin_not_driven": [
@@ -732,10 +732,7 @@
       "Label 'CELL3A_POS'",
       "Label 'CELL3B_POS'",
       "Label 'NTC1'",
-      "Label 'NTC2'",
-      "Label 'SDA_HOST'",
-      "Label 'SCL_HOST'",
-      "Label 'ALERT_HOST'"
+      "Label 'NTC2'"
     ]
   },
   "erc_scope": "External cell, thermistor and host interfaces remain open; no artificial drivers or hidden exclusions."
