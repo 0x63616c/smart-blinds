@@ -79,6 +79,17 @@ Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected
 </details>
 
 <details>
+<summary>Primary battery carrier — partial current and sensing route</summary>
+
+Experimental 102-segment, 32-via current/Kelvin checkpoint. Ten current-path groups and two isolated sense branches are physically connected; 55 signal/bypass connections and 30 documented DRC findings remain. Thermal, holder, protection and assembly qualification are unfinished. Not a fabrication release.
+
+![Primary battery carrier — partial current and sensing route](docs/generated/primary-current-route/assembly.png)
+
+[Source](hw/routing/blind-pack-primary/primary-routed.kicad_pcb) · [Generated files](docs/generated/primary-current-route/)
+
+</details>
+
+<details>
 <summary>Reusable holder assembly fixture</summary>
 
 One reusable three-piece workshop fixture, shared across all eight builds. The modeled clearance and print meshes pass; actual rim contact, insertion forces and the complete pack-loading sequence remain unqualified. It adds no installed enclosure parts.
