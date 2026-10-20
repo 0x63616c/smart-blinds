@@ -72,7 +72,7 @@ The cover and cassette lid are separated to show access. Two integral cleats and
 
 ### Integrated controller — partial power routing
 
-Experimental manual power-route checkpoint with 222 segments, 72 vias and 24 checked physical connection groups. Circuit identities, 17 anchors and 13 keepouts are preserved. 364 disconnected items and documented footprint/silkscreen findings remain; electrical, thermal and physical qualification is unfinished.
+Experimental four-layer route with 344 segments and 100 vias: local charger, motor, regulator, radio supply and USB power/protection paths. 38 physical connection groups and ten injected-fault checks pass; 322 unconnected items remain. USB data, enable and other control routing, current/thermal review and final manufacturing checks are unfinished.
 
 ![Integrated controller — partial power routing](docs/generated/main-power-route/assembly.png)
 
