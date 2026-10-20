@@ -82,6 +82,17 @@ Fourteen components and 43 physical pin connections agree with the atopile board
 </details>
 
 <details>
+<summary>Motor cutoff and reset — native KiCad circuit study</summary>
+
+Four ICs and ten passive parts. All49 physical pin connections checked against the compiled circuit; two explicit external-power ERC findings. Physical cutoff and full-board qualification remain open.
+
+![Motor cutoff and reset — native KiCad circuit study](docs/generated/supervisor-schematic/supervisor-test.svg)
+
+[Source](hw/schematics/blind-supervisor/supervisor-test.kicad_sch) · [Generated files](docs/generated/supervisor-schematic/)
+
+</details>
+
+<details>
 <summary>Compact enclosure — provisional exterior</summary>
 
 Earlier study, before PCB-mounted holders and independent shaft support. Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.
