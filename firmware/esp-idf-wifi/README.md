@@ -25,6 +25,12 @@ docker run --rm -v "$PWD:/project" -w /project/firmware/esp-idf-wifi \
 The fetch script selects exact sources; CMake rejects tracked modifications or
 different revisions. It does not install global tools or implicitly flash:
 
+The verification commands trust only the two selected dependency worktrees
+using per-invocation `git -c safe.directory=...`. This handles a CI runner-owned
+checkout mounted into the root-owned IDF container without changing global Git
+policy or accepting arbitrary directories; revision and tracked-content checks
+remain mandatory.
+
 | Dependency | Immutable selection |
 |---|---|
 | ESP-IDF | v5.5.4, image digest above |
@@ -47,6 +53,13 @@ Local binary SHA-256:
 `73b17884a5d7021827af5480ac084df13fef880edb454ed0ce7784123a4e1d06`.
 Build timestamps/tool paths can change binary hashes; the CI artifact is the
 evidence for its exact committed source. No hardware was flashed or tested.
+
+The first CI run, `39382305242`, passed all six host DTLS tests but stopped
+before C6 compilation because Git rejected the container/runner ownership
+difference. The scoped verification fix was reproduced with a disposable
+dependency copy owned by another UID: ordinary Git rejected it, the full
+pinned C6 build passed, and an injected tracked-source change still failed
+configuration. Fresh CI is required for the corrected committed source.
 
 ## Configuration contract, not a provisioning command
 
