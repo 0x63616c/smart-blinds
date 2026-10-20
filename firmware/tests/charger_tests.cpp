@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <utility>
 using namespace smart_blinds::charger;
 void require(bool value, const char* message) { if (!value) { std::cerr << message << '\n'; std::exit(1); } }
 
@@ -156,7 +157,36 @@ void readiness() {
     require(assess(c,p,s,true,now)==Readiness::temperature,"hot pack accepted");
     require(f.gate.off && !(f.bus.memory[0x0F]&0x20),"readiness assessment actuated charge");
 }
+void battery_only_status() {
+    Fixture f; f.configure();
+    f.bus.memory[0x1B]=0; f.bus.memory[0x1C]=0; // USB absent; battery remains present.
+    f.bus.memory[0x22]=0x0F; // Ordinary removal / power-good transitions.
+    f.bus.writes.clear(); f.bus.calls=0;
+    const auto off=f.device.capture_off();
+    require(off.valid() && !off.source_present(),"unplugged healthy OFF observation rejected");
+    require(off.flags[0]==0x0F,"off capture discarded transition history");
+    require(f.bus.writes==std::vector<unsigned>{0x10},"off capture started ADC/charge or changed unrelated state");
+    require(f.gate.off && f.bus.memory[0x0F]==0x82,"off capture enabled charging");
+    const auto calls=f.bus.calls;
+    for(unsigned i=1;i<=calls;++i) {
+        Fixture bad; bad.configure(); bad.bus.calls=0; bad.bus.fail_at=i;
+        require(!bad.device.capture_off().valid() && !bad.device.configured() && bad.gate.off,"off capture transfer error accepted");
+    }
+    const std::array<std::pair<unsigned,unsigned>,15> faults={{{0x1B,0x20},{0x22,0x20},{0x1C,0x20},
+        {0x1C,7<<1},{0x1C,12<<1},{0x1C,9<<1},{0x1D,0},{0x1D,0x05},{0x1D,0x03},
+        {0x1E,0x02},{0x24,0x02},{0x20,1},{0x27,1},{0x1F,1},{0x25,1}}};
+    for(const auto& item:faults) {
+        Fixture bad; bad.configure(); bad.bus.memory[item.first]=item.second;
+        require(!bad.device.capture_off().valid() && !bad.device.configured() && bad.gate.off,"off capture unsafe status accepted");
+    }
+    Fixture changed; changed.configure(); changed.bus.memory[0x12]=0x40;
+    require(changed.device.capture_off().error==Error::readback,"OTG setting mismatch accepted");
+    Fixture stale; stale.configure(); stale.bus.step_ms=10;
+    require(stale.device.capture_off().error==Error::timeout,"slow off observation accepted");
+    Fixture unknown;
+    require(unknown.device.capture_off().error==Error::unconfigured && unknown.bus.writes.empty(),"unconfigured off capture wrote registers");
+}
 int main() {
-    profile_and_faults(); captures(); readiness();
+    profile_and_faults(); captures(); readiness(); battery_only_status();
     std::cout << "charger profile, every-transfer faults, fresh ADC and readiness boundaries passed\n";
 }

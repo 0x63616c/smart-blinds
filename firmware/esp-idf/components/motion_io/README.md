@@ -109,9 +109,11 @@ ADC saturation and encoder accumulation overflow. The existing executor tests
 cover ordering, every injected I/O failure, stale evidence, reversal, stall,
 heartbeat deadlines and a deliberately synthetic motor/roller model.
 
-The new adapter is awaiting the fresh pinned C6 CI cross-build. Earlier green
-C6 builds covered the disabled adapter and portable executor, not this new
-source. Nothing has been flashed or electrically tested.
+The new adapter passed the pinned C6 CI cross-build at commit `4486b2a`; both
+ESP-IDF jobs and all eight checkpoint jobs passed. This confirms compilation
+with the actual SDK, not GPIO behavior or timing. Nothing has been flashed or
+electrically tested. The next gauge/charger evidence additions require their own
+fresh cross-build.
 
 Primary source review: Espressif's [MCPWM API](https://docs.espressif.com/projects/esp-idf/en/v5.5.4/esp32c6/api-reference/peripherals/mcpwm.html),
 [PCNT API](https://docs.espressif.com/projects/esp-idf/en/v5.5.4/esp32c6/api-reference/peripherals/pcnt.html),

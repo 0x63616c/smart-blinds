@@ -16,6 +16,7 @@ public:
     void detach();
     smart_blinds::charger::Error configure(smart_blinds::charger::SourceVoltage voltage) { return policy_.configure(voltage); }
     smart_blinds::charger::Capture capture() { return policy_.capture(); }
+    smart_blinds::charger::OffCapture capture_off() { return policy_.capture_off(); }
     esp_err_t last_bus_error() const { return last_error_; }
 private:
     bool read(std::uint8_t reg, std::uint8_t* bytes, std::size_t size) override;

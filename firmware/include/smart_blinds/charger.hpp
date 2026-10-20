@@ -43,6 +43,16 @@ struct Capture {
     std::uint16_t ts_ratio_1024() const { return adc[7]; }
 };
 
+// Configuration/protection observation while charging stays OFF. No USB source
+// or ADC conversion is asserted by this report; unplugged operation is allowed.
+struct OffCapture {
+    Error error=Error::unconfigured;
+    std::uint64_t started_ms=0, finished_ms=0;
+    std::array<std::uint8_t,7> status{};
+    std::array<std::uint8_t,6> flags{};
+    bool valid() const { return error==Error::none; }
+    bool source_present() const { return status[0]&0x01; }
+};
 class Bq25798 {
 public:
     static constexpr std::uint8_t address = 0x6B;
@@ -50,6 +60,7 @@ public:
     Bq25798(Bus& bus, Inhibit& inhibit) : bus_(bus), inhibit_(inhibit) {}
     Error configure(SourceVoltage voltage);
     Capture capture();
+    OffCapture capture_off();
     bool configured() const { return configured_; }
     void invalidate() { fail(Error::unconfigured); }
 private:

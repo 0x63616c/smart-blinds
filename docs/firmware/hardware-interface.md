@@ -4,7 +4,7 @@ Status: provisional resources for the electronics design. ESP32-C6-WROOM-1-N4 is
 
 The [disabled C6 I/O component](../../firmware/esp-idf/components/board_io/README.md) now compiles real GPIO, stopped PCNT and permanently LOW MCPWM setup for this allocation. The application still does not instantiate it. Its portable initialization/error ordering and button gesture policy have host tests; this is not an enabled motor port or physical validation.
 
-The [portable motion executor](motion-executor.md) now implements the active lifecycle against injected I/O, including calibrated count-rate control, watchdog ordering, reversal and fault cleanup. Its explicit bench profile is disabled by default; no active C6 adapter or application entry is bound to it.
+The [portable motion executor](motion-executor.md) now implements the active lifecycle against injected I/O, including calibrated count-rate control, watchdog ordering, reversal and fault cleanup. The [actual C6 motion adapter](../../firmware/esp-idf/components/motion_io/README.md) now implements its I/O with PCNT, MCPWM, calibrated ADC, synchronous WDI and register/pad readback. Initialization permission defaults off and no application instantiates it; its successful cross-build is not physical qualification.
 
 | Proposed GPIO | Board signal | Default and constraint |
 |---|---|---|

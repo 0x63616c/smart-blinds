@@ -31,7 +31,7 @@ void Max17320Reader::detach() {
 
 esp_err_t Max17320Reader::read_word(std::uint16_t reg, std::uint16_t& value) {
     if (!normal_ || !shadow_) return ESP_ERR_INVALID_STATE;
-    if (reg > 0x1FF || (reg >= 0x100 && reg < 0x180)) return ESP_ERR_INVALID_ARG;
+    if (reg > 0x1FF || (reg >= 0x100 && reg < 0x180 && reg != 0x139 && reg != 0x13A)) return ESP_ERR_INVALID_ARG;
     auto device = reg < 0x100 ? normal_ : shadow_;
     const auto pointer = static_cast<std::uint8_t>(reg & 0xFF);
     std::uint8_t bytes[2]{};
@@ -54,16 +54,41 @@ GaugeReadback Max17320Reader::read() {
         {0x0D8, &sample.cells[0]}, {0x0D7, &sample.cells[1]}, {0x0D6, &sample.cells[2]},
         {0x1B5, &sample.pack_config}, {0x1B8, &sample.nv_config0},
         {0x1B9, &sample.nv_config1}, {0x1CF, &sample.sense_resistor},
+        {0x0B0, &sample.status2}, {0x03D, &sample.fstat}, {0x0F1, &sample.fet_status},
+        {0x1BB, &sample.hibernate_config}, {0x1CA, &sample.thermistor_config}, {0x0DB, &sample.protected_voltage},
+        {0x13A, &sample.thermistors[0]}, {0x139, &sample.thermistors[1]},
     };
+    auto last_us=sample.read_started_us;
     for (const auto& request : requests) {
-        if (esp_timer_get_time() - sample.read_started_us >= capture_budget_us) {
+        const auto before=esp_timer_get_time();
+        if(before<last_us) { sample.error=ESP_ERR_INVALID_STATE; break; }
+        last_us=before;
+        if (before - sample.read_started_us >= capture_budget_us) {
             sample.error = ESP_ERR_TIMEOUT;
             break;
         }
         sample.error = read_word(request.reg, *request.destination);
         if (sample.error != ESP_OK) break;
     }
+    // Bracket the multi-register capture so a reset/mode/fault transition cannot
+    // disappear behind a successful series of reads. OR faults, AND FET-on bits.
+    const Request tail[]={{0x000,&sample.status},{0x0D9,&sample.protection_status},
+        {0x0B0,&sample.status2},{0x03D,&sample.fstat},{0x0F1,&sample.fet_status}};
+    for(const auto& request:tail) {
+        if(sample.error!=ESP_OK) break;
+        const auto before=esp_timer_get_time();
+        if(before<last_us) { sample.error=ESP_ERR_INVALID_STATE; break; }
+        last_us=before;
+        if(before-sample.read_started_us>=capture_budget_us) { sample.error=ESP_ERR_TIMEOUT; break; }
+        std::uint16_t value=0;
+        sample.error=read_word(request.reg,value);
+        if(sample.error==ESP_OK) {
+            if(request.reg==0x0F1) *request.destination&=value;
+            else *request.destination|=value;
+        }
+    }
     sample.read_finished_us = esp_timer_get_time();
+    if(sample.read_finished_us<last_us) sample.error=ESP_ERR_INVALID_STATE;
     if (sample.read_finished_us - sample.read_started_us > capture_budget_us)
         sample.error = ESP_ERR_TIMEOUT;
     sample.valid = sample.error == ESP_OK;

@@ -2,7 +2,7 @@
 
 This ESP-IDF component compiles against the real I2C master API. It attaches two device addresses to an already configured, externally pulled-up bus. It has no pin defaults, no bus creation, and no data-register write or NVM command path. The bring-up application depends on it for compilation but does not attach or call it.
 
-Each pointer/read transaction requests a 10 ms timeout; the 15-register capture has a 250 ms software budget and reports failure on the first bus error. IDF/RTOS scheduling and actual stuck-bus behavior need bench verification: these are requested software deadlines, not a proved physical cutoff. Only a dedicated sensor worker may call it. The motor task and independent hardware protection must not wait for this reader. [ESP-IDF I2C API](https://docs.espressif.com/projects/esp-idf/en/v5.5.4/esp32c6/api-reference/peripherals/i2c.html)
+Each pointer/read transaction requests a 10 ms timeout; the 23-register capture plus five status-bracketing reads has a 250 ms software budget and reports failure on the first bus error. IDF/RTOS scheduling and actual stuck-bus behavior need bench verification: these are requested software deadlines, not a proved physical cutoff. Only a dedicated sensor worker may call it. The motor task and independent hardware protection must not wait for this reader. [ESP-IDF I2C API](https://docs.espressif.com/projects/esp-idf/en/v5.5.4/esp32c6/api-reference/peripherals/i2c.html)
 
 `GaugeReadback.valid` means all requested bus reads succeeded within the capture budget. It does **not** mean the pack profile, cell health, sensor freshness, temperature or protection setup is acceptable. It must never be assigned directly to `Measurement.power_ready`. The future pack supervisor must validate identity/profile, individual cells, protection flags, ADC-age bounds and charger state. Gauge values can update more slowly than the host reads them. [Commissioning requirements](../../../../docs/firmware/max17320-commissioning.md)
 
@@ -11,3 +11,9 @@ Calls and destruction belong to one worker. The worker owns reader lifetime; the
 Validation scope: target compile/link, alongside existing offline register arithmetic/readback tests. No I2C fixture, hot plug or real pack test has been performed.
 
 The [charger evidence contract](../../../../docs/firmware/charger-configuration.md) now explicitly requires commissioned protection, sensor placement and conversion freshness in addition to raw gauge transport success. No adapter currently promotes this readback to those approvals.
+
+The [motion power assessor](../../../../docs/firmware/motion-power-evidence.md)
+now consumes this raw capture, including two individual thermistors, protected
+voltage, hibernate/data-ready/FET status and live timing-related configuration.
+It still requires an explicitly verified local pack profile; no production
+commissioning record is supplied, so default reads never enable movement.

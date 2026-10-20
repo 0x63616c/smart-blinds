@@ -104,6 +104,35 @@ Error Bq25798::configure(SourceVoltage voltage) {
     configured_ = true;
     return Error::none;
 }
+OffCapture Bq25798::capture_off() {
+    OffCapture result;
+    const bool had_configuration=configured_;
+    if(!begin()) { result.error=error_; return result; }
+    result.started_ms=started_ms_;
+    if(!had_configuration) { fail(Error::unconfigured); result.error=error_; return result; }
+    const auto inspect=[&]() {
+        if(!verify_profile() || !read(0x1B,result.status.data(),result.status.size())) return false;
+        std::array<std::uint8_t,6> flags{};
+        if(!read(0x22,flags.data(),flags.size())) return false;
+        for(std::size_t i=0;i<flags.size();++i) result.flags[i]|=flags[i];
+        const auto mode=(result.status[1]>>1)&0x0F;
+        // PG and adapter insertion/removal may change while operating from the
+        // protected battery. They do not authorize charging or an input limit.
+        if((result.status[0]&0x20) || (result.flags[0]&0x20) || (result.status[1]&0xE0) ||
+           mode==7 || mode==9 || mode==10 || mode>=12 ||
+           !(result.status[2]&1) || (result.status[2]&0xC6) || (result.status[3]&0xCE) ||
+           (result.flags[2]&0x0E)) return fail(Error::status);
+        if(result.status[5] || result.status[6] || result.flags[4] || result.flags[5]) return fail(Error::fault);
+        if((result.status[4]|result.flags[3])&0x0F) return fail(Error::temperature);
+        return true;
+    };
+    if(inspect() && write_register({0x10,1,0x9B,0xF7}) && inspect()) {
+        if(bus_.now_ms()-started_ms_>250) fail(Error::timeout);
+    }
+    result.finished_ms=last_ms_;
+    result.error=error_;
+    return result;
+}
 Capture Bq25798::capture() {
     Capture result;
     const bool had_configuration = configured_;

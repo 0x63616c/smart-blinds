@@ -87,3 +87,9 @@ ctest --test-dir work/firmware-build --output-on-failure
 ```
 
 Host tests pass. The C6 component is included in the motor-disabled bring-up target for the next pinned ESP-IDF build. No physical I2C, charging, temperature, timeout or watchdog measurement has been performed.
+
+The separate [`capture_off()` motion observation](motion-power-evidence.md)
+now verifies the OFF profile and fault status without requiring a connected USB
+source or starting ADC conversion. It can feed the motion power assessor while
+unplugged; it cannot authorize charging. The original charge-review capture and
+source-entitlement requirements remain separate.

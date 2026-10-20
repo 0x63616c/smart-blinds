@@ -42,3 +42,8 @@ add_executable(port_checks_tests tests/port_checks_tests.cpp)
 target_include_directories(port_checks_tests PRIVATE include)
 target_compile_options(port_checks_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_test(NAME port_checks_tests COMMAND port_checks_tests)
+
+add_executable(power_evidence_tests tests/power_evidence_tests.cpp)
+target_include_directories(power_evidence_tests PRIVATE include)
+target_compile_options(power_evidence_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
+add_test(NAME power_evidence_tests COMMAND power_evidence_tests)
