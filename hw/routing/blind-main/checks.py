@@ -63,7 +63,7 @@ def copper_components(b,netname,omit_pad=None,include_planes=True):
 
 def verify_geometry(path):
  expected=pcbnew.LoadBoard(str(SOURCE));b=pcbnew.LoadBoard(str(path));ep=parts(expected);ap=parts(b)
- plan=json.loads((HERE/'placement.json').read_text())['placements'];assert ep.keys()==ap.keys()==plan.keys()
+ plan=json.loads((HERE/'placement.json').read_text())['placements'];plan.update(json.loads((HERE/'usb-data-routes.json').read_text())['final_placement']);assert ep.keys()==ap.keys()==plan.keys()
  moves=[]
  for key,f in ep.items():
   target=plan[key];position=point(target['uv']);angle=target['rotation']
@@ -81,7 +81,7 @@ def verify_geometry(path):
   return sorted(dumps(semantic(v)) for v in parse(file.read_text()) if isinstance(v,list) and str(v[0]).startswith('gr_'))
  assert drawings(path)==drawings(SOURCE),'Board drawing/outline changed'
  ez={z.GetZoneName():z for z in expected.Zones()};az={z.GetZoneName():z for z in b.Zones()};assert len(az)==len(list(b.Zones()))
- assert len(ez)==13 and set(az)==set(ez)|{'TRIAL_IN1_GND_RETURN'}
+ assert len(ez)==13 and set(az)==set(ez)|{'TRIAL_IN1_GND_RETURN','USB_LOCAL_IN2_RETURN'}
  for key in ez:assert az[key].GetIsRuleArea() and zone_signature(ez[key])==zone_signature(az[key]),'Keepout changed: '+key
  ground=az['TRIAL_IN1_GND_RETURN'];assert not ground.GetIsRuleArea() and ground.GetLayer()==pcbnew.In1_Cu and ground.GetNetname()=='lv'
  assert ground.GetFilledPolysList(pcbnew.In1_Cu).OutlineCount()==1
@@ -267,7 +267,7 @@ def verify_all_via_lands(b):
     if land.IsOnLayer(pcbnew.F_Cu):
      assert not probe.GetEffectiveShape(pcbnew.F_Cu).Collide(land.GetEffectiveShape(pcbnew.F_Cu),200000),'Ordinary via drill too close to solder land'
   count+=1
- assert count==218,'Unexpected ordinary via inventory'
+ assert count==224,'Unexpected ordinary via inventory'
  return {'checked_vias':count,'minimum_drill_to_solder_land_mm':.2,'scope':'All route vias, including same-net lands; footprint thermal holes require separate process review'}
 
 def run_drc(path):
@@ -302,9 +302,9 @@ def main():
  record=json.loads((HERE/'route-record.json').read_text())
  for p,h in record['source_hashes'].items():assert sha(ROOT/p)==h,'Stale routing source: '+p
  assert sha(BOARD)==record['pcb_sha256'] and sha(BOARD.with_suffix('.kicad_pro'))==record['project_sha256']
- readset=[BOARD,BOARD.with_suffix('.kicad_pro'),HERE/'checks.py',HERE/'regen_checks.py',HERE/'regen_faults.py',HERE/'regen_analog.py',HERE/'fp-lib-table',ROOT/'cad/parameters/retained-interfaces.json',*[ROOT/p for p in record['source_hashes']]]
+ readset=[BOARD,BOARD.with_suffix('.kicad_pro'),HERE/'checks.py',HERE/'regen_checks.py',HERE/'regen_faults.py',HERE/'regen_analog.py',HERE/'usb_data_checks.py',HERE/'usb_data_faults.py',HERE/'fp-lib-table',ROOT/'cad/parameters/retained-interfaces.json',*[ROOT/p for p in record['source_hashes']]]
  snapshot={str(p.relative_to(ROOT)):sha(p) for p in readset}
- b,geometry=verify_geometry(BOARD);copper=verify_copper(b);copper['distribution_via_solder_land_margin']=verify_distribution_lands(b);copper['control_via_solder_land_margin']=verify_control_lands(b);copper['all_route_via_solder_land_margin']=verify_all_via_lands(b);from regen_checks import verify as verify_regen, verify_layout as verify_regen_layout;copper['regenerative_clamp']=verify_regen(b,sys.modules[__name__]);copper['regenerative_clamp_layout']=verify_regen_layout(b,sys.modules[__name__]);version,report=run_drc(BOARD);drc=verify_drc(b,report);faults=[]
+ b,geometry=verify_geometry(BOARD);copper=verify_copper(b);copper['distribution_via_solder_land_margin']=verify_distribution_lands(b);copper['control_via_solder_land_margin']=verify_control_lands(b);copper['all_route_via_solder_land_margin']=verify_all_via_lands(b);from regen_checks import verify as verify_regen, verify_layout as verify_regen_layout;copper['regenerative_clamp']=verify_regen(b,sys.modules[__name__]);copper['regenerative_clamp_layout']=verify_regen_layout(b,sys.modules[__name__]);from usb_data_checks import verify as verify_usb;copper['usb_data']=verify_usb(b,sys.modules[__name__]);version,report=run_drc(BOARD);drc=verify_drc(b,report);faults=[]
  if args.negative_tests:
   negative_boards=[];removed_items=[]
   with tempfile.TemporaryDirectory() as d:
@@ -392,6 +392,8 @@ def main():
  if args.negative_tests:
   from regen_faults import run as regen_faults
   faults.extend(regen_faults(BOARD,sys.modules[__name__]))
+  from usb_data_faults import run as usb_faults
+  faults.extend(usb_faults(BOARD,sys.modules[__name__]))
  assert snapshot=={p:sha(ROOT/p) for p in snapshot},'Sources changed during verification'
  result={'status':'Partial route only; no manufacturing or physical acceptance','source_hashes':{**record['source_hashes'],'hw/routing/blind-main/main-routed.kicad_pcb':sha(BOARD),'hw/routing/blind-main/checks.py':sha(HERE/'checks.py'),'cad/parameters/retained-interfaces.json':sha(ROOT/'cad/parameters/retained-interfaces.json')},'kicad_version':version,'geometry':geometry,'copper':copper,'drc':drc,'negative_controls':faults}
  (HERE/'drc.json').write_text(json.dumps(report,indent=2)+'\n');(HERE/'checks.json').write_text(json.dumps(result,indent=2)+'\n')

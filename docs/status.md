@@ -15,7 +15,7 @@ followed by an eight-unit build only after their tests pass.
 |---|---|---|
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | Native eleven-sheet schematic and partial four-layer power route; 832 segments, 218 vias, 72 earlier connection groups plus local clamp paths, preserved circuit and mechanical anchors | 179 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
+| Main controller | Native eleven-sheet schematic and partial four-layer power route; 874 segments, 224 vias, 72 earlier groups plus USB and local clamp paths, preserved circuit and mechanical anchors | 173 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
@@ -28,15 +28,16 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All thirteen Design checks jobs passed for `1d723b2`](https://github.com/0x63616c/smart-blinds/actions/runs/39411405488),
+[All thirteen Design checks jobs passed for `ffc4363`](https://github.com/0x63616c/smart-blinds/actions/runs/39412916145),
 including the corrected primary battery circuit and connected route, main-board
 solder-land clearances, both mechanical assemblies, material estimate, 21
 portable firmware targets and pinned real-SDK default/bench builds. This includes
-the long-idle sensor runtime and corrected 100 mA OFF-only input-current profile.
-The [source-generated previews were published successfully from `be9cd20`](https://github.com/0x63616c/smart-blinds/actions/runs/39406704555),
-including the corrected battery route and cleaned carrier silkscreen. All 33
+the long-idle sensor runtime, corrected 100 mA OFF-only input-current profile,
+and the 832-segment braking-circuit routing checkpoint.
+The [source-generated previews were published successfully from `ffc4363`](https://github.com/0x63616c/smart-blinds/actions/runs/39412916144),
+including the main braking circuit, corrected battery route and cleaned carrier silkscreen. All 33
 preview entries' input and output hashes were independently verified before
-the subsequent clamp-route changes. That extension's previews are pending. Preview publication now revalidates its
+the subsequent USB extension and rendering change. Their CI/previews are pending. Preview publication now revalidates its
 source inputs when another commit arrives during rendering.
 
 The carrier silkscreen cleanup passes both native routing checks locally and in
@@ -113,28 +114,36 @@ changed no quantities or prices. All thirteen jobs in the corrected run passed.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
 196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
-reservations. Its 832 segments and 218 vias connect 72 earlier checked copper groups,
+reservations. Its 874 segments and 224 vias connect 72 earlier checked copper groups,
 including local charger/motor/regulator paths, radio power, USB input/CC/bypass
 connections, negotiated-enable/divider/discharge chains, the charger input and
 PMID/SYS capacitor banks, ground return, VAC/BATP sensing, TS/ILIM and PROG networks.
 The local regenerative-clamp extension adds 19 connected local nets and eight load
-groups. Thirty-four injected geometric/copper failures are rejected locally,
-including same-net via-to-solder-land intrusion. All 218 ordinary
+groups. The USB extension connects both reversible data pairs through their
+protection pads and module resistors. Forty injected geometric/copper failures
+are rejected locally,
+including same-net via-to-solder-land intrusion. All 224 ordinary
 route vias retain a 0.20 mm drill-to-solder-land margin, including same-net lands.
 The assembly pass moves twelve vias and preserves their connections with
 adjusted traces and five short stubs; components remain fixed. The control extension moves six electrical parts
 and one bootstrap via; all mechanical anchors remain fixed. The preceding 178-via
 assembly-clearance pass is covered by the CI run linked above; the new 218-via
-clamp extension has passed locally.
-Actual DRC retains 179 unconnected items, 260 silk/text findings, four library differences and five
+clamp extension is now also covered by that CI run; the USB addition has passed locally.
+Actual DRC retains 173 unconnected items, 260 silk/text findings, four library differences and five
 footprint-type findings. The maintained clamp stage rebuilds identically twice and preserves the prior
 copper except twelve explicit low-current segment replacements and one obsolete
 NTC via. The selected power feed and actual filled-plane return corridor are
 checked geometrically. The longer PROG/NTC branches, NTC proximity to the PACK
 solder land, startup/noise and pulse/thermal behavior remain qualification limits.
-The extension passes an independent parent rebuild and all 34 fault controls; its
-CI and refreshed previews are pending. Critical-loop, current/thermal, USB,
-supervisory and full-routing work remain.
+The clamp extension passes an independent parent rebuild, all 34 earlier fault
+controls and the CI run above. The subsequent USB stage preserves saved ground
+fills, checks actual signal paths and rejects a protection bypass. It has six
+additional fault controls and two identical builds. Its CI and preview refresh
+are pending. D-minus still has two extra layer transitions; matched planar
+lengths do not establish delay equality or 90 Ω impedance. Critical-loop,
+current/thermal, USB performance, supervisory and full-routing work remain.
+The preview renderer now explicitly uses the board's stored solder-mask color;
+local KiCad output confirms the requested black finish instead of its green default.
 
 The CAD checks now use the twelve actual primary wire-pad positions and remove
 the central support that would intersect their solder tails. Corner supports,

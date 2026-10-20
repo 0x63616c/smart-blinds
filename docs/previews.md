@@ -41,6 +41,11 @@ this workflow. Local-repository tests exercise actual rejected pushes and concur
 A passing preview workflow confirms export/render success. It does not run the full electrical,
 firmware, mechanical or physical validation gates. The gallery includes provisional enclosure studies and the inherited PD12V6Mini reference.
 OpenSCAD images use its colored preview renderer; full part geometry/mesh checks are separate.
+PCB renders explicitly pass KiCad's `--use-board-stackup-colors` flag, so saved
+black solder-mask and white silkscreen choices appear in the gallery. On the
+verified KiCad 10 build, omitting this flag renders the green preset despite the
+help text describing a true default. Passing an explicit `true` value throws a
+CLI type error; use the bare flag. This changes rendering, not fabrication orders.
 The fresh integrated controller is under development.
 
 The first native motor schematic is generated separately with

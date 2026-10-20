@@ -133,7 +133,8 @@ def render() -> None:
                     raise ValueError('PCB rotation requires three finite angles')
                 if type(zoom) not in (int,float) or not .1<=zoom<=3:
                     raise ValueError('PCB zoom must be within 0.1–3')
-                run([kicad, 'pcb', 'render', '--output', str(image), '--width', str(size[0]),
+                run([kicad, 'pcb', 'render', '--use-board-stackup-colors',
+                     '--output', str(image), '--width', str(size[0]),
                      '--height', str(size[1]), '--quality', 'high', '--background', 'transparent',
                      '--rotate', ','.join(map(str,rotate)), '--zoom', str(zoom), str(source)], env=env)
                 layout = folder / 'top.svg'

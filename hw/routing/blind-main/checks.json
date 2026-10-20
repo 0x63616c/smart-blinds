@@ -10,10 +10,13 @@
     "hw/routing/blind-main/charger-control-routes.json": "f721f259b16d30dc1a2246a4206158887be220d39f4b9de76efc589abb69fd90",
     "hw/routing/blind-main/via-land-clearance.json": "2803b9b7de1c3a7b68325312d040fcaba83a7388c3f81a9e83cb14164b5453b7",
     "hw/routing/blind-main/regen-routes.json": "5c7cc940941025b1a0f0828e4c7a0d7ff03d24c6ed20d8cf635f717ed6a2109a",
+    "hw/routing/blind-main/usb-data-routes.json": "13c6da66e145a5b9d19e523d3fdaba0c766022cd815a1e51b64fe61f2a04a07e",
+    "hw/routing/blind-main/usb_data_checks.py": "24c8ee84a42db0fcac7350950fe87eff9ae365ca237c96dd5d06f629aac7781d",
+    "hw/routing/blind-main/usb_data_faults.py": "0da4f0cd5dd31f3d6836f38073438af6e63506ca32c9c311b91682d215f2bcfe",
     "hw/routing/blind-main/regen_checks.py": "1f19938111e2b049ad3bf8d5f379d233b0a1dbe4fde6022db037dba075149c98",
     "hw/routing/blind-main/regen_faults.py": "3974e99a520760750fc5aa64bc47519c1d9c53a79d22e531e422dbf45e6abea3",
     "hw/routing/blind-main/regen_analog.py": "d97817c3c2b951bb2969167605d77d63dffcb18f4955881d68d0fcff84db897f",
-    "hw/routing/blind-main/route.py": "2ad40a63ec2e2df8bc1eead224593e5262c511cb1d102ad60f36a621199fd76f",
+    "hw/routing/blind-main/route.py": "75d4ba30364c62c6b424d636ead54071ae7cf01360737baa4c9ffd0b31143a2c",
     "hw/routing/blind-main/place.py": "95077c4d892a6b49814f3c476dfdc7a6f3397973fbf7215a9e8af65ea41b736d",
     "hw/routing/blind-main/charger.py": "63c7a84fb2b46b3627ccba3e7369fcc0e94ef023af4c7166adadbd659f3fdf0a",
     "hw/routing/blind-main/local_power.py": "a0c8e2895494d882b5092b7835278c0d18389707236a41bf666bd4c5648e81a0",
@@ -24,8 +27,9 @@
     "hw/routing/blind-main/charger_controls.py": "e070689368330cdd168a979e475e1bb8dcc0d3cdecc6b2f23a43a0e7d3d01a4b",
     "hw/routing/blind-main/via_lands.py": "01c242719d867b3ccb4bc99cec99757321d1b9d6bcaaf161d0edf3b6b27a08cc",
     "hw/routing/blind-main/regen.py": "e619cd470e91c88751e005de34d50b09d99df088720e2bc4a9f2ac9052ebeba7",
-    "hw/routing/blind-main/main-routed.kicad_pcb": "b2708c5346b6b11697f72eaac9c87369149a62c4360bd91a3aa7dc7275929719",
-    "hw/routing/blind-main/checks.py": "8a69f302b1df91677c26e40b0daac7ece8c5f5fc8e1db1b4ff89c027daeb23a0",
+    "hw/routing/blind-main/usb_data.py": "98f72c09842df0a137be697e5b5cab48fb52dee2b8c18c93d1c7a03fbab88eb1",
+    "hw/routing/blind-main/main-routed.kicad_pcb": "98a12e5f0d6ee9c0c0a1ed1332238729b101988dc3eaf19096272eff7903d84d",
+    "hw/routing/blind-main/checks.py": "12ec89e7d3fce9fdcfaea5e0f56af1b051c9186ccc35cd3fd4376662690aba77",
     "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422"
   },
   "kicad_version": "10.0.4",
@@ -184,7 +188,7 @@
       "maximum_mounted_height_mm": 7.8,
       "reviewed_resistor_height_with_solder_allowance_mm": 0.55
     },
-    "unique_uuids": 5572
+    "unique_uuids": 5621
   },
   "copper": {
     "connected_path_groups": 72,
@@ -194,8 +198,8 @@
       "charger.c_input_fast": 2
     },
     "usb_quiet_ground_vias": 1,
-    "segments": 832,
-    "vias": 218,
+    "segments": 874,
+    "vias": 224,
     "distribution_via_solder_land_margin": {
       "checked_vias": 38,
       "minimum_drill_to_solder_land_mm": 0.2
@@ -205,7 +209,7 @@
       "minimum_drill_to_solder_land_mm": 0.2
     },
     "all_route_via_solder_land_margin": {
-      "checked_vias": 218,
+      "checked_vias": 224,
       "minimum_drill_to_solder_land_mm": 0.2,
       "scope": "All route vias, including same-net lands; footprint thermal holes require separate process review"
     },
@@ -264,7 +268,7 @@
           "plane_entry_vias": 1
         }
       },
-      "route_vias_checked": 218,
+      "route_vias_checked": 224,
       "external_outputs_not_yet_routed": [
         "thermal_ok to main final AND",
         "G to main fault-indication MOSFET"
@@ -325,17 +329,17 @@
               "PACK / clamp supply same-layer/via": {
                 "edge_gap_mm": 0.925003,
                 "new_segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "86482ed1-a2d0-5586-abfa-1e22983f413c"
+                "neighbor_uuid": "5d0d82ce-1bf6-5055-bed2-2af0a4406c3f"
               },
               "charger SW1 same-layer/via": {
                 "edge_gap_mm": 7.707278,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "a8b52db2-6dae-5023-8466-b186ae19a96b"
+                "neighbor_uuid": "c98cb912-7790-5a10-a718-12745cc7db15"
               },
               "charger SW2 same-layer/via": {
                 "edge_gap_mm": 1.839159,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "cf2cafb3-c052-5fa6-9768-bac7325472ab"
+                "neighbor_uuid": "6a96e7d0-7461-519d-b719-0e93101be49d"
               },
               "PACK / clamp supply same-layer pad": {
                 "edge_gap_mm": 0.205003,
@@ -346,27 +350,27 @@
               "PACK / clamp supply projected B.Cu": {
                 "edge_gap_mm": 0.0,
                 "new_segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "bc842e5b-b66a-5b5a-a3a9-fc86ed1ca723"
+                "neighbor_uuid": "d46fa4a1-4310-54f6-be11-7f74edbe2958"
               },
               "series MOSFET midpoint same-layer/via": {
                 "edge_gap_mm": 24.193112,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "80ae0ee8-c296-5853-a129-d77e58de0db6"
+                "neighbor_uuid": "44c5a883-976e-502c-b904-bc37d67bdef2"
               },
               "clamp switched drain same-layer/via": {
                 "edge_gap_mm": 17.444948,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "4e9384f7-0070-5926-ae9f-c430c379394e"
+                "neighbor_uuid": "d8bedca1-30f3-5dfd-9b05-76922dd6ac3d"
               },
               "charger SW1 projected B.Cu": {
                 "edge_gap_mm": 7.825001,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "6edea268-71d2-552f-b5d4-ae3b52e2f8b9"
+                "neighbor_uuid": "986e5435-00fc-5eab-bc70-ab78d8c3df08"
               },
               "charger SW2 projected B.Cu": {
                 "edge_gap_mm": 2.039159,
                 "new_segment": "charger-ntc-shielded-12",
-                "neighbor_uuid": "31a003d0-57c7-5d0e-9ab6-d00dfe1f49ad"
+                "neighbor_uuid": "fdc64dea-a580-5c86-ba3f-6db54bbc9fdd"
               },
               "clamp switched drain same-layer pad": {
                 "edge_gap_mm": 17.095105,
@@ -396,47 +400,47 @@
             "ground_shielded_projected_crossings": [
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "bc842e5b-b66a-5b5a-a3a9-fc86ed1ca723",
+                "neighbor_uuid": "d46fa4a1-4310-54f6-be11-7f74edbe2958",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "a52bc08a-0e4d-5a03-94ca-cba154c9b56e",
+                "neighbor_uuid": "6ce67e20-f1df-5ef3-8dff-5d0adc2df50a",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "c5c572cb-274f-5a66-b4ed-0d3b7a21875f",
+                "neighbor_uuid": "edc59c48-85c0-5d69-8476-35e080e39438",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "bfeb97d4-8063-51d9-af67-fd2ba1bfc074",
+                "neighbor_uuid": "c1d23869-5c66-5325-b491-1c7e786a2bbb",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-8",
-                "neighbor_uuid": "9f34ae13-00a9-5826-b2d0-069e333a453d",
+                "neighbor_uuid": "42291420-6256-53d4-8184-2fe012aa49a6",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-9",
-                "neighbor_uuid": "a52bc08a-0e4d-5a03-94ca-cba154c9b56e",
+                "neighbor_uuid": "6ce67e20-f1df-5ef3-8dff-5d0adc2df50a",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-9",
-                "neighbor_uuid": "c5c572cb-274f-5a66-b4ed-0d3b7a21875f",
+                "neighbor_uuid": "edc59c48-85c0-5d69-8476-35e080e39438",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-10",
-                "neighbor_uuid": "a52bc08a-0e4d-5a03-94ca-cba154c9b56e",
+                "neighbor_uuid": "6ce67e20-f1df-5ef3-8dff-5d0adc2df50a",
                 "unshielded_projected_area_mm2": 0.0
               },
               {
                 "segment": "charger-ntc-shielded-11",
-                "neighbor_uuid": "a52bc08a-0e4d-5a03-94ca-cba154c9b56e",
+                "neighbor_uuid": "6ce67e20-f1df-5ef3-8dff-5d0adc2df50a",
                 "unshielded_projected_area_mm2": 0.0
               }
             ]
@@ -451,17 +455,17 @@
               "PACK / clamp supply same-layer/via": {
                 "edge_gap_mm": 0.64383,
                 "new_segment": "program-reroute-9",
-                "neighbor_uuid": "66fca391-8931-56fa-9a0e-c61ad8b7473b"
+                "neighbor_uuid": "7d738a8b-84d9-5e00-9a45-db54e7e5cd82"
               },
               "charger SW1 same-layer/via": {
                 "edge_gap_mm": 1.016632,
                 "new_segment": "program-reroute-5",
-                "neighbor_uuid": "59e524d7-4e92-5681-a2b0-fc68455e99fb"
+                "neighbor_uuid": "3fa5259a-f9d0-5f93-ae6e-5203c2ff442b"
               },
               "charger SW2 same-layer/via": {
                 "edge_gap_mm": 1.010231,
                 "new_segment": "program-reroute-9",
-                "neighbor_uuid": "efe0af8f-2928-54ca-b1ea-ea38a5d8e683"
+                "neighbor_uuid": "80858ec9-d450-584e-9cb9-a1fb6d406220"
               },
               "PACK / clamp supply same-layer pad": {
                 "edge_gap_mm": 24.127833,
@@ -482,12 +486,12 @@
               "PACK / clamp supply same-layer/via": {
                 "edge_gap_mm": 1.600001,
                 "new_segment": "shortened-bootstrap-return",
-                "neighbor_uuid": "c321bb51-b896-506d-a040-503633254f48"
+                "neighbor_uuid": "0a06bff2-efdd-5ce1-a9a6-a223145ca0ad"
               },
               "charger SW2 same-layer/via": {
                 "edge_gap_mm": 1.300003,
                 "new_segment": "shortened-bootstrap-return",
-                "neighbor_uuid": "3147fcf6-f417-585b-95a7-03c936c6cf66"
+                "neighbor_uuid": "543e2e00-4caf-5963-a0a5-7f6319029037"
               },
               "PACK / clamp supply same-layer pad": {
                 "edge_gap_mm": 33.132125,
@@ -506,6 +510,44 @@
           "Same-layer solder lands, route traces and vias are included in the numeric neighbor audit. Cross-layer projected solder-land coupling is not a field-solver result; native DRC and visual layer review remain separate checks."
         ]
       }
+    },
+    "usb_data": {
+      "connected_data_nets": 2,
+      "paths": {
+        "dp": {
+          "A6": {
+            "planar_mm": 88.23524097644297,
+            "active_layer_transitions": 0
+          },
+          "B6": {
+            "planar_mm": 89.23524097644297,
+            "active_layer_transitions": 0
+          }
+        },
+        "dm": {
+          "A7": {
+            "planar_mm": 88.2352395334178,
+            "active_layer_transitions": 2
+          },
+          "B7": {
+            "planar_mm": 89.2352395334178,
+            "active_layer_transitions": 2
+          }
+        }
+      },
+      "unreferenced_trace_union_mm2": {
+        "dp": {
+          "F.Cu": 0.0,
+          "B.Cu": 0.0
+        },
+        "dm": {
+          "F.Cu": 0.229119774291,
+          "B.Cu": 0.261547717308
+        }
+      },
+      "esd_ground_plane_entries": 1,
+      "own_antipad_radius_tolerance_mm": 0.0055,
+      "scope": "Actual planar centerlines and direct trace footprint only. D-minus has two additional barrel transitions. No electrical-delay, field-spread, ESD-current or 90-ohm impedance qualification."
     }
   },
   "drc": {
@@ -518,7 +560,7 @@
       "text_height": 1,
       "text_thickness": 1
     },
-    "unconnected_items": 179,
+    "unconnected_items": 173,
     "ignored_checks": [
       "footprint_filters_mismatch",
       "track_not_centered_on_via",
@@ -574,6 +616,12 @@
     "cut control-dump-gate-drive-2 rejected",
     "cut control-latch-cutoff-drive-3 rejected",
     "same-net open via drills thermal FET source solder land rejected",
-    "latch source shares LDO bypass return rejected"
+    "latch source shares LDO bypass return rejected",
+    "cut D-plus perimeter rejected",
+    "cut D-minus contact A7 rejected",
+    "cut ESD ground via feed rejected",
+    "remove back crossover reference rejected",
+    "restore saved ground across D-minus via antipad rejected",
+    "add longer D-plus bypass around ESD pad rejected"
   ]
 }

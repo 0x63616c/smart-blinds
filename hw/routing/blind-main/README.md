@@ -6,14 +6,14 @@ The derivative retains the 54 × 68.5 mm outline with its USB tab, all 196
 footprints, 609 physical pin identities, 142 net partitions, 17 mechanical/thermal
 anchors and 13 RF, connector-foot and clamp reservations.
 
-The checkpoint contains 832 segments and 218 vias. It routes the local charger
+The checkpoint contains 874 segments and 224 vias. It routes the local charger
 switching/bypass network, motor-driver fly/pump/VM and output paths, regulator
 bypass/output/sense paths, and a 3.3 V feed to the radio module. In1 remains a
 continuous filled ground-return island; no signal traces use that layer. The
 module power feed uses In2 beneath the permitted module body, with vias outside
 its solder lands and unchanged antenna keepouts.
 
-Actual KiCad 10 DRC reports **179 unconnected items**. No short, copper/edge/hole
+Actual KiCad 10 DRC reports **173 unconnected items**. No short, copper/edge/hole
 clearance, track-width, courtyard-overlap, keepout, mask-bridge or dangling-route
 failure is accepted. The report retains 260 silkscreen/text findings, four
 library-footprint differences and five footprint-type findings. The latter
@@ -40,7 +40,7 @@ The checks remove the plane from the local graph before counting those vias. The
 The USB addition connects both VBUS contacts to the eFuse and its output
 reservoir, with local input capacitance and a shunt TVS. It also connects the PD
 supply diode and three separate bypass branches, and both CC/protection/dead-battery paths. The two MCU data resistors
-have short local stubs; the USB data pair itself is **not routed**. The eFuse's
+have short local stubs; the completed data paths are described below. The eFuse's
 current-setting, slew and divider-endpoint components return through an isolated
 same-face branch to one ground via. An independent plane-free copper check
 requires exactly those five quiet-ground pads and that one via; it rejects the
@@ -52,7 +52,7 @@ coordinates are replayed from `usb-control-routes.json`; reproduction performs
 no route search. Five separate local ground vias serve the address and factory
 bus resistors without joining the eFuse quiet-ground branch.
 
-The USB data pair and factory access pads remain open.
+Factory access pads remain open; the USB data pair now reaches the module.
 The completed control connections do not establish negotiated startup or
 detach/discharge timing; the PD configuration and electrical tests remain
 required. The 0.3 mm central-pad escapes and 0.8 mm back-layer power trunks
@@ -88,7 +88,7 @@ charge-permission wiring remain unfinished.
 A subsequent assembly-clearance pass moves twelve ordinary vias by at most
 0.35 mm and adjusts their sixteen incident traces. Five short top-layer stubs
 preserve connections that previously relied on via copper touching a solder
-land. No component moves. That earlier stage checked 178 routed vias. The final clamp stage extends this to all 218 via drills, which remain at least 0.20 mm
+land. No component moves. That earlier stage checked 178 routed vias. The clamp and USB stages extend this to all 224 via drills, which remain at least 0.20 mm
 from every top solder land, including lands on the same net; the ordinary
 KiCad same-net clearance check alone does not ensure this. A deliberate
 same-net intrusion at the USB input capacitor is rejected. The explicit
@@ -144,6 +144,40 @@ the module supply pin; the wide internal feed is a layout candidate, not
 proof of adequate local decoupling. Geometric clearance does not establish
 electrical performance.
 
+The USB data extension connects both reversible contact pairs through the moved
+TPD2E2U06 and the existing module-side 22 Ω resistors. The ESD package moves to
+local (22.8, 1.7), 180°; only its three old ground branches/two vias and three CC1
+segments are replaced. `usb_data.py` consumes the current clamp output and
+replays `usb-data-routes.json`. The base placement remains in `placement.json`;
+that data file contains the explicit final ESD override. All other incoming
+copper and the circuit graph remain unchanged, including after filling/saving.
+
+Both long front traces have continuous direct In1 reference. A local In2 ground
+zone references the short back crossover. The saved fill is checked for overlap
+with each signal via, and missing reference is accepted only within D-minus's
+own necessary via openings, with the project's 5 µm polygon-arc tolerance plus
+0.5 µm audit tolerance. A prior saved merge had stale filled polygons; the
+maintained stage now rebuilds and persists them. The neighboring D-plus segment
+no longer clips D-minus's antipad. One short ESD pin-4 return reaches one local
+via; optional NC pins 1/2 are grounded as TI permits.
+
+The actual track-centerline graph gives approximately 88.235 mm from each A-side
+contact to its series resistor and 89.235 mm from each B-side contact. It also
+checks that each shortest path passes through its protection pad, and removing
+that pad node must disconnect every connector-to-resistor centerline path. D-minus uses
+two active through-layer transitions; D-plus uses none. Planar length equality
+is **not** electrical-delay equality or a 90 Ω impedance result. One localized
+D-plus fold at v23–24.8 replaces the earlier two-fold study and adds about
+6.264 mm; the longer perimeter is parallel. The fold temporarily widens the pair
+spacing, and the connector-side protection lead remains a layout tradeoff.
+These need stackup/return-field/ESD review and actual full-speed USB tests.
+
+Six new fault controls cut a D-plus branch, one D-minus reversible contact,
+the ESD return, the back reference, and restore stale ground within a signal
+antipad, and add a longer parallel path that bypasses the ESD pad.
+All 40 old/new controls pass. The physical USB data connections are
+complete; USB performance and manufacturing acceptance remain unfinished.
+
 ## Rules and outstanding work
 
 The study retains the preliminary 1.6 mm JLC3313 four-layer descriptor: 35 µm
@@ -154,7 +188,7 @@ fine-pitch escapes use 0.5/0.25 mm. Existing thermal holes require their own
 mask/paste/assembly-process review. These rules are not a current rating,
 impedance approval, assembly quote or final fabrication profile.
 
-Still unfinished: USB factory access and paired data routing, pack feed and onward SYS
+Still unfinished: USB factory access and impedance/ESD qualification, pack feed and onward SYS
 current distribution, clamp external inhibit/fault connections and supervisor loops, complete signal
 routing, thermal and transient review, sparse silkscreen, final ERC/DRC and a
 manufacturing quote. A separate local 18-net digital congestion experiment is
