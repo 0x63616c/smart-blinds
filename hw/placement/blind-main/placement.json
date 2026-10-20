@@ -1,7 +1,6 @@
 {
   "status": "PLACEMENT STUDY ONLY; no electrical or thermal routing acceptance",
   "failed": [],
-  "proximity_score": 1513.296513052151,
   "reserved": [
     [
       "antenna",
@@ -339,122 +338,18 @@
       "rotation": 0,
       "fixed": true
     },
-    "charger.c_pmid2": {
+    "controller.r_down": {
       "uv": [
-        24.96,
-        27.56
+        51.75,
+        44.96
       ],
       "rotation": 90,
       "fixed": false
     },
-    "charger.c_pmid3": {
+    "controller.r_charge": {
       "uv": [
-        33.04,
-        27.56
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "charger.c_input1": {
-      "uv": [
-        23.61,
-        21.96
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.c_sys3": {
-      "uv": [
-        34.19,
-        21.96
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.c_raw": {
-      "uv": [
-        39.81,
-        13.44
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.c_bat1": {
-      "uv": [
-        34.615,
-        17.81
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "charger.c_bat2": {
-      "uv": [
-        37.295,
-        17.81
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "charger.c_input2": {
-      "uv": [
-        22.28,
-        26.11
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "charger.c_pmid1": {
-      "uv": [
-        35.01,
-        33.18
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "logic_supply.c_input": {
-      "uv": [
-        12.91,
-        45.705
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.c_pmid4": {
-      "uv": [
-        22.99,
-        33.18
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "charger.c_sys4": {
-      "uv": [
-        41.445,
-        21.51
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "logic_supply.c_input2": {
-      "uv": [
-        16.015,
-        43.025
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.q_charge": {
-      "uv": [
-        22.945,
-        18.87
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "q_thermal_fault": {
-      "uv": [
-        35.78,
-        41.1
+        51.75,
+        42.58
       ],
       "rotation": 90,
       "fixed": false
@@ -475,20 +370,28 @@
       "rotation": 90,
       "fixed": false
     },
-    "regen.q_cutoff": {
+    "charger.c_sys3": {
       "uv": [
-        15.65,
-        29.42
+        34.19,
+        21.96
       ],
       "rotation": 0,
       "fixed": false
     },
-    "regen.q_hold": {
+    "charger.c_pmid1": {
       "uv": [
-        17.88,
-        32.95
+        35.01,
+        33.18
       ],
       "rotation": 90,
+      "fixed": false
+    },
+    "usb.c_raw": {
+      "uv": [
+        39.81,
+        13.44
+      ],
+      "rotation": 0,
       "fixed": false
     },
     "charger.c_sys5": {
@@ -499,18 +402,10 @@
       "rotation": 0,
       "fixed": false
     },
-    "encoder.c_output": {
+    "charger.c_input1": {
       "uv": [
-        47.065,
-        20.36
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.q_permission": {
-      "uv": [
-        19.19,
-        28.98
+        23.61,
+        21.96
       ],
       "rotation": 0,
       "fixed": false
@@ -523,50 +418,82 @@
       "rotation": 0,
       "fixed": false
     },
-    "controller.c_bulk": {
+    "charger.c_pmid2": {
       "uv": [
-        18.63,
-        46.79
+        24.96,
+        27.56
       ],
       "rotation": 90,
       "fixed": false
     },
-    "regen.q_drive": {
+    "charger.c_pmid4": {
       "uv": [
-        10.15,
-        36.56
+        22.99,
+        33.18
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "charger.c_bat2": {
+      "uv": [
+        37.295,
+        17.81
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "logic_supply.c_input": {
+      "uv": [
+        12.91,
+        45.705
       ],
       "rotation": 0,
       "fixed": false
     },
-    "encoder.gate": {
+    "logic_supply.c_input2": {
       "uv": [
-        47.18,
-        27.15
-      ],
-      "rotation": 180,
-      "fixed": false
-    },
-    "regen.c_thermal_output": {
-      "uv": [
-        11.69,
-        30.05
+        16.015,
+        43.025
       ],
       "rotation": 0,
       "fixed": false
     },
-    "regen.q_hot_drive": {
+    "charger.c_pmid3": {
       "uv": [
-        13.65,
-        36.58
+        33.04,
+        27.56
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "charger.c_input2": {
+      "uv": [
+        22.53,
+        26.11
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "charger.c_sys4": {
+      "uv": [
+        41.445,
+        21.51
       ],
       "rotation": 0,
       "fixed": false
     },
-    "supervision.inputs": {
+    "charger.c_bat1": {
       "uv": [
-        22.73,
-        37.63
+        34.615,
+        17.81
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "encoder.c_output": {
+      "uv": [
+        47.065,
+        20.36
       ],
       "rotation": 0,
       "fixed": false
@@ -579,28 +506,12 @@
       "rotation": 0,
       "fixed": false
     },
-    "usb.tvs_cc": {
-      "uv": [
-        36.02,
-        9.935
-      ],
-      "rotation": 270,
-      "fixed": false
-    },
     "thermal_gate": {
       "uv": [
         50.03,
         30.25
       ],
       "rotation": 90,
-      "fixed": false
-    },
-    "charger.c_regn": {
-      "uv": [
-        28.63,
-        22.15
-      ],
-      "rotation": 0,
       "fixed": false
     },
     "logic_supply.c_output2": {
@@ -611,6 +522,22 @@
       "rotation": 0,
       "fixed": false
     },
+    "charger.c_regn": {
+      "uv": [
+        28.63,
+        22.15
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.c_bulk": {
+      "uv": [
+        18.63,
+        46.79
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
     "logic_supply.c_output1": {
       "uv": [
         16.55,
@@ -619,50 +546,18 @@
       "rotation": 90,
       "fixed": false
     },
-    "usb.c_1v2": {
+    "controller.enc_esd": {
       "uv": [
-        36.44,
-        6.79
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "regen.r_feedback1": {
-      "uv": [
-        10.99,
-        32.84
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "usb.c_2v7": {
-      "uv": [
-        45.215,
-        14.64
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "encoder.c_input": {
-      "uv": [
-        51.515,
-        21.19
+        37.29,
+        50.875
       ],
       "rotation": 0,
       "fixed": false
     },
-    "usb.r_out_dis3": {
+    "controller.usb_esd": {
       "uv": [
-        44.26,
-        12.09
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "regen.r_feedback2": {
-      "uv": [
-        7.84,
-        30.02
+        34.305,
+        6.54
       ],
       "rotation": 0,
       "fixed": false
@@ -675,42 +570,18 @@
       "rotation": 90,
       "fixed": false
     },
-    "usb.r_raw_dis2": {
+    "regen.r_feedback1": {
       "uv": [
-        33.61,
-        9.8
+        10.99,
+        32.84
       ],
       "rotation": 90,
       "fixed": false
     },
-    "controller.usb_esd": {
+    "usb.r_out_dis3": {
       "uv": [
-        34.305,
-        6.54
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.tvs_vbus": {
-      "uv": [
-        45.205,
-        17.68
-      ],
-      "rotation": 270,
-      "fixed": false
-    },
-    "controller.enc_esd": {
-      "uv": [
-        37.29,
-        50.875
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_out_dis1": {
-      "uv": [
-        31.86,
-        12.35
+        44.26,
+        12.09
       ],
       "rotation": 0,
       "fixed": false
@@ -723,10 +594,42 @@
       "rotation": 0,
       "fixed": false
     },
-    "usb.c_vdd": {
+    "regen.r_feedback2": {
       "uv": [
-        41.64,
-        5.26
+        7.84,
+        30.02
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "encoder.c_input": {
+      "uv": [
+        51.515,
+        21.19
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.d_vdd": {
+      "uv": [
+        49.48,
+        11.95
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_out_dis1": {
+      "uv": [
+        31.86,
+        12.35
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_raw_dis2": {
+      "uv": [
+        33.61,
+        9.8
       ],
       "rotation": 90,
       "fixed": false
@@ -739,44 +642,68 @@
       "rotation": 90,
       "fixed": false
     },
-    "charger.r_charge_off": {
+    "usb.c_vdd": {
       "uv": [
-        27.49,
-        29.45
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.r_sda": {
-      "uv": [
-        36.85,
-        46.92
+        41.64,
+        5.26
       ],
       "rotation": 90,
       "fixed": false
     },
-    "usb.r_uv_top2": {
+    "usb.c_1v2": {
       "uv": [
-        36.21,
-        4.4
+        36.44,
+        6.79
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.tvs_vbus": {
+      "uv": [
+        45.205,
+        17.68
+      ],
+      "rotation": 270,
+      "fixed": false
+    },
+    "usb.c_2v7": {
+      "uv": [
+        45.215,
+        14.64
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "supervision.r_request": {
+      "uv": [
+        6.67,
+        39.5
       ],
       "rotation": 0,
       "fixed": false
     },
-    "usb.r_limit": {
+    "logic_supply.r_mode": {
       "uv": [
-        39.49,
-        4.33
+        5.55,
+        48.0
       ],
       "rotation": 0,
       "fixed": false
     },
-    "charger.r_batp": {
+    "regen.r_hot_base": {
       "uv": [
-        29.87,
-        29.45
+        1.65,
+        36.62
       ],
-      "rotation": 0,
+      "rotation": 90,
+      "fixed": false
+    },
+    "controller.r_up": {
+      "uv": [
+        49.43,
+        26.99
+      ],
+      "rotation": 90,
       "fixed": false
     },
     "usb.r_uv_bottom": {
@@ -787,6 +714,14 @@
       "rotation": 0,
       "fixed": false
     },
+    "controller.r_dm": {
+      "uv": [
+        3.75,
+        52.31
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
     "controller.r_b_up": {
       "uv": [
         26.25,
@@ -795,20 +730,60 @@
       "rotation": 90,
       "fixed": false
     },
-    "controller.r_strap8": {
+    "usb.r_base_pull": {
       "uv": [
-        16.73,
-        47.81
+        43.35,
+        3.43
       ],
       "rotation": 90,
       "fixed": false
     },
-    "charger.r_ilim_top": {
+    "controller.r_scl": {
       "uv": [
-        35.13,
-        24.49
+        20.9,
+        33.755
       ],
       "rotation": 90,
+      "fixed": false
+    },
+    "controller.r_boot": {
+      "uv": [
+        10.31,
+        48.25
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "charger.r_ce": {
+      "uv": [
+        28.21,
+        9.26
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.r_thermal_top": {
+      "uv": [
+        4.32,
+        26.74
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "logic_supply.r_enable": {
+      "uv": [
+        4.15,
+        46.5
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "regen.r_local_bleed": {
+      "uv": [
+        15.09,
+        25.39
+      ],
+      "rotation": 0,
       "fixed": false
     },
     "usb.r_addr1": {
@@ -827,390 +802,6 @@
       "rotation": 90,
       "fixed": false
     },
-    "regen.r_thermal_ok": {
-      "uv": [
-        19.85,
-        26.01
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.r_b_down": {
-      "uv": [
-        26.25,
-        39.9
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "c_thermal_gate": {
-      "uv": [
-        38.35,
-        36.155
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.r_b_series": {
-      "uv": [
-        20.1,
-        43.06
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.c_enc": {
-      "uv": [
-        37.22,
-        48.86
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_scl": {
-      "uv": [
-        46.905,
-        17.47
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "motor.r_fault": {
-      "uv": [
-        38.06,
-        34.285
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.r_a_down": {
-      "uv": [
-        46.9,
-        48.19
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "regen.c_thermal_input": {
-      "uv": [
-        15.02,
-        26.89
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_base2": {
-      "uv": [
-        46.925,
-        14.19
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "charger.r_ts_bottom": {
-      "uv": [
-        35.57,
-        26.43
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.c_down": {
-      "uv": [
-        48.77,
-        47.75
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "supervision.c_wd": {
-      "uv": [
-        16.73,
-        45.485
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "motor.c_pump": {
-      "uv": [
-        38.5,
-        32.415
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "supervision.c_gate": {
-      "uv": [
-        20.01,
-        37.935
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.r_permission_base": {
-      "uv": [
-        35.57,
-        27.93
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "supervision.c_sup": {
-      "uv": [
-        20.38,
-        36.065
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "supervision.c_inputs": {
-      "uv": [
-        18.88,
-        36.065
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "motor.r_ref_lo": {
-      "uv": [
-        46.9,
-        38.44
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "logic_supply.c_softstart": {
-      "uv": [
-        8.98,
-        39.5
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.c_bypass": {
-      "uv": [
-        14.86,
-        48.25
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "regen.r_local_bleed": {
-      "uv": [
-        15.09,
-        25.39
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "encoder.r_enable": {
-      "uv": [
-        44.15,
-        24.04
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "supervision.r_sleep": {
-      "uv": [
-        17.38,
-        36.075
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.r_scl": {
-      "uv": [
-        20.9,
-        33.755
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.r_home": {
-      "uv": [
-        35.57,
-        29.62
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.r_up": {
-      "uv": [
-        49.43,
-        26.99
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "regen.c_hot_filter": {
-      "uv": [
-        5.08,
-        30.18
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.c_ts": {
-      "uv": [
-        23.605,
-        16.37
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "logic_supply.c_output_fast": {
-      "uv": [
-        12.62,
-        47.795
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_ov_bottom": {
-      "uv": [
-        45.61,
-        8.93
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.r_boot": {
-      "uv": [
-        10.31,
-        48.25
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "regen.r_threshold_top1": {
-      "uv": [
-        7.65,
-        35.97
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "motor.c_vm": {
-      "uv": [
-        46.43,
-        30.63
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.r_encoder": {
-      "uv": [
-        48.4,
-        38.81
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "logic_supply.r_pg": {
-      "uv": [
-        8.91,
-        46.5
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_reset": {
-      "uv": [
-        32.365,
-        6.97
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.r_adc_hi": {
-      "uv": [
-        7.93,
-        48.0
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "regen.r_drive_base": {
-      "uv": [
-        3.88,
-        28.68
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.r_dp": {
-      "uv": [
-        6.53,
-        46.5
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "supervision.c_timing": {
-      "uv": [
-        7.28,
-        38.0
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "supervision.r_request": {
-      "uv": [
-        6.67,
-        39.5
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_base1": {
-      "uv": [
-        31.95,
-        10.25
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "logic_supply.r_mode": {
-      "uv": [
-        5.55,
-        48.0
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.c_pmid_fast": {
-      "uv": [
-        21.735,
-        16.0
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.r_down": {
-      "uv": [
-        51.75,
-        44.96
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "regen.r_gate_off2": {
-      "uv": [
-        6.15,
-        35.97
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "charger.c_sys_fast": {
-      "uv": [
-        47.93,
-        29.92
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
     "regen.r_gate_off1": {
       "uv": [
         3.96,
@@ -1219,252 +810,12 @@
       "rotation": 0,
       "fixed": false
     },
-    "logic_supply.r_enable": {
-      "uv": [
-        4.15,
-        46.5
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.c_home": {
-      "uv": [
-        49.9,
-        38.88
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.r_adc_lo": {
-      "uv": [
-        3.31,
-        49.5
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "encoder.c_gate": {
-      "uv": [
-        50.995,
-        19.48
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "motor.r_current": {
-      "uv": [
-        51.4,
-        38.44
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "logic_supply.c_input_fast": {
-      "uv": [
-        5.04,
-        38.0
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.r_ts_top": {
-      "uv": [
-        23.975,
-        14.43
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "charger.c_sdrv": {
-      "uv": [
-        22.105,
-        14.13
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.r_prog": {
-      "uv": [
-        29.03,
-        12.7
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.c_batp": {
-      "uv": [
-        27.09,
-        12.33
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "regen.r_threshold_bottom": {
-      "uv": [
-        2.77,
-        30.18
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.r_dm": {
-      "uv": [
-        3.75,
-        52.31
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "usb.r_sda": {
-      "uv": [
-        48.425,
-        13.87
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "motor.r_mode": {
-      "uv": [
-        51.5,
-        36.06
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "usb.c_slew": {
-      "uv": [
-        45.17,
-        7.06
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.r_charge": {
-      "uv": [
-        51.75,
-        42.58
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "supervision.r_wdo": {
-      "uv": [
-        4.29,
-        39.5
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "usb.r_uv_top1": {
-      "uv": [
-        48.425,
-        16.25
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "r_thermal_sleep": {
-      "uv": [
-        51.5,
-        33.68
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "controller.c_adc": {
-      "uv": [
-        3.24,
-        48.0
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "controller.r_home_series": {
-      "uv": [
-        52.43,
-        31.3
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "regen.r_thermal_top": {
-      "uv": [
-        4.32,
-        26.74
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
     "charger.r_permission_off": {
       "uv": [
         25.59,
         12.26
       ],
       "rotation": 90,
-      "fixed": false
-    },
-    "supervision.r_reset": {
-      "uv": [
-        4.65,
-        36.06
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "regen.r_threshold_top2": {
-      "uv": [
-        4.4,
-        33.62
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "charger.c_input_fast": {
-      "uv": [
-        22.105,
-        12.63
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "regen.r_trip_off": {
-      "uv": [
-        3.88,
-        24.8
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "regen.r_hot_off": {
-      "uv": [
-        2.82,
-        26.74
-      ],
-      "rotation": 90,
-      "fixed": false
-    },
-    "usb.r_addr0": {
-      "uv": [
-        47.99,
-        10.43
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "motor.c_fly": {
-      "uv": [
-        52.12,
-        40.38
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "charger.r_ilim_bottom": {
-      "uv": [
-        29.03,
-        11.2
-      ],
-      "rotation": 0,
       "fixed": false
     },
     "motor.r_ref_hi": {
@@ -1483,12 +834,108 @@
       "rotation": 90,
       "fixed": false
     },
-    "charger.c_boot1": {
+    "supervision.c_inputs": {
       "uv": [
-        22.15,
-        10.76
+        18.88,
+        36.065
       ],
       "rotation": 90,
+      "fixed": false
+    },
+    "regen.r_hot_off": {
+      "uv": [
+        2.82,
+        26.74
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "supervision.r_reset": {
+      "uv": [
+        4.65,
+        36.06
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "controller.c_home": {
+      "uv": [
+        49.9,
+        38.88
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.r_threshold_bottom": {
+      "uv": [
+        2.77,
+        30.18
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.r_a_series": {
+      "uv": [
+        3.15,
+        42.18
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.c_thermal_input": {
+      "uv": [
+        15.02,
+        26.89
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "motor.r_fault": {
+      "uv": [
+        38.06,
+        34.285
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.r_adc_hi": {
+      "uv": [
+        7.93,
+        48.0
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "c_thermal_gate": {
+      "uv": [
+        38.35,
+        36.155
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.r_drive_base": {
+      "uv": [
+        3.88,
+        28.68
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.r_home": {
+      "uv": [
+        35.57,
+        29.62
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "charger.c_input_fast": {
+      "uv": [
+        22.105,
+        12.63
+      ],
+      "rotation": 0,
       "fixed": false
     },
     "charger.c_boot2": {
@@ -1499,34 +946,26 @@
       "rotation": 0,
       "fixed": false
     },
-    "motor.r_in1": {
+    "controller.r_encoder": {
       "uv": [
-        52.31,
-        17.54
+        48.4,
+        38.81
       ],
       "rotation": 90,
       "fixed": false
     },
-    "regen.c_thermostat": {
+    "r_thermal_sleep": {
       "uv": [
-        2.53,
-        33.18
+        51.5,
+        33.68
       ],
-      "rotation": 0,
+      "rotation": 90,
       "fixed": false
     },
-    "usb.d_vdd": {
+    "regen.c_hot_filter": {
       "uv": [
-        49.48,
-        11.95
-      ],
-      "rotation": 0,
-      "fixed": false
-    },
-    "regen.c_detector": {
-      "uv": [
-        2.53,
-        34.68
+        5.08,
+        30.18
       ],
       "rotation": 0,
       "fixed": false
@@ -1539,10 +978,74 @@
       "rotation": 90,
       "fixed": false
     },
-    "supervision.r_wdi": {
+    "controller.r_b_down": {
       "uv": [
-        3.15,
-        44.56
+        26.25,
+        39.9
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_limit": {
+      "uv": [
+        39.49,
+        4.33
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "supervision.c_sup": {
+      "uv": [
+        20.38,
+        36.065
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_addr0": {
+      "uv": [
+        47.99,
+        10.43
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "regen.r_threshold_top2": {
+      "uv": [
+        4.4,
+        33.62
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.r_threshold_top1": {
+      "uv": [
+        7.65,
+        35.97
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "controller.c_enc": {
+      "uv": [
+        37.22,
+        48.86
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "motor.r_ref_lo": {
+      "uv": [
+        46.9,
+        38.44
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_scl": {
+      "uv": [
+        46.905,
+        17.47
       ],
       "rotation": 90,
       "fixed": false
@@ -1555,28 +1058,76 @@
       "rotation": 90,
       "fixed": false
     },
-    "regen.r_drive_off": {
+    "charger.r_charge_off": {
       "uv": [
-        3.15,
-        36.62
+        27.49,
+        29.45
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "charger.r_ilim_top": {
+      "uv": [
+        35.13,
+        24.49
       ],
       "rotation": 90,
       "fixed": false
     },
-    "charger.r_ce": {
+    "usb.r_base2": {
       "uv": [
-        28.21,
-        9.26
+        46.925,
+        14.19
       ],
       "rotation": 90,
       "fixed": false
     },
-    "regen.r_hot_base": {
+    "supervision.r_sleep": {
       "uv": [
-        1.65,
-        36.62
+        17.38,
+        36.075
       ],
       "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_uv_top1": {
+      "uv": [
+        48.425,
+        16.25
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "motor.r_mode": {
+      "uv": [
+        51.5,
+        36.06
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "charger.c_sys_fast": {
+      "uv": [
+        47.93,
+        29.92
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "charger.r_batp": {
+      "uv": [
+        29.87,
+        29.45
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "charger.r_permission_base": {
+      "uv": [
+        35.57,
+        27.93
+      ],
+      "rotation": 0,
       "fixed": false
     },
     "motor.r_in2": {
@@ -1587,26 +1138,194 @@
       "rotation": 0,
       "fixed": false
     },
-    "motor.r_sleep": {
+    "charger.c_boot1": {
       "uv": [
-        49.925,
-        14.54
+        22.15,
+        10.76
       ],
       "rotation": 90,
       "fixed": false
     },
-    "controller.r_a_series": {
+    "logic_supply.r_pg": {
+      "uv": [
+        8.91,
+        46.5
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.r_adc_lo": {
+      "uv": [
+        3.31,
+        49.5
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "motor.c_pump": {
+      "uv": [
+        38.5,
+        32.415
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "motor.c_fly": {
+      "uv": [
+        52.12,
+        40.38
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.r_sda": {
+      "uv": [
+        36.85,
+        46.92
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "controller.c_bypass": {
+      "uv": [
+        14.86,
+        48.25
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_sda": {
+      "uv": [
+        48.425,
+        13.87
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "supervision.c_wd": {
+      "uv": [
+        16.73,
+        45.485
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "motor.c_vm": {
+      "uv": [
+        46.43,
+        30.63
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.r_gate_off2": {
+      "uv": [
+        6.15,
+        35.97
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "supervision.r_wdi": {
       "uv": [
         3.15,
-        42.18
+        44.56
       ],
       "rotation": 90,
       "fixed": false
     },
-    "usb.r_base_pull": {
+    "logic_supply.c_output_fast": {
       "uv": [
-        43.35,
-        3.43
+        12.62,
+        47.795
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "supervision.c_timing": {
+      "uv": [
+        7.28,
+        38.0
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "motor.r_current": {
+      "uv": [
+        51.4,
+        38.44
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_reset": {
+      "uv": [
+        32.365,
+        6.97
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "supervision.r_wdo": {
+      "uv": [
+        4.29,
+        39.5
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.c_up": {
+      "uv": [
+        52.305,
+        15.23
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "controller.r_home_series": {
+      "uv": [
+        52.43,
+        31.3
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "controller.r_a_down": {
+      "uv": [
+        46.9,
+        48.19
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "encoder.c_gate": {
+      "uv": [
+        50.995,
+        19.48
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "motor.r_in1": {
+      "uv": [
+        52.31,
+        17.54
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_ov_bottom": {
+      "uv": [
+        45.61,
+        8.93
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.r_base1": {
+      "uv": [
+        31.95,
+        10.25
       ],
       "rotation": 90,
       "fixed": false
@@ -1619,10 +1338,290 @@
       "rotation": 90,
       "fixed": false
     },
-    "controller.c_up": {
+    "charger.r_ilim_bottom": {
       "uv": [
-        52.305,
-        15.23
+        29.03,
+        11.2
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "regen.r_trip_off": {
+      "uv": [
+        3.88,
+        24.8
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.c_down": {
+      "uv": [
+        48.77,
+        47.75
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "regen.r_drive_off": {
+      "uv": [
+        3.15,
+        36.62
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "usb.r_uv_top2": {
+      "uv": [
+        36.21,
+        4.4
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.r_strap8": {
+      "uv": [
+        16.73,
+        47.81
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "encoder.r_enable": {
+      "uv": [
+        44.15,
+        24.04
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "charger.r_ts_top": {
+      "uv": [
+        23.975,
+        14.43
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "charger.r_prog": {
+      "uv": [
+        29.03,
+        12.7
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "charger.r_ts_bottom": {
+      "uv": [
+        35.57,
+        26.43
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "motor.r_sleep": {
+      "uv": [
+        49.925,
+        14.54
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.r_thermal_ok": {
+      "uv": [
+        19.85,
+        26.01
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "controller.r_dp": {
+      "uv": [
+        6.53,
+        46.5
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "logic_supply.c_input_fast": {
+      "uv": [
+        5.04,
+        38.0
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "charger.c_batp": {
+      "uv": [
+        27.09,
+        12.33
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.c_detector": {
+      "uv": [
+        2.53,
+        34.68
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.c_adc": {
+      "uv": [
+        3.24,
+        48.0
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "charger.c_ts": {
+      "uv": [
+        23.605,
+        16.37
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "supervision.c_gate": {
+      "uv": [
+        20.01,
+        37.935
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.c_slew": {
+      "uv": [
+        45.17,
+        7.06
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "charger.c_sdrv": {
+      "uv": [
+        22.105,
+        14.13
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "logic_supply.c_softstart": {
+      "uv": [
+        8.98,
+        39.5
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "charger.c_pmid_fast": {
+      "uv": [
+        21.735,
+        16.0
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.c_thermostat": {
+      "uv": [
+        2.53,
+        33.18
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "regen.q_cutoff": {
+      "uv": [
+        15.9,
+        29.2
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "charger.q_charge": {
+      "uv": [
+        22.75,
+        18.87
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.q_drive": {
+      "uv": [
+        10.15,
+        36.75
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "regen.q_hold": {
+      "uv": [
+        18.05,
+        32.95
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "q_thermal_fault": {
+      "uv": [
+        35.95,
+        41.25
+      ],
+      "rotation": 90,
+      "fixed": false
+    },
+    "regen.q_hot_drive": {
+      "uv": [
+        13.65,
+        37.0
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "charger.q_permission": {
+      "uv": [
+        19.6,
+        29.15
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "supervision.inputs": {
+      "uv": [
+        22.7,
+        37.45
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "usb.tvs_cc": {
+      "uv": [
+        36.02,
+        9.72
+      ],
+      "rotation": 270,
+      "fixed": false
+    },
+    "encoder.gate": {
+      "uv": [
+        47.03,
+        27.35
+      ],
+      "rotation": 180,
+      "fixed": false
+    },
+    "regen.c_thermal_output": {
+      "uv": [
+        11.69,
+        29.95
+      ],
+      "rotation": 0,
+      "fixed": false
+    },
+    "controller.r_b_series": {
+      "uv": [
+        20.1,
+        42.95
       ],
       "rotation": 90,
       "fixed": false

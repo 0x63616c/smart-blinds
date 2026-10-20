@@ -1,7 +1,7 @@
 {
-  "status": "Assembly clearance study; two physical envelopes include unqualified allowances",
+  "status": "Assembly clearance study; four package families include explicit unqualified allowances",
   "reviewed_on": "2026-10-20",
-  "policy": "Union package/terminal envelope and existing pad copper, including custom polygon stroke; expand0.25mm, round outward0.05mm. Copper is unchanged.",
+  "policy": "Union package/terminal envelope and existing pad copper, including custom polygon stroke; expand 0.25 mm, round outward 0.05 mm. Copper is unchanged. Existing outline replacement requires its reviewed fingerprint; pad geometry is separately pinned.",
   "evidence": "docs/electrical/footprint-clearances.md",
   "footprints": [
     {
@@ -306,6 +306,922 @@
       "envelope_status": "manufacturer_dimensional_table",
       "source_url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
       "source_location": "RPW0010A 4225183/A 08/2019 pp72-73; current custom polygon strokes included"
+    },
+    {
+      "compiled_alias": "blind-carrier:C0805",
+      "source": "hw/parts/blind-carrier/C0805.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-carrier/blind-carrier.pretty/C0805.kicad_mod"
+      ],
+      "parts": [
+        "CL21B474KBFNNNE"
+      ],
+      "body_lead_bounds_mm": [
+        -1.05,
+        -0.675,
+        1.05,
+        0.675
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://product.samsungsem.com/mlcc/CL21B474KBFNNN.do",
+      "source_location": "Exact Samsung dimensional table; terminal axis X.",
+      "notes": "",
+      "main_instances": 0,
+      "instances_by_board": {
+        "primary": 3
+      },
+      "reviewed_pad_sha256": "3daf7ab15f6426eb08fc3a9c1d4d307bd9f38c60f0b4d6ae992d2496aebfed25",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-carrier/C0805.kicad_mod": "f6ddc8098ec59ba800b4c51479533c43436bb36604808ca4b2ced3f3e67767b3",
+        "hw/parts/blind-carrier/blind-carrier.pretty/C0805.kicad_mod": "f6ddc8098ec59ba800b4c51479533c43436bb36604808ca4b2ced3f3e67767b3"
+      }
+    },
+    {
+      "compiled_alias": "blind-carrier:FUSE-SMD_L6.1-W2.7",
+      "source": "hw/parts/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-carrier/blind-carrier.pretty/FUSE-SMD_L6.1-W2.7.kicad_mod"
+      ],
+      "parts": [
+        "0451003.MRL"
+      ],
+      "body_lead_bounds_mm": [
+        -3.15,
+        -1.47,
+        3.15,
+        1.47
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum; indexed primary drawing text",
+      "source_url": "https://www.littelfuse.com/~/media/electronics/datasheets/fuses/littelfuse_fuse_451_453_datasheet.pdf.pdf",
+      "source_location": "451/453 dimensions; terminal axis X.",
+      "notes": "Direct PDF endpoints currently 403; visual dimensional-page recovery remains desirable.",
+      "main_instances": 0,
+      "instances_by_board": {
+        "primary": 3,
+        "companion": 3
+      },
+      "reviewed_pad_sha256": "12d01c215f57e7d721a059289a1c24d9222330d5acc1d1df2a1d7b2a6ac2c628",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod": "5add2f44fa287d8924488e4b89114a6fced26739b37552c2f6ea2b7029cda7ac",
+        "hw/parts/blind-carrier/blind-carrier.pretty/FUSE-SMD_L6.1-W2.7.kicad_mod": "5add2f44fa287d8924488e4b89114a6fced26739b37552c2f6ea2b7029cda7ac"
+      }
+    },
+    {
+      "compiled_alias": "blind-carrier:PDFN-8_L3.3-W3.3-P0.65-BL",
+      "source": "hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-carrier/blind-carrier.pretty/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod"
+      ],
+      "parts": [
+        "AON7400A"
+      ],
+      "body_lead_bounds_mm": [
+        -1.7,
+        -1.7,
+        1.7,
+        1.7
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "conditional engineering allowance; manufacturer excludes unbounded burr/flash",
+      "source_url": "https://www.aosmd.com/sites/default/files/res/packaging_information/DFN3x3A_8L_EP1_P.pdf",
+      "source_location": "PO-00047 version I, single page; source terminal rows along Y; D along X, E/E1 along Y.",
+      "notes": "Body D/E <=3.10; metal D4<=3.20, E1<=3.30. Proposed +.15 per body side makes 3.40 square. The .15 is a planning allowance, not an AOS specified maximum; supplier/physical confirmation remains required.",
+      "main_instances": 2,
+      "instances_by_board": {
+        "main": 2,
+        "primary": 2
+      },
+      "reviewed_pad_sha256": "052520c703dc46a41833046821d15330eda749142ee74852d0a833f6c877f6b7",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": "e10b1355a82f5100a1b4642bb78ef865182bd68b90476c4d315098dd1ac4e9ef",
+        "hw/parts/blind-carrier/blind-carrier.pretty/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": "e10b1355a82f5100a1b4642bb78ef865182bd68b90476c4d315098dd1ac4e9ef"
+      }
+    },
+    {
+      "compiled_alias": "blind-carrier:R0402",
+      "source": "hw/parts/blind-carrier/R0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-carrier/blind-carrier.pretty/R0402.kicad_mod"
+      ],
+      "parts": [
+        "0402WGF100JTCE",
+        "0402WGF1500TCE"
+      ],
+      "body_lead_bounds_mm": [
+        -0.55,
+        -0.275,
+        0.55,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "Royalohm 0402 dimension row; mixed Yageo RC0402FR-0713K7L has smaller 1.05 x .55 maximum. Terminal axis X.",
+      "notes": "",
+      "main_instances": 0,
+      "instances_by_board": {
+        "primary": 4
+      },
+      "reviewed_pad_sha256": "236b958355ec6600831c721d9f87d270a3c59230407e1cc2442454ff7410ab45",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-carrier/R0402.kicad_mod": "d79dab4700509dfbeb0b02d63a880350204124b247456430753043b38f81ce95",
+        "hw/parts/blind-carrier/blind-carrier.pretty/R0402.kicad_mod": "d79dab4700509dfbeb0b02d63a880350204124b247456430753043b38f81ce95"
+      }
+    },
+    {
+      "compiled_alias": "blind-carrier:R1206",
+      "source": "hw/parts/blind-carrier/R1206.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-carrier/blind-carrier.pretty/R1206.kicad_mod"
+      ],
+      "parts": [
+        "1206W4F1000T5E"
+      ],
+      "body_lead_bounds_mm": [
+        -1.625,
+        -0.85,
+        1.625,
+        0.85
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum; indexed primary row",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "1206 row L=3.10+/-.15 W=1.55+.15/-.10; terminal axis X.",
+      "notes": "Copper Y half-width .8505 requires outward courtyard rounding to 1.15.",
+      "main_instances": 0,
+      "instances_by_board": {
+        "primary": 3
+      },
+      "reviewed_pad_sha256": "3bdf04049a9d7584f2b9efe22bed4dad96d5207cdbf61fee5dea26815d1787bb",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-carrier/R1206.kicad_mod": "99344b318cd0aced7bc3f30e9519b7f398377e0e3bde201bfa4b94ae3cb237a1",
+        "hw/parts/blind-carrier/blind-carrier.pretty/R1206.kicad_mod": "99344b318cd0aced7bc3f30e9519b7f398377e0e3bde201bfa4b94ae3cb237a1"
+      }
+    },
+    {
+      "compiled_alias": "blind-carrier:R2512",
+      "source": "hw/parts/blind-carrier/R2512.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-carrier/blind-carrier.pretty/R2512.kicad_mod"
+      ],
+      "parts": [
+        "WSL2512R0100FEA"
+      ],
+      "body_lead_bounds_mm": [
+        -3.302,
+        -1.717,
+        3.302,
+        1.717
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.vishay.com/docs/30100/wsl.pdf",
+      "source_location": "Document30100 revision23-Nov-2023 p2 WSL2512 L6.35+/-.254 W3.18+/-.254; terminal axis X.",
+      "notes": "Copper extends beyond body in both axes.",
+      "main_instances": 0,
+      "instances_by_board": {
+        "primary": 1
+      },
+      "reviewed_pad_sha256": "f008dc070d74e56d7faa7449357e0eb3779481e99ae8538b8c55afdab0667779",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-carrier/R2512.kicad_mod": "20a6f84df68d011ef5eb42d9f32387363b7e00348b63a71d511bd46647128c45",
+        "hw/parts/blind-carrier/blind-carrier.pretty/R2512.kicad_mod": "20a6f84df68d011ef5eb42d9f32387363b7e00348b63a71d511bd46647128c45"
+      }
+    },
+    {
+      "compiled_alias": "blind-carrier:SOD-123_L2.8-W1.8-LS3.7-RD",
+      "source": "hw/parts/blind-carrier/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-carrier/blind-carrier.pretty/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod"
+      ],
+      "parts": [
+        "BZT52C4V7"
+      ],
+      "body_lead_bounds_mm": [
+        -1.925,
+        -0.85,
+        1.925,
+        0.85
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://datasheet.lcsc.com/datasheet/pdf/748504625e418aa84c5305d597e87d6d.pdf",
+      "source_location": "JSCJ BZT52C Rev2.1 p4; terminal E1=3.85 max along X; body D=1.70 max along Y.",
+      "notes": "Manufacturer-authored supplier-hosted sheet; package page visually inspected.",
+      "main_instances": 0,
+      "instances_by_board": {
+        "primary": 3
+      },
+      "reviewed_pad_sha256": "2337eb32e18f56e3cbbf383b440efeef58792e0ee81a9ae521064bdd8d0151fb",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-carrier/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod": "b45959bd252c2e3e3a2a106979997348e7f6813acc970f9a77ed0170c4af3647",
+        "hw/parts/blind-carrier/blind-carrier.pretty/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod": "b45959bd252c2e3e3a2a106979997348e7f6813acc970f9a77ed0170c4af3647"
+      }
+    },
+    {
+      "compiled_alias": "blind-control-io:R0402",
+      "source": "hw/parts/blind-control-io/R0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-control-io/blind-control-io.pretty/R0402.kicad_mod"
+      ],
+      "parts": [
+        "0402WGF1001TCE",
+        "0402WGF1003TCE",
+        "0402WGF220JTCE",
+        "0402WGF4701TCE"
+      ],
+      "body_lead_bounds_mm": [
+        -0.55,
+        -0.275,
+        0.55,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "Royalohm 0402 dimension row; mixed Yageo RC0402FR-0713K7L has smaller 1.05 x .55 maximum. Terminal axis X.",
+      "notes": "",
+      "main_instances": 28,
+      "instances_by_board": {
+        "main": 28,
+        "primary": 2
+      },
+      "reviewed_pad_sha256": "f17eacd4b7f6460d66f649d3de515dc0586dfc95489b4402f4cebe13de913c4c",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-control-io/R0402.kicad_mod": "6a1e9240c379119599e080dd0c8f49ccba7dcd200d06c7bebbcc0233fe66cef4",
+        "hw/parts/blind-control-io/blind-control-io.pretty/R0402.kicad_mod": "6a1e9240c379119599e080dd0c8f49ccba7dcd200d06c7bebbcc0233fe66cef4"
+      }
+    },
+    {
+      "compiled_alias": "blind-control-io:SOT-363_L2.0-W1.3-P0.65-LS2.1-BR",
+      "source": "hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-control-io/blind-control-io.pretty/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod"
+      ],
+      "parts": [
+        "SN74LVC2G17DCKR"
+      ],
+      "body_lead_bounds_mm": [
+        -1.2,
+        -1.225,
+        1.2,
+        1.225
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced maximum including specified mold allowance",
+      "source_url": "https://www.ti.com/lit/ds/symlink/sn74lvc2g17.pdf",
+      "source_location": "PDF p20 DCK0006A 4214835/D 11/2024; two pad columns X; body long axis Y.",
+      "notes": "Lead X max2.4; body Y2.15 +2*.15 flash=2.45.",
+      "main_instances": 2,
+      "instances_by_board": {
+        "main": 2
+      },
+      "reviewed_pad_sha256": "14b60dd412644ab128e330b4a5b0c9e8ef587e559a29b810b45492d1f9cfa336",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "966573657073900efd4679784c4cd43554c04741a4f132641c0690e1cc88c2e5",
+        "hw/parts/blind-control-io/blind-control-io.pretty/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "966573657073900efd4679784c4cd43554c04741a4f132641c0690e1cc88c2e5"
+      }
+    },
+    {
+      "compiled_alias": "blind-control-io:SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1",
+      "source": "hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-control-io/blind-control-io.pretty/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod"
+      ],
+      "parts": [
+        "TPD2E2U06DRLR"
+      ],
+      "body_lead_bounds_mm": [
+        -0.85,
+        -1.0,
+        0.85,
+        1.0
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced maximum including specified mold allowance",
+      "source_url": "https://www.ti.com/lit/ds/symlink/tpd2e2u06.pdf",
+      "source_location": "PDF p17 DRL0005A 4220753/E11/2024; pad columns X; body length Y.",
+      "notes": "Lead X1.7; note3 body length Y1.7+2*.15=2.0. Primary page visually inspected.",
+      "main_instances": 3,
+      "instances_by_board": {
+        "main": 3
+      },
+      "reviewed_pad_sha256": "1f876773955733023b1218f8bb9f89c80503bbea3b3ceb1f3e44a5a9c8a78f28",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod": "369c8b0362013c682fc3b8a4221b77591f5018a1f45c895c701772dc845b6c16",
+        "hw/parts/blind-control-io/blind-control-io.pretty/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod": "369c8b0362013c682fc3b8a4221b77591f5018a1f45c895c701772dc845b6c16"
+      }
+    },
+    {
+      "compiled_alias": "blind-core:C0402",
+      "source": "hw/parts/blind-core/C0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-core/blind-core.pretty/C0402.kicad_mod"
+      ],
+      "parts": [
+        "0402B223K500NT"
+      ],
+      "body_lead_bounds_mm": [
+        -0.525,
+        -0.275,
+        0.525,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://fhcomp.com/en/product_info/?prod_code=0402B223K500NT",
+      "source_location": "Exact FH table; terminal axis X. Power alias also includes 0402B102K500NT with identical exact dimensions.",
+      "notes": "Exact FH22n dimensional table; no sibling substitution.",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "519198afa25fdb7bd68688284bd487fa932125c655627eb8d9c417c58cf65518",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-core/C0402.kicad_mod": "f0b0992cb310dc1c82171aa055e88ab6ee52e1f11e6fca04a7c7828f139f0590",
+        "hw/parts/blind-core/blind-core.pretty/C0402.kicad_mod": "f0b0992cb310dc1c82171aa055e88ab6ee52e1f11e6fca04a7c7828f139f0590"
+      }
+    },
+    {
+      "compiled_alias": "blind-core:CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD",
+      "source": "hw/parts/blind-core/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-core/blind-core.pretty/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod"
+      ],
+      "parts": [
+        "UCM1E221MCL1GS"
+      ],
+      "body_lead_bounds_mm": [
+        -3.9,
+        -3.4,
+        3.9,
+        3.4
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced conservative maximum projection",
+      "source_url": "https://www.nichicon.com/getmedia/f527b3ab-1197-491e-9b2c-7ca4b61e1e20/e-ucm5-11.pdf",
+      "source_location": "CAT.8100O p1 standard6.3x7.7; exact part UCM1E221MCL1GS p2. Local nichicon-ucm-courtyard.pdf.",
+      "notes": "Base B/C6.6+/-.2 and canD6.3+/-.5 give6.8 square; allow .5 max terminal projection each end along footprint X, giving7.8. Actual X copper8.84 governs. Standard CL height7.7+.3=8.0; not vibration CS variant.",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "163995473f7378b7fb0ebd6a007eec47d61a82c77149fe492dc7b2cd2fae0686",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-core/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod": "bab2b30ebcc9b4a3e3fb6b6e016e0144e40ebcc03891d69074602ca0726d1daa",
+        "hw/parts/blind-core/blind-core.pretty/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod": "bab2b30ebcc9b4a3e3fb6b6e016e0144e40ebcc03891d69074602ca0726d1daa"
+      }
+    },
+    {
+      "compiled_alias": "blind-core:QFN-24_L4.0-W4.0-P0.50-BL-EP2.6",
+      "source": "hw/parts/blind-core/QFN-24_L4.0-W4.0-P0.50-BL-EP2.6.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-core/blind-core.pretty/QFN-24_L4.0-W4.0-P0.50-BL-EP2.6.kicad_mod"
+      ],
+      "parts": [
+        "MAX17320G22+"
+      ],
+      "body_lead_bounds_mm": [
+        -2.05,
+        -2.05,
+        2.05,
+        2.05
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://mds.analog.com/api/public/content/tqfn_21-0139.pdf",
+      "source_location": "21-0139 Rev V pp2-3; 24L D/E max4.10; T2444-4C; note14 plus code equivalence. Local max-outline-courtyard.pdf.",
+      "notes": "All three primary pages visually inspected; no excluded molding allowance in notes.",
+      "main_instances": 0,
+      "instances_by_board": {
+        "primary": 1
+      },
+      "reviewed_pad_sha256": "5d3b61c394bfdaa64d2e301e7117f830cbc6fd83a3a1dab5d62f98c2e474cf03",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-core/QFN-24_L4.0-W4.0-P0.50-BL-EP2.6.kicad_mod": "f5fd27d119f5f66fb47de9516c40b3a5172455d8b6def312e0792d5922de5274",
+        "hw/parts/blind-core/blind-core.pretty/QFN-24_L4.0-W4.0-P0.50-BL-EP2.6.kicad_mod": "f5fd27d119f5f66fb47de9516c40b3a5172455d8b6def312e0792d5922de5274"
+      }
+    },
+    {
+      "compiled_alias": "blind-core:R0402",
+      "source": "hw/parts/blind-core/R0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-core/blind-core.pretty/R0402.kicad_mod"
+      ],
+      "parts": [
+        "0402WGF1201TCE"
+      ],
+      "body_lead_bounds_mm": [
+        -0.55,
+        -0.275,
+        0.55,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "Royalohm 0402 dimension row; mixed Yageo RC0402FR-0713K7L has smaller 1.05 x .55 maximum. Terminal axis X.",
+      "notes": "",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "6a367460bd1498422e26a9673558800f2f75af82ff712fa6d2e0aa5dab940c98",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-core/R0402.kicad_mod": "93b4147c36222ecff2ef6a6543ea4d59c29350bf9c2a05c52d323e5c74a3ec36",
+        "hw/parts/blind-core/blind-core.pretty/R0402.kicad_mod": "93b4147c36222ecff2ef6a6543ea4d59c29350bf9c2a05c52d323e5c74a3ec36"
+      }
+    },
+    {
+      "compiled_alias": "blind-core:VQFN-HR-9_L2.0-W1.5-P0.50-TL",
+      "source": "hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-core/blind-core.pretty/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod"
+      ],
+      "parts": [
+        "TPS62902RPJR"
+      ],
+      "body_lead_bounds_mm": [
+        -0.8,
+        -0.96,
+        0.8,
+        1.14
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.ti.com/lit/ds/symlink/tps62902.pdf",
+      "source_location": "PDF p44 RPJ0009A4224505/A10/2018; body1.6X x2.1Y; source body centre(0,+.09).",
+      "notes": "Source pad1(-.63,-.16),3(-.63,.84),7(.5,-.84) and nominal outlineY[-.91,1.09] confirm +.09 body offset; do not recenter envelope at origin.",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "7f5f2f80853e96c6676cad7ee62d741b4d06efdfc1ea6677a5514039df14bdf7",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod": "8c6c39072cb604336a9d34ea2f8d30c57f8b3f24cd8619a9d1cb9523a24cc11b",
+        "hw/parts/blind-core/blind-core.pretty/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod": "8c6c39072cb604336a9d34ea2f8d30c57f8b3f24cd8619a9d1cb9523a24cc11b"
+      }
+    },
+    {
+      "compiled_alias": "blind-power:C0402",
+      "source": "hw/parts/blind-power/C0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-power/blind-power.pretty/C0402.kicad_mod"
+      ],
+      "parts": [
+        "0402B102K500NT",
+        "0402B473K500NT"
+      ],
+      "body_lead_bounds_mm": [
+        -0.525,
+        -0.275,
+        0.525,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum; FH47n indexed primary table",
+      "source_url": "https://fhcomp.com/en/product_info/?prod_code=0402B473K500NT",
+      "source_location": "Exact FH table; terminal axis X. Power alias also includes 0402B102K500NT with identical exact dimensions.",
+      "notes": "",
+      "main_instances": 6,
+      "instances_by_board": {
+        "main": 6
+      },
+      "reviewed_pad_sha256": "c850bd67f476c13de300a969500abc3c4824f8e60511e60cb312c9d4655878f3",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-power/C0402.kicad_mod": "90f4ed016eaa73fd6e326b84585f944eb3c058caaf486a3331980359fcf5502e",
+        "hw/parts/blind-power/blind-power.pretty/C0402.kicad_mod": "90f4ed016eaa73fd6e326b84585f944eb3c058caaf486a3331980359fcf5502e"
+      }
+    },
+    {
+      "compiled_alias": "blind-power:C0805",
+      "source": "hw/parts/blind-power/C0805.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-power/blind-power.pretty/C0805.kicad_mod"
+      ],
+      "parts": [
+        "CL21A226MAYNNNE",
+        "CL21A475KAQNNNE"
+      ],
+      "body_lead_bounds_mm": [
+        -1.1,
+        -0.725,
+        1.1,
+        0.725
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://product.samsungsem.com/mlcc/CL21A226MAYNNN.do",
+      "source_location": "Exact Samsung dimensional table; terminal axis X.",
+      "notes": "",
+      "main_instances": 5,
+      "instances_by_board": {
+        "main": 5
+      },
+      "reviewed_pad_sha256": "23a2320a906442ec70b5b22227b1ac2b4518f9577b8e314dbfd103fb803bcb9e",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-power/C0805.kicad_mod": "2a1f2b5fa430e01039e558e25d23b514b6de12b192f04cb0a3cde2de6f2c0a53",
+        "hw/parts/blind-power/blind-power.pretty/C0805.kicad_mod": "2a1f2b5fa430e01039e558e25d23b514b6de12b192f04cb0a3cde2de6f2c0a53"
+      }
+    },
+    {
+      "compiled_alias": "blind-power:IND-SMD_L7.2-W6.6_GPSR07X0",
+      "source": "hw/parts/blind-power/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-power/blind-power.pretty/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod"
+      ],
+      "parts": [
+        "CYA0630-2.2UH"
+      ],
+      "body_lead_bounds_mm": [
+        -3.65,
+        -3.45,
+        3.65,
+        3.45
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://datasheet.lcsc.com/datasheet/pdf/e3a633cb354465e60aea5c2a2be3f1c0.pdf?productCode=C5189746",
+      "source_location": "SHOUHAN exact CYA0630-2.2UH PDF p2; A7.0+/-.3 terminal axis X, B6.6+/-.3 along Y. Local shouhan-cya0630.pdf.",
+      "notes": "Manufacturer-authored supplier-hosted drawing visually inspected. Different from Sunlord alternative.",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "2edf3f1138392aa7ac9b8f5136f1877a773eb4b99c7253a69ed4760ccbc972e3",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-power/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod": "6d55d512af142c665f6d3007dab0b418740e55f3db733e724093f0eb4fedb005",
+        "hw/parts/blind-power/blind-power.pretty/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod": "6d55d512af142c665f6d3007dab0b418740e55f3db733e724093f0eb4fedb005"
+      }
+    },
+    {
+      "compiled_alias": "blind-power:R0402",
+      "source": "hw/parts/blind-power/R0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-power/blind-power.pretty/R0402.kicad_mod"
+      ],
+      "parts": [
+        "0402WGF1000TCE",
+        "0402WGF3012TCE",
+        "0402WGF3302TCE",
+        "0402WGF5231TCE",
+        "RC0402FR-0713K7L"
+      ],
+      "body_lead_bounds_mm": [
+        -0.55,
+        -0.275,
+        0.55,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "Royalohm 0402 dimension row; mixed Yageo RC0402FR-0713K7L has smaller 1.05 x .55 maximum. Terminal axis X.",
+      "notes": "",
+      "main_instances": 6,
+      "instances_by_board": {
+        "main": 6,
+        "primary": 2
+      },
+      "reviewed_pad_sha256": "8a49b46c4881a668f5ae76f2a2dbf178f8afeaa858a22c2527ce7d745b9afd59",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-power/R0402.kicad_mod": "ba5373f379a004882afcfb6eb9ceb772c8c93b0e28d8267b201ed54a8ee4fa4d",
+        "hw/parts/blind-power/blind-power.pretty/R0402.kicad_mod": "ba5373f379a004882afcfb6eb9ceb772c8c93b0e28d8267b201ed54a8ee4fa4d"
+      }
+    },
+    {
+      "compiled_alias": "blind-power:SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR",
+      "source": "hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-power/blind-power.pretty/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod"
+      ],
+      "parts": [
+        "AO3400A",
+        "MMBT3906LT1G"
+      ],
+      "body_lead_bounds_mm": [
+        -1.5,
+        -1.677,
+        1.5,
+        1.677
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "conditional union due to onsemi excluded flash without numeric limit",
+      "source_url": "https://www.aosmd.com/sites/default/files/res/package/SOT23.pdf",
+      "source_location": "AOS PO-00001 N p1 and onsemi MMBT3906 case318 AU14-Aug-2024 p9; local terminal columns run X, body D runs Y.",
+      "notes": "AOS E leadmax3.0, D3.10+2*.127 nonlead flash=3.354. Onsemi D3.04 excludes unbounded flash; proposed .15 per body side gives3.34, within AOS union. This .15 is an engineering assumption, not onsemi limit. Other source https://www.onsemi.com/pdf/datasheet/mmbt3906lt1-d.pdf .",
+      "main_instances": 8,
+      "instances_by_board": {
+        "main": 8
+      },
+      "reviewed_pad_sha256": "c5270733049e2892b6937eef0097fd49ad47fad186221b8f7e047f61609333e3",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod": "24bff9c773a4e0b9fbeea5eb10a7efaaa98fcf2deb49ec3cb4bd0b07d1598064",
+        "hw/parts/blind-power/blind-power.pretty/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod": "24bff9c773a4e0b9fbeea5eb10a7efaaa98fcf2deb49ec3cb4bd0b07d1598064"
+      }
+    },
+    {
+      "compiled_alias": "blind-regen:R0402",
+      "source": "hw/parts/blind-regen/R0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-regen/blind-regen.pretty/R0402.kicad_mod"
+      ],
+      "parts": [
+        "0402WGF3303TCE",
+        "0402WGF8202TCE"
+      ],
+      "body_lead_bounds_mm": [
+        -0.55,
+        -0.275,
+        0.55,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "Royalohm 0402 dimension row; mixed Yageo RC0402FR-0713K7L has smaller 1.05 x .55 maximum. Terminal axis X.",
+      "notes": "",
+      "main_instances": 2,
+      "instances_by_board": {
+        "main": 2
+      },
+      "reviewed_pad_sha256": "3f7413e0d4bd4e67f41893c3b7b72b23fadcee22f7468cbfee8e8999903411e5",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-regen/R0402.kicad_mod": "da62563cb5f0b2e6446662959a34703cd9751c2b63ee0d948407aaf417c4934d",
+        "hw/parts/blind-regen/blind-regen.pretty/R0402.kicad_mod": "da62563cb5f0b2e6446662959a34703cd9751c2b63ee0d948407aaf417c4934d"
+      }
+    },
+    {
+      "compiled_alias": "blind-regen:R0603",
+      "source": "hw/parts/blind-regen/R0603.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-regen/blind-regen.pretty/R0603.kicad_mod"
+      ],
+      "parts": [
+        "0603WAF1005T5E"
+      ],
+      "body_lead_bounds_mm": [
+        -0.85,
+        -0.45,
+        0.85,
+        0.45
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "0603 L=1.6+/-.1 W=.8+/-.1; terminal axis X.",
+      "notes": "",
+      "main_instances": 2,
+      "instances_by_board": {
+        "main": 2
+      },
+      "reviewed_pad_sha256": "b4a849e2d4173443f798c5c622aa5eca3307cb26f8415c13c8a3b9b048185b8f",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-regen/R0603.kicad_mod": "98b4d7e829f16bdd19de99a6a5aa3c68920b55480db7a554b334012a5e6a0f04",
+        "hw/parts/blind-regen/blind-regen.pretty/R0603.kicad_mod": "98b4d7e829f16bdd19de99a6a5aa3c68920b55480db7a554b334012a5e6a0f04"
+      }
+    },
+    {
+      "compiled_alias": "blind-regen:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+      "source": "hw/parts/blind-regen/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-regen/blind-regen.pretty/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod"
+      ],
+      "parts": [
+        "TPS70933DBVR"
+      ],
+      "body_lead_bounds_mm": [
+        -1.5,
+        -1.775,
+        1.5,
+        1.775
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced maximum including specified mold allowance",
+      "source_url": "https://www.ti.com/lit/ds/symlink/tps709.pdf",
+      "source_location": "PDF p33 DBV0005A4214839/K08/2024; lead X, body long Y.",
+      "notes": "BodyY3.05+2*.25; identical family to previously reviewed TPS70950.",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "4106c449cff6826c1d632d55f0d90473603aed0a8e592a1804a12ee6e5b47495",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-regen/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": "253efd559578b188bfaab5ec828a87e57468b09c051cd54211442961d3db1f79",
+        "hw/parts/blind-regen/blind-regen.pretty/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": "253efd559578b188bfaab5ec828a87e57468b09c051cd54211442961d3db1f79"
+      }
+    },
+    {
+      "compiled_alias": "blind-regen:SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL",
+      "source": "hw/parts/blind-regen/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-regen/blind-regen.pretty/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod"
+      ],
+      "parts": [
+        "TMP302ADRLR"
+      ],
+      "body_lead_bounds_mm": [
+        -1.0,
+        -0.85,
+        1.0,
+        0.85
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced maximum including specified mold allowance",
+      "source_url": "https://www.ti.com/lit/ds/symlink/tmp302.pdf",
+      "source_location": "PDF p17 DRL0006A4223266/F11/2024. Source terminal rows run Y, 90 degrees to drawing; local body long X.",
+      "notes": "LocalX body1.7+2*.15=2.0; localY lead1.7. Do not copy the unrotated TPD2E2U06 box.",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "d927978af5d411a2deff7b17e3806d7ef0b492f421527ad30db531170c0b8547",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-regen/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod": "e765b4a4499bd114e35ec790042c2d4677ec268613e32a66c6b647f7e4dfd2bb",
+        "hw/parts/blind-regen/blind-regen.pretty/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod": "e765b4a4499bd114e35ec790042c2d4677ec268613e32a66c6b647f7e4dfd2bb"
+      }
+    },
+    {
+      "compiled_alias": "blind-regen:TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR",
+      "source": "hw/parts/blind-regen/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-regen/blind-regen.pretty/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod"
+      ],
+      "parts": [
+        "TLV6710DDCR"
+      ],
+      "body_lead_bounds_mm": [
+        -1.525,
+        -1.525,
+        1.525,
+        1.525
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.ti.com/lit/ds/symlink/tlv6710.pdf",
+      "source_location": "PDF p25 DDC0006A4214841/E08/2024; lead X/bodylongY3.05 max.",
+      "notes": "No excluded molding allowance in this drawing notes; do not import DBV allowance.",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "13af1bf4cf063c1a5beb922690f77cacf052df0e7492cf345c915982c9fa127f",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-regen/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": "7be5ebea765b6b911345e27cee5a0c6ac874e5b481aba906d95ad1342832f764",
+        "hw/parts/blind-regen/blind-regen.pretty/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": "7be5ebea765b6b911345e27cee5a0c6ac874e5b481aba906d95ad1342832f764"
+      }
+    },
+    {
+      "compiled_alias": "blind-regulator:R0402",
+      "source": "hw/parts/blind-regulator/R0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-regulator/blind-regulator.pretty/R0402.kicad_mod"
+      ],
+      "parts": [
+        "0402WGF2612TCE"
+      ],
+      "body_lead_bounds_mm": [
+        -0.55,
+        -0.275,
+        0.55,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "Royalohm 0402 dimension row; mixed Yageo RC0402FR-0713K7L has smaller 1.05 x .55 maximum. Terminal axis X.",
+      "notes": "",
+      "main_instances": 2,
+      "instances_by_board": {
+        "main": 2
+      },
+      "reviewed_pad_sha256": "4ca64594c40f4b0600dd1a3b43e41761379e49e6f70990d9023d4015009fac34",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-regulator/R0402.kicad_mod": "d2bee8460582d318d58ce7971a0884a77fc7a14eb5ead0fe06051df7f8e83ada",
+        "hw/parts/blind-regulator/blind-regulator.pretty/R0402.kicad_mod": "d2bee8460582d318d58ce7971a0884a77fc7a14eb5ead0fe06051df7f8e83ada"
+      }
+    },
+    {
+      "compiled_alias": "blind-supervisor:C0402",
+      "source": "hw/parts/blind-supervisor/C0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-supervisor/blind-supervisor.pretty/C0402.kicad_mod"
+      ],
+      "parts": [
+        "CL05C121JB5NNNC"
+      ],
+      "body_lead_bounds_mm": [
+        -0.525,
+        -0.275,
+        0.525,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://product.samsungsem.com/mlcc/CL05C121JB5NNN.do",
+      "source_location": "Exact Samsung dimensional table; terminal axis X.",
+      "notes": "",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "4e97521407c8ab61b2eabf8d947a30134d2fbff9f70a2e95a5640b5a8d13d4f6",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-supervisor/C0402.kicad_mod": "303351d40babf9e8529180808941b8e941e851ebf11d81794bcdef006f409911",
+        "hw/parts/blind-supervisor/blind-supervisor.pretty/C0402.kicad_mod": "303351d40babf9e8529180808941b8e941e851ebf11d81794bcdef006f409911"
+      }
+    },
+    {
+      "compiled_alias": "blind-supervisor:SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR",
+      "source": "hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-supervisor/blind-supervisor.pretty/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod"
+      ],
+      "parts": [
+        "SN74AUP1G97DCKR"
+      ],
+      "body_lead_bounds_mm": [
+        -1.2,
+        -1.225,
+        1.2,
+        1.225
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced maximum including specified mold allowance",
+      "source_url": "https://www.ti.com/lit/ds/symlink/sn74aup1g97.pdf",
+      "source_location": "PDF p27 DCK0006A4214835/D11/2024; padcolumns X, bodylongY.",
+      "notes": "Same body as LVC2G17 but different copper means different X courtyard.",
+      "main_instances": 3,
+      "instances_by_board": {
+        "main": 3
+      },
+      "reviewed_pad_sha256": "b65c1ceab5a09712cd5b672a72f8a8bc52b19e634af3a8cae959e856e628bf40",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "fabd45022cfe20cc25703dd6a8faa9be5d686f4ace30b28ca057c1a15a7419f8",
+        "hw/parts/blind-supervisor/blind-supervisor.pretty/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "fabd45022cfe20cc25703dd6a8faa9be5d686f4ace30b28ca057c1a15a7419f8"
+      }
+    },
+    {
+      "compiled_alias": "blind-supervisor:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR",
+      "source": "hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-supervisor/blind-supervisor.pretty/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod"
+      ],
+      "parts": [
+        "TPS3808G33DBVR"
+      ],
+      "body_lead_bounds_mm": [
+        -1.5,
+        -1.775,
+        1.5,
+        1.775
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced maximum including specified mold allowance",
+      "source_url": "https://www.ti.com/lit/ds/symlink/tps3808.pdf",
+      "source_location": "PDF p36 DBV0006A4214840/G08/2024; terminalspanX3.0/bodylengthY3.05.",
+      "notes": "BodyY3.05+2*.25=3.55; different actual pads from TPS709.",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "432e5c0da678705191eb1f2c0e7f27313b76202645674514fd7e9e9f019d5b6c",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": "c17ced56f615a74f1d7cdcc157a29e4354fc7a6f3b169b25d2eafccf95a45926",
+        "hw/parts/blind-supervisor/blind-supervisor.pretty/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": "c17ced56f615a74f1d7cdcc157a29e4354fc7a6f3b169b25d2eafccf95a45926"
+      }
+    },
+    {
+      "compiled_alias": "blind-supervisor:VSON-10_L3.0-W3.0-P0.50-TL-EP",
+      "source": "hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-supervisor/blind-supervisor.pretty/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod"
+      ],
+      "parts": [
+        "TPS3430WDRCR"
+      ],
+      "body_lead_bounds_mm": [
+        -1.55,
+        -1.55,
+        1.55,
+        1.55
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "sourced dimensional maximum",
+      "source_url": "https://www.ti.com/lit/ds/symlink/tps3430.pdf",
+      "source_location": "PDF p34 DRC0010J4218878/B07/2018; square body max3.1.",
+      "notes": "Full 0.10 mm custom polygon stroke is included; source copper is unchanged.",
+      "main_instances": 1,
+      "instances_by_board": {
+        "main": 1
+      },
+      "reviewed_pad_sha256": "3e5579cbb8acfc1b499c09ac943c004adb79317346a2693b6b3755e6d30993cc",
+      "replace_courtyard_sha256": {
+        "hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": "b506d298086354eb8d61dcf6a413d558d3613a026b6472e75c68c994e03afb69",
+        "hw/parts/blind-supervisor/blind-supervisor.pretty/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": "b506d298086354eb8d61dcf6a413d558d3613a026b6472e75c68c994e03afb69"
+      }
     }
   ]
 }

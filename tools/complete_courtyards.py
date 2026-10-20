@@ -16,6 +16,22 @@ NS=uuid.UUID('af628b4b-9955-5031-9a01-58eb28521ed7')
 def courtyard_items(fp):
     return [v for v in fp if isinstance(v,list) and children(v,'layer') and one(v,'layer')[1]=='F.CrtYd']
 
+def geometry_hash(items):
+    """Hash parsed geometry, including pad types, drill sizes and pin numbers."""
+    return hashlib.sha256(dumps(node('geometry',*items)).encode()).hexdigest()
+
+def update_outline(fp,expected,entry,path,check):
+    existing=courtyard_items(fp)
+    if existing==[expected]:return False
+    if check:raise ValueError('Missing or unreviewed courtyard: '+path)
+    if existing:
+        originals=entry.get('replace_courtyard_sha256',{})
+        if geometry_hash(existing)!=originals.get(path):
+            raise ValueError('Existing courtyard differs from reviewed original: '+path)
+    fp[:]=[item for item in fp if item not in existing]
+    fp.append(expected)
+    return True
+
 def pad_bounds(fp):
     points=[]
     for pad in children(fp,'pad'):
@@ -61,18 +77,19 @@ def main():
     plan=json.loads(PLAN.read_text());results=[];pending=[]
     for entry in plan['footprints']:
         path=ROOT/entry['source'];fp=parse(path.read_text());box=bounds(fp,entry)
-        expected=parse(dumps(drawing(box,entry['source'])));existing=courtyard_items(fp)
-        if existing and existing!=[expected]:raise ValueError('Existing courtyard differs: '+entry['source'])
-        if a.check and not existing:raise ValueError('Missing courtyard: '+entry['source'])
-        if not existing:fp.append(expected);pending.append((path,dumps(fp)+'\n'))
+        pads=children(fp,'pad')
+        if 'reviewed_pad_sha256' in entry and geometry_hash(pads)!=entry['reviewed_pad_sha256']:
+            raise ValueError('Pad geometry differs from reviewed source: '+entry['source'])
+        expected=parse(dumps(drawing(box,entry['source'])))
+        if update_outline(fp,expected,entry,entry['source'],a.check):
+            pending.append((path,dumps(fp)+'\n'))
         # Table-specific mirror libraries are explicit, never found by a broad glob.
         for mirror in entry.get('mirrors',[]):
-            mp=ROOT/mirror;mf=parse(mp.read_text());mc=courtyard_items(mf)
-            if pad_bounds(mf)!=pad_bounds(fp):raise ValueError('Mirror pad geometry differs: '+mirror)
+            mp=ROOT/mirror;mf=parse(mp.read_text())
+            if children(mf,'pad')!=pads:raise ValueError('Mirror pad geometry differs: '+mirror)
             # Preserve the mirror's own library identity/model path.
-            if mc and mc!=[expected]:raise ValueError('Mirror courtyard differs: '+mirror)
-            if a.check and not mc:raise ValueError('Missing mirror courtyard: '+mirror)
-            if not mc:mf.append(expected);pending.append((mp,dumps(mf)+'\n'))
+            if update_outline(mf,expected,entry,mirror,a.check):
+                pending.append((mp,dumps(mf)+'\n'))
         results.append({'source':entry['source'],'body_lead_bounds_mm':entry['body_lead_bounds_mm'],
             'pad_bounds_mm':pad_bounds(fp),'courtyard_bounds_mm':box,'envelope_status':entry['envelope_status']})
     # Validate all entries before making any source change.

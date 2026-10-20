@@ -13,8 +13,8 @@ followed by an eight-unit build only after their tests pass.
 |---|---|---|
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | 196 circuit features, 609 pin identities and 142 net partitions; native eleven-sheet KiCad schematic; 54 × 68.5 mm four-layer placement with USB tab | Correct remaining inherited clearance envelopes, refine placement, route copper, resolve manufacturing/thermal rules and ERC/DRC findings |
-| Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Clearance repair/repacking, routing, holder fastening, insulation and qualified protection settings |
+| Main controller | 196 circuit features, 609 pin identities and 142 net partitions; native eleven-sheet KiCad schematic; 54 × 68.5 mm four-layer placement with USB tab | Route copper, refine critical loops, resolve manufacturing/thermal rules and ERC/DRC findings |
+| Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Routing, holder fastening, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session and settling; source-timed faults and supervised motor-off path | Physical reference/commissioning, final hardware qualification, idle local-button wake and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the real encrypted motion transport to the group controller and then the live HA service |
 | Radio transport | Pinned C6 Thread evaluation build; real local DTLS fixtures, strict clock/freshness checks and explicit motion session | Commissioned identities/keys, seven-peer motion adapter, RF bandwidth/power measurements and hub compatibility |
@@ -45,13 +45,14 @@ Seven explicit ERC findings remain documented. Main and carrier circuits also ha
 physical-pin contracts and injected-fault checks; the first placement checkpoint
 preserves all circuit connections across normal and frozen builds.
 
-All electrical footprints have clearance outlines, but the subsequent audit found
-80 main-board instances, 24 primary-carrier instances and three companion fuses whose
-inherited outlines omit pad tips. Manufacturer research covers 30 replacement aliases;
-source correction and renewed placement checks are in progress. Two additional package
-families need explicit molding allowances, bringing the total conditional families to
-four. A zero overlap count against an incomplete outline set is **not** full clearance
-acceptance. See the [clearance record](electrical/footprint-clearances.md).
+All 256 electrical footprints across the three boards have clearance outlines
+that contain their actual pads. The 45-family source review corrected 178 main,
+30 primary and three companion instances. The larger envelopes required 13 small
+main-board moves, six fuse moves and five small carrier-part adjustments; board
+sizes and mechanical anchors are unchanged. Actual KiCad DRC reports zero
+courtyard/keepout findings on all three boards. Four package families still use
+explicit molding/outline allowances. Copper routing and the remaining manufacturing
+findings are separate unfinished work. See the [clearance record](electrical/footprint-clearances.md).
 
 The host motion transport has 37 real local DTLS/schema/clock tests. Its explicit
 motion client distinguishes queued requests from fresh readiness and never silently
@@ -84,10 +85,10 @@ allocation and seven-peer failure propagation are the current software work.
 
 ## Next work
 
-1. Complete the clearance-envelope repair and coordinated main/carrier placement.
+1. Establish manufacturing rules and route/review critical power and sensing paths.
 2. Finish holder retention, wiring details and a complete print/fastener budget.
 3. Complete and test the seven-peer encrypted motion bridge.
-4. Route and review all three boards, complete manufacturing outputs and obtain a quote.
+4. Complete all three routed boards, manufacturing outputs and an assembly quote.
 5. Test two physical prototypes before committing to the eight-unit build.
 
 The original e8s repository is preserved. Inherited PD12V6 designs are labelled

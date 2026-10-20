@@ -19,17 +19,20 @@ The protection IC, FET pair, shunt, balancing parts and fuses occupy the primary
 lower end strip. Signal-entry clamps and retained wire landings occupy its
 upper end. This placement is a starting point for routing. In particular, the
 shunt-to-gauge Kelvin pair, cell-sense filters, FET gate paths and current-path
-copper still need a routing review. The primary now has courtyards on all 50
-electrical footprints, and the companion has all 10. The shared passive
-outlines include the reviewed maximum body size and pad extent. Courtyard clearance does not establish
-acceptable FET, fuse, shunt or holder temperature.
+copper still need a routing review. All 50 primary and 10 companion electrical
+footprints have courtyards enclosing their actual pads. The 30 primary and
+three companion instances covered by the shared envelope manifest also match
+its reviewed maximum body/lead dimensions and pad extents, with a 0.25 mm
+clearance margin. The AON7400A molding allowance remains conditional because
+the manufacturer's package limits exclude molding flash.
 
-This is complete **outline coverage**, not complete envelope validation.
-A follow-up audit found existing imported courtyards that describe only the
-nominal body and omit some pad tips, including the MAX17320 gauge and the
-companion fuses. Their repair is a separate pending footprint review. Zero
-reported courtyard collisions therefore does not yet prove sufficient physical
-assembly clearance, even though the newly added passive outlines are reviewed.
+The revised envelopes required moving all six branch fuses 0.5 mm toward the
+lower board edge and rearranging five small parts around the primary gauge.
+The holders, board outline, mounting holes, support areas, raw links and
+protected harness landings are unchanged. Actual KiCad DRC reports no
+courtyard overlap, malformed/missing courtyard or keepout findings. This
+does not establish solderability, manufactured fit or acceptable FET, fuse,
+shunt and holder temperature.
 
 Two bare support bridges on the companion join its interrupted lower support
 lands to the cassette wall. Their local rectangles are X=26.4–29.6 and
@@ -47,13 +50,18 @@ connections.
 `checks.py` examines the actual KiCad boards, not just the placement plan. It
 checks every electrical component's position, rotation and side, the unchanged
 pin graph, holder polarity, the rounded outline, thickness, mounting holes,
-both-layer support/RF rule areas and raw-link channel alignment. Fourteen altered
+both-layer support/RF rule areas and raw-link channel alignment. Sixteen altered
 board cases must be rejected: reversed holder, plated mounting hole, duplicate
 electrical address, changed outline corner, missing RF area, allowed copper in
 that area, a shrunken RF area, a complete raw-to-protected positive net merge,
-missing courtyard, a companion-only bridge copied onto the primary, and
+missing courtyard, a shrunken reviewed envelope, a courtyard omitting a pad,
+a companion-only bridge copied onto the primary, and
 missing, shrunken, copper-permissive or single-layer companion bridge areas.
-KiCad DRC is a separate check.
+KiCad DRC is a separate check. The final all-severity reports retain 26 primary
+silkscreen findings and six companion silkscreen findings, plus 77 and nine
+unconnected items respectively. Three fuse silkscreens on each board now
+violate the lower-edge clearance and need cleanup before fabrication. These
+are recorded in `drc-summary.json`, not waived.
 
 The maximum holder-body envelopes leave 0.5 mm between adjacent holders and
 only 0.2 mm to the nearest corner support. These are drawing-based gaps, not

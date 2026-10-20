@@ -31,14 +31,15 @@ and owned-motor compatibility remain physical qualification gates.
 
 - 196 placements and 609 circuit pin identities survive normal and frozen builds.
 - Manufacturer land checks cover the charger, motor driver, radio and USB input.
-- All 196 circuit footprints now have front courtyards. The 98 missing outlines
-  were generated from manufacturer package dimensions and actual pad extents; the
-  switch and SOD-523 package retain explicitly conditional physical allowances.
-  Actual KiCad 10 DRC reports no courtyard overlap or keepout infringement with
-  the current outlines. A broader audit then found 80 other inherited instances
-  whose outlines omit pad tips. Physical overlap coverage therefore remains
-  incomplete; those envelopes and the resulting placement need another repair
-  pass. The [clearance record](footprint-clearances.md) documents this limit.
+- All 196 circuit footprints have front courtyards and every compiled pad extent
+  lies inside its outline. The first 98 missing outlines and 80 subsequent
+  inherited instances were corrected from manufacturer package dimensions and
+  actual pads. Thirteen small placement adjustments clear the second batch while
+  preserving the board size, mechanical anchors and nearby charger parts.
+  Actual KiCad 10 DRC reports no courtyard overlap or keepout infringement.
+  Four package families retain explicit conditional molding/outline allowances;
+  the [clearance record](footprint-clearances.md) identifies them. This does not
+  establish actual assembled tolerances or thermal clearance.
 - The board has no routed tracks/vias. Hundreds of unrouted connections remain.
 - Default DRC still reports the eFuse's 0.19 mm pad spacing against a 0.20 mm
   default, USB NPTH/edge clearances, 0.20 mm thermal drill size against a 0.30 mm

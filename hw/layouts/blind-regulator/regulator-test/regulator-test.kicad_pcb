@@ -292,46 +292,6 @@
 			(layer "F.SilkS")
 			(uuid "9f6dc085-474b-4078-86ec-0be98600d6b7")
 		)
-		(fp_line
-			(start -0.75 -0.91)
-			(end 0.75 -0.91)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "0d8032dd-0a0e-4c05-a1b2-8584cc5718ae")
-		)
-		(fp_line
-			(start -0.75 1.09)
-			(end -0.75 -0.91)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "3f4e4e93-bebf-4eed-8fdb-8a349e43e64a")
-		)
-		(fp_line
-			(start 0.75 -0.91)
-			(end 0.75 1.09)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "356b4def-297e-408f-b731-9cc5823b1219")
-		)
-		(fp_line
-			(start 0.75 1.09)
-			(end -0.75 1.09)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "31289c7c-de51-49b0-ad18-766eb9260eb2")
-		)
 		(fp_circle
 			(center -0.99 -0.44)
 			(end -0.95 -0.44)
@@ -364,6 +324,17 @@
 			(fill no)
 			(layer "Cmts.User")
 			(uuid "73400e85-ae76-45c7-b999-9f94ffbfecd0")
+		)
+		(fp_rect
+			(start -1.25 -1.4)
+			(end 1.25 1.4)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill none)
+			(layer "F.CrtYd")
+			(uuid "2d4328f1-5926-4e58-8dc4-b6a91533805e")
 		)
 		(pad "1" smd rect
 			(at -0.63 -0.16)
@@ -774,46 +745,6 @@
 			(layer "F.SilkS")
 			(uuid "c43f7bc3-6ac2-4a72-a043-8e65c030a1a4")
 		)
-		(fp_line
-			(start -0.5 -0.25)
-			(end 0.5 -0.25)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "215d25f2-fcda-49ed-9046-ad2335664c44")
-		)
-		(fp_line
-			(start -0.5 0.25)
-			(end -0.5 -0.25)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "3ce6bd50-c8c2-47c8-8087-5e9f4a2a0f41")
-		)
-		(fp_line
-			(start 0.5 -0.25)
-			(end 0.5 0.25)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "848ace1d-de91-4a4e-bb1f-2e68a73e5751")
-		)
-		(fp_line
-			(start 0.5 0.25)
-			(end -0.5 0.25)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "16030284-1520-45d8-9e68-e94b88e48c41")
-		)
 		(fp_circle
 			(center -0.5 0.25)
 			(end -0.47 0.25)
@@ -824,6 +755,17 @@
 			(fill no)
 			(layer "F.SilkS")
 			(uuid "17896f0b-a532-4cf8-b7e3-38e2ea795d57")
+		)
+		(fp_rect
+			(start -1 -0.55)
+			(end 1 0.55)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill none)
+			(layer "F.CrtYd")
+			(uuid "23feca15-f46a-4050-9d70-3d1b3391810a")
 		)
 		(pad "1" smd rect
 			(at -0.43 0)
@@ -1185,46 +1127,6 @@
 			(layer "F.SilkS")
 			(uuid "5ea47040-2346-4ca8-a1f8-d0186dd548f8")
 		)
-		(fp_line
-			(start -0.5 -0.25)
-			(end 0.5 -0.25)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "95390c08-59b0-421f-af29-cd52e061aa7d")
-		)
-		(fp_line
-			(start -0.5 0.25)
-			(end -0.5 -0.25)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "ccfa8d12-a991-4896-900d-e7ac286a4538")
-		)
-		(fp_line
-			(start 0.5 -0.25)
-			(end 0.5 0.25)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "c6f445b6-f0dd-4cf1-ac96-d073d1504270")
-		)
-		(fp_line
-			(start 0.5 0.25)
-			(end -0.5 0.25)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "4b54c177-8235-4716-8f1d-ae9b84a5a710")
-		)
 		(fp_arc
 			(start -0.87 -0.35)
 			(mid -0.826066 -0.456066)
@@ -1279,6 +1181,17 @@
 			(fill no)
 			(layer "F.SilkS")
 			(uuid "1508c8f1-b193-487e-90de-b30899e52190")
+		)
+		(fp_rect
+			(start -0.95 -0.55)
+			(end 0.95 0.55)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill none)
+			(layer "F.CrtYd")
+			(uuid "f8112317-0e72-4840-9020-4d6765effb4e")
 		)
 		(pad "1" smd rect
 			(at -0.42 0)
@@ -2145,46 +2058,6 @@
 			(layer "F.SilkS")
 			(uuid "6a6c2d88-38e0-4dc4-b0ac-3b67b029601e")
 		)
-		(fp_line
-			(start -1 -0.62)
-			(end 1 -0.62)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "f5b2f00b-fa37-4001-b6d5-1c96bc0ca902")
-		)
-		(fp_line
-			(start -1 0.62)
-			(end -1 -0.62)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "ee4c3ad3-dbf0-411c-8a52-bffe829ceb7d")
-		)
-		(fp_line
-			(start 1 -0.62)
-			(end 1 0.62)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "64cce824-a9c6-40e7-a4e2-d2883b7223c3")
-		)
-		(fp_line
-			(start 1 0.62)
-			(end -1 0.62)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "e30a0b07-6627-4426-9bd3-09ed03038484")
-		)
 		(fp_arc
 			(start -1.96 -0.75)
 			(mid -1.916066 -0.856066)
@@ -2239,6 +2112,17 @@
 			(fill no)
 			(layer "F.SilkS")
 			(uuid "056b6922-aa7c-4b1e-b664-68a2567b06c6")
+		)
+		(fp_rect
+			(start -2 -1)
+			(end 2 1)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill none)
+			(layer "F.CrtYd")
+			(uuid "96c2f7f5-e219-4f23-bee2-38508c476e30")
 		)
 		(pad "1" smd rect
 			(at -1 0)
@@ -2419,46 +2303,6 @@
 			(layer "F.SilkS")
 			(uuid "6a6c2d88-38e0-4dc4-b0ac-3b67b029601e")
 		)
-		(fp_line
-			(start -1 -0.62)
-			(end 1 -0.62)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "f5b2f00b-fa37-4001-b6d5-1c96bc0ca902")
-		)
-		(fp_line
-			(start -1 0.62)
-			(end -1 -0.62)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "ee4c3ad3-dbf0-411c-8a52-bffe829ceb7d")
-		)
-		(fp_line
-			(start 1 -0.62)
-			(end 1 0.62)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "64cce824-a9c6-40e7-a4e2-d2883b7223c3")
-		)
-		(fp_line
-			(start 1 0.62)
-			(end -1 0.62)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "e30a0b07-6627-4426-9bd3-09ed03038484")
-		)
 		(fp_arc
 			(start -1.96 -0.75)
 			(mid -1.916066 -0.856066)
@@ -2513,6 +2357,17 @@
 			(fill no)
 			(layer "F.SilkS")
 			(uuid "056b6922-aa7c-4b1e-b664-68a2567b06c6")
+		)
+		(fp_rect
+			(start -2 -1)
+			(end 2 1)
+			(stroke
+				(width 0.05)
+				(type default)
+			)
+			(fill none)
+			(layer "F.CrtYd")
+			(uuid "a78f2528-6da0-4408-ad8e-a7d0501789ff")
 		)
 		(pad "1" smd rect
 			(at -1 0)

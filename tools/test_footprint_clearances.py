@@ -44,6 +44,27 @@ def without_courtyard(fp):
 
 
 class ClearanceBoardTests(unittest.TestCase):
+    def test_compiled_pad_rotation_is_relative_to_parent_before_containment(self):
+        fp=footprint(angle=90)
+        for pad in children(fp,'pad'):
+            one(pad,'at').append(Atom('90'))
+            one(pad,'size')[1:]=[Atom('1.2'),Atom('.2')]
+        actual=checker.compiled_pad_bounds(fp)
+        self.assertEqual(actual,[-1.0,-.1,1.0,.1])
+        checker.check_pad_containment(fp,[-1,-.1,1,.1])
+        with self.assertRaisesRegex(ValueError,'omits pad extent'):
+            checker.check_pad_containment(fp,[-.9,-.6,.9,.6])
+
+    def test_compiled_custom_polygon_without_stroke_has_valid_bounds(self):
+        fp=parse('''(footprint "fixture:custom" (at 110 155 90)
+          (pad "1" smd custom (at 0 0 90) (size 0.01 0.01)
+            (layers "F.Cu") (primitives
+              (gr_poly (pts (xy -1 -0.2) (xy 1 -0.2)
+                (xy 1 0.2) (xy -1 0.2)) (fill yes)))))''')
+        self.assertEqual(checker.compiled_pad_bounds(fp),[-1,-.2,1,.2])
+        with self.assertRaisesRegex(ValueError,'omits pad extent'):
+            checker.check_pad_containment(fp,[-.9,-.3,.9,.3])
+
     def setUp(self):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)
@@ -75,6 +96,10 @@ class ClearanceBoardTests(unittest.TestCase):
     def test_missing_courtyard_rejected_even_for_unrepaired_alias(self):
         with self.assertRaisesRegex(ValueError, "Missing courtyard"):
             self.check(footprint(box=None), expected={})
+
+    def test_unreviewed_alias_cannot_hide_its_pad_tips(self):
+        with self.assertRaisesRegex(ValueError,'omits pad extent'):
+            self.check(footprint(box=[-.5,-.2,.5,.2]),expected={})
 
     def test_shrunken_reviewed_courtyard_rejected(self):
         with self.assertRaisesRegex(ValueError, "reviewed envelope"):
@@ -151,6 +176,37 @@ class ClearanceBoardTests(unittest.TestCase):
 
 
 class ClearanceSourceTests(unittest.TestCase):
+    def test_replacement_requires_exact_reviewed_original_and_preserves_pads(self):
+        fp=footprint(box=[-.5,-.25,.5,.25])
+        original=copy.deepcopy(fp)
+        expected=generator.drawing(BOX,'replacement-fixture')
+        entry={'replace_courtyard_sha256':{'fixture':generator.geometry_hash(generator.courtyard_items(fp))}}
+        self.assertTrue(generator.update_outline(fp,expected,entry,'fixture',False))
+        self.assertEqual(without_courtyard(fp),without_courtyard(original))
+        self.assertEqual(children(fp,'pad'),children(original,'pad'))
+        self.assertFalse(generator.update_outline(fp,expected,entry,'fixture',True))
+        changed=copy.deepcopy(original)
+        one(generator.courtyard_items(changed)[0],'start')[1]=Atom('-.6')
+        for reviewed in (entry,{}):
+            with self.subTest(reviewed=reviewed),self.assertRaisesRegex(ValueError,'reviewed original'):
+                generator.update_outline(changed,expected,reviewed,'fixture',False)
+
+    def test_check_mode_never_applies_a_reviewed_replacement(self):
+        fp=footprint(box=[-.5,-.25,.5,.25])
+        original=copy.deepcopy(fp)
+        entry={'replace_courtyard_sha256':{'fixture':generator.geometry_hash(generator.courtyard_items(fp))}}
+        with self.assertRaisesRegex(ValueError,'unreviewed courtyard'):
+            generator.update_outline(fp,generator.drawing(BOX,'fixture'),entry,'fixture',True)
+        self.assertEqual(fp,original)
+
+    def test_pad_fingerprint_distinguishes_plating_and_pin_mapping(self):
+        original=footprint()
+        expected=generator.geometry_hash(children(original,'pad'))
+        for field,value in ((1,'2'),(2,Atom('np_thru_hole'))):
+            changed=copy.deepcopy(original)
+            children(changed,'pad')[0][field]=value
+            self.assertNotEqual(generator.geometry_hash(children(changed,'pad')),expected)
+
     def test_rotated_custom_polygon_includes_full_stroke(self):
         fp = parse('''(footprint "custom"
           (pad "1" smd custom (at 10 20 90) (size 0.01 0.01)

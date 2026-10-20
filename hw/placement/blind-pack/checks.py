@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT/'tools'))
 from generate_schematics import board_graph
 from kicad_sexpr import children, one, parse, dumps
+import check_footprint_clearances as CLEARANCES
 
 PACK_SPEC=importlib.util.spec_from_file_location('pack_contract',ROOT/'hw/sim/blind-pack/checks.py')
 PACK=importlib.util.module_from_spec(PACK_SPEC);PACK_SPEC.loader.exec_module(PACK)
@@ -146,6 +147,10 @@ def check_board(which, path, plan, mechanical):
     missing_courtyards=sorted(name for name,fp in electrical.items() if not any(
         children(item,'layer') and one(item,'layer')[1]=='F.CrtYd' for item in fp if isinstance(item,list)))
     assert not missing_courtyards, ('Missing carrier courtyards',missing_courtyards)
+    envelope_plan=json.loads((ROOT/'hw/placement/footprint-clearances.json').read_text())
+    expected_envelopes={e['compiled_alias']:CLEARANCES.bounds(parse((ROOT/e['source']).read_text()),e)
+                        for e in envelope_plan['footprints']}
+    envelope_check=CLEARANCES.check_board(which,path,expected_envelopes)
     graph=board_graph(path)
     pins={f"{which}.{c['properties']['atopile_address'].removeprefix('carrier.')}.{pin}":net
           for c in graph.values() for pin,net in c['pads'].items()}
@@ -173,6 +178,7 @@ def check_board(which, path, plan, mechanical):
     return {'electrical_footprints':len(graph),'board_only_mounting_holes':4,
             'physical_electrical_pins':sum(len(f['pads']) for f in graph.values()),
             'courtyard_coverage':{'present':len(graph)-len(missing_courtyards),'missing_addresses':missing_courtyards},
+            'reviewed_envelopes_and_pad_containment':envelope_check,
             'side':'all front/component-side; primary faces +Z, companion faces -Z',
             'board_sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
 
@@ -199,6 +205,14 @@ def negative_controls(path,plan,mechanical,companion_path):
     def remove_courtyard(d):
         fp=electrical(d)
         fp[:]=[item for item in fp if not (isinstance(item,list) and children(item,'layer') and one(item,'layer')[1]=='F.CrtYd')]
+    def shrink_reviewed_courtyard(d):
+        fp=next(f for f in children(d,'footprint') if any(p[1:3]==['atopile_address','carrier.protection.gauge'] for p in children(f,'property')))
+        court=next(i for i in fp if isinstance(i,list) and i[0]=='fp_rect' and children(i,'layer') and one(i,'layer')[1]=='F.CrtYd')
+        one(court,'end')[1]=str(float(one(court,'end')[1])-.05)
+    def courtyard_omits_pad(d):
+        fp=next(f for f in children(d,'footprint') if any(p[1:3]==['atopile_address','carrier.fuse1'] for p in children(f,'property')))
+        court=next(i for i in fp if isinstance(i,list) and i[0]=='fp_rect' and children(i,'layer') and one(i,'layer')[1]=='F.CrtYd')
+        one(court,'end')[1]='3.0'
     def add_primary_bridge(d):
         zone=deepcopy(rf(d));one(zone,'name')[1]='LOWER_BRIDGE_SUPPORT_0';d.append(zone)
     def short_rails(d):
@@ -221,6 +235,8 @@ def negative_controls(path,plan,mechanical,companion_path):
         'RF_copper_allowed':lambda d:one(one(rf(d),'keepout'),'copperpour').__setitem__(1,'allowed'),
         'shrunk_RF_keepout':lambda d:one(one(rf(d),'polygon'),'pts')[1].__setitem__(1,'182'),
         'missing_carrier_courtyard':remove_courtyard,
+        'shrunken_reviewed_courtyard':shrink_reviewed_courtyard,
+        'courtyard_omits_pad':courtyard_omits_pad,
         'companion_bridge_on_primary':add_primary_bridge,
     }
     passed=[]
@@ -268,8 +284,8 @@ def main():
     regressions=negative_controls(primary,plan,mechanical,companion)
     result={'status':'PASS: actual unrouted placement geometry, component sides, mounting holes, holder polarity and independent pin contract',
             'boards':results,**physical_margins(plan,mechanical),'rejected_faults':regressions,
-            'limits':['All electrical footprints have courtyards, but existing imported envelopes including gauge/fuses omit some pad tips; full envelope audit/repair remains open.',
-                      'KiCad DRC is separate; zero reported courtyard collisions does not yet establish complete assembly clearance.',
+            'limits':['Every electrical footprint courtyard contains its actual pad envelope; manifest-covered outlines match reviewed source maxima/allowances. AON7400A molding allowance remains conditional.',
+                      'KiCad DRC is separate; passing dimensional checks does not qualify solderability, thermal performance or actual manufactured fit.',
                       '0.2 mm holder-to-boss margin is not a tolerance-qualified fit.',
                       'Holder fasteners and insertion backing fixture remain unresolved.',
                       'Solder tails must be trimmed/insulated to the 1.5 mm inner protrusion budget.']}

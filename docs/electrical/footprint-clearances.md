@@ -2,7 +2,7 @@
 
 2026-10-20. Manufacturer research and assembly-clearance policy. The implementation is recorded in `hw/placement/footprint-clearances.json`; generated source outlines do not change the copper lands.
 
-The actual main PCB has **15 distinct missing courtyard aliases / 98 instances**, as recorded before this repair. The dimensions below describe the current imported footprint's **local X/Y axes before placement rotation**. Body dimensions come from manufacturer drawings or manufacturer product size tables, not STEP models. Copper bounds were independently calculated from the actual local pad positions, sizes and rotations, including custom-pad polygons and their stroke width.
+The first repair covered **15 distinct missing courtyard aliases / 98 main instances**. The subsequent [inherited-envelope repair](footprint-clearances-inherited.md) adds 30 aliases, including 80 more main-board instances. This page preserves the first batch’s dimensional evidence. The dimensions below describe the current imported footprint's **local X/Y axes before placement rotation**. Body dimensions come from manufacturer drawings or manufacturer product size tables, not STEP models. Copper bounds were independently calculated from the actual local pad positions, sizes and rotations, including custom-pad polygons and their stroke width.
 
 Construction policy: union the stated physical package projection with **all existing copper pad extents**, expand each side by **0.25 mm**, then round outward to a **0.05 mm** grid. This is a project assembly-clearance policy, not a manufacturer land-pattern recommendation or proof of placement accuracy. Do not enlarge or otherwise alter copper as part of this courtyard change.
 
@@ -149,23 +149,28 @@ It rejects disabled overlap/keepout categories and includes excluded findings.
 KiCad defaults missing-courtyard reporting to ignored, so complete electrical
 footprint coverage is independently required by the same checker. Other
 manufacturing and unrouted findings are reported explicitly, not waived.
-Twenty-five fault tests cover generation, rotated/custom copper, malformed
+Thirty-one fault tests cover generation, rotated/custom copper, malformed
 coordinates, reserved corridors, disabled DRC categories and incomplete reports.
 
-## Broader inherited-envelope audit remains open
+## Inherited-envelope repair
 
-Complete outline **presence is not complete physical-envelope coverage**. A subsequent
-audit found inherited outlines that stop at nominal body edges and omit pad tips:
-80 main-board instances across 23 aliases, 24 primary-carrier instances across
-10 aliases, and all three companion fuses. These counts are a pad-projection
-screen, not a completed manufacturer-body audit. Shared aliases occur on more
-than one board. The 15 newly generated families above are distinct from this
-remaining repair batch.
+The subsequent audit found inherited outlines that stopped at nominal body edges
+and omitted pad tips: 80 main-board instances, 24 primary-carrier instances and
+three companion fuses. Manufacturer research now covers all 30 replacement aliases
+in the [second dimensional record](footprint-clearances-inherited.md), including
+local axes, custom copper and two further conditional molding allowances. The
+combined source manifest contains 45 reviewed aliases; four package families
+retain explicitly provisional bounds.
 
-Examples include the MAX17320 gauge (existing outline +/-2.0 mm versus pad
-extent +/-2.2425 mm), common 0402 outlines of1.0x0.5 mm that omit their end
-lands, SOT-package leads, holder-branch fuses and larger power-part lands.
-Consequently, the present zero courtyard-overlap report has incomplete physical
-coverage and must not be used as routing/fabrication acceptance. Remaining
-source-envelope correction, resulting placement changes and a new full DRC
-pass are required. No existing finding is waived by the outline-presence check.
+The source tool replaces only the fingerprinted original outlines and requires
+matching canonical/mirror pads. It also fingerprints reviewed pad geometry for
+the replacement batch. All 15 circuit captures rebuilt with unchanged electrical
+pin graphs. Every compiled electrical pad is independently required to fit inside
+its outline, including aliases outside the replacement list.
+
+The main board needed 13 small part movements and retains its 54 × 68.5 mm outline,
+connector/button anchors and cable reservations. Its actual KiCad DRC reports zero
+courtyard/keepout findings against the corrected set. Carrier placement results
+are recorded separately in `hw/placement/blind-pack/`. Manufacturing, thermal,
+physical tolerance and the four conditional package bounds remain open; these
+checks do not promote an unrouted study into a fabrication-ready board.

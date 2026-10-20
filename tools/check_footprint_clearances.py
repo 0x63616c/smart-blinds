@@ -6,6 +6,7 @@ This is an assembly-clearance check, not full footprint, routing or fit approval
 """
 import argparse
 import collections
+import copy
 import json
 import math
 from pathlib import Path
@@ -13,8 +14,8 @@ import re
 import shutil
 import subprocess
 import tempfile
-from kicad_sexpr import children, one, parse
-from complete_courtyards import courtyard_items, bounds
+from kicad_sexpr import children, one, parse, Atom, node
+from complete_courtyards import courtyard_items, bounds, pad_bounds
 ROOT=Path(__file__).resolve().parents[1]
 BOARDS={
     'main':'hw/layouts/blind-main/main-test/main-test.kicad_pcb',
@@ -83,6 +84,28 @@ def placed_bounds(fp,box):
 def intersects(a,b):
     return min(a[2],b[2])-max(a[0],b[0])>1e-5 and min(a[3],b[3])-max(a[1],b[1])>1e-5
 
+def compiled_pad_bounds(fp):
+    """KiCad stores pad rotation in board axes, but pad positions are local."""
+    local=copy.deepcopy(fp)
+    placement=one(fp,'at')
+    parent=float(placement[3]) if len(placement)>3 else 0
+    for pad in children(local,'pad'):
+        at=one(pad,'at')
+        absolute=float(at[3]) if len(at)>3 else 0
+        at[3:]=[Atom(str(absolute-parent))]
+        for primitives in children(pad,'primitives'):
+            for primitive in primitives[1:]:
+                # KiCad 10 can serialize a filled custom polygon with its
+                # stroke already absorbed into the vertices and no width.
+                if primitive[0]=='gr_poly' and not children(primitive,'width'):
+                    primitive.append(node('width',0))
+    return pad_bounds(local)
+
+def check_pad_containment(fp,box):
+    pads=compiled_pad_bounds(fp)
+    if any(pads[i]<box[i]-1e-5 for i in (0,1)) or any(pads[i]>box[i]+1e-5 for i in (2,3)):
+        raise ValueError('Courtyard omits pad extent: '+fp[1])
+
 def check_wire_source(source,controller):
     """Tie the restricted component-height box to the actual straight CAD run."""
     encoder=controller['encoder_connector'];transition=encoder['cable_transition']
@@ -137,6 +160,7 @@ def check_board(which,path,expected):
         name=props['atopile_address']
         if name in parts:raise ValueError('Duplicate electrical address: '+name)
         items=courtyard_items(fp);box=local_bounds(items)
+        check_pad_containment(fp,box)
         placed_bounds(fp,box)  # Validate finite placement even on carrier boards.
         if fp[1] in expected:
             target=expected[fp[1]]
@@ -171,6 +195,6 @@ def main():
         mechanical['encoder_connector']['over_board_wire_constraint'])
     if args.drc:
         for which,path in BOARDS.items():result[which]['drc']=run_drc(ROOT/path)
-    print(json.dumps({'status':'Outline presence complete; inherited pad/body envelope audit incomplete; no physical-clearance or fabrication acceptance',
+    print(json.dumps({'status':'Reviewed source outlines and all compiled pad extents checked; conditional package allowances remain; no physical or fabrication acceptance',
                       'boards':result},indent=2))
 if __name__=='__main__':main()

@@ -9,8 +9,13 @@
         "present": 50,
         "missing_addresses": []
       },
+      "reviewed_envelopes_and_pad_containment": {
+        "electrical_footprints": 50,
+        "with_courtyards": 50,
+        "new_envelopes_checked": 30
+      },
       "side": "all front/component-side; primary faces +Z, companion faces -Z",
-      "board_sha256": "e18c831d3ca13a8ea7327126731d7050a7e6bce527f5f3b4e12b011456b0f5e0"
+      "board_sha256": "fecc56c96206151d1abf174f17da5756d6655759b423a150b72ef37fc5cad8c6"
     },
     "companion": {
       "electrical_footprints": 10,
@@ -20,8 +25,13 @@
         "present": 10,
         "missing_addresses": []
       },
+      "reviewed_envelopes_and_pad_containment": {
+        "electrical_footprints": 10,
+        "with_courtyards": 10,
+        "new_envelopes_checked": 3
+      },
       "side": "all front/component-side; primary faces +Z, companion faces -Z",
-      "board_sha256": "583581e9e0ddf1a648888efa0558385437fc1a3fcca3fafebb27b8f672b3940e"
+      "board_sha256": "629badeee425db788ad6c0246485f998eafa8df5b7ab3ce49790716f5382a712"
     }
   },
   "minimum_holder_to_corner_support_mm": 0.2,
@@ -36,6 +46,8 @@
     "RF_copper_allowed",
     "shrunk_RF_keepout",
     "missing_carrier_courtyard",
+    "shrunken_reviewed_courtyard",
+    "courtyard_omits_pad",
     "companion_bridge_on_primary",
     "missing_companion_bridge",
     "shrunk_companion_bridge",
@@ -43,8 +55,8 @@
     "companion_bridge_wrong_layers"
   ],
   "limits": [
-    "All electrical footprints have courtyards, but existing imported envelopes including gauge/fuses omit some pad tips; full envelope audit/repair remains open.",
-    "KiCad DRC is separate; zero reported courtyard collisions does not yet establish complete assembly clearance.",
+    "Every electrical footprint courtyard contains its actual pad envelope; manifest-covered outlines match reviewed source maxima/allowances. AON7400A molding allowance remains conditional.",
+    "KiCad DRC is separate; passing dimensional checks does not qualify solderability, thermal performance or actual manufactured fit.",
     "0.2 mm holder-to-boss margin is not a tolerance-qualified fit.",
     "Holder fasteners and insertion backing fixture remain unresolved.",
     "Solder tails must be trimmed/insulated to the 1.5 mm inner protrusion budget."
