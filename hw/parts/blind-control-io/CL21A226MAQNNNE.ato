@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_CL21A226MAQNNNE:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="SAMSUNG", partnumber="CL21A226MAQNNNE", footprint="C0805.kicad_mod", symbol="CL21A226MAQNNNE.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C45783", manufacturer="SAMSUNG", partno="CL21A226MAQNNNE">
+    trait has_designator_prefix<prefix="C">
+
+    pin 1
+    pin 2

@@ -1,0 +1,20 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TPD2E2U06DRLR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPD2E2U06DRLR", footprint="SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod", symbol="TPD2E2U06DRLR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C1972959", manufacturer="Texas Instruments", partno="TPD2E2U06DRLR">
+    trait has_designator_prefix<prefix="D">
+
+    signal NC1
+    NC1 ~ pin 1
+    signal NC2
+    NC2 ~ pin 2
+    signal IO1
+    IO1 ~ pin 3
+    signal GND
+    GND ~ pin 4
+    signal IO2
+    IO2 ~ pin 5

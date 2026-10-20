@@ -1,0 +1,210 @@
+import ElectricPower
+import ElectricLogic
+import Electrical
+
+from "../../parts/blind-core/ESP32_C6_WROOM_1_N4.ato" import Part_ESP32_C6_WROOM_1_N4
+from "../../parts/blind-control-io/SN74LVC2G17DCKR.ato" import Part_SN74LVC2G17DCKR
+from "../../parts/blind-control-io/TPD2E2U06DRLR.ato" import Part_TPD2E2U06DRLR
+from "../../parts/blind-control-io/TS_1088_AR02016.ato" import Part_TS_1088_AR02016
+from "../../parts/blind-control-io/0402WGF220JTCE.ato" import Part_0402WGF220JTCE
+from "../../parts/blind-control-io/0402WGF1001TCE.ato" import Part_0402WGF1001TCE
+from "../../parts/blind-control-io/0402WGF1003TCE.ato" import Part_0402WGF1003TCE
+from "../../parts/blind-control-io/0402WGF4701TCE.ato" import Part_0402WGF4701TCE
+from "../../parts/blind-control-io/CL21A226MAQNNNE.ato" import Part_CL21A226MAQNNNE
+from "../../parts/blind-control-io/CL05A105KA5NQNC.ato" import Part_CL05A105KA5NQNC
+from "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package
+from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
+
+module ControllerIO:
+    """UNVERIFIED C6 interface capture; not a complete controller or safe motor gate.
+
+    External 3V3 and switched encoder 5V supplies. GPIO20/22/23 commands are
+    active LOW so reset weak pull-ups agree with OFF. MOTOR_REQUEST_N MUST
+    feed an independently timed/default-off gate; never connect it to nSLEEP.
+    reset_n requires an external voltage supervisor and watchdog reset path.
+    Encoder voltage, wiring, pulses/revolution and filters remain bench gates.
+    USB connector/PD, charge/protection and external watchdog are separate blocks.
+    """
+    rail = new ElectricPower
+    encoder_rail = new ElectricPower
+    rail.voltage = 3.3V +/- 3%
+    encoder_rail.voltage = 5V +/- 5%
+    rail.lv ~ encoder_rail.lv
+    reset_n = new Electrical
+    boot_n = new Electrical
+    usb_dp = new Electrical
+    usb_dm = new Electrical
+    encoder_a_raw = new Electrical
+    encoder_b_raw = new Electrical
+    home_contact_n = new Electrical
+    current_raw = new Electrical
+    i2c_sda = new ElectricLogic
+    i2c_scl = new ElectricLogic
+    motor_in1 = new ElectricLogic
+    motor_in2 = new ElectricLogic
+    motor_request_n = new ElectricLogic
+    motor_fault_n = new ElectricLogic
+    charge_allow_n = new ElectricLogic
+    encoder_allow_n = new ElectricLogic
+    watchdog_heartbeat = new ElectricLogic
+    charger_interrupt_n = new ElectricLogic
+    i2c_sda.reference ~ rail
+    i2c_scl.reference ~ rail
+    motor_in1.reference ~ rail
+    motor_in2.reference ~ rail
+    motor_request_n.reference ~ rail
+    motor_fault_n.reference ~ rail
+    charge_allow_n.reference ~ rail
+    encoder_allow_n.reference ~ rail
+    watchdog_heartbeat.reference ~ rail
+    charger_interrupt_n.reference ~ rail
+
+    mcu = new Part_ESP32_C6_WROOM_1_N4
+    mcu.GND ~ rail.lv
+    mcu.VDD3V3 ~ rail.hv
+    mcu.EN ~ reset_n
+    mcu.IO9 ~ boot_n
+    mcu.IO10 ~ i2c_sda.line
+    mcu.IO11 ~ i2c_scl.line
+    mcu.IO18 ~ motor_in1.line
+    mcu.IO19 ~ motor_in2.line
+    mcu.IO20 ~ motor_request_n.line
+    mcu.IO21 ~ motor_fault_n.line
+    mcu.IO22 ~ charge_allow_n.line
+    mcu.IO23 ~ encoder_allow_n.line
+    mcu.TXD0 ~ watchdog_heartbeat.line
+    mcu.RXD0 ~ charger_interrupt_n.line
+    # IO4/5/15 remain strap-only; module pin22 (NC) remains unconnected.
+    # No external 32 kHz crystal: GPIO0/1 are physical buttons.
+
+    c_bulk = new Part_CL21A226MAQNNNE
+    c_bulk.1 ~ rail.hv
+    c_bulk.2 ~ rail.lv
+    c_bypass = new SAMSUNG_CL05B104KB54PNC_package
+    c_bypass.1 ~ rail.hv
+    c_bypass.2 ~ rail.lv
+    r_reset = new UNI_ROYAL_0402WGF1002TCE_package
+    c_reset = new Part_CL05A105KA5NQNC
+    r_reset.1 ~ rail.hv
+    r_reset.2 ~ reset_n
+    c_reset.1 ~ reset_n
+    c_reset.2 ~ rail.lv
+    r_boot = new UNI_ROYAL_0402WGF1002TCE_package
+    r_strap8 = new UNI_ROYAL_0402WGF1002TCE_package
+    r_boot.1 ~ rail.hv
+    r_boot.2 ~ mcu.IO9
+    r_strap8.1 ~ rail.hv
+    r_strap8.2 ~ mcu.IO8
+
+    r_request = new UNI_ROYAL_0402WGF1002TCE_package
+    r_charge = new UNI_ROYAL_0402WGF1002TCE_package
+    r_encoder = new UNI_ROYAL_0402WGF1002TCE_package
+    r_request.1 ~ rail.hv
+    r_request.2 ~ motor_request_n.line
+    r_charge.1 ~ rail.hv
+    r_charge.2 ~ charge_allow_n.line
+    r_encoder.1 ~ rail.hv
+    r_encoder.2 ~ encoder_allow_n.line
+    r_sda = new Part_0402WGF4701TCE
+    r_scl = new Part_0402WGF4701TCE
+    r_sda.1 ~ rail.hv
+    r_sda.2 ~ i2c_sda.line
+    r_scl.1 ~ rail.hv
+    r_scl.2 ~ i2c_scl.line
+
+    # Native USB2: 22 ohm near MCU; supply-free ESD near connector.
+    # No connection between USB data protection and negotiated PD VBUS.
+    r_dp = new Part_0402WGF220JTCE
+    r_dm = new Part_0402WGF220JTCE
+    r_dp.1 ~ mcu.IO13
+    r_dp.2 ~ usb_dp
+    r_dm.1 ~ mcu.IO12
+    r_dm.2 ~ usb_dm
+    usb_esd = new Part_TPD2E2U06DRLR
+    usb_esd.IO1 ~ usb_dp
+    usb_esd.IO2 ~ usb_dm
+    usb_esd.GND ~ rail.lv
+    usb_esd.NC1 ~ rail.lv
+    usb_esd.NC2 ~ rail.lv
+
+    # 5 V-tolerant Schmitt inputs; no 5 V directly into C6.
+    # Pull-ups use switched VENC; ground pulls define OFF/unplugged.
+    enc = new Part_SN74LVC2G17DCKR
+    enc.VCC ~ rail.hv
+    enc.GND ~ rail.lv
+    enc.Y1 ~ mcu.IO6
+    enc.Y2 ~ mcu.IO7
+    c_enc = new SAMSUNG_CL05B104KB54PNC_package
+    c_enc.1 ~ rail.hv
+    c_enc.2 ~ rail.lv
+    r_a_series = new Part_0402WGF1001TCE
+    r_b_series = new Part_0402WGF1001TCE
+    r_a_series.1 ~ encoder_a_raw
+    r_a_series.2 ~ enc.A1
+    r_b_series.1 ~ encoder_b_raw
+    r_b_series.2 ~ enc.A2
+    r_a_up = new UNI_ROYAL_0402WGF1002TCE_package
+    r_b_up = new UNI_ROYAL_0402WGF1002TCE_package
+    r_a_down = new Part_0402WGF1003TCE
+    r_b_down = new Part_0402WGF1003TCE
+    r_a_up.1 ~ encoder_rail.hv
+    r_a_up.2 ~ encoder_a_raw
+    r_b_up.1 ~ encoder_rail.hv
+    r_b_up.2 ~ encoder_b_raw
+    r_a_down.1 ~ enc.A1
+    r_a_down.2 ~ rail.lv
+    r_b_down.1 ~ enc.A2
+    r_b_down.2 ~ rail.lv
+    enc_esd = new Part_TPD2E2U06DRLR
+    enc_esd.IO1 ~ encoder_a_raw
+    enc_esd.IO2 ~ encoder_b_raw
+    enc_esd.GND ~ rail.lv
+    enc_esd.NC1 ~ rail.lv
+    enc_esd.NC2 ~ rail.lv
+
+    up = new Part_TS_1088_AR02016
+    down = new Part_TS_1088_AR02016
+    r_up = new UNI_ROYAL_0402WGF1002TCE_package
+    r_down = new UNI_ROYAL_0402WGF1002TCE_package
+    c_up = new SAMSUNG_CL05B104KB54PNC_package
+    c_down = new SAMSUNG_CL05B104KB54PNC_package
+    r_up.1 ~ rail.hv
+    r_up.2 ~ mcu.IO0
+    r_down.1 ~ rail.hv
+    r_down.2 ~ mcu.IO1
+    c_up.1 ~ mcu.IO0
+    c_up.2 ~ rail.lv
+    c_down.1 ~ mcu.IO1
+    c_down.2 ~ rail.lv
+    up.1 ~ mcu.IO0
+    up.2 ~ rail.lv
+    down.1 ~ mcu.IO1
+    down.2 ~ rail.lv
+
+    # Optional dry contact only. Sensor rail/pinout not selected.
+    r_home = new UNI_ROYAL_0402WGF1002TCE_package
+    r_home_series = new Part_0402WGF1001TCE
+    c_home = new SAMSUNG_CL05B104KB54PNC_package
+    r_home.1 ~ rail.hv
+    r_home.2 ~ mcu.IO3
+    r_home_series.1 ~ home_contact_n
+    r_home_series.2 ~ mcu.IO3
+    c_home.1 ~ mcu.IO3
+    c_home.2 ~ rail.lv
+
+    # ADC divider loads DRV 1.2k by 200k: integrated upper trip ~3.418 A.
+    # Approx 5 ms readout filter is outside the DRV current-limit loop.
+    # Power-down backfeed/leakage and ADC settling still need review.
+    r_adc_hi = new Part_0402WGF1003TCE
+    r_adc_lo = new Part_0402WGF1003TCE
+    c_adc = new SAMSUNG_CL05B104KB54PNC_package
+    r_adc_hi.1 ~ current_raw
+    r_adc_hi.2 ~ mcu.IO2
+    r_adc_lo.1 ~ mcu.IO2
+    r_adc_lo.2 ~ rail.lv
+    c_adc.1 ~ mcu.IO2
+    c_adc.2 ~ rail.lv
+
+module ControllerTest:
+    """Capture/build harness only; motor-enable safety boundary absent."""
+    controller = new ControllerIO

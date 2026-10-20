@@ -32,6 +32,10 @@ A green preview result only confirms generation of the documented images.
   independently checked against the atopile PCB graph. Four external-interface ERC findings
   remain explicit. A pinned atopile 0.15.9 frozen build and BOM-linked rating checks also pass
   locally; CI reruns both. It is not a routed board or a complete controller.
+- The separate C6 interface capture now builds with 36 components: buttons, USB data protection,
+  encoder receivers, I2C and current readout. Its watchdog/reset/power-down interfaces remain
+  unresolved and it has not passed whole-circuit ERC/DRC or physical tests. The reset review
+  changed GPIO20/22/23 requests to active low so weak pull-ups agree with OFF.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
 - The exact motor listing is identified and partial seller dimensions are recorded. The owner is
@@ -41,7 +45,9 @@ The first complete study snapshot is `49f1d17`. Its [control/CAD-parameter/elect
 and [source-generated preview workflow](https://github.com/0x63616c/smart-blinds/actions/runs/39341111797)
 passed on GitHub. These checks validate the declared models and exports, not a physical product.
 The subsequent [firmware freshness/gauge-tool checks and C6 cross-build](https://github.com/0x63616c/smart-blinds/actions/runs/39342005798)
-also passed. Latest changes must be evaluated against their own workflow runs.
+also passed. The [native motor rebuild, Home Assistant framework tests and full check suite](https://github.com/0x63616c/smart-blinds/actions/runs/39350314683)
+and [refreshed design gallery](https://github.com/0x63616c/smart-blinds/actions/runs/39350314795)
+passed for `b01e5fb`. Latest changes must be evaluated against their own workflow runs.
 
 ## Inherited references
 

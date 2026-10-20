@@ -11,13 +11,13 @@ Status: provisional resources for the electronics design. ESP32-C6-WROOM-1-N4 is
 | 10 / 11 | I2C SDA / SCL | External pull-ups; bounded worker transactions |
 | 12 / 13 | Native USB D− / D+ | Preserve programming/recovery access |
 | 18 / 19 | DRV8874 IN1 / IN2 | External pull-downs; PWM-mode truth table below |
-| 20 / 21 | Driver nSLEEP / nFAULT | Sleep pulled down; fault input pulled up as reviewed |
-| 22 | Charge permission | Active high to NFET pulling CE low; charger-side pull-up disables on reset |
-| 23 | Encoder rail enable | Active high, default off; gating subject to reference/holding policy |
+| 20 / 21 | MOTOR_REQUEST_N / driver nFAULT | Request active LOW with pull-up, into independent supervised gate; never directly to nSLEEP |
+| 22 | CHARGE_ALLOW_N | Active LOW with external 3.3 V pull-up and PNP inversion to CE NFET; reset pull-up reinforces OFF |
+| 23 | ENCODER_ALLOW_N | Active LOW with pull-up/inversion, default OFF; gating subject to reference/holding policy |
 | 17 | Optional charger INT | GPIO input; shared gauge alert requires a changed carrier connector |
 | 16 | External watchdog WDI | Reserved for control-task heartbeat; replaces optional service UART TX |
 
-With DRV8874 PMODE high, IN1/IN2 `00` coasts, `01` reverses, `10` forwards and `11` uses low-side braking. Current proposal: fixed off-time regulation with latched overcurrent protection, 1.2 kΩ IPROPI resistor and nominal 1.65 V VREF, approximately 3.06 A nominal regulation. These are electrical design values, not validated safe motor current or braking performance. Do not enable the motor from the map alone.
+With DRV8874 PMODE high, IN1/IN2 `00` coasts, `01` reverses, `10` forwards and `11` uses low-side braking. Current proposal: fixed off-time regulation with latched overcurrent protection, 1.2 kΩ IPROPI resistor and nominal 1.65 V VREF, approximately 3.06 A nominal regulation. These are electrical design values, not validated safe motor current or braking performance. Set IN1/IN2 to known `00` before requesting the supervised gate. GPIO18–23 reset pull-ups make active-low requests necessary; exact external pulls and inversion belong to the reviewed schematic. Do not enable the motor from the map alone.
 
 Thread sleepy-device operation must retain the network stack using supported modem/automatic light sleep. Deep sleep is a reset/rejoin boundary. Encoder counting and manual movement while its rail is gated remain separate physical-reference problems; reserving LP pins does not solve them. Resynchronize the awake clock and prove an error bound before coordinated motion.
 
