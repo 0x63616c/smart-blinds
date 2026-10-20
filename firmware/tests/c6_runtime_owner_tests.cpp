@@ -1,4 +1,5 @@
 #include "c6_motion_runtime.hpp"
+#include "smart_blinds/wifi_motion.hpp"
 #include "bench_c6_io.hpp"
 #include "c6_pd_monitor.hpp"
 #include "soc/gpio_struct.h"
@@ -23,7 +24,7 @@ struct MockDevice { unsigned address=0;MockTask* owner=nullptr; };
 struct MockPm { MockTask* owner=nullptr;bool held=false; };
 MockGpio GPIO;
 namespace runtime_fake {
-std::atomic<unsigned> fast_reads{0},stop_reads{0},actuations{0};std::atomic<bool> stop{false},fault{false};
+std::atomic<unsigned> fast_reads{0},stop_reads{0},actuations{0};std::atomic<bool> stop{false},fault{false},physical_off{true};
 }
 namespace {
 struct EndTask {};
@@ -47,7 +48,12 @@ std::chrono::steady_clock::time_point origin;
 std::atomic<unsigned> transfers{0},adds{0},removes{0},held_locks{0},released_locks{0},missing_off_reads{0};
 bool block=false,blocked=false,release_call=false,fail_call=false;
 unsigned block_device=0;
-std::function<void()> transfer_hook;
+std::function<void()> transfer_hook,handoff_copy_hook;
+std::atomic<bool> suppress_control_notify{false};
+std::atomic<unsigned> hold_status_at{0},status_waiting{0},status_release{0};
+std::atomic<unsigned> hold_add_at{0},add_waiting{0},add_release{0};
+std::atomic<bool> pause_fast{false},fast_paused{false},release_fast{false};
+std::atomic<unsigned> park_publications{0};
 std::uint64_t before_block_time=0;
 void await(const std::function<bool()>& predicate,const char* reason,unsigned milliseconds=6000) {
     const auto deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(milliseconds);
@@ -65,7 +71,7 @@ void reset_bus() {
     for(unsigned i=0;i<3;++i) for(unsigned b=0;b<4;++b) pd_regs[0x85+i*4+b]=values[i]>>(8*b);
     gauge_reads=pd_reads=0;stuck_alert=false;inject_off_race=off_read_waiting=off_race_released=false;power_irq=nullptr;power_irq_arg=nullptr;
     inject_telemetry_race=telemetry_waiting=telemetry_released=false;
-    block=blocked=release_call=fail_call=false;block_device=0;transfer_hook={};
+    block=blocked=release_call=fail_call=false;block_device=0;transfer_hook={};handoff_copy_hook={};suppress_control_notify=false;hold_status_at=status_waiting=status_release=0;hold_add_at=add_waiting=add_release=0;pause_fast=fast_paused=release_fast=false;park_publications=0;
 }
 blinds::runtime::Configuration configuration(bool pd=false) {
     blinds::runtime::Configuration c;
@@ -93,7 +99,7 @@ struct Fixture {
     std::unique_ptr<blinds::c6::MotionRuntime> runtime;
     explicit Fixture(bool pd=false) {
         origin=std::chrono::steady_clock::now();offset=0;reset_bus();transfers=adds=removes=0;
-        released_locks=0;missing_off_reads=0;runtime_fake::fast_reads=runtime_fake::stop_reads=runtime_fake::actuations=0;runtime_fake::stop=false;runtime_fake::fault=false;
+        released_locks=0;missing_off_reads=0;runtime_fake::fast_reads=runtime_fake::stop_reads=runtime_fake::actuations=0;runtime_fake::stop=false;runtime_fake::fault=false;runtime_fake::physical_off=true;
         runtime=std::make_unique<blinds::c6::MotionRuntime>(99,configuration(pd));
         check(runtime->start({nullptr,[](void*){return true;}},true),"actual runtime failed to start");
         await([&]{return runtime->io_qualified() && held_locks==0;},"initial clean closure/PM release failed");
@@ -119,6 +125,12 @@ struct Fixture {
     }
 };
 }
+void runtime_fake::before_sample() {
+    if(pause_fast.exchange(false)) {
+        fast_paused=true;
+        await([] {return release_fast.load();},"fast-sample boundary timed out",1000);
+    }
+}
 TaskHandle_t xTaskGetCurrentTaskHandle() { return current; }
 BaseType_t xTaskCreate(void(*entry)(void*),const char* name,unsigned,void* context,unsigned,TaskHandle_t* out) {
     auto task=std::make_unique<MockTask>();task->name=name;*out=task.get();
@@ -126,7 +138,7 @@ BaseType_t xTaskCreate(void(*entry)(void*),const char* name,unsigned,void* conte
     tasks.push_back(std::move(task));return pdPASS;
 }
 void xTaskNotifyGive(TaskHandle_t task) {
-    if(!task) return;
+    if(!task || (!current && task->name=="blind_control" && suppress_control_notify)) return;
     { std::lock_guard<std::mutex> lock(task->mutex);++task->notices;task->cv.notify_all(); }
     // Force the lower-priority owner to observe a prematurely posted request.
     // A real synchronous SDK call can also yield the control task. Correct
@@ -151,9 +163,18 @@ QueueHandle_t xQueueCreate(unsigned count,std::size_t size) {
     auto* raw=q.get();queues.push_back(std::move(q));return raw;
 }
 BaseType_t xQueueOverwrite(QueueHandle_t q,const void* data) {
-    std::lock_guard<std::mutex> guard(q->mutex);std::memcpy(q->body.data(),data,q->body.size());q->present=true;
+    std::unique_lock<std::mutex> guard(q->mutex);std::memcpy(q->body.data(),data,q->body.size());q->present=true;
     if(q==queues[3].get() && current && current->name=="blind_control" && off_read_waiting) off_race_released=true;
     if(q==queues[7].get() && current && current->name=="blind_power" && telemetry_waiting) telemetry_released=true;
+    if(q==queues[2].get() && current && current->name=="blind_power") ++park_publications;
+    guard.unlock();
+    if(q==queues[4].get() && current && current->name=="blind_control") {
+        const auto target=hold_status_at.load();
+        if(target && static_cast<const blinds::runtime::Snapshot*>(data)->status.last_message==target) {
+            status_waiting=target;
+            await([&] {return status_release.load()>=target;},"status publication barrier timed out",1000);
+        }
+    }
     return pdPASS;
 }
 BaseType_t xQueuePeek(QueueHandle_t q,void* data,TickType_t wait) {
@@ -168,12 +189,16 @@ BaseType_t xQueuePeek(QueueHandle_t q,void* data,TickType_t wait) {
         await([] {return telemetry_released.load();},"sensor did not publish during telemetry read",500);
         telemetry_waiting=false;
     }
-    std::lock_guard<std::mutex> guard(q->mutex);
+    std::unique_lock<std::mutex> guard(q->mutex);
     if(!q->present) {
         if(q==queues[3].get() && current && current->name=="blind_power") ++missing_off_reads;
         return pdFALSE;
     }
-    std::memcpy(data,q->body.data(),q->body.size());return pdPASS;
+    std::memcpy(data,q->body.data(),q->body.size());guard.unlock();
+    if(q==queues[4].get() && !current && handoff_copy_hook) {
+        auto hook=std::move(handoff_copy_hook);handoff_copy_hook={};hook();
+    }
+    return pdPASS;
 }
 BaseType_t xQueueReceive(QueueHandle_t q,void* data,TickType_t wait) {
     check(wait==0,"runtime blocked on reference queue");std::lock_guard<std::mutex> guard(q->mutex);
@@ -226,7 +251,11 @@ int i2c_new_master_bus(const i2c_master_bus_config_t* cfg,i2c_master_bus_handle_
 }
 int i2c_master_bus_add_device(i2c_master_bus_handle_t b,const i2c_device_config_t* cfg,i2c_master_dev_handle_t* out) {
     check(current && current->name=="blind_power" && b==&bus && cfg->scl_speed_hz==100000,"wrong attach owner/config");
-    *out=new MockDevice{cfg->device_address,current};++adds;return ESP_OK;
+    *out=new MockDevice{cfg->device_address,current};const auto n=++adds;
+    if(hold_add_at==n) {
+        add_waiting=n;await([&] {return add_release.load()>=n;},"attachment barrier timed out",1000);
+    }
+    return ESP_OK;
 }
 int i2c_master_bus_rm_device(i2c_master_dev_handle_t d) { check(d->owner==current,"cross-task teardown");++removes;delete d;return ESP_OK; }
 int i2c_master_transmit_receive(i2c_master_dev_handle_t d,const std::uint8_t* pointer,std::size_t send,
@@ -277,6 +306,8 @@ void empty_physical_records_publish_no_observation() {
     check(runtime->telemetry(out,sizeof(out),123),"unqualified actual runtime telemetry failed");
     check(std::strstr(out,"\"state\":\"absent\"") && std::strstr(out,"\"soc_pct\":null") &&
           std::strstr(out,"\"input_present\":null") && std::strstr(out,"\"kind\":\"none\""),"unqualified runtime fabricated an observation/fault");
+    check(runtime->handoff(out,sizeof(out),124) && std::strstr(out,"\"settled_off\":false"),
+          "empty records supplied physical handoff");
     check(!runtime->io_qualified() && !runtime_fake::actuations && !held_locks && !adds && !transfers,
           "telemetry initialized unqualified I/O or sensing");
     shutdown();
@@ -294,6 +325,18 @@ void initialized_owner_loss_still_retires_sensor() {
     runtime_fake::fault=false;f.awake(false);f.awake(true);
     std::this_thread::sleep_for(std::chrono::milliseconds(20));
     check(!f.runtime->io_qualified() && !f.power_ready() && held_locks==2,"later I/O success revived failed owner");
+}
+void physical_off_loss_prevents_handoff() {
+    Fixture f;f.awake(true);
+    await([&] {return f.power_ready();},"OFF discrepancy warmup failed");
+    runtime_fake::physical_off=false;f.runtime->notify_request();
+    await([&] {return !f.runtime->io_qualified();},"actual OFF discrepancy did not revoke I/O");
+    char out[768]{};
+    check(f.runtime->handoff(out,sizeof(out),1) && std::strstr(out,"\"settled_off\":false") && held_locks==2,
+          "failed physical OFF supplied handoff or released PM");
+    runtime_fake::physical_off=true;
+    check(f.runtime->handoff(out,sizeof(out),2) && std::strstr(out,"\"settled_off\":false"),
+          "later successful physical read revived failed handoff");
 }
 void newer_off_publication_during_guard_copy() {
     Fixture f;
@@ -334,9 +377,16 @@ void real_workers_wake_park_cold() {
     f.park();
     for(unsigned i=0;i<5;++i) { f.runtime->notify_request();std::this_thread::sleep_for(std::chrono::milliseconds(1)); }
     check(adds==attachments && f.reg(0x10)==0x90 && !f.power_ready(),"idle wake restamped/restarted session");
+    hold_add_at=attachments+3;
     offset+=8LL*60*60*1000000;f.awake(true);
-    await([&]{return adds==attachments+3;},"expired session did not reconstruct on owner");
-    check(!f.power_ready() && removes==3 && f.reg(0x10)==0x93,"cold restart bypassed history or active WD");
+    await([&]{return add_waiting==attachments+3;},"expired session did not reconstruct on owner");
+    check(!f.power_ready() && removes==3 && f.reg(0x10)==0x90,
+          "attachment incorrectly implied configured watchdog or fresh history");
+    if(std::getenv("SB_TEST_OLD_ATTACH_ORDER"))
+        check(f.reg(0x10)==0x93,"REPRODUCED: third attachment precedes active watchdog configuration");
+    add_release=attachments+3;hold_add_at=0;
+    await([&]{return f.reg(0x10)==0x93;},"cold restart did not restore active watchdog");
+    check(!f.power_ready() && removes==3,"cold restart bypassed required history warmup");
     await([&]{return f.power_ready();},"cold restart required reboot/requalification");
     f.park();check(runtime_fake::actuations==0,"unreferenced host test actuated motor");
     const auto existing=adds.load();f.runtime->transport_fault();f.awake(true);
@@ -355,6 +405,9 @@ void blocked_call_stop_and_lock(unsigned address) {
     check(held_locks==2 && released_locks==releases && !f.runtime->parked_off(esp_timer_get_time()),
           "control released PM/parked while synchronous I2C still blocked");
     char json[1500]{};check(f.runtime->status(json,sizeof(json),esp_timer_get_time()),"status blocked on sensor");
+    char handoff[768]{};
+    check(f.runtime->handoff(handoff,sizeof(handoff),1) && std::strstr(handoff,"\"settled_off\":false"),
+          "blocked sensor bus supplied physical handoff");
     const auto info=f.telemetry();
     check(info.find("\"charge_authorized\":false")!=std::string::npos,"blocked informational read granted charge");
     // A deliberately over-budget call returns a real failure, not a new good
@@ -362,6 +415,68 @@ void blocked_call_stop_and_lock(unsigned address) {
     { std::lock_guard<std::mutex> lock(bus_mutex);fail_call=true;release_call=true;bus_cv.notify_all(); }
     await([&]{return !f.runtime->io_qualified();},"first bus failure did not revoke actual runtime");
     check(held_locks==2 && removes==prior_removes && !f.power_ready(),"fault released PM or cross-task removed handles");
+}
+// Real owner/task/bus composition, with only the electrical/SDK I/O faked.
+// No synthetic motion clock or motor command succeeds in these scenarios.
+void stationary_transaction_events() {
+    for(unsigned scenario=0;scenario<7;++scenario) {
+        Fixture f(true);
+        check(f.runtime->ingress().connected(),"held ingress connection setup failed");
+        f.runtime->publish_network(esp_timer_get_time());
+        {std::lock_guard<std::mutex> lock(bus_mutex);block=true;block_device=0x6B;}
+        fire_irq();
+        {std::unique_lock<std::mutex> lock(bus_mutex);check(bus_cv.wait_for(lock,std::chrono::seconds(1),[]{return blocked;}),
+            "parked hold did not enter BQ read");}
+        const auto submit=[&](unsigned n,blinds::wire::Kind kind) {
+            blinds::wire::Request request{kind,7,99,n,1,1,static_cast<std::uint64_t>(esp_timer_get_time())};
+            const auto bytes=blinds::wire::encode(request);
+            check(f.runtime->ingress().submit(bytes.data(),bytes.size(),true,esp_timer_get_time())==
+                  blinds::runtime::Ingress::Result::queued,"held ordinary/STOP admission failed");
+            f.runtime->notify_request();
+        };
+        submit(1,blinds::wire::Kind::lease);
+        const auto reads=runtime_fake::fast_reads.load();
+        await([&] {return runtime_fake::fast_reads>reads;},"OFF hold blocked control task",1000);
+        blinds::runtime::Snapshot snapshot{};xQueuePeek(queues[4].get(),&snapshot,0);
+        check(f.runtime->ingress().pending() && snapshot.status.last_message==0 && held_locks==2 &&
+              !f.runtime->parked_off(esp_timer_get_time()),"ordinary request executed or PM released during held I/O");
+        if(scenario==1) {
+            submit(2,blinds::wire::Kind::stop);
+            await([&] {blinds::runtime::Snapshot v{};xQueuePeek(queues[4].get(),&v,0);
+                return v.status.result==blinds::MotionSession::Result::stopped && !f.runtime->ingress().pending();},
+                "remote STOP deferred behind held read",1000);
+        } else if(scenario==2) fire_irq(); // New source epoch must be serviced before PM release.
+        else if(scenario==3) {f.runtime->ingress().disconnected();f.runtime->revoke();f.runtime->publish_network(esp_timer_get_time());}
+        else if(scenario==4) f.runtime->local_stop_from_isr();
+        else if(scenario==5) f.runtime->transport_fault();
+        else if(scenario==6) {
+            offset+=1100000;f.runtime->notify_request();
+            await([&] {return !f.runtime->io_qualified();},"lost sensor exceeded bounded OFF hold without revocation",1000);
+        }
+        if(scenario>=3 && scenario<=5) {
+            // Force control to publish after the revocation, before returning
+            // the sensor read. A later healthy OFF observation must not rebind
+            // the already granted transaction to a new revocation generation.
+            const auto rev=f.runtime->revocation_generation();
+            await([&] {blinds::runtime::Snapshot v{};xQueuePeek(queues[4].get(),&v,0);
+                return v.parking.revocation==rev;},"control did not observe held revocation",1000);
+        }
+        check(held_locks==2 && !runtime_fake::actuations && !removes,"event tore down the in-flight owner");
+        {std::lock_guard<std::mutex> lock(bus_mutex);release_call=true;bus_cv.notify_all();}
+        if(scenario<3) {
+            await([&] {return held_locks==0 || !f.runtime->io_qualified();},"healthy held operation did not close",1000);
+            check(f.runtime->io_qualified() && held_locks==0 && !f.runtime->ingress().pending(),
+                  "ordinary/STOP/source event faulted healthy stationary transaction");
+            check(f.runtime->ingress().received_message()==(scenario==1?2U:1U),"held transaction lost replay floor");
+        } else {
+            await([&] {return !f.runtime->io_qualified();},"revoked held transaction stayed qualified",1000);
+            await([&] {return f.telemetry().find("\"kind\":\"runtime\"")==std::string::npos;},
+                  "sensor did not record first held fault",1000);
+            check(held_locks==2 && !f.runtime->parked_off(esp_timer_get_time()),"revoked hold granted PM handoff");
+        }
+        check(!runtime_fake::actuations,"OFF transaction actuated motor");
+    }
+    std::cout<<"OFF transaction events: queued ingress, remote STOP, source IRQ, disconnect, raw STOP, global fault and expired hold passed\n";
 }
 void cable(bool present,unsigned threshold=76) {
     std::lock_guard<std::mutex> lock(bus_mutex);
@@ -461,9 +576,221 @@ void pd_adapter_owner_epoch() {
     }
     current=nullptr;
 }
+void actual_wifi_operation_sensor_closure_reproduction(bool early_race=false,bool mid_race=false) {
+    Fixture f(true);
+    struct Port final:smart_blinds::wifi::MotionPort {
+        blinds::c6::MotionRuntime& runtime;
+        explicit Port(blinds::c6::MotionRuntime& r):runtime(r) {}
+        blinds::runtime::Ingress& ingress() override {return runtime.ingress();}
+        void publish(std::uint64_t now) override {runtime.publish_network(now);}
+        void notify() override {runtime.notify_request();}
+        void revoke() override {runtime.revoke();}
+        bool qualified() const override {return runtime.io_qualified();}
+        bool parked(std::uint64_t now) const override {return runtime.parked_off(now);}
+        bool status(char* out,std::size_t size,std::uint64_t now) override {return runtime.status(out,size,now);}
+        bool handoff(char* out,std::size_t size,std::uint64_t nonce) override {return runtime.handoff(out,size,nonce);}
+    } port(*f.runtime);
+    smart_blinds::wifi::MotionBinding app(99,port,{1000,2,true});
+    smart_blinds::wifi::Credentials c;
+    std::strcpy(c.ssid.data(),"disposable");std::strcpy(c.password.data(),"disposable");
+    std::strcpy(c.identity.data(),"fixture");c.key[0]=1;c.approved=true;c.board_profile=1;
+    const auto now=[] {return static_cast<std::uint64_t>(esp_timer_get_time());};
+    check(app.policy.configure(c,now()/1000) && app.policy.begin_association(now()/1000) &&
+          app.policy.network_ready(1,now()/1000),"composed policy configuration failed");
+    const auto owner=app.connected(now());check(owner,"composed owner missing");
+    std::array<std::uint8_t,16> wake{};wake[7]=99;wake[15]=1;
+    check(app.request(owner,"v1/wake",2,wake.data(),wake.size(),now(),now()).code==68,"composed wake failed");
+    await([&] {return f.power_ready();},"composed warmup failed");
+    check(f.runtime->reference({true,99,1,now(),7,7,0}),"synthetic reference was not queued");
+    const auto report=[&] {
+        char out[1500]{};check(f.runtime->status(out,sizeof(out),now()),"composed status failed");return std::string(out);
+    };
+    await([&] {return report().find("\"phase\":\"idle\"")!=std::string::npos;},"synthetic reference not consumed");
+    blinds::wire::Request prepare{};prepare.kind=blinds::wire::Kind::prepare;prepare.boot=99;
+    prepare.message=1;prepare.command=1;prepare.calibration=7;prepare.probe=1;prepare.sent_us=now();prepare.start_us=now()+1000000;
+    prepare.origin_um=0;prepare.target_um=1000;prepare.speed_um_s=1000;prepare.acceleration_um_s2=1000;
+    const auto bytes=blinds::wire::encode(prepare);
+    check(app.request(owner,"v1/motion",2,bytes.data(),bytes.size(),now(),now()).code==68,"prepare not queued");
+    // Deliberately absent clock qualification rejects prepare before any motor
+    // action. This is a real bounded rejection/STOP recovery path, not a forged
+    // successful motion measurement or a direct mutation of the policy state.
+    await([&] {return report().find("\"result\":\"clock\"")!=std::string::npos;},"clockless prepare did not reject");
+    blinds::wire::Request stop{};stop.kind=blinds::wire::Kind::stop;stop.boot=99;stop.message=2;stop.command=1;stop.sent_us=now();
+    const auto stopped=blinds::wire::encode(stop);
+    check(app.request(owner,"v1/motion",2,stopped.data(),stopped.size(),now(),now()).code==68,"STOP not queued");
+    await([&] {return report().find("\"result\":\"stopped\"")!=std::string::npos;},"STOP terminal outcome missing");
+    await([&] {app.tick(now());return app.policy.state()==smart_blinds::wifi::Policy::State::idle && held_locks==0;},
+          "terminal sensor handoff did not release operation after actual OFF ACK",1000);
+    check(!app.policy.awake() && !f.power_ready() && f.reg(0x10)==0x90 && !runtime_fake::actuations,
+          "terminal handoff retained sensing or bypassed OFF inhibition");
+    std::array<std::uint8_t,16> query{};query[7]=99;
+    unsigned nonce=0;
+    const auto handoff=[&] {
+        query[15]=static_cast<std::uint8_t>(++nonce);
+        const auto reply=app.request(owner,"v1/handoff",2,query.data(),query.size(),now(),now());
+        check(reply.code==69,"actual handoff request failed");return std::string(reply.body.data());
+    };
+    const auto settled=[&](const std::string& value) {return value.find("\"settled_off\":true")!=std::string::npos;};
+    await([&] {return settled(handoff());},"fresh physical OFF ACK did not publish handoff",1000);
+    check(app.request(owner,"v1/handoff",2,query.data(),query.size(),now(),now()).code==128,
+          "replayed handoff nonce accepted");
+    if(mid_race) {
+        const auto submit_late=[&](unsigned number) {
+            auto late=prepare;late.kind=blinds::wire::Kind::lease;late.message=number;late.sent_us=now();
+            late.start_us=late.origin_um=late.target_um=late.speed_um_s=late.acceleration_um_s2=0;
+            const auto b=blinds::wire::encode(late);
+            check(f.runtime->ingress().submit(b.data(),b.size(),true,now())==blinds::runtime::Ingress::Result::queued,
+                  "mid-park late record rejected by fixture");
+            f.runtime->notify_request();
+        };
+        {std::lock_guard<std::mutex> lock(bus_mutex);block=true;block_device=0x6B;}
+        submit_late(3);
+        {std::unique_lock<std::mutex> lock(bus_mutex);check(bus_cv.wait_for(lock,std::chrono::seconds(1),[]{return blocked;}),
+            "valid park request did not enter BQ transaction");}
+        pause_fast=true;f.runtime->notify_request();
+        await([] {return fast_paused.load();},"control did not pause during sensor transaction",1000);
+        const auto publications=park_publications.load();
+        submit_late(4);
+        check(f.runtime->ingress().pending() && !settled(handoff()) && held_locks==2,
+              "pending held ingress supplied handoff/PM release");
+        {std::lock_guard<std::mutex> lock(bus_mutex);release_call=true;bus_cv.notify_all();}
+        await([&] {return park_publications>publications || !f.runtime->io_qualified();},
+              "held successful park transaction did not complete",1000);
+        release_fast=true;
+        check(f.runtime->io_qualified(),"late ingress revoked a healthy held OFF transaction");
+        await([&] {return settled(handoff());},"completed held transaction did not consume late ingress",1000);
+        check(!runtime_fake::actuations,"held transaction admitted motor actuation");
+        std::cout<<"HELD OFF: late ingress preserved during blocked successful BQ transaction, then consumed after closure; zero actuations\n";
+        return;
+    }
+    const auto reads=gauge_reads.load(),calls=transfers.load();
+    suppress_control_notify=true;
+    std::this_thread::sleep_for(std::chrono::milliseconds(40));
+    const auto old=handoff();
+    check(!settled(old),"stale physical OFF was relabeled fresh");
+    suppress_control_notify=false;
+    await([&] {return settled(handoff());},"explicit OFF observation could not refresh",1000);
+    check(gauge_reads==reads && transfers==calls && held_locks==0,"handoff woke sensing or acquired PM");
+    // Pause the real control owner after one and then two ordinary messages.
+    // The sensor owner completes the matching park acknowledgment independently.
+    // The third queued message still forbids handoff, even though all activity
+    // generations now match and the physical OFF readback is fresh.
+    if(early_race) {
+        pause_fast=true;f.runtime->notify_request();
+        await([] {return fast_paused.load();},"control did not pause after captured activity",1000);
+    }
+    suppress_control_notify=true;hold_status_at=3;
+    for(unsigned number=3;number<=(early_race ? 3U:5U);++number) {
+        auto late=prepare;late.kind=blinds::wire::Kind::lease;late.message=number;late.sent_us=now();
+        late.start_us=late.origin_um=late.target_um=late.speed_um_s=late.acceleration_um_s2=0;
+        const auto b=blinds::wire::encode(late);
+        check(f.runtime->ingress().submit(b.data(),b.size(),true,now())==blinds::runtime::Ingress::Result::queued,
+              "backlog regression did not queue all ordinary records");
+    }
+    suppress_control_notify=false;release_fast=true;f.runtime->notify_request();
+    await([] {return status_waiting==3;},"first backlog publication not paused",1000);
+    await([] {
+        std::scoped_lock lock(queues[1]->mutex,queues[2]->mutex);
+        std::uint32_t request=0,ack=0;
+        std::memcpy(&request,queues[1]->body.data(),4);std::memcpy(&ack,queues[2]->body.data(),4);
+        return request && request==ack;
+    },"sensor owner did not close matching backlog generation",1000);
+    if(early_race) {
+        check(f.runtime->io_qualified() && !settled(handoff()),
+              "in-flight OFF observation started a sensor transition or granted handoff");
+        hold_status_at=0;status_release=3;
+    } else {
+        hold_status_at=4;status_release=3;
+        await([] {return status_waiting==4;},"second backlog publication not paused",1000);
+        check(f.runtime->ingress().pending() && !f.runtime->parked_off(now()) && !settled(handoff()),
+              "matching generations/physical OFF ignored pending ordinary inbox work");
+        hold_status_at=0;status_release=4;
+    }
+    await([&] {return settled(handoff());},"drained backlog failed to hand off",1000);
+    // A producer can publish while the transport copies the prior status. The
+    // old snapshot may not grant handoff across that ingress boundary.
+    handoff_copy_hook=[&] {
+        auto late=prepare;late.kind=blinds::wire::Kind::lease;late.message=6;late.sent_us=now();
+        late.start_us=late.origin_um=late.target_um=late.speed_um_s=late.acceleration_um_s2=0;
+        const auto b=blinds::wire::encode(late);
+        check(f.runtime->ingress().submit(b.data(),b.size(),true,now())==blinds::runtime::Ingress::Result::queued,
+              "late ingress race was not queued");
+        f.runtime->notify_request();
+    };
+    check(!settled(handoff()),"ingress during copy retained prior OFF authority");
+    await([&] {return settled(handoff());},"drained late ingress prevented fresh handoff",1000);
+    {std::lock_guard<std::mutex> lock(bus_mutex);block=true;block_device=0x28;}
+    handoff_copy_hook=[&] {fire_irq();};
+    check(!settled(handoff()),"source event during copy retained prior OFF authority");
+    {std::unique_lock<std::mutex> lock(bus_mutex);check(bus_cv.wait_for(lock,std::chrono::seconds(1),[]{return blocked;}),
+          "source event was not held in the actual adapter");}
+    check(!settled(handoff()) && held_locks==2,"blocked source service allowed handoff or PM release");
+    {std::lock_guard<std::mutex> lock(bus_mutex);fail_call=true;release_call=true;bus_cv.notify_all();}
+    await([&] {return !f.runtime->io_qualified();},"blocked source failure did not revoke qualification",1000);
+    check(!settled(handoff()) && held_locks==2,"failed source service revived handoff");
+    check(!runtime_fake::actuations,"handoff resource actuated motor");
+    std::cout<<"HANDOFF: nonce replay, stale OFF, ingress/source-copy races and blocked source fault rejected; no sensing from handoff\n";
+}
+void actual_wifi_same_owner_next_wake() {
+    // Isolated from the deliberate terminal bus fault above; exercise the
+    // short-park continuation using the same real binding/worker composition.
+    Fixture f;
+    struct Port final:smart_blinds::wifi::MotionPort {
+        blinds::c6::MotionRuntime& runtime;
+        explicit Port(blinds::c6::MotionRuntime& r):runtime(r) {}
+        blinds::runtime::Ingress& ingress() override {return runtime.ingress();}
+        void publish(std::uint64_t now) override {runtime.publish_network(now);}
+        void notify() override {runtime.notify_request();}
+        void revoke() override {runtime.revoke();}
+        bool qualified() const override {return runtime.io_qualified();}
+        bool parked(std::uint64_t now) const override {return runtime.parked_off(now);}
+        bool status(char* out,std::size_t size,std::uint64_t now) override {return runtime.status(out,size,now);}
+    } port(*f.runtime);
+    smart_blinds::wifi::MotionBinding app(99,port,{1000,2,true});
+    smart_blinds::wifi::Credentials c;
+    std::strcpy(c.ssid.data(),"disposable");std::strcpy(c.password.data(),"disposable");
+    std::strcpy(c.identity.data(),"fixture");c.key[0]=1;c.approved=true;c.board_profile=1;
+    const auto now=[] {return static_cast<std::uint64_t>(esp_timer_get_time());};
+    check(app.policy.configure(c,now()/1000) && app.policy.begin_association(now()/1000) &&
+          app.policy.network_ready(1,now()/1000),"next-wake policy configuration failed");
+    const auto owner=app.connected(now());
+    std::array<std::uint8_t,16> wake{};wake[7]=99;wake[15]=1;
+    check(app.request(owner,"v1/wake",2,wake.data(),wake.size(),now(),now()).code==68,"next-wake first wake failed");
+    await([&] {return f.power_ready();},"next-wake warmup failed");
+    check(f.runtime->reference({true,99,1,now(),7,7,0}),"next-wake reference rejected");
+    await([&] {char out[1500]{};f.runtime->status(out,sizeof(out),now());return std::strstr(out,"\"phase\":\"idle\"");},
+          "next-wake reference not consumed");
+    blinds::wire::Request req{};req.kind=blinds::wire::Kind::lease;req.boot=99;req.message=1;req.command=1;
+    req.calibration=7;req.probe=1;req.sent_us=now();
+    auto b=blinds::wire::encode(req);
+    check(app.request(owner,"v1/motion",2,b.data(),b.size(),now(),now()).code==68,"next-wake intent rejected");
+    req.kind=blinds::wire::Kind::stop;req.message=2;b=blinds::wire::encode(req);
+    check(app.request(owner,"v1/motion",2,b.data(),b.size(),now(),now()).code==68,"next-wake STOP rejected");
+    await([&] {app.tick(now());return app.policy.state()==smart_blinds::wifi::Policy::State::idle && held_locks==0;},
+          "next-wake terminal never parked",1000);
+    // A new explicit wake/preflight must restore active sensing without needing
+    // another connection or clearing a definitive prior outcome in software.
+    wake[15]=2;
+    check(app.request(owner,"v1/wake",2,wake.data(),wake.size(),now(),now()).code==128,
+          "terminal handoff bypassed the existing radio cooldown");
+    check(!app.policy.awake() && held_locks==0,"rejected cooldown wake resumed sensing");
+    // Advance the shared test monotonic clock only while fully parked. The
+    // existing window lasts 10 s plus 5 s cooldown; no deadline is relaxed.
+    offset.fetch_add(15000000);app.tick(now());
+    check(app.request(owner,"v1/wake",2,wake.data(),wake.size(),now(),now()).code==68,"second same-owner wake failed");
+    await([&] {return f.power_ready();},"new preflight did not resume qualified sensing",600);
+    check(app.policy.awake() && f.reg(0x10)==0x93 && held_locks==2,"second preflight bypassed active guards");
+    std::cout<<"RESOLVED: actual terminal sensor OFF ACK precedes policy idle/PM release; same-owner next wake resumes guarded sensing; zero motor actuations\n";
+}
 int main() {
+    if(std::getenv("SB_TEST_OFF_TRANSACTIONS")) {stationary_transaction_events();return 0;}
+    if(std::getenv("SB_TEST_OLD_ATTACH_ORDER")) {real_workers_wake_park_cold();return 0;}
+    if(std::getenv("SB_TEST_HANDOFF_ONLY")) {actual_wifi_operation_sensor_closure_reproduction(std::getenv("SB_TEST_INGRESS_OFF_RACE"),std::getenv("SB_TEST_MID_PARK_RACE"));return 0;}
+    if(std::getenv("SB_TEST_HANDOFF_REPRO")) {actual_wifi_operation_sensor_closure_reproduction(std::getenv("SB_TEST_INGRESS_OFF_RACE"),std::getenv("SB_TEST_MID_PARK_RACE"));actual_wifi_same_owner_next_wake();physical_off_loss_prevents_handoff();return 0;}
     if(std::getenv("SB_TEST_TELEMETRY_RACE")) {newer_telemetry_publication_during_response_copy();return 0;}
     if(std::getenv("SB_TEST_OFF_RACE")) {newer_off_publication_during_guard_copy();return 0;}
-    empty_physical_records_publish_no_observation();initialized_owner_loss_still_retires_sensor();newer_telemetry_publication_during_response_copy();newer_off_publication_during_guard_copy();pd_adapter_owner_epoch();real_workers_wake_park_cold();actual_cable_lifecycle();bounded_shared_line();blocked_call_stop_and_lock(0x28);blocked_call_stop_and_lock(0x6B);blocked_call_stop_and_lock(0x36);
+    actual_wifi_operation_sensor_closure_reproduction();actual_wifi_operation_sensor_closure_reproduction(true);
+    actual_wifi_operation_sensor_closure_reproduction(false,true);actual_wifi_same_owner_next_wake();
+    physical_off_loss_prevents_handoff();stationary_transaction_events();empty_physical_records_publish_no_observation();initialized_owner_loss_still_retires_sensor();newer_telemetry_publication_during_response_copy();newer_off_publication_during_guard_copy();pd_adapter_owner_epoch();real_workers_wake_park_cold();actual_cable_lifecycle();bounded_shared_line();blocked_call_stop_and_lock(0x28);blocked_call_stop_and_lock(0x6B);blocked_call_stop_and_lock(0x36);
     std::cout<<"actual C6 runtime/adapter sources: two owners, cold restart, blocked I2C STOP/status and PM handoff passed\n";
 }

@@ -47,6 +47,38 @@ public:
 private:
     std::atomic<std::uint32_t> value_{2};
 };
+// One sensor requester and one control responder. The packed atomic word makes
+// the grant and its nonwrapping token indivisible. This is a motor-admission
+// hold, not an I/O mutex: the control task keeps running STOP/fault/readback.
+class OffTransaction {
+public:
+    enum class State : std::uint32_t { idle=0, requested=1, granted=2, denied=3 };
+    std::uint32_t request() { // Sensor owner only; one live request.
+        auto value=word_.load(std::memory_order_acquire);
+        if((value&3U) || value>=UINT32_MAX-3) return 0;
+        const auto next=(value&~3U)+4;
+        return word_.compare_exchange_strong(value,next+1,std::memory_order_acq_rel) ? next:0;
+    }
+    std::uint32_t pending() const { const auto w=word_.load(std::memory_order_acquire);return (w&3U)==1 ? w&~3U:0; }
+    std::uint32_t held() const { const auto w=word_.load(std::memory_order_acquire);return (w&3U)==2 ? w&~3U:0; }
+    bool idle() const { return !(word_.load(std::memory_order_acquire)&3U); }
+    State state(std::uint32_t token) const {
+        const auto w=word_.load(std::memory_order_acquire);
+        return token && (w&~3U)==token ? static_cast<State>(w&3U):State::idle;
+    }
+    bool answer(std::uint32_t token,bool grant) { // Control only, after OFF publication.
+        auto expected=token+1;
+        return token && !(token&3U) && word_.compare_exchange_strong(expected,token+(grant?2:3),std::memory_order_acq_rel);
+    }
+    bool release(std::uint32_t token) { // Sensor only, after last synchronous call.
+        auto w=word_.load(std::memory_order_acquire);
+        return token && (w&~3U)==token && (w&3U) &&
+            word_.compare_exchange_strong(w,token,std::memory_order_acq_rel);
+    }
+private:
+    static_assert(std::atomic<std::uint32_t>::is_always_lock_free);
+    std::atomic<std::uint32_t> word_{0};
+};
 struct Parked {
     std::uint64_t observed_us=0;
     std::uint32_t activity=0,revocation=0;

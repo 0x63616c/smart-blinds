@@ -76,7 +76,11 @@ public:
     // Exactly one owning task calls this at 10 ms cadence while awake. It handles
     // at most one queued request. Raw STOP is inspected before any command work.
     // No I2C, transport calls, persistence, allocation or logging belongs here.
-    Status cycle(Inbox& inbox,const SessionInput& input,std::optional<LocalIntent> local={});
+    // Runtime may defer ordinary remote dequeue during a control-owned OFF I/O
+    // transaction. STOP, global faults and cadence checks still execute first.
+    // This gates remote inbox only. A caller with local endpoint admission must
+    // withhold local intents during that hold; the C6 application passes none.
+    Status cycle(Inbox& inbox,const SessionInput& input,std::optional<LocalIntent> local={},bool defer_ordinary=false);
     Status status() const;
     Ownership ownership() const { return {active() ? owner_ : Owner::none,owner_,epochs_.value(),last_gesture_,local_result_}; }
     MotionExecutor::Fault executor_fault() const { return executor_.fault(); } // Read-only diagnostics, owning task only.

@@ -295,7 +295,7 @@ void MotionSession::advance(const SessionInput& in,std::uint64_t now) {
     if(phase_==Phase::preparing && executor_.state()==MotionExecutor::State::running) phase_=Phase::ready;
     if(output.state==State::moving) phase_=Phase::moving;
 }
-MotionSession::Status MotionSession::cycle(Inbox& inbox,const SessionInput& in,std::optional<LocalIntent> local) {
+MotionSession::Status MotionSession::cycle(Inbox& inbox,const SessionInput& in,std::optional<LocalIntent> local,bool defer_ordinary) {
     const auto now=io_.now_us();
     const auto release_before=remote_after_us_;
     if(active() && !executor_.check_cadence(last_now_)) { fail(Result::io); return status(); }
@@ -339,7 +339,7 @@ MotionSession::Status MotionSession::cycle(Inbox& inbox,const SessionInput& in,s
         // A newly requested STOP must not poll settling twice at one timestamp.
         if(phase_==Phase::fault || (local_result_==Result::stopped && !already_settling)) return status();
     }
-    if(!local && !in.fast.stop_pressed && !remote_stop && phase_!=Phase::fault) {
+    if(!defer_ordinary && !local && !in.fast.stop_pressed && !remote_stop && phase_!=Phase::fault) {
         const auto next=inbox.pop();
         if(next) {
             // A late ordinary message must still consume its replay sequence,

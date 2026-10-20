@@ -5,7 +5,7 @@
 #include "driver/i2c_master.h"
 #include "esp_timer.h"
 #include <atomic>
-namespace runtime_fake { extern std::atomic<unsigned> fast_reads,stop_reads,actuations;extern std::atomic<bool> stop,fault; }
+namespace runtime_fake { extern std::atomic<unsigned> fast_reads,stop_reads,actuations;extern std::atomic<bool> stop,fault,physical_off;void before_sample(); }
 namespace blinds::c6 {
 struct FastInputs { bool valid=false;std::uint64_t sequence=0,sampled_us=0; };
 inline FastObservation motion_observation(const FastInputs& f) { return {f.valid,false,false,false,f.sequence,f.sampled_us,0,0,0}; }
@@ -15,9 +15,9 @@ public:
  bool initialize() { return profile_.valid(); }
  bool shutdown() { return true; }
  bool set_counter_origin(std::uint64_t,double) override { return true; }
- FastInputs sample_fast() { ++runtime_fake::fast_reads;return {true,++sequence_,now_us()}; }
+ FastInputs sample_fast() { runtime_fake::before_sample(); ++runtime_fake::fast_reads;return {true,++sequence_,now_us()}; }
  bool stop_pressed() const { ++runtime_fake::stop_reads;return runtime_fake::stop.load(); }
- bool parked_off() override { return true; }
+ bool parked_off() override { return runtime_fake::physical_off.load(); }
  bool faulted() const { return runtime_fake::fault.load(); }
  std::uint64_t now_us() const override { return esp_timer_get_time(); }
  bool request_n(bool high) override { if(!high) ++runtime_fake::actuations;return true; }

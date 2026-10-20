@@ -33,6 +33,9 @@ public:
     bool telemetry(char*,std::size_t,std::uint64_t nonce) const;
     bool source_status(smart_blinds::pd::Observation& out,std::uint64_t now) const;
     bool parked_off(std::uint64_t now) const;
+    // Same authenticated transport owner; source snapshot only. Wakes the
+    // control owner for actual OFF readback, never the sensing/actuation path.
+    bool handoff(char*,std::size_t,std::uint64_t nonce);
     // Trusted LOCAL workflow only, never exposed as a CoAP resource. A full
     // recovery workflow must supply independent physical evidence.
     bool reference(const PhysicalReference& reference);
@@ -48,7 +51,7 @@ private:
         std::uint64_t parked_us=0;
         bool clean=false,continuity=false;
     };
-    struct PhysicalOff { std::uint64_t sampled_us=0;bool off=false;std::uint32_t activity=0,revocation=0; };
+    struct PhysicalOff { std::uint64_t sampled_us=0;bool off=false;std::uint32_t activity=0,revocation=0,transaction=0; };
     struct SourceStatus { smart_blinds::pd::Observation observation{};std::uint32_t event=0,bus_epoch=0; };
     runtime::Power power_snapshot();
     bool sensor_closed() const;
@@ -75,6 +78,7 @@ private:
     std::atomic<bool> awake_{false},io_ready_{false},sampling_{false};
     std::atomic<std::uint32_t> sensing_window_{0};
     runtime::Revocation signals_;
+    runtime::OffTransaction off_transaction_;
     runtime::WakeSink wake_sink_{};
     bool local_buttons_=false;
 };

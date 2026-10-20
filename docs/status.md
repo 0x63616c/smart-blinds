@@ -51,13 +51,17 @@ CI builds both the telemetry fixture and a client-only library, verifying
 that synthetic peer symbols do not enter the latter. All thirteen jobs passed
 in the run linked above, including the actual default/bench C6 builds.
 
-An independent fresh run of the subsequent motion-to-idle candidate passes
-22 of 23 host targets but fails the actual C6 worker composition. Deterministic
-follow-up reproduces ordinary command ingress invalidating the physical-OFF
-identity while the sensor owner is parking. The candidate remains unpublished
-while that transition is corrected; a passing rerun alone will not close the
-finding. The last published thirteen-job checkpoint above is unchanged, and
-no physical movement or power result is inferred from it.
+The subsequent [motion-to-idle correction](firmware/motion-handoff.md) passes
+an independent fresh build of all 23 host targets. The normal C6 worker test
+forces both diagnosed ingress orderings, including a message arriving during
+a successful charger read. A control-owned OFF transaction keeps ordinary
+movement requests queued until sensing finishes; Stop and fault handling
+continue. Seven held-event cases and four restored-bug controls cover the
+boundary. Focused sanitizers and both pinned default/bench builds also pass.
+The original 22/23 failure and its diagnosis remain preserved. CI for this
+correction is pending; the last published thirteen-job result above is unchanged.
+Physical movement controls in Home Assistant and hardware qualification remain
+unfinished.
 
 Native populated-PCB export exposed a [confirmed enclosure orientation error](mechanical/pcb-orientation-review.md):
 the old allocation reflected the component side. The current preview and the
@@ -83,6 +87,8 @@ identifies unresolved input clamp coordination, dump-load thermal capacity and
 continued back-drive after thermal isolation. A higher-voltage input cutoff
 revision is being captured; it is not yet on the published board. The original
 blind must also [hold independently of motor power](mechanical/existing-blind-holding.md).
+The owner confirms the existing blinds stay in place when the chain is released;
+the added drive still needs to preserve that behavior on each installation.
 These findings prevent a fabrication or unattended-wall-operation claim despite
 the passing automated checks.
 

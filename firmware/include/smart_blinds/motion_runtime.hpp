@@ -36,6 +36,9 @@ struct Network {
     std::uint64_t connection=0,probe=0;
     bool attached=false,awake=false;
     std::uint32_t revocation=0; // Local asynchronous invalidation generation.
+    // Trusted local radio policy holds ownership through terminal sensor park.
+    // This is distinct from a new preflight sensing demand, never wire input.
+    bool operation=false;
 };
 inline Network admitted_network(Network value,const Revocation& signals) {
     return value.revocation==signals.generation() && !signals.failed() ? value : Network{};
@@ -70,8 +73,9 @@ public:
         network_.connection=generation_; return true;
     }
     void disconnected() { inbox_.disconnected(); network_.connection=0; clear_clock(); }
-    void radio(bool attached,bool awake) {
+    void radio(bool attached,bool awake,bool operation=false) {
         network_.attached=attached; network_.awake=attached && awake;
+        network_.operation=network_.awake && operation;
         if(!network_.awake) clear_clock();
     }
     // A pending new probe does not erase the previously accepted bound. Failed
@@ -96,6 +100,8 @@ public:
         return queued ? Result::queued : Result::rejected;
     }
     std::uint32_t activity() const { return activity_.current(); }
+    bool pending() const { return inbox_.pending(); }
+    std::uint64_t received_message() const { return inbox_.received_message(); }
 private:
     MotionSession::Inbox& inbox_;
     std::uint32_t generation_=0;

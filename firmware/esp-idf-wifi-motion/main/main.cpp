@@ -58,6 +58,7 @@ public:
     bool qualified() const override { return motion->io_qualified(); }
     bool parked(std::uint64_t now) const override { return motion->parked_off(now); }
     bool status(char* out,std::size_t size,std::uint64_t now) override { return motion->status(out,size,now); }
+    bool handoff(char* out,std::size_t size,std::uint64_t nonce) override { return motion->handoff(out,size,nonce); }
     bool telemetry(char* out,std::size_t size,std::uint64_t nonce,std::uint64_t) override {
         return motion->telemetry(out,size,nonce);
     }
@@ -283,7 +284,7 @@ bool start_server(std::uint32_t address) {
     bind.size=sizeof(bind.addr.sin);bind.addr.sin.sin_family=AF_INET;
     bind.addr.sin.sin_addr.s_addr=address;bind.addr.sin.sin_port=htons(5684);
     if(!coap_new_endpoint(context,&bind,COAP_PROTO_DTLS)) return false;
-    for(const char* name : {"v1/status","v1/wake","v1/clock","v1/qualify","v1/readiness","v1/motion","v1/motion-status","v1/telemetry"}) {
+    for(const char* name : {"v1/status","v1/wake","v1/clock","v1/qualify","v1/readiness","v1/motion","v1/motion-status","v1/telemetry","v1/handoff"}) {
         auto* r=coap_resource_init(coap_make_str_const(name),0);
         if(!r) return false;
         const bool get=std::strcmp(name,"v1/status")==0 || std::strcmp(name,"v1/readiness")==0 ||

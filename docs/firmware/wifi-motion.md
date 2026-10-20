@@ -169,3 +169,37 @@ real evidence. The earlier
 [Thread-labelled host group timing investigation](thread-group-bridge.md)
 remains unresolved; these deterministic tests and cross-builds do not establish
 its first-fault cause or fix.
+
+## Sensor OFF transaction and late ingress
+
+Ordinary messages may arrive while the sensor owner parks or resumes the charger.
+They retain their original receipt time, bounded queue slot and replay floor. A
+control-granted OFF transaction temporarily defers their execution; it does not
+accept an old command as fresh when the transaction ends. The original **40 ms
+queue age** and all motion/lease limits above remain unchanged.
+
+The sensor requests one nonwrapping token. Control grants it only after actual
+peripheral OFF readback, continues STOP/fault checks and fresh physical readback,
+and defers ordinary remote dequeue until that same sensor owner returns from its
+synchronous work and releases the token. The grant is pinned to its original
+revocation generation. A newer physical observation cannot repair a revoked grant.
+Every charger guard still checks actual permission/PWM pins, qualification,
+revocation, and the original **30 ms** OFF observation limit. A pending/granted
+transaction excludes sleep/handoff. Requests have a **100 ms** grant wait ceiling;
+a granted transaction has an independent **1 s** fault ceiling. These additional
+fault caps do not extend any bus/report deadline or command age.
+
+Remote STOP bypasses queued ordinary work. Local raw STOP, transport loss and
+physical/global faults remain immediate invalidations; failed epochs are never
+retried or revived. Source IRQs remain pending until the corresponding owner
+service completes. No network status/handoff read can grant this token or release
+power locks. The session's `defer_ordinary` parameter gates only the remote inbox:
+a future local endpoint binding must respect the hold before passing a local
+intent. The current C6 application supplies no local endpoint intents.
+
+Actual-worker tests force both ingress orderings: after control captures receipt
+activity but before its OFF publication, and during a successful blocked charger
+read after a valid park request. A separate event matrix runs the real worker
+loops for queued ingress, remote STOP, source IRQ, disconnect, raw STOP, global
+fault and an expired hold. Synthetic electrical/SDK I/O is explicit; these tests
+do not establish physical timing or permit actuation.

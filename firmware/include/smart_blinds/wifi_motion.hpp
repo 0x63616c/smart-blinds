@@ -18,6 +18,7 @@ public:
     virtual bool parked(std::uint64_t now) const=0;
     virtual bool status(char*,std::size_t,std::uint64_t now)=0;
     virtual bool telemetry(char*,std::size_t,std::uint64_t,std::uint64_t) { return false; }
+    virtual bool handoff(char*,std::size_t,std::uint64_t) { return false; }
 };
 class MotionBinding {
 public:
@@ -31,7 +32,7 @@ public:
         if(!owner || !port_.ingress().connected()) {
             policy.fail(); invalidate(now); return 0;
         }
-        owner_=owner; connection_=port_.ingress().snapshot(now).connection;
+        handoff_nonce_=0; owner_=owner; connection_=port_.ingress().snapshot(now).connection;
         probes.invalidate(); sync(now); return owner_;
     }
     void disconnected(std::uint64_t owner,std::uint64_t now) {
@@ -45,7 +46,7 @@ public:
         probes.invalidate(); port_.ingress().clear_clock(); sync(now);
     }
     void sync(std::uint64_t now) {
-        port_.ingress().radio(policy.attached(),policy.awake());
+        port_.ingress().radio(policy.attached(),policy.awake(),policy.state()==Policy::State::operation);
         port_.publish(now);
     }
     // A parked publication must be fresh AND bound to every queued request.
@@ -69,10 +70,18 @@ public:
             r.code=129; return r;
         }
         const bool get=path=="v1/status" || path=="v1/readiness" || path=="v1/motion-status";
-        const bool known=get || path=="v1/telemetry" || path=="v1/wake" || path=="v1/clock" || path=="v1/qualify" || path=="v1/motion";
+        const bool known=get || path=="v1/telemetry" || path=="v1/handoff" || path=="v1/wake" || path=="v1/clock" || path=="v1/qualify" || path=="v1/motion";
         if(!known) { r.code=132; return r; }
         if(method!=(get ? 1 : 2)) { r.code=133; return r; }
         if((size && !body) || (get && size)) { r.code=128; return r; }
+        if(path=="v1/handoff") {
+            if(size!=16 || read(body)!=policy.boot() || !read(body+8) || read(body+8)<=handoff_nonce_) {
+                r.code=128;return r;
+            }
+            handoff_nonce_=read(body+8); // Consumed even if publication fails.
+            r.code=port_.handoff(r.body.data(),r.body.size(),handoff_nonce_) ? 69:163;
+            return r;
+        }
         if(path=="v1/telemetry") {
             if(size!=16 || read(body)!=policy.boot() || !read(body+8)) { r.code=128;return r; }
             r.code=port_.telemetry(r.body.data(),r.body.size(),read(body+8),sent) ? 69:163;
@@ -133,6 +142,6 @@ public:
 private:
     static std::uint64_t read(const std::uint8_t* p) { return blinds::wire::read_be(p,8); }
     MotionPort& port_;
-    std::uint64_t owner_=0,connection_=0;
+    std::uint64_t owner_=0,connection_=0,handoff_nonce_=0;
 };
 } // namespace smart_blinds::wifi

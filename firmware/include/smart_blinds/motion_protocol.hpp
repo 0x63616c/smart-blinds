@@ -89,6 +89,13 @@ public:
         if(next==tail_.load(std::memory_order_acquire)) return false;
         queue_[head]=e; last_message_=e.request.message; head_.store(next,std::memory_order_release); return true;
     }
+    // Read-only observation; unlike stop_pending(), this never consumes STOP.
+    bool pending() const {
+        return stop_.load(std::memory_order_acquire) ||
+            head_.load(std::memory_order_acquire)!=tail_.load(std::memory_order_acquire);
+    }
+    // Sole producer only; includes queued STOP and discarded ordinary records.
+    std::uint64_t received_message() const { return last_message_; }
     bool stop_pending() { return stop_.exchange(false,std::memory_order_acq_rel); }
     std::optional<Envelope> pop() {
         const auto tail=tail_.load(std::memory_order_relaxed);

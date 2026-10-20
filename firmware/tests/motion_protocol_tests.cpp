@@ -31,7 +31,9 @@ void framing() {
 void inbox() {
     Inbox<2> queue(99); check(queue.connected(1),"connection rejected");
     Envelope a{request(),1,1000,true}, b=a; b.request.message=2;
+    check(!queue.pending() && !queue.received_message(),"new queue fabricated received work");
     check(queue.push(a) && queue.push(b),"queue insertion failed");
+    check(queue.pending() && queue.received_message()==2,"queue publication not visible to handoff guard");
     a.request.message=3; check(!queue.push(a),"queue overflow did not reject");
     auto stop=a; stop.request.kind=Kind::stop; stop.request.boot=98;
     stop.request.start_us=0; stop.request.origin_um=stop.request.target_um=0;
@@ -39,9 +41,12 @@ void inbox() {
     check(!queue.push(stop) && !queue.stop_pending(),"old boot STOP accepted");
     stop.request.boot=99; stop.connection=2;
     check(!queue.push(stop),"foreign session STOP accepted"); stop.connection=1;
-    check(queue.push(stop) && queue.stop_pending() && !queue.stop_pending(),"STOP did not bypass full queue exactly once");
+    check(queue.push(stop) && queue.pending() && queue.pending() && queue.received_message()==3,
+          "handoff observation consumed STOP or omitted its replay floor");
+    check(queue.stop_pending() && !queue.stop_pending(),"STOP did not bypass full queue exactly once");
     check(!queue.push(stop),"STOP replay accepted");
-    queue.discard(); check(!queue.pop(),"STOP discard left old work queued");
+    queue.discard(); check(!queue.pop() && !queue.pending() && queue.received_message()==3,
+          "STOP discard left old work or reset received floor");
     b.request.message=4; check(queue.push(b),"queue could not accept fresh post-discard message");
     auto next=queue.pop(); check(next && next->request.message==4 && !queue.pop(),"FIFO/drop behavior incorrect");
     a.request.message=5; a.authenticated=false; check(!queue.push(a),"unauthenticated frame queued");

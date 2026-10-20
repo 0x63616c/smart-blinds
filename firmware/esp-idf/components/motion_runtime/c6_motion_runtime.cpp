@@ -118,7 +118,39 @@ bool MotionRuntime::wake_radio() {
 bool MotionRuntime::parked_off(std::uint64_t now) const {
     runtime::Snapshot snapshot{};
     return status_queue_ && xQueuePeek(status_queue_,&snapshot,0)==pdPASS &&
-        snapshot.parking.current(now,ingress_.activity(),signals_) && sensor_closed();
+        snapshot.parking.current(now,ingress_.activity(),signals_) && !ingress_.pending() && sensor_closed();
+}
+bool MotionRuntime::handoff(char* out,std::size_t size,std::uint64_t nonce) {
+    // Only control can renew its physical observation. An HTTP/CoAP request
+    // cannot restamp an old queue value or make a sensor closure acknowledgment.
+    notify_request();
+    const auto activity=ingress_.activity(),revocation=signals_.generation();
+    const auto source=source_event_.load(std::memory_order_acquire),epoch=bus_epoch_.value();
+    runtime::Snapshot copy{};
+    const bool copied=status_queue_ && xQueuePeek(status_queue_,&copy,0)==pdPASS;
+    const bool closed=sensor_closed();
+    const auto now=now_us(); // After completed copies, including a racing producer.
+    const auto network=ingress_.snapshot(now);
+    const auto& status=copy.status;
+    const bool terminal=status.phase==MotionSession::Phase::idle &&
+        (status.result==MotionSession::Result::finished || status.result==MotionSession::Result::stopped);
+    const bool settled=copied && terminal && io_qualified() && closed && !ingress_.pending() &&
+        network.connection && copy.connection==network.connection &&
+        copy.parking.current(now,activity,signals_) && activity==ingress_.activity() &&
+        revocation==signals_.generation() && source==source_event_.load(std::memory_order_acquire) &&
+        source==source_ack_.load(std::memory_order_acquire) && !source_busy_.load(std::memory_order_acquire) &&
+        epoch==bus_epoch_.value();
+    char height[32]="null";
+    if(status.height_mm) std::snprintf(height,sizeof(height),"%.3f",*status.height_mm);
+    const int n=std::snprintf(out,size,
+        "{\"version\":1,\"boot\":\"%016" PRIx64 "\",\"nonce\":\"%016" PRIx64
+        "\",\"responded_us\":\"%016" PRIx64 "\",\"sampled_us\":\"%016" PRIx64
+        "\",\"command\":\"%016" PRIx64 "\",\"received_message\":\"%016" PRIx64
+        "\",\"phase\":\"%s\",\"result\":\"%s\",\"reference_valid\":%s,\"height_mm\":%s,\"settled_off\":%s}",
+        boot_,nonce,now,copy.parking.observed_us,status.command,ingress_.received_message(),
+        runtime::name(status.phase),runtime::name(status.result),status.reference_valid ? "true":"false",height,
+        settled ? "true":"false");
+    return n>0 && static_cast<std::size_t>(n)<size;
 }
 bool MotionRuntime::reference(const PhysicalReference& reference) {
     if(!io_qualified() || xQueueSend(reference_queue_,&reference,0)!=pdPASS) return false;
@@ -136,7 +168,7 @@ bool MotionRuntime::status(char* output,std::size_t size,std::uint64_t now) {
 }
 bool MotionRuntime::sensor_closed() const {
     SensorRequest request{};SensorPark parked{};
-    return !sampling_.load(std::memory_order_acquire) &&
+    return off_transaction_.idle() && !sampling_.load(std::memory_order_acquire) &&
         xQueuePeek(sensor_request_queue_,&request,0)==pdPASS && !request.enabled && request.sequence &&
         xQueuePeek(sensor_park_queue_,&parked,0)==pdPASS && parked.clean &&
         request.sequence==parked.request.sequence && request.activity==parked.request.activity &&
@@ -207,7 +239,8 @@ void MotionRuntime::control() {
     auto previous=session.status();
     runtime::Parked prior_parking{};
     SensorRequest requested{};
-    std::uint64_t source_poll_us=0;
+    std::uint64_t source_poll_us=0,hold_started_us=0;
+    std::uint32_t previous_hold=0,hold_revocation=0;
     if(initialized && config_.pd_shared_bus_verified) source_event_.store(1,std::memory_order_release);
     const auto sampling=[&](bool enabled) {
         const auto activity=ingress_.activity(),revocation=signals_.generation();
@@ -239,7 +272,12 @@ void MotionRuntime::control() {
         }
         const bool source_pending=source_event_.load(std::memory_order_acquire)!=source_ack_.load(std::memory_order_acquire);
         network=runtime::admitted_network(network,signals_);
-        if(initialized && (network.awake || previous.awake_required || source_pending) && !acquire()) signals_.fail();
+        const auto held_transaction=off_transaction_.held();
+        if(held_transaction!=previous_hold) { previous_hold=held_transaction;hold_started_us=poll_now; }
+        // Individual bus/report deadlines remain shorter and unchanged. This
+        // independent ceiling prevents a lost owner keeping admission forever.
+        if(held_transaction && (poll_now<hold_started_us || poll_now-hold_started_us>1000000)) signals_.fail();
+        if(initialized && (network.awake || previous.awake_required || source_pending || !off_transaction_.idle()) && !acquire()) signals_.fail();
         // Request a sensor transition only after this iteration publishes fresh
         // physical OFF below. SDK calls can yield even on the priority-8 owner.
         PhysicalReference ref{};
@@ -251,24 +289,51 @@ void MotionRuntime::control() {
         evidence=power_snapshot(); // Fast STOP/actual I/O always precedes this independent copy.
         auto input=runtime::input(fast,evidence,network,now_us());
         if(signals_.failed()) input.manual_intervention=true;
-        const auto status=session.cycle(inbox_,input);
+        const auto transaction=held_transaction ? held_transaction:off_transaction_.pending();
+        const bool deferred=held_transaction || (transaction && !previous.awake_required);
+        // No local endpoint admission exists in this application. Raw local
+        // STOP and all fault paths remain inside cycle, ahead of this deferral.
+        const auto status=session.cycle(inbox_,input,{},deferred);
         if(initialized && io.faulted()) {
             // Permanent discrepancy; no remote recovery/reinitialize.
-            io_ready_.store(false,std::memory_order_release);
+            signals_.fail();io_ready_.store(false,std::memory_order_release);
             initialized=false; io.shutdown();
         }
         const bool off=initialized && !status.awake_required && io.parked_off();
         if(initialized && !status.awake_required && !off) {
             signals_.fail(); io_ready_.store(false,std::memory_order_release);
         }
-        const PhysicalOff physical{now_us(),off && activity==ingress_.activity(),activity,signals_.generation()};
+        const auto transaction_revocation=held_transaction ? hold_revocation:revocation;
+        const bool held_off=transaction && deferred && off && !signals_.failed() &&
+            transaction_revocation==signals_.generation();
+        const PhysicalOff physical{now_us(),off && (held_off || activity==ingress_.activity()),activity,signals_.generation(),held_off?transaction:0};
         if(xQueueOverwrite(physical_off_queue_,&physical)!=pdPASS) abort();
+        if(transaction && off_transaction_.pending()==transaction) {
+            if(off_transaction_.answer(transaction,held_off) && held_off) {
+                previous_hold=transaction;hold_started_us=physical.sampled_us;hold_revocation=revocation;
+            }
+            xTaskNotifyGive(power_task_);
+        }
         // No sensor lifetime exists before qualified I/O initialization. An
         // OFF-only boot cannot prove the qualified owner's park condition.
         // Existing requests still transition/retire after I/O qualification loss.
-        if(initialized || requested.sequence) sampling(initialized && (network.awake || status.awake_required));
+        // After a definitive terminal result, the radio can stay owned/awake
+        // while the sensor owner closes. Requiring radio sleep first would
+        // deadlock Policy::operation, which correctly waits for our OFF ACK.
+        const bool terminal_idle=status.phase==MotionSession::Phase::idle &&
+            (status.result==MotionSession::Result::finished || status.result==MotionSession::Result::stopped);
+        const bool sensing=status.awake_required || (network.awake && !(network.operation && terminal_idle));
+        // A request may have arrived after this iteration captured activity.
+        // Its intentionally invalid OFF publication is not permission to post
+        // a new sensor transition using the newer generation. Wait for a real
+        // stable OFF observation; do not weaken the sensor owner's guard.
+        if(!initialized || signals_.failed()) {
+            if(requested.sequence) sampling(false); // Retire existing ownership on real faults.
+        } else if(physical.off && !(physical.activity&1U) &&
+                  physical.activity==ingress_.activity() && physical.revocation==signals_.generation() &&
+                  (sensing || !inbox_.pending())) sampling(sensing);
         const auto parking=runtime::parked(now_us(),activity,ingress_.activity(),revocation,
-                                           signals_,!status.awake_required,off && sensor_closed(),initialized && !io.faulted());
+                                           signals_,!status.awake_required,off && !inbox_.pending() && sensor_closed(),initialized && !io.faulted());
         const runtime::Snapshot publication{status,network.connection,network.probe,parking};
         if(xQueueOverwrite(status_queue_,&publication)!=pdPASS) abort();
         awake_.store(status.awake_required,std::memory_order_release);
@@ -314,16 +379,17 @@ void MotionRuntime::power() {
             // The control owner may publish while this task copies. Sample age
             // AFTER the completed copy so a healthy newer report is not future.
             const auto now=now_us();
-            const bool result=copied &&
-                value.off && value.activity==runtime_.ingress_.activity() &&
+            const auto transaction=runtime_.off_transaction_.held();
+            const bool result=copied && transaction && value.transaction==transaction &&
+                value.off &&
                 value.revocation==runtime_.signals_.generation() && !runtime_.signals_.failed() && value.sampled_us && value.sampled_us<=now && now-value.sampled_us<=30000 &&
                 gpio_get_level(static_cast<gpio_num_t>(io::Pins::request_n)) &&
                 !gpio_get_level(static_cast<gpio_num_t>(io::Pins::in1)) &&
                 !gpio_get_level(static_cast<gpio_num_t>(io::Pins::in2));
 #ifndef ESP_PLATFORM
-            if(!result) std::fprintf(stderr,"OFF refusal now=%" PRIu64 " sampled=%" PRIu64 " delta=%" PRId64 " off=%u activity=%u/%u revocation=%u/%u ready=%u failed=%u\n",
+            if(!result) std::fprintf(stderr,"OFF refusal now=%" PRIu64 " sampled=%" PRIu64 " delta=%" PRId64 " off=%u activity=%u/%u revocation=%u/%u transaction=%u/%u ready=%u failed=%u\n",
                 now,value.sampled_us,static_cast<std::int64_t>(now)-static_cast<std::int64_t>(value.sampled_us),unsigned(value.off),
-                value.activity,runtime_.ingress_.activity(),value.revocation,runtime_.signals_.generation(),
+                value.activity,runtime_.ingress_.activity(),value.revocation,runtime_.signals_.generation(),value.transaction,transaction,
                 unsigned(ready_.load()),unsigned(runtime_.signals_.failed()));
 #endif
             return result;
@@ -466,6 +532,26 @@ void MotionRuntime::power() {
         if(xQueuePeek(sensor_request_queue_,&request,0)!=pdPASS || !request.sequence || failed) {
             ulTaskNotifyTake(pdTRUE,portMAX_DELAY);continue;
         }
+        struct Hold {
+            MotionRuntime& runtime;std::uint32_t token=0;
+            void release() { if(token) { runtime.off_transaction_.release(token);token=0;runtime.notify_request(); } }
+            ~Hold() { release(); }
+        } hold{*this,off_transaction_.request()};
+        if(!hold.token) { terminal({gc::FailureKind::lifecycle,45});continue; }
+        notify_request();
+        const auto wait_started=now_us();
+        while(off_transaction_.state(hold.token)==runtime::OffTransaction::State::requested) {
+            const auto current=now_us();
+            if(signals_.failed() || current<wait_started || current-wait_started>100000) {
+                terminal({gc::FailureKind::lifecycle,46});break;
+            }
+            ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(1));
+        }
+        if(failed) continue;
+        const bool stationary_hold=off_transaction_.state(hold.token)==runtime::OffTransaction::State::granted;
+        if(!stationary_hold && (!request.enabled || request.sequence!=active_request)) {
+            hold.release();ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue;
+        }
         if(!request.enabled && (session || !config_.pd_shared_bus_verified)) {
             sensors_.withdraw();
             if(!park_session()) continue;
@@ -477,7 +563,7 @@ void MotionRuntime::power() {
             }
             // Both owners were serviced. A still-low shared line means another
             // pending/fault condition; do not acknowledge it or release PM.
-            if(!alert_clear()) { if(!failed) ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue; }
+            if(!alert_clear()) { hold.release();if(!failed) ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue; }
             if(session) copy_charger(session->transition);
             information.source_event=serviced;publish_information();
             source_ack_.store(serviced,std::memory_order_release);
@@ -488,7 +574,7 @@ void MotionRuntime::power() {
             const SensorPark ack{request,bus_epoch_.value(),session ? session->parked_us:0,
                                  true,session && session->ticket};
             if(xQueueOverwrite(sensor_park_queue_,&ack)!=pdPASS) abort();
-            active_request=0;notify_request();
+            active_request=0;hold.release();notify_request();
             ulTaskNotifyTake(pdTRUE,portMAX_DELAY);continue;
         }
         if(request.sequence!=active_request) {
@@ -567,7 +653,7 @@ void MotionRuntime::power() {
         }
         const auto source_event=source_event_.load(std::memory_order_acquire);
         if(!source_poll()) continue;
-        const auto stationary=motor_off.hold_off();
+        const auto stationary=stationary_hold && motor_off.hold_off();
         const auto result=session->gauge.refresh(session->context,session->window,stationary?&motor_off:nullptr);
         if(result==gc::Refresh::failed) { terminal(session->box.failure());continue; }
         if(result==gc::Refresh::published) {
@@ -580,11 +666,11 @@ void MotionRuntime::power() {
                 record->gauge.serial,measured.soc_percent.value_or(0),true,measured.soc_percent.has_value()};
             copy_charger(record->charger);
         }
-        if(!alert_clear()) { if(!failed) ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue; }
+        if(!alert_clear()) { hold.release();if(!failed) ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue; }
         information.source_event=source_event;publish_information();
         source_ack_.store(source_event,std::memory_order_release);
         source_busy_.store(false,std::memory_order_release);
-        notify_request();
+        hold.release();notify_request();
         ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(100));
     }
 }

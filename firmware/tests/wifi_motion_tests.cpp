@@ -49,6 +49,7 @@ struct Port final : smart_blinds::wifi::MotionPort {
     runtime::Revocation signals; runtime::Network network{};runtime::Snapshot snapshot{};
     MotionSession session;
     bool enabled,raw_stop=false,off_readback=true;
+    unsigned handoff_calls=0;
     std::uint64_t sequence=0;
     explicit Port(bool q) : session(io,io,calibration(),{},profile(q),99),enabled(q) {
         if(q) check(session.establish_reference({true,99,1,io.now,77,7,500}),"reference fixture");
@@ -66,7 +67,12 @@ struct Port final : smart_blinds::wifi::MotionPort {
     bool telemetry(char* out,std::size_t size,std::uint64_t nonce,std::uint64_t now) override {
         return blinds::telemetry::json(out,size,99,nonce,now,{},false,false,1);
     }
-    void cycle() {
+    bool handoff(char* out,std::size_t size,std::uint64_t nonce) override {
+        ++handoff_calls;
+        const auto n=std::snprintf(out,size,"{\"nonce\":%llu,\"settled_off\":false}",static_cast<unsigned long long>(nonce));
+        return n>0 && static_cast<std::size_t>(n)<size;
+    }
+    void cycle(bool defer=false) {
         const auto activity=input.activity(),rev=signals.generation();
         auto net=runtime::admitted_network(network,signals);
         const auto fast=runtime::observe(enabled,raw_stop,session.status().phase,signals,[&] {
@@ -74,7 +80,7 @@ struct Port final : smart_blinds::wifi::MotionPort {
             return FastObservation{true,io.counting,false,false,++sequence,io.now,io.epoch,500,.1};
         });
         auto in=runtime::input(fast,power(io.now),net,io.now);
-        const auto result=session.cycle(inbox,in);
+        const auto result=session.cycle(inbox,in,{},defer);
         const bool off=off_readback && io.off && !io.counting && !io.encoder && !io.locked;
         snapshot={result,net.connection,net.probe,
             runtime::parked(io.now,activity,input.activity(),rev,signals,!result.awake_required,off,enabled)};
@@ -140,6 +146,25 @@ void informational_without_wake() {
     check(f.app.request(f.owner,"v1/telemetry",1,nullptr,0,f.port.io.now,f.port.io.now).code==133,"GET method accepted");
     const auto wrong=values({100,77});
     check(f.app.request(f.owner,"v1/telemetry",2,wrong.data(),16,f.port.io.now,f.port.io.now).code==128,"old boot accepted");
+}
+void handoff_resource_is_observation_only() {
+    Fixture f(false);
+    f.port.io.now+=10000001;f.app.tick(f.port.io.now);
+    const auto activity=f.port.input.activity(),ops=f.port.io.calls;
+    const auto wake=f.app.policy.last_wake(),probe=f.app.probes.sequence();
+    auto body=values({99,1});
+    check(f.app.request(f.owner,"v1/handoff",2,body.data(),16,f.port.io.now,f.port.io.now).code==69,
+          "unqualified handoff observation rejected");
+    check(f.app.request(f.owner,"v1/handoff",2,body.data(),16,f.port.io.now,f.port.io.now).code==128,
+          "replayed handoff request accepted");
+    body=values({100,2});
+    check(f.app.request(f.owner,"v1/handoff",2,body.data(),16,f.port.io.now,f.port.io.now).code==128,
+          "foreign boot handoff request accepted");
+    check(f.app.request(f.owner,"v1/handoff",1,nullptr,0,f.port.io.now,f.port.io.now).code==133,
+          "GET handoff accepted");
+    check(f.port.handoff_calls==1 && !f.app.policy.awake() && f.app.policy.last_wake()==wake &&
+          f.app.probes.sequence()==probe && f.port.input.activity()==activity && f.port.io.calls==ops,
+          "handoff observation changed authority or physical state");
 }
 void gates_and_ownership() {
     Fixture f(false);
@@ -246,8 +271,37 @@ void telemetry_maximum_and_no_fake_freshness() {
     check(telemetry::json(out,sizeof(out),1,1,12345,s,false,false,1),"zero-time observation rejected");
     check(std::strstr(out,"\"sample_us\":\"0000000000000000\""),"observation time restamped");
 }
+void off_transaction_and_deferred_admission() {
+    runtime::OffTransaction hold;
+    const auto first=hold.request();
+    check(first && !hold.idle() && hold.pending()==first && !hold.held() && !hold.request(),"parallel hold request accepted");
+    check(!hold.answer(first+4,true) && !hold.answer(first+1,true) && !hold.release(first+4),"wrong token changed hold");
+    check(hold.answer(first,true) && hold.held()==first && !hold.answer(first,false),"grant not single-use");
+    check(hold.release(first) && hold.idle() && !hold.release(first),"release replay accepted");
+    const auto second=hold.request();
+    check(second>first && !hold.release(first) && hold.answer(second,false) && !hold.held(),"old release revoked new token");
+    check(hold.state(second)==runtime::OffTransaction::State::denied && hold.release(second),"denied token cannot close");
+    Fixture f;
+    check(f.send(1).code==68,"held prepare queue setup failed");
+    f.port.cycle(true);
+    check(f.port.inbox.pending() && f.port.inbox.received_message()==1 &&
+          f.port.session.status().last_message==0 && f.port.io.off && !f.port.io.encoder,
+          "OFF transaction consumed/armed ordinary request");
+    check(f.send(2,wire::Kind::stop).code==68,"held STOP was rejected");
+    f.port.io.now+=10000;f.port.cycle(true);
+    check(!f.port.inbox.pending() && f.port.inbox.received_message()==2 &&
+          f.port.session.status().result==MotionSession::Result::stopped && f.port.io.off,
+          "held STOP failed to bypass/discard backlog");
+    check(f.send(1).code!=68,"OFF hold reset producer replay floor");
+    Fixture next;check(next.send(1).code==68,"release fixture prepare rejected");
+    next.port.cycle(true);next.port.io.now+=10000;next.port.cycle(false);
+    check(next.port.session.status().phase==MotionSession::Phase::preparing &&
+          next.port.session.status().last_message==1 && !next.port.inbox.pending(),
+          "released hold lost original pending command");
+}
 int main() {
+    off_transaction_and_deferred_admission();
     telemetry_maximum_and_no_fake_freshness();
-    informational_without_wake();gates_and_ownership();parking_races();stop_and_revoke();stop_replay_and_failed_off();
+    informational_without_wake();handoff_resource_is_observation_only();gates_and_ownership();parking_races();stop_and_revoke();stop_replay_and_failed_off();
     std::cout<<"Wi-Fi binding, real session, raw STOP, parking and revocation tests passed\n";
 }
