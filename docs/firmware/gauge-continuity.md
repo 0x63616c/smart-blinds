@@ -1,6 +1,6 @@
 # Battery observation after MCU light sleep
 
-This is an **isolated, host-tested module**. Neither C6 application instantiates
+This is an **isolated, host-tested module**. No C6 application instantiates
 it; the existing gauge reader, power freshness rules and motor-disabled defaults
 are unchanged. There is no supplied production qualification record. It has no
 write, flag-clear, gauge-wake, NVM, charger or motor-control operation.
@@ -124,8 +124,10 @@ new source-age calculations, stale/future/replayed/overlapping captures,
 identity/configuration/fault changes in either guard, context loss and ticket
 reuse. Healthy later reads cannot silently repair a failed instance.
 
-This is protocol and state-machine evidence only. Next review must decide how
-the C6 read-only bus adapter obtains these guards and who owns invalidation,
-before connecting it to actual power evidence. The separate original
+The [read-only C6 adapter](../../firmware/esp-idf/components/gauge_continuity/README.md)
+now implements the bounded capture with explicit task/epoch ownership and
+publication invalidation. It is compiled but not instantiated. Connecting its
+reports to actual power evidence still requires a separately reviewed owner
+and physical qualification. The separate original
 Thread-labelled host group timing failure remains unresolved; this module does
 not explain that failure or validate C6 scheduling or battery life.

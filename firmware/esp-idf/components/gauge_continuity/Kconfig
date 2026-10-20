@@ -1,0 +1,10 @@
+menu "Smart blinds read-only gauge continuity bench adapter"
+config BLINDS_GAUGE_CONTINUITY_BENCH
+    bool "Permit explicitly qualified read-only gauge attachment"
+    depends on IDF_TARGET_ESP32C6
+    default n
+    help
+        Compile-time bench gate only. No application instantiates this adapter.
+        Attachment also requires explicit boot-bound pack/continuity records.
+        It cannot create a bus, write a register or approve physical actuation.
+endmenu

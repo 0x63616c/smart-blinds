@@ -343,6 +343,15 @@ jobs:
             espressif/idf:v5.5.4@sha256:b9f2d6ea1c19e0c9f7959bdb74a9e3c775642f9d0f3b841937c5fa3363db892b \
             idf.py -D SB_COAP_DIR=/project/work/wifi-idf-extra/coap \
               -B /project/work/c6-wifi-build set-target esp32c6 build
+      - name: Compile the isolated gauge attachment branch against the real C6 SDK
+        run: |
+          printf '%s\n' 'CONFIG_BLINDS_GAUGE_CONTINUITY_BENCH=y' > work/gauge-adapter-bench.defaults
+          docker run --rm -v "$PWD:/project" -w /project/firmware/esp-idf-wifi \
+            espressif/idf:v5.5.4@sha256:b9f2d6ea1c19e0c9f7959bdb74a9e3c775642f9d0f3b841937c5fa3363db892b \
+            idf.py -D SB_COAP_DIR=/project/work/wifi-idf-extra/coap \
+              -D SDKCONFIG=/project/work/c6-gauge-adapter-bench.sdkconfig \
+              -D 'SDKCONFIG_DEFAULTS=/project/firmware/esp-idf-wifi/sdkconfig.defaults;/project/work/gauge-adapter-bench.defaults' \
+              -B /project/work/c6-gauge-adapter-bench set-target esp32c6 build
       - uses: actions/upload-artifact@v4
         with:
           name: motor-disabled-c6-wifi-evaluation
