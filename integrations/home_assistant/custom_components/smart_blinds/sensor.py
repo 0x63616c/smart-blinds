@@ -28,4 +28,7 @@ class Battery(SmartBlindsEntity, SensorEntity):
 
     @property
     def extra_state_attributes(self):
-        return {"sample_age_ms": self.state_data.get("battery_age_ms"), "simulation": True}
+        return {"sample_age_ms": self.state_data.get("battery_age_ms"), "simulation": self.coordinator.data["mode"] == "simulation",
+                "boot": self.state_data.get("boot"), "source_sample_us": self.state_data.get("battery_sample_us"),
+                "last_observed_percent": self.state_data.get("battery_last_percent"),
+                "observation_state": self.state_data.get("battery_state")}

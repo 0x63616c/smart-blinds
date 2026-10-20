@@ -167,8 +167,36 @@ jobs:
           python-version: '3.14'
       - name: Install pinned Home Assistant test framework
         run: python -m pip install -r integrations/home_assistant/ha_tests/requirements.txt
+      - name: Build the pinned native telemetry client and loopback fixture
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends cmake libssl-dev
+          sh firmware/esp-idf-wifi/fetch_dependencies.sh
+          cmake -S integrations/telemetry_transport -B work/telemetry-build \
+            -DLIBCOAP_SOURCE_DIR="$PWD/work/wifi-idf-extra/coap/libcoap" \
+            -DSB_ALLOW_CCM8_POLICY=ON -DSB_BUILD_TEST_PEER=ON
+          cmake --build work/telemetry-build -j4
+          cmake -S integrations/telemetry_transport -B work/telemetry-client \
+            -DLIBCOAP_SOURCE_DIR="$PWD/work/wifi-idf-extra/coap/libcoap" \
+            -DSB_ALLOW_CCM8_POLICY=ON -DSB_BUILD_TEST_PEER=OFF
+          cmake --build work/telemetry-client -j4
+          python - <<'PY'
+          import subprocess
+          symbols = subprocess.check_output(
+              ["nm", "-D", "--defined-only", "work/telemetry-client/libsb_telemetry.so"],
+              text=True,
+          )
+          assert "sb_telemetry_client_new" in symbols
+          assert "sb_telemetry_peer_" not in symbols, "Synthetic peer entered the client library"
+          PY
+      - name: Exercise read-only telemetry ownership over real DTLS and HTTP
+        run: |
+          SB_TELEMETRY_LIBRARY="$PWD/work/telemetry-build/libsb_telemetry.so" \
+            python -m unittest integrations.telemetry_transport.test_telemetry integrations.physical_bridge.test_bridge -v
       - name: Exercise actual integration and loopback bridge
-        run: python -m pytest -q integrations/home_assistant/ha_tests
+        run: |
+          SB_TELEMETRY_LIBRARY="$PWD/work/telemetry-build/libsb_telemetry.so" \
+            python -m pytest -q integrations/home_assistant/ha_tests
 
   native-schematic:
     runs-on: ubuntu-24.04

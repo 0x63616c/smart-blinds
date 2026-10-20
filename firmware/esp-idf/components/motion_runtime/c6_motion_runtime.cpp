@@ -48,7 +48,8 @@ bool MotionRuntime::start(runtime::WakeSink sink,bool local_buttons) {
     status_queue_=xQueueCreate(1,sizeof(runtime::Snapshot));
     reference_queue_=xQueueCreate(1,sizeof(PhysicalReference));
     source_queue_=xQueueCreate(1,sizeof(SourceStatus));
-    if(!network_queue_ || !sensor_request_queue_ || !sensor_park_queue_ || !physical_off_queue_ || !status_queue_ || !reference_queue_ || !source_queue_) return false;
+    telemetry_queue_=xQueueCreate(1,sizeof(telemetry::Samples));
+    if(!network_queue_ || !sensor_request_queue_ || !sensor_park_queue_ || !physical_off_queue_ || !status_queue_ || !reference_queue_ || !source_queue_ || !telemetry_queue_) return false;
     // Lower-priority I2C work cannot block the only motor owner. Hardware enable
     // still requires CONFIG_BLINDS_BENCH_MOTION and all local records.
     if(xTaskCreate(power_entry,"blind_power",6144,this,3,&power_task_)!=pdPASS) return false;
@@ -95,6 +96,20 @@ bool MotionRuntime::source_status(smart_blinds::pd::Observation& out,std::uint64
     if(o.error!=smart_blinds::pd::Error::none || !o.serial || o.started_ms>o.finished_ms ||
        o.finished_ms>now/1000 || now/1000-o.started_ms>smart_blinds::pd::Monitor::max_age_ms) return false;
     out=o;return true;
+}
+bool MotionRuntime::telemetry(char* out,std::size_t size,std::uint64_t nonce) const {
+    const auto event=source_event_.load(std::memory_order_acquire);
+    const auto epoch=bus_epoch_.value();
+    telemetry::Samples copy{};
+    if(telemetry_queue_) xQueuePeek(telemetry_queue_,&copy,0);
+    // A fault/event may arrive during the copy. No queue read is permission to
+    // sense or move, and no network reader consumes the control publication.
+    const bool pending=source_busy_.load(std::memory_order_acquire) ||
+        event!=source_event_.load(std::memory_order_acquire) || copy.source_event!=event ||
+        source_ack_.load(std::memory_order_acquire)!=event || epoch!=bus_epoch_.value();
+    // Timestamp the completed copy, not entry to the request handler: a healthy
+    // producer may have published a newer observation during xQueuePeek.
+    return telemetry::json(out,size,boot_,nonce,now_us(),copy,signals_.failed(),pending,epoch);
 }
 bool MotionRuntime::wake_radio() {
     if(wake_sink_.notify()) return true;
@@ -248,7 +263,10 @@ void MotionRuntime::control() {
         }
         const PhysicalOff physical{now_us(),off && activity==ingress_.activity(),activity,signals_.generation()};
         if(xQueueOverwrite(physical_off_queue_,&physical)!=pdPASS) abort();
-        sampling(initialized && (network.awake || status.awake_required));
+        // No sensor lifetime exists before qualified I/O initialization. An
+        // OFF-only boot cannot prove the qualified owner's park condition.
+        // Existing requests still transition/retire after I/O qualification loss.
+        if(initialized || requested.sequence) sampling(initialized && (network.awake || status.awake_required));
         const auto parking=runtime::parked(now_us(),activity,ingress_.activity(),revocation,
                                            signals_,!status.awake_required,off && sensor_closed(),initialized && !io.faulted());
         const runtime::Snapshot publication{status,network.connection,network.probe,parking};
@@ -291,13 +309,24 @@ void MotionRuntime::power() {
                     reinterpret_cast<std::uintptr_t>(xTaskGetCurrentTaskHandle())};
         }
         bool hold_off() override {
-            PhysicalOff value{};const auto now=now_us();
-            return ready_.load(std::memory_order_acquire) && xQueuePeek(queue_,&value,0)==pdPASS &&
+            PhysicalOff value{};
+            const bool copied=ready_.load(std::memory_order_acquire) && xQueuePeek(queue_,&value,0)==pdPASS;
+            // The control owner may publish while this task copies. Sample age
+            // AFTER the completed copy so a healthy newer report is not future.
+            const auto now=now_us();
+            const bool result=copied &&
                 value.off && value.activity==runtime_.ingress_.activity() &&
                 value.revocation==runtime_.signals_.generation() && !runtime_.signals_.failed() && value.sampled_us && value.sampled_us<=now && now-value.sampled_us<=30000 &&
                 gpio_get_level(static_cast<gpio_num_t>(io::Pins::request_n)) &&
                 !gpio_get_level(static_cast<gpio_num_t>(io::Pins::in1)) &&
                 !gpio_get_level(static_cast<gpio_num_t>(io::Pins::in2));
+#ifndef ESP_PLATFORM
+            if(!result) std::fprintf(stderr,"OFF refusal now=%" PRIu64 " sampled=%" PRIu64 " delta=%" PRId64 " off=%u activity=%u/%u revocation=%u/%u ready=%u failed=%u\n",
+                now,value.sampled_us,static_cast<std::int64_t>(now)-static_cast<std::int64_t>(value.sampled_us),unsigned(value.off),
+                value.activity,runtime_.ingress_.activity(),value.revocation,runtime_.signals_.generation(),
+                unsigned(ready_.load()),unsigned(runtime_.signals_.failed()));
+#endif
+            return result;
         }
     private: MotionRuntime& runtime_;QueueHandle_t queue_;const std::atomic<bool>& ready_;
     } motor_off(*this);
@@ -321,6 +350,14 @@ void MotionRuntime::power() {
     std::uint32_t active_request=0;
     std::optional<std::uint64_t> alert_drain_started;
     gc::Failure first_failure{};
+    telemetry::Samples information{}; // Sensor-owned, across clean session replacement.
+    const auto publish_information=[&]() {
+        if(xQueueOverwrite(telemetry_queue_,&information)!=pdPASS) abort();
+    };
+    const auto copy_charger=[&](const ch::OffCapture& observation) {
+        if(observation.valid()) information.charger={observation.started_ms*1000,
+            bus_epoch_.value(),true,observation.source_present()};
+    };
     const auto terminal=[&](gc::Failure failure) {
         if(failure.kind==gc::FailureKind::none) failure={gc::FailureKind::lifecycle,19};
         if(first_failure.kind==gc::FailureKind::none) { first_failure=failure;
@@ -328,6 +365,9 @@ void MotionRuntime::power() {
             std::fprintf(stderr,"sensor first failure %u/%u BQ=%u PD=%u\n",unsigned(failure.kind),failure.code,session?unsigned(session->charger.policy().first_error()):999,session?unsigned(session->pd.policy().first_error()):999);
 #endif
         }
+        information.fault=first_failure.kind==gc::FailureKind::gauge ? telemetry::Fault::gauge:
+            first_failure.kind==gc::FailureKind::charger ? telemetry::Fault::charger:telemetry::Fault::lifecycle;
+        information.fault_code=first_failure.code;publish_information();
         failed=true;sensors_.withdraw();
         if(session) session->box.retire(first_failure);
         signals_.fail();notify_request();
@@ -405,6 +445,17 @@ void MotionRuntime::power() {
             // normal received PD message alone is not a movement cancellation.
             signals_.local_stop();notify_request();
         }
+        information.pd={value.started_ms*1000,bus_epoch_.value(),value.epoch,value.serial,
+            value.current_ma,[&] {
+                switch(value.state) {
+                case smart_blinds::pd::State::detached:return telemetry::Source::detached;
+                case smart_blinds::pd::State::negotiating:return telemetry::Source::negotiating;
+                case smart_blinds::pd::State::unapproved:return telemetry::Source::unapproved;
+                case smart_blinds::pd::State::ready:return telemetry::Source::policy_observed;
+                case smart_blinds::pd::State::fault:return telemetry::Source::fault;
+                default:return telemetry::Source::unavailable;
+                }
+            }(),true,bool(value.port&1)};
         const SourceStatus report{value,event,bus_epoch_.value()};
         if(xQueueOverwrite(source_queue_,&report)!=pdPASS) abort();
         return true;
@@ -427,6 +478,8 @@ void MotionRuntime::power() {
             // Both owners were serviced. A still-low shared line means another
             // pending/fault condition; do not acknowledge it or release PM.
             if(!alert_clear()) { if(!failed) ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue; }
+            if(session) copy_charger(session->transition);
+            information.source_event=serviced;publish_information();
             source_ack_.store(serviced,std::memory_order_release);
             source_busy_.store(false,std::memory_order_release);
             if(!motor_off.hold_off() || !inhibit.hold_off()) {
@@ -521,9 +574,14 @@ void MotionRuntime::power() {
             auto read=session->box.read_latest(session->window,now_us());
             const auto record=read ? read->consume(now_us()):std::optional<gc::JointRecord>{};
             if(!record) { terminal({gc::FailureKind::lifecycle,18});continue; }
-            session->last_ready_us=record->gauge.evidence.report.observed_us;
+            const auto& measured=record->gauge.evidence.report;
+            session->last_ready_us=measured.observed_us;
+            information.battery={measured.observed_us,measured.pack_binding,record->gauge.epoch,
+                record->gauge.serial,measured.soc_percent.value_or(0),true,measured.soc_percent.has_value()};
+            copy_charger(record->charger);
         }
         if(!alert_clear()) { if(!failed) ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue; }
+        information.source_event=source_event;publish_information();
         source_ack_.store(source_event,std::memory_order_release);
         source_busy_.store(false,std::memory_order_release);
         notify_request();

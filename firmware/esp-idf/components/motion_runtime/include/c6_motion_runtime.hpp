@@ -6,6 +6,7 @@
 #include <atomic>
 #include "c6_power_mailbox.hpp"
 #include "smart_blinds/sensor_access.hpp"
+#include "smart_blinds/telemetry.hpp"
 
 namespace blinds::c6 {
 // Lifetime is the application lifetime. No destructor can race running workers.
@@ -29,6 +30,7 @@ public:
     void transport_fault(); // Permanent asynchronous delivery/ownership failure.
     void local_stop_from_isr();
     void source_irq_from_isr();
+    bool telemetry(char*,std::size_t,std::uint64_t nonce) const;
     bool source_status(smart_blinds::pd::Observation& out,std::uint64_t now) const;
     bool parked_off(std::uint64_t now) const;
     // Trusted LOCAL workflow only, never exposed as a CoAP resource. A full
@@ -63,7 +65,7 @@ private:
     runtime::Ingress ingress_;
     TaskHandle_t control_task_=nullptr,power_task_=nullptr,radio_task_=nullptr;
     QueueHandle_t network_queue_=nullptr,status_queue_=nullptr,reference_queue_=nullptr;
-    QueueHandle_t source_queue_=nullptr;
+    QueueHandle_t source_queue_=nullptr,telemetry_queue_=nullptr;
     std::atomic<std::uint32_t> source_event_{0},source_ack_{0};
     std::atomic<bool> source_busy_{false};
     QueueHandle_t sensor_request_queue_=nullptr,sensor_park_queue_=nullptr,physical_off_queue_=nullptr;

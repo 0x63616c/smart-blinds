@@ -17,6 +17,7 @@ public:
     virtual bool qualified() const=0;
     virtual bool parked(std::uint64_t now) const=0;
     virtual bool status(char*,std::size_t,std::uint64_t now)=0;
+    virtual bool telemetry(char*,std::size_t,std::uint64_t,std::uint64_t) { return false; }
 };
 class MotionBinding {
 public:
@@ -68,10 +69,15 @@ public:
             r.code=129; return r;
         }
         const bool get=path=="v1/status" || path=="v1/readiness" || path=="v1/motion-status";
-        const bool known=get || path=="v1/wake" || path=="v1/clock" || path=="v1/qualify" || path=="v1/motion";
+        const bool known=get || path=="v1/telemetry" || path=="v1/wake" || path=="v1/clock" || path=="v1/qualify" || path=="v1/motion";
         if(!known) { r.code=132; return r; }
         if(method!=(get ? 1 : 2)) { r.code=133; return r; }
         if((size && !body) || (get && size)) { r.code=128; return r; }
+        if(path=="v1/telemetry") {
+            if(size!=16 || read(body)!=policy.boot() || !read(body+8)) { r.code=128;return r; }
+            r.code=port_.telemetry(r.body.data(),r.body.size(),read(body+8),sent) ? 69:163;
+            return r;
+        }
         probes.advance(received,policy.awake());
         if(path=="v1/status") {
             std::snprintf(r.body.data(),r.body.size(),

@@ -23,7 +23,7 @@ struct MockDevice { unsigned address=0;MockTask* owner=nullptr; };
 struct MockPm { MockTask* owner=nullptr;bool held=false; };
 MockGpio GPIO;
 namespace runtime_fake {
-std::atomic<unsigned> fast_reads{0},stop_reads{0},actuations{0};std::atomic<bool> stop{false};
+std::atomic<unsigned> fast_reads{0},stop_reads{0},actuations{0};std::atomic<bool> stop{false},fault{false};
 }
 namespace {
 struct EndTask {};
@@ -39,6 +39,8 @@ std::array<std::uint16_t,512> words{};
 std::array<std::uint8_t,256> pd_regs{};
 std::atomic<unsigned> gauge_reads{0},pd_reads{0};
 std::atomic<bool> stuck_alert{false};
+std::atomic<bool> inject_off_race{false},off_read_waiting{false},off_race_released{false};
+std::atomic<bool> inject_telemetry_race{false},telemetry_waiting{false},telemetry_released{false};
 void(*power_irq)(void*)=nullptr;void* power_irq_arg=nullptr;
 std::atomic<std::int64_t> offset{0};
 std::chrono::steady_clock::time_point origin;
@@ -61,7 +63,8 @@ void reset_bus() {
     pd_regs.fill(0);pd_regs[0x2F]=0x25;pd_regs[0x0C]=0xFB;pd_regs[0x70]=3;pd_regs[0x13]=0x40;
     const unsigned values[]{0x04019096,0x0002D0FA,0x0004B0FA};
     for(unsigned i=0;i<3;++i) for(unsigned b=0;b<4;++b) pd_regs[0x85+i*4+b]=values[i]>>(8*b);
-    gauge_reads=pd_reads=0;stuck_alert=false;power_irq=nullptr;power_irq_arg=nullptr;
+    gauge_reads=pd_reads=0;stuck_alert=false;inject_off_race=off_read_waiting=off_race_released=false;power_irq=nullptr;power_irq_arg=nullptr;
+    inject_telemetry_race=telemetry_waiting=telemetry_released=false;
     block=blocked=release_call=fail_call=false;block_device=0;transfer_hook={};
 }
 blinds::runtime::Configuration configuration(bool pd=false) {
@@ -90,7 +93,7 @@ struct Fixture {
     std::unique_ptr<blinds::c6::MotionRuntime> runtime;
     explicit Fixture(bool pd=false) {
         origin=std::chrono::steady_clock::now();offset=0;reset_bus();transfers=adds=removes=0;
-        released_locks=0;missing_off_reads=0;runtime_fake::fast_reads=runtime_fake::stop_reads=runtime_fake::actuations=0;runtime_fake::stop=false;
+        released_locks=0;missing_off_reads=0;runtime_fake::fast_reads=runtime_fake::stop_reads=runtime_fake::actuations=0;runtime_fake::stop=false;runtime_fake::fault=false;
         runtime=std::make_unique<blinds::c6::MotionRuntime>(99,configuration(pd));
         check(runtime->start({nullptr,[](void*){return true;}},true),"actual runtime failed to start");
         await([&]{return runtime->io_qualified() && held_locks==0;},"initial clean closure/PM release failed");
@@ -103,6 +106,11 @@ struct Fixture {
     bool power_ready() {
         char json[1500]{};runtime->status(json,sizeof(json),esp_timer_get_time());
         return std::strstr(json,"\"power_ready\":true");
+    }
+    std::string telemetry() {
+        char out[768]{};
+        check(runtime->telemetry(out,sizeof(out),123),"informational serialization failed");
+        return out;
     }
     unsigned reg(unsigned address) { std::lock_guard<std::mutex> lock(bus_mutex);return registers[address]; }
     void park() {
@@ -143,10 +151,24 @@ QueueHandle_t xQueueCreate(unsigned count,std::size_t size) {
     auto* raw=q.get();queues.push_back(std::move(q));return raw;
 }
 BaseType_t xQueueOverwrite(QueueHandle_t q,const void* data) {
-    std::lock_guard<std::mutex> guard(q->mutex);std::memcpy(q->body.data(),data,q->body.size());q->present=true;return pdPASS;
+    std::lock_guard<std::mutex> guard(q->mutex);std::memcpy(q->body.data(),data,q->body.size());q->present=true;
+    if(q==queues[3].get() && current && current->name=="blind_control" && off_read_waiting) off_race_released=true;
+    if(q==queues[7].get() && current && current->name=="blind_power" && telemetry_waiting) telemetry_released=true;
+    return pdPASS;
 }
 BaseType_t xQueuePeek(QueueHandle_t q,void* data,TickType_t wait) {
-    check(wait==0,"runtime reader blocked on queue");std::lock_guard<std::mutex> guard(q->mutex);
+    check(wait==0,"runtime reader blocked on queue");
+    if(q==queues[3].get() && current && current->name=="blind_power" && inject_off_race.exchange(false)) {
+        off_read_waiting=true;
+        await([] {return off_race_released.load();},"control did not publish during OFF read",500);
+        off_read_waiting=false;
+    }
+    if(q==queues[7].get() && !current && inject_telemetry_race.exchange(false)) {
+        telemetry_waiting=true;
+        await([] {return telemetry_released.load();},"sensor did not publish during telemetry read",500);
+        telemetry_waiting=false;
+    }
+    std::lock_guard<std::mutex> guard(q->mutex);
     if(!q->present) {
         if(q==queues[3].get() && current && current->name=="blind_power") ++missing_off_reads;
         return pdFALSE;
@@ -245,6 +267,60 @@ int i2c_master_transmit(i2c_master_dev_handle_t d,const std::uint8_t* bytes,std:
     check(!(bytes[0]==0x0F && (bytes[1]&0x20)),"charge enabled");
     std::copy_n(bytes+1,size-1,registers.data()+bytes[0]);if(bytes[0]==0x10) registers[0x10]&=~8;return ESP_OK;
 }
+void empty_physical_records_publish_no_observation() {
+    origin=std::chrono::steady_clock::now();offset=0;reset_bus();transfers=adds=removes=0;
+    held_locks=0;runtime_fake::actuations=0;
+    auto runtime=std::make_unique<blinds::c6::MotionRuntime>(99,blinds::runtime::Configuration{});
+    check(runtime->start({nullptr,[](void*){return true;}},true),"unqualified owner startup failed");
+    await([] {std::lock_guard<std::mutex> guard(queues[4]->mutex);return queues[4]->present;},"unqualified control never published");
+    char out[768]{};
+    check(runtime->telemetry(out,sizeof(out),123),"unqualified actual runtime telemetry failed");
+    check(std::strstr(out,"\"state\":\"absent\"") && std::strstr(out,"\"soc_pct\":null") &&
+          std::strstr(out,"\"input_present\":null") && std::strstr(out,"\"kind\":\"none\""),"unqualified runtime fabricated an observation/fault");
+    check(!runtime->io_qualified() && !runtime_fake::actuations && !held_locks && !adds && !transfers,
+          "telemetry initialized unqualified I/O or sensing");
+    shutdown();
+}
+void initialized_owner_loss_still_retires_sensor() {
+    Fixture f;f.awake(true);
+    await([&] {return f.power_ready();},"owner-loss fixture warmup failed");
+    runtime_fake::fault=true;f.runtime->notify_request();
+    await([&] {return !f.runtime->io_qualified();},"lost I/O owner stayed qualified");
+    await([&] {return f.telemetry().find("\"state\":\"invalid\"")!=std::string::npos;},"lost owner failed to retire observation");
+    check(!f.power_ready() && held_locks==2 && !f.runtime->parked_off(esp_timer_get_time()) && !runtime_fake::actuations,
+          "owner loss published power/park or released PM");
+    const auto first=f.telemetry();
+    check(first.find("\"kind\":\"none\"")==std::string::npos,"owner loss lacked first fault");
+    runtime_fake::fault=false;f.awake(false);f.awake(true);
+    std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    check(!f.runtime->io_qualified() && !f.power_ready() && held_locks==2,"later I/O success revived failed owner");
+}
+void newer_off_publication_during_guard_copy() {
+    Fixture f;
+    inject_off_race=true;f.awake(true);
+    await([] {return off_race_released.load();},"OFF publication race was not exercised");
+    await([&] {return f.power_ready();},"healthy newer OFF publication was rejected");
+    check(f.runtime->io_qualified() && !runtime_fake::actuations,"OFF race changed physical permissions");
+    f.park();
+}
+void newer_telemetry_publication_during_response_copy() {
+    Fixture f;f.awake(true);
+    await([&] {return f.power_ready();},"telemetry race warmup failed");
+    inject_telemetry_race=true;
+    const auto result=f.telemetry();
+    check(telemetry_released,"telemetry publication barrier did not run");
+    std::smatch match;
+    check(std::regex_search(result,match,std::regex(R"rx("sent_us":"([0-9a-f]{16})")rx")),"missing telemetry response time");
+    const auto sent=std::stoull(match[1].str(),nullptr,16);
+    const std::regex stamp(R"rx("sample_us":"([0-9a-f]{16})")rx");
+    for(auto i=std::sregex_iterator(result.begin(),result.end(),stamp);i!=std::sregex_iterator();++i) {
+        const auto sampled=std::stoull((*i)[1].str(),nullptr,16);
+        if(sampled>sent) std::cerr<<"telemetry future sample="<<sampled<<" response="<<sent<<" delta="<<(sampled-sent)<<"\n";
+        check(sampled<=sent,"new healthy telemetry sample was published after response time");
+    }
+    check(result.find("\"state\":\"retained\"")!=std::string::npos,"fresh battery marked invalid");
+    f.park();
+}
 void real_workers_wake_park_cold() {
     Fixture f;f.awake(true);
     await([&]{return f.power_ready();},"actual runtime never completed cold warmup");
@@ -279,6 +355,8 @@ void blocked_call_stop_and_lock(unsigned address) {
     check(held_locks==2 && released_locks==releases && !f.runtime->parked_off(esp_timer_get_time()),
           "control released PM/parked while synchronous I2C still blocked");
     char json[1500]{};check(f.runtime->status(json,sizeof(json),esp_timer_get_time()),"status blocked on sensor");
+    const auto info=f.telemetry();
+    check(info.find("\"charge_authorized\":false")!=std::string::npos,"blocked informational read granted charge");
     // A deliberately over-budget call returns a real failure, not a new good
     // sample. Only returning owner may clean up; no timeout thread removes it.
     { std::lock_guard<std::mutex> lock(bus_mutex);fail_call=true;release_call=true;bus_cv.notify_all(); }
@@ -320,11 +398,23 @@ void actual_cable_lifecycle() {
           source.state==smart_blinds::pd::State::detached;},"awake stationary unplug failed");
     check(f.runtime->io_qualified() && !runtime_fake::actuations,"normal unplug faulted or actuated");
     f.park();const auto parked_reads=gauge_reads.load();
+    const auto battery_part=[](const std::string& info) {
+        const auto begin=info.find("\"battery\":");const auto end=info.find("}",begin);
+        check(begin!=std::string::npos && end!=std::string::npos,"battery snapshot missing");
+        return info.substr(begin,end-begin+1);
+    };
+    const auto retained=battery_part(f.telemetry());
+    check(retained.find("\"state\":\"retained\"")!=std::string::npos,"healthy park discarded battery observation");
+    const auto requests=transfers.load(),released=released_locks.load();
+    for(unsigned i=0;i<100;++i) check(battery_part(f.telemetry())==retained,"status request restamped battery");
+    check(gauge_reads==parked_reads && transfers==requests && released_locks==released && held_locks==0,
+          "informational reads acquired sensors or changed PM");
     // Preserve entire parked age through repeated cable-only service. After the
     // real continuity interval expires, next motion wake must be a cold session.
     offset+=90000000;fire_irq();
     await([&]{return held_locks==0 && f.runtime->source_status(source,esp_timer_get_time());},"source poll stalled");
     check(gauge_reads==parked_reads,"source service renewed gauge continuity");
+    check(battery_part(f.telemetry())==retained,"source-only service restamped battery");
     const auto prior_adds=adds.load();f.awake(true);
     await([&]{return adds>=prior_adds+4;},"expired park did not replace owner epoch");
     await([&]{return f.power_ready();},"exact dynamic parked image lost at cold restart");
@@ -332,6 +422,9 @@ void actual_cable_lifecycle() {
     { std::lock_guard<std::mutex> lock(bus_mutex);pd_regs[0x0C]=0xFB; }
     fire_irq();
     await([&]{return !f.runtime->io_qualified();},"unexpected PD reset was repaired/ignored");
+    const auto invalid=f.telemetry();
+    check(invalid.find("\"state\":\"invalid\"")!=std::string::npos &&
+          invalid.find("\"state\":\"unknown\"")!=std::string::npos,"fault retained current informational values");
 }
 void bounded_shared_line() {
     Fixture f(true);
@@ -369,6 +462,8 @@ void pd_adapter_owner_epoch() {
     current=nullptr;
 }
 int main() {
-    pd_adapter_owner_epoch();real_workers_wake_park_cold();actual_cable_lifecycle();bounded_shared_line();blocked_call_stop_and_lock(0x28);blocked_call_stop_and_lock(0x6B);blocked_call_stop_and_lock(0x36);
+    if(std::getenv("SB_TEST_TELEMETRY_RACE")) {newer_telemetry_publication_during_response_copy();return 0;}
+    if(std::getenv("SB_TEST_OFF_RACE")) {newer_off_publication_during_guard_copy();return 0;}
+    empty_physical_records_publish_no_observation();initialized_owner_loss_still_retires_sensor();newer_telemetry_publication_during_response_copy();newer_off_publication_during_guard_copy();pd_adapter_owner_epoch();real_workers_wake_park_cold();actual_cable_lifecycle();bounded_shared_line();blocked_call_stop_and_lock(0x28);blocked_call_stop_and_lock(0x6B);blocked_call_stop_and_lock(0x36);
     std::cout<<"actual C6 runtime/adapter sources: two owners, cold restart, blocked I2C STOP/status and PM handoff passed\n";
 }

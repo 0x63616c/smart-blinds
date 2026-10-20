@@ -6,7 +6,7 @@ the owned motion session, C6 motor port and power readers. Its empty physical
 records and default-OFF compile option prevent motor initialization. The
 [radio-only evaluation](esp-idf-wifi/README.md), Thread target and
 [bring-up image](esp-idf/README.md) remain available separately.
-**No device has been flashed or validated on the purchased motor.** All 21
+**No device has been flashed or validated on the purchased motor.** All 23
 host test targets and the pinned Wi-Fi motion default/bench builds pass
 locally, including the actual C6 sensor/control workers against a fake SDK.
 See the [runtime evidence and limits](../docs/firmware/wifi-motion.md)
@@ -62,3 +62,8 @@ and preserves the exact charger image through a clean cold owner replacement.
 Its current-policy evidence is internal; the strict motion wire response remains
 unchanged. Physical records are empty, charging remains inhibited, and
 USB-only/depleted-pack radio startup is still unqualified.
+
+The separate [parked telemetry path](../docs/firmware/parked-telemetry.md) connects
+completed sensor observations through read-only authenticated Wi-Fi/HTTP to HA
+diagnostics. It does not enable physical covers or charging, and preserves original
+observation age during park.

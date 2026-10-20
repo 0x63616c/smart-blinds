@@ -13,12 +13,12 @@ followed by an eight-unit build only after their tests pass.
 
 | Area | Implemented and checked | Still required |
 |---|---|---|
-| Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
+| Enclosure | Provisional 115 × 174 × 71 mm case and 118 × 182 × 71 mm joint-service study; removable six-cell cassette and replaceable motor-fit parts | Correct confirmed PCB handedness error, refit frame/ports/harness, then physical retention, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
 | Main controller | Native eleven-sheet schematic and partial four-layer power route; 1013 segments, 255 vias, 70 checked groups plus USB, local clamp and 59 supervision branches, preserved circuit and mechanical anchors | Revise input surge protection and resolve the motor energy path; 122 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
-| Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
+| Home Assistant | Nine HA 2026.10.2 framework tests pass locally, including authenticated HTTP/DTLS diagnostics; simulator retains shared physical height across different calibration maps | CI for the new telemetry path; sole physical movement owner, periodic idle gauge policy and hardware qualification |
 | Radio transport | C6 Wi-Fi automatic-light-sleep evaluation and separate default-unqualified motion target; six real localhost DTLS tests; Thread target and seven-peer group adapter remain | Actual RF/power tests, physical qualification, temperature continuity, commissioned configuration and unattended recovery |
 | Costs | Dated parts inventory and component demand for two/eight units, sourced harness candidates and a source-bound print-volume estimate | Final board/assembly quote, slicer-based filament use, hardware totals, shipping, tax and stock refresh |
 
@@ -38,6 +38,24 @@ All 34 entries were checked after publication in `d5c61d7`: 247 input-file,
 images show the specified black board finish.
 Preview publication revalidates source inputs
 when another commit arrives during rendering.
+
+The subsequent [parked telemetry implementation](firmware/parked-telemetry.md)
+passes an independent fresh local run of all 23 host targets, 12 native
+DTLS/HTTP checks and nine Home Assistant framework tests. The physical-mode
+integration presents battery, USB and charging diagnostics from the original
+observations; HTTP refresh cannot make old battery data fresh. It provides no
+physical movement controls yet. The candidate also passed focused sanitizers,
+39 existing transport regressions and pinned default/bench C6 builds.
+CI now builds both the telemetry fixture and a client-only library, verifying
+that synthetic peer symbols do not enter the latter. This checkpoint's new
+CI run is pending.
+
+Native populated-PCB export exposed a [confirmed enclosure orientation error](mechanical/pcb-orientation-review.md):
+the old allocation reflected the component side. The current preview and the
+joint-service study therefore do not establish physical PCB fit, despite their
+passing modeled-volume checks. The correction keeps PCB copper and local anchors
+unchanged and places components inward with a proper rotation. Frame, button,
+connector, wire and service-path checks are being repeated for that pose.
 
 The monitored-PD checkpoint also passes six local behavioral fault controls. The
 sensor owner now monitors USB source events and reconciles parked/stationary
@@ -78,6 +96,7 @@ three positive capture controls and ten closed printable mesh types locally and 
 eight CAD source hashes match the checked source. The service tests include a conservative
 2.5 mm cassette release and 72 mm forward removal envelope. These results establish
 what the nominal model does; they do not establish printed fit or load capacity.
+They also do not resolve the PCB handedness defect described above.
 The 21 installed printed pieces total 326.435 cm³ per unit: about 414.57 g of
 solid PETG at 1.27 g/cm³. This is a CAD estimate, before infill, supports and waste;
 CI recalculates it from the freshly checked meshes. The separate eight-piece

@@ -1,4 +1,5 @@
 #include "smart_blinds/wifi_motion.hpp"
+#include "smart_blinds/telemetry.hpp"
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
@@ -62,6 +63,9 @@ struct Port final : smart_blinds::wifi::MotionPort {
         return runtime::status_json(out,size,99,snapshot,power(io.now),network,
             qualified() && snapshot.parking.revocation==signals.generation(),now);
     }
+    bool telemetry(char* out,std::size_t size,std::uint64_t nonce,std::uint64_t now) override {
+        return blinds::telemetry::json(out,size,99,nonce,now,{},false,false,1);
+    }
     void cycle() {
         const auto activity=input.activity(),rev=signals.generation();
         auto net=runtime::admitted_network(network,signals);
@@ -120,6 +124,23 @@ struct Fixture {
         check(port.session.status().ready && !port.io.off,"session never ready");
     }
 };
+void informational_without_wake() {
+    Fixture f(false);
+    f.port.io.now+=10000001;f.app.tick(f.port.io.now);
+    check(!f.app.policy.awake(),"fixture wake did not expire");
+    const auto wake=f.app.policy.last_wake(),probe=f.app.probes.sequence();
+    const auto activity=f.port.input.activity();
+    const auto operations=f.port.io.calls;
+    const auto body=values({99,77});
+    auto reply=f.app.request(f.owner,"v1/telemetry",2,body.data(),16,f.port.io.now,f.port.io.now);
+    check(reply.code==69 && std::strstr(reply.body.data(),"\"state\":\"absent\""),"unqualified telemetry invented observation");
+    check(std::strlen(reply.body.data())<768,"telemetry exceeded bounded reply");
+    check(!f.app.policy.awake() && f.app.policy.last_wake()==wake && f.app.probes.sequence()==probe &&
+          f.port.input.activity()==activity && f.port.io.calls==operations,"telemetry renewed authority or touched IO");
+    check(f.app.request(f.owner,"v1/telemetry",1,nullptr,0,f.port.io.now,f.port.io.now).code==133,"GET method accepted");
+    const auto wrong=values({100,77});
+    check(f.app.request(f.owner,"v1/telemetry",2,wrong.data(),16,f.port.io.now,f.port.io.now).code==128,"old boot accepted");
+}
 void gates_and_ownership() {
     Fixture f(false);
     check(f.send(1).code==163 && !f.port.io.calls,"unqualified radio touched I/O");
@@ -211,7 +232,22 @@ void stop_replay_and_failed_off() {
         "active disconnect reconnected");
 }
 }
+void telemetry_maximum_and_no_fake_freshness() {
+    telemetry::Samples s{};
+    s.battery={UINT64_MAX,UINT64_MAX,UINT32_MAX,UINT32_MAX,100,true,true};
+    s.charger={UINT64_MAX,UINT32_MAX,true,true};
+    s.pd={UINT64_MAX,UINT32_MAX,UINT32_MAX,UINT32_MAX,UINT16_MAX,telemetry::Source::policy_observed,true,true};
+    s.fault=telemetry::Fault::lifecycle;s.fault_code=UINT16_MAX;
+    char out[768]{};
+    check(telemetry::json(out,sizeof(out),UINT64_MAX,UINT64_MAX,UINT64_MAX,s,true,true,UINT32_MAX),"maximum telemetry reply exceeds fixed capacity");
+    check(std::strlen(out)<sizeof(out),"maximum telemetry length");
+    check(!telemetry::json(out,32,1,1,1,s,false,false,1),"truncated telemetry accepted");
+    s={};s.battery={0,1,1,1,42,true,true};
+    check(telemetry::json(out,sizeof(out),1,1,12345,s,false,false,1),"zero-time observation rejected");
+    check(std::strstr(out,"\"sample_us\":\"0000000000000000\""),"observation time restamped");
+}
 int main() {
-    gates_and_ownership();parking_races();stop_and_revoke();stop_replay_and_failed_off();
+    telemetry_maximum_and_no_fake_freshness();
+    informational_without_wake();gates_and_ownership();parking_races();stop_and_revoke();stop_replay_and_failed_off();
     std::cout<<"Wi-Fi binding, real session, raw STOP, parking and revocation tests passed\n";
 }

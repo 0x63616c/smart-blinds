@@ -1,4 +1,4 @@
-"""Local simulator configuration; credentials remain in HA config storage."""
+"""Explicit bridge-mode selection; credentials remain in HA config storage."""
 import voluptuous as vol
 
 from homeassistant import config_entries
@@ -10,6 +10,7 @@ from .const import CONF_BASE_URL, CONF_TOKEN, DOMAIN
 
 _SCHEMA = vol.Schema({
     vol.Required(CONF_BASE_URL, default="http://127.0.0.1:8765"): str,
+    vol.Required("mode", default="simulation"): vol.In({"simulation": "Simulator", "physical_read_only": "Physical telemetry (read only)"}),
     vol.Required(CONF_TOKEN): TextSelector(TextSelectorConfig(type=TextSelectorType.PASSWORD)),
 })
 
@@ -22,12 +23,12 @@ class SmartBlindsConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             try:
                 client = BridgeClient(async_get_clientsession(self.hass),
-                                      user_input[CONF_BASE_URL], user_input[CONF_TOKEN])
+                                      user_input[CONF_BASE_URL], user_input[CONF_TOKEN], user_input.get("mode", "simulation"))
                 state = await client.async_state()
                 await self.async_set_unique_id(state["bridge_id"])
                 self._abort_if_unique_id_configured()
-                return self.async_create_entry(title="Smart Blinds simulator", data={
-                    CONF_BASE_URL: client.base_url, CONF_TOKEN: user_input[CONF_TOKEN]})
+                return self.async_create_entry(title="Smart Blinds simulator" if client.mode == "simulation" else "Smart Blinds telemetry", data={
+                    CONF_BASE_URL: client.base_url, CONF_TOKEN: user_input[CONF_TOKEN], "mode": client.mode})
             except BridgeAuthError:
                 errors["base"] = "invalid_auth"
             except BridgeError:
@@ -45,7 +46,7 @@ class SmartBlindsConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             entry = self._get_reauth_entry()
             try:
                 client = BridgeClient(async_get_clientsession(self.hass),
-                                      entry.data[CONF_BASE_URL], user_input[CONF_TOKEN])
+                                      entry.data[CONF_BASE_URL], user_input[CONF_TOKEN], entry.data.get("mode", "simulation"))
                 state = await client.async_state()
                 if state["bridge_id"] != entry.unique_id:
                     return self.async_abort(reason="wrong_bridge")

@@ -18,8 +18,8 @@ public:
     int code = 0;
     bool done = false, failed = false, authenticated = false;
     unsigned handshakes = 0;
-    const bool motion_capable;
-    explicit Client(bool motion=false) : motion_capable(motion) {}
+    const bool motion_capable,telemetry_only;
+    explicit Client(bool motion=false,bool telemetry=false) : motion_capable(motion),telemetry_only(telemetry) {}
 
     ~Client() { disconnect(); OPENSSL_cleanse(key.data(), key.size()); }
     void disconnect() {
@@ -84,7 +84,7 @@ public:
     int request(int kind, const std::uint8_t* payload, std::size_t size, unsigned timeout,
                 std::uint8_t* output, std::size_t capacity, std::size_t* received, int* response_code) {
         if (!session || !context) return -4;
-        if ((kind < 0 || kind > (motion_capable ? 6 : 4)) || size > (motion_capable ? 80U : 32U) || (size && !payload) ||
+        if ((telemetry_only ? kind!=7 : (kind < 0 || kind > (motion_capable ? 6 : 4))) || size > (motion_capable ? 80U : 32U) || (size && !payload) ||
             !output || !received || !response_code || timeout < 1 || timeout > 5000) return -1;
         done = failed = false;
         body_size = 0;
@@ -92,7 +92,7 @@ public:
         if (!pdu) return -2;
         token_size = token.size();
         coap_session_new_token(session, &token_size, token.data());
-        constexpr const char* resources[] = {"status", "wake", "clock", "qualify", "readiness", "motion", "motion-status"};
+        constexpr const char* resources[] = {"status", "wake", "clock", "qualify", "readiness", "motion", "motion-status", "telemetry"};
         const char* resource = resources[kind];
         if (!coap_add_token(pdu, token_size, token.data()) ||
             !coap_add_option(pdu, COAP_OPTION_URI_PATH, 2, reinterpret_cast<const std::uint8_t*>("v1")) ||
@@ -126,6 +126,14 @@ void* sb_motion_client_new(const char* host, std::uint16_t port, const char* ide
     try {
         auto client = std::make_unique<sbthread::Client>(true);
         if (!client->connect(host, port, identity, key)) return nullptr;
+        return client.release();
+    } catch (...) { return nullptr; }
+}
+void* sb_telemetry_client_new(const char* host, std::uint16_t port, const char* identity, const std::uint8_t* key) {
+    sbthread::initialize();
+    try {
+        auto client = std::make_unique<sbthread::Client>(false,true);
+        if (!client->connect(host,port,identity,key)) return nullptr;
         return client.release();
     } catch (...) { return nullptr; }
 }

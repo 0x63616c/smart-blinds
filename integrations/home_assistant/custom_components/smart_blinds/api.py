@@ -76,8 +76,71 @@ def validate_state(value: object) -> dict:
     return value
 
 
+def validate_physical_state(value: object) -> dict:
+    """Physical diagnostics have a separate exact schema and no control state."""
+    if (type(value) is not dict or set(value) != {"schema_version", "mode", "bridge_id", "devices"}
+        or type(value["schema_version"]) is not int or value["schema_version"] != 2
+        or value["mode"] != "physical_read_only" or type(value["bridge_id"]) is not str or not value["bridge_id"]
+        or type(value["devices"]) is not list or not 1 <= len(value["devices"]) <= 8):
+        raise BridgeError("Unsupported physical read-only bridge schema")
+    fields = set("id name boot available battery_percent battery_last_percent battery_age_ms battery_sample_us battery_state battery_epoch battery_serial charging charger_age_ms charger_sample_us usb_connected pd_state pd_age_ms pd_sample_us pending fault charge_authorized".split())
+    ids = set()
+    def hex64(v):
+        return type(v) is str and len(v) == 16 and all(c in "0123456789abcdef" for c in v)
+    for d in value["devices"]:
+        if (type(d) is not dict or set(d) != fields or type(d["id"]) is not str or not d["id"] or d["id"] in ids
+            or type(d["name"]) is not str or not d["name"] or not hex64(d["boot"]) or int(d["boot"],16) == 0
+            or type(d["available"]) is not bool or type(d["pending"]) is not bool or d["charge_authorized"] is not False):
+            raise BridgeError("Invalid physical identity or state")
+        ids.add(d["id"])
+        for key in ("battery_age_ms", "charger_age_ms", "pd_age_ms"):
+            age = d[key]
+            if age is not None and (type(age) is not int or not 0 <= age <= (1 << 63)-1):
+                raise BridgeError("Invalid informational age")
+        for key in ("battery_sample_us", "charger_sample_us", "pd_sample_us"):
+            if d[key] is not None and not hex64(d[key]):
+                raise BridgeError("Invalid original source timestamp")
+        for key in ("battery_percent", "battery_last_percent"):
+            v = d[key]
+            if v is not None and (type(v) not in (int,float) or not math.isfinite(v) or not 0 <= v <= 100):
+                raise BridgeError("Invalid battery estimate")
+        for key in ("battery_epoch", "battery_serial"):
+            if type(d[key]) is not int or not 0 <= d[key] < (1 << 32):
+                raise BridgeError("Invalid source identity")
+        if d["battery_state"] not in ("absent", "retained", "invalid"):
+            raise BridgeError("Invalid battery state")
+        for key in ("charging", "usb_connected"):
+            if d[key] is not None and type(d[key]) is not bool:
+                raise BridgeError("Invalid measured binary state")
+        if d["charging"] is True:
+            raise BridgeError("This device image cannot authorize charging")
+        if d["pd_state"] not in ("unavailable", "detached", "negotiating", "unapproved", "policy_observed", "fault"):
+            raise BridgeError("Invalid observed source policy")
+        if d["fault"] is not None and (type(d["fault"]) is not dict or set(d["fault"]) != {"kind","code"}
+            or d["fault"]["kind"] not in ("gauge","charger","lifecycle","runtime")
+            or type(d["fault"]["code"]) is not int or not 0 <= d["fault"]["code"] <= 65535):
+            raise BridgeError("Invalid source fault")
+        if d["battery_percent"] is not None and (not d["available"] or d["fault"] is not None
+            or d["battery_state"] != "retained" or d["battery_age_ms"] is None or d["battery_age_ms"] > 1800000
+            or d["battery_sample_us"] is None or not d["battery_epoch"] or not d["battery_serial"]
+            or d["battery_percent"] != d["battery_last_percent"]):
+            raise BridgeError("Unobserved or stale battery estimate")
+        if d["charging"] is not None and (not d["available"] or d["pending"]
+            or d["fault"] is not None or d["charger_age_ms"] is None or d["charger_age_ms"] > 60000
+            or d["charger_sample_us"] is None):
+            raise BridgeError("Unobserved or stale charger state")
+        if d["usb_connected"] is not None and (not d["available"] or d["pending"] or d["fault"] is not None
+            or d["pd_age_ms"] is None or d["pd_age_ms"] > 60000 or d["pd_sample_us"] is None
+            or d["pd_state"] == "unavailable"):
+            raise BridgeError("Unobserved or stale Type-C attachment")
+    return value
+
+
 class BridgeClient:
-    def __init__(self, session: ClientSession, base_url: str, token: str):
+    def __init__(self, session: ClientSession, base_url: str, token: str, mode="simulation"):
+        if mode not in ("simulation", "physical_read_only"):
+            raise ValueError("invalid_mode")
+        self.mode = mode
         self.session = session
         self.base_url = normalize_url(base_url)
         if not isinstance(token, str) or len(token) < 32 or any(c.isspace() for c in token):
@@ -108,12 +171,18 @@ class BridgeClient:
             raise BridgeError("Bridge response unavailable or invalid") from exc
 
     async def async_state(self):
+        if self.mode == "physical_read_only":
+            return validate_physical_state(await self._request("GET", "/v2/state"))
         return validate_state(await self._request("GET", "/v1/state"))
 
     async def async_move(self, target: str, position: float, *, align: bool = False):
+        if self.mode != "simulation":
+            raise BridgeError("Physical telemetry has no movement interface")
         result = await self._request("POST", "/v1/move", {"target": target, "position": position, "align": align})
         if not isinstance(result, dict) or result.get("accepted") is not True:
             raise BridgeError("Bridge did not accept command")
 
     async def async_stop(self):
+        if self.mode != "simulation":
+            raise BridgeError("Physical telemetry has no movement interface")
         await self._request("POST", "/v1/stop", {})

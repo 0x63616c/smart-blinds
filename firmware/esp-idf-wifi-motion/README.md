@@ -53,3 +53,8 @@ docker run --rm -v "$PWD:/project" -w /project/firmware/esp-idf-wifi-motion \
 Local build evidence is recorded in the runtime contract; fresh pinned CI must
 establish the result for the published source. Both OTA-sized slots remain
 reserved; no update implementation exists. No hardware was flashed.
+
+The separate [`v1/telemetry` resource](../../docs/firmware/parked-telemetry.md)
+copies sensor observations without waking sensors or renewing motion authority.
+Default-unqualified boots report absent observations. The physical read-only HA
+bridge exposes diagnostics only; its client cannot send movement commands.

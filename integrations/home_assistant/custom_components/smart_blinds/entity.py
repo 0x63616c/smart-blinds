@@ -19,7 +19,7 @@ class SmartBlindsEntity(CoordinatorEntity):
             self._attr_device_info = DeviceInfo(
                 identifiers={(DOMAIN, f"{bridge_id}:{device_id}")},
                 name=self.state_data["name"], manufacturer="Smart Blinds",
-                model="Virtual blind", via_device_id=coordinator.bridge_device_id,
+                model="Physical blind (telemetry only)" if coordinator.data["mode"] == "physical_read_only" else "Virtual blind", via_device_id=coordinator.bridge_device_id,
             )
 
     @property

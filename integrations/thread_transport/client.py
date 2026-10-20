@@ -94,6 +94,9 @@ def _load(path: Path):
     library.sb_client_new.restype = C.c_void_p
     library.sb_motion_client_new.argtypes = library.sb_client_new.argtypes
     library.sb_motion_client_new.restype = C.c_void_p
+    if hasattr(library, "sb_telemetry_client_new"):
+        library.sb_telemetry_client_new.argtypes = library.sb_client_new.argtypes
+        library.sb_telemetry_client_new.restype = C.c_void_p
     library.sb_client_free.argtypes = [C.c_void_p]
     library.sb_client_free.restype = None
     library.sb_client_request.argtypes = [C.c_void_p, C.c_int, C.POINTER(C.c_uint8), C.c_size_t,
