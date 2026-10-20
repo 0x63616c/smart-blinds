@@ -9,6 +9,15 @@ unrouted. No unit has been fabricated,
 powered, charged or installed. The next physical milestone is two prototypes,
 followed by an eight-unit build only after their tests pass.
 
+**Layout rework requested after KiCad inspection.** The owner requires all
+components on a strict placement grid, outward-facing cable connectors at board
+edges, 45°/90° gridded routing with parallel connector escapes, and no top-layer
+transit under component bodies. The current main board does not meet these
+[requirements](electrical/routing-style.md): 387 of its 1,013 segments use other
+angles. Connector positions, enclosure access and cable service paths are being
+reconsidered before routing continues. Earlier fixed-anchor and inward-harness
+studies are historical proposals, not final placement authority.
+
 ## Current design
 
 | Area | Implemented and checked | Still required |

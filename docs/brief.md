@@ -19,6 +19,8 @@ record. Do not buy parts or release fabrication without an explicit instruction 
 | Cost | Minimize complete eight-unit cost within reason, including assembly setup/feeder costs, hardware and pack construction |
 | PCB | Controller/charger/motor drive with JLCPCB-supplied and assembled common components where practical; minimal silkscreen; a separate battery-holder/protection carrier is permitted if it reduces assembly work or size |
 | Finish | Black PCB solder mask preferred; quantify any assembly-cost effect before selection |
+| Placement and routing | Strict 0.25 mm component-origin grid and 90° component rotations; 0.05 mm routing grid, 45°/90° segments and straight parallel connector escapes; no top-layer transit underneath component bodies |
+| Cable connectors | At the PCB perimeter, mating openings facing outward; plugs and wires leave the board directly, with matching enclosure access and service clearances |
 | Battery | Six Samsung INR21700-50E cells, 3S2P per device; owner prefers PCB-mounted holders to simplify assembly; compare main-board holders, a separate keyed carrier and welded construction |
 | Motor | Purchased Recfountik JGB37-520 12 V, 111 RPM, encoder; exact electrical and dimensional data pending |
 | Charging | USB-C; correct 3S CC/CV charging, protection, temperature sensing and cell-balance strategy |
@@ -54,6 +56,12 @@ The actual reference method remains a design decision. Incremental motor encoder
 prove fabric position after chain slip, manual movement or lost power.
 
 ## Design selection
+
+On 20 October, after inspecting the PCB in KiCad, the owner required a substantial
+placement and routing rework. These requirements supersede the previous connector
+anchor freeze and inward cable-routing studies. Follow the
+[routing and placement rules](electrical/routing-style.md); update the enclosure
+and service geometry when connectors move. Preserve manufacturer pad geometry.
 
 Compare whole-unit packaging before freezing a PCB outline. Evaluate wall footprint and projection,
 chain wrap/tension, mounting loads, acoustics, wiring bend radii, battery insulation, USB cable access,
