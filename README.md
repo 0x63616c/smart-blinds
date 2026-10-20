@@ -35,29 +35,29 @@ These images are generated from the design sources. [Preview generation and prov
 A green preview badge means the images generated successfully, not that the hardware is validated.
 
 <!-- previews:start -->
-### Compact holder enclosure — current exterior
+### Retained enclosure — current exterior
 
-115 × 174 × 71 mm candidate, or 78 mm deep with untrimmed holder pins. Front buttons and underside USB-C; motor-family fit, printed tolerances and full fastening remain provisional.
+115 × 174 × 71 mm white enclosure candidate, with front buttons and underside USB-C. Buttons project to 72.2 mm. This compact version requires holder tails and solder joints trimmed to the documented limit; motor-family fit and printed tolerances remain provisional.
 
-![Compact holder enclosure — current exterior](docs/generated/compact-holder-closed/assembly.png)
+![Retained enclosure — current exterior](docs/generated/compact-holder-closed/assembly.png)
 
-[Source](cad/source/compact_direct.scad) · [Generated files](docs/generated/compact-holder-closed/)
+[Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-closed/)
 
-### Six cells and compact drive — current arrangement
+### Removable battery cassette and compact drive
 
-Two three-cell carrier boards with an insulating barrier, controller reservation and replaceable motor-fit parts. An outboard bearing shares radial load with the motor; it does not isolate the gearbox from chain force.
+Two opposing three-cell carrier boards fit in a removable cassette. Separate controller supports, cable routes and adjustable front buttons are modeled. The controller is shown as a reserved volume; exact holder fastening and physical load tests remain open.
 
-![Six cells and compact drive — current arrangement](docs/generated/compact-holder-assembly/assembly.png)
+![Removable battery cassette and compact drive](docs/generated/compact-holder-assembly/assembly.png)
 
-[Source](cad/source/compact_direct.scad) · [Generated files](docs/generated/compact-holder-assembly/)
+[Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-assembly/)
 
-### Compact holder enclosure — exploded fit study
+### Retained enclosure — service view
 
-Source geometry for the housing, holders and supported drive. Carrier/case fastening and full electrical placement remain unfinished; these are prototype-fit parts, not final manufacturing files.
+The cover and cassette lid are separated to show access. Two integral cleats and one mounting screw retain the cassette; its modeled release and removal paths clear the controller and drive. These are prototype-fit files, pending tolerance and load qualification.
 
-![Compact holder enclosure — exploded fit study](docs/generated/compact-holder-exploded/assembly.png)
+![Retained enclosure — service view](docs/generated/compact-holder-exploded/assembly.png)
 
-[Source](cad/source/compact_direct.scad) · [Generated files](docs/generated/compact-holder-exploded/)
+[Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-exploded/)
 
 ### Integrated controller — first component placement
 
@@ -68,13 +68,46 @@ Source geometry for the housing, holders and supported drive. Carrier/case faste
 [Source](hw/layouts/blind-main/main-test/main-test.kicad_pcb) · [Generated files](docs/generated/main-controller-placement/)
 
 <details>
-<summary>Front buttons — section through the mechanism</summary>
+<summary>Complete controller schematic</summary>
 
-Straight plungers operate side-actuated board switches. Nominal gap 0.15 mm and mechanical stop 0.4 mm; printed tolerance, actuation and safe overtravel require qualification.
+Eleven native KiCad sheets cover all 196 circuit features and 609 pin identities. The exported net partition matches the PCB; seven documented ERC findings remain. Unrouted and unpowered.
 
-![Front buttons — section through the mechanism](docs/generated/compact-holder-buttons/assembly.png)
+![Complete controller schematic](docs/generated/main-controller-schematic/smart-blinds-main.svg)
 
-[Source](cad/source/compact_direct.scad) · [Generated files](docs/generated/compact-holder-buttons/)
+[Source](hw/schematics/blind-main/smart-blinds-main.kicad_sch) · [Generated files](docs/generated/main-controller-schematic/) · [PDF](docs/generated/main-controller-schematic/schematic.pdf)
+
+</details>
+
+<details>
+<summary>Adjustable front buttons — mechanism section</summary>
+
+Two captive M2 adjusters set the plungers to first electrical closure at the 0.4 mm positive stop. Jam nuts lock the setting. Switch return, printed friction, adjustment and repeated operation still require physical tests.
+
+![Adjustable front buttons — mechanism section](docs/generated/compact-holder-buttons/assembly.png)
+
+[Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-buttons/)
+
+</details>
+
+<details>
+<summary>Battery cassette — removable assembly</summary>
+
+Six holders on opposing carrier boards, a separate insulating barrier and a removable printed shell. The assembled cassette releases with a 2.5 mm lift and then moves forward; disconnect and handle the cables separately.
+
+![Battery cassette — removable assembly](docs/generated/retained-cassette/assembly.png)
+
+[Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/retained-cassette/)
+
+</details>
+
+<details>
+<summary>Cassette retention — cutaway</summary>
+
+The cassette pocket captures the integral backplate cleat. Nominal interference confirms capture before the release slide; printed strength, creep and fit remain prototype tests.
+
+![Cassette retention — cutaway](docs/generated/retained-cleat-section/assembly.png)
+
+[Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/retained-cleat-section/)
 
 </details>
 
