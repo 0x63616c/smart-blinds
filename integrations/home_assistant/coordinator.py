@@ -61,17 +61,20 @@ class Job:
     commit_deadline_ms: int
     phase: Phase = Phase.PREPARING
     reason: str = ""
+    queued: set[str] = field(default_factory=set)
     prepared: set[str] = field(default_factory=set)
     committed: set[str] = field(default_factory=set)
     completed: dict[str, float] = field(default_factory=dict)
     last_report_ms: dict[str, int] = field(default_factory=dict)
-    last_lease_ms: int = -1
+    lease_sent_ms: dict[str, int] = field(default_factory=dict)
+    last_now_ms: int = 0
     freshness: FreshnessTracker = field(default_factory=FreshnessTracker)
 
     def envelope(self, device_id: str, kind: str, **extra) -> Envelope:
         cmd = self.commands[device_id]
         return Envelope(device_id, kind, {
-            "version": 1, "boot_nonce": cmd["boot_nonce"], "sequence": cmd["sequence"], **extra,
+            "version": 1, "boot_nonce": cmd["boot_nonce"], "sequence": cmd["sequence"],
+            "sent_ms": self.last_now_ms, **extra,
         })
 
     def abort(self, reason: str) -> list[Envelope]:
@@ -80,10 +83,53 @@ class Job:
         self.phase, self.reason = Phase.ABORTED, reason
         return [self.envelope(device_id, "stop") for device_id in self.members]
 
+    def _supervise(self, now_ms: int) -> list[Envelope]:
+        """No fresh receipt or late tick can revive an expired supervision period."""
+        if self.phase in (Phase.ABORTED, Phase.COMPLETE):
+            return []
+        if type(now_ms) is not int or not 0 <= now_ms < 2**63 or now_ms < self.last_now_ms:
+            return self.abort("coordinator clock moved backwards or is invalid")
+        self.last_now_ms = now_ms
+        if self.phase == Phase.PREPARING and now_ms >= self.prepare_deadline_ms:
+            return self.abort("member missing at prepare deadline")
+        if self.phase == Phase.COMMITTING and now_ms >= self.commit_deadline_ms:
+            return self.abort("member missing at commit deadline")
+        for member in self.queued - self.completed.keys():
+            # 250 ms leaves margin before the device's source-based 300 ms lease;
+            # a coordinator stall must abort, never emit catch-up leases.
+            if now_ms - self.lease_sent_ms[member] >= 250:
+                return self.abort(f"{member}: lease refresh missed")
+            source = self.last_report_ms.get(member, self.commands[member]["sent_ms"])
+            if now_ms - source > 250:
+                return self.abort(f"{member}: telemetry timeout")
+        return []
+
+    def prepare_queued(self, device_id: str, boot_nonce: int, sequence: int,
+                       now_ms: int, *, ok: bool = True) -> list[Envelope]:
+        """Authenticated transport receipt only; never source telemetry or ready.
+
+        The first lease deadline derives from the original prepare source time,
+        not this receipt. Repeated queue acknowledgements cannot extend it.
+        """
+        stopped = self._supervise(now_ms)
+        if stopped or self.phase != Phase.PREPARING or device_id not in self.members:
+            return stopped
+        cmd = self.commands[device_id]
+        if boot_nonce != cmd["boot_nonce"] or sequence != cmd["sequence"] or device_id in self.queued:
+            return []
+        if type(ok) is not bool or not ok:
+            return self.abort(f"{device_id}: prepare queue rejected")
+        if now_ms - cmd["sent_ms"] >= 250:
+            return self.abort(f"{device_id}: late prepare queue receipt")
+        self.queued.add(device_id)
+        self.lease_sent_ms[device_id] = cmd["sent_ms"]
+        return self.tick(now_ms)
+
     def acknowledge(self, device_id: str, boot_nonce: int, sequence: int,
                     kind: str, now_ms: int, *, stamp: SourceStamp, ok: bool = True) -> list[Envelope]:
-        if self.phase in (Phase.ABORTED, Phase.COMPLETE) or device_id not in self.members:
-            return []
+        stopped = self._supervise(now_ms)
+        if stopped or self.phase in (Phase.ABORTED, Phase.COMPLETE) or device_id not in self.queued:
+            return stopped
         command = self.commands[device_id]
         if boot_nonce != command["boot_nonce"] or sequence != command["sequence"]:
             return []  # unrelated or delayed ACK cannot advance this job
@@ -94,20 +140,16 @@ class Job:
             sampled = self.freshness.accept(device_id, stamp, now_ms, 250)
         except ValueError:
             return []  # stale ACK must not establish readiness or refresh supervision
-        if not ok:
+        if type(ok) is not bool or not ok:
             return self.abort(f"{device_id}: rejected {kind}")
-        if kind == "prepared" and self.phase == Phase.PREPARING:
-            if now_ms >= self.prepare_deadline_ms:
-                return self.abort("prepare deadline")
+        self.last_report_ms[device_id] = sampled
+        if kind == "prepared":
             self.prepared.add(device_id)
             if self.prepared == self.members.keys():
                 self.phase = Phase.COMMITTING
                 return [self.envelope(member, "commit") for member in self.members]
-        elif kind == "committed" and self.phase == Phase.COMMITTING:
-            if now_ms >= self.commit_deadline_ms:
-                return self.abort("commit deadline")
+        else:
             self.committed.add(device_id)
-            self.last_report_ms[device_id] = sampled
             if self.committed == self.members.keys():
                 self.phase = Phase.ARMED
                 return self.tick(now_ms)
@@ -116,11 +158,9 @@ class Job:
     def report(self, device_id: str, boot_nonce: int, sequence: int,
                now_ms: int, *, stamp: SourceStamp, height_mm: float,
                state: str, fault: str = "") -> list[Envelope]:
-        if self.phase not in (Phase.ARMED, Phase.MOVING) or device_id not in self.members:
-            return []
-        if now_ms < self.last_lease_ms or any(now_ms - report > 250
-                for member, report in self.last_report_ms.items() if member not in self.completed):
-            return self.abort("late telemetry or coordinator clock discontinuity")
+        stopped = self._supervise(now_ms)
+        if stopped or self.phase in (Phase.ABORTED, Phase.COMPLETE) or device_id not in self.queued:
+            return stopped
         cmd = self.commands[device_id]
         if boot_nonce != cmd["boot_nonce"]:
             return self.abort(f"{device_id}: reboot during group move")
@@ -130,10 +170,16 @@ class Job:
             sampled = self.freshness.accept(device_id, stamp, now_ms, 250)
         except ValueError:
             return []
-        if not isfinite(height_mm) or fault or state not in ("armed", "moving", "idle"):
+        allowed = ("preparing", "prepared") if self.phase == Phase.PREPARING else (
+            ("prepared", "armed") if self.phase == Phase.COMMITTING else ("armed", "moving", "idle"))
+        if not isfinite(height_mm) or fault or state not in allowed:
             return self.abort(f"{device_id}: {fault or state}")
+        if self.phase == Phase.COMMITTING and device_id in self.committed and state != "armed":
+            return self.abort(f"{device_id}: commit readiness lost")
         self.last_report_ms[device_id] = sampled
-        if state == "idle" and sampled >= self.start_ms:
+        if self.phase == Phase.PREPARING and state == "preparing":
+            self.prepared.discard(device_id)  # A readiness withdrawal requires a new ready ACK.
+        if self.phase in (Phase.ARMED, Phase.MOVING) and state == "idle" and sampled >= self.start_ms:
             if abs(height_mm - self.target_height_mm) > 1:
                 return self.abort(f"{device_id}: stopped before target")
             self.completed[device_id] = height_mm
@@ -144,24 +190,16 @@ class Job:
         return []
 
     def tick(self, now_ms: int) -> list[Envelope]:
-        if self.phase == Phase.PREPARING and now_ms >= self.prepare_deadline_ms:
-            return self.abort("member missing at prepare deadline")
-        if self.phase == Phase.COMMITTING and now_ms >= self.commit_deadline_ms:
-            return self.abort("member missing at commit deadline")
-        if self.phase not in (Phase.ARMED, Phase.MOVING):
-            return []
-        if now_ms < self.last_lease_ms:
-            return self.abort("coordinator clock moved backwards")
-        if now_ms >= self.start_ms:
+        stopped = self._supervise(now_ms)
+        if stopped or self.phase in (Phase.ABORTED, Phase.COMPLETE):
+            return stopped
+        if self.phase == Phase.ARMED and now_ms >= self.start_ms:
             self.phase = Phase.MOVING
-        if any(now_ms - report > 250 for member, report in self.last_report_ms.items()
-               if member not in self.completed):
-            return self.abort("member telemetry timeout")
-        if self.last_lease_ms >= 0 and now_ms - self.last_lease_ms < 100:
-            return []
-        self.last_lease_ms = now_ms
-        return [self.envelope(member, "lease", sent_ms=now_ms) for member in self.members
-                if member not in self.completed]
+        due = [member for member in self.members if member in self.queued and member not in self.completed
+               and now_ms - self.lease_sent_ms[member] >= 100]
+        for member in due:
+            self.lease_sent_ms[member] = now_ms
+        return [self.envelope(member, "lease", sent_ms=now_ms) for member in due]
 
 
 def begin_group(devices: list[Device], percent: float, now_ms: int,
@@ -171,6 +209,8 @@ def begin_group(devices: list[Device], percent: float, now_ms: int,
 
     This is an API candidate, not a Home Assistant service installed on the user's server.
     """
+    if type(now_ms) is not int or not 0 < now_ms < 2**63 - 3000:
+        raise ValueError("invalid coordinator start time")
     if not 1 <= len(devices) <= 8 or len({d.device_id for d in devices}) != len(devices):
         raise ValueError("need 1-8 unique members")
     if not isfinite(percent) or not 0 <= percent <= 100:
@@ -209,13 +249,13 @@ def begin_group(devices: list[Device], percent: float, now_ms: int,
     commands = {
         d.device_id: {
             "version": 1, "boot_nonce": d.boot_nonce, "sequence": d.consumed_sequence + 1,
-            "calibration_revision": d.calibration_revision, "start_ms": start,
+            "calibration_revision": d.calibration_revision, "sent_ms": now_ms, "start_ms": start,
             "start_height_mm": d.height_mm if align else origin, "target_height_mm": target,
             "speed_mm_s": speed, "accel_mm_s2": acceleration,
         } for d in devices
     }
     job = Job({d.device_id: d for d in devices}, commands, percent, target, start,
-              now_ms + 1700, now_ms + 2500)
+              now_ms + 1700, now_ms + 2500, last_now_ms=now_ms)
     for d in devices:
         job.freshness.accept(d.device_id,
                              SourceStamp(d.report_ms, d.report_sequence, d.clock_error_ms), now_ms, 1500)

@@ -5,7 +5,7 @@ from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 from integrations.bridge.auth import Channel, PacketError
 from integrations.bridge.server import SimulatorServer
-from integrations.bridge.simulator import Simulation
+from integrations.bridge.simulator import Simulation, SimNode
 
 
 class AuthenticationTests(unittest.TestCase):
@@ -50,6 +50,33 @@ class SimulationTests(unittest.TestCase):
     def advance(self, sim, until):
         for now in range(sim.now + 10, until + 1, 10):
             sim.tick(now)
+
+    def test_prepared_node_needs_source_based_leases_before_commit(self):
+        node = SimNode('test', 0, 2000, 123)
+        command = dict(boot_nonce=123, sequence=1, calibration_revision=1, sent_ms=1000,
+                       start_ms=4000, start_height_mm=300, target_height_mm=1000,
+                       speed_mm_s=20, accel_mm_s2=40)
+        self.assertEqual(node.handle('prepare', command, 1000), ('prepared', True))
+        self.assertEqual(node.lease_until, 1300)
+        node.advance(1100)
+        node.handle('lease', dict(boot_nonce=123, sequence=1, sent_ms=1100), 1100)
+        self.assertEqual(node.lease_until, 1400)
+        node.handle('lease', dict(boot_nonce=123, sequence=1, sent_ms=1100), 1199)
+        self.assertEqual(node.lease_until, 1400)  # Duplicate arrival does not extend permission.
+        node.advance(1399)
+        self.assertEqual((node.state, node.height), ('prepared', 300))
+        node.advance(1400)
+        self.assertEqual((node.state, node.fault), ('fault', 'lease_expired'))
+        self.assertEqual(node.handle('commit', dict(boot_nonce=123, sequence=1), 1400), ('committed', False))
+
+    def test_delayed_prepare_source_is_not_retimed_by_delivery(self):
+        node = SimNode('test', 0, 2000, 123)
+        command = dict(boot_nonce=123, sequence=1, calibration_revision=1, sent_ms=1000,
+                       start_ms=4000, start_height_mm=300, target_height_mm=1000,
+                       speed_mm_s=20, accel_mm_s2=40)
+        self.assertEqual(node.handle('prepare', command, 1101), ('prepared', False))
+        self.assertEqual(node.consumed_sequence, 0)
+        self.assertEqual(node.state, 'idle')
 
     def test_seven_blinds_end_at_same_height_and_not_same_percentage(self):
         sim = Simulation(1000)

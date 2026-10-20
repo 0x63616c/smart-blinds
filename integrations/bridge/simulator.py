@@ -66,8 +66,10 @@ class SimNode:
             return None
         sequence = payload.get("sequence")
         if kind == "prepare":
+            sent = payload.get("sent_ms")
             ok = (self.state == "idle" and not self.fault and self.referenced
                   and type(sequence) is int and sequence > self.consumed_sequence
+                  and type(sent) is int and 0 <= now - sent <= 100
                   and payload.get("calibration_revision") == 1
                   and now < payload["start_ms"] <= now + 10000
                   and self.low <= payload["target_height_mm"] <= self.high)
@@ -75,7 +77,7 @@ class SimNode:
                 self.pending = dict(payload)
                 self.consumed_sequence = sequence
                 self.state = "prepared"
-                self.lease_until, self.last_lease_sent = 0, -1
+                self.lease_until, self.last_lease_sent = sent + 300, sent
             return "prepared", ok
         if sequence != self.consumed_sequence:
             return None
@@ -88,9 +90,9 @@ class SimNode:
             if ok:
                 self.state = "armed"
             return "committed", ok
-        elif kind == "lease" and self.state in ("armed", "moving"):
+        elif kind == "lease" and self.state in ("prepared", "armed", "moving"):
             sent = payload["sent_ms"]
-            if self.last_lease_sent < sent <= now and now - sent < 300:
+            if type(sent) is int and self.last_lease_sent < sent <= now and now - sent <= 100:
                 self.last_lease_sent = sent
                 self.lease_until = sent + 300
         return None
@@ -98,10 +100,12 @@ class SimNode:
     def advance(self, now: int):
         if self.fault:
             self.state = "fault"
-        if self.state not in ("armed", "moving"):
+        if self.state not in ("prepared", "armed", "moving"):
             return
         if now >= self.lease_until:
             self.state, self.fault = "fault", "lease_expired"
+            return
+        if self.state == "prepared":
             return
         command = self.pending
         if command is None or now < command["start_ms"]:
@@ -132,6 +136,8 @@ class Simulation:
         queue = list(envelopes)
         while queue:
             message = queue.pop(0)
+            if self.job and self.job.phase in (Phase.COMPLETE, Phase.ABORTED) and message.kind != "stop":
+                continue
             node = self.nodes[message.recipient]
             if not node.online:
                 continue
@@ -139,15 +145,22 @@ class Simulation:
             kind, payload = device.decode(coordinator.encode(message.kind, message.payload, now), now)
             reply = node.handle(kind, payload, now)
             if reply and self.job:
-                stamp = node.stamp(now)
-                reply_kind, ok = reply
-                reply_payload = {"boot_nonce": node.boot, "sequence": message.payload["sequence"],
-                                 "sample_ms": stamp.sample_ms, "report_sequence": stamp.sequence,
-                                 "clock_error_ms": stamp.clock_error_ms, "ok": ok}
-                kind, payload = coordinator.decode(device.encode(reply_kind, reply_payload, now), now)
-                queue.extend(self.job.acknowledge(node.device_id, payload["boot_nonce"],
-                    payload["sequence"], kind, now, stamp=SourceStamp(payload["sample_ms"],
-                    payload["report_sequence"], payload["clock_error_ms"]), ok=payload["ok"]))
+                # The synchronous fixture emits distinct authenticated receipt
+                # and worker-readiness messages. It does not model C6 queue delay.
+                replies = [("queued", reply[1]), reply] if kind == "prepare" else [reply]
+                for reply_kind, ok in replies:
+                    stamp = node.stamp(now)
+                    reply_payload = {"boot_nonce": node.boot, "sequence": message.payload["sequence"],
+                                     "sample_ms": stamp.sample_ms, "report_sequence": stamp.sequence,
+                                     "clock_error_ms": stamp.clock_error_ms, "ok": ok}
+                    reply_kind, payload = coordinator.decode(device.encode(reply_kind, reply_payload, now), now)
+                    if reply_kind == "queued":
+                        queue.extend(self.job.prepare_queued(node.device_id, payload["boot_nonce"],
+                            payload["sequence"], now, ok=payload["ok"]))
+                    else:
+                        queue.extend(self.job.acknowledge(node.device_id, payload["boot_nonce"],
+                            payload["sequence"], reply_kind, now, stamp=SourceStamp(payload["sample_ms"],
+                            payload["report_sequence"], payload["clock_error_ms"]), ok=payload["ok"]))
 
     def move(self, percent: float, *, device_id: str | None = None, align: bool = False):
         if self.job and self.job.phase not in (Phase.COMPLETE, Phase.ABORTED):
