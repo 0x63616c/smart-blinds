@@ -1,6 +1,111 @@
 {
   "designs": [
     {
+      "kind": "openscad",
+      "source": "cad/source/compact_direct.scad",
+      "dependencies": [
+        "cad/source/compact_buttons.scad",
+        "cad/build_compact.py",
+        "cad/build.py"
+      ],
+      "camera": [
+        0,
+        0,
+        0,
+        22,
+        0,
+        25,
+        500
+      ],
+      "id": "compact-holder-closed",
+      "title": "Compact holder enclosure \u2014 current exterior",
+      "defines": {
+        "part": "closed",
+        "tail_mode": "trimmed"
+      },
+      "collapsed": false,
+      "role": "115 \u00d7 174 \u00d7 71 mm candidate, or 78 mm deep with untrimmed holder pins. Front buttons and underside USB-C; motor-family fit, printed tolerances and full fastening remain provisional."
+    },
+    {
+      "kind": "openscad",
+      "source": "cad/source/compact_direct.scad",
+      "dependencies": [
+        "cad/source/compact_buttons.scad",
+        "cad/build_compact.py",
+        "cad/build.py"
+      ],
+      "camera": [
+        0,
+        0,
+        0,
+        22,
+        0,
+        25,
+        500
+      ],
+      "id": "compact-holder-assembly",
+      "title": "Six cells and compact drive \u2014 current arrangement",
+      "defines": {
+        "part": "assembly",
+        "tail_mode": "trimmed"
+      },
+      "collapsed": false,
+      "role": "Two three-cell carrier boards with an insulating barrier, controller reservation and replaceable motor-fit parts. An outboard bearing shares radial load with the motor; it does not isolate the gearbox from chain force."
+    },
+    {
+      "kind": "openscad",
+      "source": "cad/source/compact_direct.scad",
+      "dependencies": [
+        "cad/source/compact_buttons.scad",
+        "cad/build_compact.py",
+        "cad/build.py"
+      ],
+      "camera": [
+        0,
+        0,
+        0,
+        22,
+        0,
+        25,
+        500
+      ],
+      "id": "compact-holder-exploded",
+      "title": "Compact holder enclosure \u2014 exploded fit study",
+      "defines": {
+        "part": "exploded",
+        "tail_mode": "trimmed"
+      },
+      "collapsed": false,
+      "role": "Source geometry for the housing, holders and supported drive. Carrier/case fastening and full electrical placement remain unfinished; these are prototype-fit parts, not final manufacturing files."
+    },
+    {
+      "kind": "openscad",
+      "source": "cad/source/compact_direct.scad",
+      "dependencies": [
+        "cad/source/compact_buttons.scad",
+        "cad/build_compact.py",
+        "cad/build.py"
+      ],
+      "camera": [
+        0,
+        0,
+        0,
+        90,
+        0,
+        90,
+        500
+      ],
+      "id": "compact-holder-buttons",
+      "title": "Front buttons \u2014 section through the mechanism",
+      "defines": {
+        "part": "buttons",
+        "tail_mode": "trimmed"
+      },
+      "collapsed": true,
+      "role": "Straight plungers operate side-actuated board switches. Nominal gap 0.15 mm and mechanical stop 0.4 mm; printed tolerance, actuation and safe overtravel require qualification.",
+      "render_mode": "render"
+    },
+    {
       "id": "holder-closed",
       "kind": "openscad",
       "title": "Holder carrier enclosure \u2014 provisional exterior",
@@ -15,7 +120,7 @@
         "part": "closed"
       },
       "role": "Original 170 \u00d7 158 \u00d7 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.",
-      "collapsed": false
+      "collapsed": true
     },
     {
       "id": "holder-comparison",
@@ -26,7 +131,7 @@
         "cad/build_v2.py"
       ],
       "role": "Six packaging reservations. The two welded-pack options remain size references; the holder alternatives compare assembly effort, width and depth.",
-      "collapsed": false
+      "collapsed": true
     },
     {
       "id": "holder-exploded",
@@ -43,7 +148,7 @@
         "part": "exploded"
       },
       "role": "Original 170 \u00d7 158 \u00d7 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.",
-      "collapsed": false
+      "collapsed": true
     },
     {
       "id": "holder-inside",
@@ -85,7 +190,31 @@
         "hw/schematics/blind-supervisor/supervisor-test.layout.json",
         "hw/schematics/blind-supervisor/supervisor-test.verification.json"
       ],
-      "role": "Four ICs and ten passive parts. All49 physical pin connections checked against the compiled circuit; two explicit external-power ERC findings. Physical cutoff and full-board qualification remain open.",
+      "role": "Four ICs and ten passive parts. All 49 physical pin connections checked against the compiled circuit; two explicit external-power ERC findings. Physical cutoff and full-board qualification remain open.",
+      "collapsed": true
+    },
+    {
+      "id": "charger-schematic",
+      "kind": "schematic",
+      "title": "USB-C-fed 3S charger \u2014 native KiCad circuit study",
+      "source": "hw/schematics/blind-charger/charger-test.kicad_sch",
+      "dependencies": [
+        "hw/schematics/blind-charger/charger-test.layout.json",
+        "hw/schematics/blind-charger/charger-test.verification.json"
+      ],
+      "role": "36-part capture with 101 physical pins checked. A fourth PMID capacitor follows DC-bias review; effective capacitance remains a curve-based planning estimate. Ten explicit ERC findings and unfinished power/pack integration. Not a charging or fabrication release.",
+      "collapsed": true
+    },
+    {
+      "id": "regulator-schematic",
+      "kind": "schematic",
+      "title": "3.3 V logic supply \u2014 native KiCad circuit study",
+      "source": "hw/schematics/blind-regulator/regulator-test.kicad_sch",
+      "dependencies": [
+        "hw/schematics/blind-regulator/regulator-test.layout.json",
+        "hw/schematics/blind-regulator/regulator-test.verification.json"
+      ],
+      "role": "12 parts and 31 physical pins checked. Internal 3.3 V divider; 1 A design envelope. Two external-power ERC findings. Biased capacitance, load transients, layout and hardware qualification remain open.",
       "collapsed": true
     },
     {

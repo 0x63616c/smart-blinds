@@ -1,0 +1,374 @@
+{
+  "status": "Compact shared-shaft prototype; gearbox radial-load and button-travel qualification required",
+  "source_sha256": {
+    "source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+    "source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
+    "build_compact.py": "01788656e2e2c70896022e0448b82105e156b281b10b1325f8e246fefdb92d29",
+    "build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882"
+  },
+  "meshes": [
+    {
+      "file": "exports/compact-direct-fit/rear_lower.stl",
+      "sha256": "536ddd01d08afe544b1f5527f2b8436404acbf3e1426d8ecc1652c8c047f7f62",
+      "bytes": 59684,
+      "triangles": 1192,
+      "bounds_mm": [
+        [
+          0.0,
+          2.3,
+          0.0
+        ],
+        [
+          10.0,
+          53.7,
+          22.0
+        ]
+      ],
+      "volume_cm3": 3.755,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/compact-direct-fit/rear_upper.stl",
+      "sha256": "0fd88f320cc43d79364062366bcc20b01329e43b0dfcd73f13b717e24ca56dbc",
+      "bytes": 34284,
+      "triangles": 684,
+      "bounds_mm": [
+        [
+          0.0,
+          2.3,
+          -0.0
+        ],
+        [
+          10.0,
+          53.7,
+          19.9
+        ]
+      ],
+      "volume_cm3": 2.724,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/compact-direct-fit/front_lower.stl",
+      "sha256": "b9c2fed01bbeda74581efe1ad2d8f4fa1268c4eb57868397077ccb485b827e31",
+      "bytes": 61684,
+      "triangles": 1232,
+      "bounds_mm": [
+        [
+          0.0,
+          0.3,
+          0.0
+        ],
+        [
+          10.0,
+          55.7,
+          22.0
+        ]
+      ],
+      "volume_cm3": 3.493,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/compact-direct-fit/front_upper.stl",
+      "sha256": "42b22c2f2efb6bd1602d411cc135d10b00a305ad573c78e4c0faf4b1bb156222",
+      "bytes": 34284,
+      "triangles": 684,
+      "bounds_mm": [
+        [
+          0.0,
+          0.3,
+          -0.0
+        ],
+        [
+          10.0,
+          55.7,
+          21.9
+        ]
+      ],
+      "volume_cm3": 2.972,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/compact-direct-fit/bearing_block.stl",
+      "sha256": "81702139ac5bd64744c107affb3812e743967697fd8d831294ef8129ee54cb25",
+      "bytes": 116084,
+      "triangles": 2320,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          8.0,
+          42.0,
+          38.0
+        ]
+      ],
+      "volume_cm3": 4.869,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/compact-direct-fit/retainer.stl",
+      "sha256": "4fe4ff85d781473fea0c416190b46b3bafd81a3c0d25c8e1ebcda593068e8700",
+      "bytes": 59684,
+      "triangles": 1192,
+      "bounds_mm": [
+        [
+          -9.0,
+          -14.0,
+          0.0
+        ],
+        [
+          9.0,
+          14.0,
+          3.0
+        ]
+      ],
+      "volume_cm3": 0.731,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/compact-direct-fit/wheel.stl",
+      "sha256": "973cd23eb02e46131fa965800fa5ce0612673298f2d98cc915a25e71db4caca6",
+      "bytes": 419484,
+      "triangles": 8388,
+      "bounds_mm": [
+        [
+          -15.0,
+          -15.0,
+          0.0
+        ],
+        [
+          15.0,
+          15.0,
+          8.0
+        ]
+      ],
+      "volume_cm3": 3.534,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/compact-direct-fit/guard.stl",
+      "sha256": "cdf76b25aa7b626ec38a2a7ec5b7322010d8ce898bf165d12a5667f97d7801cc",
+      "bytes": 55684,
+      "triangles": 1112,
+      "bounds_mm": [
+        [
+          -53.5,
+          116.0,
+          -0.0
+        ],
+        [
+          -15.0,
+          141.0,
+          10.3
+        ]
+      ],
+      "volume_cm3": 1.35,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/compact-direct-fit/plunger.stl",
+      "sha256": "35c5471c4e579692d5cf7e2d055817ac9ba8ea999af3e71eaba29941706def5d",
+      "bytes": 44684,
+      "triangles": 892,
+      "bounds_mm": [
+        [
+          -4.95,
+          -4.95,
+          0.0
+        ],
+        [
+          4.95,
+          4.95,
+          16.3
+        ]
+      ],
+      "volume_cm3": 0.287,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/compact-direct-fit/button_guide.stl",
+      "sha256": "7ced96cce08bec5c4d58066995d75a091b2153ef48dc75bbc3e0c6edcf4ca417",
+      "bytes": 46284,
+      "triangles": 924,
+      "bounds_mm": [
+        [
+          -0.0,
+          0.0,
+          -0.0
+        ],
+        [
+          9.2,
+          46.0,
+          2.0
+        ]
+      ],
+      "volume_cm3": 0.81,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    }
+  ],
+  "nominal_intersections": [
+    {
+      "pair": "guard_wheel",
+      "mode": "trimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "wheel_bearing_block",
+      "mode": "trimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "pack_drive",
+      "mode": "trimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "pack_controller",
+      "mode": "trimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "pack_shell",
+      "mode": "trimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "button_guides",
+      "mode": "trimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "button_shell",
+      "mode": "trimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "antenna_usb_wires",
+      "mode": "trimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "guard_wheel",
+      "mode": "untrimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "wheel_bearing_block",
+      "mode": "untrimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "pack_drive",
+      "mode": "untrimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "pack_controller",
+      "mode": "untrimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "pack_shell",
+      "mode": "untrimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "button_guides",
+      "mode": "untrimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "button_shell",
+      "mode": "untrimmed",
+      "intersection": "empty"
+    },
+    {
+      "pair": "antenna_usb_wires",
+      "mode": "untrimmed",
+      "intersection": "empty"
+    }
+  ],
+  "options": [
+    {
+      "mode": "trimmed",
+      "case_mm": [
+        115,
+        174,
+        71
+      ],
+      "wall_area_cm2": 200.1,
+      "volume_cm3": 1420.71,
+      "opposed_board_gap_mm": 5,
+      "maximum_tail_and_fillet_protrusion_mm": 1.5,
+      "barrier_mm": 1,
+      "clearance_each_side_of_barrier_mm": 0.5
+    },
+    {
+      "mode": "untrimmed",
+      "case_mm": [
+        115,
+        174,
+        78
+      ],
+      "wall_area_cm2": 200.1,
+      "volume_cm3": 1560.78,
+      "opposed_board_gap_mm": 12,
+      "maximum_tail_and_fillet_protrusion_mm": 4.5,
+      "barrier_mm": 1,
+      "clearance_each_side_of_barrier_mm": 1.0
+    }
+  ],
+  "front_button_interface": {
+    "switch_mpn": "TS-1081S-AC01326",
+    "switch_body_mm": [
+      3.5,
+      3,
+      1.3
+    ],
+    "actuator_axis_above_pcb_mm": 0.8,
+    "free_gap_nominal_mm": 0.15,
+    "mechanical_stop_travel_nominal_mm": 0.4,
+    "nominal_maximum_switch_displacement_mm": 0.25,
+    "button_collision_test_travel_mm": 0.39,
+    "limits": "Nominal geometry only; printed tolerance stack, no-preload, actuation and allowable switch overtravel require qualification."
+  },
+  "source_snapshot_verified_unchanged": true,
+  "limits": [
+    "Only named nominal intersections are tested. Holes, tolerances, strength, heat, insulation, RF and function require further work.",
+    "Pack bars, case and controller support are allocation geometry, not fully fastened manufacturing parts.",
+    "Motor shaft dimensions are seller illustration; shaft fit and radial load capability remain unverified.",
+    "Trimmed version requires quoted or manual trimming with inspection; no free JLC trimming service is assumed."
+  ]
+}

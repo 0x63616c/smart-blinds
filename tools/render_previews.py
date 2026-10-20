@@ -149,8 +149,18 @@ def render() -> None:
                 (module.svg if holder_study else module.write_footprints)(json.loads(source.read_text()), image)
             elif entry['kind'] == 'openscad':
                 image = folder / 'assembly.png'
-                command = [openscad, '--preview', '--imgsize=1600,1000', '--viewall', '--autocenter',
+                mode = entry.get('render_mode', 'preview')
+                if mode not in ('preview', 'render'):
+                    raise ValueError('OpenSCAD render_mode must be preview or render')
+                command = [openscad, '--' + mode, '--imgsize=1600,1000', '--viewall', '--autocenter',
                            '--projection=o', '--colorscheme=Tomorrow', '-o', str(image)]
+                if 'camera' in entry:
+                    camera = entry['camera']
+                    if not isinstance(camera, list) or len(camera) != 7 or any(
+                            type(v) not in (int, float) or not (-1e6 < v < 1e6) for v in camera
+                    ) or camera[-1] <= 0:
+                        raise ValueError('OpenSCAD camera needs seven finite numbers and positive distance')
+                    command.append('--camera=' + ','.join(str(v) for v in camera))
                 for key, value in entry.get('defines', {}).items():
                     if not re.fullmatch(r'[A-Za-z_][A-Za-z_0-9]*', key):
                         raise ValueError('Invalid OpenSCAD variable')

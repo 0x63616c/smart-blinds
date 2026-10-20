@@ -1,0 +1,22 @@
+# Front buttons on the side-mounted controller
+
+The compact candidate keeps one 35 × 75 mm controller in the Y–Z plane. Two side-actuated SMT switches point towards the front of the case, so straight plungers can reach the user. This avoids an extra button board and leaves the sides accessible beside a window reveal. The older side-button version remains a comparison, not the preferred user interface.
+
+The selected dimensional reference is [XUNPU TS-1081S-AC01326, JLC C720493](https://jlcpcb.com/partdetail/XUNPU-TS_1081SAC01326/C720493). Its manufacturer drawing gives a 3.50 × 3.00 mm body, 1.30 mm height above the board, 4.60 mm total terminal width and 3.75 mm overall length including the actuator. The actuator centre is 0.80 ± 0.05 mm above the PCB; its width is 1.60 mm. The AC variant has 0.60 mm diameter, 0.50 mm projecting locating posts. The force code is 2.6 ± 0.5 N with 0.4 N minimum return force. The specific drawing gives 0.20 ± 0.05 mm travel while the family table gives 0.20 ± 0.10 mm; the larger range remains the design uncertainty. The data does not establish an allowable overtravel force.
+
+With the controller's component face at X=103.1 mm, the switch actuator centre is X=103.9 mm. The two switches sit at Y=28 and 52 mm, with their bodies ending at Z=55 mm and actuator tips at Z=55.75 mm. Their terminal width and locating holes must be included in the real PCB floorplan. This is an interface allocation, not a released footprint placement.
+
+The board position, thickness, height, depth, component-height allowance and radio envelope are source parameters. The antenna moved to the board's upper end: its reserved band occupies Y=71.5–78 and Z=20–38 mm. Its conservative 15 mm surrounding box is X=88.1–121.2, Y=56.5–93 and Z=5–53 mm. Plastic may occupy that surrounding region; copper, cells, fasteners, USB metal and wiring require separation. The module's own shield/land pattern follows its manufacturer layout rules. A named source intersection checks the reserved surrounding volume against USB, routed-wire envelopes and button hardware; it does not prove antenna performance or final PCB ground clearance.
+
+Carrier metal remains at X≤86 mm, giving 17.1 mm from the antenna's nearest X face. The incoming 3 mm wire envelope stays above Z=55.5 near the radio, giving 17.5 mm beyond the antenna's Z=38 edge. The controller's general component reservation is 8 mm high, but larger charger capacitors and connector insertion/bend space still require actual electrical placement. The 35 × 75 mm outline remains an allocation.
+
+The CAD uses separate printed plungers, guide shoulders inside the cover and a removable rear guide bar. Captive flanges keep the plungers inside the cover; a positive rear stop limits inward travel independently of the switch body. The rear guide bar uses two M2 screws with captured nuts in the cover-side bosses. The cosmetic cover carries button pressure only. A front-button section view and print-fit exports expose the mechanism for review.
+
+The starting CAD values are **0.15 mm free gap** to the switch and **0.40 mm mechanical travel**, giving **0.25 mm nominal maximum switch displacement**. These are fit-study parameters. They are not a tolerance proof: an unadjusted FDM print cannot reliably combine sub-millimetre switch travel, PCB placement, switch-height variation and cover variation. The plunger stem length is replaceable and parameterized. Do not assemble the final units using the nominal numbers without the following qualification:
+
+1. Confirm the switch operates and returns with the PCB positively supported and the actual cover installed.
+2. Adjust the replaceable stem so no switch is preloaded at rest, including the measured warm-case condition.
+3. Set and inspect the hard stop against actual actuation travel; obtain an allowable overtravel/force limit or add a qualified compliant element before declaring overload protection proven.
+4. Test off-centre presses, repeated actuation, guide friction and return at the structural temperature target. A smooth-looking render and a closed STL do not establish reliable button feel.
+
+The initial fit pieces use a 2.0 mm stem, 5.0 mm guide shaft, 6.0 mm captive flange and 9.9 mm visible face. Guide bores add 0.4 mm diameter clearance. Printer calibration can change these values. The bar/cover attachment, capture and no-contact geometry are reviewable; their strength, feel and switch overload behaviour remain physical validation work.

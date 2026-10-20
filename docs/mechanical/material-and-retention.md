@@ -12,9 +12,9 @@ The next detailed CAD pass must implement the following interfaces:
 |---|---|---|
 | Wall | Three separated screw positions in reinforced backplate; anchor type follows actual wall construction | Pull/shear test with installed anchor and load, not a guessed universal screw |
 | Battery carrier | Screws/standoffs at board edges plus an insulating backing plate; holder screws where supported by drawing; smooth insulating retention bars/straps | No PCB bending during cell insertion; wraps cannot rub screw ends; removal cannot short contacts |
-| Twin carrier | Rigid screwed cassette; two boards never rely on raw-rail solder joints as spacers |4.5 mm maximum tails clear 1 mm barrier; inspect all raw rails before closing |
+| Twin carrier | Rigid screwed cassette; two boards never rely on raw-rail solder joints as spacers | Untrimmed 4.5 mm maximum tails need a 12 mm gap; controlled 1.5 mm protrusion permits a 5 mm gap. Both include a 1 mm barrier; inspect all raw rails before closing |
 | Motor | Replaceable split clamps/shims with captive nuts, adjustable slots and explicit torque-reaction path | Clock eccentric output into depth direction; preserve rear cable bend; proof-load against slip |
-| Output shaft | Two replaceable bearing blocks on the backplate, independent of cosmetic shell; positive axial shaft retention | Rated shaft/bearings/coupler selected; fit coupons, chain radial load, jam and wear tests |
+| Output shaft | Independent shaft with two bearing blocks, or compact motor shaft with one outboard bearing; both attach to the load-bearing backplate | The compact variant still loads the gearbox. Qualify actual radial load, alignment, axial retention, fit, jam and wear; do not assume the extra bearing unloads the motor completely |
 | Chain | Removable screwed guard and controlled entry/exit clearance; avoid trapping a coupler | Actual chain wrap and separation, slip/jam and enclosure-access tests |
 | Controller | Screwed carrier or mounting holes and connectors accessible without pulling cell wires | Connector insertion/removal, USB plug body clearance, antenna separation |
 | Controls | Vertically arranged up/down plungers with captive flanges and guides | No preloading switches; tolerance/temperature and repeated actuation tests |
@@ -24,4 +24,4 @@ For first coupons, use a calibrated 0.4 mm nozzle and 0.2 mm layer height as a s
 
 A low-power sensor can be mounted beside a straight chain strand, but an added magnet/collar may not pass the bead pockets. A wheel or chain-loop index repeats and cannot by itself establish absolute fabric height. Keep a sensor/header provision and supervised position recovery until a real reference strategy is selected with firmware.
 
-Current v 2 models show the occupied volumes and cable route. They do not yet implement these retained interfaces; passing their bounding checks does not turn them into production parts.
+The v2 comparison models remain occupied-volume studies. The later [independent drive cartridge](retained-drive-prototype.md) and [compact shared-shaft candidate](2026-10-19-compact-drive-and-holder-study.md) add replaceable clamps, bearing retainers and screwed chain guards. The compact [front-button interface](front-button-interface.md) adds guides, captive plungers and a removable rear guide bar. The cassette, controller mounting, wall/cover retention and final wiring still need full retained design work. Passing named intersection or mesh checks does not turn these fit prototypes into production parts.

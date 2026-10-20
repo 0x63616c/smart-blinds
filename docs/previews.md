@@ -6,7 +6,7 @@ legacy layout generators or silently modify the PCB. Missing models cause a fail
 an apparently complete board image with absent components.
 
 Supported entries are `pcb` (KiCad 3D PNG and top-layer SVG), `schematic` (all KiCad SVG sheets),
-`footprints` / `holder-footprints` (the CAD comparisons at a common scale), and `openscad` (colored source-preview PNG, with optional `defines` and dependency globs). Register new
+`footprints` / `holder-footprints` (the CAD comparisons at a common scale), and `openscad` (colored source-preview PNG, with optional `defines`, seven-value OpenSCAD `camera`, and dependency globs). Register new
 schematics and CAD only when their real source files exist. Enclosure previews must identify
 provisional purchased-part envelopes and distinguish a study from a released printable assembly.
 
@@ -44,3 +44,5 @@ The first native motor schematic is generated separately with
 Its independently exported KiCad netlist must match every PCB pad, and ERC must match the
 explicit open-block findings. CI rejects a stale drawing or changed connection. The recorded
 ERC boundary findings are not exclusions and do not count as a clean whole-board ERC result.
+
+OpenSCAD entries can set `render_mode` to `render` for exact intersection geometry and correct section-view bounds; the default `preview` is faster for full assemblies.

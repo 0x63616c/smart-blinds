@@ -1,0 +1,286 @@
+{
+  "status": "Retained drive fit prototype, not enclosure release or load qualification",
+  "source_sha256": {
+    "source/drive_cartridge.scad": "fe58ca4b8c9201aa611f2777c645184fb70ebd754ece2a3fa091daaa5f5b3cc9",
+    "build_drive.py": "be8285cd306e2312e65da61da6b92c6ac39c05add5f876ace09cccf2fbee6213",
+    "build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882"
+  },
+  "meshes": [
+    {
+      "file": "exports/drive-fit/base.stl",
+      "sha256": "d92ed2b6fc9b4e42ddfb3688dfb11ace157da5ef7fbe01116e01091897122f40",
+      "bytes": 179084,
+      "triangles": 3580,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          173.0,
+          49.0,
+          6.0
+        ]
+      ],
+      "volume_cm3": 49.747,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/drive-fit/rear_lower.stl",
+      "sha256": "50674de3a816b1ab887d61e03ffd441912bc9e717a6220d7a2f4ea0f7a3cbd00",
+      "bytes": 67284,
+      "triangles": 1344,
+      "bounds_mm": [
+        [
+          0.0,
+          -0.7,
+          0.0
+        ],
+        [
+          10.0,
+          50.7,
+          22.0
+        ]
+      ],
+      "volume_cm3": 3.751,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/drive-fit/front_lower.stl",
+      "sha256": "01801e92f555a2ecb7d398dc9268cca31efbc14b16ceeedc68692765d43c5719",
+      "bytes": 69284,
+      "triangles": 1384,
+      "bounds_mm": [
+        [
+          0.0,
+          -2.7,
+          0.0
+        ],
+        [
+          10.0,
+          52.7,
+          22.0
+        ]
+      ],
+      "volume_cm3": 3.488,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/drive-fit/rear_upper.stl",
+      "sha256": "c5661cb6fa549f51f63a3b744ec990852f7102b303147c6d2990688a040523b9",
+      "bytes": 39084,
+      "triangles": 780,
+      "bounds_mm": [
+        [
+          0.0,
+          -0.7,
+          0.0
+        ],
+        [
+          10.0,
+          50.7,
+          19.9
+        ]
+      ],
+      "volume_cm3": 2.725,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/drive-fit/front_upper.stl",
+      "sha256": "6531d28ccd0824d158b44c5941c96074014940ab99ab0264081b248244816487",
+      "bytes": 39084,
+      "triangles": 780,
+      "bounds_mm": [
+        [
+          0.0,
+          -2.7,
+          0.0
+        ],
+        [
+          10.0,
+          52.7,
+          21.9
+        ]
+      ],
+      "volume_cm3": 2.973,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/drive-fit/bearing_block.stl",
+      "sha256": "9351c0229e2cf7324e3aefa125a900011f0374e209fe86813aaececf12130318",
+      "bytes": 143884,
+      "triangles": 2876,
+      "bounds_mm": [
+        [
+          0.0,
+          -3.0,
+          0.0
+        ],
+        [
+          8.0,
+          40.0,
+          40.0
+        ]
+      ],
+      "volume_cm3": 6.809,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/drive-fit/bearing_retainer.stl",
+      "sha256": "8e51891f82caa9356fe94dc4bfa83a1b6ff02fea89197175e2c4d701e377b691",
+      "bytes": 92484,
+      "triangles": 1848,
+      "bounds_mm": [
+        [
+          -11.0,
+          -16.5,
+          0.0
+        ],
+        [
+          11.0,
+          16.5,
+          3.0
+        ]
+      ],
+      "volume_cm3": 1.023,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/drive-fit/wheel.stl",
+      "sha256": "c3f219c69a6192f865381667d48454d164167df5da7c50482af9fc38e23d982a",
+      "bytes": 429384,
+      "triangles": 8586,
+      "bounds_mm": [
+        [
+          -15.0,
+          -15.0,
+          0.0
+        ],
+        [
+          15.0,
+          15.0,
+          10.0
+        ]
+      ],
+      "volume_cm3": 4.568,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/drive-fit/guard.stl",
+      "sha256": "9ab2c0de9a2910b3f67b2a99ecd44071d47aafc1afb4c2b15e5f8b98effb1ca6",
+      "bytes": 133884,
+      "triangles": 2676,
+      "bounds_mm": [
+        [
+          -53.5,
+          103.0,
+          0.0
+        ],
+        [
+          -15.0,
+          127.0,
+          15.0
+        ]
+      ],
+      "volume_cm3": 3.104,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    }
+  ],
+  "reference_enclosure_allocation_mm": [
+    180,
+    160,
+    58
+  ],
+  "offset_scenarios_mm": [
+    0,
+    7
+  ],
+  "bought_part_dimensions": {
+    "coupler_mm": [
+      25,
+      20,
+      23
+    ],
+    "bearing_mm": [
+      6,
+      14,
+      5,
+      15,
+      1
+    ],
+    "shaft_mm": [
+      6,
+      70
+    ],
+    "shaft_flat_mm": 5.5,
+    "collar_mm": [
+      6,
+      19,
+      9
+    ],
+    "collar_screw_sweep_diameter_mm": 22.6,
+    "collar_boss_mm": [
+      9,
+      0.5
+    ],
+    "spacer_stack_mm": [
+      [
+        6,
+        8,
+        2
+      ],
+      [
+        6,
+        9,
+        1
+      ]
+    ]
+  },
+  "limits": [
+    "Motor family geometry is provisional; exact mounting collar fits need replacement shims/brackets as required.",
+    "Purchased hardware envelopes are from manufacturer drawings; torque/current limits remain separate qualification.",
+    "No exhaustive collision, tolerance, thermal, fatigue, creep or physical acceptance claimed."
+  ],
+  "nominal_interface_clearances_mm": {
+    "cover_clearance_at_offset7_mm": 2.1,
+    "motor_to_base_bolt_head_mm": 0.712,
+    "collar_to_recessed_retainer_face_mm": 0.5,
+    "coupler_to_collar_mm": 1,
+    "wheel_to_guard_each_axial_mm": 0.5,
+    "wheel_to_guard_radial_mm": 1.5,
+    "cord_channel_to_chord_inner_mm": 0.296,
+    "boss_to_coupler_mm": 7,
+    "motor_shaft_coupler_insertion_mm": 8.5,
+    "driven_shaft_coupler_insertion_mm": 8
+  },
+  "interface_check_scope": "Named nominal interfaces only, not exhaustive CAD interference or tolerance proof.",
+  "source_snapshot_verified_unchanged": true
+}

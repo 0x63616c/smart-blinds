@@ -11,10 +11,12 @@ A green preview result only confirms generation of the documented images.
 
 ## Initial design work — in progress
 
-- The second packaging comparison includes PCB-mounted holders, supported inline shafts and
-  a belt alternative. The simplest single carrier currently reserves 170 × 158 × 64 mm; the
-  twin carrier reserves 150 × 158 × 74 mm. Further antenna/holder placement work is aimed at
-  reducing depth. Purchased motor/holder fit and the retained assembly remain provisional.
+- The latest compact holder study reserves **115 × 174 × 71 mm**, or 78 mm deep
+  with untrimmed holder pins. Two opposing three-cell carrier boards, front button
+  plungers, antenna clearance and an outboard shaft bearing are modeled. The motor
+  still carries part of the radial load. Case/carrier fastening, electrical placement,
+  printed tolerances and owned-part fit remain open. The larger independently
+  supported drive remains a comparison option.
 - Charger, gauge/protection, motor driver and C6 radio candidates have sourced trade studies and
   a dated JLC catalog snapshot. The cost sensitivity is not a complete BOM or manufacturing quote.
 - Portable motion/calibration code and the group coordinator pass local host tests, including
@@ -39,11 +41,19 @@ A green preview result only confirms generation of the documented images.
 - A second native schematic covers all 49 supervision pins, with two explicit external-power ERC
   findings. Both native schematics are checked by KiCad netlist export; vertical wire generation
   and an imported capacitor drawing were corrected without changing PCB connectivity.
-- The 35-component BQ25798 charger capture builds with source/BOM-linked rating checks. USB-PD,
-  protected carrier, regulator and regeneration integration remain separate work.
+- The 36-component BQ25798 charger has a 101-pin native schematic and independent
+  physical-pin contract. DC-bias review added a fourth PMID capacitor. The new 12-part,
+  31-pin logic supply capture uses two input capacitors and a reviewed inductor footprint.
+  Both normal and frozen builds pass locally. Effective-capacitance calculations include
+  typical curves, tolerance, temperature and an aging allowance; they are estimates,
+  not guaranteed production limits or converter stability proof. USB-PD, protected
+  carrier and regeneration integration remain unfinished.
 - A full motor-disabled Thread/DTLS evaluation target linked successfully; startup hardening is
-  awaiting a fresh CI cross-build. It has no motion endpoint, commissioned credentials or measured
-  peer interoperability. Portable heartbeat policy tests now cover acknowledged arming/edges,
+  verified by a fresh CI cross-build. It has no motion endpoint, commissioned credentials or measured
+  C6 peer interoperability. A native libcoap host adapter passes nine real local DTLS
+  tests, including seven simultaneous peers, bad credentials and encrypted-record
+  replay/corruption. Its CCM8 security-policy exception is explicit and defaults off;
+  production transport approval and commissioning remain open. Portable heartbeat tests cover acknowledged arming/edges,
   fresh control iterations, strict feed intervals and no command replay.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
@@ -56,7 +66,9 @@ passed on GitHub. These checks validate the declared models and exports, not a p
 The subsequent [firmware freshness/gauge-tool checks and C6 cross-build](https://github.com/0x63616c/smart-blinds/actions/runs/39342005798)
 also passed. The [native motor rebuild, Home Assistant framework tests and full check suite](https://github.com/0x63616c/smart-blinds/actions/runs/39350314683)
 and [refreshed design gallery](https://github.com/0x63616c/smart-blinds/actions/runs/39350314795)
-passed for `b01e5fb`. Latest changes must be evaluated against their own workflow runs.
+passed for `b01e5fb`. The [integrated cutoff/charger/Thread milestone checks](https://github.com/0x63616c/smart-blinds/actions/runs/39357729073)
+and [source previews](https://github.com/0x63616c/smart-blinds/actions/runs/39357729056) passed for `28433e1`,
+including the fresh hardened Thread build. Latest changes must be evaluated against their own workflow runs.
 
 ## Inherited references
 
