@@ -59,13 +59,24 @@ The cover and cassette lid are separated to show access. Two integral cleats and
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-exploded/)
 
-### Integrated controller — first component placement
+<details>
+<summary>Integrated controller — first component placement</summary>
 
 54 × 68.5 mm black-board study, with USB-C, protected battery connection, motor tails and encoder/home ports. All 196 footprints are placed; no copper is routed. Thermal design, manufacturing rules and physical qualification remain open.
 
 ![Integrated controller — first component placement](docs/generated/main-controller-placement/assembly.png)
 
 [Source](hw/layouts/blind-main/main-test/main-test.kicad_pcb) · [Generated files](docs/generated/main-controller-placement/)
+
+</details>
+
+### Integrated controller — partial power routing
+
+Experimental manual power-route checkpoint with 222 segments, 72 vias and 24 checked physical connection groups. Circuit identities, 17 anchors and 13 keepouts are preserved. 364 disconnected items and documented footprint/silkscreen findings remain; electrical, thermal and physical qualification is unfinished.
+
+![Integrated controller — partial power routing](docs/generated/main-power-route/assembly.png)
+
+[Source](hw/routing/blind-main/main-routed.kicad_pcb) · [Generated files](docs/generated/main-power-route/)
 
 <details>
 <summary>Companion battery carrier — experimental copper</summary>
