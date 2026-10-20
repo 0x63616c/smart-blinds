@@ -59,6 +59,14 @@ Source geometry for the housing, holders and supported drive. Carrier/case faste
 
 [Source](cad/source/compact_direct.scad) · [Generated files](docs/generated/compact-holder-exploded/)
 
+### Integrated controller — first component placement
+
+54 × 68.5 mm black-board study, with USB-C, protected battery connection, motor tails and encoder/home ports. All 196 footprints are placed; no copper is routed. Thermal design, manufacturing rules and physical qualification remain open.
+
+![Integrated controller — first component placement](docs/generated/main-controller-placement/assembly.png)
+
+[Source](hw/layouts/blind-main/main-test/main-test.kicad_pcb) · [Generated files](docs/generated/main-controller-placement/)
+
 <details>
 <summary>Front buttons — section through the mechanism</summary>
 
