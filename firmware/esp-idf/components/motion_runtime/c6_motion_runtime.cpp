@@ -548,6 +548,13 @@ void MotionRuntime::power() {
             ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(1));
         }
         if(failed) continue;
+        // A grant wait can consume the notification for a newer control request.
+        // The copied queue value, not the notification count, owns the state.
+        // Release the old transaction before acquiring for the newer request.
+        SensorRequest latest{};
+        if(xQueuePeek(sensor_request_queue_,&latest,0)!=pdPASS || latest.sequence!=request.sequence) {
+            hold.release();continue;
+        }
         const bool stationary_hold=off_transaction_.state(hold.token)==runtime::OffTransaction::State::granted;
         if(!stationary_hold && (!request.enabled || request.sequence!=active_request)) {
             hold.release();ulTaskNotifyTake(pdTRUE,pdMS_TO_TICKS(10));continue;
@@ -575,7 +582,12 @@ void MotionRuntime::power() {
                                  true,session && session->ticket};
             if(xQueueOverwrite(sensor_park_queue_,&ack)!=pdPASS) abort();
             active_request=0;hold.release();notify_request();
-            ulTaskNotifyTake(pdTRUE,portMAX_DELAY);continue;
+            // Recheck after the synchronous park/readback too. A notification
+            // may already have been consumed by the OFF-grant wait; a newer
+            // queue request must never sleep behind this older park ACK.
+            if(xQueuePeek(sensor_request_queue_,&latest,0)==pdPASS && latest.sequence==request.sequence)
+                ulTaskNotifyTake(pdTRUE,portMAX_DELAY);
+            continue;
         }
         if(request.sequence!=active_request) {
             // A close/wake can arrive while one synchronous read is returning.

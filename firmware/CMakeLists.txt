@@ -126,3 +126,11 @@ add_executable(pd_monitor_tests tests/pd_monitor_tests.cpp src/pd_monitor.cpp)
 target_include_directories(pd_monitor_tests PRIVATE include)
 target_compile_options(pd_monitor_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_test(NAME pd_monitor_tests COMMAND pd_monitor_tests)
+
+# Runtime tests contain deliberate blocked-call scheduling seams. Bound a broken
+# fixture independently of the job timeout and retain its last case diagnostics.
+set_tests_properties(c6_runtime_owner_tests PROPERTIES TIMEOUT 90)
+find_package(Python3 COMPONENTS Interpreter REQUIRED)
+add_test(NAME c6_runtime_failure_exit_tests COMMAND ${Python3_EXECUTABLE}
+  ${CMAKE_CURRENT_SOURCE_DIR}/tests/runtime_failure_exit.py $<TARGET_FILE:c6_runtime_owner_tests>)
+set_tests_properties(c6_runtime_failure_exit_tests PROPERTIES TIMEOUT 5)

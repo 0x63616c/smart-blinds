@@ -54,11 +54,22 @@ std::atomic<unsigned> hold_status_at{0},status_waiting{0},status_release{0};
 std::atomic<unsigned> hold_add_at{0},add_waiting{0},add_release{0};
 std::atomic<bool> pause_fast{false},fast_paused{false},release_fast{false};
 std::atomic<unsigned> park_publications{0};
+std::atomic<bool> capture_request{false},request_copied{false},request_release{false};
 std::uint64_t before_block_time=0;
+const char* current_case="startup";
+std::string last_main_status;
+void failure_context(const char* reason) {
+    std::cerr<<"runtime test failure: case="<<current_case<<" task="<<(current?current->name:"main")
+        <<" reason="<<reason<<" transfers="<<transfers.load()<<" gauge_reads="<<gauge_reads.load()
+        <<" pd_reads="<<pd_reads.load()<<" locks="<<held_locks.load()<<" fast_reads="<<runtime_fake::fast_reads.load()
+        <<" status_barrier="<<status_waiting.load()<<"/"<<status_release.load()
+        <<" fast_barrier="<<fast_paused.load()<<"/"<<release_fast.load()<<'\n';
+    if(!current) std::cerr<<"last observed status: "<<last_main_status<<'\n';
+}
 void await(const std::function<bool()>& predicate,const char* reason,unsigned milliseconds=6000) {
     const auto deadline=std::chrono::steady_clock::now()+std::chrono::milliseconds(milliseconds);
     while(!predicate()) {
-        check(std::chrono::steady_clock::now()<deadline,reason);
+        if(std::chrono::steady_clock::now()>=deadline) {failure_context(reason);check(false,reason);}
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
 }
@@ -71,7 +82,7 @@ void reset_bus() {
     for(unsigned i=0;i<3;++i) for(unsigned b=0;b<4;++b) pd_regs[0x85+i*4+b]=values[i]>>(8*b);
     gauge_reads=pd_reads=0;stuck_alert=false;inject_off_race=off_read_waiting=off_race_released=false;power_irq=nullptr;power_irq_arg=nullptr;
     inject_telemetry_race=telemetry_waiting=telemetry_released=false;
-    block=blocked=release_call=fail_call=false;block_device=0;transfer_hook={};handoff_copy_hook={};suppress_control_notify=false;hold_status_at=status_waiting=status_release=0;hold_add_at=add_waiting=add_release=0;pause_fast=fast_paused=release_fast=false;park_publications=0;
+    block=blocked=release_call=fail_call=false;block_device=0;transfer_hook={};handoff_copy_hook={};suppress_control_notify=false;hold_status_at=status_waiting=status_release=0;hold_add_at=add_waiting=add_release=0;pause_fast=fast_paused=release_fast=false;park_publications=0;capture_request=request_copied=request_release=false;
 }
 blinds::runtime::Configuration configuration(bool pd=false) {
     blinds::runtime::Configuration c;
@@ -91,6 +102,7 @@ void shutdown() {
     // at their task waits, control first, so no real application lifecycle is claimed.
     for(const char* name:{"blind_control","blind_power"}) for(auto& task:tasks) if(task->name==name) {
         { std::lock_guard<std::mutex> lock(task->mutex);task->stop=true;task->cv.notify_all(); }
+        std::cerr<<"JOIN "<<current_case<<" "<<name<<std::endl;
         task->thread.join();
     }
     tasks.clear();queues.clear();locks.clear();held_locks=0;
@@ -111,7 +123,7 @@ struct Fixture {
     }
     bool power_ready() {
         char json[1500]{};runtime->status(json,sizeof(json),esp_timer_get_time());
-        return std::strstr(json,"\"power_ready\":true");
+        last_main_status=json;return std::strstr(json,"\"power_ready\":true");
     }
     std::string telemetry() {
         char out[768]{};
@@ -195,6 +207,9 @@ BaseType_t xQueuePeek(QueueHandle_t q,void* data,TickType_t wait) {
         return pdFALSE;
     }
     std::memcpy(data,q->body.data(),q->body.size());guard.unlock();
+    if(q==queues[1].get() && current && current->name=="blind_power" && capture_request.exchange(false)) {
+        request_copied=true;await([] {return request_release.load();},"captured request boundary not released",1000);
+    }
     if(q==queues[4].get() && !current && handoff_copy_hook) {
         auto hook=std::move(handoff_copy_hook);handoff_copy_hook={};hook();
     }
@@ -782,15 +797,73 @@ void actual_wifi_same_owner_next_wake() {
     check(app.policy.awake() && f.reg(0x10)==0x93 && held_locks==2,"second preflight bypassed active guards");
     std::cout<<"RESOLVED: actual terminal sensor OFF ACK precedes policy idle/PM release; same-owner next wake resumes guarded sensing; zero motor actuations\n";
 }
+void wake_during_copied_park_request(unsigned event=0) {
+    Fixture f(true);
+    capture_request=true;
+    if(event==1) f.awake(true);else fire_irq();
+    await([] {return request_copied.load();},"sensor did not capture parked source request",1000);
+    if(event==1) f.awake(false);else if(event==2) f.runtime->local_stop_from_isr();
+    else if(event==3) f.runtime->transport_fault();else f.awake(true);
+    await([&] {
+        std::lock_guard<std::mutex> guard(queues[1]->mutex);
+        struct Request {std::uint32_t sequence,activity,revocation;bool enabled;std::uint32_t source_event;} request{};
+        check(sizeof(request)==queues[1]->body.size(),"sensor request fixture layout changed");
+        std::memcpy(&request,queues[1]->body.data(),sizeof(request));
+        return event==0 ? request.enabled : event==1 ? !request.enabled : request.revocation==f.runtime->revocation_generation();
+    },"control did not publish newer awake request",1000);
+    request_release=true;
+    if(event==0) await([&] {return f.power_ready();},"new awake request lost during parked transaction",6000);
+    else if(event==1) {
+        await([&] {return held_locks==0;},"new disabled request lost during awake transition",1000);
+        check(f.reg(0x10)==0x90 && !gauge_reads && !f.power_ready(),"superseded awake request performed gauge acquisition");
+    } else {
+        await([&] {return event==3 ? !f.runtime->io_qualified():held_locks==0;},"new STOP/fault request lost during grant",1000);
+        check(!f.power_ready() && !runtime_fake::actuations,"superseded grant retained power or actuated");
+        if(event==3) check(held_locks==2,"fault released PM locks");
+    }
+    check(!runtime_fake::actuations,"copied request transition actuated motor");
+}
+void failed_blocked_call_exit_probe() {
+    Fixture f;
+    {std::lock_guard<std::mutex> lock(bus_mutex);block=true;block_device=0x36;}
+    f.awake(true);
+    {std::unique_lock<std::mutex> lock(bus_mutex);check(bus_cv.wait_for(lock,std::chrono::seconds(1),[]{return blocked;}),
+        "failure probe never blocked actual sensor call");}
+    check(false,"EXPECTED FAILURE: blocked owner exits without global destructor wait");
+}
+void run_case(const char* name,const std::function<void()>& test) {
+    current_case=name;last_main_status.clear();
+    std::cerr<<"BEGIN "<<name<<std::endl;test();std::cerr<<"PASS "<<name<<std::endl;
+}
 int main() {
+    if(std::getenv("SB_TEST_COPIED_PARK_WAKE")) {run_case("copied park wake",[]{wake_during_copied_park_request();});return 0;}
+    if(std::getenv("SB_TEST_FAILED_BLOCKED_EXIT")) {failed_blocked_call_exit_probe();return 0;}
     if(std::getenv("SB_TEST_OFF_TRANSACTIONS")) {stationary_transaction_events();return 0;}
     if(std::getenv("SB_TEST_OLD_ATTACH_ORDER")) {real_workers_wake_park_cold();return 0;}
     if(std::getenv("SB_TEST_HANDOFF_ONLY")) {actual_wifi_operation_sensor_closure_reproduction(std::getenv("SB_TEST_INGRESS_OFF_RACE"),std::getenv("SB_TEST_MID_PARK_RACE"));return 0;}
     if(std::getenv("SB_TEST_HANDOFF_REPRO")) {actual_wifi_operation_sensor_closure_reproduction(std::getenv("SB_TEST_INGRESS_OFF_RACE"),std::getenv("SB_TEST_MID_PARK_RACE"));actual_wifi_same_owner_next_wake();physical_off_loss_prevents_handoff();return 0;}
     if(std::getenv("SB_TEST_TELEMETRY_RACE")) {newer_telemetry_publication_during_response_copy();return 0;}
     if(std::getenv("SB_TEST_OFF_RACE")) {newer_off_publication_during_guard_copy();return 0;}
-    actual_wifi_operation_sensor_closure_reproduction();actual_wifi_operation_sensor_closure_reproduction(true);
-    actual_wifi_operation_sensor_closure_reproduction(false,true);actual_wifi_same_owner_next_wake();
-    physical_off_loss_prevents_handoff();stationary_transaction_events();empty_physical_records_publish_no_observation();initialized_owner_loss_still_retires_sensor();newer_telemetry_publication_during_response_copy();newer_off_publication_during_guard_copy();pd_adapter_owner_epoch();real_workers_wake_park_cold();actual_cable_lifecycle();bounded_shared_line();blocked_call_stop_and_lock(0x28);blocked_call_stop_and_lock(0x6B);blocked_call_stop_and_lock(0x36);
+    run_case("copied park wake",[]{wake_during_copied_park_request();});
+    run_case("copied awake park",[]{wake_during_copied_park_request(1);});
+    run_case("copied park STOP",[]{wake_during_copied_park_request(2);});
+    run_case("copied park fault",[]{wake_during_copied_park_request(3);});
+    run_case("handoff",[]{actual_wifi_operation_sensor_closure_reproduction();});
+    run_case("early ingress handoff",[]{actual_wifi_operation_sensor_closure_reproduction(true);});
+    run_case("mid-park ingress handoff",[]{actual_wifi_operation_sensor_closure_reproduction(false,true);});
+    run_case("same-owner next wake",actual_wifi_same_owner_next_wake);
+    run_case("physical OFF loss",physical_off_loss_prevents_handoff);
+    run_case("held transaction events",stationary_transaction_events);
+    run_case("empty records",empty_physical_records_publish_no_observation);
+    run_case("initialized owner loss",initialized_owner_loss_still_retires_sensor);
+    run_case("telemetry copy race",newer_telemetry_publication_during_response_copy);
+    run_case("OFF copy race",newer_off_publication_during_guard_copy);
+    run_case("PD owner epoch",pd_adapter_owner_epoch);
+    run_case("wake park cold",real_workers_wake_park_cold);
+    run_case("cable lifecycle",actual_cable_lifecycle);
+    run_case("shared alert",bounded_shared_line);
+    run_case("blocked PD",[]{blocked_call_stop_and_lock(0x28);});
+    run_case("blocked charger",[]{blocked_call_stop_and_lock(0x6B);});
+    run_case("blocked gauge",[]{blocked_call_stop_and_lock(0x36);});
     std::cout<<"actual C6 runtime/adapter sources: two owners, cold restart, blocked I2C STOP/status and PM handoff passed\n";
 }

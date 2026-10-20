@@ -72,9 +72,14 @@ boundary. Focused sanitizers and both pinned default/bench builds also pass.
 The original 22/23 failure and its diagnosis remain preserved. In
 [CI for this correction](https://github.com/0x63616c/smart-blinds/actions/runs/39498320401),
 twelve jobs passed, but the control job reached its ten-minute limit while running
-`c6_runtime_owner_tests`. The Linux stall is under investigation; the local result
-does not establish a passing CI run. The last published thirteen-job result above
-is unchanged.
+`c6_runtime_owner_tests`. The subsequent
+[sensor-request lifetime correction](firmware/sensor-request-lifetime.md)
+addresses a deterministically reproduced lost wake request and a test-assertion
+shutdown deadlock. All 24 host targets pass in Linux and an independent fresh
+macOS build; focused sanitizers and both pinned C6 builds also pass. Actual OFF
+age and motion timing limits are unchanged. A fresh CI run is pending, and the
+original job log does not reveal its first assertion. The last published
+thirteen-job result above is unchanged.
 Physical movement controls in Home Assistant and hardware qualification remain
 unfinished.
 

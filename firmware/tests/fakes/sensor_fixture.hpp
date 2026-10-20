@@ -12,7 +12,10 @@
 namespace gc=blinds::power::continuity;
 namespace ch=smart_blinds::charger;
 namespace sensor_fixture {
-void check(bool ok,const char* why) { if(!ok) { std::cerr<<why<<'\n';std::exit(1); } }
+// A failed assertion may have live workers blocked in global condition variables.
+// Normal exit destroys those globals and can wait forever; a failed test must
+// terminate after flushing the diagnostic. Success still joins every worker.
+void check(bool ok,const char* why) { if(!ok) { std::cerr<<why<<std::endl;std::_Exit(EXIT_FAILURE); } }
 struct Gate final:gc::MailboxGate {
     std::mutex mutex;
     static thread_local bool held;
