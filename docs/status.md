@@ -33,9 +33,11 @@ including the battery/source telemetry path through Home Assistant, monitored-PD
 circuit/runtime, both carrier routes, the partial
 main route, mechanical assemblies and material estimate, all 23 host firmware
 targets and pinned real-SDK builds. The five battery-energy checks also pass.
-The [source-generated previews from `b6e2558` passed](https://github.com/0x63616c/smart-blinds/actions/runs/39425327277).
-All 34 entries were checked after publication in `d5c61d7`: 247 input-file,
-52 output-file and 129 model-file hashes match. Actual KiCad
+The [source-generated previews from `8e57dc4` passed](https://github.com/0x63616c/smart-blinds/actions/runs/39498320367).
+All 34 entries were reviewed after publication in `2e14978`: 247 input-file,
+52 output-file and 125 locally available model-file hashes match. The four
+external KiCad library model hashes are unchanged from the previously verified
+`b6e2558` publication; those library files were not reopened in this check. Actual KiCad
 images show the specified black board finish.
 Preview publication revalidates source inputs
 when another commit arrives during rendering.
@@ -58,8 +60,12 @@ a successful charger read. A control-owned OFF transaction keeps ordinary
 movement requests queued until sensing finishes; Stop and fault handling
 continue. Seven held-event cases and four restored-bug controls cover the
 boundary. Focused sanitizers and both pinned default/bench builds also pass.
-The original 22/23 failure and its diagnosis remain preserved. CI for this
-correction is pending; the last published thirteen-job result above is unchanged.
+The original 22/23 failure and its diagnosis remain preserved. In
+[CI for this correction](https://github.com/0x63616c/smart-blinds/actions/runs/39498320401),
+twelve jobs passed, but the control job reached its ten-minute limit while running
+`c6_runtime_owner_tests`. The Linux stall is under investigation; the local result
+does not establish a passing CI run. The last published thirteen-job result above
+is unchanged.
 Physical movement controls in Home Assistant and hardware qualification remain
 unfinished.
 
