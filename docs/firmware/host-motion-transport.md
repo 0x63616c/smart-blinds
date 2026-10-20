@@ -128,3 +128,9 @@ plant code. Tests do not prove C6/OpenThread DTLS interoperability, actual radio
 latency, physical settling, pack health or production clock bounds. The scoped
 CCM8 policy exception remains explicit and defaults off; see the
 [build/security notes](../../integrations/thread_transport/README.md).
+
+
+The separate [group bridge checkpoint](thread-group-bridge.md) now binds this explicit
+client to the group coordinator using bounded workers and durable sequence reservations.
+It remains opt-in localhost correctness evidence; its present polling traffic exceeds
+Thread's radio capacity and the default HA application remains simulation-only.

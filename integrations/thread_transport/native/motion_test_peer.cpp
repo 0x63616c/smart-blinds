@@ -7,6 +7,7 @@
 #include "smart_blinds/radio_window.hpp"
 #include <algorithm>
 #include <atomic>
+#include <cmath>
 #include <memory>
 #include <thread>
 
@@ -16,9 +17,9 @@ std::uint64_t mono_us() {
     return std::chrono::duration_cast<std::chrono::microseconds>(
         std::chrono::steady_clock::now().time_since_epoch()).count();
 }
-blinds::Calibration calibration() {
+blinds::Calibration calibration(double low,double high,double counts) {
     blinds::Calibration c;
-    const blinds::Knot knots[]={{0,0},{1000,100}};
+    const blinds::Knot knots[]={{0,low},{counts,high}};
     c.assign(knots,2,7); return c;
 }
 blinds::BenchMotionProfile profile() {
@@ -31,7 +32,18 @@ struct Plant : blinds::MotionIo,blinds::CounterOrigin {
     double count=500,duty=0;
     int direction=0;
     std::uint64_t epoch=0,last=mono_us();
-    std::uint64_t now_us() const override { return mono_us(); }
+    mutable std::uint64_t previous_read_us=0,max_read_gap_us=0;
+    mutable bool reversed_read=false;
+    void begin_cycle() { max_read_gap_us=0; reversed_read=false; }
+    std::uint64_t now_us() const override {
+        const auto now=mono_us();
+        if(previous_read_us) {
+            if(now<previous_read_us) reversed_read=true;
+            else max_read_gap_us=std::max(max_read_gap_us,now-previous_read_us);
+        }
+        previous_read_us=now;
+        return now;
+    }
     void advance() {
         const auto now=now_us();
         if(!off && counter) count+=direction*duty*4000*(now-last)/1000000.0;
@@ -76,8 +88,15 @@ public:
     std::string identity;
     std::uint64_t boot;
     std::atomic<bool> stop{false};
+    std::atomic<std::uint64_t> body_bytes{0};
     std::atomic<unsigned> mode{0},requests{0}; // bit0 pause control, bit1 failed power, bit2 freeze report.
     std::atomic<bool> off{true},paused{false};
+    std::atomic<unsigned> executor_fault{0};
+    std::uint64_t previous_cycle_start=0,previous_cycle_end=0;
+    std::atomic<std::uint64_t> fault_start_gap_us{0},fault_end_gap_us{0},fault_duration_us{0};
+    std::atomic<unsigned> stall_next_us{0},first_executor_fault{0};
+    std::atomic<std::uint64_t> fault_read_gap_us{0};
+    std::atomic<bool> fault_read_reversed{false};
     std::thread network_worker,control_worker;
     std::mutex publication;
     blinds::MotionSession::Inbox inbox;
@@ -89,11 +108,12 @@ public:
     blinds::runtime::Snapshot snapshot{};
     blinds::runtime::Power observed{};
     char frozen[768]{};
-    explicit MotionPeer(std::uint64_t nonce) : boot(nonce),inbox(nonce),ingress(inbox),window(nonce),
-        probes(nonce,{1000,2,true}),motion(plant,plant,calibration(),{},profile(),nonce) {
+    explicit MotionPeer(std::uint64_t nonce,double low=0,double high=100,double counts=1000) : boot(nonce),inbox(nonce),ingress(inbox),window(nonce),
+        probes(nonce,{1000,2,true}),motion(plant,plant,calibration(low,high,counts),{},profile(),nonce) {
+        plant.count=(50-low)*counts/(high-low);
         window.attached(true,mono_us()/1000);
         // Test-only evidence: there is no corresponding production network API.
-        motion.establish_reference({true,boot,1,mono_us(),77,7,500});
+        motion.establish_reference({true,boot,1,mono_us(),77,7,plant.count});
     }
     ~MotionPeer() {
         stop=true;
@@ -138,6 +158,7 @@ public:
         self.probes.advance(received,awake);
         std::size_t size=0; const std::uint8_t* body=nullptr;
         coap_get_data(request,&size,&body);
+        self.body_bytes+=size;
         const auto* path=coap_resource_get_uri_path(resource);
         const std::string name(reinterpret_cast<const char*>(path->s),path->length);
         char reply[768]{};
@@ -191,6 +212,7 @@ public:
         }
         const std::uint8_t json=COAP_MEDIATYPE_APPLICATION_JSON;
         coap_add_option(response,COAP_OPTION_CONTENT_FORMAT,1,&json);
+        self.body_bytes+=std::strlen(reply);
         coap_add_data(response,std::strlen(reply),reinterpret_cast<const std::uint8_t*>(reply));
     }
     bool start(std::uint16_t port,const char* id,const std::uint8_t* psk) {
@@ -220,14 +242,30 @@ public:
                 const bool pause=(mode.load()&1U)!=0;
                 paused=pause;
                 if(!pause) {
+                    // Test-only wall-clock stall; no virtual time or catch-up samples.
+                    if(const auto stall=stall_next_us.exchange(0))
+                        std::this_thread::sleep_for(std::chrono::microseconds(stall));
                     blinds::runtime::Network net;
                     { std::lock_guard<std::mutex> lock(publication); radio(); net=ingress.snapshot(mono_us()); }
+                    plant.begin_cycle();
                     plant.advance();
                     const auto now=mono_us();
                     const auto p=power(now,!(mode.load()&2U));
                     const blinds::FastObservation fast{true,plant.counter,false,false,++sequence,now,plant.epoch,plant.count,.1};
+                    const auto before=mono_us();
                     const auto status=motion.cycle(inbox,blinds::runtime::input(fast,p,net,now));
+                    const auto after=mono_us();
+                    if(!first_executor_fault && motion.executor_fault()!=blinds::MotionExecutor::Fault::none) {
+                        fault_start_gap_us=before-previous_cycle_start;
+                        fault_end_gap_us=before-previous_cycle_end;
+                        fault_duration_us=after-before;
+                        fault_read_gap_us=plant.max_read_gap_us;
+                        fault_read_reversed=plant.reversed_read;
+                        first_executor_fault=static_cast<unsigned>(motion.executor_fault());
+                    }
+                    previous_cycle_start=before;previous_cycle_end=after;
                     off=plant.off;
+                    executor_fault=static_cast<unsigned>(motion.executor_fault());
                     { std::lock_guard<std::mutex> lock(publication); snapshot={status,net.connection,net.probe}; observed=p; }
                 }
                 std::this_thread::sleep_until(deadline);
@@ -246,6 +284,17 @@ void* sb_motion_peer_new(std::uint16_t port,const char* id,const std::uint8_t* k
     try { auto peer=std::make_unique<sbthread::MotionPeer>(boot); if(!peer->start(port,id,key)) return nullptr; return peer.release(); }
     catch(...) { return nullptr; }
 }
+void* sb_motion_peer_new_geometry(std::uint16_t port,const char* id,const std::uint8_t* key,
+                                  std::uint64_t boot,double low,double high,double counts) {
+    sbthread::initialize();
+    if(!std::isfinite(low) || !std::isfinite(high) || !std::isfinite(counts) ||
+       low>=50 || high<=50 || counts<100 || counts>10000) return nullptr;
+    try { auto peer=std::make_unique<sbthread::MotionPeer>(boot,low,high,counts);
+        if(!peer->start(port,id,key)) return nullptr;
+        return peer.release(); }
+    catch(...) { return nullptr; }
+}
+std::uint64_t sb_motion_peer_body_bytes(void* p) { return static_cast<sbthread::MotionPeer*>(p)->body_bytes; }
 void sb_motion_peer_free(void* p) { delete static_cast<sbthread::MotionPeer*>(p); }
 bool sb_motion_peer_mode(void* p,unsigned value) {
     auto& peer=*static_cast<sbthread::MotionPeer*>(p);
@@ -259,5 +308,24 @@ bool sb_motion_peer_mode(void* p,unsigned value) {
     return true;
 }
 unsigned sb_motion_peer_requests(void* p) { return static_cast<sbthread::MotionPeer*>(p)->requests; }
+unsigned sb_motion_peer_executor_fault(void* p) { return static_cast<sbthread::MotionPeer*>(p)->executor_fault; }
+std::uint64_t sb_motion_peer_timing(void* p,unsigned metric) {
+    auto& peer=*static_cast<sbthread::MotionPeer*>(p);
+    switch(metric) {
+    case 0:return peer.fault_start_gap_us;
+    case 1:return peer.fault_end_gap_us;
+    case 2:return peer.fault_duration_us;
+    case 3:return peer.fault_read_gap_us;
+    case 4:return peer.fault_read_reversed;
+    case 5:return peer.first_executor_fault;
+    default:return 0;
+    }
+}
+bool sb_motion_peer_stall_next(void* p,unsigned us) {
+    if(us<20001 || us>100000) return false;
+    auto& peer=*static_cast<sbthread::MotionPeer*>(p);
+    unsigned expected=0;
+    return peer.stall_next_us.compare_exchange_strong(expected,us);
+}
 bool sb_motion_peer_off(void* p) { return static_cast<sbthread::MotionPeer*>(p)->off; }
 }

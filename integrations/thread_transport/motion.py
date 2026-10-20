@@ -299,6 +299,19 @@ class MotionSession(Session):
                 self._report = None
                 raise
 
+    def set_active_deadline(self, timeout_ms: int):
+        """Explicitly bound subsequent calls after successful idle preflight.
+
+        Defaults remain unchanged. No reconnect or qualification occurs here;
+        the one owner chooses this before preparing a motion session.
+        """
+        with self._lock:
+            _integer(timeout_ms, 1, 100, 'active deadline')
+            report = self._fresh_report()
+            if report.phase != 'idle' or self._command:
+                raise ProtocolError('Set the active deadline before preparing')
+            self._timeout = timeout_ms
+
     def _send(self, kind, *, message, command, sent_us, **trajectory) -> Queued:
         if self._boot != self.expected_boot:
             raise ProtocolError('Fresh status is required')

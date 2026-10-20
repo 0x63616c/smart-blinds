@@ -129,7 +129,7 @@ jobs:
       - name: Exercise real DTLS sessions on IPv6 loopback
         run: |
           SB_THREAD_LIBRARY="$PWD/work/thread-transport-build/libsb_thread.so" \
-            python3 -m unittest integrations.thread_transport.test_transport integrations.thread_transport.test_clock integrations.thread_transport.test_motion -v
+            python3 -m unittest integrations.thread_transport.test_transport integrations.thread_transport.test_clock integrations.thread_transport.test_motion integrations.thread_bridge.test_bridge integrations.thread_bridge.test_group_dtls -v
 
   home-assistant:
     runs-on: ubuntu-24.04

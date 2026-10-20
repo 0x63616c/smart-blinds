@@ -59,6 +59,7 @@ public:
     // No I2C, transport calls, persistence, allocation or logging belongs here.
     Status cycle(Inbox& inbox,const SessionInput& input);
     Status status() const;
+    MotionExecutor::Fault executor_fault() const { return executor_.fault(); } // Read-only diagnostics, owning task only.
 private:
     bool active() const;
     bool healthy(const SessionInput& in,std::uint64_t now,bool need_count) const;

@@ -15,18 +15,24 @@ from .wire_fixture import WireFixture
 
 
 class MotionPeer:
-    def __init__(self, *, boot=99, port=None, key=None):
+    def __init__(self, *, boot=99, port=None, key=None, geometry=None):
         self.boot, self.port, self.key = boot, port or free_port(), key or secrets.token_bytes(32)
         self.library = _load(LIBRARY)
         for name, args, result in (
             ('new', [C.c_uint16, C.c_char_p, C.POINTER(C.c_uint8), C.c_uint64], C.c_void_p),
+            ('new_geometry', [C.c_uint16, C.c_char_p, C.POINTER(C.c_uint8), C.c_uint64, C.c_double, C.c_double, C.c_double], C.c_void_p),
+            ('body_bytes', [C.c_void_p], C.c_uint64),
+            ('executor_fault', [C.c_void_p], C.c_uint),
+            ('timing', [C.c_void_p, C.c_uint], C.c_uint64),
+            ('stall_next', [C.c_void_p, C.c_uint], C.c_bool),
             ('free', [C.c_void_p], None), ('mode', [C.c_void_p, C.c_uint], C.c_bool),
             ('requests', [C.c_void_p], C.c_uint), ('off', [C.c_void_p], C.c_bool)):
             fn = getattr(self.library, 'sb_motion_peer_' + name)
             fn.argtypes, fn.restype = args, result
         key_buffer = (C.c_uint8 * 32).from_buffer_copy(self.key)
         try:
-            self.handle = self.library.sb_motion_peer_new(self.port, b'disposable', key_buffer, boot)
+            self.handle = (self.library.sb_motion_peer_new_geometry(self.port, b'disposable', key_buffer, boot, *geometry)
+                           if geometry else self.library.sb_motion_peer_new(self.port, b'disposable', key_buffer, boot))
         finally:
             C.memset(key_buffer, 0, 32)
         if not self.handle:
@@ -44,6 +50,26 @@ class MotionPeer:
     @property
     def off(self):
         return self.library.sb_motion_peer_off(self.handle)
+
+    @property
+    def executor_fault(self):
+        return self.library.sb_motion_peer_executor_fault(self.handle)
+
+    @property
+    def diagnostics(self):
+        # First executor-fault timing is diagnostic evidence, never permission.
+        return dict(executor_fault=self.executor_fault, **{
+            label:self.library.sb_motion_peer_timing(self.handle,i)
+            for i,label in enumerate(('start_gap_us','end_gap_us','cycle_duration_us',
+                                      'max_clock_read_gap_us','clock_read_reversed','first_executor_fault'))})
+
+    def stall_next(self, us):
+        if not self.library.sb_motion_peer_stall_next(self.handle,us):
+            raise ValueError('Invalid or already pending test stall')
+
+    @property
+    def body_bytes(self):
+        return self.library.sb_motion_peer_body_bytes(self.handle)
 
     @property
     def requests(self):
@@ -120,6 +146,18 @@ class MotionTests(unittest.TestCase):
             self.assertTrue(peer.off)
             self.assertEqual(s.handshakes, 1)
 
+    def test_explicit_active_deadline_requires_idle_preflight(self):
+        with MotionPeer() as peer, peer.session() as s:
+            with self.assertRaises(ClockUncertain): s.set_active_deadline(40)
+            connected(s)
+            for value in (0,101,True):
+                with self.assertRaises(ValueError): s.set_active_deadline(value)
+            s.set_active_deadline(40)
+            self.assertEqual(s._timeout,40)
+            prepare(s);wait_for(s,lambda r:r.ready)
+            with self.assertRaises(ProtocolError): s.set_active_deadline(50)
+            s.stop(message=2,command=1,sent_us=_now_us())
+
     def test_queue_receipt_is_not_ready_and_delayed_queue_never_arms(self):
         with MotionPeer() as peer, peer.session() as s:
             connected(s)
@@ -189,6 +227,21 @@ class MotionTests(unittest.TestCase):
                 if fault == 'power':
                     self.assertFalse(report.power_ready)
                     self.assertIsNone(report.soc_percent)
+
+    def test_real_control_stall_faults_without_catch_up_or_resume(self):
+        with MotionPeer() as peer, peer.session() as s:
+            connected(s); prepare(s,lead=500000)
+            wait_for(s,lambda r:r.ready)
+            peer.stall_next(30000)
+            report=wait_for(s,lambda r:r.phase=='fault')
+            self.assertEqual(peer.executor_fault,4,peer.diagnostics) # Fault::clock.
+            self.assertGreater(peer.diagnostics['end_gap_us'],20000)
+            self.assertEqual(report.result,'io') # Session's deliberately broader boundary.
+            self.assertFalse(report.reference_valid)
+            self.assertTrue(peer.off)
+            time.sleep(.04)
+            self.assertEqual(s.motion_status().phase,'fault')
+            self.assertTrue(peer.off)
 
     def test_reconnect_cannot_resume_or_auto_commit(self):
         with MotionPeer() as peer, peer.session() as first:

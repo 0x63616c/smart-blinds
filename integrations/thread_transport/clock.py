@@ -69,5 +69,5 @@ class ClockBounds:
         # lower bound is inconsistent; uncertainty that overlaps 'now' is valid.
         age = now_us - sampled_us + upper_now
         if age < 0 or age > max_age_us:
-            raise ClockUncertain("Readiness source timestamp is future or stale")
+            raise ClockUncertain(f"Readiness source timestamp is future or stale: age_us={age}, limit_us={max_age_us}")
         return age

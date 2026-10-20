@@ -171,7 +171,7 @@ class Job:
         except ValueError:
             return []
         allowed = ("preparing", "prepared") if self.phase == Phase.PREPARING else (
-            ("prepared", "armed") if self.phase == Phase.COMMITTING else ("armed", "moving", "idle"))
+            ("prepared", "armed") if self.phase == Phase.COMMITTING else ("armed", "moving", "settling", "idle"))
         if not isfinite(height_mm) or fault or state not in allowed:
             return self.abort(f"{device_id}: {fault or state}")
         if self.phase == Phase.COMMITTING and device_id in self.committed and state != "armed":

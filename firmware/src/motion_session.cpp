@@ -219,7 +219,18 @@ MotionSession::Status MotionSession::cycle(Inbox& inbox,const SessionInput& in) 
     if(!active()) connection_=connection;
     if(!in.fast.stop_pressed && !remote_stop && phase_!=Phase::fault) {
         const auto next=inbox.pop();
-        if(next) result_=request(*next,in,now);
+        if(next) {
+            // A late ordinary message must still consume its replay sequence,
+            // but cannot erase the settled endpoint/STOP outcome. In particular
+            // an in-flight lease can arrive after the last moving observation.
+            const auto prior=result_;
+            const bool terminal=(phase_==Phase::settling || phase_==Phase::idle) &&
+                (prior==Result::finished || prior==Result::stopped);
+            const auto result=request(*next,in,now);
+            const bool new_prepare=next->request.kind==wire::Kind::prepare &&
+                result==Result::accepted && phase_==Phase::preparing;
+            if(phase_!=Phase::fault) result_=terminal && !new_prepare ? prior : result;
+        }
     }
     advance(in,now);
     return status();

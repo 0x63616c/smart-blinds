@@ -141,10 +141,42 @@ void complete_motion() {
         s.result==MotionSession::Result::finished && s.height_mm && std::abs(*s.height_mm-150)<1,"endpoint/final reference incorrect");
     f.off();
     auto old=f.prepare(); f.queue(old); f.tick();
-    check(f.session.status().result==MotionSession::Result::stale && f.io.duty==0,"completed command replayed");
+    check(f.session.status().result==MotionSession::Result::finished && f.io.duty==0,"completed outcome lost to rejected replay");
     auto next=f.prepare(2,80); next.origin_um=static_cast<std::int64_t>(*s.height_mm*1000); f.queue(next);
     check(f.tick().phase==MotionSession::Phase::preparing,"fresh command after settle rejected");
     check(std::abs(f.io.origin-f.io.count)<.01,"next origin omitted final coasting count");
+}
+void terminal_evidence() {
+    for(bool stop : {false,true}) {
+        Fixture f; f.ready(); f.commit();
+        for(int i=0;i<900 && f.session.status().phase!=MotionSession::Phase::settling;++i) {
+            if(stop && i==40) f.queue(f.simple(wire::Kind::stop));
+            else if(i%10==0) f.queue(f.simple(wire::Kind::lease));
+            f.tick();
+        }
+        const auto outcome=stop ? MotionSession::Result::stopped : MotionSession::Result::finished;
+        check(f.session.status().phase==MotionSession::Phase::settling,"no terminal settling fixture");
+        f.queue(f.simple(wire::Kind::lease)); auto s=f.tick();
+        check(s.result==outcome && s.last_message==f.message,"late lease erased terminal outcome or replay floor");
+        auto next=f.prepare(2,80); next.origin_um=static_cast<std::int64_t>(*s.height_mm*1000);
+        f.queue(next); s=f.tick();
+        check(s.result==outcome && s.phase==MotionSession::Phase::settling && s.last_message==f.message,
+            "prepare during settling replaced terminal evidence");
+        check(!f.inbox.push({next,f.inbox.connection(),f.io.now,true}),"duplicate accepted after settling rejection");
+        for(int i=0;i<20 && s.phase!=MotionSession::Phase::idle;++i) s=f.tick();
+        check(s.phase==MotionSession::Phase::idle && s.result==outcome,"terminal outcome not retained into idle");
+        f.queue(f.simple(wire::Kind::lease)); s=f.tick();
+        check(s.result==outcome && s.last_message==f.message,"idle late lease erased terminal outcome");
+        next=f.prepare(2,80); next.origin_um=static_cast<std::int64_t>(*s.height_mm*1000);
+        f.queue(next); s=f.tick();
+        check(s.phase==MotionSession::Phase::preparing && s.result==MotionSession::Result::accepted,
+            "valid next job did not replace terminal evidence");
+    }
+    Fixture bad; bad.moving(); bad.queue(bad.simple(wire::Kind::stop)); bad.tick();
+    bad.queue(bad.simple(wire::Kind::lease));
+    const auto fault=bad.tick([](auto& in){in.power.ready=false;});
+    check(fault.phase==MotionSession::Phase::fault && fault.result==MotionSession::Result::power,
+        "terminal preservation masked a settling fault");
 }
 void stop_priority() {
     Fixture f; f.moving(); const auto pulses=f.io.pulses;
@@ -263,6 +295,6 @@ void setup_failure() {
 }
 }
 int main() {
-    qualification(); complete_motion(); stop_priority(); command_rejection(); fault_boundaries(); source_time_and_long_window(); setup_failure();
+    qualification(); complete_motion(); terminal_evidence(); stop_priority(); command_rejection(); fault_boundaries(); source_time_and_long_window(); setup_failure();
     std::cout<<"motion session qualification, scheduled lifecycle, source freshness, STOP/settle and fault boundaries passed\n";
 }

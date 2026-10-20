@@ -16,8 +16,8 @@ followed by an eight-unit build only after their tests pass.
 | Main controller | 196 circuit features, 609 pin identities and 142 net partitions; native eleven-sheet KiCad schematic; 54 × 68.5 mm four-layer placement with USB tab | Route copper, refine critical loops, resolve manufacturing/thermal rules and ERC/DRC findings |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Routing, holder fastening, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session and settling; source-timed faults and supervised motor-off path | Physical reference/commissioning, final hardware qualification, idle local-button wake and installed radio tests |
-| Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the real encrypted motion transport to the group controller and then the live HA service |
-| Radio transport | Pinned C6 Thread evaluation build; real local DTLS fixtures, strict clock/freshness checks and explicit motion session | Commissioned identities/keys, seven-peer motion adapter, RF bandwidth/power measurements and hub compatibility |
+| Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
+| Radio transport | Pinned C6 Thread evaluation build; seven-peer localhost DTLS group adapter, durable sequence reservations and source-timed failure propagation | Compact radio protocol and airtime budget, commissioned identities/keys, RF power measurements and hub compatibility |
 | Costs | Dated parts inventory and component demand for two/eight units, sourced harness candidates and a source-bound print-volume estimate | Final board/assembly quote, slicer-based filament use, hardware totals, shipping, tax and stock refresh |
 
 The owner is away for several weeks. Design continues with the documented motor
@@ -26,9 +26,10 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All nine Design checks jobs passed for `22581ec`](https://github.com/0x63616c/smart-blinds/actions/runs/39374607229):
+[All ten Design checks jobs passed for `8975687`](https://github.com/0x63616c/smart-blinds/actions/runs/39376671584):
 control/parameter tests, electrical models, native schematic rebuilds, Home Assistant,
-real local transport tests, both C6 cross-builds, and both mechanical-fit jobs.
+real local transport tests, both C6 cross-builds, both mechanical-fit jobs and the
+source-bound print material budget. The newer group bridge below awaits its own CI run.
 New changes must be checked against their own source revision.
 
 The retained-enclosure artifact contains 27 named empty-intersection checks, a
@@ -54,11 +55,16 @@ courtyard/keepout findings on all three boards. Four package families still use
 explicit molding/outline allowances. Copper routing and the remaining manufacturing
 findings are separate unfinished work. See the [clearance record](electrical/footprint-clearances.md).
 
-The host motion transport has 37 real local DTLS/schema/clock tests. Its explicit
-motion client distinguishes queued requests from fresh readiness and never silently
-reconnects or replays a command. The group coordinator maintains source-timed leases
-through preparation, commit and movement. Joining those two pieces, durable sequence
-allocation and seven-peer failure propagation are the current software work.
+The [host group bridge](firmware/thread-group-bridge.md) joins the coordinator to
+seven real localhost DTLS sessions with synthetic motors and calibration records.
+Its latest local batch passes 59 transport/schema/clock/bridge tests, including a
+deliberate 30 ms control stall that verifies motor-off and lost reference. An earlier
+batch had two intermittent timing failures; their exact cause remains unresolved,
+and retained first-fault diagnostics now make a recurrence inspectable. No deadline
+was relaxed or test retried automatically. This is a correctness fixture, not radio
+qualification: about 109 kB/s of application bodies exceeds the intended Thread
+PHY's raw capacity before overhead. Compact traffic and real-device timing remain
+required before deployment or a battery-life claim.
 
 ## Decisions and limits that affect the build
 
@@ -87,7 +93,7 @@ allocation and seven-peer failure propagation are the current software work.
 
 1. Establish manufacturing rules and route/review critical power and sensing paths.
 2. Finish holder retention, wiring details and a complete print/fastener budget.
-3. Complete and test the seven-peer encrypted motion bridge.
+3. Reduce group-control airtime and test the transport on actual C6 radios.
 4. Complete all three routed boards, manufacturing outputs and an assembly quote.
 5. Test two physical prototypes before committing to the eight-unit build.
 
