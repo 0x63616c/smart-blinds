@@ -232,7 +232,7 @@ class UsbSchematicTests(unittest.TestCase):
         cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
 
     def test_real_graph_roundtrip(self):
-        self.assertEqual(self.check(self.source), 113)
+        self.assertEqual(self.check(self.source), 111)
 
     def test_reject_bypassed_efuse(self):
         changed = copy.deepcopy(self.source)

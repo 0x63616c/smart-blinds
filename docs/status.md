@@ -49,7 +49,10 @@ two resistors; all three SKUs already occur in the design. The maintained route
 rebuild preserves1268 surviving copper items and194 existing footprint geometries,
 removing only nine obsolete segments and two vias. All47 physical routing fault
 controls,23 integrated circuit controls and nine native schematic controls pass.
-New PD supply/bus/interrupt routing remains open. Publication CI is pending.
+New PD supply/bus/interrupt routing remains open. The first publication CI run
+caught one stale standalone-USB test expectation (113 old pins versus111 now);
+the corrected full37-test native schematic suite passes locally. Corrected CI
+is pending.
 
 The carrier silkscreen cleanup passes both native routing checks locally and in
 the CI run above, including all sixteen injected-fault controls. It preserves
