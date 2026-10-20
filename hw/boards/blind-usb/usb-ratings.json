@@ -1,0 +1,259 @@
+{
+  "status": "Preliminary fixed-part capture; no USB or safety qualification",
+  "limits": {
+    "raw_max_v": 21,
+    "nominal_charger_input_a": 1.5,
+    "charger_error_allowance": 0.1,
+    "contract_a": 2.5,
+    "aux_reserve_a": 0.025,
+    "resistor_temperature_excursion_c": 75,
+    "cap_temperature_factor": 0.85,
+    "cap_aging_planning_factor": 0.9,
+    "raw_cap_uf": 4.7,
+    "uncontrolled_cap_planning_ceiling_uf": 10,
+    "pdos": [
+      [
+        5,
+        1.5
+      ],
+      [
+        9,
+        2.5
+      ],
+      [
+        15,
+        2.5
+      ]
+    ],
+    "power_only_above_5v": true,
+    "req_src_current": false
+  },
+  "parts": {
+    "TYPE-C-31-M-12": {
+      "wrapper": "../../parts/UNKNOWN_TYPE_C_31_M_12/UNKNOWN_TYPE_C_31_M_12.ato",
+      "lcsc": "C165948",
+      "instances": [
+        "connector"
+      ],
+      "source": "https://jlcpcb.com/partdetail/TYPE-C-31-M-12/C165948",
+      "evidence_limit": "Supplier physical pad numbering used; exact connector drawing, footprint and enclosure opening remain to be qualified"
+    },
+    "STUSB4500QTR": {
+      "wrapper": "../../parts/blind-usb/STUSB4500QTR.ato",
+      "lcsc": "C2678061",
+      "instances": [
+        "pd"
+      ],
+      "source": "https://www.st.com/resource/en/datasheet/stusb4500.pdf",
+      "revision": "DS12499 Rev8",
+      "vdd_op_min_v": 4.1,
+      "vdd_op_max_v": 22,
+      "vdd_abs_max_v": 28,
+      "vol_max_at_3ma_v": 0.4,
+      "monitor_discharge_max_a": 0.05,
+      "system_discharge_max_a": 0.5,
+      "internal_reg_cap_min_uf": 0.5,
+      "internal_reg_cap_max_uf": 10
+    },
+    "0402WGF1003TCE": {
+      "wrapper": "../../parts/blind-control-io/0402WGF1003TCE.ato",
+      "lcsc": "C25741",
+      "instances": [
+        "r_addr0",
+        "r_addr1",
+        "r_scl",
+        "r_sda",
+        "r_base_pull",
+        "r_uv_top2",
+        "r_uv_bottom"
+      ],
+      "resistance_ohm": 100000,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.0625
+    },
+    "0402WGF1002TCE": {
+      "wrapper": "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato",
+      "lcsc": "C25744",
+      "instances": [
+        "r_reset",
+        "r_base1",
+        "r_base2"
+      ],
+      "resistance_ohm": 10000,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.0625
+    },
+    "ESDA25P35-1U1M": {
+      "wrapper": "../../parts/blind-usb/ESDA25P35_1U1M.ato",
+      "lcsc": "C1974707",
+      "instances": [
+        "tvs_vbus"
+      ],
+      "source": "https://www.st.com/resource/en/datasheet/esda25p35-1u1m.pdf",
+      "standoff_v": 22,
+      "clamp_8kv_30ns_max_v": 31,
+      "clamp_35a_8_20_max_v": 41,
+      "evidence_limit": "Pulse clamp exceeds connected IC DC absolute limits; no demonstrated transient immunity"
+    },
+    "ESDA25W": {
+      "wrapper": "../../parts/blind-usb/ESDA25W.ato",
+      "lcsc": "C2935152",
+      "instances": [
+        "tvs_cc"
+      ],
+      "source": "https://www.st.com/resource/en/datasheet/esda25w.pdf",
+      "standoff_v": 24,
+      "evidence_limit": "Manufacturer reference choice; not proof of CC surge immunity or sustained VBUS short behavior"
+    },
+    "CL31A475KBHNNNE": {
+      "wrapper": "../../parts/blind-usb/CL31A475KBHNNNE.ato",
+      "lcsc": "C12881",
+      "instances": [
+        "c_raw"
+      ],
+      "capacitance_f": 4.7e-06,
+      "rated_voltage_v": 50,
+      "tolerance": 0.1
+    },
+    "RB521S30T1G": {
+      "wrapper": "../../parts/blind-usb/RB521S30T1G.ato",
+      "lcsc": "C145179",
+      "instances": [
+        "d_vdd"
+      ],
+      "source": "https://www.onsemi.com/pdf/datasheet/rb521s30t1-d.pdf",
+      "reverse_rating_v": 30,
+      "forward_current_a": 0.2,
+      "vf_max_at_200ma_25c_v": 0.5
+    },
+    "CL10A105KB8NNNC": {
+      "wrapper": "../../parts/SAMSUNG_CL10A105KB8NNNC/SAMSUNG_CL10A105KB8NNNC.ato",
+      "lcsc": "C15849",
+      "instances": [
+        "c_vdd",
+        "c_1v2",
+        "c_2v7"
+      ],
+      "capacitance_f": 1e-06,
+      "rated_voltage_v": 50,
+      "tolerance": 0.1
+    },
+    "MMBT3906LT1G": {
+      "wrapper": "../../parts/blind-power/MMBT3906LT1G.ato",
+      "lcsc": "C53444",
+      "instances": [
+        "q_enable"
+      ],
+      "source": "https://www.onsemi.com/pdf/datasheet/mmbt3906lt1-d.pdf",
+      "vce_rating_v": 40,
+      "collector_current_a": 0.2,
+      "vce_sat_allowance_v": 0.3,
+      "evidence_limit": "0.3 V is a design allowance, not a guaranteed sub-mA saturation bound over temperature"
+    },
+    "0402WGF3903TCE": {
+      "wrapper": "../../parts/UNI_ROYAL_0402WGF3903TCE/UNI_ROYAL_0402WGF3903TCE.ato",
+      "lcsc": "C25782",
+      "instances": [
+        "r_uv_top1",
+        "r_ov_top1"
+      ],
+      "resistance_ohm": 390000,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.0625
+    },
+    "TPS259470LRPWR": {
+      "wrapper": "../../parts/blind-usb/TPS259470LRPWR.ato",
+      "lcsc": "C3662793",
+      "instances": [
+        "efuse"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+      "revision": "SLVSFC9C May2026",
+      "input_op_max_v": 23,
+      "input_abs_max_v": 28,
+      "ilim_at_1650_min_a": 1.8,
+      "ilim_at_1650_max_a": 2.2,
+      "uvlo_rising_v": [
+        1.183,
+        1.223
+      ],
+      "ovlo_rising_v": [
+        1.183,
+        1.223
+      ],
+      "pin_leakage_bound_a": 1e-07
+    },
+    "0402WGF2612TCE": {
+      "wrapper": "../../parts/blind-regulator/0402WGF2612TCE.ato",
+      "lcsc": "C25875",
+      "instances": [
+        "r_ov_top2"
+      ],
+      "resistance_ohm": 26100,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.0625
+    },
+    "0402WGF3012TCE": {
+      "wrapper": "../../parts/blind-power/0402WGF3012TCE.ato",
+      "lcsc": "C29402",
+      "instances": [
+        "r_ov_bottom"
+      ],
+      "resistance_ohm": 30100,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.0625
+    },
+    "0402WGF1651TCE": {
+      "wrapper": "../../parts/blind-usb/0402WGF1651TCE.ato",
+      "lcsc": "C25869",
+      "instances": [
+        "r_limit"
+      ],
+      "resistance_ohm": 1650,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.0625
+    },
+    "0402B102K500NT": {
+      "wrapper": "../../parts/blind-power/0402B102K500NT.ato",
+      "lcsc": "C1523",
+      "instances": [
+        "c_slew"
+      ],
+      "capacitance_f": 1e-09,
+      "rated_voltage_v": 50,
+      "tolerance": 0.1
+    },
+    "0603WAF1001T5E": {
+      "wrapper": "../../parts/UNI_ROYAL_0603WAF1001T5E/UNI_ROYAL_0603WAF1001T5E.ato",
+      "lcsc": "C21190",
+      "instances": [
+        "r_raw_dis1",
+        "r_raw_dis2",
+        "r_raw_dis3",
+        "r_out_dis1",
+        "r_out_dis2",
+        "r_out_dis3"
+      ],
+      "resistance_ohm": 1000,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.1
+    }
+  },
+  "unresolved": [
+    "NVM image, programming fixture, readback and power-cycle enforcement are unfinished; defaults do not satisfy the specified profile.",
+    "Source entitlement, attach/detach, hard reset, undervoltage, overvoltage, short circuit and reverse blocking need actual PD/eFuse bench tests.",
+    "ESD/surge coordination is not accepted: selected reference TVS clamps above the connected IC DC absolute maximum at specified pulses.",
+    "VDD capacitor loses substantial capacity under DC bias; cold diode drop, active PD current, reset/hold-up and depleted-pack startup require qualification.",
+    "Discharge timing depends on charger reverse paths and total effective capacitance; final timer profile and USB timing compliance remain open.",
+    "PNP saturation, eFuse slew/overshoot, resistor pulse/temperature and input inductance require physical validation.",
+    "Output capacitor bank resides in the charger block and must be placed at the eFuse/charger boundary; output negative transients remain unqualified.",
+    "Connector and IC land patterns, 3D envelope, factory test pads, placement/routing, thermal/EMI and integrated-board tests remain open."
+  ]
+}

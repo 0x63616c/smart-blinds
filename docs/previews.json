@@ -230,6 +230,18 @@
       "collapsed": true
     },
     {
+      "id": "usb-schematic",
+      "kind": "schematic",
+      "title": "USB-C PD input \u2014 native KiCad circuit study",
+      "source": "hw/schematics/blind-usb/usb-test.kicad_sch",
+      "dependencies": [
+        "hw/schematics/blind-usb/usb-test.layout.json",
+        "hw/schematics/blind-usb/usb-test.verification.json"
+      ],
+      "role": "33 parts and 113 physical pins checked. Three explicit external-power ERC findings. Mandatory factory PD profile, surge behavior, startup and integrated charging remain unqualified; not a fabrication release.",
+      "collapsed": true
+    },
+    {
       "id": "compact-closed",
       "kind": "openscad",
       "title": "Compact enclosure \u2014 provisional exterior",

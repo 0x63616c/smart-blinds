@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_CL31A475KBHNNNE:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Samsung Electro-Mechanics", partnumber="CL31A475KBHNNNE", footprint="C1206.kicad_mod", symbol="CL31A475KBHNNNE.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C12881", manufacturer="Samsung Electro-Mechanics", partno="CL31A475KBHNNNE">
+    trait has_designator_prefix<prefix="C">
+
+    pin 1
+    pin 2

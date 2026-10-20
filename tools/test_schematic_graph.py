@@ -140,6 +140,37 @@ class RegulatorSchematicTests(unittest.TestCase):
             self.check(self.source, graph)
 
 
+class UsbSchematicTests(unittest.TestCase):
+    check = NativeSchematicTests.check
+
+    @classmethod
+    def setUpClass(cls):
+        cls.spec = json.loads((ROOT / "hw/schematics/blind-usb/usb-test.layout.json").read_text())
+        cls.graph = board_graph(ROOT / cls.spec["pcb"])
+        cls.source = parse((ROOT / cls.spec["output"]).read_text())
+        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+
+    def test_real_graph_roundtrip(self):
+        self.assertEqual(self.check(self.source), 113)
+
+    def test_reject_bypassed_efuse(self):
+        changed = copy.deepcopy(self.source)
+        for label in children(changed, "label"):
+            if label[1] == "OUTPUT":
+                label[1] = "RAW"
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+    def test_reject_short_between_cc_channels(self):
+        changed = copy.deepcopy(self.source)
+        for label in children(changed, "label"):
+            if label[1] == "CC2":
+                label[1] = "CC1"
+                break
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+
 class CarrierSchematicTests(unittest.TestCase):
     check = NativeSchematicTests.check
 

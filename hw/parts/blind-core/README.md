@@ -7,8 +7,9 @@ the combined symbol file and creates local atomic Ato wrappers. Imported physica
 symbols have unspecified electrical pin types, so their own ERC coverage is weak;
 the native review schematic uses reviewed electrical types separately.
 
-Only the DRV8874 motor block has been wired and built so far. Its source/BOM-linked
-rating records and checker live in `../../boards/blind-controller/`.
+The DRV8874 motor block, C6 interface, BQ25798 charger, MAX17320 carrier and
+TPS62902 supply now have connected circuit studies under `../../boards/`. Their
+source/pin/BOM checks do not establish routing, stability or physical qualification.
 
 | Part | Review status |
 | --- | --- |
@@ -16,10 +17,10 @@ rating records and checker live in `../../boards/blind-controller/`.
 | 0402WGF1201TCE, C25862 | 1.2 kohm, 1%, 0402; rated in the motor manifest against Royalohm standard-series data. |
 | 0402B223K500NT, C1532 | 22 nF, 50 V, X7R, 0402; manufacturer catalog checked. |
 | UCM1E221MCL1GS, C340768 | 220 uF, 25 V, polarized, 6.3 mm can; Nichicon UCM data checked. Actual PWM ripple/ESR heating not qualified. |
-| BQ25798RQMR, C2876593 | Pin map checked against TI SLUSDV2C; no assembled circuit yet. Exposed pad 29 is PMID, **not ground**. Imported footprint name mentions BQ25792; dimensional qualification remains open. |
-| MAX17320G22+, C2914309 | Unreviewed circuit/geometry. Import signal `PFALL` is a typo for PFAIL; correct before use. |
-| ESP32-C6-WROOM-1-N4, C6034714 | Unreviewed import; no 3D model supplied. Module clearance/antenna guidance needs independent review. |
-| TPS62902RPJR, C2870154 | Unreviewed circuit/geometry. |
+| BQ25798RQMR, C2876593 | Pin map checked against TI SLUSDV2C; connected charger study with independent 101-pin contract; no physical assembly. Exposed pad 29 is PMID, **not ground**. Imported footprint name mentions BQ25792; dimensional qualification remains open. |
+| MAX17320G22+, C2914309 | Connected carrier study; 3S mapping checked against Rev12. The wrapper and atomic symbol correct the original PFALL typo to PFAIL. Geometry and protection commissioning remain open. |
+| ESP32-C6-WROOM-1-N4, C6034714 | Connected C6 interface study; pin mapping and antenna reservation reviewed. No original 3D model supplied; physical RF/fit tests remain open. |
+| TPS62902RPJR, C2870154 | Connected logic-supply study; capacitor-bias and inductor-footprint review recorded. Stability, layout and thermal qualification remain open. |
 
 The `blind-core.pretty` directory holds upgraded KiCad 10 imports. Flat footprint
 copies beside the Ato files are required by this installed atopile release. The

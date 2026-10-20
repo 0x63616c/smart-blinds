@@ -1,0 +1,181 @@
+import ElectricPower
+import ElectricLogic
+import Electrical
+import I2C
+from "../../parts/blind-usb/STUSB4500QTR.ato" import Part_STUSB4500QTR
+from "../../parts/blind-usb/TPS259470LRPWR.ato" import Part_TPS259470LRPWR
+from "../../parts/blind-usb/RB521S30T1G.ato" import Part_RB521S30T1G
+from "../../parts/blind-usb/ESDA25P35_1U1M.ato" import Part_ESDA25P35_1U1M
+from "../../parts/blind-usb/ESDA25W.ato" import Part_ESDA25W
+from "../../parts/blind-usb/CL31A475KBHNNNE.ato" import Part_CL31A475KBHNNNE
+from "../../parts/blind-usb/0402WGF1651TCE.ato" import Part_0402WGF1651TCE
+from "../../parts/UNKNOWN_TYPE_C_31_M_12/UNKNOWN_TYPE_C_31_M_12.ato" import UNKNOWN_TYPE_C_31_M_12_package
+from "../../parts/SAMSUNG_CL10A105KB8NNNC/SAMSUNG_CL10A105KB8NNNC.ato" import SAMSUNG_CL10A105KB8NNNC_package
+from "../../parts/UNI_ROYAL_0603WAF1001T5E/UNI_ROYAL_0603WAF1001T5E.ato" import UNI_ROYAL_0603WAF1001T5E_package
+from "../../parts/UNI_ROYAL_0402WGF3903TCE/UNI_ROYAL_0402WGF3903TCE.ato" import UNI_ROYAL_0402WGF3903TCE_package
+from "../../parts/blind-control-io/0402WGF1003TCE.ato" import Part_0402WGF1003TCE
+from "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package
+from "../../parts/blind-power/0402WGF3012TCE.ato" import Part_0402WGF3012TCE
+from "../../parts/blind-power/0402B102K500NT.ato" import Part_0402B102K500NT
+from "../../parts/blind-power/MMBT3906LT1G.ato" import Part_MMBT3906LT1G
+from "../../parts/blind-regulator/0402WGF2612TCE.ato" import Part_0402WGF2612TCE
+
+module UsbPdInput:
+    """UNVERIFIED autonomous PD sink and latched, reverse-blocking eFuse.
+
+    Factory program/readback/power-cycle is mandatory: 5 V/1.5 A,
+    9 V/2.5 A, 15 V/2.5 A; POWER_ONLY_ABOVE_5V=1, REQ_SRC_CURRENT=0.
+    Only negotiated higher profiles may feed the charger. 5 V is blocked.
+    Hardware UVLO/OVLO and the 1.65k eFuse limit supplement that contract.
+    Connect output to Charger3S.source with its local input capacitor bank;
+    connect USB D+/D- to the controller's protected USB interface.
+    Factory I2C and RESET remain separate from the always-on controller bus.
+    The fixture supplies 3.3 V logic/pullups, while USB powers the PD chip.
+
+    Graph/rating checks cannot prove PD behavior or surge immunity. TVS
+    clamping exceeds the IC DC absolute rating under some specified pulses;
+    input transients, startup, discharge and ESD are qualification gates.
+    Sources: ST DS12499 Rev8 / UM2650; TI SLVSFC9C. See README and ratings.
+    """
+    raw = new ElectricPower
+    output = new ElectricPower
+    factory_logic = new ElectricPower
+    factory_bus = new I2C
+    factory_reset = new ElectricLogic
+    usb_dp = new Electrical
+    usb_dn = new Electrical
+    raw.voltage = 4.75V to 21V
+    output.voltage = 8.1V to 18.8V
+    factory_logic.voltage = 3.3V +/- 3%
+    factory_bus.frequency = 100kHz
+    factory_bus.address = 40
+    raw.lv ~ output.lv
+    raw.lv ~ factory_logic.lv
+    factory_bus.scl.reference ~ factory_logic
+    factory_bus.sda.reference ~ factory_logic
+    factory_reset.reference ~ factory_logic
+
+    # Connector shell is tied to PCB ground; enclosure has no metal chassis.
+    connector = new UNKNOWN_TYPE_C_31_M_12_package
+    connector.VBUS ~ raw.hv
+    connector.GND ~ raw.lv
+    connector.EH ~ raw.lv
+    connector.DP1 ~ usb_dp
+    connector.DP2 ~ usb_dp
+    connector.DN1 ~ usb_dn
+    connector.DN2 ~ usb_dn
+    # SBU1/SBU2 intentionally open. No external CC pull-down resistors.
+    pd = new Part_STUSB4500QTR
+    pd.CC1 ~ connector.CC1
+    pd.CC1DB ~ connector.CC1
+    pd.CC2 ~ connector.CC2
+    pd.CC2DB ~ connector.CC2
+    pd.GND ~ raw.lv
+    pd.EP ~ raw.lv
+    pd.VSYS ~ raw.lv
+    pd.SCL ~ factory_bus.scl.line
+    pd.SDA ~ factory_bus.sda.line
+    pd.RESET ~ factory_reset.line
+    # Pin3 is NC per the pin table, despite an older reference drawing.
+    # ATTACH, POWER_OK2/3, GPIO, A_B_SIDE and ALERT are unused.
+    # POWER_OK outputs alone are not valid detach-safe enable signals.
+    r_addr0 = new Part_0402WGF1003TCE
+    r_addr1 = new Part_0402WGF1003TCE
+    r_scl = new Part_0402WGF1003TCE
+    r_sda = new Part_0402WGF1003TCE
+    r_reset = new UNI_ROYAL_0402WGF1002TCE_package
+    r_addr0.1 ~ pd.ADDR0
+    r_addr1.1 ~ pd.ADDR1
+    r_scl.1 ~ pd.SCL
+    r_sda.1 ~ pd.SDA
+    r_reset.1 ~ pd.RESET
+    r_addr0.2 ~ raw.lv
+    r_addr1.2 ~ raw.lv
+    r_scl.2 ~ raw.lv
+    r_sda.2 ~ raw.lv
+    r_reset.2 ~ raw.lv
+
+    tvs_vbus = new Part_ESDA25P35_1U1M
+    tvs_vbus.K ~ raw.hv
+    tvs_vbus.A ~ raw.lv
+    tvs_cc = new Part_ESDA25W
+    tvs_cc.K1 ~ connector.CC1
+    tvs_cc.K2 ~ connector.CC2
+    tvs_cc.A ~ raw.lv
+    c_raw = new Part_CL31A475KBHNNNE
+    c_raw.1 ~ raw.hv
+    c_raw.2 ~ raw.lv
+    d_vdd = new Part_RB521S30T1G
+    d_vdd.A ~ raw.hv
+    d_vdd.C ~ pd.VDD
+    c_vdd = new SAMSUNG_CL10A105KB8NNNC_package
+    c_1v2 = new SAMSUNG_CL10A105KB8NNNC_package
+    c_2v7 = new SAMSUNG_CL10A105KB8NNNC_package
+    c_vdd.1 ~ pd.VDD
+    c_1v2.1 ~ pd.VREG_1V2
+    c_2v7.1 ~ pd.VREG_2V7
+    c_vdd.2 ~ raw.lv
+    c_1v2.2 ~ raw.lv
+    c_2v7.2 ~ raw.lv
+
+    # VBUS_EN_SNK is active-low only for an attached explicit PDO2/3 contract
+    # with POWER_ONLY_ABOVE_5V programmed. Invert into positive eFuse enable.
+    q_enable = new Part_MMBT3906LT1G
+    q_enable.E ~ raw.hv
+    r_base_pull = new Part_0402WGF1003TCE
+    r_base_pull.1 ~ q_enable.E
+    r_base_pull.2 ~ q_enable.B
+    r_base1 = new UNI_ROYAL_0402WGF1002TCE_package
+    r_base2 = new UNI_ROYAL_0402WGF1002TCE_package
+    r_base1.1 ~ q_enable.B
+    r_base1.2 ~ r_base2.1
+    r_base2.2 ~ pd.VBUS_EN_SNK
+    r_uv_top1 = new UNI_ROYAL_0402WGF3903TCE_package
+    r_uv_top2 = new Part_0402WGF1003TCE
+    r_uv_bottom = new Part_0402WGF1003TCE
+    r_uv_top1.1 ~ q_enable.C
+    r_uv_top1.2 ~ r_uv_top2.1
+    r_uv_top2.2 ~ r_uv_bottom.1
+    r_uv_bottom.2 ~ raw.lv
+    efuse = new Part_TPS259470LRPWR
+    efuse.IN ~ raw.hv
+    efuse.OUT ~ output.hv
+    efuse.GND ~ raw.lv
+    efuse.EN_UVLO ~ r_uv_bottom.1
+    r_ov_top1 = new UNI_ROYAL_0402WGF3903TCE_package
+    r_ov_top2 = new Part_0402WGF2612TCE
+    r_ov_bottom = new Part_0402WGF3012TCE
+    r_ov_top1.1 ~ raw.hv
+    r_ov_top1.2 ~ r_ov_top2.1
+    r_ov_top2.2 ~ r_ov_bottom.1
+    r_ov_bottom.1 ~ efuse.OVLO
+    r_ov_bottom.2 ~ raw.lv
+    r_limit = new Part_0402WGF1651TCE
+    r_limit.1 ~ efuse.ILM
+    r_limit.2 ~ raw.lv
+    c_slew = new Part_0402B102K500NT
+    c_slew.1 ~ efuse.DVDT
+    c_slew.2 ~ raw.lv
+    # AUXOFF and FLT_N are unused open-drain OUTPUTS. ITIMER NC chooses
+    # the fastest documented overload response. Do not ground AUXOFF.
+
+    # Separate source/load discharge paths; each 3k chain shares pulse power
+    # across three existing 0603 1k resistors. Timing remains a bench gate.
+    r_raw_dis1 = new UNI_ROYAL_0603WAF1001T5E_package
+    r_raw_dis2 = new UNI_ROYAL_0603WAF1001T5E_package
+    r_raw_dis3 = new UNI_ROYAL_0603WAF1001T5E_package
+    r_raw_dis1.1 ~ raw.hv
+    r_raw_dis1.2 ~ r_raw_dis2.1
+    r_raw_dis2.2 ~ r_raw_dis3.1
+    r_raw_dis3.2 ~ pd.VBUS_VS_DISCH
+    r_out_dis1 = new UNI_ROYAL_0603WAF1001T5E_package
+    r_out_dis2 = new UNI_ROYAL_0603WAF1001T5E_package
+    r_out_dis3 = new UNI_ROYAL_0603WAF1001T5E_package
+    r_out_dis1.1 ~ output.hv
+    r_out_dis1.2 ~ r_out_dis2.1
+    r_out_dis2.2 ~ r_out_dis3.1
+    r_out_dis3.2 ~ pd.DISCH
+
+module UsbTest:
+    """Unrouted block; charger input bank, factory pads and MCU data are external."""
+    usb = new UsbPdInput

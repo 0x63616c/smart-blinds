@@ -9,3 +9,5 @@ Each pointer/read transaction requests a 10 ms timeout; the 15-register capture 
 Calls and destruction belong to one worker. The worker owns reader lifetime; the application owns the bus and must detach devices before deleting it. Recovery from a timeout must keep charging/motion inhibited, use a bounded bus recovery policy, and reacquire a full healthy snapshot. It must never restart an interrupted move.
 
 Validation scope: target compile/link, alongside existing offline register arithmetic/readback tests. No I2C fixture, hot plug or real pack test has been performed.
+
+The [charger evidence contract](../../../../docs/firmware/charger-configuration.md) now explicitly requires commissioned protection, sensor placement and conversion freshness in addition to raw gauge transport success. No adapter currently promotes this readback to those approvals.

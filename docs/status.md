@@ -46,15 +46,25 @@ A green preview result only confirms generation of the documented images.
   31-pin logic supply capture uses two input capacitors and a reviewed inductor footprint.
   Both normal and frozen builds pass locally. Effective-capacitance calculations include
   typical curves, tolerance, temperature and an aging allowance; they are estimates,
-  not guaranteed production limits or converter stability proof. USB-PD, protected
-  carrier and regeneration integration remain unfinished.
+  not guaranteed production limits or converter stability proof. USB-PD and protected-carrier captures now have independent checks; whole-board
+  integration, regeneration handling, placement and routing remain unfinished.
 - A full motor-disabled Thread/DTLS evaluation target linked successfully; startup hardening is
   verified by a fresh CI cross-build. It has no motion endpoint, commissioned credentials or measured
-  C6 peer interoperability. A native libcoap host adapter passes nine real local DTLS
+  C6 peer interoperability. A native libcoap host adapter passes 18 real local DTLS and clock
   tests, including seven simultaneous peers, bad credentials and encrypted-record
   replay/corruption. Its CCM8 security-policy exception is explicit and defaults off;
   production transport approval and commissioning remain open. Portable heartbeat tests cover acknowledged arming/edges,
   fresh control iterations, strict feed intervals and no command replay.
+- The 33-component USB-C input has a 113-pin independent contract and native KiCad schematic.
+  Five injected wiring faults are rejected. The proposed 9 V/15 V power path blocks 5 V
+  fallback; factory NVM, attach/reset behavior, startup and transient immunity remain unqualified.
+- The 33-component protected carrier has 103 independently checked pins, branch fuses,
+  high-side disconnect FETs and separate pack temperature sensing. Its native schematic
+  preserves the published 3S sense/balance mapping. Cell-contact heating, fault clearing,
+  assembly insulation and commissioned protection settings still require qualification.
+- A host-tested BQ25798 component proposes and reads back charger settings, checks fresh ADC
+  conversions, and rejects bus/register/timer/temperature faults. It has no charging-enable
+  operation; the C6 application compiles but does not call it. No cell or device was programmed.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
 - The exact motor listing is identified and partial seller dimensions are recorded. The owner is
@@ -68,7 +78,10 @@ also passed. The [native motor rebuild, Home Assistant framework tests and full 
 and [refreshed design gallery](https://github.com/0x63616c/smart-blinds/actions/runs/39350314795)
 passed for `b01e5fb`. The [integrated cutoff/charger/Thread milestone checks](https://github.com/0x63616c/smart-blinds/actions/runs/39357729073)
 and [source previews](https://github.com/0x63616c/smart-blinds/actions/runs/39357729056) passed for `28433e1`,
-including the fresh hardened Thread build. Latest changes must be evaluated against their own workflow runs.
+including the fresh hardened Thread build. The [protected-carrier milestone checks](https://github.com/0x63616c/smart-blinds/actions/runs/39361154907)
+and [source previews](https://github.com/0x63616c/smart-blinds/actions/runs/39361154969) passed for
+`757338e`, including all eight check jobs. The newer USB-C and charger-configuration work
+has local checks; its own CI results must be checked separately.
 
 ## Inherited references
 

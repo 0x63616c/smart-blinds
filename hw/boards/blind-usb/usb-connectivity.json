@@ -1,0 +1,192 @@
+{
+  "status": "Independent physical-pin interpretation of primary pin tables; not a safety proof",
+  "sources": [
+    "https://www.st.com/resource/en/datasheet/stusb4500.pdf",
+    "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+    "https://www.onsemi.com/pdf/datasheet/mmbt3906lt1-d.pdf",
+    "https://www.onsemi.com/pdf/datasheet/rb521s30t1-d.pdf",
+    "https://www.st.com/resource/en/datasheet/esda25w.pdf",
+    "https://www.st.com/resource/en/datasheet/esda25p35-1u1m.pdf"
+  ],
+  "components": {
+    "pd": {
+      "1": "CC1",
+      "2": "CC1",
+      "3": "NC_PD3",
+      "4": "CC2",
+      "5": "CC2",
+      "6": "RESET",
+      "7": "FACTORY_SCL",
+      "8": "FACTORY_SDA",
+      "9": "DISCH",
+      "10": "GND",
+      "11": "NC_ATTACH",
+      "12": "ADDR0",
+      "13": "ADDR1",
+      "14": "NC_OK3",
+      "15": "NC_GPIO",
+      "16": "SINK_ENABLE_N",
+      "17": "NC_ORIENTATION",
+      "18": "MONITOR",
+      "19": "NC_ALERT",
+      "20": "NC_OK2",
+      "21": "VREG1V2",
+      "22": "GND",
+      "23": "VREG2V7",
+      "24": "VDD",
+      "25": "GND"
+    },
+    "efuse": {
+      "1": "UVLO",
+      "2": "OVLO",
+      "3": "NC_AUXOFF",
+      "4": "NC_FLT",
+      "5": "RAW",
+      "6": "OUTPUT",
+      "7": "SLEW",
+      "8": "GND",
+      "9": "ILM",
+      "10": "NC_ITIMER"
+    },
+    "connector": {
+      "A5": "CC1",
+      "B5": "CC2",
+      "A6": "DP",
+      "B6": "DP",
+      "A7": "DN",
+      "B7": "DN",
+      "A8": "NC_SBU1",
+      "B8": "NC_SBU2",
+      "1": "GND",
+      "2": "GND",
+      "3": "GND",
+      "4": "GND",
+      "A1B12": "GND",
+      "B1A12": "GND",
+      "A4B9": "RAW",
+      "B4A9": "RAW"
+    },
+    "d_vdd": {
+      "1": "VDD",
+      "2": "RAW"
+    },
+    "tvs_vbus": {
+      "1": "RAW",
+      "2": "GND"
+    },
+    "tvs_cc": {
+      "1": "CC1",
+      "2": "CC2",
+      "3": "GND"
+    },
+    "q_enable": {
+      "1": "PNP_BASE",
+      "2": "RAW",
+      "3": "UV_SOURCE"
+    },
+    "r_addr0": {
+      "1": "ADDR0",
+      "2": "GND"
+    },
+    "r_addr1": {
+      "1": "ADDR1",
+      "2": "GND"
+    },
+    "r_scl": {
+      "1": "FACTORY_SCL",
+      "2": "GND"
+    },
+    "r_sda": {
+      "1": "FACTORY_SDA",
+      "2": "GND"
+    },
+    "r_reset": {
+      "1": "RESET",
+      "2": "GND"
+    },
+    "c_raw": {
+      "1": "RAW",
+      "2": "GND"
+    },
+    "c_vdd": {
+      "1": "VDD",
+      "2": "GND"
+    },
+    "c_1v2": {
+      "1": "VREG1V2",
+      "2": "GND"
+    },
+    "c_2v7": {
+      "1": "VREG2V7",
+      "2": "GND"
+    },
+    "r_base_pull": {
+      "1": "RAW",
+      "2": "PNP_BASE"
+    },
+    "r_base1": {
+      "1": "PNP_BASE",
+      "2": "BASE_MID"
+    },
+    "r_base2": {
+      "1": "BASE_MID",
+      "2": "SINK_ENABLE_N"
+    },
+    "r_uv_top1": {
+      "1": "UV_SOURCE",
+      "2": "UV_MID"
+    },
+    "r_uv_top2": {
+      "1": "UV_MID",
+      "2": "UVLO"
+    },
+    "r_uv_bottom": {
+      "1": "UVLO",
+      "2": "GND"
+    },
+    "r_ov_top1": {
+      "1": "RAW",
+      "2": "OV_MID"
+    },
+    "r_ov_top2": {
+      "1": "OV_MID",
+      "2": "OVLO"
+    },
+    "r_ov_bottom": {
+      "1": "OVLO",
+      "2": "GND"
+    },
+    "r_limit": {
+      "1": "ILM",
+      "2": "GND"
+    },
+    "c_slew": {
+      "1": "SLEW",
+      "2": "GND"
+    },
+    "r_raw_dis1": {
+      "1": "RAW",
+      "2": "RAW_DIS1"
+    },
+    "r_raw_dis2": {
+      "1": "RAW_DIS1",
+      "2": "RAW_DIS2"
+    },
+    "r_raw_dis3": {
+      "1": "RAW_DIS2",
+      "2": "MONITOR"
+    },
+    "r_out_dis1": {
+      "1": "OUTPUT",
+      "2": "OUT_DIS1"
+    },
+    "r_out_dis2": {
+      "1": "OUT_DIS1",
+      "2": "OUT_DIS2"
+    },
+    "r_out_dis3": {
+      "1": "OUT_DIS2",
+      "2": "DISCH"
+    }
+  }
+}

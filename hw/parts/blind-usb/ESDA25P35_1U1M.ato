@@ -1,0 +1,14 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_ESDA25P35_1U1M:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="STMicroelectronics", partnumber="ESDA25P35-1U1M", footprint="DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod", symbol="ESDA25P35_1U1M.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C1974707", manufacturer="STMicroelectronics", partno="ESDA25P35-1U1M">
+    trait has_designator_prefix<prefix="D">
+
+    signal K
+    K ~ pin 1
+    signal A
+    A ~ pin 2

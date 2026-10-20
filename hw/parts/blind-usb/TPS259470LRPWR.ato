@@ -1,0 +1,30 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TPS259470LRPWR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS259470LRPWR", footprint="VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod", symbol="TPS259470LRPWR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C3662793", manufacturer="Texas Instruments", partno="TPS259470LRPWR">
+    trait has_designator_prefix<prefix="U">
+
+    signal EN_UVLO
+    EN_UVLO ~ pin 1
+    signal OVLO
+    OVLO ~ pin 2
+    signal AUXOFF
+    AUXOFF ~ pin 3
+    signal FLT_N
+    FLT_N ~ pin 4
+    signal IN
+    IN ~ pin 5
+    signal OUT
+    OUT ~ pin 6
+    signal DVDT
+    DVDT ~ pin 7
+    signal GND
+    GND ~ pin 8
+    signal ILM
+    ILM ~ pin 9
+    signal ITIMER
+    ITIMER ~ pin 10

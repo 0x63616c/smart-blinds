@@ -1,0 +1,14 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_RB521S30T1G:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="onsemi", partnumber="RB521S30T1G", footprint="SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod", symbol="RB521S30T1G.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C145179", manufacturer="onsemi", partno="RB521S30T1G">
+    trait has_designator_prefix<prefix="D">
+
+    signal A
+    A ~ pin 2
+    signal C
+    C ~ pin 1

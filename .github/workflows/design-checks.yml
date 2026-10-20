@@ -3,9 +3,9 @@ name: Design checks
 on:
   push:
     branches: [main]
-    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-control-io/**', 'hw/boards/blind-io/**', 'hw/layouts/blind-io/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'hw/boards/blind-supervisor/**', 'hw/layouts/blind-supervisor/**', 'hw/parts/blind-supervisor/**', 'hw/boards/blind-assembly/**', 'hw/layouts/blind-assembly/**', 'hw/parts/blind-power/**', 'hw/boards/blind-charger/**', 'hw/layouts/blind-charger/**', 'hw/sim/blind-charge/**', 'hw/boards/blind-regulator/**', 'hw/layouts/blind-regulator/**', 'hw/parts/blind-regulator/**', 'hw/sim/blind-regulator/**', 'hw/sim/blind-power/**', 'hw/boards/blind-carrier/**', 'hw/layouts/blind-carrier/**', 'hw/parts/blind-carrier/**', 'hw/sim/blind-carrier/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
+    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-control-io/**', 'hw/boards/blind-io/**', 'hw/layouts/blind-io/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'hw/boards/blind-supervisor/**', 'hw/layouts/blind-supervisor/**', 'hw/parts/blind-supervisor/**', 'hw/boards/blind-assembly/**', 'hw/layouts/blind-assembly/**', 'hw/parts/blind-power/**', 'hw/boards/blind-charger/**', 'hw/layouts/blind-charger/**', 'hw/sim/blind-charge/**', 'hw/boards/blind-regulator/**', 'hw/layouts/blind-regulator/**', 'hw/parts/blind-regulator/**', 'hw/sim/blind-regulator/**', 'hw/sim/blind-power/**', 'hw/boards/blind-carrier/**', 'hw/layouts/blind-carrier/**', 'hw/parts/blind-carrier/**', 'hw/sim/blind-carrier/**', 'hw/boards/blind-usb/**', 'hw/layouts/blind-usb/**', 'hw/parts/blind-usb/**', 'hw/sim/blind-usb/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
   pull_request:
-    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-control-io/**', 'hw/boards/blind-io/**', 'hw/layouts/blind-io/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'hw/boards/blind-supervisor/**', 'hw/layouts/blind-supervisor/**', 'hw/parts/blind-supervisor/**', 'hw/boards/blind-assembly/**', 'hw/layouts/blind-assembly/**', 'hw/parts/blind-power/**', 'hw/boards/blind-charger/**', 'hw/layouts/blind-charger/**', 'hw/sim/blind-charge/**', 'hw/boards/blind-regulator/**', 'hw/layouts/blind-regulator/**', 'hw/parts/blind-regulator/**', 'hw/sim/blind-regulator/**', 'hw/sim/blind-power/**', 'hw/boards/blind-carrier/**', 'hw/layouts/blind-carrier/**', 'hw/parts/blind-carrier/**', 'hw/sim/blind-carrier/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
+    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-control-io/**', 'hw/boards/blind-io/**', 'hw/layouts/blind-io/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'hw/boards/blind-supervisor/**', 'hw/layouts/blind-supervisor/**', 'hw/parts/blind-supervisor/**', 'hw/boards/blind-assembly/**', 'hw/layouts/blind-assembly/**', 'hw/parts/blind-power/**', 'hw/boards/blind-charger/**', 'hw/layouts/blind-charger/**', 'hw/sim/blind-charge/**', 'hw/boards/blind-regulator/**', 'hw/layouts/blind-regulator/**', 'hw/parts/blind-regulator/**', 'hw/sim/blind-regulator/**', 'hw/sim/blind-power/**', 'hw/boards/blind-carrier/**', 'hw/layouts/blind-carrier/**', 'hw/parts/blind-carrier/**', 'hw/sim/blind-carrier/**', 'hw/boards/blind-usb/**', 'hw/layouts/blind-usb/**', 'hw/parts/blind-usb/**', 'hw/sim/blind-usb/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
   workflow_dispatch:
 
 permissions:
@@ -132,6 +132,10 @@ jobs:
           ato build hw/boards/blind-regulator -b regulator-test --frozen -v
           python hw/sim/blind-regulator/checks.py --check
           python hw/sim/blind-power/check_capacitance.py --check
+      - name: Compile and audit USB-C input study
+        run: |
+          ato build hw/boards/blind-usb -b usb-test --frozen -v
+          python hw/sim/blind-usb/checks.py --check
       - name: Compile and audit protected battery carrier study
         run: |
           ato build hw/boards/blind-carrier -b carrier-test --frozen -v
@@ -148,6 +152,7 @@ jobs:
           python3 tools/generate_schematics.py hw/schematics/blind-charger/charger-test.layout.json --check
           python3 tools/generate_schematics.py hw/schematics/blind-regulator/regulator-test.layout.json --check
           python3 tools/generate_schematics.py hw/schematics/blind-carrier/carrier-test.layout.json --check
+          python3 tools/generate_schematics.py hw/schematics/blind-usb/usb-test.layout.json --check
           python3 -m unittest discover -s tools -p test_schematic_graph.py -v
 
   electrical-assumptions:

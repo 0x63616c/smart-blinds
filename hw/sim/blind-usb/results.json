@@ -1,0 +1,52 @@
+{
+  "status": "PASS of source, selected parts, physical pins and conditional arithmetic only",
+  "components": 33,
+  "physical_pins": 113,
+  "negative_controls_detected": [
+    "auxoff_output_grounded",
+    "cc_protection_shorts_channels",
+    "enable_uses_sticky_power_ok",
+    "load_switch_bypassed",
+    "vdd_diode_reversed"
+  ],
+  "semantic_graph_sha256": "f1d276281c1ff5f81e8cbe633329f467298ebb3fdc47d968c14a9141d1ac0ca0",
+  "local_bom_policy": "Validate ignored local BOM if present; absence is not a build claim",
+  "ilim_planning_a": [
+    1.769041769041769,
+    2.2391857506361323
+  ],
+  "charger_input_ceiling_with_provisional_allowance_a": 1.6500000000000001,
+  "uvlo_rising_planning_v": [
+    6.7321624140049146,
+    7.779037907124684
+  ],
+  "ovlo_rising_planning_v": [
+    16.933280794278897,
+    18.774265338906577
+  ],
+  "effective_capacitance_estimates_uf": {
+    "raw_21v": 1.7452979397893398,
+    "vreg_2v7": 0.6016942262066546,
+    "vreg_1v2": 0.6777244941698488,
+    "vdd_21v": 0.09938280104826018
+  },
+  "uncontrolled_capacitance_planning_upper_uf": 9.7405,
+  "discharge_resistor_max_initial_power_w": 0.05044430032973851,
+  "discharge_current_upper_a": 0.0071246819338422395,
+  "pd_enable_sink_current_upper_a": 0.001068702290076336,
+  "vdd_start_margin_using_25c_diode_spec_v": 0.15000000000000036,
+  "surge_qualified": false,
+  "pd_nvm_programmed": false,
+  "hardware_tested": false,
+  "limits": "Typical capacitor curves and conditional resistor/PNP/current allowances do not establish worst-case silicon behavior, USB timing, startup or immunity.",
+  "release_gates": [
+    "NVM image, programming fixture, readback and power-cycle enforcement are unfinished; defaults do not satisfy the specified profile.",
+    "Source entitlement, attach/detach, hard reset, undervoltage, overvoltage, short circuit and reverse blocking need actual PD/eFuse bench tests.",
+    "ESD/surge coordination is not accepted: selected reference TVS clamps above the connected IC DC absolute maximum at specified pulses.",
+    "VDD capacitor loses substantial capacity under DC bias; cold diode drop, active PD current, reset/hold-up and depleted-pack startup require qualification.",
+    "Discharge timing depends on charger reverse paths and total effective capacitance; final timer profile and USB timing compliance remain open.",
+    "PNP saturation, eFuse slew/overshoot, resistor pulse/temperature and input inductance require physical validation.",
+    "Output capacitor bank resides in the charger block and must be placed at the eFuse/charger boundary; output negative transients remain unqualified.",
+    "Connector and IC land patterns, 3D envelope, factory test pads, placement/routing, thermal/EMI and integrated-board tests remain open."
+  ]
+}
