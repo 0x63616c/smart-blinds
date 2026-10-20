@@ -60,7 +60,7 @@ public:
         char reply[512];
         if (name == "v1/status") {
             if (size) { coap_pdu_set_code(response, COAP_RESPONSE_CODE_BAD_REQUEST); return; }
-            std::snprintf(reply, sizeof(reply), "{\"boot\":\"%016llx\",\"last_wake\":\"%016llx\",\"awake\":%s,\"motor_enabled\":false,\"clock_qualified\":false}",
+            std::snprintf(reply, sizeof(reply), "{\"boot\":\"%016llx\",\"last_wake\":\"%016llx\",\"awake\":%s,\"io_qualified\":false,\"clock_qualified\":false}",
                 static_cast<unsigned long long>(self.boot), static_cast<unsigned long long>(self.window.last_sequence()),
                 self.window.rx_on_when_idle() ? "true" : "false");
             coap_pdu_set_code(response, COAP_RESPONSE_CODE_CONTENT);
@@ -69,7 +69,7 @@ public:
                 coap_pdu_set_code(response, COAP_RESPONSE_CODE_BAD_REQUEST);
                 return;
             }
-            std::snprintf(reply, sizeof(reply), "{\"awake_ms\":10000,\"motor_enabled\":false}");
+            std::snprintf(reply, sizeof(reply), "{\"awake_ms\":10000,\"io_qualified\":false}");
             coap_pdu_set_code(response, COAP_RESPONSE_CODE_CHANGED);
         } else if (name == "v1/clock") {
             if (size != 16 || !self.probes.begin(read64(body), read64(body + 8), received_us,

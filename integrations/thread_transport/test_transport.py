@@ -2,11 +2,13 @@
 import concurrent.futures
 import ctypes as C
 import os
+import json
 from pathlib import Path
 import secrets
 import socket
 import time
 import unittest
+from unittest.mock import patch
 
 from integrations.thread_transport.wire_fixture import WireFixture
 from integrations.thread_transport.client import ProtocolError, Rejected, Session, TransportError, _json, _load
@@ -203,6 +205,17 @@ class TransportTests(unittest.TestCase):
             session.wake(status.boot, 1)
             with self.assertRaises(ProtocolError):
                 session.wake(status.boot, 1)
+
+    def test_io_qualification_is_not_actuation_authority(self):
+        with Peer() as peer:
+            for field, value in (("io_qualified", True), ("io_qualified", 0), ("motor_enabled", False)):
+                with peer.session() as session:
+                    body = json.dumps({"boot": f"{peer.boot:016x}", "last_wake": "0000000000000000",
+                                       "awake": False, field: value, "clock_qualified": False}).encode()
+                    with patch.object(session, "_exchange", return_value=(69, body)):
+                        with self.assertRaises(ProtocolError):
+                            session.status()
+                    self.assertIsNone(session._boot)
 
 
 if __name__ == "__main__":

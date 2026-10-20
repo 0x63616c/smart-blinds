@@ -1,4 +1,4 @@
-// Motor-disabled OpenThread/DTLS evaluation target. No motor GPIO driver exists here.
+// Default motor-disabled OpenThread target. No qualification records are invented.
 #include <cinttypes>
 #include <cstdint>
 #include <cstdio>
@@ -27,6 +27,7 @@
 #include "openthread/thread.h"
 #include "smart_blinds/radio_window.hpp"
 #include "smart_blinds/clock_protocol.hpp"
+#include "c6_motion_runtime.hpp"
 
 namespace {
 constexpr char tag[] = "thread_motor_disabled";
@@ -41,6 +42,8 @@ TimerHandle_t expiry_timer = nullptr;
 esp_pm_lock_handle_t awake_lock = nullptr;
 esp_pm_lock_handle_t speed_lock = nullptr;
 bool locks_held = false;
+blinds::c6::MotionRuntime* motion = nullptr; // Application lifetime, one control owner.
+const blinds::runtime::Configuration motion_config{}; // Explicitly unqualified.
 // The read-only loader retains credentials for the stack lifetime. No credential
 // generation, NVS writes, commissioning endpoint or secret logging is present.
 struct Credentials { std::uint8_t psk[32]{}; char identity[33]{}; } credentials;
@@ -76,8 +79,12 @@ bool load_credentials() {
 
 // OpenThread lock must already be held (also true inside its resource callbacks).
 bool apply_radio_policy() {
-    const bool awake = window.rx_on_when_idle();
-    if (!awake) clock_probes.invalidate(); // No timing evidence survives return to light sleep.
+    const bool attached = otThreadGetDeviceRole(instance) == OT_DEVICE_ROLE_CHILD;
+    const bool awake = attached && (window.rx_on_when_idle() || (motion && motion->awake_required()));
+    if (!awake) {
+        clock_probes.invalidate(); // No timing evidence survives return to light sleep.
+        if (motion) motion->ingress().clear_clock();
+    }
     if (awake && !locks_held) {
         ESP_ERROR_CHECK(esp_pm_lock_acquire(awake_lock));
         ESP_ERROR_CHECK(esp_pm_lock_acquire(speed_lock));
@@ -90,6 +97,10 @@ bool apply_radio_policy() {
     if (otThreadSetLinkMode(instance, mode) != OT_ERROR_NONE) {
         window.attached(false, now_ms());
         clock_probes.invalidate();
+        if (motion) {
+            motion->ingress().radio(false,false);
+            motion->publish_network(now_us());
+        }
         otThreadSetEnabled(instance, false);
         if (locks_held) {
             esp_pm_lock_release(speed_lock);
@@ -103,7 +114,15 @@ bool apply_radio_policy() {
         ESP_ERROR_CHECK(esp_pm_lock_release(awake_lock));
         locks_held = false;
     }
+    if (motion) {
+        motion->ingress().radio(attached,awake);
+        motion->publish_network(now_us());
+    }
     return true;
+}
+bool radio_awake() {
+    return otThreadGetDeviceRole(instance) == OT_DEVICE_ROLE_CHILD &&
+        (window.rx_on_when_idle() || (motion && motion->awake_required()));
 }
 
 void respond(otMessage* request, const otMessageInfo* info, otCoapCode code, const char* payload) {
@@ -140,11 +159,12 @@ void status_handler(void*, otMessage* request, const otMessageInfo* info) {
         respond(request, info, OT_COAP_CODE_SERVICE_UNAVAILABLE, nullptr);
         return;
     }
-    char body[192];
+    char body[224];
     std::snprintf(body, sizeof(body),
         "{\"boot\":\"%016" PRIx64 "\",\"last_wake\":\"%016" PRIx64
-        "\",\"awake\":%s,\"motor_enabled\":false,\"clock_qualified\":false}",
-        boot_id, window.last_sequence(), window.rx_on_when_idle() ? "true" : "false");
+        "\",\"awake\":%s,\"io_qualified\":%s,\"clock_qualified\":%s}",
+        boot_id, window.last_sequence(), radio_awake() ? "true" : "false",
+        motion && motion->io_qualified() ? "true" : "false",clock_probes.qualified(now_us()) ? "true":"false");
     respond(request, info, OT_COAP_CODE_CONTENT, body);
 }
 
@@ -165,7 +185,10 @@ void wake_handler(void*, otMessage* request, const otMessageInfo* info) {
         respond(request, info, OT_COAP_CODE_SERVICE_UNAVAILABLE, nullptr);
         return;
     }
-    respond(request, info, OT_COAP_CODE_CHANGED, "{\"awake_ms\":10000,\"motor_enabled\":false}");
+    char reply[80];
+    std::snprintf(reply,sizeof(reply),"{\"awake_ms\":10000,\"io_qualified\":%s}",
+        motion && motion->io_qualified() ? "true":"false");
+    respond(request, info, OT_COAP_CODE_CHANGED, reply);
 }
 
 bool read_payload(otMessage* request, std::uint8_t* body, std::uint16_t size) {
@@ -182,11 +205,11 @@ void clock_handler(void*, otMessage* request, const otMessageInfo* info) {
     }
     std::uint8_t body[16];
     if (!read_payload(request, body, sizeof(body)) ||
-        !clock_probes.begin(read_u64(body), read_u64(body + 8), received_us, window.rx_on_when_idle())) {
+        !clock_probes.begin(read_u64(body), read_u64(body + 8), received_us, radio_awake())) {
         respond(request, info, OT_COAP_CODE_BAD_REQUEST, nullptr); return;
     }
     const auto sent_us = now_us();
-    if (!clock_probes.sent(sent_us, window.rx_on_when_idle())) {
+    if (!clock_probes.sent(sent_us, radio_awake())) {
         respond(request, info, OT_COAP_CODE_BAD_REQUEST, nullptr); return;
     }
     char reply[192];
@@ -206,11 +229,15 @@ void qualify_handler(void*, otMessage* request, const otMessageInfo* info) {
     }
     std::uint8_t body[32];
     if (!read_payload(request, body, sizeof(body)) || !clock_probes.assess(read_u64(body), read_u64(body + 8),
-        read_u64(body + 16), read_u64(body + 24), received_us, window.rx_on_when_idle())) {
+        read_u64(body + 16), read_u64(body + 24), received_us, radio_awake())) {
+        motion->ingress().clear_clock();
+        motion->publish_network(now_us());
         respond(request, info, OT_COAP_CODE_BAD_REQUEST, nullptr); return;
     }
+    motion->ingress().qualify(clock_probes.sequence(),clock_probes.bounds(),now_us());
+    motion->publish_network(now_us());
     char reply[512];
-    if (!smart_blinds::clock_readiness_json(reply, sizeof(reply), boot_id, clock_probes, now_us(), window.rx_on_when_idle())) {
+    if (!smart_blinds::clock_readiness_json(reply, sizeof(reply), boot_id, clock_probes, now_us(), radio_awake())) {
         respond(request, info, OT_COAP_CODE_INTERNAL_ERROR, nullptr); return;
     }
     respond(request, info, OT_COAP_CODE_CHANGED, reply);
@@ -226,10 +253,48 @@ void readiness_handler(void*, otMessage* request, const otMessageInfo* info) {
         respond(request, info, OT_COAP_CODE_SERVICE_UNAVAILABLE, nullptr); return;
     }
     char reply[512];
-    if (!smart_blinds::clock_readiness_json(reply, sizeof(reply), boot_id, clock_probes, now_us(), window.rx_on_when_idle())) {
+    if (!smart_blinds::clock_readiness_json(reply, sizeof(reply), boot_id, clock_probes, now_us(), radio_awake())) {
         respond(request, info, OT_COAP_CODE_INTERNAL_ERROR, nullptr); return;
     }
     respond(request, info, OT_COAP_CODE_CONTENT, reply);
+}
+
+void motion_handler(void*,otMessage* request,const otMessageInfo* info) {
+    const auto received=now_us();
+    if(!request_method(request,info,OT_COAP_CODE_POST)) return;
+    std::uint8_t bytes[blinds::wire::frame_size];
+    if(!read_payload(request,bytes,sizeof(bytes))) {
+        respond(request,info,OT_COAP_CODE_BAD_REQUEST,nullptr); return;
+    }
+    // The callback owns no hardware and retains no message/payload pointer.
+    // 2.04 acknowledges only queue acceptance, never readiness or movement.
+    const auto result=motion->ingress().submit(bytes,sizeof(bytes),otCoapSecureIsConnected(instance),received);
+    using Result=blinds::runtime::Ingress::Result;
+    if(result!=Result::queued) {
+        respond(request,info,result==Result::malformed ? OT_COAP_CODE_BAD_REQUEST : OT_COAP_CODE_SERVICE_UNAVAILABLE,nullptr);
+        return;
+    }
+    motion->notify_request();
+    respond(request,info,OT_COAP_CODE_CHANGED,"{\"queued\":true}");
+}
+void motion_status_handler(void*,otMessage* request,const otMessageInfo* info) {
+    if(!request_method(request,info,OT_COAP_CODE_GET)) return;
+    if(otMessageGetLength(request)!=otMessageGetOffset(request)) {
+        respond(request,info,OT_COAP_CODE_BAD_REQUEST,nullptr); return;
+    }
+    char reply[768];
+    motion->notify_request(); // Returned snapshot still carries its source timestamp.
+    if(!motion->status(reply,sizeof(reply),now_us())) {
+        respond(request,info,OT_COAP_CODE_INTERNAL_ERROR,nullptr); return;
+    }
+    respond(request,info,OT_COAP_CODE_CONTENT,reply);
+}
+void secure_connection(otCoapSecureConnectEvent event,void*) {
+    clock_probes.invalidate();
+    if(event==OT_COAP_SECURE_CONNECTED) {
+        if(!motion->ingress().connected()) { otCoapSecureDisconnect(instance); return; }
+    } else motion->ingress().disconnected();
+    apply_radio_policy(); // Publishes the new locally allocated generation.
 }
 
 otCoapResource status_resource{"v1/status", status_handler, nullptr, nullptr};
@@ -237,6 +302,8 @@ otCoapResource wake_resource{"v1/wake", wake_handler, nullptr, nullptr};
 otCoapResource clock_resource{"v1/clock", clock_handler, nullptr, nullptr};
 otCoapResource qualify_resource{"v1/qualify", qualify_handler, nullptr, nullptr};
 otCoapResource readiness_resource{"v1/readiness", readiness_handler, nullptr, nullptr};
+otCoapResource motion_resource{"v1/motion", motion_handler, nullptr, nullptr};
+otCoapResource motion_status_resource{"v1/motion-status", motion_status_handler, nullptr, nullptr};
 
 void expired(TimerHandle_t) { xTaskNotifyGive(expiry_task); }
 void expire_worker(void*) {
@@ -256,9 +323,10 @@ void changed(otChangedFlags flags, void*) {
     const bool attached = otThreadGetDeviceRole(instance) == OT_DEVICE_ROLE_CHILD;
     window.attached(attached, now_ms());
     apply_radio_policy();
-    ESP_LOGI(tag, "Thread child attached: %s; motor remains unavailable", attached ? "yes" : "no");
+    ESP_LOGI(tag, "Thread child attached: %s", attached ? "yes" : "no");
 }
 void attempts_exhausted(void*) {
+    if(motion) motion->ingress().disconnected();
     window.cancel(now_ms());
     apply_radio_policy();
     ESP_LOGW(tag, "DTLS attempt budget exhausted; service remains stopped until restart");
@@ -266,7 +334,7 @@ void attempts_exhausted(void*) {
 }  // namespace
 
 extern "C" void app_main() {
-    ESP_LOGW(tag, "RADIO EVALUATION ONLY: no motor, charger, encoder or watchdog GPIO configured");
+    ESP_LOGW(tag, "Default unqualified motion records: no motor or I2C GPIO configured");
     // Fail without erasing storage if NVS cannot initialize. No default network.
     ESP_ERROR_CHECK(nvs_flash_init());
     if (!load_credentials()) {
@@ -309,8 +377,13 @@ extern "C" void app_main() {
         return;
     }
     window = smart_blinds::RadioWindow(boot_id);
-    clock_probes = smart_blinds::ClockProbes(boot_id);
+    clock_probes = smart_blinds::ClockProbes(boot_id,motion_config.clock);
     if (xTaskCreate(expire_worker, "radio_expiry", 3072, nullptr, 4, &expiry_task) != pdPASS) abort();
+    // Runtime objects retain application lifetime. This configuration is empty,
+    // so both the session and physical I/O refuse actuation independently.
+    static blinds::c6::MotionRuntime runtime(boot_id,motion_config);
+    motion=&runtime;
+    if(!motion->start(expiry_task)) abort();
     expiry_timer = xTimerCreate("awake_deadline", pdMS_TO_TICKS(10000), pdFALSE, nullptr, expired);
     if (!expiry_timer) abort();
     if (otLinkSetPollPeriod(instance, poll_ms) != OT_ERROR_NONE || !apply_radio_policy()) abort();
@@ -318,11 +391,14 @@ extern "C" void app_main() {
     otCoapSecureSetPsk(instance, credentials.psk, sizeof(credentials.psk),
         reinterpret_cast<const std::uint8_t*>(credentials.identity), std::strlen(credentials.identity));
     if (otCoapSecureStartWithMaxConnAttempts(instance, secure_port, 5, attempts_exhausted, nullptr) != OT_ERROR_NONE) abort();
+    otCoapSecureSetClientConnectEventCallback(instance,secure_connection,nullptr);
     otCoapSecureAddResource(instance, &status_resource);
     otCoapSecureAddResource(instance, &wake_resource);
     otCoapSecureAddResource(instance, &clock_resource);
     otCoapSecureAddResource(instance, &qualify_resource);
     otCoapSecureAddResource(instance, &readiness_resource);
+    otCoapSecureAddResource(instance, &motion_resource);
+    otCoapSecureAddResource(instance, &motion_status_resource);
     if (otIp6SetEnabled(instance, true) != OT_ERROR_NONE ||
         otThreadSetEnabled(instance, true) != OT_ERROR_NONE) abort();
     esp_openthread_lock_release();

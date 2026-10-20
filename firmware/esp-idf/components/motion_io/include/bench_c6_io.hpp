@@ -17,7 +17,7 @@ struct FastInputs {
     std::uint64_t sequence=0, sampled_us=0, encoder_epoch=0;
     double count=0, current_a=0;
 };
-// Default uninstantiated. Even an explicit initialize() requires both the
+// Default uninitialized. Even an explicit initialize() requires both the
 // compile-time bench option and a qualified profile with measured polarities.
 // One task owns all calls/lifetime; never use alongside DisabledC6Io.
 inline FastObservation motion_observation(const FastInputs& f) {

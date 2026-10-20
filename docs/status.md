@@ -96,6 +96,12 @@ A green preview result only confirms generation of the documented images.
 - The bounded motion session joins authenticated command ingress to the portable controller
   and executor, with source-timed leases and measured settling. All ten host targets and
   both pinned C6 builds pass CI for `2561ced`. The real application remains uninstantiated.
+- The Thread application now connects authenticated motion requests to a single control
+  worker, with a separate gauge/OFF-charger evidence worker and source-stamped readiness.
+  Eleven host targets and nineteen real DTLS/clock/schema tests pass locally, including the
+  new readiness-revocation checks; final runtime tests also pass ASan/UBSan. The default
+  application has no qualification records and configures no motor or I2C pins. Fresh C6
+  builds, physical commissioning, local idle button wake and HA motion binding remain open.
 - The complete main-controller native KiCad hierarchy now spans eleven sheets, with all
   196 circuit features, 609 pin identities and 142 net partitions matching the PCB. Nine
   export-verifier tests pass locally. Seven explicit ERC findings remain documented;

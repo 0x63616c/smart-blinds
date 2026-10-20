@@ -1,8 +1,10 @@
 # Explicit bench C6 motion adapter
 
 `BenchC6Io` implements the portable `MotionIo` interface with actual ESP-IDF
-PCNT, MCPWM, ADC, GPIO and power-management calls. It is **not instantiated by
-any shipped application**. The independent `board_io` component remains the
+PCNT, MCPWM, ADC, GPIO and power-management calls. The Thread application's
+[runtime](../../../../docs/firmware/c6-motion-runtime.md) owns an object but
+does not initialize it with the shipped empty qualification configuration.
+The independent `board_io` component remains the
 motor-disabled bring-up implementation. Never instantiate both on one board.
 
 There are two initialization gates: `CONFIG_BLINDS_BENCH_MOTION` (default off,
@@ -76,8 +78,8 @@ noise, control-loop execution time, PWM truth table, encoder polarity/rate and
 watchdog pulse/window timing must be qualified on the actual board.
 
 No battery SOC, healthy pack, temperature, charger entitlement, calibrated
-fabric height or valid reference is invented here. A future owning task must
-combine fresh MAX17320/charger evidence with these fast samples without making
+fabric height or valid reference is invented here. The runtime's owning task
+combines fresh MAX17320/charger evidence with these fast samples without making
 slow I2C calls or logging on the control/heartbeat path. Gauge failure, stale
 pack evidence, a raw STOP press, clock/lease failure or lost reference must
 inhibit the portable executor before a further heartbeat. Encoder power is
@@ -91,8 +93,8 @@ readback uses public SoC register definitions as well as the driver API. A
 version/target compile check rejects another platform until those definitions
 are reviewed. The normal motor-disabled `firmware/esp-idf` target depends on
 this component so the adapter source is compiled even while its initialization
-permission is off. The Thread target does not instantiate or link this adapter
-yet; the radio/control bridge is the next separate checkpoint.
+permission is off. The Thread runtime also compiles and owns this adapter,
+while its empty default configuration refuses initialization.
 
 Host checks:
 

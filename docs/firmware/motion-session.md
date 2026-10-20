@@ -2,10 +2,10 @@
 
 Status: portable C++17 implementation and host fault tests. It joins the real
 `Controller` and `MotionExecutor` through an injected I/O boundary; its test motor
-is synthetic. Both C6 targets compile this source but do not instantiate it.
-The shipped Thread image still has no motion resource. Native DTLS/C6 resource
-binding, coherent worker snapshots, commissioning and hardware qualification
-remain separate work. No motor or owner device has been accessed.
+is synthetic. The [C6 runtime](c6-motion-runtime.md) now instantiates it behind
+empty qualification defaults and connects authenticated motion resources and
+coherent worker snapshots. Commissioning and hardware qualification remain
+separate work. No motor or owner device has been accessed.
 
 Sources: [session](../../firmware/include/smart_blinds/motion_session.hpp),
 [implementation](../../firmware/src/motion_session.cpp),
@@ -17,7 +17,7 @@ portable input. This does not authorize an application to enable the adapter.
 ## Ownership and real evidence
 
 One control task owns the session, controller, executor and board adapter, with
-a nominal 10 ms cadence. A future DTLS resource may decode and enqueue a bounded
+a nominal 10 ms cadence. The DTLS resource decodes and enqueues a bounded
 frame; it must never drive a GPIO, feed WDI, run I2C or write flash. The inbox is
 single producer/single consumer, holds four commands, and rejects overflow.
 Its connection generation is assigned locally after a successful authenticated
@@ -127,10 +127,11 @@ The implemented test moves for more than 15 seconds to check this distinction.
 The new session currently handles remote commands and local STOP only. The
 existing local up/down gesture and controller endpoint policies still need the
 same qualified execution path; this checkpoint does not claim that local
-endpoint movement or the Thread application is integrated. Production remains
-disabled. The physical qualification record, pack profile, clock model, real
-callback/worker concurrency and session status serialization remain explicit
-application gates.
+endpoint movement is integrated. The [C6 runtime](c6-motion-runtime.md) now wires
+the authenticated callback, one owning worker and source-stamped status to this
+session. Production remains disabled through empty qualification records.
+Pack/clock/physical-reference commissioning and actual callback/worker timing
+remain explicit application gates.
 
 ## Binary request
 

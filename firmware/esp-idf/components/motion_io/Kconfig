@@ -4,7 +4,7 @@ menu "Smart Blinds bench motion"
         default n
         depends on PM_ENABLE
         help
-            Enables the initialization permission only. No application creates
-            this port. A reviewed bench profile, physical reference and explicit
-            harness are still required. Never enable for an unqualified board.
+            Enables initialization permission only. The default Thread runtime
+            supplies empty qualification records. Reviewed bench profiles and a
+            physical reference are still required. Never enable for an unqualified board.
 endmenu

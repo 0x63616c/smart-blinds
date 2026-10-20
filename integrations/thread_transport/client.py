@@ -189,8 +189,8 @@ class Session:
                 raise Rejected(code)
             try:
                 value = _json(payload)
-                if (set(value) != {"boot", "last_wake", "awake", "motor_enabled", "clock_qualified"}
-                    or type(value["awake"]) is not bool or value["motor_enabled"] is not False
+                if (set(value) != {"boot", "last_wake", "awake", "io_qualified", "clock_qualified"}
+                    or type(value["awake"]) is not bool or value["io_qualified"] is not False
                     or value["clock_qualified"] is not False):
                     raise ProtocolError("Unsupported status contract")
                 status = Status(_hex64(value["boot"], nonzero=True), _hex64(value["last_wake"]), value["awake"])
@@ -222,8 +222,8 @@ class Session:
                 raise Rejected(code)
             try:
                 value = _json(payload)
-                if (set(value) != {"awake_ms", "motor_enabled"} or type(value["awake_ms"]) is not int
-                    or value["awake_ms"] != 10000 or value["motor_enabled"] is not False):
+                if (set(value) != {"awake_ms", "io_qualified"} or type(value["awake_ms"]) is not int
+                    or value["awake_ms"] != 10000 or value["io_qualified"] is not False):
                     raise ProtocolError("Unsupported wake response")
             except ProtocolError:
                 self._failed = True
