@@ -15,7 +15,7 @@ followed by an eight-unit build only after their tests pass.
 |---|---|---|
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | Native eleven-sheet schematic and partial four-layer power route; 457 segments, 124 vias, 60 physical connection groups, preserved circuit and mechanical anchors | 292 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
+| Main controller | Native eleven-sheet schematic and partial four-layer power route; 537 segments, 162 vias, 64 physical connection groups, preserved circuit and mechanical anchors | 275 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete primary/main routing, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session and settling; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
@@ -28,14 +28,15 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All eleven Design checks jobs passed for `653d50c`](https://github.com/0x63616c/smart-blinds/actions/runs/39388576317),
-including sixteen portable firmware targets, the C6 gauge adapter and its separate
-bench-option compile against the real SDK. Its [source-generated previews also
+[All twelve Design checks jobs passed for `b50a97d`](https://github.com/0x63616c/smart-blinds/actions/runs/39390520866),
+including seventeen portable firmware targets, the C6 gauge adapter, and the
+separate Wi-Fi motion target's default/bench builds against the pinned real SDK.
+The preceding hardware checkpoint's [source-generated previews also
 passed](https://github.com/0x63616c/smart-blinds/actions/runs/39388576220).
-This includes the USB control-routing extension. The separate Wi-Fi motion target
-passes all seventeen local host tests and pinned default/bench builds; its new CI
-job awaits a published checkpoint. The container dependency-ownership failure is fixed; exact source
-pins and modified-source rejection remain enforced.
+The new charger-distribution extension passes local native geometry/copper checks
+and nineteen injected failures; its next published CI run remains pending.
+The container dependency-ownership failure is fixed; exact source pins and
+modified-source rejection remain enforced.
 
 The retained-enclosure artifact contains 35 named empty-intersection checks, a
 positive cleat-capture control and ten closed printable mesh types. Its seven CAD
@@ -83,11 +84,13 @@ primary and main routes remain unfinished.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
 196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
-reservations. Its 457 segments and 124 vias connect 60 checked copper groups,
+reservations. Its 537 segments and 162 vias connect 64 checked copper groups,
 including local charger/motor/regulator paths, radio power, USB input/CC/bypass
-connections, negotiated-enable/divider/discharge chains and ground return.
-Fourteen injected geometric/copper failures are rejected.
-Actual DRC retains 292 unconnected items, 260 silk/text findings, four library differences and five
+connections, negotiated-enable/divider/discharge chains, the charger input and
+PMID/SYS capacitor banks, and ground return. Nineteen injected geometric/copper
+failures are rejected, including same-net via-to-solder-land intrusion. All 38 new
+distribution vias retain a 0.20 mm drill-to-solder-land margin.
+Actual DRC retains 275 unconnected items, 260 silk/text findings, four library differences and five
 footprint-type findings. This is a reproducible partial checkpoint; critical-loop,
 current/thermal, USB, supervisory and full-routing work remain.
 

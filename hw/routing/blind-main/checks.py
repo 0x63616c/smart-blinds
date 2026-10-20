@@ -160,6 +160,11 @@ def verify_copper(b):
  [('usb.pd',7),('usb.r_scl',1)],
  [('usb.pd',8),('usb.r_sda',1)],
  [('usb.pd',25),*[(a,2) for a in ['usb.r_addr0','usb.r_addr1','usb.r_reset','usb.r_scl','usb.r_sda']]],
+
+ [('usb.efuse',6),('charger.c_input1',1),('charger.c_input2',1),('charger.c_input_fast',1),('charger.ic',2),('charger.ic',3)],
+ [('charger.ic',29),('charger.c_pmid_fast',1),*[(f'charger.c_pmid{i}',1) for i in range(1,5)]],
+ [('charger.ic',25),('charger.c_sys_fast',1),*[(f'charger.c_sys{i}',1) for i in range(1,6)]],
+ [('charger.ic',27),('charger.c_input1',2),*[(f'charger.c_pmid{i}',2) for i in range(1,5)],*[(f'charger.c_sys{i}',2) for i in range(1,6)]],
  ]
  cache={}
  for path in paths:
@@ -183,6 +188,32 @@ def verify_copper(b):
  assert len(local_vias)==1,'Quiet analog return must meet system ground at one via'
  assert set(k[1:3] for k in group if k[0]=='pad')=={('usb.efuse','8'),('usb.r_uv_bottom','2'),('usb.r_ov_bottom','2'),('usb.c_slew','2'),('usb.r_limit','2')},'Power/other returns enter quiet analog ground'
  return {'connected_path_groups':len(paths),'ground_fill_islands':1,'charger_bypass_ground_vias':bypass_returns,'usb_quiet_ground_vias':len(local_vias),'segments':sum(not isinstance(t,pcbnew.PCB_VIA) for t in b.GetTracks()),'vias':sum(isinstance(t,pcbnew.PCB_VIA) for t in b.GetTracks())}
+
+def verify_distribution_lands(b):
+ """Check drill-to-solder-land margin even for same-net open vias.
+
+ Native DRC permits same-net via-in-pad. These ordinary unfilled distribution
+ vias must instead leave 0.20 mm from the drill edge to every top solder land.
+ The complete explicit fanout list binds this check to the generated geometry.
+ """
+ records=json.loads((HERE/'charger-power-banks.json').read_text())
+ records=[{'address':'charger.c_input1','pin':1,'uv':[[21.1,20.35],[21.9,20.35]]},*records]
+ p=parts(b);vias=[t for t in b.GetTracks() if isinstance(t,pcbnew.PCB_VIA)]
+ inspected=set();probes=[]
+ for record in records:
+  pad=next(x for x in p[record['address']].Pads() if x.GetNumber()==str(record['pin']))
+  for uv in record['uv']:
+   matches=[v for v in vias if v.GetPosition()==point(uv) and v.GetNetCode()==pad.GetNetCode()]
+   assert len(matches)==1,'Missing or duplicate distribution via: '+str(uv)
+   v=matches[0];assert v.GetDrillValue()==pcbnew.FromMM(.3) and v.GetWidth(pcbnew.F_Cu)==pcbnew.FromMM(.6)
+   assert v.m_Uuid.AsString() not in inspected;inspected.add(v.m_Uuid.AsString())
+   probe=pcbnew.PCB_VIA(b);probe.SetPosition(v.GetPosition());probe.SetWidth(v.GetDrillValue());probes.append(probe)
+   for f in b.GetFootprints():
+    for land in f.Pads():
+     if land.IsOnLayer(pcbnew.F_Cu):
+      assert not probe.GetEffectiveShape(pcbnew.F_Cu).Collide(land.GetEffectiveShape(pcbnew.F_Cu),pcbnew.FromMM(.2)),'Distribution via drill too close to solder land: '+str(mm(v.GetPosition()))+' '+f.GetFieldText('atopile_address')
+ assert len(inspected)==38
+ return {'checked_vias':len(inspected),'minimum_drill_to_solder_land_mm':.2}
 
 def run_drc(path):
  cli=shutil.which('kicad-cli') or '/Applications/KiCad.app/Contents/MacOS/kicad-cli'
@@ -218,11 +249,29 @@ def main():
  assert sha(BOARD)==record['pcb_sha256'] and sha(BOARD.with_suffix('.kicad_pro'))==record['project_sha256']
  readset=[BOARD,BOARD.with_suffix('.kicad_pro'),HERE/'checks.py',HERE/'fp-lib-table',ROOT/'cad/parameters/retained-interfaces.json',*[ROOT/p for p in record['source_hashes']]]
  snapshot={str(p.relative_to(ROOT)):sha(p) for p in readset}
- b,geometry=verify_geometry(BOARD);copper=verify_copper(b);version,report=run_drc(BOARD);drc=verify_drc(b,report);faults=[]
+ b,geometry=verify_geometry(BOARD);copper=verify_copper(b);copper['distribution_via_solder_land_margin']=verify_distribution_lands(b);version,report=run_drc(BOARD);drc=verify_drc(b,report);faults=[]
  if args.negative_tests:
   negative_boards=[];removed_items=[]
   with tempfile.TemporaryDirectory() as d:
    changed=Path(d)/'changed.kicad_pcb'
+   for mode,a,pin in [('cut_usb_charger_feed','charger.c_input_fast',1),('cut_pmid_bulk','charger.c_pmid4',1),('cut_sys_bulk','charger.c_sys5',1),('cut_input_ground','charger.c_input1',2)]:
+    bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
+    pad=next(p for p in parts(bad)[a].Pads() if p.GetNumber()==str(pin))
+    selected=[t for t in bad.GetTracks() if (isinstance(t,pcbnew.PCB_VIA) or t.GetLayer()==pcbnew.F_Cu) and t.GetNetCode()==pad.GetNetCode() and t.GetEffectiveShape(pcbnew.F_Cu).Collide(pad.GetEffectiveShape(pcbnew.F_Cu),0)]
+    assert selected,(mode,'No physical branch')
+    for t in selected:removed_items.append(t);bad.Remove(t)
+    try:verify_copper(bad)
+    except AssertionError:faults.append(mode+'_rejected')
+    else:raise AssertionError('Accepted distribution open: '+mode)
+   bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
+   via=next(t for t in bad.GetTracks() if isinstance(t,pcbnew.PCB_VIA) and t.GetPosition()==point([49.85,19.06]))
+   pad=next(p for p in parts(bad)['charger.c_sys5'].Pads() if p.GetNumber()=='1')
+   pad.SetPosition(via.GetPosition())
+   try:verify_distribution_lands(bad)
+   except AssertionError as error:
+    assert 'Distribution via drill too close to solder land' in str(error),error
+    faults.append('same_net_open_via_in_solder_land_rejected')
+   else:raise AssertionError('Accepted distribution via in solder land')
    for mode,a,pin in [('cut_pd_enable','usb.pd',16),('cut_uv_divider','usb.r_uv_top2',2),('cut_raw_discharge','usb.pd',18),('cut_address_ground','usb.r_addr0',2)]:
     bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
     pad=next(p for p in parts(bad)[a].Pads() if p.GetNumber()==str(pin))

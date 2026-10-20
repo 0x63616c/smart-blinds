@@ -6,14 +6,14 @@ The derivative retains the 54 × 68.5 mm outline with its USB tab, all 196
 footprints, 609 physical pin identities, 142 net partitions, 17 mechanical/thermal
 anchors and 13 RF, connector-foot and clamp reservations.
 
-The checkpoint contains 457 segments and 124 vias. It routes the local charger
+The checkpoint contains 537 segments and 162 vias. It routes the local charger
 switching/bypass network, motor-driver fly/pump/VM and output paths, regulator
 bypass/output/sense paths, and a 3.3 V feed to the radio module. In1 remains a
 continuous filled ground-return island; no signal traces use that layer. The
 module power feed uses In2 beneath the permitted module body, with vias outside
 its solder lands and unchanged antenna keepouts.
 
-Actual KiCad 10 DRC reports **292 unconnected items**. No short, copper/edge/hole
+Actual KiCad 10 DRC reports **275 unconnected items**. No short, copper/edge/hole
 clearance, track-width, courtyard-overlap, keepout, mask-bridge or dangling-route
 failure is accepted. The report retains 260 silkscreen/text findings, four
 library-footprint differences and five footprint-type findings. The latter
@@ -24,12 +24,16 @@ Three unrelated default-disabled DRC categories are listed in `checks.json`.
 `checks.py` independently checks actual pad shapes, masks/paste settings, net
 partitions, layer/rotation/placement, outline, keepouts, courtyard bounds and
 encoder-wire height clearance. It also follows physical copper shapes through
-60 required connection groups, including the ground fill. A matching net name
-alone cannot pass. Fourteen injected faults are rejected: moved USB connector, changed motor pad,
+64 required connection groups, including the ground fill. A matching net name
+alone cannot pass. Nineteen injected faults are rejected: moved USB connector, changed motor pad,
 weakened RF reservation, cut module supply, removed return plane, cut charger
 bypass return, cut PD bypass, cut USB input, removed quiet return via, and an
 extra connection from the quiet return to the input-capacitor return, plus open
-PD enable, UV divider, raw discharge and address-ground branches. Both REGN and VBUS bypass
+PD enable, UV divider, raw discharge and address-ground branches. The new controls
+also cut the charger input, PMID and SYS bulk branches and input-capacitor return,
+and place a same-net solder land over an ordinary open via. All 38 new distribution
+vias preserve at least 0.20 mm from their drill edges to top solder lands; native
+same-net clearance alone does not check this assembly condition. Both REGN and VBUS bypass
 returns have two nearby ground vias, as required by the charger layout guide.
 The checks remove the plane from the local graph before counting those vias. The generator is deterministic across repeated local runs.
 
@@ -48,7 +52,7 @@ coordinates are replayed from `usb-control-routes.json`; reproduction performs
 no route search. Five separate local ground vias serve the address and factory
 bus resistors without joining the eFuse quiet-ground branch.
 
-The USB data pair, factory access pads and onward charger feed remain open.
+The USB data pair and factory access pads remain open.
 The completed control connections do not establish negotiated startup or
 detach/discharge timing; the PD configuration and electrical tests remain
 required. The 0.3 mm central-pad escapes and 0.8 mm back-layer power trunks
@@ -56,6 +60,18 @@ need current/temperature review; the present geometry is not a current rating.
 The input TVS's specified pulse clamp can exceed downstream DC limits; placement
 does not resolve that separate transient qualification issue. The eFuse layout
 uses a quiet return, but loop impedance and coupling still need review.
+
+The eFuse output now reaches the charger VBUS pins and input capacitors. The four
+PMID and five SYS bulk capacitors connect to their existing local fast-bypass
+branches through explicit two-via fanouts and In2 distribution traces. Input and
+bulk-capacitor grounds join the uninterrupted In1 return. The replay coordinates
+in `charger-power-banks.json` and `distribution.py` require no routing search.
+The previous 581 copper items are retained. Fifteen previously unwired parts move
+to make room, including the encoder supply block; all mechanical anchors remain.
+These distributed reservoirs still need ripple-current, return-loop and thermal
+review. The 0.6–0.8 mm In2 traces use 15.2 µm copper, so geometric clearance is not
+a demonstrated continuous-current rating. The charger VAC sense pins, pack feed
+and onward SYS distribution remain open.
 
 The complete placement change list is in `checks.json`. Many support components
 have moved from the first placement to make local electrical loops possible.
@@ -76,7 +92,7 @@ fine-pitch escapes use 0.5/0.25 mm. Existing thermal holes require their own
 mask/paste/assembly-process review. These rules are not a current rating,
 impedance approval, assembly quote or final fabrication profile.
 
-Still unfinished: USB factory access and paired data routing, pack/charger/SYS
+Still unfinished: USB factory access and paired data routing, pack feed, charger VAC sensing and onward SYS
 current distribution, regenerative-clamp and supervisor loops, complete signal
 routing, thermal and transient review, sparse silkscreen, final ERC/DRC and a
 manufacturing quote. A separate local 18-net digital congestion experiment is

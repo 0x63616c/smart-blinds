@@ -129,7 +129,9 @@
         "hw/routing/blind-main/main-routed.kicad_pro",
         "hw/routing/blind-main/usb_input.py",
         "hw/routing/blind-main/usb_controls.py",
-        "hw/routing/blind-main/usb-control-routes.json"
+        "hw/routing/blind-main/usb-control-routes.json",
+        "hw/routing/blind-main/distribution.py",
+        "hw/routing/blind-main/charger-power-banks.json"
       ],
       "image_size": [
         1500,
@@ -142,7 +144,7 @@
       ],
       "zoom": 0.83,
       "collapsed": false,
-      "role": "Experimental four-layer route with 457 segments and 124 vias: local charger, motor, regulator, radio and USB power/control paths. 60 physical connection groups and fourteen injected-fault checks pass; 292 unconnected items remain. USB data/factory access, remaining current/signal routes, thermal review and manufacturing checks are unfinished."
+      "role": "Experimental four-layer route with 537 segments and 162 vias: local charger, motor, regulator, radio and USB power/control paths and charger capacitor banks. 64 physical connection groups and nineteen injected-fault checks pass; 275 unconnected items remain. USB data/factory access, remaining current/signal routes, thermal review and manufacturing checks are unfinished."
     },
     {
       "id": "companion-routed",
