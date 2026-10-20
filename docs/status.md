@@ -18,7 +18,7 @@ followed by an eight-unit build only after their tests pass.
 | Main controller | Native eleven-sheet schematic and partial four-layer power route; 1013 segments, 255 vias, 70 checked groups plus USB, local clamp and 59 supervision branches, preserved circuit and mechanical anchors | Revise input surge protection and resolve the motor energy path; 122 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
-| Home Assistant | Nine HA 2026.10.2 framework tests pass locally, including authenticated HTTP/DTLS diagnostics; simulator retains shared physical height across different calibration maps | CI for the new telemetry path; sole physical movement owner, periodic idle gauge policy and hardware qualification |
+| Home Assistant | Nine HA 2026.10.2 framework tests pass locally and in CI, including authenticated HTTP/DTLS diagnostics; simulator retains shared physical height across different calibration maps | Sole physical movement owner, periodic idle gauge policy and hardware qualification |
 | Radio transport | C6 Wi-Fi automatic-light-sleep evaluation and separate default-unqualified motion target; six real localhost DTLS tests; Thread target and seven-peer group adapter remain | Actual RF/power tests, physical qualification, temperature continuity, commissioned configuration and unattended recovery |
 | Costs | Dated parts inventory and component demand for two/eight units, sourced harness candidates and a source-bound print-volume estimate | Final board/assembly quote, slicer-based filament use, hardware totals, shipping, tax and stock refresh |
 
@@ -28,8 +28,9 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All thirteen Design checks jobs passed for `b6e2558`](https://github.com/0x63616c/smart-blinds/actions/runs/39425327049),
-including the monitored-PD circuit/runtime, both carrier routes, the partial
+[All thirteen Design checks jobs passed for `0a148d2`](https://github.com/0x63616c/smart-blinds/actions/runs/39429106462),
+including the battery/source telemetry path through Home Assistant, monitored-PD
+circuit/runtime, both carrier routes, the partial
 main route, mechanical assemblies and material estimate, all 23 host firmware
 targets and pinned real-SDK builds. The five battery-energy checks also pass.
 The [source-generated previews from `b6e2558` passed](https://github.com/0x63616c/smart-blinds/actions/runs/39425327277).
@@ -46,9 +47,9 @@ integration presents battery, USB and charging diagnostics from the original
 observations; HTTP refresh cannot make old battery data fresh. It provides no
 physical movement controls yet. The candidate also passed focused sanitizers,
 39 existing transport regressions and pinned default/bench C6 builds.
-CI now builds both the telemetry fixture and a client-only library, verifying
-that synthetic peer symbols do not enter the latter. This checkpoint's new
-CI run is pending.
+CI builds both the telemetry fixture and a client-only library, verifying
+that synthetic peer symbols do not enter the latter. All thirteen jobs passed
+in the run linked above, including the actual default/bench C6 builds.
 
 Native populated-PCB export exposed a [confirmed enclosure orientation error](mechanical/pcb-orientation-review.md):
 the old allocation reflected the component side. The current preview and the
