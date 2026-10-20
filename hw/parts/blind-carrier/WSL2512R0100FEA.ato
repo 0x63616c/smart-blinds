@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_WSL2512R0100FEA:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Vishay", partnumber="WSL2512R0100FEA", footprint="R2512.kicad_mod", symbol="WSL2512R0100FEA.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C844901", manufacturer="Vishay", partno="WSL2512R0100FEA">
+    trait has_designator_prefix<prefix="R">
+
+    pin 2
+    pin 1

@@ -2,6 +2,7 @@
 #include "common.hpp"
 #include "smart_blinds/radio_window.hpp"
 #include "smart_blinds/clock_protocol.hpp"
+#include <algorithm>
 #include <atomic>
 #include <cstdio>
 #include <thread>

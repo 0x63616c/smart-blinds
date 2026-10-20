@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_1206W4F1000T5E:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="UNI-ROYAL", partnumber="1206W4F1000T5E", footprint="R1206.kicad_mod", symbol="1206W4F1000T5E.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C17901", manufacturer="UNI-ROYAL", partno="1206W4F1000T5E">
+    trait has_designator_prefix<prefix="R">
+
+    pin 2
+    pin 1

@@ -1,0 +1,67 @@
+{
+  "status": "block_graph_verified_not_complete_controller",
+  "pin_connections_checked": 103,
+  "physical_components": 33,
+  "erc_clean": false,
+  "erc_findings": {
+    "power_pin_not_driven": 2,
+    "pin_not_driven": 2,
+    "isolated_pin_label": 11
+  },
+  "erc_affected_items": {
+    "power_pin_not_driven": [
+      "Symbol U1 Pin 1 [IN, Power input, Line]",
+      "Symbol U1 Pin 20 [GND, Power input, Line]"
+    ],
+    "pin_not_driven": [
+      "Symbol U1 Pin 10 [TH1, Input, Line]",
+      "Symbol U1 Pin 16 [TH2, Input, Line]"
+    ],
+    "isolated_pin_label": [
+      "Label 'CELL1A_POS'",
+      "Label 'ALERT_HOST'",
+      "Label 'NTC1'",
+      "Label 'NTC2'",
+      "Label 'CELL1B_POS'",
+      "Label 'CELL2A_POS'",
+      "Label 'CELL2B_POS'",
+      "Label 'SDA_HOST'",
+      "Label 'CELL3A_POS'",
+      "Label 'CELL3B_POS'",
+      "Label 'SCL_HOST'"
+    ]
+  },
+  "erc_scope": "External cell, thermistor and host interfaces remain open; no artificial drivers or hidden exclusions.",
+  "source_sha256": {
+    "hw/layouts/blind-carrier/carrier-test/carrier-test.kicad_pcb": "d0ca7a0ff589dbfaa1383e2cec0c25fcf846ff3cfef281df171f61bf0f573511",
+    "hw/layouts/blind-carrier/carrier-test/fp-lib-table": "57c23e060f4e2b99a424f17291347adad815b7b4d8cce8d64493271063fbc418",
+    "hw/parts/blind-carrier/0402WGF100JTCE.kicad_sym": "c2493cd09733a27c02246af98ce758d427641bb5d4fcb8930cb1d2c791930f56",
+    "hw/parts/blind-carrier/0402WGF1500TCE.kicad_sym": "e6831a10d04cc45b9fe4be1e5456451025503eb74f7845b03f6f7138785ef309",
+    "hw/parts/blind-carrier/0451003_MRL.kicad_sym": "e3a7a980651a2965d7284da4236060505f5c99e881fc4fd083653060ef87744b",
+    "hw/parts/blind-carrier/1206W4F1000T5E.kicad_sym": "100d4e95bf50a908a4f22a55778f00c608086c85a0f3f1a9d2f61c988d1ea249",
+    "hw/parts/blind-carrier/AON7400A.kicad_sym": "47426a6da9e9a535913f1d9e5f572c884e70bb30c5983e9bcac2f9f249e97c90",
+    "hw/parts/blind-carrier/BZT52C4V7.kicad_sym": "8e312b0ae6d84a03d33609fc363e7b51051560077a7ce3ac366b7c2225526c85",
+    "hw/parts/blind-carrier/C0805.kicad_mod": "15a1bb8a295c4aaea299b550ff19bca3ce44f4eceb1f012b812141bf2f2cdb7e",
+    "hw/parts/blind-carrier/CL21B474KBFNNNE.kicad_sym": "3f231c17e2778a0d8c8cf8d15af644846d1fc57c2bfe99372acec0bef7567a74",
+    "hw/parts/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod": "020e610b24ccdadf9476a52e1287fbccee403b018d0ee0bad099878d8e355555",
+    "hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": "d3ec729cbdc7e4a784ce039ab8d5a4cf02d2718add610d2cb7484043da5d5d5c",
+    "hw/parts/blind-carrier/R0402.kicad_mod": "b50a832656cd013e38b9da8a7867b6858b58470bb3c1256c6522db7571460f82",
+    "hw/parts/blind-carrier/R1206.kicad_mod": "ca4fd157cd2785256e4fb3b53e10b91615b2ec01318bac0f42a33f645555883e",
+    "hw/parts/blind-carrier/R2512.kicad_mod": "48ffb18954ab465eb4887f57c20d7854086d0c45409377bbde19f35def9c4630",
+    "hw/parts/blind-carrier/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod": "21ffc7a8177f5fab71e9bfddd6d518c2169dc20dcc37c20ccc17b4a2f8f4c143",
+    "hw/parts/blind-carrier/WSL2512R0100FEA.kicad_sym": "508a00af2daf83054eee7f1e43896afe5b194207d463e3add5f602493b2f15f2",
+    "hw/parts/blind-control-io/0402WGF1001TCE.kicad_sym": "a4c3643679774d1d34924509b61e529c2ecdbb77d45d8b0642c280dbef633a9d",
+    "hw/parts/blind-control-io/R0402.kicad_mod": "3499f9017972c1e9b8a23188427d5c1bfbf31ac56474099aa37992f5d3aff816",
+    "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym": "81c087f94ceab9f615ba1aa036628532fbae2ff8c6cfc259e8361c72c016ccde",
+    "hw/parts/blind-controller-common/C0402.kicad_mod": "3ccf0309de5b72a57c2ebb81ff69201ddadd3ad0bcd5964a4d47a1e28bea0732",
+    "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym": "a6f837f69fafd8ed9ca31684a2e001d76e2bf3e35819f4b2858f7eb27127a83c",
+    "hw/parts/blind-controller-common/R0402.kicad_mod": "c47e3e203d4ad99b5e7194b9c283226505d323e35237c1461fde5a8fb8287e7e",
+    "hw/parts/blind-core/MAX17320G22_.kicad_sym": "ac43d6654ab665ddff147af2f95db9595feae202cb56efe90131c5e2b434e25e",
+    "hw/parts/blind-core/QFN-24_L4.0-W4.0-P0.50-BL-EP2.6.kicad_mod": "2e3b892da84d59894904aa320a8d1b039cb87dee27ba1c90a4ad624f704f6071",
+    "hw/parts/blind-power/0402WGF1000TCE.kicad_sym": "c55ed8813f375c19d6198047811b77095ac3875bb2d0819dc71b2340a20ddd5a",
+    "hw/parts/blind-power/R0402.kicad_mod": "5a8827091d39c40103a10c953f75992bb4d1c60e956ed2e0449cc8f1eba958fa",
+    "hw/schematics/blind-carrier/carrier-test.layout.json": "9bb599c16efb9f8011d23672c71331ebc4dbb84ce222beab7526270b5fec56dc",
+    "tools/generate_schematics.py": "6408077718c479712f42f68b3bdbaab03a0d27eaef39dfa2d07800435ee2a73b",
+    "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583"
+  }
+}

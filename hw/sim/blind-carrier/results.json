@@ -1,0 +1,40 @@
+{
+  "status": "PASS of circuit identity, physical pin equivalence and scoped arithmetic",
+  "components": 33,
+  "physical_pins": 103,
+  "negative_controls_detected": [
+    "cell_branch_fuse_bypassed",
+    "gate_controls_shorted",
+    "shunt_bypass",
+    "wrong_3S_cell_short"
+  ],
+  "semantic_graph_sha256": "04cebe126c49504fd0a7ce92040b28545c53bd257dc5e9acfd5ad4ecf20d3884",
+  "pack_path_planning_a": 4,
+  "shunt_max_initial_loss_w": 0.1616,
+  "shunt_max_initial_drop_v": 0.0404,
+  "fet_pair_max_25c_loss_w": 0.336,
+  "fet_pair_hot_planning_loss_w": 0.672,
+  "six_fuses_nominal_cold_loss_w": 0.5448000000000001,
+  "six_holder_loss_at_assumed_path_resistance_w": 2.4000000000000004,
+  "one_missing_parallel_cell_holder_loss_w": 1.6,
+  "cell1_balance_current_ideal_switch_upper_a": 0.04343434343434343,
+  "balance_resistor_power_ideal_switch_upper_w": 0.18676767676767675,
+  "cell1_balance_current_typ_at_4v15_a": 0.038073394495412846,
+  "other_cell_balance_current_typ_at_4v15_a": 0.01985645933014354,
+  "equal_branch_current_a": 2.0,
+  "branch_fuse_25c_continuous_derated_current_a": 2.25,
+  "local_bom_policy": "Validate ignored local BOM when present; absence is not a build claim",
+  "limits": "Fuse cold resistance and melting I2t are nominal. No clearing-time/energy, short-circuit interruption, hot-holder or MOSFET SOA proof.",
+  "release_gates": [
+    "No physical holder current rating, contact temperature or reverse-insertion rejection accepted.",
+    "No measured motor current, pack short-circuit impedance, FET SOA/turn-off overshoot or fuse interruption/clearing-energy coordination.",
+    "3 A branch fuses do not protect arbitrary insertion or guarantee continued operation with a missing parallel cell.",
+    "No secondary overvoltage protector/three-terminal fuse is captured; a failed-short protection FET is not independently isolated by PFAIL.",
+    "MAX17320 protection, 6 V gate pump, chemistry/thermistor/capacity and balancing NVM profile not yet approved or programmed.",
+    "Gauge accuracy on Samsung50E and low-side-shunt Kelvin/layout noise not bench validated.",
+    "I2C pullups, zener leakage/capacitance, hot-plug and absent-pack/backpower behavior not measured.",
+    "Capacitor effective values and FET package land pattern/thermal copper still require physical review.",
+    "Protected output connector, retained raw inter-carrier rails, holder footprints and NTC part/placement not captured.",
+    "No PCB outline, placement, routing or manufacturing outputs."
+  ]
+}

@@ -1,0 +1,170 @@
+import ElectricPower
+from "../../parts/blind-core/MAX17320G22_.ato" import Part_MAX17320G22_
+from "../../parts/blind-carrier/0451003_MRL.ato" import Part_0451003_MRL
+from "../../parts/blind-carrier/AON7400A.ato" import Part_AON7400A
+from "../../parts/blind-carrier/WSL2512R0100FEA.ato" import Part_WSL2512R0100FEA
+from "../../parts/blind-carrier/CL21B474KBFNNNE.ato" import Part_CL21B474KBFNNNE
+from "../../parts/blind-carrier/0402WGF100JTCE.ato" import Part_0402WGF100JTCE
+from "../../parts/blind-carrier/1206W4F1000T5E.ato" import Part_1206W4F1000T5E
+from "../../parts/blind-carrier/0402WGF1500TCE.ato" import Part_0402WGF1500TCE
+from "../../parts/blind-carrier/BZT52C4V7.ato" import Part_BZT52C4V7
+from "../../parts/blind-power/0402WGF1000TCE.ato" import Part_0402WGF1000TCE
+from "../../parts/blind-control-io/0402WGF1001TCE.ato" import Part_0402WGF1001TCE
+from "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package
+from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
+
+module ProtectedCarrier:
+    """UNVERIFIED fresh 3S2P pack electronics. Not a released holder assembly.
+
+    Cell ports represent retained holders; the raw inter-carrier rails are permanent
+    internal connections. Only protected PACK and telemetry leave the pack cassette.
+    MAX17320 Rev12 Figure24: for 3S, CELL2 shorts CELL1 and RBAL2 is omitted.
+    Six positive-branch fuses do not make reversed or mismatched insertion safe.
+    Geometry, current interruption, SOA, temperatures and NVM profile remain gates.
+    """
+    cell1a = new ElectricPower
+    cell1b = new ElectricPower
+    cell2a = new ElectricPower
+    cell2b = new ElectricPower
+    cell3a = new ElectricPower
+    cell3b = new ElectricPower
+    pack = new ElectricPower
+    pack.voltage = 9V to 12.6V
+    signal raw_ground
+    signal junction1
+    signal junction2
+    signal raw_top
+    signal fet_drain
+    signal sda
+    signal scl
+    signal alert_n
+    signal thermistor1
+    signal thermistor2
+    signal thermistor_return
+    raw_ground ~ thermistor_return
+    # Remote thermistors are fixed pack-internal 10k NTCs, not shared with BQ TS.
+    cell1a.lv ~ raw_ground
+    cell1b.lv ~ raw_ground
+    cell2a.lv ~ junction1
+    cell2b.lv ~ junction1
+    cell3a.lv ~ junction2
+    cell3b.lv ~ junction2
+    fuse1a = new Part_0451003_MRL
+    fuse1a.1 ~ cell1a.hv
+    fuse1a.2 ~ junction1
+    fuse1b = new Part_0451003_MRL
+    fuse1b.1 ~ cell1b.hv
+    fuse1b.2 ~ junction1
+    fuse2a = new Part_0451003_MRL
+    fuse2a.1 ~ cell2a.hv
+    fuse2a.2 ~ junction2
+    fuse2b = new Part_0451003_MRL
+    fuse2b.1 ~ cell2b.hv
+    fuse2b.2 ~ junction2
+    fuse3a = new Part_0451003_MRL
+    fuse3a.1 ~ cell3a.hv
+    fuse3a.2 ~ raw_top
+    fuse3b = new Part_0451003_MRL
+    fuse3b.1 ~ cell3b.hv
+    fuse3b.2 ~ raw_top
+
+    gauge = new Part_MAX17320G22_
+    r_supply = new Part_0402WGF100JTCE
+    r_supply.1 ~ raw_top
+    r_supply.2 ~ gauge.IN
+    c_supply = new SAMSUNG_CL05B104KB54PNC_package
+    c_supply.1 ~ gauge.IN
+    c_supply.2 ~ raw_ground
+    c_pump = new Part_CL21B474KBFNNNE
+    c_pump.1 ~ gauge.CP
+    c_pump.2 ~ gauge.IN
+    c_reg2 = new Part_CL21B474KBFNNNE
+    c_reg2.1 ~ gauge.REG2
+    c_reg2.2 ~ raw_ground
+    c_reg3 = new Part_CL21B474KBFNNNE
+    c_reg3.1 ~ gauge.REG3
+    c_reg3.2 ~ raw_ground
+    # No always-on load, no zero-volt recharge, no unqualified fuse-heater circuit.
+    # ZVC intentionally open. PFAIL cannot independently interrupt failed-short FETs.
+    r_pfail = new Part_0402WGF1001TCE
+    r_pfail.1 ~ gauge.PFAIL
+    r_pfail.2 ~ raw_ground
+    r_aoldo = new UNI_ROYAL_0402WGF1002TCE_package
+    r_aoldo.1 ~ gauge.AOLDO
+    r_aoldo.2 ~ raw_ground
+    gauge.TH1 ~ thermistor1
+    gauge.TH2 ~ thermistor2
+    gauge.TH3 ~ raw_ground
+    gauge.TH4 ~ raw_ground
+    gauge.GND ~ raw_ground
+    gauge.EP ~ raw_ground
+    # Distinct Kelvin copper is required despite these electrical net identities.
+    gauge.CSP ~ raw_ground
+    gauge.CSN ~ pack.lv
+    shunt = new Part_WSL2512R0100FEA
+    shunt.1 ~ raw_ground
+    shunt.2 ~ pack.lv
+
+    r_balance1 = new Part_1206W4F1000T5E
+    r_balance3 = new Part_1206W4F1000T5E
+    r_balance4 = new Part_1206W4F1000T5E
+    r_balance1.1 ~ junction1
+    r_balance1.2 ~ gauge.CELL1
+    r_balance3.1 ~ junction2
+    r_balance3.2 ~ gauge.CELL3
+    r_balance4.1 ~ raw_top
+    r_balance4.2 ~ gauge.BATTS
+    gauge.CELL2 ~ gauge.CELL1
+    c_cell1 = new SAMSUNG_CL05B104KB54PNC_package
+    c_cell3 = new SAMSUNG_CL05B104KB54PNC_package
+    c_cell4 = new SAMSUNG_CL05B104KB54PNC_package
+    c_cell1.1 ~ gauge.CELL1
+    c_cell1.2 ~ raw_ground
+    c_cell3.1 ~ gauge.CELL3
+    c_cell3.2 ~ gauge.CELL1
+    c_cell4.1 ~ gauge.BATTS
+    c_cell4.2 ~ gauge.CELL3
+
+    # Common-drain high-side back-to-back FETs. Body diodes oppose each other.
+    charge_fet = new Part_AON7400A
+    discharge_fet = new Part_AON7400A
+    charge_fet.S ~ raw_top
+    charge_fet.D ~ fet_drain
+    discharge_fet.D ~ fet_drain
+    discharge_fet.S ~ pack.hv
+    r_charge_gate = new Part_0402WGF1000TCE
+    r_discharge_gate = new Part_0402WGF1000TCE
+    r_charge_gate.1 ~ gauge.CHG
+    r_charge_gate.2 ~ charge_fet.G
+    r_discharge_gate.1 ~ gauge.DIS
+    r_discharge_gate.2 ~ discharge_fet.G
+    c_charge_gate = new SAMSUNG_CL05B104KB54PNC_package
+    c_charge_gate.1 ~ charge_fet.G
+    c_charge_gate.2 ~ charge_fet.S
+    r_pack_sense = new Part_0402WGF1001TCE
+    r_pack_sense.1 ~ pack.hv
+    r_pack_sense.2 ~ gauge.PCKP
+    r_sda = new Part_0402WGF1500TCE
+    r_sda.1 ~ sda
+    r_sda.2 ~ gauge.SDA_DQ
+    z_sda = new Part_BZT52C4V7
+    z_sda.K ~ gauge.SDA_DQ
+    z_sda.A ~ raw_ground
+    r_scl = new Part_0402WGF1500TCE
+    r_scl.1 ~ scl
+    r_scl.2 ~ gauge.SCL_DOD
+    z_scl = new Part_BZT52C4V7
+    z_scl.K ~ gauge.SCL_DOD
+    z_scl.A ~ raw_ground
+    r_alert = new Part_0402WGF1500TCE
+    r_alert.1 ~ alert_n
+    r_alert.2 ~ gauge.ALRT
+    z_alert = new Part_BZT52C4V7
+    z_alert.K ~ gauge.ALRT
+    z_alert.A ~ raw_ground
+    # Host owns pullups to its 3.3 V; no pullup to the gauge's internal REG3.
+    # ESD/zener capacitance, leakage and powered-off insertion need measurement.
+
+module CarrierTest:
+    """Unrouted protected pack subcircuit with external cell/NTC/host ports."""
+    carrier = new ProtectedCarrier

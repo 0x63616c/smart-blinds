@@ -1,0 +1,208 @@
+{
+  "status": "UNVERIFIED circuit study, not fabrication release",
+  "limits": {
+    "pack_normal_min_v": 9,
+    "pack_normal_max_v": 12.6,
+    "cell_fault_calculation_v": 4.3,
+    "pack_path_planning_a": 4,
+    "logic_max_v": 3.399,
+    "pack_short_circuit_bound_a": null,
+    "fuse_temperature_rerating": null,
+    "assumed_rds_hot_multiplier": 2,
+    "holder_path_resistance_assumption_ohm": 0.1
+  },
+  "parts": {
+    "0451003.MRL": {
+      "lcsc": "C13982",
+      "wrapper": "../../parts/blind-carrier/0451003_MRL.ato",
+      "instances": [
+        "fuse1a",
+        "fuse1b",
+        "fuse2a",
+        "fuse2b",
+        "fuse3a",
+        "fuse3b"
+      ],
+      "rated_current_a": 3,
+      "dc_interrupt_a_at_32v": 300,
+      "dc_interrupt_test_v": 32,
+      "cold_resistance_nom_ohm": 0.0227,
+      "melting_i2t_nom_a2s": 1.65,
+      "continuous_derating_25c": 0.75,
+      "opening_2x_max_s": 5,
+      "source": "https://www.littelfuse.cn/assetdocs/fuse-451-and-453-datasheet?assetguid=533cd5cc-956c-4243-867f-6ab5a62f6ba1"
+    },
+    "MAX17320G22+": {
+      "lcsc": "C2914309",
+      "wrapper": "../../parts/blind-core/MAX17320G22_.ato",
+      "instances": [
+        "gauge"
+      ],
+      "balance_switch_min_ohm": 3,
+      "balance_switch_typ_ohm": 9,
+      "balance_switch_max_ohm": 20,
+      "balance_pin_max_a": 0.1,
+      "charge_pump_6v_min_v": 5,
+      "charge_pump_6v_max_v": 7,
+      "gate_on_resistance_max_ohm": 4000,
+      "gate_off_resistance_max_ohm": 1000,
+      "active_iq_typ_a": 3.8e-05,
+      "active_iq_max_to_50c_a": 5.7e-05,
+      "source": "https://www.analog.com/media/en/technical-documentation/data-sheets/max17320.pdf"
+    },
+    "0402WGF100JTCE": {
+      "lcsc": "C25077",
+      "wrapper": "../../parts/blind-carrier/0402WGF100JTCE.ato",
+      "instances": [
+        "r_supply"
+      ],
+      "resistance_ohm": 10,
+      "tolerance": 0.01,
+      "power_at_70c_w": 0.0625,
+      "voltage_v": 50
+    },
+    "CL05B104KB54PNC": {
+      "lcsc": "C307331",
+      "wrapper": "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato",
+      "instances": [
+        "c_supply",
+        "c_cell1",
+        "c_cell3",
+        "c_cell4",
+        "c_charge_gate"
+      ],
+      "capacitance_f": 1e-07,
+      "rated_voltage_v": 50,
+      "tolerance": 0.1
+    },
+    "CL21B474KBFNNNE": {
+      "lcsc": "C13967",
+      "wrapper": "../../parts/blind-carrier/CL21B474KBFNNNE.ato",
+      "instances": [
+        "c_pump",
+        "c_reg2",
+        "c_reg3"
+      ],
+      "capacitance_f": 4.7e-07,
+      "rated_voltage_v": 50,
+      "tolerance": 0.1,
+      "status": "Mass Production",
+      "source": "https://product.samsungsem.com/mlcc/CL21B474KBFNNN.do"
+    },
+    "0402WGF1001TCE": {
+      "lcsc": "C11702",
+      "wrapper": "../../parts/blind-control-io/0402WGF1001TCE.ato",
+      "instances": [
+        "r_pfail",
+        "r_pack_sense"
+      ],
+      "resistance_ohm": 1000,
+      "tolerance": 0.01,
+      "power_at_70c_w": 0.0625,
+      "voltage_v": 50
+    },
+    "0402WGF1002TCE": {
+      "lcsc": "C25744",
+      "wrapper": "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato",
+      "instances": [
+        "r_aoldo"
+      ],
+      "resistance_ohm": 10000,
+      "tolerance": 0.01,
+      "power_at_70c_w": 0.0625,
+      "voltage_v": 50
+    },
+    "WSL2512R0100FEA": {
+      "lcsc": "C844901",
+      "wrapper": "../../parts/blind-carrier/WSL2512R0100FEA.ato",
+      "instances": [
+        "shunt"
+      ],
+      "resistance_ohm": 0.01,
+      "tolerance": 0.01,
+      "tcr_ppm_c": 75,
+      "power_at_70c_w": 1,
+      "source": "https://www.vishay.com/docs/30100/wsl.pdf"
+    },
+    "1206W4F1000T5E": {
+      "lcsc": "C17901",
+      "wrapper": "../../parts/blind-carrier/1206W4F1000T5E.ato",
+      "instances": [
+        "r_balance1",
+        "r_balance3",
+        "r_balance4"
+      ],
+      "resistance_ohm": 100,
+      "tolerance": 0.01,
+      "power_at_70c_w": 0.25,
+      "voltage_v": 200
+    },
+    "AON7400A": {
+      "lcsc": "C85734",
+      "wrapper": "../../parts/blind-carrier/AON7400A.ato",
+      "instances": [
+        "charge_fet",
+        "discharge_fet"
+      ],
+      "vds_v": 30,
+      "vgs_abs_v": 20,
+      "rds_4v5_max_25c_ohm": 0.0105,
+      "qg_10v_max_c": 2.4e-08,
+      "ciss_max_f": 1.38e-09,
+      "status": "Full Production",
+      "source": "https://www.aosmd.com/sites/default/files/res/datasheets/AON7400A.pdf"
+    },
+    "0402WGF1000TCE": {
+      "lcsc": "C25076",
+      "wrapper": "../../parts/blind-power/0402WGF1000TCE.ato",
+      "instances": [
+        "r_charge_gate",
+        "r_discharge_gate"
+      ],
+      "resistance_ohm": 100,
+      "tolerance": 0.01,
+      "power_at_70c_w": 0.0625,
+      "voltage_v": 50
+    },
+    "0402WGF1500TCE": {
+      "lcsc": "C25082",
+      "wrapper": "../../parts/blind-carrier/0402WGF1500TCE.ato",
+      "instances": [
+        "r_sda",
+        "r_scl",
+        "r_alert"
+      ],
+      "resistance_ohm": 150,
+      "tolerance": 0.01,
+      "power_at_70c_w": 0.0625,
+      "voltage_v": 50
+    },
+    "BZT52C4V7": {
+      "lcsc": "C2116",
+      "wrapper": "../../parts/blind-carrier/BZT52C4V7.ato",
+      "instances": [
+        "z_sda",
+        "z_scl",
+        "z_alert"
+      ],
+      "zener_test_current_a": 0.005,
+      "zener_max_v": 5,
+      "zener_min_v": 4.4,
+      "test_leakage_max_a": 3e-06,
+      "test_leakage_at_v": 2,
+      "source": "https://datasheet.lcsc.com/datasheet/pdf/748504625e418aa84c5305d597e87d6d.pdf"
+    }
+  },
+  "unresolved": [
+    "No physical holder current rating, contact temperature or reverse-insertion rejection accepted.",
+    "No measured motor current, pack short-circuit impedance, FET SOA/turn-off overshoot or fuse interruption/clearing-energy coordination.",
+    "3 A branch fuses do not protect arbitrary insertion or guarantee continued operation with a missing parallel cell.",
+    "No secondary overvoltage protector/three-terminal fuse is captured; a failed-short protection FET is not independently isolated by PFAIL.",
+    "MAX17320 protection, 6 V gate pump, chemistry/thermistor/capacity and balancing NVM profile not yet approved or programmed.",
+    "Gauge accuracy on Samsung50E and low-side-shunt Kelvin/layout noise not bench validated.",
+    "I2C pullups, zener leakage/capacitance, hot-plug and absent-pack/backpower behavior not measured.",
+    "Capacitor effective values and FET package land pattern/thermal copper still require physical review.",
+    "Protected output connector, retained raw inter-carrier rails, holder footprints and NTC part/placement not captured.",
+    "No PCB outline, placement, routing or manufacturing outputs."
+  ]
+}

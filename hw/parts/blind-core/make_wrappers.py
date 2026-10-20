@@ -21,6 +21,7 @@ PARTS = {
     "UCM1E221MCL1GS": ("Nichicon", "C340768", "C"),
 }
 PIN_NAMES = {
+    "MAX17320G22+": {"11": "PFAIL"},
     "BQ25798RQMR": {"6": "DP", "7": "DM", "12": "QON_n", "13": "CE_n", "21": "INT_n"},
     "ESP32-C6-WROOM-1-N4": {"2": "VDD3V3"},
 }
@@ -56,7 +57,12 @@ if __name__ == "__main__":
                 label = children(pin, "name")[0][1]
                 number = children(pin, "number")[0][1]
                 label = PIN_NAMES.get(name, {}).get(number, re.sub(r"[^a-zA-Z0-9_]", "_", label))
+                if name == "MAX17320G22+" and number == "11":
+                    children(pin, "name")[0][1] = "PFAIL"
                 pins.append((label, number))
+        # Store corrected pin labels as well as wrapper aliases.
+        if name == "MAX17320G22+":
+            (ROOT / (stem + ".kicad_sym")).write_text(sx.dumps([lib[0], *lib[1:3], sym]) + "\n")
         # Repeated names are one net, with all duplicate physical pads connected.
         lines = ["import has_designator_prefix", "import has_part_picked", "import is_atomic_part", "", f"component {classname}:",
                  '    """Atomic imported geometry; see README for pin-review status."""',

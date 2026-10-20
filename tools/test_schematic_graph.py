@@ -140,5 +140,45 @@ class RegulatorSchematicTests(unittest.TestCase):
             self.check(self.source, graph)
 
 
+class CarrierSchematicTests(unittest.TestCase):
+    check = NativeSchematicTests.check
+
+    @classmethod
+    def setUpClass(cls):
+        cls.spec = json.loads((ROOT / "hw/schematics/blind-carrier/carrier-test.layout.json").read_text())
+        cls.graph = board_graph(ROOT / cls.spec["pcb"])
+        cls.source = parse((ROOT / cls.spec["output"]).read_text())
+        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+
+    def test_real_graph_roundtrip(self):
+        self.assertEqual(self.check(self.source), 103)
+
+    def test_reject_wrong_three_cell_sense_connection(self):
+        changed = copy.deepcopy(self.source)
+        for label in children(changed, "label"):
+            if label[1] == "CELL1":
+                label[1] = "CELL3"
+                break
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+    def test_reject_bypassed_cell_branch_fuse(self):
+        changed = copy.deepcopy(self.source)
+        for label in children(changed, "label"):
+            if label[1] == "CELL1A_POS":
+                label[1] = "JUNCTION1"
+                break
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+    def test_reject_bypassed_current_shunt(self):
+        changed = copy.deepcopy(self.source)
+        for label in children(changed, "label"):
+            if label[1] == "PACK_GND":
+                label[1] = "RAW_GND"
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+
 if __name__ == "__main__":
     unittest.main()

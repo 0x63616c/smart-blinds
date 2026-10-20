@@ -1,0 +1,182 @@
+{
+  "status": "Independent physical pin contract from Rev12/primary FET pin table",
+  "components": {
+    "gauge": {
+      "1": "IN",
+      "2": "CP",
+      "3": "CHG",
+      "4": "DIS",
+      "5": "NC_ZVC",
+      "6": "PCKP",
+      "7": "ALRT",
+      "8": "SCL_IC",
+      "9": "SDA_IC",
+      "10": "NTC1",
+      "11": "PFAIL",
+      "12": "AOLDO",
+      "13": "REG3",
+      "14": "PACK_GND",
+      "15": "RAW_GND",
+      "16": "NTC2",
+      "17": "REG2",
+      "18": "RAW_GND",
+      "19": "RAW_GND",
+      "20": "RAW_GND",
+      "21": "CELL1",
+      "22": "CELL1",
+      "23": "CELL3",
+      "24": "BATTS",
+      "25": "RAW_GND"
+    },
+    "r_supply": {
+      "1": "RAW_TOP",
+      "2": "IN"
+    },
+    "c_supply": {
+      "1": "IN",
+      "2": "RAW_GND"
+    },
+    "c_pump": {
+      "1": "CP",
+      "2": "IN"
+    },
+    "c_reg2": {
+      "1": "REG2",
+      "2": "RAW_GND"
+    },
+    "c_reg3": {
+      "1": "REG3",
+      "2": "RAW_GND"
+    },
+    "r_pfail": {
+      "1": "PFAIL",
+      "2": "RAW_GND"
+    },
+    "r_aoldo": {
+      "1": "AOLDO",
+      "2": "RAW_GND"
+    },
+    "shunt": {
+      "1": "RAW_GND",
+      "2": "PACK_GND"
+    },
+    "r_balance1": {
+      "1": "JUNCTION1",
+      "2": "CELL1"
+    },
+    "r_balance3": {
+      "1": "JUNCTION2",
+      "2": "CELL3"
+    },
+    "r_balance4": {
+      "1": "RAW_TOP",
+      "2": "BATTS"
+    },
+    "c_cell1": {
+      "1": "CELL1",
+      "2": "RAW_GND"
+    },
+    "c_cell3": {
+      "1": "CELL3",
+      "2": "CELL1"
+    },
+    "c_cell4": {
+      "1": "BATTS",
+      "2": "CELL3"
+    },
+    "charge_fet": {
+      "1": "RAW_TOP",
+      "2": "RAW_TOP",
+      "3": "RAW_TOP",
+      "4": "QCHG",
+      "5": "COMMON_DRAIN",
+      "6": "COMMON_DRAIN",
+      "7": "COMMON_DRAIN",
+      "8": "COMMON_DRAIN",
+      "9": "COMMON_DRAIN"
+    },
+    "discharge_fet": {
+      "1": "PACK_TOP",
+      "2": "PACK_TOP",
+      "3": "PACK_TOP",
+      "4": "QDIS",
+      "5": "COMMON_DRAIN",
+      "6": "COMMON_DRAIN",
+      "7": "COMMON_DRAIN",
+      "8": "COMMON_DRAIN",
+      "9": "COMMON_DRAIN"
+    },
+    "r_charge_gate": {
+      "1": "CHG",
+      "2": "QCHG"
+    },
+    "r_discharge_gate": {
+      "1": "DIS",
+      "2": "QDIS"
+    },
+    "c_charge_gate": {
+      "1": "QCHG",
+      "2": "RAW_TOP"
+    },
+    "r_pack_sense": {
+      "1": "PACK_TOP",
+      "2": "PCKP"
+    },
+    "fuse1a": {
+      "1": "CELL1A_POS",
+      "2": "JUNCTION1"
+    },
+    "fuse1b": {
+      "1": "CELL1B_POS",
+      "2": "JUNCTION1"
+    },
+    "fuse2a": {
+      "1": "CELL2A_POS",
+      "2": "JUNCTION2"
+    },
+    "fuse2b": {
+      "1": "CELL2B_POS",
+      "2": "JUNCTION2"
+    },
+    "fuse3a": {
+      "1": "CELL3A_POS",
+      "2": "RAW_TOP"
+    },
+    "fuse3b": {
+      "1": "CELL3B_POS",
+      "2": "RAW_TOP"
+    },
+    "r_sda": {
+      "1": "SDA_HOST",
+      "2": "SDA_IC"
+    },
+    "z_sda": {
+      "1": "SDA_IC",
+      "2": "RAW_GND"
+    },
+    "r_scl": {
+      "1": "SCL_HOST",
+      "2": "SCL_IC"
+    },
+    "z_scl": {
+      "1": "SCL_IC",
+      "2": "RAW_GND"
+    },
+    "r_alert": {
+      "1": "ALERT_HOST",
+      "2": "ALRT"
+    },
+    "z_alert": {
+      "1": "ALRT",
+      "2": "RAW_GND"
+    }
+  },
+  "external_cell_negative_connections": {
+    "cell1a.lv": "RAW_GND",
+    "cell1b.lv": "RAW_GND",
+    "cell2a.lv": "JUNCTION1",
+    "cell2b.lv": "JUNCTION1",
+    "cell3a.lv": "JUNCTION2",
+    "cell3b.lv": "JUNCTION2"
+  }
+}

@@ -218,6 +218,18 @@
       "collapsed": true
     },
     {
+      "id": "carrier-schematic",
+      "kind": "schematic",
+      "title": "Protected 3S2P carrier \u2014 native KiCad circuit study",
+      "source": "hw/schematics/blind-carrier/carrier-test.kicad_sch",
+      "dependencies": [
+        "hw/schematics/blind-carrier/carrier-test.layout.json",
+        "hw/schematics/blind-carrier/carrier-test.verification.json"
+      ],
+      "role": "33 parts and 103 physical pins checked, including three-cell sensing and six branch fuses. Fifteen explicit ERC boundary findings. Holder, thermistor, connector and secondary protection integration remain open; no battery fault safety or fabrication approval is implied.",
+      "collapsed": true
+    },
+    {
       "id": "compact-closed",
       "kind": "openscad",
       "title": "Compact enclosure \u2014 provisional exterior",

@@ -1,0 +1,8 @@
+requires-atopile: ^0.15.9
+paths:
+  src: ./
+  layout: ../../layouts/blind-carrier
+builds:
+  carrier-test:
+    entry: carrier.ato:CarrierTest
+    hide_designators: true
