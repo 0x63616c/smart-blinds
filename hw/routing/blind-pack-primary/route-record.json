@@ -2,14 +2,38 @@
   "status": "EXPERIMENTAL connected routing candidate; see independent checks and unresolved layout/physical qualification gates",
   "canonical_pcb_sha256": "a93f5b45b81767ffaaa44e7ff29bcc5edda26651cc63edd8132b4aa51cbd1197",
   "mechanical_sha256": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
-  "route_source_sha256": "02bdb521379e887c188000367c762fcda4c484585af3a04e901fa38193476e70",
-  "routed_pcb_sha256": "1a9ee1eee14edba4e1963ae44986007c30fdecdca094fa900ac88e7dfdea55fb",
+  "route_source_sha256": "28c0af4b9afa41983f5caa7c03217a0dec75d2b5c2562e9f60d6df88d41702ed",
+  "routed_pcb_sha256": "0f0fc7c37d16f1f2e84f3550887fb583ac037396732e465a0d2fce7a4604280f",
   "route_dependency_hashes": {
-    "route.py": "02bdb521379e887c188000367c762fcda4c484585af3a04e901fa38193476e70",
+    "route.py": "28c0af4b9afa41983f5caa7c03217a0dec75d2b5c2562e9f60d6df88d41702ed",
     "signals.py": "d81a9adfb20de8c5ed685a58fc9353ce253277567568d048e34066cecad190af",
     "gates.py": "f566f347a78dec9c8e8371a9e02797b0c2411fb4ba3547a40ea93d3dffb02d65",
     "primary-routed.kicad_pro": "79ab62430a1f6aa6ce9d8a377a64d1285227f69e5f8618d022adc6f6d5eb6d45",
     "primary-routed.kicad_dru": "1e08bd3635bb89b4943ad1e766505c31177e5e150424d10fd72709511661ab19"
+  },
+  "finish_dependencies": {
+    "hw/routing/carrier-finish/finish.py": "bab28b022c92d6587a6ec4a5a0bc0add8f61182a5cafda85e5998a2334efafa1",
+    "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+    "hw/parts/blind-carrier/C0805.kicad_mod": "15eda01872ba699cd56ae1d0fb69d338f1d14bfef3efae0e84b71a6a7ac294fc",
+    "hw/routing/carrier-finish/footprints/blind-carrier/C0805.kicad_mod": "79bc4637541e50ebb381c790dc1d3af782096e2853467989f8a2e96f40a4a0e9",
+    "hw/parts/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod": "f4a8bd7a25150fd2c69b395b27575ba2e8ac8a22fcac182efd7b9dcf7cf1c38f",
+    "hw/routing/carrier-finish/footprints/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod": "8f3e568c61b6522f0fc57e982aeb4af5a764776b0a9d946c5c57b5e012e58835",
+    "hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": "62b25625d068207260c5d5fdc56aaf8c23a773ce23d7a8348e9c859a5c858219",
+    "hw/routing/carrier-finish/footprints/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": "6f15897854c5a1ea14e60454cf593373accb2bbb00a20dc4420e21cd5985c5ac",
+    "hw/parts/blind-carrier/R0402.kicad_mod": "549135283ac573d85bbd370205267cb47b87fbdcef196106a05befb0f9ee1123",
+    "hw/routing/carrier-finish/footprints/blind-carrier/R0402.kicad_mod": "7913bbaef56e62a9a78079016f9ad358b778c6883593c3478e2f6418e173420e",
+    "hw/parts/blind-carrier/R1206.kicad_mod": "488d3fef48614567c8e492938436d219c5edfe4ad90be16896320e8ef6103f97",
+    "hw/routing/carrier-finish/footprints/blind-carrier/R1206.kicad_mod": "ed7a8981bd1a23e76c3bb202c2350fc1959dc894d58bfbd6d6219486d962dc42",
+    "hw/parts/blind-carrier/R2512.kicad_mod": "5cb9e8205734d89909c95c9a13abcae0003e1d717bd14d604ad37de1d20246ee",
+    "hw/routing/carrier-finish/footprints/blind-carrier/R2512.kicad_mod": "89bdbdfd763f43490bd7122f57f00de8810a8126fb16f407ff2857e8f3a79c06",
+    "hw/parts/blind-carrier/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod": "55d2ca4bb160d8433e33eb7917721a254cb53b9d3d825163aea40f2e29e2c61e",
+    "hw/routing/carrier-finish/footprints/blind-carrier/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod": "069be795f79f060327fdef0de9f00852fc6084d51bf33fb153d0cd282e9d4702",
+    "hw/parts/blind-control-io/R0402.kicad_mod": "2740e34dbd19e0701c54f21e15b58421837cd61adb3b719f811f01cd4537fda7",
+    "hw/routing/carrier-finish/footprints/blind-control-io/R0402.kicad_mod": "bee8bc67da317220c399fd739cbaaf59c286901ee861df93fda48d923c2593f4",
+    "hw/parts/blind-power/R0402.kicad_mod": "446335f0841b439964ade9805cd9aae5f48babfeea24598507567b1fb72a0f1d",
+    "hw/routing/carrier-finish/footprints/blind-power/R0402.kicad_mod": "e7aad23929dc30c234f5e6cfa18142e54af9e8db25356a673c13c3e2f8fdb7ff",
+    "hw/parts/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod": "e5af29e62bdfd0218d06bf79d2cdd8c8a112e91f8dbb0caf41441d0ae474b01b",
+    "hw/routing/carrier-finish/footprints/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod": "0f7554979ffee029f031c55ff7f197ea99d5a4818ad7965e58326c25262648fb"
   },
   "load_route_labels": [
     "cell1-short-unfused",
@@ -184,7 +208,8 @@
   "additional_deltas": [
     "Three nonpolar fuses 90\u2192270 degrees",
     "Native KiCad 10 serialization, stable unique UUIDs and equivalent relative library/model paths",
-    "Inward backing lands reject exposed features; no copper fills"
+    "Inward backing lands reject exposed features; no copper fills",
+    "Narrow fuse, holder, resistor and FET silkscreen edits; text/polarity, pads and all non-silk geometry unchanged; matching routed-project libraries"
   ],
   "segments": 451,
   "routes": [

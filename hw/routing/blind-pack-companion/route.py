@@ -8,6 +8,8 @@ sys.path.insert(0,str(ROOT/'tools'))
 from generate_schematics import board_graph
 from kicad_sexpr import children,parse,dumps
 HERE=Path(__file__).resolve().parent
+sys.path.insert(0,str(HERE.parent/'carrier-finish'))
+import finish
 SOURCE=ROOT/'hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb'
 MECHANICAL=ROOT/'cad/parameters/retained-interfaces.json'
 NS=uuid.UUID('9919e05a-1cce-4b6c-9d42-445b4b1a561d')
@@ -79,6 +81,7 @@ def main():
  for old,new in identities.items():text=text.replace(old,new)
  tree=parse(text)
  assert not children(tree,'group'),'Group references require explicit UUID remapping review'
+ finish.finish_board(tree,6)
  # KiCad sorts new items using their random creation UUIDs. Normalize each
  # root-level item's order by its actual geometry before assigning stable IDs.
  # Existing footprint child ordering is inherited unchanged from SOURCE.
@@ -108,10 +111,13 @@ def main():
  severities['missing_courtyard']='error'
  severities['footprint_type_mismatch']='error'
  project.write_text(json.dumps(settings,indent=2)+'\n')
- (HERE/'fp-lib-table').write_text((SOURCE.parent/'fp-lib-table').read_text().replace('${KIPRJMOD}/../../../parts/','${KIPRJMOD}/../../parts/'))
+ finish.write_libraries()
+ finish.write_table(SOURCE.parent/'fp-lib-table',HERE)
  assert sha(SOURCE)==before and sha(MECHANICAL)==mechanical_sha
  assert board_graph(SOURCE)==board_graph(output),'Physical pin/net identity changed'
  record={'status':'EXPERIMENTAL hand route; pending DRC, physical and thermal validation','canonical_pcb_sha256':before,'mechanical_sha256':mechanical_sha,'route_source_sha256':sha(Path(__file__)),'routed_pcb_sha256':sha(output),'authorized_deltas':['Three nonpolar fuse footprint rotations90→270 degrees; physical pin/net identities unchanged','F.Cu upper support retained, exact recessed B.Cu covered-track window only','Bottom fixture lands prohibit pads/vias/exposed features; masked tracks only','NativeKiCad10 serialization and equivalent relative model/library paths','All item UUIDs deterministically re-keyed; no group references in this board'],'traces':routes,'unique_item_uuids':uuid_count[0],'vias':{'count':12,'diameter_mm':.9,'drill_mm':.4,'tenting':'front and back'},'current_assumptions':{'total_pack_a':4,'equal_branch_a':2,'not_guaranteed':'Equal current sharing, holder rating, fuse clearing, trace/via temperature and assembly fit'}}
+ record['finish_dependencies']=finish.dependencies()
+ record['authorized_deltas'].append('Narrow fuse and holder silkscreen edits; text/polarity, pads and all non-silk geometry unchanged; matching routed-project libraries')
  (HERE/'route-record.json').write_text(json.dumps(record,indent=2)+'\n')
  print(f'Experimental companion: {serial} segments,12 vias; circuit graph unchanged')
 if __name__=='__main__':main()

@@ -12,7 +12,9 @@ The return uses a 6 mm front-layer spine and a 9.307 mm back-layer branch, both 
 
 Eleven deliberately injected faults are rejected, including a same-net via drilled into a diode solder land, a cut clamp return, cut sense and bus routes, an early Kelvin/load join, an early quiet-ground/CSP join, incorrect via geometry, a narrowed load trace and a moved holder. Two repeated generations preserve PCB, project, rule and route-record bytes exactly.
 
-KiCad 10.0.4 DRC includes errors, warnings and exclusions, retaining **15 silk-over-copper, three silk-edge and four exact board-only mounting-hole missing-courtyard findings**. No copper, edge, hole, short, keepout, electrical-footprint courtyard, dangling-via or unconnected finding remains. Three unrelated categories keep their default disabled state: track-not-centered-on-via, tuning-profile geometries and symbol-footprint filter mismatch. This is not an all-checks-enabled claim.
+The [routed-project footprint cleanup](../carrier-finish/README.md) removes the eighteen silkscreen findings while preserving every pad, connection, polarity mark and non-silk field. Matching local libraries avoid footprint-library mismatches; the canonical parts and captures are unchanged.
+
+KiCad 10.0.4 DRC includes errors, warnings and exclusions, retaining **four exact board-only mounting-hole missing-courtyard findings**. No silkscreen, library mismatch, copper, edge, hole, short, keepout, electrical-footprint courtyard, dangling-via or unconnected finding remains. Three unrelated categories keep their default disabled state: track-not-centered-on-via, tuning-profile geometries and symbol-footprint filter mismatch. This is not an all-checks-enabled claim.
 
 Ordinary signal clearance is 0.20 mm, with 0.30 mm copper-to-edge clearance. Sixteen 0.50/0.25 mm signal vias remain confined to the gauge escape region; ordinary signal vias are 0.60/0.30 mm and load vias are 0.90/0.40 mm. The long low-current IN feed alone uses a 0.15 mm trace. Fine-hole price/process acceptance remains subject to a real manufacturing quote.
 

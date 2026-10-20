@@ -164,7 +164,10 @@
         "hw/routing/blind-pack-companion/route-record.json",
         "hw/routing/blind-pack-companion/companion-routed.kicad_pro",
         "hw/routing/blind-pack-companion/companion-routed.kicad_dru",
-        "cad/parameters/retained-interfaces.json"
+        "cad/parameters/retained-interfaces.json",
+        "hw/routing/blind-pack-companion/fp-lib-table",
+        "hw/routing/carrier-finish/finish.py",
+        "hw/routing/carrier-finish/footprints/**/*.kicad_mod"
       ],
       "image_size": [
         1500,
@@ -177,7 +180,7 @@
       ],
       "zoom": 0.83,
       "collapsed": true,
-      "role": "Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected nets. Four mounting-hole courtyard and six inherited silkscreen findings remain. Experimental only: current capacity, holder loading, insulation and pack assembly still require qualification."
+      "role": "Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected nets. Silkscreen and library comparisons pass; four mounting-hole courtyard findings remain. Experimental only: current capacity, holder loading, insulation and pack assembly still require qualification."
     },
     {
       "id": "primary-current-route",
@@ -194,9 +197,12 @@
         "hw/routing/blind-pack-primary/route_geometry.py",
         "hw/routing/blind-pack-primary/signals.py",
         "hw/routing/blind-pack-primary/gates.py",
-        "cad/parameters/retained-interfaces.json"
+        "cad/parameters/retained-interfaces.json",
+        "hw/routing/blind-pack-primary/fp-lib-table",
+        "hw/routing/carrier-finish/finish.py",
+        "hw/routing/carrier-finish/footprints/**/*.kicad_mod"
       ],
-      "role": "Experimental 451-segment, 129-via route with all 35 nets physically connected and zero unconnected items. Eleven injected-fault checks cover current/Kelvin topology, protected-ground communication clamps and same-net solder-land clearance. Twenty-two drawing/mechanical findings and thermal, transient, holder and assembly qualification remain. Not a fabrication release.",
+      "role": "Experimental 451-segment, 129-via route with all 35 nets physically connected and zero unconnected items. Eleven injected-fault checks cover current/Kelvin topology, protected-ground communication clamps and same-net solder-land clearance. Silkscreen and library comparisons pass. Four mounting-hole courtyard findings and thermal, transient, holder and assembly qualification remain. Not a fabrication release.",
       "collapsed": true,
       "image_size": [
         1500,

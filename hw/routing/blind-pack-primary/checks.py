@@ -5,6 +5,7 @@ import wx,pcbnew
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
 sys.path[:0]=[str(HERE),str(ROOT/'hw/routing/blind-pack-primary')]
 import route
+import finish
 import route_geometry as checks
 checks.APPROVED={'carrier.'+k:v for k,v in route.MOVES.items()}
 checks.APPROVED.update({f'carrier.fuse{i}':([x,4],270) for i,x in enumerate((15,41,67),1)})
@@ -162,7 +163,9 @@ def negative_controls():
 
 def main():
  app=wx.App(False);quiet=wx.LogNull()
- paths=[HERE/n for n in ('route.py','signals.py','gates.py','checks.py','primary-routed.kicad_pcb','primary-routed.kicad_pro','primary-routed.kicad_dru','route-record.json')]+[checks.SOURCE,checks.SOURCE.parent/'fp-lib-table',checks.MECHANICAL,Path(checks.__file__)]
+ paths=[HERE/n for n in ('route.py','signals.py','gates.py','checks.py','primary-routed.kicad_pcb','primary-routed.kicad_pro','primary-routed.kicad_dru','route-record.json','fp-lib-table')]+[checks.SOURCE,checks.SOURCE.parent/'fp-lib-table',checks.MECHANICAL,Path(checks.__file__)]
+ finish_hashes=finish.verify_libraries(HERE,checks.SOURCE.parent/'fp-lib-table')
+ paths.extend(ROOT/p for p in finish_hashes)
  paths.extend(ROOT/n for n in ('tools/generate_schematics.py','tools/kicad_sexpr.py','tools/check_footprint_clearances.py','tools/complete_courtyards.py','hw/placement/footprint-clearances.json'))
  manifest=json.loads((ROOT/'hw/placement/footprint-clearances.json').read_text())
  paths.extend(ROOT/e['source'] for e in manifest['footprints'])
@@ -172,6 +175,7 @@ def main():
  assert checks.sha(checks.MECHANICAL)==record['mechanical_sha256']
  assert checks.sha(HERE/'primary-routed.kicad_pcb')==record['routed_pcb_sha256']
  assert record['route_dependency_hashes']=={n:checks.sha(HERE/n) for n in record['route_dependency_hashes']}
+ assert record['finish_dependencies']==finish_hashes
  board,geom=checks.verify_geometry(HERE/'primary-routed.kicad_pcb')
  out={'geometry':geom,'current_and_kelvin':checks.verify_current_and_kelvin(board),'quiet_ground':quiet_ground(board),'esd_return':esd_return(board),'via_solder_margin':via_solder_margin(board),'fine_signal_vias':via_profile(board),'route_inventory':route_inventory(board)}
  out['all_physical_nets']=whole_board(board)
@@ -183,10 +187,10 @@ def main():
   if v['type']=='missing_courtyard':
    assert len(v['items'])==1 and v['items'][0]['uuid'] in holes
    missing.append(v['items'][0]['uuid'])
-  else:assert v['type'] in {'silk_edge_clearance','silk_overlap','silk_over_copper'},v
+  else:raise AssertionError(v)
  assert len(missing)==4 and set(missing)==holes
  ignored={v['key'] for v in drc.get('ignored_checks',[])}
- assert not ignored & {'clearance','shorting_items','copper_edge_clearance','hole_clearance','items_not_allowed','courtyards_overlap','missing_courtyard','malformed_courtyard','footprint_type_mismatch','unconnected_items','via_dangling'}
+ assert not ignored & {'clearance','shorting_items','copper_edge_clearance','hole_clearance','items_not_allowed','courtyards_overlap','missing_courtyard','malformed_courtyard','footprint_type_mismatch','unconnected_items','via_dangling','silk_edge_clearance','silk_overlap','silk_over_copper','lib_footprint_mismatch'}
  out['drc']={'kicad':version,'unconnected':len(drc['unconnected_items']),'violations':dict(collections.Counter(v['type'] for v in drc['violations'])),'ignored_checks':drc.get('ignored_checks',[])}
  out['negative_controls']=negative_controls()
  out['source_hashes']=before

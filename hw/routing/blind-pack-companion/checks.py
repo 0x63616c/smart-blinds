@@ -8,6 +8,8 @@ sys.path.insert(0,str(ROOT/'tools'))
 from generate_schematics import board_graph
 import check_footprint_clearances as CLEARANCES
 from kicad_sexpr import children,one,parse,dumps,node,Atom
+sys.path.insert(0,str(HERE.parent/'carrier-finish'))
+import finish
 SOURCE=ROOT/'hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb'
 BOARD=HERE/'companion-routed.kicad_pcb';MECHANICAL=ROOT/'cad/parameters/retained-interfaces.json'
 
@@ -156,7 +158,7 @@ def verify_remaining_findings(report,path):
    assert uid in holes,'Purchased component courtyard missing'
    seen.append(uid)
   else:
-   assert finding['type'] in {'silk_edge_clearance','silk_over_copper'},'New route DRC failure: '+str(finding)
+   raise AssertionError('New route DRC failure: '+str(finding))
  assert len(seen)==4 and set(seen)==set(holes),'Mechanical courtyard finding set changed'
  return sorted(holes.values())
 
@@ -166,13 +168,18 @@ def main():
  record=json.loads((HERE/'route-record.json').read_text())
  assert sha(SOURCE)==record['canonical_pcb_sha256'] and sha(MECHANICAL)==record['mechanical_sha256'] and sha(BOARD)==record['routed_pcb_sha256']
  assert sha(HERE/'route.py')==record['route_source_sha256']
+ finish_hashes=finish.verify_libraries(HERE,SOURCE.parent/'fp-lib-table')
+ assert record['finish_dependencies']==finish_hashes
  start={str(p.relative_to(ROOT)):sha(p) for p in [SOURCE,MECHANICAL,BOARD,HERE/'route.py',HERE/'companion-routed.kicad_dru',HERE/'companion-routed.kicad_pro',HERE/'checks.py',ROOT/'hw/placement/footprint-clearances.json',ROOT/'tools/check_footprint_clearances.py',ROOT/'tools/complete_courtyards.py',ROOT/'hw/parts/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod',ROOT/'hw/parts/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod',ROOT/'hw/parts/blind-pack-features/WirePad18.kicad_mod',ROOT/'hw/parts/blind-pack-features/MountingHole_M3_3.4mm.kicad_mod']}
+ start.update(finish_hashes)
+ for p in [HERE/'fp-lib-table',HERE/'route-record.json',SOURCE.parent/'fp-lib-table']:
+  start[str(p.relative_to(ROOT))]=sha(p)
  geom=verify_geometry(BOARD);geom['via_solder_land_margin']=verify_via_solder_lands(pcbnew.LoadBoard(str(BOARD)));version,report=drc(BOARD,HERE/'drc.json')
  counts=dict(sorted(collections.Counter(x['type'] for x in report['violations']).items()))
  missing_mechanical=verify_remaining_findings(report,BOARD)
  assert not report['unconnected_items'],'Route remains unconnected'
  ignored={x['key'] for x in report.get('ignored_checks',[])}
- required={'clearance','shorting_items','copper_edge_clearance','hole_clearance','items_not_allowed','courtyards_overlap','missing_courtyard','malformed_courtyard','footprint_type_mismatch','unconnected_items'}
+ required={'clearance','shorting_items','copper_edge_clearance','hole_clearance','items_not_allowed','courtyards_overlap','missing_courtyard','malformed_courtyard','footprint_type_mismatch','unconnected_items','silk_edge_clearance','silk_overlap','silk_over_copper','lib_footprint_mismatch'}
  assert not ignored&required,'Required DRC category disabled'
  faults=[]
  if args.negative_tests:
@@ -209,6 +216,6 @@ def main():
  assert start=={k:sha(ROOT/k) for k in start},'Inputs changed during verification'
  result={'status':'EXPERIMENTAL: connected shape-checked companion route; physical/thermal/fabrication acceptance remains open','kicad_version':version,'source_hashes':start,
  'geometry':geom,'drc':{'all_severities':report['included_severities'],'remaining_violations':counts,'missing_courtyards_board_only_NPTH':missing_mechanical,'unconnected_items':0,'ignored_checks':sorted(ignored)},'negative_controls':faults,
- 'limits':['Six inherited silkscreen findings and four board-only NPTH missing-courtyard errors remain; no waivers were added.','Three unrelated KiCad checks retain their default disabled state; included severities do not enable disabled checks.','Covered B.Cu tracks use the mechanically allocated0.3mm spacer relief; printed tolerance and contact wear are unqualified.','Copper-loss estimates do not qualify current capacity, holders, fuse clearing, thermal behavior or battery assembly.','Canonical circuit and placement remain authority; only three nonpolar fuse rotations and documented rule-area deltas are approved.']}
+ 'limits':['Four board-only NPTH missing-courtyard errors remain; no waivers were added.','Three unrelated KiCad checks retain their default disabled state; included severities do not enable disabled checks.','Covered B.Cu tracks use the mechanically allocated0.3mm spacer relief; printed tolerance and contact wear are unqualified.','Copper-loss estimates do not qualify current capacity, holders, fuse clearing, thermal behavior or battery assembly.','Canonical circuit and placement remain authority; three nonpolar fuse rotations, documented rule-area deltas and narrow silkscreen edits are approved.']}
  (HERE/'checks.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:v for k,v in result.items() if k!='geometry'},indent=2))
 if __name__=='__main__':main()

@@ -28,11 +28,17 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All thirteen Design checks jobs passed for `cd44b28`](https://github.com/0x63616c/smart-blinds/actions/runs/39401944137),
-including the main-board via-to-solder-land margin, charger sensing/control extension, both mechanical assemblies and the updated material estimate,
-eighteen portable firmware targets with healthy-refresh retention, the C6 gauge adapter, and the separate
-Wi-Fi motion target's default/bench builds against the pinned real SDK.
-The enclosure, loading fixtures and charger routing [source-generated previews were published successfully](https://github.com/0x63616c/smart-blinds/actions/runs/39401944131).
+[All thirteen Design checks jobs passed for `1785d02`](https://github.com/0x63616c/smart-blinds/actions/runs/39403449107),
+including the corrected primary battery circuit and connected route, main-board
+solder-land clearances, both mechanical assemblies, material estimate, nineteen
+portable firmware targets and pinned real-SDK default/bench builds.
+The [source-generated previews were published successfully from `d71f231`](https://github.com/0x63616c/smart-blinds/actions/runs/39403773988),
+including the corrected battery route. Preview publication now revalidates its
+source inputs when another commit arrives during rendering.
+
+The subsequent carrier silkscreen cleanup passes both native routing checks locally,
+including all sixteen injected-fault controls. It preserves all copper, pads,
+polarity marks and mechanical geometry. Its own CI run is pending.
 
 The new [portable local ownership core](firmware/local-ownership.md) passes
 all eighteen host targets, the same suite under ASan/UBSan, 59 native transport,
@@ -76,8 +82,8 @@ findings are separate unfinished work. See the [clearance record](electrical/foo
 The [experimental companion route](../hw/routing/blind-pack-companion/README.md)
 preserves the circuit graph, footprint pads and mechanical anchors. It has 35
 segments, 12 vias and zero unconnected items in actual KiCad DRC, with no copper,
-edge, hole, courtyard-overlap or keepout failures. Six inherited silkscreen
-findings and four explicitly enabled mounting-hole courtyard errors remain.
+edge, hole, courtyard-overlap, silkscreen or keepout failures. Four explicitly
+enabled mounting-hole courtyard errors remain.
 Five injected failures are rejected, including a same-net via intrusion into a
 fuse solder land. All twelve vias retain a 0.20 mm drill-to-SMD-land margin. Covered inward-face tracks pass through a
 coordinated 0.3 mm spacer recess; current, temperature and insulation wear remain
@@ -93,14 +99,14 @@ The [six-pin circuit correction](electrical/pack-communication-clamps.md) places
 the three Zeners on the external side of their resistors and returns them to
 PACK−. The corrected frozen circuits and native 103-pin schematic pass locally;
 the standalone schematic retains twelve explicit external-interface ERC findings.
-Native PCB DRC retains eighteen silk findings and four exact board-only mounting
-hole courtyard findings. The nominal balanced-current copper estimate is 1.410 W
+Native PCB DRC retains four exact board-only mounting-hole courtyard findings;
+silkscreen and footprint-library comparisons pass. The nominal balanced-current copper estimate is 1.410 W
 at 4 A pack / 2 A per cell, excluding components and contacts; it is not a
 thermal result. Both carriers still need electrical, assembly and physical
 qualification; the main board remains partially routed. This battery checkpoint
 passes locally and in the native-circuit job of the [corrected CI run](https://github.com/0x63616c/smart-blinds/actions/runs/39403449107).
 The first run caught a stale source hash in the captured parts list; refreshing it
-changed no quantities or prices. The complete corrected run is still in progress.
+changed no quantities or prices. All thirteen jobs in the corrected run passed.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
 196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
@@ -147,7 +153,7 @@ receive immediate, single-use snapshots. A fresh parent build passes all ninetee
 portable targets; the source-bound checkpoint also passes three focused sanitizer
 targets, competing readers under ThreadSanitizer, nine restored-bug controls and
 both pinned real-SDK Wi-Fi builds. The nineteen-target suite and pinned builds
-also pass in the [corrected CI run](https://github.com/0x63616c/smart-blinds/actions/runs/39403449107); its remaining geometry jobs are still in progress.
+also pass in the [corrected CI run](https://github.com/0x63616c/smart-blinds/actions/runs/39403449107), along with all its geometry jobs.
 The C6 gate is compile-only: no application instantiates the mailbox yet, no
 qualification records are supplied and hardware permissions are unchanged.
 Runtime wiring, physical critical-section timing and sleep handoff remain.

@@ -7,6 +7,8 @@ HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
 sys.path.insert(0,str(ROOT/'tools'))
 from generate_schematics import board_graph
 from kicad_sexpr import children,parse,dumps
+sys.path.insert(0,str(HERE.parent/'carrier-finish'))
+import finish
 SOURCE=ROOT/'hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb'
 MECHANICAL=ROOT/'cad/parameters/retained-interfaces.json'
 NS=uuid.UUID('1e906c2a-0859-4c1f-b8df-85cd01877b2c')
@@ -135,6 +137,7 @@ def main():
  output=HERE/'primary-routed.kicad_pcb';pcbnew.SaveBoard(str(output),b)
  tree=parse(output.read_text().replace('${KIPRJMOD}/../../../parts/','${KIPRJMOD}/'+os.path.relpath(ROOT/'hw/parts',HERE)+'/'))
  assert not children(tree,'group')
+ finish.finish_board(tree,21)
  def semantic(v):
   if not isinstance(v,list):return v
   return [semantic(x) for x in v if not(isinstance(x,list) and x and x[0]=='uuid')]
@@ -152,13 +155,15 @@ def main():
  settings['board']['design_settings']['rules']['min_through_hole_diameter']=.25
  for name in ('missing_courtyard','footprint_type_mismatch'):settings['board']['design_settings']['rule_severities'][name]='error'
  project.write_text(json.dumps(settings,indent=2)+'\n')
- (HERE/'fp-lib-table').write_text((SOURCE.parent/'fp-lib-table').read_text().replace('${KIPRJMOD}/../../../parts/','${KIPRJMOD}/'+os.path.relpath(ROOT/'hw/parts',HERE)+'/'))
+ finish.write_libraries()
+ finish.write_table(SOURCE.parent/'fp-lib-table',HERE)
  assert sha(SOURCE)==before and sha(MECHANICAL)==mechanical_sha
  assert board_graph(SOURCE)==board_graph(output)
  record={'status':'EXPERIMENTAL connected routing candidate; see independent checks and unresolved layout/physical qualification gates',
  'canonical_pcb_sha256':before,'mechanical_sha256':mechanical_sha,'route_source_sha256':sha(Path(__file__)),'routed_pcb_sha256':sha(output),
  'route_dependency_hashes':{name:sha(HERE/name) for name in ('route.py','signals.py','gates.py','primary-routed.kicad_pro','primary-routed.kicad_dru')},
- 'load_route_labels':power_route_labels,'placement_deltas':MOVES,'additional_deltas':['Three nonpolar fuses 90→270 degrees','Native KiCad 10 serialization, stable unique UUIDs and equivalent relative library/model paths','Inward backing lands reject exposed features; no copper fills'],
+ 'finish_dependencies':finish.dependencies(),
+ 'load_route_labels':power_route_labels,'placement_deltas':MOVES,'additional_deltas':['Three nonpolar fuses 90→270 degrees','Native KiCad 10 serialization, stable unique UUIDs and equivalent relative library/model paths','Inward backing lands reject exposed features; no copper fills','Narrow fuse, holder, resistor and FET silkscreen edits; text/polarity, pads and all non-silk geometry unchanged; matching routed-project libraries'],
  'segments':serial,'routes':routes,'vias':vias,'current_planning_a':4,'branch_planning_a':2}
  (HERE/'route-record.json').write_text(json.dumps(record,indent=2)+'\n')
  print(f'Primary candidate route: {serial} segments, {len(vias)} vias; graph unchanged')

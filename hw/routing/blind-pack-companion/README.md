@@ -11,9 +11,11 @@ Red is outward-face copper; blue is inward-face copper. The companion view is
 mirrored horizontally relative to the shared assembly coordinates.
 
 The latest actual KiCad DRC has **zero unconnected items** and no copper,
-hole, edge, short, courtyard-overlap or keepout failures. Six inherited
-silkscreen findings remain: three at the fuse/board edge and three at holder
-holes. Enabling KiCad's normally disabled missing-courtyard check also reports
+hole, edge, short, courtyard-overlap or keepout failures. The
+[routed-project footprint cleanup](../carrier-finish/README.md) removes the six
+fuse/holder silkscreen findings without changing pads, connections or polarity
+marks. Matching local libraries also pass native footprint-library comparison.
+Enabling KiCad's normally disabled missing-courtyard check reports
 four errors on the board-only NPTH mounting holes H1–H4. Those exact mechanical
 features are retained and reported; all ten purchased-component courtyards are
 present and independently checked. The footprint-type check is also explicitly
@@ -89,7 +91,7 @@ restorer or atopile build. Those tools intentionally own unrouted circuit
 captures. `route-record.json` and `checks.json` record the exact source and
 mechanical hashes for this experiment.
 
-Remaining work includes silkscreen cleanup, fabrication/assembly review,
+Remaining work includes fabrication/assembly review,
 controlled pack commissioning, holder/contact heating, fuse interruption,
 cell matching/reverse insertion, failed-short protection, retained flexible
 raw links and insertion-fixture qualification. No manufacturing outputs or

@@ -4,18 +4,41 @@
   "source_hashes": {
     "hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb": "629badeee425db788ad6c0246485f998eafa8df5b7ab3ce49790716f5382a712",
     "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
-    "hw/routing/blind-pack-companion/companion-routed.kicad_pcb": "7a207586e9b9d2424f9d30c21f8511ecec0c5f9ead75571b568618d00ee49494",
-    "hw/routing/blind-pack-companion/route.py": "7b6487a86c1d46d4b37bab1bd3f7bb4ee216246972ec4287e22bcdd4f11f31fd",
+    "hw/routing/blind-pack-companion/companion-routed.kicad_pcb": "02dbc77a626813b8ac5e28308febaa3754ebfc64ed5c111155c114657b590c0b",
+    "hw/routing/blind-pack-companion/route.py": "abfa10d4e9c8c7e54718991cc27c9b92c6043eb3ba977882fbf7302e7de4bcba",
     "hw/routing/blind-pack-companion/companion-routed.kicad_dru": "71aff538f6f2edbdc91c9727aebe82def615cb7cb069d51d81fed469781c0250",
     "hw/routing/blind-pack-companion/companion-routed.kicad_pro": "92f42096681cfc65330e0f415788def7a50b57e0dbbcef66d212ff7fbe1d646d",
-    "hw/routing/blind-pack-companion/checks.py": "2cc1b2eb08998cd3b9de6e6fc2be91b99faa20976e8cfca834c5e31eff24f9ee",
+    "hw/routing/blind-pack-companion/checks.py": "a3a55761b71ebec0830cb0e8e22de9f67343ede0f909dd2d72b2971e70a40761",
     "hw/placement/footprint-clearances.json": "f5fffb4b6e49529e8dbec5e3b98c78563ebc29c7626633817ec1581193539fe0",
     "tools/check_footprint_clearances.py": "45ac9559578af2da2b2074eaaaba6200296e0ca2c0b49a6dea2c951f1e63bf8a",
     "tools/complete_courtyards.py": "f68a33e3d64e880d1593ce1e4a779a05faaf2c0b7e8df28ae945aeaabb4b4b00",
     "hw/parts/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod": "e5af29e62bdfd0218d06bf79d2cdd8c8a112e91f8dbb0caf41441d0ae474b01b",
     "hw/parts/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod": "f4a8bd7a25150fd2c69b395b27575ba2e8ac8a22fcac182efd7b9dcf7cf1c38f",
     "hw/parts/blind-pack-features/WirePad18.kicad_mod": "6197d4165079dbc9327970025e7c6c744721154bf95adf6a69e3bf163116c815",
-    "hw/parts/blind-pack-features/MountingHole_M3_3.4mm.kicad_mod": "e8b6dc9422809bac91e4e5ff4f9d3e79b0aa342c1510c9ed147e6be4b22ae155"
+    "hw/parts/blind-pack-features/MountingHole_M3_3.4mm.kicad_mod": "e8b6dc9422809bac91e4e5ff4f9d3e79b0aa342c1510c9ed147e6be4b22ae155",
+    "hw/routing/carrier-finish/finish.py": "bab28b022c92d6587a6ec4a5a0bc0add8f61182a5cafda85e5998a2334efafa1",
+    "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+    "hw/parts/blind-carrier/C0805.kicad_mod": "15eda01872ba699cd56ae1d0fb69d338f1d14bfef3efae0e84b71a6a7ac294fc",
+    "hw/routing/carrier-finish/footprints/blind-carrier/C0805.kicad_mod": "79bc4637541e50ebb381c790dc1d3af782096e2853467989f8a2e96f40a4a0e9",
+    "hw/routing/carrier-finish/footprints/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod": "8f3e568c61b6522f0fc57e982aeb4af5a764776b0a9d946c5c57b5e012e58835",
+    "hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": "62b25625d068207260c5d5fdc56aaf8c23a773ce23d7a8348e9c859a5c858219",
+    "hw/routing/carrier-finish/footprints/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": "6f15897854c5a1ea14e60454cf593373accb2bbb00a20dc4420e21cd5985c5ac",
+    "hw/parts/blind-carrier/R0402.kicad_mod": "549135283ac573d85bbd370205267cb47b87fbdcef196106a05befb0f9ee1123",
+    "hw/routing/carrier-finish/footprints/blind-carrier/R0402.kicad_mod": "7913bbaef56e62a9a78079016f9ad358b778c6883593c3478e2f6418e173420e",
+    "hw/parts/blind-carrier/R1206.kicad_mod": "488d3fef48614567c8e492938436d219c5edfe4ad90be16896320e8ef6103f97",
+    "hw/routing/carrier-finish/footprints/blind-carrier/R1206.kicad_mod": "ed7a8981bd1a23e76c3bb202c2350fc1959dc894d58bfbd6d6219486d962dc42",
+    "hw/parts/blind-carrier/R2512.kicad_mod": "5cb9e8205734d89909c95c9a13abcae0003e1d717bd14d604ad37de1d20246ee",
+    "hw/routing/carrier-finish/footprints/blind-carrier/R2512.kicad_mod": "89bdbdfd763f43490bd7122f57f00de8810a8126fb16f407ff2857e8f3a79c06",
+    "hw/parts/blind-carrier/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod": "55d2ca4bb160d8433e33eb7917721a254cb53b9d3d825163aea40f2e29e2c61e",
+    "hw/routing/carrier-finish/footprints/blind-carrier/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod": "069be795f79f060327fdef0de9f00852fc6084d51bf33fb153d0cd282e9d4702",
+    "hw/parts/blind-control-io/R0402.kicad_mod": "2740e34dbd19e0701c54f21e15b58421837cd61adb3b719f811f01cd4537fda7",
+    "hw/routing/carrier-finish/footprints/blind-control-io/R0402.kicad_mod": "bee8bc67da317220c399fd739cbaaf59c286901ee861df93fda48d923c2593f4",
+    "hw/parts/blind-power/R0402.kicad_mod": "446335f0841b439964ade9805cd9aae5f48babfeea24598507567b1fb72a0f1d",
+    "hw/routing/carrier-finish/footprints/blind-power/R0402.kicad_mod": "e7aad23929dc30c234f5e6cfa18142e54af9e8db25356a673c13c3e2f8fdb7ff",
+    "hw/routing/carrier-finish/footprints/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod": "0f7554979ffee029f031c55ff7f197ea99d5a4818ad7965e58326c25262648fb",
+    "hw/routing/blind-pack-companion/fp-lib-table": "bdbf9f3a649acd441434901e275ba519080f9e6370ac4ae45c21d0e74be96fb5",
+    "hw/routing/blind-pack-companion/route-record.json": "22f47c62e3ff89f51805759431e0512a5f119cb90d81c70bba29941917247b75",
+    "hw/layouts/blind-pack-companion/companion-test/fp-lib-table": "c7b4f997b15789296aebd4ee8c14b529b9f0e6c85939c233a0f415dca87a1f10"
   },
   "geometry": {
     "footprints": 14,
@@ -541,9 +564,7 @@
       "exclusion"
     ],
     "remaining_violations": {
-      "missing_courtyard": 4,
-      "silk_edge_clearance": 3,
-      "silk_over_copper": 3
+      "missing_courtyard": 4
     },
     "missing_courtyards_board_only_NPTH": [
       "H1",
@@ -566,10 +587,10 @@
     "purchased_component_missing_courtyard_not_exempted"
   ],
   "limits": [
-    "Six inherited silkscreen findings and four board-only NPTH missing-courtyard errors remain; no waivers were added.",
+    "Four board-only NPTH missing-courtyard errors remain; no waivers were added.",
     "Three unrelated KiCad checks retain their default disabled state; included severities do not enable disabled checks.",
     "Covered B.Cu tracks use the mechanically allocated0.3mm spacer relief; printed tolerance and contact wear are unqualified.",
     "Copper-loss estimates do not qualify current capacity, holders, fuse clearing, thermal behavior or battery assembly.",
-    "Canonical circuit and placement remain authority; only three nonpolar fuse rotations and documented rule-area deltas are approved."
+    "Canonical circuit and placement remain authority; three nonpolar fuse rotations, documented rule-area deltas and narrow silkscreen edits are approved."
   ]
 }
