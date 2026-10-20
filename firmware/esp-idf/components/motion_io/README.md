@@ -123,3 +123,11 @@ and pinned v5.5.4 [C6 MCPWM LL](https://github.com/espressif/esp-idf/blob/v5.5.4
 [PCNT driver](https://github.com/espressif/esp-idf/blob/v5.5.4/components/esp_driver_pcnt/src/pulse_cnt.c),
 [GPIO driver](https://github.com/espressif/esp-idf/blob/v5.5.4/components/esp_driver_gpio/src/gpio.c)
 and [C6 register headers](https://github.com/espressif/esp-idf/tree/v5.5.4/components/soc/esp32c6/register/soc).
+
+The portable [motion session](../../../../docs/firmware/motion-session.md) now
+accepts this adapter through `MotionIo` and `CounterOrigin`. The inline
+`motion_observation()` preserves the source sequence/time, actual count-valid
+flag and current reading, and combines the two raw buttons into immediate STOP.
+It does not generate pack readiness, a physical reference or clock approval.
+No application instantiates the session; this interface addition awaits its
+own fresh pinned C6 cross-build.

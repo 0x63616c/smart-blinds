@@ -7,6 +7,7 @@ namespace blinds {
 // A future commissioning record supplies the explicit bench qualification.
 struct BenchMotionProfile {
     bool bench_qualified=false;
+    bool holding_qualified=false; // Measured no backdrive/chain slip after settled coast.
     std::uint64_t qualification_id=0;
     double max_duty=.5, max_count_rate=20000, max_fabric_rate=30;
     double kp=.0001, ki=.0002, feedforward=.00005;
@@ -46,7 +47,7 @@ public:
 class MotionExecutor {
 public:
     static constexpr std::uint64_t io_budget_us=100, cycle_max_us=20000, cycle_budget_us=500;
-    enum class State { idle, encoder_warming, sensing, arming, running, fault };
+    enum class State { idle, encoder_warming, sensing, arming, running, settling, fault };
     enum class Fault { none, unqualified, command, evidence, clock, io, heartbeat, output, reversal, stalled };
     MotionExecutor(MotionIo& io,Calibration calibration,BenchMotionProfile profile,std::uint64_t boot);
     MotionExecutor(const MotionExecutor&)=delete;
@@ -58,7 +59,11 @@ public:
     bool arm(const MotionEvidence& evidence);
     bool update(const Output& output,const MotionEvidence& evidence);
     // The owning task must stop and inspect the result before backend teardown.
-    bool stop(); // Request HIGH first; stops counter before gating encoder rail.
+    bool stop(); // Immediate OFF; caller must not assume the final count is stationary.
+    bool begin_settling(); // Motor OFF immediately; keep encoder awake, no more WDI.
+    bool poll_settling(const MotionEvidence& evidence); // True only after quiet OFF + final teardown.
+    std::optional<double> settled_count() const { return settled_count_; }
+    bool qualified() const { return qualified_; }
     State state() const { return state_; }
     Fault fault() const { return fault_; }
     double applied_duty() const { return applied_duty_; }
@@ -87,6 +92,8 @@ private:
     std::uint64_t last_cycle_us_=0, last_sequence_=0, last_sample_us_=0, reverse_since_=0, last_progress_us_=0;
     double last_count_=0, integral_=0, applied_duty_=0;
     int direction_=0;
+    std::uint64_t settling_started_us_=0, quiet_since_us_=0;
+    std::optional<double> settled_count_;
     bool qualified_=false, touched_=false, reversing_=false;
     State state_=State::idle;
     Fault fault_=Fault::none;

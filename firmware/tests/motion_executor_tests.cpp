@@ -252,4 +252,63 @@ void controller_plant() {
         expect(completed,"closed-loop plant did not finish or fault within budget");
     }
 }
-int main() { slope(); lifecycle(); transfer_failures(); evidence_faults(); output_faults(); reversal_and_stall(); controller_plant(); std::cout<<"motion lifecycle, ordered I/O, PI/reversal, closed-loop plant and fault tests passed\n"; }
+void controlled_settle() {
+    auto p=bench_profile(); p.holding_qualified=true;
+    Fixture f(p); f.running();
+    const auto pulses=f.io.pulses;
+    expect(f.executor.begin_settling(),"controlled settle rejected");
+    expect(f.io.request_high && f.io.duty==0 && f.io.counter && f.io.encoder && f.io.awake,"settle did not inhibit motor while retaining encoder");
+    for(int i=0;i<5;++i) {
+        f.io.time+=10000; f.count+=1;
+        expect(!f.executor.poll_settling(f.evidence()) && !f.executor.settled_count(),"moving coast marked stationary");
+    }
+    bool done=false;
+    for(int i=0;i<12 && !done;++i) {
+        f.io.time+=10000; auto e=f.evidence(); e.stop_pressed=true;
+        done=f.executor.poll_settling(e);
+    }
+    expect(done && f.executor.settled_count()==f.count,"quiet final count missing");
+    expect(f.io.pulses==pulses && !f.io.counter && !f.io.encoder && !f.io.awake,"settling fed watchdog or leaked resources");
+    Fixture unqualified; unqualified.running();
+    expect(!unqualified.executor.begin_settling() && unqualified.io.request_high,"unqualified holding claimed retained reference");
+    Fixture moving(p); moving.running(); expect(moving.executor.begin_settling(),"settle failed");
+    for(int i=0;i<50 && moving.executor.state()==MotionExecutor::State::settling;++i) {
+        moving.io.time+=10000; moving.count+=1; moving.executor.poll_settling(moving.evidence());
+    }
+    expect(moving.executor.state()==MotionExecutor::State::fault && !moving.executor.settled_count() && !moving.io.counter,"unending coast accepted");
+    Fixture stale(p); stale.running(); expect(stale.executor.begin_settling(),"settle failed");
+    stale.io.time+=10000; auto e=stale.evidence(); e.encoder_epoch=2;
+    expect(!stale.executor.poll_settling(e) && stale.executor.state()==MotionExecutor::State::fault,"wrong encoder epoch accepted during settle");
+}
+void settling_failures() {
+    auto p=bench_profile(); p.holding_qualified=true;
+    for(unsigned operation=1;operation<=4;++operation) {
+        for(bool slow:{false,true}) {
+            Fixture f(p); f.running(); f.io.calls=0;
+            if(slow) f.io.slow_at=operation; else f.io.fail_at=operation;
+            expect(!f.executor.begin_settling() && f.executor.state()==MotionExecutor::State::fault &&
+                !f.executor.settled_count() && f.io.request_high && !f.io.counter,"settling inhibit failure preserved reference proof");
+        }
+    }
+    for(unsigned operation=1;operation<=7;++operation) {
+        Fixture f(p); f.running(); expect(f.executor.begin_settling(),"settle setup failed");
+        for(int i=0;i<9;++i) { f.io.time+=10000; f.executor.poll_settling(f.evidence()); }
+        f.io.calls=0; f.io.fail_at=operation; f.io.log.clear(); f.io.time+=10000;
+        expect(!f.executor.poll_settling(f.evidence()) && f.executor.state()==MotionExecutor::State::fault &&
+            !f.executor.settled_count() && f.io.log.size()==7,"settled teardown failure claimed proof/skipped cleanup");
+    }
+    for(int kind=0;kind<7;++kind) {
+        Fixture f(p); f.running(); expect(f.executor.begin_settling(),"settle setup failed"); f.io.time+=10000;
+        auto e=f.evidence();
+        switch(kind) {
+        case 0:e.reference_valid=false;break; case 1:e.sequence=1;break;
+        case 2:e.sampled_us=f.io.time-10001;break; case 3:e.power_ready=false;break;
+        case 4:e.driver_fault=true;break; case 5:e.count=4000;break; case 6:f.io.time+=20001;break;
+        }
+        expect(!f.executor.poll_settling(e) && f.executor.state()==MotionExecutor::State::fault &&
+            !f.executor.settled_count() && !f.io.counter,"invalid settle evidence retained position proof");
+    }
+}
+
+int main() {
+    controlled_settle(); settling_failures(); slope(); lifecycle(); transfer_failures(); evidence_faults(); output_faults(); reversal_and_stall(); controller_plant(); std::cout<<"motion lifecycle, ordered I/O, PI/reversal, closed-loop plant and fault tests passed\n"; }

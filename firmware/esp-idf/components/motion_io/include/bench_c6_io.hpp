@@ -1,5 +1,5 @@
 #pragma once
-#include "smart_blinds/motion_executor.hpp"
+#include "smart_blinds/motion_session.hpp"
 #include "smart_blinds/port_checks.hpp"
 #include "smart_blinds/board_io.hpp"
 #include "driver/gpio.h"
@@ -20,7 +20,11 @@ struct FastInputs {
 // Default uninstantiated. Even an explicit initialize() requires both the
 // compile-time bench option and a qualified profile with measured polarities.
 // One task owns all calls/lifetime; never use alongside DisabledC6Io.
-class BenchC6Io final : public MotionIo {
+inline FastObservation motion_observation(const FastInputs& f) {
+    return {f.valid,f.count_valid,f.driver_fault,f.up_pressed || f.down_pressed,
+        f.sequence,f.sampled_us,f.encoder_epoch,f.count,f.current_a};
+}
+class BenchC6Io final : public MotionIo,public CounterOrigin {
 public:
     explicit BenchC6Io(port::Profile profile) : profile_(profile) {}
     ~BenchC6Io() { shutdown(); }
@@ -28,7 +32,7 @@ public:
     BenchC6Io& operator=(const BenchC6Io&)=delete;
     bool initialize();
     bool shutdown();
-    bool set_counter_origin(std::uint64_t epoch,double normalized_count);
+    bool set_counter_origin(std::uint64_t epoch,double normalized_count) override;
     FastInputs sample_fast(); // ADC/PCNT source sampling, <=1 ms checked budget.
     bool faulted() const { return fault_; }
     esp_err_t last_error() const { return last_error_; }

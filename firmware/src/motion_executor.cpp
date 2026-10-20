@@ -58,6 +58,7 @@ bool MotionExecutor::safe_off() {
     return ok;
 }
 bool MotionExecutor::fail(Fault fault) {
+    settled_count_.reset();
     state_=State::fault; fault_=fault;
     if(!safe_off()) fault_=Fault::io;
     return false;
@@ -69,6 +70,7 @@ bool MotionExecutor::open_sensing(std::uint64_t boot,std::uint64_t command,const
     if(!time()) return false;
     if(!power_valid(power)) return fail(Fault::evidence);
     command_=last_command_=command;
+    settled_count_.reset();
     touched_=true;
     if(!operation([&]{return io_.request_n(true);}) || !operation([&]{return io_.coast();}) ||
        !operation([&]{return io_.wdi_high();}) || !operation([&]{return io_.charge_off();}) ||
@@ -165,7 +167,44 @@ bool MotionExecutor::update(const Output& output,const MotionEvidence& e) {
     last_cycle_us_=last_now_; last_sequence_=e.sequence; last_sample_us_=e.sampled_us; last_count_=e.count;
     return true;
 }
+bool MotionExecutor::begin_settling() {
+    if(state_!=State::arming && state_!=State::running) return false;
+    if(!profile_.holding_qualified) return fail(Fault::unqualified);
+    if(!time()) return false;
+    // Turn the motor/watchdog permission OFF before cancelling the software
+    // heartbeat. Counting continues; this state can never issue PWM or WDI.
+    if(!operation([&]{return io_.request_n(true);}) || !operation([&]{return io_.coast();}) ||
+       !operation([&]{return io_.wdi_high();}) || !operation([&]{return io_.charge_off();})) return fail(Fault::io);
+    heartbeat_.stop(last_now_);
+    if(heartbeat_.state()!=smart_blinds::Heartbeat::State::idle) return fail(Fault::heartbeat);
+    applied_duty_=0; integral_=0; direction_=0; reversing_=false;
+    settling_started_us_=quiet_since_us_=last_now_;
+    last_cycle_us_=last_now_;
+    settled_count_.reset();
+    state_=State::settling;
+    return true;
+}
+bool MotionExecutor::poll_settling(const MotionEvidence& evidence) {
+    if(state_!=State::settling) return false;
+    if(!time()) return false;
+    // A held local STOP is allowed during an already disabled coast. All other
+    // live health, sample/epoch and timing checks still apply. No lease is needed
+    // to keep observing an inhibited motor, and none is extended here.
+    auto e=evidence; e.stop_pressed=false;
+    if(!power_valid(e) || !e.reference_valid || e.encoder_epoch!=command_ || e.calibration_revision!=calibration_.revision() ||
+       e.sequence<=last_sequence_ || e.sampled_us<=last_sample_us_ || !calibration_.height_at(e.count) ||
+       last_now_<=last_cycle_us_ || last_now_-last_cycle_us_>cycle_max_us) return fail(Fault::evidence);
+    if(last_now_-settling_started_us_>=500000) return fail(Fault::stalled);
+    if(e.count!=last_count_ || std::abs(e.current_a)>profile_.reversal_current_a) quiet_since_us_=last_now_;
+    last_count_=e.count; last_sequence_=e.sequence; last_sample_us_=e.sampled_us; last_cycle_us_=last_now_;
+    if(last_now_-quiet_since_us_<100000) return false;
+    const auto final_count=e.count;
+    if(!stop()) return false;
+    settled_count_=final_count;
+    return true;
+}
 bool MotionExecutor::stop() {
+    settled_count_.reset();
     const bool was_fault=state_==State::fault;
     const bool ok=safe_off();
     const auto now=io_.now_us();
