@@ -159,6 +159,17 @@ Four ICs and ten passive parts. All 49 physical pin connections checked against 
 </details>
 
 <details>
+<summary>Protected 3S2P carrier — native KiCad circuit study</summary>
+
+33 parts and 103 physical pins checked, including three-cell sensing and six branch fuses. Fifteen explicit ERC boundary findings. Holder, thermistor, connector and secondary protection integration remain open; no battery fault safety or fabrication approval is implied.
+
+![Protected 3S2P carrier — native KiCad circuit study](docs/generated/carrier-schematic/carrier-test.svg)
+
+[Source](hw/schematics/blind-carrier/carrier-test.kicad_sch) · [Generated files](docs/generated/carrier-schematic/)
+
+</details>
+
+<details>
 <summary>Compact enclosure — provisional exterior</summary>
 
 Earlier study, before PCB-mounted holders and independent shaft support. Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.
