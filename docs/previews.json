@@ -126,7 +126,8 @@
         "hw/routing/blind-main/route-record.json",
         "hw/routing/blind-main/placement.json",
         "hw/routing/blind-main/project-template.json",
-        "hw/routing/blind-main/main-routed.kicad_pro"
+        "hw/routing/blind-main/main-routed.kicad_pro",
+        "hw/routing/blind-main/usb_input.py"
       ],
       "image_size": [
         1500,
@@ -139,7 +140,7 @@
       ],
       "zoom": 0.83,
       "collapsed": false,
-      "role": "Experimental manual power-route checkpoint with 222 segments, 72 vias and 24 checked physical connection groups. Circuit identities, 17 anchors and 13 keepouts are preserved. 364 disconnected items and documented footprint/silkscreen findings remain; electrical, thermal and physical qualification is unfinished."
+      "role": "Experimental four-layer route with 344 segments and 100 vias: local charger, motor, regulator, radio supply and USB power/protection paths. 38 physical connection groups and ten injected-fault checks pass; 322 unconnected items remain. USB data, enable and other control routing, current/thermal review and final manufacturing checks are unfinished."
     },
     {
       "id": "companion-routed",

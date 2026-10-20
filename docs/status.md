@@ -15,7 +15,7 @@ followed by an eight-unit build only after their tests pass.
 |---|---|---|
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | Native eleven-sheet schematic and partial four-layer power route; 222 segments, 72 vias, 24 physical connection groups, preserved circuit and mechanical anchors | 364 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
+| Main controller | Native eleven-sheet schematic and partial four-layer power route; 344 segments, 100 vias, 38 physical connection groups, preserved circuit and mechanical anchors | 322 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete primary/main routing, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session and settling; source-timed faults and supervised motor-off path | Physical reference/commissioning, final hardware qualification, idle local-button wake and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
@@ -28,14 +28,13 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All ten Design checks jobs passed for `64d6147`](https://github.com/0x63616c/smart-blinds/actions/runs/39381503463),
-including the primary-carrier current/Kelvin checks, 35 retained-enclosure
-intersection checks and the source-bound print budget. Its source-generated
-[design previews also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39381503393).
-The newer Wi-Fi evaluation CI passed ten of eleven jobs; its C6 build stopped
-at a dependency-ownership check before compilation. A narrowly scoped fix passes
-a reproduced container-ownership build and rejects modified dependency sources.
-The corrected source and new main routing checkpoint await their own CI.
+[All eleven Design checks jobs passed for `0729b72`](https://github.com/0x63616c/smart-blinds/actions/runs/39384834583),
+including the default-disabled Wi-Fi target and isolated battery-continuity model.
+The preceding main-power checkpoint `37c3d23` also passed all eleven jobs, and its
+[source-generated previews passed](https://github.com/0x63616c/smart-blinds/actions/runs/39383847414).
+The container dependency-ownership failure is fixed; exact source pins and modified-source
+rejection remain enforced. The USB routing extension passes local native checks;
+it awaits its own CI checkpoint.
 
 The retained-enclosure artifact contains 35 named empty-intersection checks, a
 positive cleat-capture control and ten closed printable mesh types. Its seven CAD
@@ -83,10 +82,10 @@ primary and main routes remain unfinished.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
 196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
-reservations. Its 222 segments and 72 vias connect 24 checked copper groups,
-including local charger/motor/regulator paths, radio power and ground return.
-Six injected geometric/copper failures are rejected. Actual DRC retains 364
-unconnected items, 261 silk/text findings, four library differences and five
+reservations. Its 344 segments and 100 vias connect 38 checked copper groups,
+including local charger/motor/regulator paths, radio power, USB input/CC/bypass
+connections and ground return. Ten injected geometric/copper failures are rejected.
+Actual DRC retains 322 unconnected items, 260 silk/text findings, four library differences and five
 footprint-type findings. This is a reproducible partial checkpoint; critical-loop,
 current/thermal, USB, supervisory and full-routing work remain.
 
@@ -102,8 +101,16 @@ awake periods; its default image joins no network, and configured outputs stay
 held OFF. It has no motion worker or physical qualification. Automatic light
 sleep leads the radio comparison, with Thread retained as a separate target.
 The radio-only 1.5-second preflight aim does not yet include the current
-2.8–4-second temperature-monitor warmup; button-to-motion timing is under review.
-These new sources await their own CI checkpoint.
+2.8–4-second temperature-monitor warmup. A separately tested, default-unqualified
+[gauge continuity model](firmware/gauge-continuity.md) preserves measurement history
+across qualified MCU light sleep while requiring a complete fresh guarded read.
+The preceding continuity checkpoint has thirteen passing portable test targets
+in CI. Its new read-only C6 bus adapter brings the local suite to sixteen passing
+targets, including task/epoch loss at all 52 read positions and both disabled and
+enabled build gates. Pinned C6 builds also pass locally; CI now compiles the
+normally excluded attachment branch separately. No application instantiates the
+adapter. Local response and physical conversion continuity still require
+qualification.
 
 The [host group bridge](firmware/thread-group-bridge.md) joins the coordinator to
 seven real localhost DTLS sessions with synthetic motors and calibration records.

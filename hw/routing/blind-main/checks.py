@@ -124,6 +124,19 @@ def verify_copper(b):
    ('motor.ic',9),('motor.ic',15),('motor.ic',17),('motor.c_vm',2),('motor.c_bulk',2),('motor.r_in1',2),('motor.r_in2',2),('motor.r_sleep',2),('motor.r_current',2),('motor.c_ref',2),('motor.r_ref_lo',2),
    ('logic_supply.ic',4),('logic_supply.c_input_fast',2),('logic_supply.c_input',2),('logic_supply.c_input2',2),('logic_supply.c_output1',2),('logic_supply.c_output2',2),('logic_supply.c_output_fast',2),('logic_supply.c_softstart',2),('logic_supply.r_mode',2),
    ('controller.mcu',1),('controller.mcu',28),*[("controller.mcu",n) for n in range(29,38)],('controller.c_bulk',2),('controller.c_bypass',2)],
+ [('usb.pd',21),('usb.c_1v2',1)], [('usb.pd',23),('usb.c_2v7',1)],
+ [('usb.pd',24),('usb.c_vdd',1),('usb.d_vdd',1)],
+ [('usb.efuse',7),('usb.c_slew',1)],[('usb.efuse',9),('usb.r_limit',1)],
+ [('usb.efuse',1),('usb.r_uv_bottom',1)],[('usb.efuse',2),('usb.r_ov_bottom',1)],
+ [('controller.mcu',14),('controller.r_dp',1)],[('controller.mcu',13),('controller.r_dm',1)],
+ [('usb.connector','A4B9'),('usb.connector','B4A9'),('usb.efuse',5),('usb.c_raw',1),('usb.tvs_vbus',1),('usb.d_vdd',2)],
+ [('usb.efuse',6),('charger.c_input2',1)],
+ [('usb.connector','A5'),('usb.tvs_cc',1),('usb.pd',1),('usb.pd',2)],
+ [('usb.connector','B5'),('usb.tvs_cc',2),('usb.pd',4),('usb.pd',5)],
+ [('usb.efuse',8),('usb.r_uv_bottom',2),('usb.r_ov_bottom',2),('usb.c_slew',2),('usb.r_limit',2),
+  ('usb.c_raw',2),('usb.tvs_vbus',2),('charger.c_input2',2),('usb.pd',10),('usb.pd',22),('usb.pd',25),
+  ('usb.c_vdd',2),('usb.c_1v2',2),('usb.c_2v7',2),('usb.tvs_cc',3),('controller.usb_esd',1),('controller.usb_esd',2),('controller.usb_esd',4),
+  *[('usb.connector',n) for n in ('1','2','3','4','A1B12','B1A12')]],
  ]
  cache={}
  for path in paths:
@@ -140,7 +153,13 @@ def verify_copper(b):
   close_vias=[via_items[k[1]] for k in group if k[0]=='route' and k[1] in via_items and (via_items[k[1]].GetPosition()-cap.GetPosition()).EuclideanNorm()<=pcbnew.FromMM(2.5)]
   assert len(close_vias)>=2,'TI minimum two nearby ground vias not met: '+address
   bypass_returns[address]=len(close_vias)
- return {'connected_path_groups':len(paths),'ground_fill_islands':1,'charger_bypass_ground_vias':bypass_returns,'segments':sum(not isinstance(t,pcbnew.PCB_VIA) for t in b.GetTracks()),'vias':sum(isinstance(t,pcbnew.PCB_VIA) for t in b.GetTracks())}
+ local=copper_components(b,'lv',include_planes=False)
+ group=next(g for g in local if any(k[:3]==('pad','usb.efuse','8') for k in g))
+ via_ids={t.m_Uuid.AsString() for t in b.GetTracks() if isinstance(t,pcbnew.PCB_VIA)}
+ local_vias=[k for k in group if k[0]=='route' and k[1] in via_ids]
+ assert len(local_vias)==1,'Quiet analog return must meet system ground at one via'
+ assert set(k[1:3] for k in group if k[0]=='pad')=={('usb.efuse','8'),('usb.r_uv_bottom','2'),('usb.r_ov_bottom','2'),('usb.c_slew','2'),('usb.r_limit','2')},'Power/other returns enter quiet analog ground'
+ return {'connected_path_groups':len(paths),'ground_fill_islands':1,'charger_bypass_ground_vias':bypass_returns,'usb_quiet_ground_vias':len(local_vias),'segments':sum(not isinstance(t,pcbnew.PCB_VIA) for t in b.GetTracks()),'vias':sum(isinstance(t,pcbnew.PCB_VIA) for t in b.GetTracks())}
 
 def run_drc(path):
  cli=shutil.which('kicad-cli') or '/Applications/KiCad.app/Contents/MacOS/kicad-cli'
@@ -190,7 +209,7 @@ def main():
     try:verify_geometry(changed)
     except AssertionError:faults.append(mode+'_rejected')
     else:raise AssertionError('Accepted injected geometry fault: '+mode)
-   for mode in ['cut_module_supply','remove_return_plane','cut_regn_bypass_return']:
+   for mode in ['cut_module_supply','remove_return_plane','cut_regn_bypass_return','cut_pd_bypass','cut_usb_input','remove_usb_quiet_return','join_usb_quiet_to_input_return']:
     bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
     if mode=='remove_return_plane':
      zone=next(z for z in bad.Zones() if not z.GetIsRuleArea());removed_items.append(zone);bad.Remove(zone)
@@ -198,9 +217,22 @@ def main():
      cap=next(p for p in parts(bad)['charger.c_regn'].Pads() if p.GetNumber()=='2')
      selected=[t for t in bad.GetTracks() if not isinstance(t,pcbnew.PCB_VIA) and (t.GetStart()==cap.GetPosition() or t.GetEnd()==cap.GetPosition())];assert len(selected)==2
      for t in selected:removed_items.append(t);bad.Remove(t)
-    else:
+    elif mode=='cut_module_supply':
      selected=[t for t in bad.GetTracks() if not isinstance(t,pcbnew.PCB_VIA) and t.GetLayer()==pcbnew.In2_Cu and abs(pcbnew.ToMM(t.GetLength())-16.19)<.001];assert len(selected)==1
      removed_items.append(selected[0]);bad.Remove(selected[0])
+    elif mode=='cut_pd_bypass':
+     cap=next(p for p in parts(bad)['usb.c_1v2'].Pads() if p.GetNumber()=='1')
+     selected=[t for t in bad.GetTracks() if not isinstance(t,pcbnew.PCB_VIA) and (t.GetStart()==cap.GetPosition() or t.GetEnd()==cap.GetPosition())];assert len(selected)==1
+     removed_items.append(selected[0]);bad.Remove(selected[0])
+    elif mode=='cut_usb_input':
+     selected=[t for t in bad.GetTracks() if not isinstance(t,pcbnew.PCB_VIA) and t.GetLayer()==pcbnew.B_Cu and {tuple(mm(t.GetStart())),tuple(mm(t.GetEnd()))}=={(126.6,169.2),(124.8,169.2)}];assert len(selected)==1
+     removed_items.append(selected[0]);bad.Remove(selected[0])
+    elif mode=='remove_usb_quiet_return':
+     selected=[t for t in bad.GetTracks() if isinstance(t,pcbnew.PCB_VIA) and mm(t.GetPosition())==[128.4,166.23]];assert len(selected)==1
+     removed_items.append(selected[0]);bad.Remove(selected[0])
+    elif mode=='join_usb_quiet_to_input_return':
+     fp=parts(bad);a=next(p for p in fp['usb.efuse'].Pads() if p.GetNumber()=='8');c=next(p for p in fp['usb.c_raw'].Pads() if p.GetNumber()=='2')
+     bridge=pcbnew.PCB_TRACK(bad);bridge.SetStart(a.GetPosition());bridge.SetEnd(c.GetPosition());bridge.SetLayer(pcbnew.F_Cu);bridge.SetWidth(pcbnew.FromMM(.2));bridge.SetNetCode(a.GetNetCode());bad.Add(bridge)
     try:verify_copper(bad)
     except AssertionError:faults.append(mode+'_rejected')
     else:raise AssertionError('Accepted physical copper fault: '+mode)
