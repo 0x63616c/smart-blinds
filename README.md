@@ -72,7 +72,7 @@ The cover and cassette lid are separated to show access. Two integral cleats and
 
 ### Integrated controller — partial power routing
 
-Experimental four-layer route with 457 segments and 124 vias: local charger, motor, regulator, radio and USB power/control paths. 60 physical connection groups and fourteen injected-fault checks pass; 292 unconnected items remain. USB data/factory access, remaining current/signal routes, thermal review and manufacturing checks are unfinished.
+Experimental four-layer route with 537 segments and 162 vias: local charger, motor, regulator, radio and USB power/control paths and charger capacitor banks. 64 physical connection groups and nineteen injected-fault checks pass; 275 unconnected items remain. USB data/factory access, remaining current/signal routes, thermal review and manufacturing checks are unfinished.
 
 ![Integrated controller — partial power routing](docs/generated/main-power-route/assembly.png)
 
