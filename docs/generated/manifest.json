@@ -1,11 +1,11 @@
 {
   "schema": 1,
-  "source_commit": "25c4c01d7996e8565c2d053e6a31b74a0ba00b70",
+  "source_commit": "97ed5b7f8a36fa810f69b51b2fab1e64366700fb",
   "tools": {
     "kicad": "10.0.7",
     "openscad": "OpenSCAD version 2021.01"
   },
-  "manifest_sha256": "5945f598ad9b5c84a2cfeaa92a53ba60a95462bf7a8dded407787cd8158ae5e3",
+  "manifest_sha256": "0d7f382c2171df007694a67e8be68eaca4ac38dac5b1f7c5aa1ada022d90cb09",
   "renderer_sha256": "a21ec1f19388e517a7ce19fc41ebe39f7be6143eee9f25f58fdd99b948176a43",
   "validation": "preview generation only; no physical validation",
   "designs": [
@@ -14,11 +14,12 @@
       "source": "cad/source/compact_retained.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_retained.py": "d73e4a8bac0063a71de623d0fb4887a9144f3c096a7e86b573b5b0ebf5097d2b",
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+        "cad/build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
         "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
-        "cad/source/compact_retained.scad": "8d39567e754762c298c0a206bc7198f1c15fc4d824d9d313095d1e69c0e6954f",
+        "cad/source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+        "cad/source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
         "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
@@ -35,11 +36,12 @@
       "source": "cad/source/compact_retained.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_retained.py": "d73e4a8bac0063a71de623d0fb4887a9144f3c096a7e86b573b5b0ebf5097d2b",
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+        "cad/build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
         "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
-        "cad/source/compact_retained.scad": "8d39567e754762c298c0a206bc7198f1c15fc4d824d9d313095d1e69c0e6954f",
+        "cad/source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+        "cad/source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
         "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
@@ -47,7 +49,7 @@
       "outputs": [
         {
           "path": "compact-holder-assembly/assembly.png",
-          "sha256": "2adb9563e724b392f0a287b57851b9a6bd91aa0a73879653c9e8eccfa5ac313a"
+          "sha256": "93392c471fbd667cc866c2406afb65200f4e0039976f74ffb322713026d220e0"
         }
       ]
     },
@@ -56,11 +58,12 @@
       "source": "cad/source/compact_retained.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_retained.py": "d73e4a8bac0063a71de623d0fb4887a9144f3c096a7e86b573b5b0ebf5097d2b",
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+        "cad/build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
         "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
-        "cad/source/compact_retained.scad": "8d39567e754762c298c0a206bc7198f1c15fc4d824d9d313095d1e69c0e6954f",
+        "cad/source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+        "cad/source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
         "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
@@ -68,7 +71,7 @@
       "outputs": [
         {
           "path": "compact-holder-exploded/assembly.png",
-          "sha256": "68102268873df2d0b9e27d25cf1f7649294d110788b6acdda06585e9390fdf95"
+          "sha256": "99654a58cf4c2db25afa46a7967bcc54a4449ccbf8d29c05487b456614623dc6"
         }
       ]
     },
@@ -76,7 +79,7 @@
       "id": "main-controller-placement",
       "source": "hw/layouts/blind-main/main-test/main-test.kicad_pcb",
       "inputs_sha256": {
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
         "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "ba633546b9834325b132ba6cf606e7b5bb5817b4b9ca7f4ac7568eda448de4f5",
         "hw/placement/blind-main/placement.json": "624cb12716d69e821f3ffb3ceb167cbc1ccc56ec335d55c0f25eca250cde3a86",
         "tools/check_main_placement.py": "e74b60f6af34ce36f64b498137290a44bf3e4c1637d27d980a7444e7ed6b91b2"
@@ -86,11 +89,11 @@
       "outputs": [
         {
           "path": "main-controller-placement/assembly.png",
-          "sha256": "0a56d32af35c079c60e7c84265f808f98993c6026f2a86207664304ea70f23cb"
+          "sha256": "e67b31668cfaa87ce4dfce6e0067a4778cc7f76b93cf2fbcfcc255e8fa4ea8df"
         },
         {
           "path": "main-controller-placement/top.svg",
-          "sha256": "456745fa65e48316cb6869c2fba36029791b3c7b08545e3e283d0a75262abde7"
+          "sha256": "2799f91728a0cb2ae5d40c8e51ac24ed634b5a06fbaf31751083913ee42bb2e5"
         }
       ],
       "models_sha256": {
@@ -149,7 +152,7 @@
       "inputs_sha256": {
         "hw/routing/blind-main/charger-power-banks.json": "6ada7f8425ff3ffc3c26ad5e47fd92b97b100ca8b5c43dbb0e0c858a6013fbe2",
         "hw/routing/blind-main/charger.py": "63c7a84fb2b46b3627ccba3e7369fcc0e94ef023af4c7166adadbd659f3fdf0a",
-        "hw/routing/blind-main/checks.json": "fa18608f26db49e18885eaa3f206960f350d89a7499baa7cfecc4a9a9bd60c3b",
+        "hw/routing/blind-main/checks.json": "0b65036d93ae35e5e4d85fba82b6197671694968fef3dee93ab179044802ca49",
         "hw/routing/blind-main/checks.py": "e9343b024167b745fc2e00005e87b6cbb7c6224b2dc80747e8a3beb950396350",
         "hw/routing/blind-main/distribution.py": "541c689b2e9459265031f97de88c9f1d475cae98bb6cd2ef0b39436806adf631",
         "hw/routing/blind-main/local_power.py": "a0c8e2895494d882b5092b7835278c0d18389707236a41bf666bd4c5648e81a0",
@@ -170,11 +173,11 @@
       "outputs": [
         {
           "path": "main-power-route/assembly.png",
-          "sha256": "b89714f619ad912e813744ec18e52f9d987de6eb31af5e1c507f1553b9a9a235"
+          "sha256": "f518df4faa9b7d85166d69d574b0a4f291dd63a464747715f77a4434510fc443"
         },
         {
           "path": "main-power-route/top.svg",
-          "sha256": "b671c7598f357b716a6e32819e454ab2fb233490e0fa89c7574be39c65e7e21c"
+          "sha256": "3050e30555e96bc9b885bdfbae8a4899cc78b6c1045584f1c5c54a8d2b97dbe9"
         }
       ],
       "models_sha256": {
@@ -231,12 +234,12 @@
       "id": "companion-routed",
       "source": "hw/routing/blind-pack-companion/companion-routed.kicad_pcb",
       "inputs_sha256": {
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
         "hw/routing/blind-pack-companion/checks.py": "22b5775cf542db804a157866fa56d0ceddc9f8464685751dd7df09ed81331699",
         "hw/routing/blind-pack-companion/companion-routed.kicad_dru": "71aff538f6f2edbdc91c9727aebe82def615cb7cb069d51d81fed469781c0250",
         "hw/routing/blind-pack-companion/companion-routed.kicad_pcb": "7a207586e9b9d2424f9d30c21f8511ecec0c5f9ead75571b568618d00ee49494",
         "hw/routing/blind-pack-companion/companion-routed.kicad_pro": "92f42096681cfc65330e0f415788def7a50b57e0dbbcef66d212ff7fbe1d646d",
-        "hw/routing/blind-pack-companion/route-record.json": "4d7000fa8f0745a7ba503251c6e7c8320a707fba8d57b63d3cf4d18dfc10f306",
+        "hw/routing/blind-pack-companion/route-record.json": "91f6970cb458e839da4728da7fc4094631f1e090acf5e692e813bbaab6200e2e",
         "hw/routing/blind-pack-companion/route.py": "7b6487a86c1d46d4b37bab1bd3f7bb4ee216246972ec4287e22bcdd4f11f31fd"
       },
       "source_files_dirty": false,
@@ -244,11 +247,11 @@
       "outputs": [
         {
           "path": "companion-routed/assembly.png",
-          "sha256": "17837aa045ad6c73999e46b4581de0d4626ee954c663c6fd8ee5a838c9194378"
+          "sha256": "9582ba91b297f972c702470a89195507d634502668fae312ae19da420d7fa89f"
         },
         {
           "path": "companion-routed/top.svg",
-          "sha256": "a4c40774f4f3c391030d1ab1e8a334ade5daf2f262c188bede8b05d4cc3f0b6e"
+          "sha256": "ab64c054064b57ca9ed049ee818f0d9c3ff483b7524e05f929f98fbe1130f462"
         }
       ],
       "models_sha256": {
@@ -260,13 +263,13 @@
       "id": "primary-current-route",
       "source": "hw/routing/blind-pack-primary/primary-routed.kicad_pcb",
       "inputs_sha256": {
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
-        "hw/routing/blind-pack-primary/checks.json": "f0d3b9b413d78425fce984e0dd8e198311e2123a135f1b3800b8ed3e533995c7",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
+        "hw/routing/blind-pack-primary/checks.json": "c33df81dd83ea7b6d36c50980b2502f15aea57b9e4861bb6a71320ef87d769b6",
         "hw/routing/blind-pack-primary/checks.py": "584067ae1c0972a2ecb1388ddcdd1d6aaa2ca77b7c25d3c7425474592703d16c",
         "hw/routing/blind-pack-primary/primary-routed.kicad_dru": "b784ab84b669d670c630391f92c13988bf6790372df10500e6b863ae254d6027",
         "hw/routing/blind-pack-primary/primary-routed.kicad_pcb": "0ef2d58956a3acbccee59725e92b9ace5af78f3b5448a74e3cfda8f264dd4d53",
         "hw/routing/blind-pack-primary/primary-routed.kicad_pro": "886355c9cf1a7e042d67e129ae239335ecd7ebf89d6feeb20bf1ba812bf8114c",
-        "hw/routing/blind-pack-primary/route-record.json": "74043f71bdb423830336784df5b84311a9280facdc1989f4b2bf8a336e401ae0",
+        "hw/routing/blind-pack-primary/route-record.json": "f3fe4f84a46468c9bc0a545995ad153181a86157ec767e15fb74e205e0093926",
         "hw/routing/blind-pack-primary/route.py": "7449a67fcc9195a48722d1b4492a5e2609a0fe2341049c1258f31a35aa631e5c"
       },
       "source_files_dirty": false,
@@ -274,11 +277,11 @@
       "outputs": [
         {
           "path": "primary-current-route/assembly.png",
-          "sha256": "3d736138cab07882304f9bbcc0bfafd88ca5961de5dd13a23a06e333b30bda24"
+          "sha256": "a3e440211d06781792c6feaf5b2c5e0a954e7c04f8c1a4b7d0dd9a077acf60ac"
         },
         {
           "path": "primary-current-route/top.svg",
-          "sha256": "a4bf45e9f5ba98d272a088a21ee87c5ec1781b3df355422572fe558b21f93221"
+          "sha256": "e96556f8abbd541806ed4098c31e2bbe5d31084fee01163c6ba28fddc6e00ae4"
         }
       ],
       "models_sha256": {
@@ -298,22 +301,74 @@
       }
     },
     {
-      "id": "holder-service-fixture",
-      "source": "cad/source/holder_service_fixture.scad",
+      "id": "holder-pair-fixture",
+      "source": "cad/source/holder_pair_fixture.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_holder_fixture.py": "90c3c7ca84c28990e477e5bdb798c390ee988d5df22fcb5cee377f1c58f79acf",
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+        "cad/build_holder_pair_fixture.py": "aec0f6e55468ce3d2635e98601d822f0fbbc770eb76b3ffd50cbc6e48b508d5d",
+        "cad/build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
         "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
-        "cad/source/holder_service_fixture.scad": "f848ca932a7e08309d1ce7dea7dee3504509649451392aeebf6be427e4cd3850"
+        "cad/source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+        "cad/source/holder_pair_fixture.scad": "4af90b20c1c1a617fc483265f0e49288f51ed48b8da8ea70c50419813a4b8bcc",
+        "cad/source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
+        "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
-      "role": "One reusable three-piece workshop fixture, shared across all eight builds. The modeled clearance and print meshes pass; actual rim contact, insertion forces and the complete pack-loading sequence remain unqualified. It adds no installed enclosure parts.",
+      "role": "Reusable workshop supports for the wired carrier pair. The rear tray is fitted before turning the cassette; broad captive pads and temporary clamps support the modeled sequence. Eight printed tools are shared across all builds and add no installed parts. Cell retention, handling forces and pigtail restraint still require physical qualification.",
       "outputs": [
         {
-          "path": "holder-service-fixture/assembly.png",
-          "sha256": "aaa876cfa94384d90918d1873db7c3270d8dacba5930a83539d4dea3c99093c5"
+          "path": "holder-pair-fixture/assembly.png",
+          "sha256": "18df7c88c5d6bba50d276c63ceddf0f135995015f0d65c5d26aa827267b29c93"
+        }
+      ]
+    },
+    {
+      "id": "holder-pair-tray",
+      "source": "cad/source/holder_pair_fixture.scad",
+      "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
+        "cad/build_holder_pair_fixture.py": "aec0f6e55468ce3d2635e98601d822f0fbbc770eb76b3ffd50cbc6e48b508d5d",
+        "cad/build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
+        "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
+        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+        "cad/source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+        "cad/source/holder_pair_fixture.scad": "4af90b20c1c1a617fc483265f0e49288f51ed48b8da8ea70c50419813a4b8bcc",
+        "cad/source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
+        "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
+      },
+      "source_files_dirty": false,
+      "role": "The first cell row is enclosed by the rear tray before turning onto a supporting cradle to load the second row. Two temporary clamps use broad pads against the tray. This is a nominal geometric sequence, pending load and tolerance tests.",
+      "outputs": [
+        {
+          "path": "holder-pair-tray/assembly.png",
+          "sha256": "e7c3cfed1811389d7365931e1227a684b5bd71a0ae0728145cab8625e0ad0d10"
+        }
+      ]
+    },
+    {
+      "id": "holder-pair-pad",
+      "source": "cad/source/holder_pair_fixture.scad",
+      "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
+        "cad/build_holder_pair_fixture.py": "aec0f6e55468ce3d2635e98601d822f0fbbc770eb76b3ffd50cbc6e48b508d5d",
+        "cad/build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
+        "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
+        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+        "cad/source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+        "cad/source/holder_pair_fixture.scad": "4af90b20c1c1a617fc483265f0e49288f51ed48b8da8ea70c50419813a4b8bcc",
+        "cad/source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
+        "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
+      },
+      "source_files_dirty": false,
+      "role": "A broad captive pad spreads the temporary clamp load; the screw tip remains clear of the tray in the nominal model. Retention and head-stop geometry are checked. Safe tightening force and print creep remain unqualified.",
+      "outputs": [
+        {
+          "path": "holder-pair-pad/assembly.png",
+          "sha256": "ef979544c9b63455d6dcac46725c6c27ac2d49ccd0316209c09789a9c40cb9a2"
         }
       ]
     },
@@ -348,51 +403,51 @@
       "outputs": [
         {
           "path": "main-controller-schematic/schematic.pdf",
-          "sha256": "dfcdc07123127b40e695bbdb6fbd1985c1ce0dc255d762341f7d886de15c4c8c"
+          "sha256": "c857030eaabb63525f7aead9e11c0209da30b412f0c2526f1fb7062dc855ad3b"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-3S charger.svg",
-          "sha256": "970613b2b2fe80a14de3c9f793ed6c019806d02c1885974fe3cc072187b1343e"
+          "sha256": "553f7d9a1c0972f18996b1be5f8aa6cb01e648ce811cf79d85d5e23b14962fd7"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Buttons and home input.svg",
-          "sha256": "cd9e5e2ab5d15d223d7a6a768896fab7b9c2cd25403e4a7bb8e1aed78c2d8582"
+          "sha256": "22da9deabbe823f10d2ce77e2febacaf43ce4600d8c9ec700afd3766f74eda8c"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Encoder input.svg",
-          "sha256": "9f9f6499469b0c6b4e2a6a49c087c537c9a3c2f78400f81372c1c2b77504ba34"
+          "sha256": "75c06c0e275b05ed0019271a3761876c2ba956885fb7619021584b51f10c8312"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Logic supply.svg",
-          "sha256": "e7fc04236cb471652d38cc6760e9f1a3dba0e144b9c2c3c5a273cbb7f0cdbaba"
+          "sha256": "1b310a24282aeb38a44f2a0c89d3c2afafdf33bbb19938fca08c1889bcdbe2b2"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Motor bridge.svg",
-          "sha256": "c29d1440c1243a9a49f5745757d652f26ec710b316c99200baba12df4334d665"
+          "sha256": "4a38a0613b98331d8604507585300fb23c7892159c90117e1c1e39de731d59b1"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Motor supervision.svg",
-          "sha256": "0f1697bfba30937e58daf9843a1358c9ef4b73aca39d145763fa882dcda35adb"
+          "sha256": "e901f68410430eed55d771cfa78273412ed96b47b76a9a2df1c68188083347ad"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Power and motor permission.svg",
-          "sha256": "0242595bef988eefef7a1246dc6560d19254ecfd96fe3d38e86076548706f941"
+          "sha256": "b57204d6baaa0340f9336028ec2a1d1c3cf7c16d64dcb8beacb49415498e8126"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Radio and USB data.svg",
-          "sha256": "5f77c089a603964a40d7e5b394a35100894601e7a2b487622acdc1b61543cd0a"
+          "sha256": "cb8637d6aecf8c4c834a076e7042201aa2bf8110f4bfefd1644507dd30196f9c"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-Regenerative clamp.svg",
-          "sha256": "71b8bd9d8c136b6dfd1f6c28cffa2672b0cb87c9d9bf5b3862ec958b81f30e9c"
+          "sha256": "7075532fbfd962fe1ec55dbf2ed3f414fdffc84d4427e910b19a2173399b16b2"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main-USB-C input.svg",
-          "sha256": "2d75770caa8a3567205920f0afbb389e8ce5018df971cc811d79d4bd226a891d"
+          "sha256": "28db72fd6f4ca08fbcbb6b9896bc0243f45d9f042e7e54d2eb5889a505195410"
         },
         {
           "path": "main-controller-schematic/smart-blinds-main.svg",
-          "sha256": "1a42fdd0242023d3590b6b63313a35b5bd4fabba1372bfeacab34dee719c32a6"
+          "sha256": "d43ae82533a9b0efdc8edd655b5a176492a1578e1a9bde59a02731100b83c1f7"
         }
       ]
     },
@@ -401,11 +456,12 @@
       "source": "cad/source/compact_retained.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_retained.py": "d73e4a8bac0063a71de623d0fb4887a9144f3c096a7e86b573b5b0ebf5097d2b",
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+        "cad/build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
         "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
-        "cad/source/compact_retained.scad": "8d39567e754762c298c0a206bc7198f1c15fc4d824d9d313095d1e69c0e6954f",
+        "cad/source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+        "cad/source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
         "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
@@ -422,11 +478,12 @@
       "source": "cad/source/compact_retained.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_retained.py": "d73e4a8bac0063a71de623d0fb4887a9144f3c096a7e86b573b5b0ebf5097d2b",
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+        "cad/build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
         "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
-        "cad/source/compact_retained.scad": "8d39567e754762c298c0a206bc7198f1c15fc4d824d9d313095d1e69c0e6954f",
+        "cad/source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+        "cad/source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
         "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
@@ -434,7 +491,7 @@
       "outputs": [
         {
           "path": "retained-cassette/assembly.png",
-          "sha256": "4b34750f8c73e13f16eb509199899ba62bcf5dc0068ef0d8bf7fd512b5899933"
+          "sha256": "9fbe904b45d73978d8110defd9fa7c1c00026552ddb530e2706c781bd76bee54"
         }
       ]
     },
@@ -443,11 +500,12 @@
       "source": "cad/source/compact_retained.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_retained.py": "d73e4a8bac0063a71de623d0fb4887a9144f3c096a7e86b573b5b0ebf5097d2b",
-        "cad/parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+        "cad/build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc",
+        "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
         "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
-        "cad/source/compact_retained.scad": "8d39567e754762c298c0a206bc7198f1c15fc4d824d9d313095d1e69c0e6954f",
+        "cad/source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+        "cad/source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
         "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
@@ -473,7 +531,7 @@
       "outputs": [
         {
           "path": "holder-closed/assembly.png",
-          "sha256": "283b395826ad6b027f0c234355a5f7fff80a1f26a1233a7f83223d377683b2bb"
+          "sha256": "63481b903f74175e6f0ddbb310cfe0feadd9a06ad32a07a9d94e41849be3ce06"
         }
       ]
     },
@@ -507,7 +565,7 @@
       "outputs": [
         {
           "path": "holder-exploded/assembly.png",
-          "sha256": "000a4890f288643878d4280b60d2fd273f161df76f2e69eabcfc4b2607456556"
+          "sha256": "fbe236620bb8770be5fc2905bb80622172155a198f7abb0798e72cc2b7433231"
         }
       ]
     },
@@ -544,7 +602,7 @@
       "outputs": [
         {
           "path": "motor-schematic/motor-test.svg",
-          "sha256": "21b6a3152205c803c226130877844aef98e50641df9464d771509e14b1d45e1a"
+          "sha256": "2679962b21b9236a1237d5e1a5865b57be31f77ae5e283c0ec01754990d912c6"
         }
       ]
     },
@@ -561,7 +619,7 @@
       "outputs": [
         {
           "path": "supervisor-schematic/supervisor-test.svg",
-          "sha256": "e6f01321b784a91219515f6976d9e883945e2266fc753d7741345e57bb476611"
+          "sha256": "8b82f26a0b9acec53b091fc80de7e85a7d895fce4d15a206427b50e2fb3c42dc"
         }
       ]
     },
@@ -578,7 +636,7 @@
       "outputs": [
         {
           "path": "charger-schematic/charger-test.svg",
-          "sha256": "1ebbdc4532329ec441a01b3026bfeedde9284b716e62dd40cdbfc1211831ac4e"
+          "sha256": "7f99d23030eddf5e81d09e9b991087663310b512f18bd9d8ed77a468cca55cf1"
         }
       ]
     },
@@ -595,7 +653,7 @@
       "outputs": [
         {
           "path": "regen-schematic/regen-test.svg",
-          "sha256": "2c6808bf636bb02552549be21129e58d61abe5f8e312e7e393045b9ecd602ee1"
+          "sha256": "46f8618ca5e008208a44c04852534e63b6d46b6315ed25169472946a650a28f3"
         }
       ]
     },
@@ -612,7 +670,7 @@
       "outputs": [
         {
           "path": "regulator-schematic/regulator-test.svg",
-          "sha256": "5b89540c42a1f3bada6f01bd7b1eb84a9f3298b61828cd06973b123ab37748cf"
+          "sha256": "5cf7d114fbe97c71bc6f2c2189ba46d2ae7225c4a2044654b0aa3b22985c0bd9"
         }
       ]
     },
@@ -629,7 +687,7 @@
       "outputs": [
         {
           "path": "carrier-schematic/carrier-test.svg",
-          "sha256": "d126ca78a612d58100a319b7a5c949bb5bc0537d1f64bfe53ba526e786c713e7"
+          "sha256": "9ad7e655dd9467079882c951488056b1dc6622259d34487bb17bd4baddece5e7"
         }
       ]
     },
@@ -646,7 +704,7 @@
       "outputs": [
         {
           "path": "usb-schematic/usb-test.svg",
-          "sha256": "c05ac9227611b553588a852c3b0a66ca1c4d486105522d4a2cd5e57272546d47"
+          "sha256": "6c0ae7342ad033d67253e957b1cf90c66a0f5c8fc839c632dd25d257dbeb8b72"
         }
       ]
     },
@@ -664,7 +722,7 @@
       "outputs": [
         {
           "path": "compact-closed/assembly.png",
-          "sha256": "baea613b539e42d1eefb995959510b776f72097392091d50dd7c1fdfd834e458"
+          "sha256": "7adaa4723f2a9a8153fed08c5f89602d806a704d73662f7475920bc8d1c0edcf"
         }
       ]
     },
@@ -698,7 +756,7 @@
       "outputs": [
         {
           "path": "compact-exploded/assembly.png",
-          "sha256": "508e0a17d0a2ef2a203b4c3a0a295d42c9fa54bfaee242891fbde488ff552264"
+          "sha256": "34335616e66b10b7a471b54405ed3c992ca90aac84195592d2dcb62962452ab9"
         }
       ]
     },
@@ -716,7 +774,7 @@
       "outputs": [
         {
           "path": "compact-assembly/assembly.png",
-          "sha256": "782a0da6d67876dde7583071aa4041412601e6f9c554253598ca0604ed8be0dd"
+          "sha256": "b2ef6203b771badfcc5150cead3e5eea07546ae7a17ea0bbd7872d6027a71f45"
         }
       ]
     },
@@ -734,7 +792,7 @@
       "outputs": [
         {
           "path": "broad-assembly/assembly.png",
-          "sha256": "d3c5e5306678125491ceb846195bcb99fabd813059a23b33b2945e4e8ccd4345"
+          "sha256": "78c0559bf8a0747368d9aea1019f2ffe92a156d551a88cda80ccee0c5fe892ca"
         }
       ]
     },
@@ -770,7 +828,7 @@
       "outputs": [
         {
           "path": "slim-assembly/assembly.png",
-          "sha256": "7f14e9133b167bcbeed023ba4c6d5ed34309b28cd2decef924e7a4fd1ea63f40"
+          "sha256": "84a6129f30b88cb5385f230ddc21a59a80cc46a90f5d0ecfcc1fe6de13f99283"
         }
       ]
     },
@@ -785,11 +843,11 @@
       "outputs": [
         {
           "path": "pd12v6mini-reference/assembly.png",
-          "sha256": "da4d2031b211db0036f9417372561613c14a27547588798f53f62cea12d2453d"
+          "sha256": "5fe18eacb88518877df60ae665728db37f178a5c973fe7f440e7a666d6b06de1"
         },
         {
           "path": "pd12v6mini-reference/top.svg",
-          "sha256": "3e19664b485e0a62e338f6635bc15ba5ec704f26852b780a693a99e43efd6698"
+          "sha256": "c1c93f3b36f01abed44e90241470f5964075a2d6134a84fd3ef5a9baf279370a"
         }
       ],
       "models_sha256": {

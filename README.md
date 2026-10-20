@@ -101,13 +101,35 @@ Experimental 102-segment, 32-via current/Kelvin checkpoint. Ten current-path gro
 </details>
 
 <details>
-<summary>Reusable holder assembly fixture</summary>
+<summary>Reusable battery-loading fixture</summary>
 
-One reusable three-piece workshop fixture, shared across all eight builds. The modeled clearance and print meshes pass; actual rim contact, insertion forces and the complete pack-loading sequence remain unqualified. It adds no installed enclosure parts.
+Reusable workshop supports for the wired carrier pair. The rear tray is fitted before turning the cassette; broad captive pads and temporary clamps support the modeled sequence. Eight printed tools are shared across all builds and add no installed parts. Cell retention, handling forces and pigtail restraint still require physical qualification.
 
-![Reusable holder assembly fixture](docs/generated/holder-service-fixture/assembly.png)
+![Reusable battery-loading fixture](docs/generated/holder-pair-fixture/assembly.png)
 
-[Source](cad/source/holder_service_fixture.scad) · [Generated files](docs/generated/holder-service-fixture/)
+[Source](cad/source/holder_pair_fixture.scad) · [Generated files](docs/generated/holder-pair-fixture/)
+
+</details>
+
+<details>
+<summary>Battery loading with the rear tray fitted</summary>
+
+The first cell row is enclosed by the rear tray before turning onto a supporting cradle to load the second row. Two temporary clamps use broad pads against the tray. This is a nominal geometric sequence, pending load and tolerance tests.
+
+![Battery loading with the rear tray fitted](docs/generated/holder-pair-tray/assembly.png)
+
+[Source](cad/source/holder_pair_fixture.scad) · [Generated files](docs/generated/holder-pair-tray/)
+
+</details>
+
+<details>
+<summary>Captive pressure pad detail</summary>
+
+A broad captive pad spreads the temporary clamp load; the screw tip remains clear of the tray in the nominal model. Retention and head-stop geometry are checked. Safe tightening force and print creep remain unqualified.
+
+![Captive pressure pad detail](docs/generated/holder-pair-pad/assembly.png)
+
+[Source](cad/source/holder_pair_fixture.scad) · [Generated files](docs/generated/holder-pair-pad/)
 
 </details>
 
