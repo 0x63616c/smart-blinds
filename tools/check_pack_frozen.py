@@ -111,7 +111,9 @@ def main():
                   'Final placement checks include those holes, support/RF restrictions and the independent electrical contract.',
                   'This does not route or qualify the pack. KiCad DRC and physical/thermal tests remain separate.']}
     text=json.dumps(result,indent=2)+'\n'
-    if a.output:a.output.write_text(text)
+    if a.output:
+        a.output.parent.mkdir(parents=True,exist_ok=True)
+        a.output.write_text(text)
     print(text,end='')
 
 
