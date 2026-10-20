@@ -1,0 +1,1564 @@
+{
+  "status": "EXPERIMENTAL PARTIAL current/Kelvin route; signals/bypass/DRC and qualification incomplete",
+  "canonical_pcb_sha256": "fecc56c96206151d1abf174f17da5756d6655759b423a150b72ef37fc5cad8c6",
+  "mechanical_sha256": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3",
+  "route_source_sha256": "7449a67fcc9195a48722d1b4492a5e2609a0fe2341049c1258f31a35aa631e5c",
+  "routed_pcb_sha256": "0ef2d58956a3acbccee59725e92b9ace5af78f3b5448a74e3cfda8f264dd4d53",
+  "placement_deltas": {
+    "protection.shunt": [
+      [
+        47,
+        4
+      ],
+      0
+    ],
+    "protection.r_balance4": [
+      [
+        73,
+        4.5
+      ],
+      90
+    ],
+    "protection.r_charge_gate": [
+      [
+        51,
+        1
+      ],
+      0
+    ],
+    "protection.c_charge_gate": [
+      [
+        51.6,
+        7.1
+      ],
+      0
+    ],
+    "protection.r_pfail": [
+      [
+        33.5,
+        1
+      ],
+      0
+    ]
+  },
+  "additional_deltas": [
+    "Three nonpolar fuses 90\u2192270 degrees",
+    "Native KiCad 10 serialization, stable unique UUIDs and equivalent relative library/model paths",
+    "Inward backing lands reject exposed features; no copper fills"
+  ],
+  "segments": 102,
+  "routes": [
+    {
+      "label": "cell1-short-unfused",
+      "net": "1",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          15,
+          9.9
+        ],
+        [
+          15,
+          6.455
+        ]
+      ],
+      "length_mm": 3.4450000000000003
+    },
+    {
+      "label": "cell2-short-unfused",
+      "net": "carrier-1",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          41,
+          9.9
+        ],
+        [
+          41,
+          6.455
+        ]
+      ],
+      "length_mm": 3.4450000000000003
+    },
+    {
+      "label": "cell3-short-unfused",
+      "net": "carrier-1-1",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          67,
+          9.9
+        ],
+        [
+          67,
+          6.455
+        ]
+      ],
+      "length_mm": 3.4450000000000003
+    },
+    {
+      "label": "cell1-fused-exit",
+      "net": "junction1",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          15,
+          1.545
+        ],
+        [
+          17.4,
+          1.545
+        ]
+      ],
+      "length_mm": 2.3999999999999986
+    },
+    {
+      "label": "cell1-bank-F.Cu",
+      "net": "junction1",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          17.4,
+          1.4
+        ],
+        [
+          17.4,
+          4.1
+        ]
+      ],
+      "length_mm": 2.6999999999999997
+    },
+    {
+      "label": "cell1-bank-B.Cu",
+      "net": "junction1",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          17.4,
+          1.4
+        ],
+        [
+          17.4,
+          4.1
+        ]
+      ],
+      "length_mm": 2.6999999999999997
+    },
+    {
+      "label": "cell1-bank-extension",
+      "net": "junction1",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          17.4,
+          4.1
+        ],
+        [
+          17.4,
+          6.6
+        ]
+      ],
+      "length_mm": 2.5
+    },
+    {
+      "label": "cell1-fanout",
+      "net": "junction1",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          17.4,
+          6.6
+        ],
+        [
+          19.5,
+          8.7
+        ],
+        [
+          19.5,
+          21
+        ]
+      ],
+      "length_mm": 15.269848480983502
+    },
+    {
+      "label": "cell3-fused-exit",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          67,
+          1.545
+        ],
+        [
+          69.4,
+          1.545
+        ]
+      ],
+      "length_mm": 2.4000000000000057
+    },
+    {
+      "label": "cell3-bank-F.Cu",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          69.4,
+          1.4
+        ],
+        [
+          69.4,
+          4.1
+        ]
+      ],
+      "length_mm": 2.6999999999999997
+    },
+    {
+      "label": "cell3-bank-B.Cu",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          69.4,
+          1.4
+        ],
+        [
+          69.4,
+          4.1
+        ]
+      ],
+      "length_mm": 2.6999999999999997
+    },
+    {
+      "label": "cell3-bank-extension",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          69.4,
+          4.1
+        ],
+        [
+          69.4,
+          6.6
+        ]
+      ],
+      "length_mm": 2.5
+    },
+    {
+      "label": "cell3-fanout",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          69.4,
+          6.6
+        ],
+        [
+          71.5,
+          8.7
+        ],
+        [
+          71.5,
+          21
+        ]
+      ],
+      "length_mm": 15.269848480983496
+    },
+    {
+      "label": "cell2-fused-front-crossing",
+      "net": "junction2",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          41,
+          1.545
+        ],
+        [
+          37.2,
+          1.545
+        ],
+        [
+          37.2,
+          11
+        ]
+      ],
+      "length_mm": 13.254999999999997
+    },
+    {
+      "label": "cell2-bank-F.Cu",
+      "net": "junction2",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          37.2,
+          11
+        ],
+        [
+          37.2,
+          13.7
+        ]
+      ],
+      "length_mm": 2.6999999999999993
+    },
+    {
+      "label": "cell2-bank-B.Cu",
+      "net": "junction2",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          37.2,
+          11
+        ],
+        [
+          37.2,
+          13.7
+        ]
+      ],
+      "length_mm": 2.6999999999999993
+    },
+    {
+      "label": "junction2-current-rail",
+      "net": "junction2",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          37.2,
+          13.7
+        ],
+        [
+          37.2,
+          30
+        ],
+        [
+          67,
+          59.8
+        ],
+        [
+          67,
+          89.9
+        ]
+      ],
+      "length_mm": 88.54356415871824
+    },
+    {
+      "label": "junction1-current-rail",
+      "net": "junction1",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          19.5,
+          21
+        ],
+        [
+          41,
+          42.5
+        ],
+        [
+          41,
+          89.9
+        ],
+        [
+          33.2,
+          97.7
+        ],
+        [
+          33.2,
+          100
+        ]
+      ],
+      "length_mm": 91.13645737753168
+    },
+    {
+      "label": "junction2-link-approach",
+      "net": "junction2",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          67,
+          89.9
+        ],
+        [
+          63,
+          89.9
+        ]
+      ],
+      "length_mm": 4.0
+    },
+    {
+      "label": "junction2-short-wire-row-neck",
+      "net": "junction2",
+      "layer": "B.Cu",
+      "width_mm": 1.5,
+      "points_local_xy": [
+        [
+          63,
+          89.9
+        ],
+        [
+          56,
+          91.5
+        ],
+        [
+          56,
+          98
+        ]
+      ],
+      "length_mm": 13.680529228406495
+    },
+    {
+      "label": "junction2-link",
+      "net": "junction2",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          56,
+          98
+        ],
+        [
+          54,
+          100
+        ],
+        [
+          51.2,
+          100
+        ]
+      ],
+      "length_mm": 5.628427124746187
+    },
+    {
+      "label": "raw-top-current-rail",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          71.5,
+          21
+        ],
+        [
+          76,
+          25.5
+        ],
+        [
+          76,
+          76
+        ],
+        [
+          74,
+          78
+        ],
+        [
+          74,
+          91.8
+        ]
+      ],
+      "length_mm": 73.49238815542512
+    },
+    {
+      "label": "raw-top-short-wire-row-neck",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 1.5,
+      "points_local_xy": [
+        [
+          74,
+          91.8
+        ],
+        [
+          74,
+          98
+        ]
+      ],
+      "length_mm": 6.200000000000003
+    },
+    {
+      "label": "raw-top-link",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          74,
+          98
+        ],
+        [
+          72,
+          100
+        ],
+        [
+          69.2,
+          100
+        ]
+      ],
+      "length_mm": 5.628427124746187
+    },
+    {
+      "label": "raw-ground-link",
+      "net": "2",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          15,
+          89.9
+        ],
+        [
+          14,
+          90.9
+        ],
+        [
+          14,
+          96
+        ],
+        [
+          15.2,
+          97.2
+        ],
+        [
+          15.2,
+          100
+        ]
+      ],
+      "length_mm": 11.011269837220802
+    },
+    {
+      "label": "raw-ground-current-to-shunt",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          15,
+          89.9
+        ],
+        [
+          15,
+          84
+        ],
+        [
+          11,
+          80
+        ],
+        [
+          11,
+          20
+        ],
+        [
+          45.5,
+          20
+        ],
+        [
+          45.5,
+          11
+        ]
+      ],
+      "length_mm": 115.05685424949239
+    },
+    {
+      "label": "shunt-raw-current-entry",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          45.5,
+          11
+        ],
+        [
+          45.5,
+          8
+        ],
+        [
+          44.145,
+          6.645
+        ],
+        [
+          44.145,
+          5.5
+        ]
+      ],
+      "length_mm": 6.061259377015541
+    },
+    {
+      "label": "charge-source-pin1",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          52.6,
+          5.475
+        ],
+        [
+          51.8,
+          5.475
+        ]
+      ],
+      "length_mm": 0.8000000000000043
+    },
+    {
+      "label": "charge-source-pin2",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          52.6,
+          4.825
+        ],
+        [
+          51.8,
+          4.825
+        ]
+      ],
+      "length_mm": 0.8000000000000043
+    },
+    {
+      "label": "charge-source-pin3",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          52.6,
+          4.175
+        ],
+        [
+          51.8,
+          4.175
+        ]
+      ],
+      "length_mm": 0.8000000000000043
+    },
+    {
+      "label": "charge-source-bus",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "points_local_xy": [
+        [
+          51.8,
+          4.175
+        ],
+        [
+          51.8,
+          6.1
+        ],
+        [
+          52.6,
+          6.9
+        ],
+        [
+          52.6,
+          9.3
+        ]
+      ],
+      "length_mm": 5.45637084989848
+    },
+    {
+      "label": "charge-source-bank-F.Cu",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          52.6,
+          9.3
+        ],
+        [
+          52.6,
+          12
+        ]
+      ],
+      "length_mm": 2.6999999999999993
+    },
+    {
+      "label": "charge-source-bank-B.Cu",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          52.6,
+          9.3
+        ],
+        [
+          52.6,
+          12
+        ]
+      ],
+      "length_mm": 2.6999999999999993
+    },
+    {
+      "label": "raw-top-feed-protection",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          52.6,
+          9.3
+        ],
+        [
+          52.6,
+          1.4
+        ],
+        [
+          69.4,
+          1.4
+        ]
+      ],
+      "length_mm": 24.700000000000003
+    },
+    {
+      "label": "discharge-source-pin1",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          59.4,
+          3.525
+        ],
+        [
+          60.1,
+          3.525
+        ]
+      ],
+      "length_mm": 0.7000000000000028
+    },
+    {
+      "label": "discharge-source-pin2",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          59.4,
+          4.175
+        ],
+        [
+          60.1,
+          4.175
+        ]
+      ],
+      "length_mm": 0.7000000000000028
+    },
+    {
+      "label": "discharge-source-pin3",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          59.4,
+          4.825
+        ],
+        [
+          60.1,
+          4.825
+        ]
+      ],
+      "length_mm": 0.7000000000000028
+    },
+    {
+      "label": "discharge-source-bus",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 0.8,
+      "points_local_xy": [
+        [
+          60.1,
+          4.825
+        ],
+        [
+          60.1,
+          2.5
+        ],
+        [
+          62.8,
+          2.5
+        ],
+        [
+          62.8,
+          12
+        ]
+      ],
+      "length_mm": 14.524999999999995
+    },
+    {
+      "label": "protected-positive-trunk",
+      "net": "hv",
+      "layer": "F.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          62.8,
+          12
+        ],
+        [
+          57,
+          17.8
+        ],
+        [
+          57,
+          75
+        ],
+        [
+          47,
+          85
+        ],
+        [
+          47,
+          94.8
+        ]
+      ],
+      "length_mm": 89.3445742854949
+    },
+    {
+      "label": "common-drain-spine",
+      "net": "D",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          54.36,
+          4.5
+        ],
+        [
+          57.64,
+          4.5
+        ]
+      ],
+      "length_mm": 3.280000000000001
+    },
+    {
+      "label": "drain-paddle-tabs-54",
+      "net": "D",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          54,
+          3.085
+        ],
+        [
+          54,
+          5.915
+        ]
+      ],
+      "length_mm": 2.83
+    },
+    {
+      "label": "drain-paddle-tabs-58",
+      "net": "D",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          58,
+          3.085
+        ],
+        [
+          58,
+          5.915
+        ]
+      ],
+      "length_mm": 2.83
+    },
+    {
+      "label": "drain-peripheral-bus-55.5",
+      "net": "D",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          55.5,
+          3.525
+        ],
+        [
+          55.5,
+          5.475
+        ]
+      ],
+      "length_mm": 1.9499999999999997
+    },
+    {
+      "label": "drain-peripheral-bus-56.5",
+      "net": "D",
+      "layer": "F.Cu",
+      "width_mm": 0.35,
+      "points_local_xy": [
+        [
+          56.5,
+          3.525
+        ],
+        [
+          56.5,
+          5.475
+        ]
+      ],
+      "length_mm": 1.9499999999999997
+    },
+    {
+      "label": "shunt-pack-current-exit",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 1.5,
+      "points_local_xy": [
+        [
+          49.855,
+          5.5
+        ],
+        [
+          49.855,
+          9.3
+        ]
+      ],
+      "length_mm": 3.8000000000000007
+    },
+    {
+      "label": "pack-ground-shunt-bank-F.Cu",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          49.855,
+          9.3
+        ],
+        [
+          49.855,
+          12
+        ]
+      ],
+      "length_mm": 2.6999999999999993
+    },
+    {
+      "label": "pack-ground-shunt-bank-B.Cu",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          49.855,
+          9.3
+        ],
+        [
+          49.855,
+          12
+        ]
+      ],
+      "length_mm": 2.6999999999999993
+    },
+    {
+      "label": "pack-ground-low",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          49.855,
+          9.3
+        ],
+        [
+          45.5,
+          9.3
+        ],
+        [
+          45.5,
+          23.7
+        ],
+        [
+          45.8,
+          24
+        ]
+      ],
+      "length_mm": 19.179264068711923
+    },
+    {
+      "label": "pack-ground-crossing-low-bank-F.Cu",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          45.8,
+          24
+        ],
+        [
+          45.8,
+          26.7
+        ]
+      ],
+      "length_mm": 2.6999999999999993
+    },
+    {
+      "label": "pack-ground-crossing-low-bank-B.Cu",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          45.8,
+          24
+        ],
+        [
+          45.8,
+          26.7
+        ]
+      ],
+      "length_mm": 2.6999999999999993
+    },
+    {
+      "label": "pack-ground-front-crossing",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          45.8,
+          26.7
+        ],
+        [
+          45.8,
+          44
+        ]
+      ],
+      "length_mm": 17.3
+    },
+    {
+      "label": "pack-ground-crossing-high-bank-F.Cu",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          45.8,
+          44
+        ],
+        [
+          45.8,
+          46.7
+        ]
+      ],
+      "length_mm": 2.700000000000003
+    },
+    {
+      "label": "pack-ground-crossing-high-bank-B.Cu",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          45.8,
+          44
+        ],
+        [
+          45.8,
+          46.7
+        ]
+      ],
+      "length_mm": 2.700000000000003
+    },
+    {
+      "label": "protected-ground-trunk",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          45.8,
+          46.7
+        ],
+        [
+          53,
+          53.9
+        ],
+        [
+          53,
+          94.8
+        ]
+      ],
+      "length_mm": 51.082337649086284
+    },
+    {
+      "label": "CSP-pin-escape",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          28.25,
+          5.91
+        ],
+        [
+          28.25,
+          6.45
+        ],
+        [
+          28.1,
+          6.8
+        ]
+      ],
+      "length_mm": 0.9207886552931945
+    },
+    {
+      "label": "CSP-Kelvin-only",
+      "net": "2",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          28.1,
+          6.8
+        ],
+        [
+          28.1,
+          6.2
+        ],
+        [
+          29,
+          5.3
+        ],
+        [
+          45.7,
+          5.3
+        ],
+        [
+          45.7,
+          4
+        ]
+      ],
+      "length_mm": 19.872792206135788
+    },
+    {
+      "label": "CSP-inner-land",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          45.7,
+          4
+        ],
+        [
+          44.9,
+          4
+        ]
+      ],
+      "length_mm": 0.8000000000000043
+    },
+    {
+      "label": "CSN-pin-escape",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          28.75,
+          5.91
+        ],
+        [
+          28.75,
+          6.45
+        ],
+        [
+          28.95,
+          6.9
+        ],
+        [
+          28.95,
+          7.3
+        ]
+      ],
+      "length_mm": 1.4324428900898045
+    },
+    {
+      "label": "CSN-Kelvin-only",
+      "net": "lv",
+      "layer": "B.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          28.95,
+          7.3
+        ],
+        [
+          30,
+          6.25
+        ],
+        [
+          46.05,
+          6.25
+        ],
+        [
+          48.3,
+          4
+        ]
+      ],
+      "length_mm": 20.716904755831212
+    },
+    {
+      "label": "CSN-inner-land",
+      "net": "lv",
+      "layer": "F.Cu",
+      "width_mm": 0.2,
+      "points_local_xy": [
+        [
+          48.3,
+          4
+        ],
+        [
+          49.1,
+          4
+        ]
+      ],
+      "length_mm": 0.8000000000000043
+    }
+  ],
+  "vias": [
+    {
+      "label": "cell1-0",
+      "net": "junction1",
+      "xy": [
+        17.4,
+        1.4
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell1-1",
+      "net": "junction1",
+      "xy": [
+        17.4,
+        2.3
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell1-2",
+      "net": "junction1",
+      "xy": [
+        17.4,
+        3.2
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell1-3",
+      "net": "junction1",
+      "xy": [
+        17.4,
+        4.1
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell3-0",
+      "net": "raw_top",
+      "xy": [
+        69.4,
+        1.4
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell3-1",
+      "net": "raw_top",
+      "xy": [
+        69.4,
+        2.3
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell3-2",
+      "net": "raw_top",
+      "xy": [
+        69.4,
+        3.2
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell3-3",
+      "net": "raw_top",
+      "xy": [
+        69.4,
+        4.1
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell2-0",
+      "net": "junction2",
+      "xy": [
+        37.2,
+        11
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell2-1",
+      "net": "junction2",
+      "xy": [
+        37.2,
+        11.9
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell2-2",
+      "net": "junction2",
+      "xy": [
+        37.2,
+        12.8
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "cell2-3",
+      "net": "junction2",
+      "xy": [
+        37.2,
+        13.7
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "charge-source-0",
+      "net": "raw_top",
+      "xy": [
+        52.6,
+        9.3
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "charge-source-1",
+      "net": "raw_top",
+      "xy": [
+        52.6,
+        10.2
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "charge-source-2",
+      "net": "raw_top",
+      "xy": [
+        52.6,
+        11.1
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "charge-source-3",
+      "net": "raw_top",
+      "xy": [
+        52.6,
+        12
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-shunt-0",
+      "net": "lv",
+      "xy": [
+        49.855,
+        9.3
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-shunt-1",
+      "net": "lv",
+      "xy": [
+        49.855,
+        10.2
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-shunt-2",
+      "net": "lv",
+      "xy": [
+        49.855,
+        11.1
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-shunt-3",
+      "net": "lv",
+      "xy": [
+        49.855,
+        12
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-crossing-low-0",
+      "net": "lv",
+      "xy": [
+        45.8,
+        24
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-crossing-low-1",
+      "net": "lv",
+      "xy": [
+        45.8,
+        24.9
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-crossing-low-2",
+      "net": "lv",
+      "xy": [
+        45.8,
+        25.8
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-crossing-low-3",
+      "net": "lv",
+      "xy": [
+        45.8,
+        26.7
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-crossing-high-0",
+      "net": "lv",
+      "xy": [
+        45.8,
+        44
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-crossing-high-1",
+      "net": "lv",
+      "xy": [
+        45.8,
+        44.9
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-crossing-high-2",
+      "net": "lv",
+      "xy": [
+        45.8,
+        45.8
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "pack-ground-crossing-high-3",
+      "net": "lv",
+      "xy": [
+        45.8,
+        46.7
+      ],
+      "diameter_mm": 0.9,
+      "drill_mm": 0.4
+    },
+    {
+      "label": "CSP-gauge",
+      "net": "2",
+      "xy": [
+        28.1,
+        6.8
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CSP-shunt",
+      "net": "2",
+      "xy": [
+        45.7,
+        4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CSN-gauge",
+      "net": "lv",
+      "xy": [
+        28.95,
+        7.3
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    },
+    {
+      "label": "CSN-shunt",
+      "net": "lv",
+      "xy": [
+        48.3,
+        4
+      ],
+      "diameter_mm": 0.6,
+      "drill_mm": 0.3
+    }
+  ],
+  "current_planning_a": 4,
+  "branch_planning_a": 2
+}

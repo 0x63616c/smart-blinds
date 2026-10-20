@@ -137,6 +137,33 @@
       "role": "Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected nets. Four mounting-hole courtyard and six inherited silkscreen findings remain. Experimental only: current capacity, holder loading, insulation and pack assembly still require qualification."
     },
     {
+      "id": "primary-current-route",
+      "kind": "pcb",
+      "title": "Primary battery carrier \u2014 partial current and sensing route",
+      "source": "hw/routing/blind-pack-primary/primary-routed.kicad_pcb",
+      "dependencies": [
+        "hw/routing/blind-pack-primary/primary-routed.kicad_pro",
+        "hw/routing/blind-pack-primary/primary-routed.kicad_dru",
+        "hw/routing/blind-pack-primary/route-record.json",
+        "hw/routing/blind-pack-primary/checks.json",
+        "hw/routing/blind-pack-primary/route.py",
+        "hw/routing/blind-pack-primary/checks.py",
+        "cad/parameters/retained-interfaces.json"
+      ],
+      "role": "Experimental 102-segment, 32-via current/Kelvin checkpoint. Ten current-path groups and two isolated sense branches are physically connected; 55 signal/bypass connections and 30 documented DRC findings remain. Thermal, holder, protection and assembly qualification are unfinished. Not a fabrication release.",
+      "collapsed": true,
+      "image_size": [
+        1500,
+        1700
+      ],
+      "rotate": [
+        12,
+        0,
+        0
+      ],
+      "zoom": 0.83
+    },
+    {
       "id": "holder-service-fixture",
       "kind": "openscad",
       "title": "Reusable holder assembly fixture",

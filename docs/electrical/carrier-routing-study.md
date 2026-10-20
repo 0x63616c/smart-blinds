@@ -103,3 +103,25 @@ experimental routing derivative only. Neither the canonical primary PCB nor
 its anchors changed. The primary's current paths, Kelvin geometry, bypass
 loops and assembly clearances still require route-aware implementation and
 verification.
+
+### Subsequent partial primary route
+
+The [primary derivative](../../hw/routing/blind-pack-primary/README.md) now records
+the approved shunt/gate moves, a PFAIL-pulldown move and three fuse rotations.
+It contains 102 segments and 32 vias. Actual copper-shape checks connect all ten
+required current-path groups and keep CSP/CSN separate from load current until
+their respective shunt lands; an early same-net shortcut and a cut sense trace
+are both rejected. Actual KiCad DRC retains 55 unconnected signal/bypass items,
+26 silk findings and four mounting-hole courtyard errors, with no copper, edge,
+hole, keepout or overlap failures. This is a partial route.
+
+The coordinated mechanical revision removes the primary-facing upper central
+crossbar where twelve actual solder-pad tails would otherwise intersect it.
+The perimeter, corner posts and insulating barrier remain. The nominal 0.5 mm
+tail-to-barrier gap still requires tolerance and physical assembly checks.
+The exact electrical/mechanical hashes are in the derivative route record.
+
+A conservative 4 A pack / 2 A per parallel-cell estimate gives about 1.73 W
+in primary copper. It overcounts some branched paths and excludes component
+and contact losses. Width, parallel-layer and 2 oz alternatives need comparison;
+this arithmetic neither predicts temperature nor qualifies a current rating.

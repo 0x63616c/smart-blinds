@@ -31,6 +31,11 @@ wall_head_ceiling=8.2; wall_pocket_roof=1.2;
 wall_head_pocket_y=[98.5,105]; // ±2 mm wall slot plus 2.5 mm cassette release.
 spacer_relief_xy=[13.3,99.5,69,4]; // Allowed track band plus 0.5 mm edge margin.
 spacer_relief_depth=0.3;
+primary_upper_relief_min=[8.7,100.4,34.69];
+primary_upper_relief_size=[78.2,2.2,1.92];
+primary_harness_x=[47,53,59,65,71,77]; primary_harness_y=94.8;
+primary_ntc_x=[10,14,18,22,26,30]; primary_ntc_y=94.5;
+primary_wire_pad_d=[4,2.5]; primary_tail_max=1.5;
 wire_od=1.85; // Molex2147561061 maximum; no clamp-grip diameter inferred.
 wire_zs=[45.5,47.7,49.9,52.1,54.3,56.5];
 module box(p,s){translate(p)cube(s);}
@@ -167,6 +172,13 @@ module cassette_spacer(){difference(){
  // Keep corner posts and the upper end frame; no pad/via/tail is allowed here.
  rr([spacer_relief_xy[0],spacer_relief_xy[1],31.59],
     [spacer_relief_xy[2],spacer_relief_xy[3],spacer_relief_depth+.01],.5);
+ // Remove the primary upper crossbar beneath the actual wire/NTC pad rows.
+ // Preserve the complete corner posts, outer frame and separate barrier.
+ // No thin residual roof is left beneath the permitted solder-tail envelope.
+ difference(){
+  box(primary_upper_relief_min,primary_upper_relief_size);
+  for(p=pack_holes)zz([p[0],p[1],34.6],7.6,2.1);
+ }
 }}
 module insulating_barrier(){difference(){
  rr([6.3,7.5,33.6],[83,101,1],3);
@@ -213,11 +225,18 @@ module pack_ties(){
   box([x-1.35,99.7,43.1],[2.7,4.7,16.8]);
  }
 }
+module primary_wire_tails(){
+ // Conservative full-pad-diameter fillet cylinders, <=1.5 mm below B.Cu.
+ // These twelve anchors are cross-checked against the shared interface contract.
+ for(x=primary_harness_x)zz([board_origin[0]+x,board_origin[1]+primary_harness_y,36.6-primary_tail_max],primary_wire_pad_d[0],primary_tail_max);
+ for(x=primary_ntc_x)zz([board_origin[0]+x,board_origin[1]+primary_ntc_y,36.6-primary_tail_max],primary_wire_pad_d[1],primary_tail_max);
+}
 module carrier_contents(){
  color([.07,.075,.08]){carrier_board(30);carrier_board(36.6);}
  for(x=[19.8,45.8,71.8]){translate([x,14,30])mirror([0,0,1])holder();translate([x,14,38.2])holder();}
  color([.9,.48,.15,.6]){box([16,101,38.2],[20,8,3]);box([54,101,38.2],[28,8,3]);}
  color([.65,.3,.1])for(x=[20,38,56,74])box([x-1,105,31.6],[2,2,5]);
+ color([.65,.5,.3])primary_wire_tails();
  color([.1,.1,.1])pack_wire_fan();
 }
 module pack_fasteners(include_mounts=true){color([.6,.62,.64]){
@@ -434,6 +453,12 @@ else if(part=="collision_spacer_section_missing")difference(){
  box([13.8,100.51,31.91],[68,1.98,1.58]);cassette_spacer();
 }
 else if(part=="collision_spacer_barrier")intersection(){cassette_spacer();insulating_barrier();}
+else if(part=="collision_primary_wire_tails")intersection(){primary_wire_tails();union(){cassette_spacer();insulating_barrier();}}
+else if(part=="collision_primary_corner_support_missing")difference(){
+ // Required annular material remains at all four primary corner supports.
+ for(p=pack_holes)difference(){zz([p[0],p[1],34.71],7.4,1.88);zz([p[0],p[1],34.70],3.6,1.9);}
+ cassette_spacer();
+}
 else if(part=="collision_cleat_engagement"){
  // Sample actual pocket sliding/lifting; intersect each pose before unioning.
  for(p=concat([for(y=[0,.625,1.25,1.875,2.5])[0,y,0]],

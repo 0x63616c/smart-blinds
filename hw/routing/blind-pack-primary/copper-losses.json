@@ -1,0 +1,510 @@
+{
+  "status": "Conservative balanced-current estimate for partial routing, not a thermal/current qualification",
+  "source_hashes": {
+    "board": "0ef2d58956a3acbccee59725e92b9ace5af78f3b5448a74e3cfda8f264dd4d53",
+    "route_record": "74043f71bdb423830336784df5b84311a9280facdc1989f4b2bf8a336e401ae0",
+    "checks": "f0d3b9b413d78425fce984e0dd8e198311e2123a135f1b3800b8ed3e533995c7",
+    "calculator": "f52288f77133b5937d583d3d11b79050f4de5acccd36711cb4bdcf2149ce460d"
+  },
+  "assumed_pack_current_a": 4,
+  "assumed_each_parallel_cell_a": 2,
+  "nominal_finished_copper_um": 35,
+  "trace_loss_25c_nominal_w": 1.7092475533724736,
+  "via_loss_20c_nominal_w": 0.02317013029296944,
+  "total_copper_loss_nominal_w": 1.732417683665443,
+  "trace_loss_70c_minus20pct_width_w": 2.5211401412243983,
+  "per_route": [
+    {
+      "label": "cell1-short-unfused",
+      "width_mm": 2,
+      "length_mm": 3.444999999999993,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0008612499999999983,
+      "loss_w": 0.003444999999999993
+    },
+    {
+      "label": "cell2-short-unfused",
+      "width_mm": 2,
+      "length_mm": 3.444999999999993,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0008612499999999983,
+      "loss_w": 0.003444999999999993
+    },
+    {
+      "label": "cell3-short-unfused",
+      "width_mm": 2,
+      "length_mm": 3.444999999999993,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0008612499999999983,
+      "loss_w": 0.003444999999999993
+    },
+    {
+      "label": "cell1-fused-exit",
+      "width_mm": 2,
+      "length_mm": 2.4000000000000057,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0006000000000000015,
+      "loss_w": 0.002400000000000006
+    },
+    {
+      "label": "cell1-bank-F.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.002699999999999989
+    },
+    {
+      "label": "cell1-bank-B.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.002699999999999989
+    },
+    {
+      "label": "cell1-bank-extension",
+      "width_mm": 2,
+      "length_mm": 2.5,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.000625,
+      "loss_w": 0.0025
+    },
+    {
+      "label": "cell1-fanout",
+      "width_mm": 3,
+      "length_mm": 15.269848480983503,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.002544974746830584,
+      "loss_w": 0.010179898987322336
+    },
+    {
+      "label": "cell3-fused-exit",
+      "width_mm": 2,
+      "length_mm": 2.4000000000000057,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0006000000000000015,
+      "loss_w": 0.002400000000000006
+    },
+    {
+      "label": "cell3-bank-F.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.002699999999999989
+    },
+    {
+      "label": "cell3-bank-B.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.002699999999999989
+    },
+    {
+      "label": "cell3-bank-extension",
+      "width_mm": 2,
+      "length_mm": 2.5,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.000625,
+      "loss_w": 0.0025
+    },
+    {
+      "label": "cell3-fanout",
+      "width_mm": 3,
+      "length_mm": 15.269848480983503,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.002544974746830584,
+      "loss_w": 0.010179898987322336
+    },
+    {
+      "label": "cell2-fused-front-crossing",
+      "width_mm": 2,
+      "length_mm": 13.255000000000024,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.003313750000000006,
+      "loss_w": 0.013255000000000024
+    },
+    {
+      "label": "cell2-bank-F.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.002699999999999989
+    },
+    {
+      "label": "cell2-bank-B.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.002699999999999989
+    },
+    {
+      "label": "junction2-current-rail",
+      "width_mm": 3,
+      "length_mm": 88.54356415871825,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.014757260693119709,
+      "loss_w": 0.059029042772478835
+    },
+    {
+      "label": "junction1-current-rail",
+      "width_mm": 3,
+      "length_mm": 91.1364580846385,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.015189409680773085,
+      "loss_w": 0.06075763872309234
+    },
+    {
+      "label": "junction2-link-approach",
+      "width_mm": 3,
+      "length_mm": 4.0,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0006666666666666666,
+      "loss_w": 0.0
+    },
+    {
+      "label": "junction2-short-wire-row-neck",
+      "width_mm": 1.5,
+      "length_mm": 13.680529228406495,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.004560176409468832,
+      "loss_w": 0.0
+    },
+    {
+      "label": "junction2-link",
+      "width_mm": 3,
+      "length_mm": 5.628427124746201,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0009380711874577003,
+      "loss_w": 0.0
+    },
+    {
+      "label": "raw-top-current-rail",
+      "width_mm": 3,
+      "length_mm": 73.49238815542512,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.01224873135923752,
+      "loss_w": 0.04899492543695008
+    },
+    {
+      "label": "raw-top-short-wire-row-neck",
+      "width_mm": 1.5,
+      "length_mm": 6.200000000000003,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0020666666666666676,
+      "loss_w": 0.00826666666666667
+    },
+    {
+      "label": "raw-top-link",
+      "width_mm": 3,
+      "length_mm": 5.628427124746201,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.0009380711874577003,
+      "loss_w": 0.003752284749830801
+    },
+    {
+      "label": "raw-ground-link",
+      "width_mm": 3,
+      "length_mm": 11.011269837220805,
+      "assumed_current_a": 2,
+      "resistance_ohm": 0.001835211639536801,
+      "loss_w": 0.007340846558147204
+    },
+    {
+      "label": "raw-ground-current-to-shunt",
+      "width_mm": 3,
+      "length_mm": 115.05685424949239,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.019176142374915398,
+      "loss_w": 0.30681827799864636
+    },
+    {
+      "label": "shunt-raw-current-entry",
+      "width_mm": 2,
+      "length_mm": 6.061259377015539,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.001515314844253885,
+      "loss_w": 0.02424503750806216
+    },
+    {
+      "label": "charge-source-pin1",
+      "width_mm": 0.35,
+      "length_mm": 0.799999999999983,
+      "assumed_current_a": 1.3333333333333333,
+      "resistance_ohm": 0.0011428571428571187,
+      "loss_w": 0.0020317460317459887
+    },
+    {
+      "label": "charge-source-pin2",
+      "width_mm": 0.35,
+      "length_mm": 0.799999999999983,
+      "assumed_current_a": 1.3333333333333333,
+      "resistance_ohm": 0.0011428571428571187,
+      "loss_w": 0.0020317460317459887
+    },
+    {
+      "label": "charge-source-pin3",
+      "width_mm": 0.35,
+      "length_mm": 0.799999999999983,
+      "assumed_current_a": 1.3333333333333333,
+      "resistance_ohm": 0.0011428571428571187,
+      "loss_w": 0.0020317460317459887
+    },
+    {
+      "label": "charge-source-bus",
+      "width_mm": 0.8,
+      "length_mm": 5.456370849898461,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.003410231781186538,
+      "loss_w": 0.054563708498984606
+    },
+    {
+      "label": "charge-source-bank-F.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.010799999999999955
+    },
+    {
+      "label": "charge-source-bank-B.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.010799999999999955
+    },
+    {
+      "label": "raw-top-feed-protection",
+      "width_mm": 2,
+      "length_mm": 24.700000000000017,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.006175000000000004,
+      "loss_w": 0.09880000000000007
+    },
+    {
+      "label": "discharge-source-pin1",
+      "width_mm": 0.35,
+      "length_mm": 0.6999999999999886,
+      "assumed_current_a": 1.3333333333333333,
+      "resistance_ohm": 0.0009999999999999838,
+      "loss_w": 0.0017777777777777488
+    },
+    {
+      "label": "discharge-source-pin2",
+      "width_mm": 0.35,
+      "length_mm": 0.6999999999999886,
+      "assumed_current_a": 1.3333333333333333,
+      "resistance_ohm": 0.0009999999999999838,
+      "loss_w": 0.0017777777777777488
+    },
+    {
+      "label": "discharge-source-pin3",
+      "width_mm": 0.35,
+      "length_mm": 0.6999999999999886,
+      "assumed_current_a": 1.3333333333333333,
+      "resistance_ohm": 0.0009999999999999838,
+      "loss_w": 0.0017777777777777488
+    },
+    {
+      "label": "discharge-source-bus",
+      "width_mm": 0.8,
+      "length_mm": 14.525000000000006,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.009078125000000003,
+      "loss_w": 0.14525000000000005
+    },
+    {
+      "label": "protected-positive-trunk",
+      "width_mm": 3,
+      "length_mm": 89.3445742854949,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.014890762380915816,
+      "loss_w": 0.23825219809465306
+    },
+    {
+      "label": "common-drain-spine",
+      "width_mm": 2,
+      "length_mm": 3.2799999999999727,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0008199999999999932,
+      "loss_w": 0.01311999999999989
+    },
+    {
+      "label": "drain-paddle-tabs-54",
+      "width_mm": 0.35,
+      "length_mm": 2.829999999999984,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.004042857142857121,
+      "loss_w": 0.06468571428571393
+    },
+    {
+      "label": "drain-paddle-tabs-58",
+      "width_mm": 0.35,
+      "length_mm": 2.829999999999984,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.004042857142857121,
+      "loss_w": 0.06468571428571393
+    },
+    {
+      "label": "drain-peripheral-bus-55.5",
+      "width_mm": 0.35,
+      "length_mm": 1.9499999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.00278571428571427,
+      "loss_w": 0.04457142857142832
+    },
+    {
+      "label": "drain-peripheral-bus-56.5",
+      "width_mm": 0.35,
+      "length_mm": 1.9499999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.00278571428571427,
+      "loss_w": 0.04457142857142832
+    },
+    {
+      "label": "shunt-pack-current-exit",
+      "width_mm": 1.5,
+      "length_mm": 3.8000000000000114,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0012666666666666705,
+      "loss_w": 0.020266666666666728
+    },
+    {
+      "label": "pack-ground-shunt-bank-F.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.010799999999999955
+    },
+    {
+      "label": "pack-ground-shunt-bank-B.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.010799999999999955
+    },
+    {
+      "label": "pack-ground-low",
+      "width_mm": 3,
+      "length_mm": 19.179264068711912,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0031965440114519856,
+      "loss_w": 0.05114470418323177
+    },
+    {
+      "label": "pack-ground-crossing-low-bank-F.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.010799999999999955
+    },
+    {
+      "label": "pack-ground-crossing-low-bank-B.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.010799999999999955
+    },
+    {
+      "label": "pack-ground-front-crossing",
+      "width_mm": 3,
+      "length_mm": 17.30000000000001,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0028833333333333354,
+      "loss_w": 0.046133333333333366
+    },
+    {
+      "label": "pack-ground-crossing-high-bank-F.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.010799999999999955
+    },
+    {
+      "label": "pack-ground-crossing-high-bank-B.Cu",
+      "width_mm": 2,
+      "length_mm": 2.6999999999999886,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.0006749999999999972,
+      "loss_w": 0.010799999999999955
+    },
+    {
+      "label": "protected-ground-trunk",
+      "width_mm": 3,
+      "length_mm": 51.082337649086284,
+      "assumed_current_a": 4,
+      "resistance_ohm": 0.00851372294151438,
+      "loss_w": 0.13621956706423008
+    },
+    {
+      "label": "CSP-pin-escape",
+      "width_mm": 0.2,
+      "length_mm": 0.9207886552932105,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.002301971638233026,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CSP-Kelvin-only",
+      "width_mm": 0.2,
+      "length_mm": 19.872792206135795,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.04968198051533949,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CSP-inner-land",
+      "width_mm": 0.2,
+      "length_mm": 0.799999999999983,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0019999999999999575,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CSN-pin-escape",
+      "width_mm": 0.2,
+      "length_mm": 1.4324424839521968,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.003581106209880492,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CSN-Kelvin-only",
+      "width_mm": 0.2,
+      "length_mm": 20.71690546293819,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.05179226365734547,
+      "loss_w": 0.0
+    },
+    {
+      "label": "CSN-inner-land",
+      "width_mm": 0.2,
+      "length_mm": 0.799999999999983,
+      "assumed_current_a": 0,
+      "resistance_ohm": 0.0019999999999999575,
+      "loss_w": 0.0
+    }
+  ],
+  "sources": [
+    "https://www.ti.com/lit/pdf/sszp640",
+    "https://jlcpcb.com/capabilities/pcb-capabilities"
+  ],
+  "limits": [
+    "Not a temperature prediction, current rating or verified equal-sharing result.",
+    "Entire source buses/drain tabs are conservatively charged 4 A despite branching; source pins assume equal 4/3 A.",
+    "Both faces of each via bank are counted at full branch current; junction1 inter-carrier tail also counts 2 A although balanced current is zero.",
+    "Four power via barrels per bank use 18um average plating, not a specified minimum.",
+    "Excludes cells, holder contacts, fuse elements, solder, harnesses, shunt and protection FET losses.",
+    "Signals/bypass and ground-return paths are unfinished; no complete board release is implied."
+  ]
+}

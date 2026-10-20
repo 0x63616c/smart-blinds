@@ -3,8 +3,9 @@
 Updated 20 October 2026. [Public repository](https://github.com/0x63616c/smart-blinds).
 
 **Prototype design in progress.** The enclosure, circuit captures and control software
-are reviewable. A separate experimental companion-carrier board is connected;
-the canonical board captures remain unrouted. No unit has been fabricated,
+are reviewable. An experimental companion-carrier board is connected, and the primary carrier
+has its power and isolated current-sensing routes; the canonical captures remain
+unrouted. No unit has been fabricated,
 powered, charged or installed. The next physical milestone is two prototypes,
 followed by an eight-unit build only after their tests pass.
 
@@ -27,20 +28,24 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All ten Design checks jobs passed for `f8827ac`](https://github.com/0x63616c/smart-blinds/actions/runs/39378127521):
+[All ten Design checks jobs passed for `abfebb1`](https://github.com/0x63616c/smart-blinds/actions/runs/39379118407):
 control/parameter tests, electrical models, native schematic rebuilds, Home Assistant,
 real local transport tests, both C6 cross-builds, both mechanical-fit jobs and the
 source-bound print material budget, including the 59-test group-transport batch.
-The newer enclosure/companion-route checkpoint below has passed its local checks
-and awaits its own CI run.
+That checkpoint includes the experimental companion route with four injected-fault
+controls and the retained enclosure/holder-fixture checks. Its source-generated
+[design previews also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39379118397).
 New changes must be checked against their own source revision.
 
-The retained-enclosure artifact contains 33 named empty-intersection checks, a
+The newer tail-clearance/primary-routing checkpoint has passed its local checks
+and awaits its own CI run.
+
+The retained-enclosure artifact contains 35 named empty-intersection checks, a
 positive cleat-capture control and ten closed printable mesh types. Its seven CAD
 source hashes match the checked source. The service tests include a conservative
 2.5 mm cassette release and 72 mm forward removal envelope. These results establish
 what the nominal model does; they do not establish printed fit or load capacity.
-The 21 installed printed pieces total 322.271 cm³ per unit: about 409.28 g of
+The 21 installed printed pieces total 321.975 cm³ per unit: about 408.91 g of
 solid PETG at 1.27 g/cm³. This is a CAD estimate, before infill, supports and waste;
 CI recalculates it from the freshly checked meshes. A separate three-piece
 workshop fixture adds about 122.84 g once for the eight-unit build. Its three
@@ -68,7 +73,21 @@ edge, hole, courtyard-overlap or keepout failures. Six inherited silkscreen
 findings and four explicitly enabled mounting-hole courtyard errors remain.
 Four injected failures are rejected. Covered inward-face tracks pass through a
 coordinated 0.3 mm spacer recess; current, temperature and insulation wear remain
-physical qualification gates. The primary and main routes are unfinished.
+physical qualification gates.
+
+The [partial primary route](../hw/routing/blind-pack-primary/README.md) has 102
+segments and 32 vias. Its ten current-path groups and two separate shunt-sense
+branches pass physical copper-shape checks, including deliberate shortcut/open
+failures. Actual KiCad DRC has no copper, edge, hole, keepout or overlap failures,
+but retains 55 unconnected signal/bypass items, 26 silk findings and four mounting
+hole courtyard errors. Its conservative copper-only loss estimate is 1.73 W at
+4 A pack current; width, parallel-layer and 2 oz alternatives need review. The
+primary and main routes remain unfinished.
+
+The CAD checks now use the twelve actual primary wire-pad positions and remove
+the central support that would intersect their solder tails. Corner supports,
+the perimeter and separate barrier remain; 0.5 mm nominal tail clearance still
+needs tolerance and assembly qualification.
 
 The [host group bridge](firmware/thread-group-bridge.md) joins the coordinator to
 seven real localhost DTLS sessions with synthetic motors and calibration records.

@@ -40,8 +40,8 @@ unqualified; it is excluded from the installed-piece count and unit mass below.
 Its checked solid model is **122.84 g of PETG**; see the separate
 [workshop volume table](mechanical-workshop-volume.csv).
 
-The checked meshes total **322.271 cm³ per unit**, equivalent to **409.28 g of
-fully solid PETG**, or **3.274 kg for eight** at the [Prusament PETG data sheet's
+The checked meshes total **321.975 cm³ per unit**, equivalent to **408.91 g of
+fully solid PETG**, or **3.271 kg for eight** at the [Prusament PETG data sheet's
 1.27 g/cm³ density](https://prusament.com/wp-content/uploads/2022/10/PETG_Prusament_TDS_2021_10_EN.pdf).
 The reproducible [per-part volume table](mechanical-print-volume.csv) and
 [estimate evidence](mechanical-print-estimate.json) bind this calculation to

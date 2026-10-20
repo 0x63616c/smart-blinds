@@ -73,9 +73,26 @@ Only covered B.Cu tracks may cross local X9–77, Y94–97; no vias, exposed pad
 lead tails or copper pours are permitted there. The recess extends 0.5 mm beyond
 that permitted rectangle, retains 1.6 mm of spacer below the insulating-sheet
 slot, and leaves corner posts, the edge frame and outward F.Cu support intact.
-The primary-facing spacer surface is unchanged. Print/PCB tolerance, abrasion,
-structural and dielectric qualification remain separate; solder mask is not the
-sole insulating barrier.
+Print/PCB tolerance, abrasion, structural and dielectric qualification remain
+separate; solder mask is not the sole insulating barrier.
+
+The actual primary wire pads exposed a separate integration conflict: six Ø4 mm
+protected-harness pads at local X47/53/59/65/71/77, Y94.8 and six Ø2.5 mm NTC
+pads at X10/14/18/22/26/30, Y94.5 occupied its former upper spacer crossbar.
+That **primary-facing crossbar is now removed**, preserving the full four Ø7.6 mm
+corner posts and outer perimeter frame. The primary upper board loads therefore
+reach those corner/perimeter supports, without an intervening crossbar; stiffness
+and assembly-force qualification must assess that changed path. No thin roof is
+left beneath the solder joints. The companion-facing rail retains its 1.6 mm
+section below the insulating-sheet slot.
+
+The twelve actual pad anchors are represented by conservative cylinders using
+the complete pad diameter and the maximum 1.5 mm solder-tail/fillet protrusion.
+Their lowest Z35.1 extent leaves **0.5 mm nominal separation** from the barrier's
+Z34.6 upper surface. Dedicated tail-to-spacer/barrier and preserved-corner-material
+checks supplement the broader PCB-allocation tests. This separation is not a
+dielectric rating or a complete print/PCB/solder tolerance budget. All other
+actual parts, vias and solder geometry still require integration review.
 
 The four cassette screws compress posts and board/spacer lands. They do not
 press the cells. Smooth ribs in the lid sit 0.7 mm above the conservative loaded

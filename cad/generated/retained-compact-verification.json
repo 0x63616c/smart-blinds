@@ -16,13 +16,13 @@
     "limit": "Dimensional contract only; actuation, tolerance, retention loads, creep and print qualification are separate."
   },
   "source_sha256": {
-    "source/compact_retained.scad": "638c79bed1d899cd69df50b820b2cf40d43a29feb0f0d39eaa168e9cd68b1ccd",
+    "source/compact_retained.scad": "8d39567e754762c298c0a206bc7198f1c15fc4d824d9d313095d1e69c0e6954f",
     "source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
     "source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
     "source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55",
-    "build_retained.py": "41af43ed5684dca7bec028e065e703cec5e324f347bf4831ea4d3772bbb6d481",
+    "build_retained.py": "d73e4a8bac0063a71de623d0fb4887a9144f3c096a7e86b573b5b0ebf5097d2b",
     "build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-    "parameters/retained-interfaces.json": "bc67cfa48bf2719dd567bf6f0341244dfb0ad02026c8ea6d6882630177c0f330"
+    "parameters/retained-interfaces.json": "4c0c16019fb451ba58d7ee30df4e51fd296949a36cf0be01bcb0c81113b652c3"
   },
   "case_mm": [
     115,
@@ -143,6 +143,54 @@
     "retained_supports": "Corner posts, edge frame and outward F.Cu support retained; primary-facing spacer surface unchanged",
     "insulation": "Covered traces are recessed from the spacer; the separate insulating barrier remains. Solder mask is not the sole insulation."
   },
+  "primary_wire_tail_clearance": {
+    "reason": "Actual protected-harness and thermistor through-hole pad rows occupy the former primary upper spacer crossbar.",
+    "cut_global_min_xyz": [
+      8.7,
+      100.4,
+      34.69
+    ],
+    "cut_size_xyz": [
+      78.2,
+      2.2,
+      1.92
+    ],
+    "removed_crossbar_contact_local_xy": [
+      4,
+      94.5,
+      82,
+      96.5
+    ],
+    "preserved_corner_post_diameter": 7.6,
+    "preserved_support": "All four corner posts and the outer perimeter frame remain; the primary upper crossbar contributes no additional contact band.",
+    "harness_pad_local_x": [
+      47,
+      53,
+      59,
+      65,
+      71,
+      77
+    ],
+    "harness_pad_local_y": 94.8,
+    "harness_pad_diameter": 4,
+    "ntc_pad_local_x": [
+      10,
+      14,
+      18,
+      22,
+      26,
+      30
+    ],
+    "ntc_pad_local_y": 94.5,
+    "ntc_pad_diameter": 2.5,
+    "maximum_tail_and_fillet_protrusion": 1.5,
+    "primary_b_cu_global_z": 36.6,
+    "tail_lowest_global_z": 35.1,
+    "barrier_top_global_z": 34.6,
+    "nominal_tail_to_barrier_gap": 0.5,
+    "tail_model": "Conservative cylinders use each complete pad diameter across the maximum protrusion; all twelve anchors match the fixed electrical placement.",
+    "limit": "Nominal geometric clearance only. PCB/print tolerance, solder inspection, dielectric integrity and changed primary support loads require qualification."
+  },
   "controller_component_height_reservation_mm": 9,
   "controller_outline_mm": [
     54,
@@ -190,173 +238,183 @@
     {
       "pair": "cassette_contents",
       "intersection": "empty",
-      "seconds": 79.32
+      "seconds": 90.55
     },
     {
       "pair": "cassette_controller",
       "intersection": "empty",
-      "seconds": 173.49
+      "seconds": 178.97
     },
     {
       "pair": "cassette_drive",
       "intersection": "empty",
-      "seconds": 302.24
+      "seconds": 314.73
     },
     {
       "pair": "cassette_cover",
       "intersection": "empty",
-      "seconds": 120.09
+      "seconds": 135.02
     },
     {
       "pair": "case_pillars_drive",
       "intersection": "empty",
-      "seconds": 206.46
+      "seconds": 201.98
     },
     {
       "pair": "controller_cover",
       "intersection": "empty",
-      "seconds": 37.6
+      "seconds": 32.97
     },
     {
       "pair": "controller_buttons",
       "intersection": "empty",
-      "seconds": 26.47
+      "seconds": 28.08
     },
     {
       "pair": "controller_keys",
       "intersection": "empty",
-      "seconds": 14.36
+      "seconds": 14.35
     },
     {
       "pair": "connector_frame",
       "intersection": "empty",
-      "seconds": 10.09
+      "seconds": 10.57
     },
     {
       "pair": "connector_pcb",
       "intersection": "empty",
-      "seconds": 4.64
+      "seconds": 4.55
     },
     {
       "pair": "rf_metal",
       "intersection": "empty",
-      "seconds": 35.95
+      "seconds": 36.51
     },
     {
       "pair": "wiring_drive",
       "intersection": "empty",
-      "seconds": 230.33
+      "seconds": 226.1
     },
     {
       "pair": "wiring_cover",
       "intersection": "empty",
-      "seconds": 35.86
+      "seconds": 35.58
     },
     {
       "pair": "wiring_cassette",
       "intersection": "empty",
-      "seconds": 69.67
+      "seconds": 70.43
     },
     {
       "pair": "wiring_pillars",
       "intersection": "empty",
-      "seconds": 24.87
+      "seconds": 24.47
     },
     {
       "pair": "cassette_backplate",
       "intersection": "empty",
-      "seconds": 142.28
+      "seconds": 162.25
     },
     {
       "pair": "mount_tool",
       "intersection": "empty",
-      "seconds": 278.13
+      "seconds": 287.2
     },
     {
       "pair": "button_guides",
       "intersection": "empty",
-      "seconds": 42.28
+      "seconds": 41.33
     },
     {
       "pair": "button_adjuster",
       "intersection": "empty",
-      "seconds": 21.28
+      "seconds": 21.17
     },
     {
       "pair": "signal_header_buttons",
       "intersection": "empty",
-      "seconds": 11.8
+      "seconds": 10.77
     },
     {
       "pair": "wiring_controller",
       "intersection": "empty",
-      "seconds": 30.62
+      "seconds": 31.21
     },
     {
       "pair": "mount_head",
       "intersection": "empty",
-      "seconds": 247.84
+      "seconds": 260.19
     },
     {
       "pair": "cleat_engagement",
       "intersection": "empty",
-      "seconds": 94.69
+      "seconds": 101.13
     },
     {
       "pair": "service_drive",
       "intersection": "empty",
-      "seconds": 196.76
+      "seconds": 202.96
     },
     {
       "pair": "service_controller",
       "intersection": "empty",
-      "seconds": 82.58
+      "seconds": 87.6
     },
     {
       "pair": "connector_buttons",
       "intersection": "empty",
-      "seconds": 42.96
+      "seconds": 42.94
     },
     {
       "pair": "signal_wires_switches",
       "intersection": "empty",
-      "seconds": 2.99
+      "seconds": 2.97
     },
     {
       "pair": "wall_head",
       "intersection": "empty",
-      "seconds": 18.15
+      "seconds": 18.23
     },
     {
       "pair": "wall_roof_missing",
       "intersection": "empty",
-      "seconds": 18.49
+      "seconds": 18.27
     },
     {
       "pair": "holder_combs",
       "intersection": "empty",
-      "seconds": 15.79
+      "seconds": 28.17
     },
     {
       "pair": "spacer_relief",
       "intersection": "empty",
-      "seconds": 13.84
+      "seconds": 15.37
     },
     {
       "pair": "spacer_section_missing",
       "intersection": "empty",
-      "seconds": 13.4
+      "seconds": 14.96
     },
     {
       "pair": "spacer_barrier",
       "intersection": "empty",
-      "seconds": 15.11
+      "seconds": 16.95
+    },
+    {
+      "pair": "primary_wire_tails",
+      "intersection": "empty",
+      "seconds": 21.36
+    },
+    {
+      "pair": "primary_corner_support_missing",
+      "intersection": "empty",
+      "seconds": 17.14
     }
   ],
   "meshes": [
     {
       "file": "exports/retained-compact-fit/backplate.stl",
-      "sha256": "e7fe7249a613dd36e990ec0995e80c09bed0f15200d0c4b6ecef5f64c17162f3",
+      "sha256": "18ec7d37e40c9a1c3f3f747f1a5e94f54d2c7865eb6e072ac195a310580d62dd",
       "bytes": 293184,
       "triangles": 5862,
       "bounds_mm": [
@@ -376,11 +434,11 @@
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 34.54
+      "seconds": 34.44
     },
     {
       "file": "exports/retained-compact-fit/cover.stl",
-      "sha256": "a6e5ad4a39e6ffdbffe50a37af07e1da9656a32bf20c1032aa78cebb1a289bdc",
+      "sha256": "eab0f0ec57861723fddf4c365d8b40461306ad9c832256b3ebb99e2ee9f06fe3",
       "bytes": 205684,
       "triangles": 4112,
       "bounds_mm": [
@@ -400,11 +458,11 @@
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 18.44
+      "seconds": 18.89
     },
     {
       "file": "exports/retained-compact-fit/cassette_rear.stl",
-      "sha256": "556c0a7e06ae633f7d6dd96258f54cc46d8ca2aeef690670f5678b8ec7b6ba1e",
+      "sha256": "bd7dcd3762929ec0f5abec484295cbb7c3f667a8325091089b6e7f4aeb00320e",
       "bytes": 223584,
       "triangles": 4470,
       "bounds_mm": [
@@ -424,11 +482,11 @@
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 18.27
+      "seconds": 18.1
     },
     {
       "file": "exports/retained-compact-fit/cassette_front.stl",
-      "sha256": "a0db54b44120e99b62a1b98e3debc2b78e1d6e55b49a12961f4c52aaad943889",
+      "sha256": "7e62ae1933db787b434769f9cd47762fd6724f6b380e25478df9fff947cf25c6",
       "bytes": 142484,
       "triangles": 2848,
       "bounds_mm": [
@@ -448,13 +506,13 @@
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 12.85
+      "seconds": 13.02
     },
     {
       "file": "exports/retained-compact-fit/cassette_spacer.stl",
-      "sha256": "c39712dda92f2690000238d7ad7ee0da5598cc26ce5a577adef6f1816e2febff",
-      "bytes": 120084,
-      "triangles": 2400,
+      "sha256": "d5a43206d4b17af73f0ec5f80ac574728ccaf98ac49dfa029274bc0285026439",
+      "bytes": 119884,
+      "triangles": 2396,
       "bounds_mm": [
         [
           4.8,
@@ -467,16 +525,16 @@
           5.0
         ]
       ],
-      "volume_cm3": 5.913,
+      "volume_cm3": 5.617,
       "non_manifold_edges": 0,
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 13.56
+      "seconds": 15.18
     },
     {
       "file": "exports/retained-compact-fit/controller_frame.stl",
-      "sha256": "e95f67bcc083313e5f73913aaab2f6d158441ec8a5a8d918699077c1300eb3ca",
+      "sha256": "8eb7ede4b56e2cea67aa67d80c51cd74ba029465dafacd8ff5875e244961a08c",
       "bytes": 73084,
       "triangles": 1460,
       "bounds_mm": [
@@ -496,11 +554,11 @@
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 6.43
+      "seconds": 6.52
     },
     {
       "file": "exports/retained-compact-fit/controller_clip.stl",
-      "sha256": "27940e0357d6f4d7fde5900d63d5e900c33f59d5c4d16f9f0e6fc2efbc41a8b1",
+      "sha256": "60ec3fd0e5a6c3b34fbc7b702f76fbbf8ffe95deb59a148efd339f13a511e003",
       "bytes": 23684,
       "triangles": 472,
       "bounds_mm": [
@@ -520,11 +578,11 @@
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 1.51
+      "seconds": 1.53
     },
     {
       "file": "exports/retained-compact-fit/button_plunger.stl",
-      "sha256": "f3918f29a09ace5f762f86a4af2a7a7001838502d3f9f5b7fe4deb7b43c947c6",
+      "sha256": "93ec7a7a90af3eb3a273ab1c7ab3fafe5aace95135fb407ff38a2372087b2366",
       "bytes": 67484,
       "triangles": 1348,
       "bounds_mm": [
@@ -544,11 +602,11 @@
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 5.8
+      "seconds": 5.82
     },
     {
       "file": "exports/retained-compact-fit/button_face.stl",
-      "sha256": "441619d57b21631fa6b0750abff569388fda2c2a3acbeb1089bf7a0cb9c4afbb",
+      "sha256": "1ab9db49229a16d9bd3ee27aec3504741f6f6cda5e676ab32d513336e065b5f2",
       "bytes": 39884,
       "triangles": 796,
       "bounds_mm": [
@@ -568,11 +626,11 @@
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 1.68
+      "seconds": 1.67
     },
     {
       "file": "exports/retained-compact-fit/button_guide.stl",
-      "sha256": "d34fe9f07c754e1e7fad3666a274a48c6994fd075652df989e2f0700b721fea1",
+      "sha256": "2b1e07a8a2adee858347467d52a2d109d1068aec7ac4eae31fa47e07da45a579",
       "bytes": 49484,
       "triangles": 988,
       "bounds_mm": [
@@ -592,7 +650,7 @@
       "closed_edge_mesh": true,
       "connected_shells": 1,
       "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
-      "seconds": 2.67
+      "seconds": 2.79
     }
   ],
   "artifacts": [
@@ -632,13 +690,14 @@
     "limit": "Shows geometric capture only, not load capacity, creep or print tolerance."
   },
   "source_snapshot_verified_unchanged": true,
-  "build_elapsed_seconds": 804.42,
+  "build_elapsed_seconds": 839.79,
   "limits": [
     "Named nominal static intersections plus conservative continuous service envelopes are checked; no tolerance or structural analysis.",
     "Service drive/controller tests expand closed-cassette bounds through the 2.5 mm rise and 72 mm forward removal, including boards/cells, lid and inline tray/housing. Cable manipulation is excluded.",
     "Cleat/backplate engagement uses 12 sampled actual rear-tray positions, not a continuous pocket sweep. The central washer pocket covers a continuous head sweep combining +/-2 mm wall-slot adjustment and 2.5 mm rise.",
     "Integral holder end combs are capture stops with an independent gap, not preload or a verified solder-force bypass. Actual rim fit and controlled insertion-fixture use remain unqualified.",
     "The companion spacer relief permits only covered B.Cu tracks; remaining section and barrier clearance are geometric checks, not dielectric, abrasion or structural qualification.",
+    "Primary upper crossbar is removed while corner posts/perimeter remain. Twelve actual wire/NTC pad anchors use full-pad-diameter 1.5 mm protrusion cylinders; 0.5 mm nominal barrier gap does not establish tolerance, dielectric or load acceptance.",
     "The motor rear cable allocation is excluded from the wire/drive test because the wire intentionally enters it.",
     "The cassette/contents test excludes intended PCB face seating planes with 0.02 mm contact bands.",
     "The cassette/backplate test excludes the intended Z3 seating plane with a 0.02 mm contact band.",

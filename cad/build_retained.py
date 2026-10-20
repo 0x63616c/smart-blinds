@@ -19,7 +19,7 @@ CHECKS = ["cassette_contents", "cassette_controller", "cassette_drive", "cassett
           "case_pillars_drive", "controller_cover", "controller_buttons", "controller_keys", "connector_frame", "connector_pcb", "rf_metal", "wiring_drive",
           "wiring_cover", "wiring_cassette", "wiring_pillars", "cassette_backplate",
           "mount_tool", "button_guides", "button_adjuster", "signal_header_buttons", "wiring_controller", "mount_head", "cleat_engagement", "service_drive", "service_controller", "connector_buttons", "signal_wires_switches",
-          "wall_head", "wall_roof_missing", "holder_combs", "spacer_relief", "spacer_section_missing", "spacer_barrier"]
+          "wall_head", "wall_roof_missing", "holder_combs", "spacer_relief", "spacer_section_missing", "spacer_barrier", "primary_wire_tails", "primary_corner_support_missing"]
 
 
 def sha(path):
@@ -126,6 +126,17 @@ def check_shared_interfaces():
     assert declaration("spacer_relief_depth") == relief["spacer_recess_depth"]
     assert round(33.5 - (31.6 + relief["spacer_recess_depth"]),6) == relief["remaining_spacer_below_barrier_slot"]
     assert relief["allowed_track_band_local_xy"] == [9,94,77,97]
+    primary = data["carrier"]["primary_upper_wire_tail_relief"]
+    assert declaration("primary_upper_relief_min") == primary["cut_global_min_xyz"]
+    assert declaration("primary_upper_relief_size") == primary["cut_size_xyz"]
+    assert declaration("primary_harness_x") == primary["harness_pad_local_x"]
+    assert declaration("primary_harness_y") == primary["harness_pad_local_y"]
+    assert declaration("primary_ntc_x") == primary["ntc_pad_local_x"]
+    assert declaration("primary_ntc_y") == primary["ntc_pad_local_y"]
+    assert declaration("primary_wire_pad_d") == [primary["harness_pad_diameter"],primary["ntc_pad_diameter"]]
+    assert declaration("primary_tail_max") == primary["maximum_tail_and_fillet_protrusion"]
+    assert round(primary["primary_b_cu_global_z"]-primary["maximum_tail_and_fillet_protrusion"],6) == primary["tail_lowest_global_z"]
+    assert round(primary["tail_lowest_global_z"]-primary["barrier_top_global_z"],6) == primary["nominal_tail_to_barrier_gap"]
     holder = data["holder_body_capture"]
     assert declaration("holder_rim_height") == holder["modeled_rim_upper_height"]
     assert declaration("holder_contact_gap") == holder["independent_contact_gap"]
@@ -182,6 +193,7 @@ def main():
         "holder_body_capture": interfaces["holder_body_capture"],
         "wall_head_pocket": interfaces["wall_head_pocket"],
         "companion_support_relief": interfaces["carrier"]["companion_upper_support_trace_relief"],
+        "primary_wire_tail_clearance": interfaces["carrier"]["primary_upper_wire_tail_relief"],
         "controller_component_height_reservation_mm": 9,
         "controller_outline_mm": [54, 68.5, 1.6],
         "controller_local_mapping": "u=global Z-8; v=global Y-3",
@@ -269,6 +281,7 @@ def main():
         "Cleat/backplate engagement uses 12 sampled actual rear-tray positions, not a continuous pocket sweep. The central washer pocket covers a continuous head sweep combining +/-2 mm wall-slot adjustment and 2.5 mm rise.",
         "Integral holder end combs are capture stops with an independent gap, not preload or a verified solder-force bypass. Actual rim fit and controlled insertion-fixture use remain unqualified.",
         "The companion spacer relief permits only covered B.Cu tracks; remaining section and barrier clearance are geometric checks, not dielectric, abrasion or structural qualification.",
+        "Primary upper crossbar is removed while corner posts/perimeter remain. Twelve actual wire/NTC pad anchors use full-pad-diameter 1.5 mm protrusion cylinders; 0.5 mm nominal barrier gap does not establish tolerance, dielectric or load acceptance.",
         "The motor rear cable allocation is excluded from the wire/drive test because the wire intentionally enters it.",
         "The cassette/contents test excludes intended PCB face seating planes with 0.02 mm contact bands.",
         "The cassette/backplate test excludes the intended Z3 seating plane with a 0.02 mm contact band.",

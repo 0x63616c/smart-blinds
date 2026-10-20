@@ -240,6 +240,54 @@
       ],
       "rule": "No exposed copper, pads, vias, test points, solder or lead tails on these contact lands; covered tracks require fixture contact/wear qualification",
       "limit": "A fitted end-rim clamp plus backing is required for service; these lands alone do not prove solder unloading."
+    },
+    "primary_upper_wire_tail_relief": {
+      "reason": "Actual protected-harness and thermistor through-hole pad rows occupy the former primary upper spacer crossbar.",
+      "cut_global_min_xyz": [
+        8.7,
+        100.4,
+        34.69
+      ],
+      "cut_size_xyz": [
+        78.2,
+        2.2,
+        1.92
+      ],
+      "removed_crossbar_contact_local_xy": [
+        4,
+        94.5,
+        82,
+        96.5
+      ],
+      "preserved_corner_post_diameter": 7.6,
+      "preserved_support": "All four corner posts and the outer perimeter frame remain; the primary upper crossbar contributes no additional contact band.",
+      "harness_pad_local_x": [
+        47,
+        53,
+        59,
+        65,
+        71,
+        77
+      ],
+      "harness_pad_local_y": 94.8,
+      "harness_pad_diameter": 4,
+      "ntc_pad_local_x": [
+        10,
+        14,
+        18,
+        22,
+        26,
+        30
+      ],
+      "ntc_pad_local_y": 94.5,
+      "ntc_pad_diameter": 2.5,
+      "maximum_tail_and_fillet_protrusion": 1.5,
+      "primary_b_cu_global_z": 36.6,
+      "tail_lowest_global_z": 35.1,
+      "barrier_top_global_z": 34.6,
+      "nominal_tail_to_barrier_gap": 0.5,
+      "tail_model": "Conservative cylinders use each complete pad diameter across the maximum protrusion; all twelve anchors match the fixed electrical placement.",
+      "limit": "Nominal geometric clearance only. PCB/print tolerance, solder inspection, dielectric integrity and changed primary support loads require qualification."
     }
   },
   "controller": {
