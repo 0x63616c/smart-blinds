@@ -172,7 +172,8 @@ Readiness assess(const Capture& c, const PackEvidence& p, const SourceEvidence& 
         c.vbus_mv() < s.voltage_mv*90/100 || c.vbus_mv() > s.voltage_mv*110/100) return Readiness::source;
     std::uint32_t sum = 0;
     for (auto cell : p.cell_mv) { if (cell < 3000 || cell > 4150) return Readiness::pack; sum += cell; }
-    if (c.battery_mv()+150 < sum || c.battery_mv() > sum+150) return Readiness::pack;
+    const std::uint32_t battery_mv = c.battery_mv();
+    if (battery_mv+150U < sum || battery_mv > sum+150U) return Readiness::pack;
     for (auto temperature : p.temperature_deci_c)
         if (temperature < 100 || temperature >= 400) return Readiness::temperature;
     if (!motor_stopped) return Readiness::motion;
