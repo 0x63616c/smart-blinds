@@ -6,22 +6,28 @@ constexpr std::int64_t capture_budget_us=250000,transfer_budget_us=10000;
 struct Request { std::uint16_t address;std::uint16_t* value; };
 class Reader {
 public:
-    Reader(ReadOnlyBus& bus,Capture& capture) : bus_(bus),capture_(capture) {
+    Reader(ReadOnlyBus& bus,Capture& capture,CaptureObserver* observer)
+        : bus_(bus),capture_(capture),observer_(observer) {
         started_=last_=bus_.now_us();
         capture_.gauge.read_started_us=started_;
-        capture_.error=started_<0 ? ReadError::clock:ReadError::none;
+        capture_.error=ReadError::none;
+        if(started_<0) fail(ReadError::clock,Fault::clock);
+        else if(observer_) reject(observer_->begin(started_));
     }
     void word(Request r) {
         if(capture_.error!=ReadError::none) return;
         const auto before=bus_.now_us();
         if(!time(before)) return;
-        if(before-started_>=capture_budget_us) { capture_.error=ReadError::timeout; return; }
+        if(before-started_>=capture_budget_us) { fail(ReadError::timeout,Fault::clock); return; }
         const bool ok=bus_.read_word(r.address,*r.value,10);
+        // Report the first returned bus error before another clock call can
+        // block or produce a later error. Ownership may already be retired.
+        if(!ok) { fail(ReadError::bus,bus_.read_failure());return; }
         const auto after=bus_.now_us();
         if(!time(after)) return;
         if(after-before>transfer_budget_us || after-started_>capture_budget_us)
-            capture_.error=ReadError::timeout;
-        else if(!ok) capture_.error=ReadError::bus;
+            fail(ReadError::timeout,Fault::clock);
+        else if(observer_) reject(observer_->word(r.address,*r.value));
     }
     void guard(Guard& g) {
         const Request requests[]={
@@ -37,36 +43,94 @@ public:
     void finish() {
         const auto end=bus_.now_us();
         // A failed transfer remains invalid even if the final clock is benign.
-        if(started_<0) capture_.error=ReadError::clock;
-        else if(time(end) && end-started_>capture_budget_us) capture_.error=ReadError::timeout;
+        if(capture_.error==ReadError::none && time(end) && end-started_>capture_budget_us)
+            fail(ReadError::timeout,Fault::clock);
         capture_.gauge.read_finished_us=end;
         capture_.gauge.valid=capture_.error==ReadError::none;
     }
 private:
+    void fail(ReadError error,Fault cause) {
+        if(capture_.error!=ReadError::none) return;
+        capture_.error=error;
+        if(observer_) observer_->failed(cause==Fault::none ? Fault::bus:cause);
+    }
+    void reject(Fault reason) { if(reason!=Fault::none) fail(ReadError::rejected,reason); }
     bool time(std::int64_t now) {
-        if(now<0 || now<last_) { capture_.error=ReadError::clock;return false; }
+        if(now<0 || now<last_) { fail(ReadError::clock,Fault::clock);return false; }
         last_=now;return true;
     }
     ReadOnlyBus& bus_;
     Capture& capture_;
+    CaptureObserver* observer_;
     std::int64_t started_=0,last_=0;
 };
-bool profile_matches(const Guard& g,const Profile& p) {
-    return g.config==p.config && g.config2==p.config2 && g.nv_config==p.nv_config &&
-        g.rom==p.rom && g.dev_name==p.pack.dev_name && g.pack_config==p.pack.pack_config &&
-        g.nv_config0==p.pack.nv_config0 && g.nv_config1==p.pack.nv_config1 &&
-        g.sense==p.pack.sense_resistor && g.hibernate==p.pack.hibernate_config &&
-        g.thermistor==p.pack.thermistor_config;
-}
-bool protected_or_inactive(const Guard& g) {
-    return (g.status&2) || (g.status2&2) || (g.fstat&1) ||
-        ((g.protection|g.alerts)&0xDFFF) || (g.battery_status&0xFF00) || (g.fets&3)!=3;
+Fault guard_fault(const Guard& g,const Profile& p) {
+    // Same word policy as incremental capture; no separate masks/thresholds.
+    const std::pair<std::uint16_t,std::uint16_t> words[]={
+        {0x000,g.status},{0x0AF,g.alerts},{0x0D9,g.protection},{0x0B0,g.status2},
+        {0x03D,g.fstat},{0x0F1,g.fets},{0x1A8,g.battery_status},
+        {0x00B,g.config},{0x0AB,g.config2},{0x1B0,g.nv_config},{0x1BB,g.hibernate},
+        {0x1BC,g.rom[0]},{0x1BD,g.rom[1]},{0x1BE,g.rom[2]},{0x1BF,g.rom[3]},
+        {0x021,g.dev_name},{0x1B5,g.pack_config},{0x1B8,g.nv_config0},
+        {0x1B9,g.nv_config1},{0x1CF,g.sense},{0x1CA,g.thermistor}
+    };
+    CaptureValidation validation(p);
+    for(auto w:words) {
+        const auto fault=validation.word(w.first,w.second);
+        if(fault!=Fault::none) return fault;
+    }
+    return Fault::none;
 }
 } // namespace
 
-Capture read_capture(ReadOnlyBus& bus) {
+Fault CaptureValidation::word(std::uint16_t reg,std::uint16_t raw) noexcept {
+    bool good=true;
+    switch(reg) {
+    case 0x000:case 0x0B0:good=limits::no_por(raw);break;
+    case 0x0AF:case 0x0D9:good=limits::protection(raw);break;
+    case 0x03D:good=limits::active(raw);break;
+    case 0x0F1:good=limits::fets(raw);break;
+    case 0x1A8:good=limits::battery_status(raw);break;
+    default:break;
+    }
+    if(!good) return Fault::protection;
+    switch(reg) {
+    case 0x00B:good=raw==profile_.config;break;
+    case 0x0AB:good=raw==profile_.config2;break;
+    case 0x1B0:good=raw==profile_.nv_config;break;
+    case 0x1BB:good=raw==profile_.pack.hibernate_config;break;
+    case 0x1BC:case 0x1BD:case 0x1BE:case 0x1BF:good=raw==profile_.rom[reg-0x1BC];break;
+    case 0x021:good=raw==profile_.pack.dev_name;break;
+    case 0x1B5:good=raw==profile_.pack.pack_config;break;
+    case 0x1B8:good=raw==profile_.pack.nv_config0;break;
+    case 0x1B9:good=raw==profile_.pack.nv_config1;break;
+    case 0x1CF:good=raw==profile_.pack.sense_resistor;break;
+    case 0x1CA:good=raw==profile_.pack.thermistor_config;break;
+    default:break;
+    }
+    if(!good) return Fault::profile;
+    switch(reg) {
+    case 0x0DA:pack_=raw*.0003125;present_|=8;good=limits::pack(pack_);break;
+    case 0x0DB:protected_=raw*.0003125;present_|=16;break;
+    case 0x0D6:case 0x0D7:case 0x0D8: {
+        const auto i=0x0D8-reg;cells_[i]=raw*.000078125;present_|=1u<<i;
+        good=limits::cell(cells_[i]);break;
+    }
+    case 0x01C:good=limits::current(raw);break;
+    case 0x139:case 0x13A:good=limits::temperature(static_cast<std::int16_t>(raw)/256.);break;
+    default:break; // SOC is optional; die temperature is not the TH1/TH2 gate.
+    }
+    if(!good) return Fault::values;
+    for(unsigned i=0;i<3;++i) for(unsigned j=i+1;j<3;++j)
+        if((present_&(1u<<i)) && (present_&(1u<<j)) && !limits::spread(cells_[i],cells_[j]))
+            return Fault::values;
+    if((present_&15)==15 && !limits::sum(cells_[0]+cells_[1]+cells_[2],pack_)) return Fault::values;
+    if((present_&24)==24 && !limits::protected_output(protected_,pack_)) return Fault::values;
+    return Fault::none;
+}
+Capture read_capture(ReadOnlyBus& bus,CaptureObserver* observer) {
     Capture c;
-    Reader reader(bus,c);
+    Reader reader(bus,c,observer);
     reader.guard(c.before);
     const Request payload[]={
         {0x006,&c.gauge.soc},{0x0DA,&c.gauge.pack_voltage},{0x01C,&c.gauge.current},
@@ -135,9 +199,10 @@ Result Monitor::observe(const Capture& c,Context context,std::uint64_t now) {
        now-start>250000 || c.gauge.read_finished_us-c.gauge.read_started_us>250000 ||
        (seen_capture_ && (start<=last_capture_ || start<last_finished_)) ||
        (phase_==Phase::awaiting_capture && start<resumed_at_)) return failed(Fault::clock);
-    if(!profile_matches(c.before,profile_) || !profile_matches(c.after,profile_))
-        return failed(Fault::profile);
-    if(protected_or_inactive(c.before) || protected_or_inactive(c.after)) return failed(Fault::protection);
+    for(const auto* guard:{&c.before,&c.after}) {
+        const auto fault=guard_fault(*guard,profile_);
+        if(fault!=Fault::none) return failed(fault);
+    }
     auto report=monitor_.observe(c.gauge,now);
     if(report.state!=State::warming && !report.ready()) {
         const auto cause=report.state==State::clock ? Fault::clock:
@@ -150,6 +215,16 @@ Result Monitor::observe(const Capture& c,Context context,std::uint64_t now) {
     phase_=report.ready() ? Phase::active:Phase::warming;
     last_ready_=report.ready() ? start:0;
     return {report,phase_,fault_};
+}
+Fault Monitor::capture_start(Context context,std::int64_t started) const {
+    if(phase_==Phase::invalid) return fault_;
+    if(!(context==context_)) return Fault::context;
+    if(phase_==Phase::parked) return Fault::transition;
+    if(started<0) return Fault::clock;
+    const auto start=static_cast<std::uint64_t>(started);
+    if(start<last_now_ || (seen_capture_ && (start<=last_capture_ || start<last_finished_)) ||
+       (phase_==Phase::awaiting_capture && start<resumed_at_)) return Fault::clock;
+    return Fault::none;
 }
 bool Monitor::park_light_sleep(Context context,std::uint64_t now) {
     if(!check_context_time(context,now)) return false;

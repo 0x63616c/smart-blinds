@@ -16,14 +16,20 @@ bool read_address(std::uint16_t reg,WordAddress& out) {
     default:out={};return false;
     }
 }
+bool OwnedWordBus::reject(Fault fault) {
+    auto empty=Fault::none;
+    failure_->compare_exchange_strong(empty,fault,std::memory_order_acq_rel,std::memory_order_acquire);
+    epoch_.retire_if(expected_);return false;
+}
 bool OwnedWordBus::read_word(std::uint16_t reg,std::uint16_t& value,std::uint32_t timeout) {
     WordAddress address;
     if(!accessible() || timeout!=10 || !read_address(reg,address)) {
-        epoch_.retire_if(expected_);return false;
+        return reject(Fault::context);
     }
     std::array<std::uint8_t,2> bytes{};
     const bool ok=transport_.transfer(address.device,address.pointer,bytes,timeout);
-    if(!ok || !accessible()) { epoch_.retire_if(expected_);return false; }
+    if(!ok) return reject(Fault::bus);
+    if(!accessible()) return reject(Fault::context);
     value=static_cast<std::uint16_t>(bytes[0] | (static_cast<std::uint16_t>(bytes[1])<<8));
     return true;
 }
@@ -37,19 +43,37 @@ bool OwnedSession::allowed(Context context) {
     return true;
 }
 Publication OwnedSession::fail(Fault fault) {
-    retire();
-    return {{{},Phase::invalid,fault},0,0};
+    failed(fault);
+    return {{{},Phase::invalid,failure_.load(std::memory_order_acquire)},0,0};
+}
+void OwnedSession::failed(Fault fault) noexcept {
+    auto empty=Fault::none;
+    failure_.compare_exchange_strong(empty,fault==Fault::none ? Fault::context:fault,
+                                    std::memory_order_acq_rel,std::memory_order_acquire);
+    published_.store(0,std::memory_order_release);
+    epoch_.retire_if(expected_);
+}
+Fault OwnedSession::begin(std::int64_t started) noexcept {
+    return monitor_.capture_start(context_,started);
+}
+Fault OwnedSession::word(std::uint16_t reg,std::uint16_t raw) noexcept {
+    return validation_.word(reg,raw);
 }
 Publication OwnedSession::read(Context context) {
-    published_.store(0,std::memory_order_release);
     if(!allowed(context)) return fail(Fault::context);
     if(monitor_.phase()==Phase::invalid) return fail(monitor_.fault());
-    const auto capture=read_capture(bus_);
+    // Only an ordinary active refresh retains the last completed serial.
+    // Its immutable report keeps its original source/ADC age bounds.
+    const bool active=monitor_.phase()==Phase::active;
+    if(!active) published_.store(0,std::memory_order_release);
+    validation_.reset();
+    const auto capture=read_capture(bus_,this);
     if(!allowed(context)) return fail(Fault::context);
     const auto now=transport_.now_us();
     if(now<0) return fail(Fault::clock);
     auto evidence=monitor_.observe(capture,context,static_cast<std::uint64_t>(now));
     if(evidence.phase==Phase::invalid) return fail(evidence.fault);
+    if(active && !evidence.report.ready()) return fail(Fault::transition);
     // Cancellation during capture or interpretation cannot publish a good read.
     if(!allowed(context)) return fail(Fault::context);
     if(evidence.report.ready()) {

@@ -16,7 +16,8 @@ reading cannot.
 
 `firmware/include/smart_blinds/gauge_continuity.hpp` and
 `firmware/src/gauge_continuity.cpp` add a read-only bounded capture and a wrapper
-around the unchanged `GaugeMonitor`.
+around `GaugeMonitor`, with its existing admission predicates shared by
+complete and incremental validation.
 
 The default profile is invalid. A trusted local commissioning path would have
 to supply the existing boot-bound pack profile, gauge ROM ID, exact live/shadow
@@ -95,6 +96,33 @@ Existing limits remain **250 ms observation age, 750 ms voltage age and 4.25 s
 temperature age**. Constant thermal values are valid; a changing value is not
 proof of a conversion deadline. DNR and the gauge Timer are not ADC timestamps.
 
+## Completed reports during active refresh
+
+The isolated owned adapter retains exactly the previous completed publication
+during an ordinary active read. It preserves that report's original source
+times, values and binding; a new ready serial supersedes it only after the
+whole capture passes. The old report still expires at its original age limit.
+This avoids withdrawing it for all 52 transactions merely because a healthy
+refresh began.
+
+A synchronous observer revokes the epoch at the first detected read/clock
+failure or received guard/value that proves an existing violation. Both
+guards are checked word by word; cross-field checks wait only until their
+required operands from this capture have arrived. Full final validation still
+runs. Partial evidence can reject but cannot grant readiness. A shared atomic
+first-fault latch preserves the original diagnostic through retirement and
+later failures.
+
+Park/resume and cancellation still withdraw the old publication. A late
+successful transfer cannot restore a retired generation. Unreported worker
+loss remains bounded by source-age expiry; the code cannot immediately detect
+a task which silently stops or interrupt an SDK call which never returns.
+
+This remains separate from runtime integration. The serial replacement and
+delivery of the new copied report need a coherent handoff before the control
+task can consume this adapter without a queue-publication gap. No application
+instantiates it, and no qualification records or button admission are added.
+
 ## Response and energy targets
 
 Ordinary local motion within 250 ms of a valid tap release is a **target** only
@@ -122,7 +150,10 @@ Forced thermistor bias remains disabled.
 mode bits, cold history, repeated qualified sleep, unchanged temperatures,
 new source-age calculations, stale/future/replayed/overlapping captures,
 identity/configuration/fault changes in either guard, context loss and ticket
-reuse. Healthy later reads cannot silently repair a failed instance.
+reuse. It also checks every bit mutation of all head/tail guard words against
+independent original masks, and all 65,536 raw values of each payload word
+against a frozen pre-change numeric policy. Healthy later reads cannot
+silently repair a failed instance.
 
 The [read-only C6 adapter](../../firmware/esp-idf/components/gauge_continuity/README.md)
 now implements the bounded capture with explicit task/epoch ownership and

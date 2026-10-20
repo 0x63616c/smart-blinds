@@ -68,12 +68,30 @@ Loss during a transfer discards even successfully returned bytes and prevents
 the remaining reads. A late successful word cannot restore the session.
 
 A publication carries both epoch and monotonically issued sample serial.
-Starting a new capture, parking, resuming or retiring withdraws the prior
-publication. Only a complete ready capture issues a new serial; a warming
-capture has no ready serial. Queues/consumers must call `current(publication,
-now)` before using a report, then apply the existing joint `motion_power()`
-freshness/charger checks. The publication fence can be read across tasks
-without touching the single-owner monitor. It never grants actuation.
+An ordinary active refresh retains only the last completed serial until the
+new complete ready capture replaces it. All fields of the old report,
+including its observation and conservative conversion timestamps, stay
+unchanged. It can expire during the refresh; there is no grace period.
+Parking, resuming, any detected failure or retirement still withdraws it.
+A warming capture has no ready serial.
+
+The owner synchronously revokes on the first returned bus error, detected
+clock/timeout error, or received word that proves an existing guard/value
+violation. Incremental checks share the complete monitor's predicates;
+partial data can only reject, never publish readiness. The first fault is
+latched before retiring the epoch, so later clock/context failures cannot
+replace its diagnostic. A successful later word cannot repair that object.
+
+Queues/consumers must call `current(publication, now)` before using a report,
+then apply the existing joint `motion_power()` freshness/charger checks.
+The publication fence reads atomics and immutable copies across tasks without
+touching the single-owner monitor. It never grants actuation.
+
+**Runtime handoff remains unresolved and this adapter remains uninstantiated.**
+Replacing a serial before delivering its new report to a consumer queue leaves
+a fail-closed interval in which the consumer's older copy rejects. Connecting
+the adapter needs a reviewed coherent report/serial handoff; accepting arbitrary
+older serials or bypassing `current` is not a solution.
 
 ## Requested timeouts versus physical timing
 
@@ -100,8 +118,12 @@ remain unmeasured.
 
 - `gauge_bus_session_tests` exercises the actual shared word/session logic:
   address mapping, little endian, timeouts, first error, task/epoch loss at all
-  52 transfer positions, late cancellation, publication withdrawal, cold
-  requalification and concurrent nonwrapping retirement.
+  52 transfer positions, immediate head/tail rejection, healthy-refresh
+  retention, original age expiry, park withdrawal, cold requalification,
+  cross-thread refresh/cancellation barriers and nonwrapping retirement.
+- `gauge_continuity_tests` compares guard bit mutations and every raw value of
+  every payload word against independently specified original masks and a
+  frozen pre-change numeric predicate oracle, as well as the complete monitor.
 - Two host targets compile the **actual C6 adapter source** against a minimal
   fake SDK, with the bench gate both OFF and ON. They test no default SDK access,
   qualification rejection, actual attachment address selection, transaction

@@ -38,6 +38,22 @@ struct PackProfile {
     }
 };
 enum class State { unqualified, bus, clock, profile, protection, warming, cells, temperature, ready };
+// Shared by complete and incremental gauge validation. These predicates must
+// not diverge when an unfinished refresh retains the previous observation.
+namespace limits {
+inline bool no_por(std::uint16_t raw) { return !(raw&2); }
+inline bool active(std::uint16_t raw) { return !(raw&1); }
+inline bool protection(std::uint16_t raw) { return !(raw&0xDFFF); }
+inline bool battery_status(std::uint16_t raw) { return !(raw&0xFF00); }
+inline bool fets(std::uint16_t raw) { return (raw&3)==3; }
+inline bool cell(double v) { return v>=3.2 && v<=4.2; }
+inline bool pack(double v) { return v>=9.6 && v<=12.6; }
+inline bool spread(double a,double b) { return std::abs(a-b)<=.15; }
+inline bool sum(double cells,double pack_v) { return std::abs(cells-pack_v)<=.15; }
+inline bool protected_output(double protected_v,double pack_v) { return std::abs(protected_v-pack_v)<=.2; }
+inline bool current(std::uint16_t raw) { return raw!=0x7FFF && raw!=0x8000; }
+inline bool temperature(double c) { return c>=10 && c<40; }
+} // namespace limits
 struct Report {
     State state=State::unqualified;
     std::uint64_t observed_us=0, voltage_earliest_us=0, temperature_earliest_us=0;
@@ -79,8 +95,8 @@ public:
         }
         // POR requires explicit supervised recovery. No clear/write is hidden in
         // this reader. Full is the only permitted ProtStatus bit for motion.
-        if((c.status&0x0002) || (c.status2&0x0002) || (c.fstat&1) ||
-           (c.protection_status&0xDFFF) || (c.battery_status&0xFF00) || (c.fet_status&3)!=3) {
+        if(!limits::no_por(c.status) || !limits::no_por(c.status2) || !limits::active(c.fstat) ||
+           !limits::protection(c.protection_status) || !limits::battery_status(c.battery_status) || !limits::fets(c.fet_status)) {
             active_since_.reset(); r.state=State::protection; return r;
         }
         if(!active_since_) active_since_=start;
@@ -90,10 +106,10 @@ public:
         r.temperature_earliest_us=start-profile_.temperature_period_bound_us;
         const auto sum=r.cells_v[0]+r.cells_v[1]+r.cells_v[2];
         const auto range=std::minmax_element(r.cells_v.begin(),r.cells_v.end());
-        if(*range.first<3.2 || *range.second>4.2 || *range.second-*range.first>.15 ||
-           r.pack_v<9.6 || r.pack_v>12.6 || std::abs(sum-r.pack_v)>.15 || std::abs(r.protected_v-r.pack_v)>.2 ||
-           c.current==0x7FFF || c.current==0x8000) { r.state=State::cells; return r; }
-        for(double t:r.temperature_c) if(t<10 || t>=40) { r.state=State::temperature; return r; }
+        if(!limits::cell(*range.first) || !limits::cell(*range.second) || !limits::spread(*range.first,*range.second) ||
+           !limits::pack(r.pack_v) || !limits::sum(sum,r.pack_v) || !limits::protected_output(r.protected_v,r.pack_v) ||
+           !limits::current(c.current)) { r.state=State::cells; return r; }
+        for(double t:r.temperature_c) if(!limits::temperature(t)) { r.state=State::temperature; return r; }
         // Reject stale status even when slower ADC age bounds remain plausible.
         if(now-start>250000) { r.state=State::clock; return r; }
         r.pack_binding=profile_.pack_binding; r.qualification_id=profile_.qualification_id;

@@ -231,8 +231,90 @@ void guard_faults() {
     auto c=capture(4400000);c.before.alerts=c.after.alerts=0x2000;
     check(full.observe(c,context(),4406000).report.ready(),"benign Full alert rejected");
 }
+struct Observer final:gc::CaptureObserver {
+    gc::CaptureValidation validation{profile()};
+    gc::Fault first=gc::Fault::none;
+    gc::Fault begin(std::int64_t) noexcept override { return gc::Fault::none; }
+    gc::Fault word(std::uint16_t reg,std::uint16_t raw) noexcept override { return validation.word(reg,raw); }
+    void failed(gc::Fault cause) noexcept override { if(first==gc::Fault::none) first=cause; }
+};
+bool prior_numeric_policy(const GaugeCapture& c) {
+    // Frozen pre-change predicate oracle from c89b8fc power_evidence.hpp
+    // SHA256 56771fdb4793ace9f0c76cc7efaa958f112709d3e9dff1ffae5ea143a2ba4a9f.
+    // Deliberately does NOT call the new shared helpers.
+    const double pack=c.pack_voltage*.0003125,protected_v=c.protected_voltage*.0003125;
+    std::array<double,3> cells{};
+    for(unsigned i=0;i<3;++i) cells[i]=c.cells[i]*.000078125;
+    const auto range=std::minmax_element(cells.begin(),cells.end());
+    const double sum=cells[0]+cells[1]+cells[2];
+    if(*range.first<3.2 || *range.second>4.2 || *range.second-*range.first>.15 ||
+       pack<9.6 || pack>12.6 || std::abs(sum-pack)>.15 || std::abs(protected_v-pack)>.2 ||
+       c.current==0x7FFF || c.current==0x8000) return false;
+    for(auto raw:c.thermistors) {
+        const double t=static_cast<std::int16_t>(raw)/256.;
+        if(t<10 || t>=40) return false;
+    }
+    return true; // SOC and selected die-temperature do not gate readiness.
+}
+void policy_parity() {
+    // Mutate every bit of every head/tail guard word through the actual read
+    // sequence. Complete and incremental validation must agree on acceptance.
+    for(bool tail:{false,true}) for(std::size_t word=1;word<=21;++word) for(unsigned bit=0;bit<16;++bit) {
+        const auto position=word+(tail ? 31:0);
+        auto inject=[=](Bus& b,std::uint16_t& raw) {
+            if(b.calls.size()==position) raw^=static_cast<std::uint16_t>(1u<<bit);
+        };
+        Bus complete;complete.time=4400000;complete.hook=inject;
+        gc::Monitor monitor(profile(),context());warm(monitor);
+        const auto c=gc::read_capture(complete);
+        const bool ready=monitor.observe(c,context(),complete.time).report.ready();
+        // Independent original mask expectations; all identity/config bits
+        // are exact-match, even reserved bits in the commissioned value.
+        const std::uint16_t forbidden[]={0x0002,0xDFFF,0xDFFF,0x0002,0x0001,0x0003,0xFF00};
+        const bool expected=word<=7 && !(forbidden[word-1]&(1u<<bit));
+        check(ready==expected,"complete guard policy changed from original masks/exact identity");
+        Bus incremental;incremental.time=4400000;incremental.hook=inject;Observer observer;
+        const auto seen=gc::read_capture(incremental,&observer);
+        check(seen.gauge.valid==ready,"guard incremental/complete policy drift");
+        if(!ready) check(incremental.calls.size()==position && observer.first!=gc::Fault::none,
+                         "guard bit violation did not stop immediately");
+    }
+    // Exhaust each raw value for numeric/optional payload words using the
+    // existing complete GaugeMonitor, not an expected copy of its formulas.
+    const std::uint16_t regs[]={0x006,0x0DA,0x01C,0x01B,0x0D8,0x0D7,0x0D6,0x0DB,0x13A,0x139};
+    const auto early=capture(1000000).gauge;
+    const auto baseline=capture(4400000).gauge;
+    for(auto reg:regs) for(unsigned raw=0;raw<=UINT16_MAX;++raw) {
+        auto c=baseline;
+        auto set=[&](std::uint16_t& out){out=static_cast<std::uint16_t>(raw);};
+        switch(reg) {
+        case 0x006:set(c.soc);break;case 0x0DA:set(c.pack_voltage);break;
+        case 0x01C:set(c.current);break;case 0x01B:set(c.temperature);break;
+        case 0x0D8:set(c.cells[0]);break;case 0x0D7:set(c.cells[1]);break;case 0x0D6:set(c.cells[2]);break;
+        case 0x0DB:set(c.protected_voltage);break;case 0x13A:set(c.thermistors[0]);break;case 0x139:set(c.thermistors[1]);break;
+        }
+        GaugeMonitor full(99,profile().pack);
+        full.observe(early,1005200);
+        const bool ready=full.observe(c,4405200).ready();
+        const bool expected=prior_numeric_policy(c);
+        check(ready==expected,"complete numeric policy changed from frozen pre-change predicates");
+        const std::uint16_t values[]={c.soc,c.pack_voltage,c.current,c.temperature,c.cells[0],c.cells[1],
+                                     c.cells[2],c.protected_voltage,c.thermistors[0],c.thermistors[1]};
+        gc::CaptureValidation validation(profile());bool accepted=true;
+        for(unsigned i=0;i<10;++i)
+            if(validation.word(regs[i],values[i])!=gc::Fault::none) { accepted=false;break; }
+        check(expected==accepted,"numeric/optional payload incremental policy changed from prior predicates");
+    }
+    gc::CaptureValidation operands(profile());
+    check(operands.word(0x0D8,47360)==gc::Fault::none,"unobserved cell values caused premature rejection");
+    check(operands.word(0x0D7,50000)==gc::Fault::values,"observed cell spread not rejected");
+    operands.reset();
+    check(operands.word(0x0D7,50000)==gc::Fault::none,"previous capture operand leaked through reset");
+    check(operands.word(0x0DA,35520)==gc::Fault::none &&
+          operands.word(0x0DB,37000)==gc::Fault::values,"protected/pack pair was not rejected");
+}
 } // namespace
 int main() {
-    bounded_reader();qualification();light_sleep_and_freshness();invalidation();guard_faults();
+    bounded_reader();qualification();light_sleep_and_freshness();invalidation();guard_faults();policy_parity();
     std::cout<<"isolated gauge continuity, source age, 52-point bus faults and transition controls passed\n";
 }

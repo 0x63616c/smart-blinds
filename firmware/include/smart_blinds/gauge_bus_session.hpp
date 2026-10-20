@@ -45,27 +45,33 @@ bool read_address(std::uint16_t logical_register,WordAddress& out);
 // wire decoding, timeout and before/after ownership checks are exercised.
 class OwnedWordBus final:public ReadOnlyBus {
 public:
-    OwnedWordBus(WordTransport& transport,BusEpoch& epoch,std::uint32_t expected,Owner owner)
-        : transport_(transport),epoch_(epoch),expected_(expected),owner_(owner) {}
+    OwnedWordBus(WordTransport& transport,BusEpoch& epoch,std::uint32_t expected,Owner owner,
+                 std::atomic<Fault>* failure=nullptr)
+        : transport_(transport),epoch_(epoch),expected_(expected),owner_(owner),
+          failure_(failure ? failure:&own_failure_) {}
     bool accessible() const { return owner_ && transport_.current_owner()==owner_ && epoch_.matches(expected_); }
     std::int64_t now_us() override { return transport_.now_us(); }
     bool read_word(std::uint16_t reg,std::uint16_t& value,std::uint32_t timeout_ms) override;
+    Fault read_failure() const override { return failure_->load(std::memory_order_acquire); }
 private:
+    bool reject(Fault fault);
     WordTransport& transport_;
     BusEpoch& epoch_;
     const std::uint32_t expected_;
     const Owner owner_;
+    std::atomic<Fault> own_failure_{Fault::none};
+    std::atomic<Fault>* const failure_;
 };
 struct Publication {
     Result evidence{};
     std::uint32_t epoch=0,serial=0;
 };
 
-class OwnedSession {
+class OwnedSession final:private CaptureObserver {
 public:
     OwnedSession(Profile profile,Context context,WordTransport& transport,BusEpoch& epoch,Owner owner)
         : context_(context),transport_(transport),epoch_(epoch),expected_(epoch.value()),
-          bus_(transport,epoch,expected_,owner),monitor_(profile,context) {}
+          bus_(transport,epoch,expected_,owner,&failure_),monitor_(profile,context),validation_(profile) {}
     OwnedSession(const OwnedSession&)=delete;
     OwnedSession& operator=(const OwnedSession&)=delete;
     bool can_attach(Context context) const;
@@ -73,19 +79,24 @@ public:
     bool park_light_sleep(Context context);
     bool resume_light_sleep(Context context);
     // Thread-safe cancellation only. No monitor mutation/driver teardown here.
-    void retire() { published_.store(0,std::memory_order_release);epoch_.retire_if(expected_); }
+    void retire() { failed(Fault::context); }
     // This read-only publication fence may be used by the consumer task.
     // Use it again before consuming a queued report, alongside motion_power().
     bool current(const Publication& publication,std::uint64_t now_us) const;
 private:
+    Fault begin(std::int64_t started_us) noexcept override;
+    Fault word(std::uint16_t reg,std::uint16_t raw) noexcept override;
+    void failed(Fault fault) noexcept override;
     bool allowed(Context context);
     Publication fail(Fault fault);
     const Context context_;
     WordTransport& transport_;
     BusEpoch& epoch_;
     const std::uint32_t expected_;
+    std::atomic<Fault> failure_{Fault::none};
     OwnedWordBus bus_;
     Monitor monitor_; // Only the bound owner may touch this.
+    CaptureValidation validation_;
     std::uint32_t next_serial_=0;
     std::atomic<std::uint32_t> published_{0};
 };

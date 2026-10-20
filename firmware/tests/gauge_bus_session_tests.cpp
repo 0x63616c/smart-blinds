@@ -1,7 +1,9 @@
 #include "smart_blinds/gauge_bus_session.hpp"
 #include <cstdlib>
 #include <functional>
+#include <condition_variable>
 #include <iostream>
+#include <mutex>
 #include <thread>
 #include <vector>
 namespace gc=blinds::power::continuity;
@@ -30,6 +32,7 @@ struct Wire final:gc::WordTransport {
     std::int64_t time=1000000,step=100;
     std::size_t fail_at=0,clocks=0;
     std::function<void()> during_transfer,on_clock;
+    std::function<void(std::size_t,std::uint16_t&)> word_hook;
     Wire() {
         const auto p=profile();
         words[0x021]=p.pack.dev_name;words[0x1B5]=p.pack.pack_config;
@@ -50,7 +53,9 @@ struct Wire final:gc::WordTransport {
         check(device==0x36 || device==0x0B,"invalid physical address");
         calls.push_back({device,pointer,timeout});
         const auto reg=static_cast<std::uint16_t>(pointer+(device==0x0B ? 0x100:0));
-        bytes={static_cast<std::uint8_t>(words[reg]),static_cast<std::uint8_t>(words[reg]>>8)};
+        auto raw=words[reg];
+        if(word_hook) word_hook(calls.size(),raw);
+        bytes={static_cast<std::uint8_t>(raw),static_cast<std::uint8_t>(raw>>8)};
         time+=step;
         if(during_transfer) during_transfer();
         return calls.size()!=fail_at;
@@ -179,8 +184,178 @@ void atomic_epoch() {
     epoch.retire_if(1);check(epoch.value()==4001,"stale token retired current bus");
     epoch.retire_if(4001);check(epoch.value()==4002,"current token failed to retire");
 }
+void refresh_lifetime() {
+    gc::BusEpoch epoch;Wire wire;gc::OwnedSession session(profile(),context(),wire,epoch,1);
+    const auto old=warm(session,wire);
+    wire.time=4300000;wire.calls.clear();wire.step=450; // Wire arithmetic only, not hardware timing.
+    unsigned retained=0;
+    wire.during_transfer=[&] {
+        check(session.current(old,wire.time),"healthy refresh withdrew last completed report");
+        check(old.evidence.report.observed_us==4200000 && old.evidence.report.voltage_earliest_us==3800000 &&
+              old.evidence.report.temperature_earliest_us==1000000,"retained source times changed");
+        ++retained;
+    };
+    const auto next=session.read(context());
+    check(retained==52 && session.current(next,wire.time) && !session.current(old,wire.time),
+          "refresh did not replace exactly one completed serial");
+    check(next.serial==old.serial+1 && next.evidence.report.observed_us==4300000 &&
+          next.evidence.report.voltage_earliest_us==3900000,"new report lost its source time");
+
+    // Exact expiry during an otherwise successful read must remain visible.
+    wire.calls.clear();wire.time=4549900;wire.step=100;
+    wire.during_transfer=[&] {
+        const bool expected=wire.time<=4550000;
+        check(session.current(next,wire.time)==expected,"refresh masked original observation expiry");
+    };
+    const auto newer=session.read(context());
+    check(session.current(newer,wire.time) && !session.current(next,wire.time),"stale report revived");
+
+    // Retirement, park and resume keep their existing destructive semantics.
+    wire.during_transfer={};
+    check(session.park_light_sleep(context()) && !session.current(newer,wire.time),"park retained prior");
+    wire.time=10000000;check(session.resume_light_sleep(context()),"resume failed");
+    wire.during_transfer=[&]{check(!session.current(newer,wire.time),"resumed read revived pre-sleep report");};
+    check(session.current(session.read(context()),wire.time),"fresh post-resume capture failed");
+}
+void immediate_faults() {
+    for(unsigned kind=0;kind<4;++kind) for(std::size_t position=1;position<=52;++position) {
+        gc::BusEpoch epoch;Wire wire;gc::OwnedSession session(profile(),context(),wire,epoch,1);
+        const auto old=warm(session,wire);wire.calls.clear();wire.clocks=0;wire.time=4300000;
+        if(kind==0) wire.fail_at=position;
+        wire.during_transfer=[&] {
+            if(wire.calls.size()!=position) return;
+            if(kind==1) wire.time-=101; // Returned clock goes backwards.
+            if(kind==2) wire.time+=9901; // Exactly 10001 us total word duration.
+            if(kind==3) session.retire();
+        };
+        const auto final_clock=2*position+(kind==0 || kind==3 ? 1:2);
+        bool probed=false;
+        wire.on_clock=[&] {
+            if(wire.clocks==final_clock) {
+                check(!session.current(old,4300000),"detected error retained prior until capture return");
+                probed=true;
+                wire.time=-1; // A subsequent clock fault must not replace first cause.
+            }
+        };
+        const auto result=session.read(context());
+        const auto expected=kind==0 ? gc::Fault::bus:kind==3 ? gc::Fault::context:gc::Fault::clock;
+        check(probed && result.evidence.fault==expected && wire.calls.size()==position,
+              "first fault cause, synchronous revocation or early termination lost");
+        wire.on_clock={};wire.during_transfer={};wire.fail_at=0;wire.time=4400000;
+        check(session.read(context()).evidence.fault==expected && wire.calls.size()==position,
+              "later successful read repaired or relabelled first fault");
+    }
+    // Initial/start chronology and final clock are independently checked.
+    for(unsigned kind=0;kind<5;++kind) {
+        gc::BusEpoch epoch;Wire wire;gc::OwnedSession session(profile(),context(),wire,epoch,1);
+        const auto old=warm(session,wire);wire.calls.clear();wire.clocks=0;
+        wire.time=kind==0 ? -1:kind==1 ? 4200000:kind==2 ? 4205199:4300000;
+        if(kind==3) wire.on_clock=[&]{if(wire.clocks==2) wire.time=-1;};
+        if(kind==4) wire.on_clock=[&]{if(wire.clocks==106) wire.time=-1;};
+        const auto bad=session.read(context());
+        check(bad.evidence.fault==gc::Fault::clock && !session.current(old,4300000) &&
+              wire.calls.size()==(kind==4 ? 52:0),"start/pre-word/final clock fault escaped");
+    }
+    for(unsigned extra:{400,401}) {
+        gc::BusEpoch epoch;Wire wire;gc::OwnedSession session(profile(),context(),wire,epoch,1);
+        warm(session,wire);wire.calls.clear();wire.clocks=0;wire.time=4300000;wire.step=4800;
+        wire.during_transfer=[&]{if(wire.calls.size()==52) wire.time+=extra;};
+        bool final_seen=false;
+        wire.on_clock=[&] {
+            if(wire.clocks==106) {
+                final_seen=true;
+                check(epoch.matches(1)==(extra==400),"total timeout retirement waited for capture return");
+            }
+        };
+        const auto result=session.read(context());
+        check(final_seen && session.current(result,wire.time)==(extra==400),"owned 250ms boundary changed");
+        if(extra==401) check(result.evidence.fault==gc::Fault::clock,"total overrun reason lost");
+    }
+    {
+        gc::BusEpoch epoch;Wire wire;gc::OwnedSession session(profile(),context(),wire,epoch,1);
+        warm(session,wire);wire.calls.clear();wire.clocks=0;wire.time=4300000;wire.step=10000;
+        wire.during_transfer=[&]{wire.step=100;}; // Exact 10ms first transfer remains allowed.
+        check(session.read(context()).evidence.report.ready(),"exact 10ms word duration rejected");
+    }
+    {
+        gc::BusEpoch epoch;Wire wire;gc::OwnedSession session(profile(),context(),wire,epoch,1);
+        warm(session,wire);wire.calls.clear();wire.clocks=0;wire.time=4300000;wire.step=5000;
+        bool revoked=false;
+        wire.on_clock=[&]{if(wire.clocks==103) revoked=!epoch.matches(1);};
+        const auto result=session.read(context());
+        check(revoked && wire.calls.size()==50 && result.evidence.fault==gc::Fault::clock,
+              "deadline reached before next transfer was issued or failed to revoke");
+    }
+}
+void received_word_faults() {
+    // Every guard position, including the very last tail word. The Full bit
+    // control and predicate parity are tested in gauge_continuity_tests.
+    const std::array<std::uint16_t,21> bad={2,8,8,2,1,1,0x100,
+        0,0,0,0x8000,0,0,0,0,0,0,1,0,0,0};
+    for(bool tail:{false,true}) for(std::size_t i=0;i<bad.size();++i) {
+        gc::BusEpoch epoch;Wire wire;gc::OwnedSession session(profile(),context(),wire,epoch,1);
+        const auto old=warm(session,wire);wire.calls.clear();wire.clocks=0;wire.time=4300000;
+        const auto position=1+i+(tail ? 31:0);
+        wire.word_hook=[&](std::size_t at,std::uint16_t& raw){if(at==position) raw=bad[i];};
+        bool revoked_before_final=false;
+        wire.on_clock=[&] {
+            if(wire.clocks==position*2+2) {
+                check(!session.current(old,wire.time),"bad guard remained current before final interpretation");
+                revoked_before_final=true;
+                wire.time=-1;
+            }
+        };
+        const auto result=session.read(context());
+        check(revoked_before_final && wire.calls.size()==position &&
+              result.evidence.fault==(i<7 ? gc::Fault::protection:gc::Fault::profile),
+              "head/tail guard failure delayed or first cause replaced");
+    }
+    const std::pair<std::size_t,std::uint16_t> bad_values[]={
+        {23,0},{24,0x7FFF},{24,0x8000},{26,0},{27,0},{28,0},{29,0},{30,40*256},{31,9*256}
+    };
+    for(auto bad:bad_values) {
+        gc::BusEpoch epoch;Wire wire;gc::OwnedSession session(profile(),context(),wire,epoch,1);
+        const auto old=warm(session,wire);wire.calls.clear();wire.clocks=0;wire.time=4300000;
+        wire.word_hook=[&](std::size_t at,std::uint16_t& raw){if(at==bad.first) raw=bad.second;};
+        bool revoked=false;
+        wire.on_clock=[&]{if(wire.clocks==bad.first*2+2) revoked=!session.current(old,wire.time);};
+        const auto result=session.read(context());
+        check(revoked && result.evidence.fault==gc::Fault::values && wire.calls.size()==bad.first,
+              "received bad value masked by previous report");
+    }
+}
+void concurrent_refresh() {
+    // Real cross-thread publication queries, deterministic transfer barriers.
+    for(bool cancel:{false,true}) {
+        gc::BusEpoch epoch;Wire wire;gc::OwnedSession session(profile(),context(),wire,epoch,1);
+        const auto old=warm(session,wire);wire.calls.clear();wire.time=4300000;
+        std::mutex mutex;std::condition_variable condition;
+        unsigned arrived=0,released=0;
+        wire.during_transfer=[&] {
+            std::unique_lock<std::mutex> lock(mutex);++arrived;condition.notify_one();
+            condition.wait(lock,[&]{return released==arrived;});
+        };
+        gc::Publication result;
+        std::thread owner([&]{result=session.read(context());});
+        const unsigned count=cancel ? 31:52;
+        for(unsigned n=1;n<=count;++n) {
+            std::unique_lock<std::mutex> lock(mutex);
+            condition.wait(lock,[&]{return arrived==n;});
+            check(session.current(old,wire.time),"concurrent healthy refresh withdrew report");
+            if(cancel && n==count) {
+                session.retire();
+                check(!session.current(old,wire.time),"cross-task cancellation waited for sensor task");
+            }
+            released=n;condition.notify_one();
+        }
+        owner.join();
+        check(!session.current(old,wire.time),"superseded or retired serial survived");
+        check(session.current(result,wire.time)==!cancel,"late completion defeated cancellation");
+    }
+}
 } // namespace
 int main() {
     mapping_and_wire_failure();publication_and_park();ownership_and_faults();atomic_epoch();
+    refresh_lifetime();immediate_faults();received_word_faults();concurrent_refresh();
     std::cout<<"owned gauge bus mapping, endian, timeout, epoch, task and publication fences passed\n";
 }
