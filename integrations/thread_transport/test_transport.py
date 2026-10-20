@@ -33,6 +33,8 @@ class Peer:
         self.library.sb_test_peer_free.restype = None
         self.library.sb_test_peer_clock.argtypes = [C.c_void_p, C.c_uint64]
         self.library.sb_test_peer_clock.restype = None
+        self.library.sb_test_peer_shift_clock.argtypes = [C.c_void_p, C.c_int64]
+        self.library.sb_test_peer_shift_clock.restype = None
         self.library.sb_test_peer_requests.argtypes = [C.c_void_p]
         self.library.sb_test_peer_requests.restype = C.c_uint
         value = (C.c_uint8 * 32).from_buffer_copy(self.key)
@@ -48,6 +50,9 @@ class Peer:
 
     def clock(self, ms):
         self.library.sb_test_peer_clock(self.handle, ms)
+
+    def shift_clock(self, us):
+        self.library.sb_test_peer_shift_clock(self.handle, us)
 
     @property
     def requests(self):

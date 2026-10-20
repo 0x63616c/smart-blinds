@@ -2,6 +2,8 @@
 import select
 import socket
 import threading
+import heapq
+import time
 
 
 class WireFixture:
@@ -16,6 +18,9 @@ class WireFixture:
         self._lock = threading.Lock()
         self._record = None
         self._responses = 0
+        self._delay_seconds = (0.0, 0.0)
+        self._pending = []
+        self._order = 0
         self._stop = threading.Event()
         self._worker = threading.Thread(target=self._run)
         self._worker.start()
@@ -35,7 +40,11 @@ class WireFixture:
 
     def _run(self):
         while not self._stop.is_set():
-            ready, _, _ = select.select([self._incoming, self._upstream], [], [], 0.01)
+            while self._pending and self._pending[0][0] <= time.monotonic():
+                _, _, sock, packet, target = heapq.heappop(self._pending)
+                sock.sendto(packet, target)
+            timeout = min(0.01, max(0, self._pending[0][0] - time.monotonic())) if self._pending else 0.01
+            ready, _, _ = select.select([self._incoming, self._upstream], [], [], timeout)
             for sock in ready:
                 packet, sender = sock.recvfrom(2048)
                 if sock is self._incoming:
@@ -44,11 +53,27 @@ class WireFixture:
                     if record:
                         with self._lock:
                             self._record = record
-                    self._upstream.sendto(packet, self._server)
+                    self._forward(self._upstream, packet, self._server, 0)
                 elif self._client:
                     with self._lock:
                         self._responses += 1
-                    self._incoming.sendto(packet, self._client)
+                    self._forward(self._incoming, packet, self._client, 1)
+
+    def _forward(self, sock, packet, target, direction):
+        with self._lock:
+            delay = self._delay_seconds[direction] if self._application_record(packet) else 0
+        if not delay:
+            sock.sendto(packet, target)
+        else:
+            self._order += 1
+            heapq.heappush(self._pending, (time.monotonic() + delay, self._order, sock, packet, target))
+
+    def delay(self, *, forward_ms=0, reverse_ms=0):
+        """Independently delay encrypted application traffic; no key/decryption."""
+        if any(type(value) is not int or not 0 <= value <= 5000 for value in (forward_ms, reverse_ms)):
+            raise ValueError("Fixture delays must be integer milliseconds in 0–5000")
+        with self._lock:
+            self._delay_seconds = (forward_ms / 1000, reverse_ms / 1000)
 
     @property
     def responses(self):

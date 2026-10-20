@@ -82,15 +82,16 @@ public:
     int request(int kind, const std::uint8_t* payload, std::size_t size, unsigned timeout,
                 std::uint8_t* output, std::size_t capacity, std::size_t* received, int* response_code) {
         if (!session || !context) return -4;
-        if ((kind != 0 && kind != 1) || size > 32 || (size && !payload) ||
+        if ((kind < 0 || kind > 4) || size > 32 || (size && !payload) ||
             !output || !received || !response_code || timeout < 1 || timeout > 5000) return -1;
         done = failed = false;
         body_size = 0;
-        auto* pdu = coap_new_pdu(COAP_MESSAGE_CON, kind == 0 ? COAP_REQUEST_CODE_GET : COAP_REQUEST_CODE_POST, session);
+        auto* pdu = coap_new_pdu(COAP_MESSAGE_CON, (kind == 0 || kind == 4) ? COAP_REQUEST_CODE_GET : COAP_REQUEST_CODE_POST, session);
         if (!pdu) return -2;
         token_size = token.size();
         coap_session_new_token(session, &token_size, token.data());
-        const char* resource = kind == 0 ? "status" : "wake";
+        constexpr const char* resources[] = {"status", "wake", "clock", "qualify", "readiness"};
+        const char* resource = resources[kind];
         if (!coap_add_token(pdu, token_size, token.data()) ||
             !coap_add_option(pdu, COAP_OPTION_URI_PATH, 2, reinterpret_cast<const std::uint8_t*>("v1")) ||
             !coap_add_option(pdu, COAP_OPTION_URI_PATH, std::strlen(resource), reinterpret_cast<const std::uint8_t*>(resource)) ||

@@ -17,3 +17,8 @@ add_executable(heartbeat_tests tests/heartbeat_tests.cpp)
 target_include_directories(heartbeat_tests PRIVATE include)
 target_compile_options(heartbeat_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_test(NAME heartbeat_tests COMMAND heartbeat_tests)
+
+add_executable(clock_tests tests/clock_tests.cpp)
+target_include_directories(clock_tests PRIVATE include)
+target_compile_options(clock_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
+add_test(NAME clock_tests COMMAND clock_tests)

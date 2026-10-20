@@ -26,6 +26,7 @@
 #include "openthread/link.h"
 #include "openthread/thread.h"
 #include "smart_blinds/radio_window.hpp"
+#include "smart_blinds/clock_protocol.hpp"
 
 namespace {
 constexpr char tag[] = "thread_motor_disabled";
@@ -33,6 +34,7 @@ constexpr std::uint32_t poll_ms = 1000;
 constexpr std::uint16_t secure_port = 5684;
 std::uint64_t boot_id = 0;
 smart_blinds::RadioWindow window(0);
+smart_blinds::ClockProbes clock_probes(0); // Model remains unvalidated; never motion permission.
 otInstance* instance = nullptr;
 TaskHandle_t expiry_task = nullptr;
 TimerHandle_t expiry_timer = nullptr;
@@ -43,7 +45,8 @@ bool locks_held = false;
 // generation, NVS writes, commissioning endpoint or secret logging is present.
 struct Credentials { std::uint8_t psk[32]{}; char identity[33]{}; } credentials;
 
-std::uint64_t now_ms() { return static_cast<std::uint64_t>(esp_timer_get_time() / 1000); }
+std::uint64_t now_us() { return static_cast<std::uint64_t>(esp_timer_get_time()); }
+std::uint64_t now_ms() { return now_us() / 1000; }
 std::uint64_t read_u64(const std::uint8_t* data) {
     std::uint64_t value = 0;
     for (unsigned i = 0; i < 8; ++i) value = (value << 8) | data[i];
@@ -74,6 +77,7 @@ bool load_credentials() {
 // OpenThread lock must already be held (also true inside its resource callbacks).
 bool apply_radio_policy() {
     const bool awake = window.rx_on_when_idle();
+    if (!awake) clock_probes.invalidate(); // No timing evidence survives return to light sleep.
     if (awake && !locks_held) {
         ESP_ERROR_CHECK(esp_pm_lock_acquire(awake_lock));
         ESP_ERROR_CHECK(esp_pm_lock_acquire(speed_lock));
@@ -85,6 +89,7 @@ bool apply_radio_policy() {
     mode.mNetworkData = false;
     if (otThreadSetLinkMode(instance, mode) != OT_ERROR_NONE) {
         window.attached(false, now_ms());
+        clock_probes.invalidate();
         otThreadSetEnabled(instance, false);
         if (locks_held) {
             esp_pm_lock_release(speed_lock);
@@ -163,8 +168,75 @@ void wake_handler(void*, otMessage* request, const otMessageInfo* info) {
     respond(request, info, OT_COAP_CODE_CHANGED, "{\"awake_ms\":10000,\"motor_enabled\":false}");
 }
 
+bool read_payload(otMessage* request, std::uint8_t* body, std::uint16_t size) {
+    const auto offset = otMessageGetOffset(request);
+    return otMessageGetLength(request) - offset == size && otMessageRead(request, offset, body, size) == size;
+}
+
+void clock_handler(void*, otMessage* request, const otMessageInfo* info) {
+    const auto received_us = now_us();
+    if (!request_method(request, info, OT_COAP_CODE_POST)) return;
+    window.advance(received_us / 1000);
+    if (!apply_radio_policy()) {
+        respond(request, info, OT_COAP_CODE_SERVICE_UNAVAILABLE, nullptr); return;
+    }
+    std::uint8_t body[16];
+    if (!read_payload(request, body, sizeof(body)) ||
+        !clock_probes.begin(read_u64(body), read_u64(body + 8), received_us, window.rx_on_when_idle())) {
+        respond(request, info, OT_COAP_CODE_BAD_REQUEST, nullptr); return;
+    }
+    const auto sent_us = now_us();
+    if (!clock_probes.sent(sent_us, window.rx_on_when_idle())) {
+        respond(request, info, OT_COAP_CODE_BAD_REQUEST, nullptr); return;
+    }
+    char reply[192];
+    std::snprintf(reply, sizeof(reply),
+        "{\"boot\":\"%016" PRIx64 "\",\"probe\":\"%016" PRIx64
+        "\",\"received_us\":\"%016" PRIx64 "\",\"sent_us\":\"%016" PRIx64 "\"}",
+        boot_id, clock_probes.sequence(), received_us, sent_us);
+    respond(request, info, OT_COAP_CODE_CONTENT, reply);
+}
+
+void qualify_handler(void*, otMessage* request, const otMessageInfo* info) {
+    const auto received_us = now_us();
+    if (!request_method(request, info, OT_COAP_CODE_POST)) return;
+    window.advance(received_us / 1000);
+    if (!apply_radio_policy()) {
+        respond(request, info, OT_COAP_CODE_SERVICE_UNAVAILABLE, nullptr); return;
+    }
+    std::uint8_t body[32];
+    if (!read_payload(request, body, sizeof(body)) || !clock_probes.assess(read_u64(body), read_u64(body + 8),
+        read_u64(body + 16), read_u64(body + 24), received_us, window.rx_on_when_idle())) {
+        respond(request, info, OT_COAP_CODE_BAD_REQUEST, nullptr); return;
+    }
+    char reply[512];
+    if (!smart_blinds::clock_readiness_json(reply, sizeof(reply), boot_id, clock_probes, now_us(), window.rx_on_when_idle())) {
+        respond(request, info, OT_COAP_CODE_INTERNAL_ERROR, nullptr); return;
+    }
+    respond(request, info, OT_COAP_CODE_CHANGED, reply);
+}
+
+void readiness_handler(void*, otMessage* request, const otMessageInfo* info) {
+    if (!request_method(request, info, OT_COAP_CODE_GET)) return;
+    if (otMessageGetLength(request) != otMessageGetOffset(request)) {
+        respond(request, info, OT_COAP_CODE_BAD_REQUEST, nullptr); return;
+    }
+    window.advance(now_ms());
+    if (!apply_radio_policy()) {
+        respond(request, info, OT_COAP_CODE_SERVICE_UNAVAILABLE, nullptr); return;
+    }
+    char reply[512];
+    if (!smart_blinds::clock_readiness_json(reply, sizeof(reply), boot_id, clock_probes, now_us(), window.rx_on_when_idle())) {
+        respond(request, info, OT_COAP_CODE_INTERNAL_ERROR, nullptr); return;
+    }
+    respond(request, info, OT_COAP_CODE_CONTENT, reply);
+}
+
 otCoapResource status_resource{"v1/status", status_handler, nullptr, nullptr};
 otCoapResource wake_resource{"v1/wake", wake_handler, nullptr, nullptr};
+otCoapResource clock_resource{"v1/clock", clock_handler, nullptr, nullptr};
+otCoapResource qualify_resource{"v1/qualify", qualify_handler, nullptr, nullptr};
+otCoapResource readiness_resource{"v1/readiness", readiness_handler, nullptr, nullptr};
 
 void expired(TimerHandle_t) { xTaskNotifyGive(expiry_task); }
 void expire_worker(void*) {
@@ -237,6 +309,7 @@ extern "C" void app_main() {
         return;
     }
     window = smart_blinds::RadioWindow(boot_id);
+    clock_probes = smart_blinds::ClockProbes(boot_id);
     if (xTaskCreate(expire_worker, "radio_expiry", 3072, nullptr, 4, &expiry_task) != pdPASS) abort();
     expiry_timer = xTimerCreate("awake_deadline", pdMS_TO_TICKS(10000), pdFALSE, nullptr, expired);
     if (!expiry_timer) abort();
@@ -247,6 +320,9 @@ extern "C" void app_main() {
     if (otCoapSecureStartWithMaxConnAttempts(instance, secure_port, 5, attempts_exhausted, nullptr) != OT_ERROR_NONE) abort();
     otCoapSecureAddResource(instance, &status_resource);
     otCoapSecureAddResource(instance, &wake_resource);
+    otCoapSecureAddResource(instance, &clock_resource);
+    otCoapSecureAddResource(instance, &qualify_resource);
+    otCoapSecureAddResource(instance, &readiness_resource);
     if (otIp6SetEnabled(instance, true) != OT_ERROR_NONE ||
         otThreadSetEnabled(instance, true) != OT_ERROR_NONE) abort();
     esp_openthread_lock_release();

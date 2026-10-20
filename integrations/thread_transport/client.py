@@ -11,6 +11,8 @@ import json
 from pathlib import Path
 import re
 import threading
+import time
+from .clock import ClockBounds, ClockUncertain, MAX_ERROR_US
 
 
 class TransportError(RuntimeError):
@@ -33,6 +35,24 @@ class Status:
     last_wake: int
     awake: bool
     # Intentionally no motion permission or clock-qualified field.
+
+
+@dataclass(frozen=True)
+class Readiness:
+    boot: int
+    last_probe: int
+    awake: bool
+    clock_assessed: bool
+    device_error_us: int | None
+    host_error_us: int | None
+    source_age_us: int | None
+    clock_model_validated: bool = False
+    clock_qualified: bool = False
+    motor_ready: bool = False
+
+
+def _now_us() -> int:
+    return time.monotonic_ns() // 1000
 
 
 def _object(pairs):
@@ -110,6 +130,9 @@ class Session:
         self._failed = False
         self._boot = None
         self._last_sequence = 0
+        self._last_probe = 0
+        self._clock = None
+        self._clock_probe = 0
         self._timeout = timeout_ms
         key_copy = (C.c_uint8 * 32).from_buffer_copy(key)
         try:
@@ -126,6 +149,7 @@ class Session:
                 self._handle = None
             self._failed = True
             self._boot = None
+            self._clock = None
 
     def __del__(self):
         if getattr(self, "_handle", None):
@@ -154,6 +178,7 @@ class Session:
         if result:
             self._failed = True
             self._boot = None
+            self._clock = None
             raise TransportError("DTLS exchange failed or exceeded its deadline; queued requests discarded")
         return code.value, bytes(output[:size.value])
 
@@ -175,8 +200,12 @@ class Session:
                 raise
             if self._boot != status.boot:
                 self._last_sequence = status.last_wake
+                self._last_probe = 0
+                self._clock = None
             else:
                 self._last_sequence = max(self._last_sequence, status.last_wake)
+            if not status.awake:
+                self._clock = None
             self._boot = status.boot
             return status
 
@@ -201,3 +230,96 @@ class Session:
                 self._boot = None
                 raise
             return value["awake_ms"]
+
+    def _readiness(self, payload: bytes) -> Readiness:
+        value = _json(payload)
+        if (set(value) != {"boot", "last_probe", "sampled_us", "awake", "clock_assessed",
+                          "clock_model_validated", "clock_qualified", "clock_error_us", "motor_ready", "reason"}
+            or type(value["awake"]) is not bool or type(value["clock_assessed"]) is not bool
+            or value["clock_model_validated"] is not False or value["clock_qualified"] is not False
+            or value["motor_ready"] is not False or value["reason"] != "hardware_unconfigured"):
+            raise ProtocolError("Unsupported motor-disabled readiness contract")
+        boot, probe = _hex64(value["boot"], nonzero=True), _hex64(value["last_probe"])
+        sampled = _hex64(value["sampled_us"])
+        error = value["clock_error_us"]
+        if (boot != self._boot or sampled > (1 << 63) - 1 or
+            (value["clock_assessed"] and (not value["awake"] or type(error) is not int or not 0 <= error <= MAX_ERROR_US)) or
+            (not value["clock_assessed"] and error is not None)):
+            raise ProtocolError("Inconsistent readiness report")
+        self._last_probe = max(self._last_probe, probe)
+        host_error = source_age = None
+        if not value["clock_assessed"] or probe != self._clock_probe:
+            self._clock = None
+        if self._clock:
+            now = _now_us()
+            host_error = self._clock.error_us(now)
+            source_age = self._clock.source_age_us(sampled, now)
+        return Readiness(boot, probe, value["awake"], value["clock_assessed"], error, host_error, source_age)
+
+    def readiness(self) -> Readiness:
+        """Read diagnostics. Without matching fresh clock evidence age is unknown.
+
+        Every report is motor-unready in this target. A cached report is never a
+        motion capability, including when experimental clock arithmetic passed.
+        """
+        with self._lock:
+            if self._boot is None:
+                raise ProtocolError("Fresh status is required before readiness")
+            code, payload = self._exchange(4)
+            if code != 69:
+                raise Rejected(code)
+            try:
+                return self._readiness(payload)
+            except ProtocolError:
+                self._failed = True
+                self._boot = None
+                self._clock = None
+                raise
+            except ClockUncertain:
+                self._clock = None
+                raise
+
+    def qualify_clock(self, boot: int, sequence: int) -> Readiness:
+        """Measure and echo authenticated four timestamps during the awake window.
+
+        This assesses an unvalidated experimental model; it cannot qualify motion.
+        Explicitly call readiness first after reconnect to learn the last probe.
+        No failed/uncertain probe is retried or reused automatically.
+        """
+        with self._lock:
+            if not _uint64(boot, nonzero=True) or not _uint64(sequence, nonzero=True):
+                raise ValueError("Invalid boot/probe sequence")
+            if self._boot != boot or sequence <= self._last_probe:
+                raise ProtocolError("Fresh status and a new probe sequence are required")
+            self._last_probe = sequence
+            self._clock = None
+            prefix = boot.to_bytes(8, "big") + sequence.to_bytes(8, "big")
+            try:
+                sent_us = _now_us()  # Includes wrapper, crypto and queue delays conservatively.
+                code, payload = self._exchange(2, prefix)
+                received_us = _now_us()
+                if code != 69:
+                    raise Rejected(code)
+                value = _json(payload)
+                if (set(value) != {"boot", "probe", "received_us", "sent_us"} or
+                    _hex64(value["boot"], nonzero=True) != boot or _hex64(value["probe"]) != sequence):
+                    raise ProtocolError("Clock response does not match this boot/probe")
+                clock = ClockBounds.estimate(sent_us, _hex64(value["received_us"]),
+                                             _hex64(value["sent_us"]), received_us)
+                clock.error_us(_now_us())
+                code, payload = self._exchange(3, prefix + sent_us.to_bytes(8, "big") + received_us.to_bytes(8, "big"))
+                if code != 68:
+                    raise Rejected(code)
+                self._clock, self._clock_probe = clock, sequence
+                result = self._readiness(payload)
+                if not result.clock_assessed or result.last_probe != sequence or result.source_age_us is None:
+                    raise ClockUncertain("Device did not retain this clock assessment")
+                return result
+            except ProtocolError:
+                self._failed = True
+                self._boot = None
+                self._clock = None
+                raise
+            except (ClockUncertain, TransportError):
+                self._clock = None
+                raise

@@ -1,6 +1,7 @@
 // Localhost protocol fixture only. This is not the C6/OpenThread network stack.
 #include "common.hpp"
 #include "smart_blinds/radio_window.hpp"
+#include "smart_blinds/clock_protocol.hpp"
 #include <atomic>
 #include <cstdio>
 #include <thread>
@@ -16,10 +17,17 @@ public:
     std::atomic<bool> stop{false};
     std::atomic<std::uint64_t> clock_ms{0};
     std::atomic<unsigned> requests{0};
+    std::atomic<std::int64_t> clock_shift_us{0};
     std::thread worker;
     std::uint64_t boot;
     smart_blinds::RadioWindow window;
-    explicit Peer(std::uint64_t nonce) : boot(nonce), window(nonce) { window.attached(true, 0); }
+    smart_blinds::ClockProbes probes;
+    explicit Peer(std::uint64_t nonce) : boot(nonce), window(nonce), probes(nonce) { window.attached(true, 0); }
+    std::uint64_t now_us() const {
+        const auto now = std::chrono::duration_cast<std::chrono::microseconds>(
+            std::chrono::steady_clock::now().time_since_epoch()).count();
+        return static_cast<std::uint64_t>(now + clock_shift_us.load());
+    }
     ~Peer() {
         stop = true;
         if (worker.joinable()) worker.join();
@@ -44,20 +52,50 @@ public:
         std::size_t size = 0;
         const std::uint8_t* body = nullptr;
         coap_get_data(request, &size, &body);
-        char reply[192];
-        if (coap_pdu_get_code(request) == COAP_REQUEST_CODE_GET) {
+        const auto received_us = self.now_us();
+        self.probes.advance(received_us, self.window.rx_on_when_idle());
+        const auto* path = coap_resource_get_uri_path(resource);
+        const std::string name(reinterpret_cast<const char*>(path->s), path->length);
+        char reply[512];
+        if (name == "v1/status") {
             if (size) { coap_pdu_set_code(response, COAP_RESPONSE_CODE_BAD_REQUEST); return; }
             std::snprintf(reply, sizeof(reply), "{\"boot\":\"%016llx\",\"last_wake\":\"%016llx\",\"awake\":%s,\"motor_enabled\":false,\"clock_qualified\":false}",
                 static_cast<unsigned long long>(self.boot), static_cast<unsigned long long>(self.window.last_sequence()),
                 self.window.rx_on_when_idle() ? "true" : "false");
             coap_pdu_set_code(response, COAP_RESPONSE_CODE_CONTENT);
-        } else {
+        } else if (name == "v1/wake") {
             if (size != 16 || !self.window.wake(read64(body), read64(body + 8), now)) {
                 coap_pdu_set_code(response, COAP_RESPONSE_CODE_BAD_REQUEST);
                 return;
             }
             std::snprintf(reply, sizeof(reply), "{\"awake_ms\":10000,\"motor_enabled\":false}");
             coap_pdu_set_code(response, COAP_RESPONSE_CODE_CHANGED);
+        } else if (name == "v1/clock") {
+            if (size != 16 || !self.probes.begin(read64(body), read64(body + 8), received_us,
+                                                 self.window.rx_on_when_idle())) {
+                coap_pdu_set_code(response, COAP_RESPONSE_CODE_BAD_REQUEST); return;
+            }
+            const auto sent_us = self.now_us();
+            if (!self.probes.sent(sent_us, self.window.rx_on_when_idle())) {
+                coap_pdu_set_code(response, COAP_RESPONSE_CODE_BAD_REQUEST); return;
+            }
+            std::snprintf(reply, sizeof(reply), "{\"boot\":\"%016llx\",\"probe\":\"%016llx\",\"received_us\":\"%016llx\",\"sent_us\":\"%016llx\"}",
+                static_cast<unsigned long long>(self.boot), static_cast<unsigned long long>(self.probes.sequence()),
+                static_cast<unsigned long long>(received_us), static_cast<unsigned long long>(sent_us));
+            coap_pdu_set_code(response, COAP_RESPONSE_CODE_CONTENT);
+        } else if (name == "v1/qualify") {
+            if (size != 32 || !self.probes.assess(read64(body), read64(body + 8), read64(body + 16),
+                read64(body + 24), received_us, self.window.rx_on_when_idle())) {
+                coap_pdu_set_code(response, COAP_RESPONSE_CODE_BAD_REQUEST); return;
+            }
+            if (!smart_blinds::clock_readiness_json(reply, sizeof(reply), self.boot, self.probes,
+                    self.now_us(), self.window.rx_on_when_idle())) return;
+            coap_pdu_set_code(response, COAP_RESPONSE_CODE_CHANGED);
+        } else {
+            if (size) { coap_pdu_set_code(response, COAP_RESPONSE_CODE_BAD_REQUEST); return; }
+            if (!smart_blinds::clock_readiness_json(reply, sizeof(reply), self.boot, self.probes,
+                    self.now_us(), self.window.rx_on_when_idle())) return;
+            coap_pdu_set_code(response, COAP_RESPONSE_CODE_CONTENT);
         }
         const std::uint8_t json = COAP_MEDIATYPE_APPLICATION_JSON;
         coap_add_option(response, COAP_OPTION_CONTENT_FORMAT, 1, &json);
@@ -77,11 +115,12 @@ public:
         coap_address_t local;
         address(local, "::1", port);
         if (!coap_new_endpoint(context, &local, COAP_PROTO_DTLS)) return false;
-        for (bool wake : {false, true}) {
-            auto* resource = coap_resource_init(coap_make_str_const(wake ? "v1/wake" : "v1/status"), 0);
+        for (const char* name : {"v1/status", "v1/wake", "v1/clock", "v1/qualify", "v1/readiness"}) {
+            auto* resource = coap_resource_init(coap_make_str_const(name), 0);
             if (!resource) return false;
             coap_resource_set_userdata(resource, this);
-            coap_register_handler(resource, wake ? COAP_REQUEST_POST : COAP_REQUEST_GET, handler);
+            const bool get = std::strcmp(name, "v1/status") == 0 || std::strcmp(name, "v1/readiness") == 0;
+            coap_register_handler(resource, get ? COAP_REQUEST_GET : COAP_REQUEST_POST, handler);
             coap_add_resource(context, resource);
         }
         worker = std::thread([this] { while (!stop) if (coap_io_process(context, 10) < 0) break; });
@@ -100,5 +139,6 @@ void* sb_test_peer_new(std::uint16_t port, const char* identity, const std::uint
 }
 void sb_test_peer_free(void* handle) { delete static_cast<sbthread::Peer*>(handle); }
 void sb_test_peer_clock(void* handle, std::uint64_t ms) { static_cast<sbthread::Peer*>(handle)->clock_ms = ms; }
+void sb_test_peer_shift_clock(void* handle, std::int64_t us) { static_cast<sbthread::Peer*>(handle)->clock_shift_us += us; }
 unsigned sb_test_peer_requests(void* handle) { return static_cast<sbthread::Peer*>(handle)->requests; }
 }

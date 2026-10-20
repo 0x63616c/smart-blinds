@@ -1,6 +1,6 @@
 # C6 Thread / DTLS evaluation — motor disabled
 
-This **separate** ESP-IDF 5.5.4 target evaluates the full OpenThread minimal-end-device stack and standard CoAP over DTLS. It does not replace the original `firmware/esp-idf` bring-up image. No motor, charger, encoder, button or watchdog GPIO is configured. There is no movement endpoint, clock qualification, calibration or battery-readiness claim.
+This **separate** ESP-IDF 5.5.4 target evaluates the full OpenThread minimal-end-device stack and standard CoAP over DTLS. It does not replace the original `firmware/esp-idf` bring-up image. No motor, charger, encoder, button or watchdog GPIO is configured. There is no movement endpoint, validated clock qualification, calibration or battery-readiness claim. New secure clock/readiness resources assess a deliberately unvalidated timing model.
 
 The source uses ESP-IDF's OpenThread and mbedTLS components, not the host simulator's HMAC packet codec. `otCoapSecureSetPsk` selects the standard DTLS PSK/AES-128-CCM-8 path. Only the secure CoAP service is started; there is no unauthenticated CoAP fallback. The application does not embed or generate an operational dataset or application key. [OpenThread secure CoAP API](https://openthread.io/reference/group/api-coap-secure)
 
@@ -17,7 +17,7 @@ The same pinned multi-architecture image digest as the bring-up target can be us
 `sha256:b9f2d6ea1c19e0c9f7959bdb74a9e3c775642f9d0f3b841937c5fa3363db892b`.
 The hardened radio target at commit `28433e1` cross-built successfully in [pinned CI run 39357729073](https://github.com/0x63616c/smart-blinds/actions/runs/39357729073). Its application binary is **737,040 bytes** (`0xb3f10`), leaving **1,163,504 bytes (61%)** free in each 1,900,544-byte app slot. The full OpenThread MTD and mbedTLS secure-CoAP stack linked successfully. The downloaded CI artifact SHA-256 is `58f78fd96137864ac29d4d4fdf59b72e0b7b43012219ce1a3a3782b81a9078fa`.
 
-This confirms compilation of the startup-authorization and status-handler checks. No hardware was flashed, no Thread network was joined and no C6 DTLS peer handshake was exercised. Runtime RAM, power, timing and C6 interoperability remain unmeasured.
+This prior binary confirms compilation of the startup-authorization and status-handler checks. The subsequently added clock/readiness resources await a fresh pinned cross-build; its size is not yet measured. No hardware was flashed, no Thread network was joined and no C6 DTLS peer handshake was exercised. Runtime RAM, power, timing and C6 interoperability remain unmeasured.
 
 The custom partition table reserves two `0x1d0000` byte (1.8125 MiB) OTA app slots in 4 MiB flash, plus NVS, OTA selection data, PHY data and a coredump area. An OTA partition layout does **not** implement download, signature verification, rollback, recovery or safe stationary update policy. Full final application fit must be rechecked as motor, gauge, provisioning and update code are added.
 
@@ -45,7 +45,7 @@ Pinned IDF `esp_openthread_start()` creates the stack worker/netif and main loop
 
 No writer or commissioning UI is supplied. The approval marker is an explicit provisioning record, not a cryptographic protection mechanism. NVS initialization errors fail without erasing storage. Dataset presence alone never triggers joining. No default Thread network is formed, no key is logged and no CLI exposes a credential-writing path. Secure provisioning, per-device key generation/rotation/revocation and encrypted storage remain prerequisites for a deployed product. This prototype has not enabled irreversible secure-boot or flash-encryption eFuses.
 
-## Two bounded secure resources
+## Bounded secure resources
 
 The service is CoAP/DTLS on UDP 5684. It accepts confirmable requests only.
 
@@ -53,8 +53,13 @@ The service is CoAP/DTLS on UDP 5684. It accepts confirmable requests only.
 |---|---|---|
 | `v1/status` | GET with empty body after DTLS authentication | Boot ID and last accepted wake sequence as exact 16-digit hex strings, awake state, `motor_enabled:false`, `clock_qualified:false` |
 | `v1/wake` | POST exactly 16 binary bytes: uint64 boot ID followed by uint64 strictly increasing request sequence, both big-endian | Up to 10 seconds in awake receiving mode; never motion authorization |
+| `v1/clock` | POST boot/probe sequence, 16 bytes | Device receive/send timestamps for a one-use four-timestamp exchange |
+| `v1/qualify` | POST boot/probe/host-send/host-receive, 32 bytes | Experimental clock assessment; model remains unvalidated |
+| `v1/readiness` | GET with empty body | Source-stamped clock diagnostics; always `motor_ready:false` |
 
-A request needs the current boot ID. Replays, wrong boots, malformed bodies and requests during an active/cooldown window are rejected. No repeated request extends the 10-second deadline. At expiry the radio returns to sleepy operation for at least 5 seconds before another window. Detach cancels the awake state and cannot bypass cooldown. Clock reversal latches the software policy offline until reboot. The deadline is a software timer and requested task/lock budget; actual scheduling and RF current still need measurement.
+Clock probes require an awake window, expire within 500 ms before proof, and assessments last at most 1 s with a 10 ms uncertainty cap. Sleep/detach/reboot discards them. The [clock contract](../../docs/firmware/clock-qualification.md) specifies asymmetric-delay bounds, drift assumptions, source freshness and remaining qualification gates.
+
+A state-changing request needs the current boot ID. Replays, wrong boots, malformed bodies and requests during an active/cooldown window are rejected. No repeated request extends the 10-second deadline. At expiry the radio returns to sleepy operation for at least 5 seconds before another window. Detach cancels the awake state and cannot bypass cooldown. Clock reversal latches the software policy offline until reboot. The deadline is a software timer and requested task/lock budget; actual scheduling and RF current still need measurement.
 
 Idle mode sets `RxOnWhenIdle=false`, MTD mode and an initial 1000 ms poll period. Accepted wake temporarily sets `RxOnWhenIdle=true` and acquires CPU-frequency/no-light-sleep locks. The expiry task blocks without periodic wakeups while idle. No deep-sleep network-retention claim is made. The exact IDF light-sleep configuration follows the vendor's [sleepy-device example](https://github.com/espressif/esp-idf/tree/v5.5.4/examples/openthread/ot_sleepy_device/light_sleep). USB debugging/board circuitry can dominate measured idle consumption.
 
@@ -66,4 +71,4 @@ The [native libcoap host adapter](../../integrations/thread_transport/README.md)
 
 Python aiocoap's TinyDTLS transport is another possible adapter, but it adds a native DTLS binding and its own lifecycle/packaging constraints. Keep it as an evaluated alternative; the real host-to-C6 session interop has not been tested. [aiocoap TinyDTLS transport](https://aiocoap.readthedocs.io/en/latest/module/aiocoap.transports.tinydtls.html)
 
-DTLS record anti-replay does not replace boot identity, command sequence, source age, monotonic clock translation or readiness checks. The current secure resources cannot execute the coordinator's movement protocol. The localhost libcoap peer test does not establish C6 interoperability. Its explicit CCM8/OpenSSL policy exception is an open production security decision. Next work is actual OpenThread peer interoperability, authenticated clock exchanges, strict compact movement/status schemas and coordinator lifecycle integration, before any actuation is enabled.
+DTLS record anti-replay does not replace boot identity, command sequence, source age, monotonic clock translation or readiness checks. The current secure resources cannot execute the coordinator's movement protocol. The localhost libcoap peer test does not establish C6 interoperability. Its explicit CCM8/OpenSSL policy exception is an open production security decision. Next work is the fresh clock-resource cross-build, actual OpenThread peer interoperability, a validated timing profile, strict compact movement/status schemas and coordinator lifecycle integration, before any actuation is enabled.
