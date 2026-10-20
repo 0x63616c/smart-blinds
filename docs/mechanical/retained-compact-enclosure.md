@@ -18,11 +18,14 @@ separate electrical placement work; the envelope model remains a simplified repr
 | Controller | Edge frame, two countersunk M3×6 plate screws, two removable keyed M2.5 edge clamps | Actual board edge notches/lands, connector placement and tolerance stack |
 | Drive | Existing replaceable motor clamps, shared motor shaft/outboard bearing and screwed guard, shifted 2 mm upward | Actual motor dimensions, radial load, axial retention, chain force and wear |
 
-The central wall-screw recess seats its washer at Z3 and has a cassette-pocket
-ceiling at Z6.4. Until wall hardware is chosen, reserve at most **3.2 mm combined
-washer/head height** and 9 mm washer diameter; a taller ordinary pan head cannot
-be assumed to fit. Wall-anchor compatibility is still unresolved. The pocket can
-be deepened in a subsequent source revision if the selected head requires it.
+The central wall-screw recess seats its washer at Z3 and now has a cassette-pocket
+ceiling at Z8.2, with a 1.2 mm roof above it. Reserve at most **5.0 mm combined
+washer/head height** and 9 mm washer diameter. The pocket covers the complete
+±2 mm wall-slot adjustment and 2.5 mm cassette release slide; its capsule centres
+span Y98.5–105. A 15.6 × 1.5 mm relief in the front edge of the raised motor deck
+clears that larger pocket during release. These are internal changes; the case
+exterior, drive fasteners and PCB anchors are unchanged. Wall-specific anchor
+selection and proof load remain unresolved.
 
 The cosmetic cover is not the battery or motor support. The complete closed
 cassette can be removed from the wall plate without removing its four closure
@@ -63,6 +66,17 @@ X80.8–86, Y50.5–87 on every layer: their FR4 enters the radio reservation ev
 though the holders do not. The global coordinates in `retained-interfaces.json`
 govern this clearance.
 
+The companion's upper outward support still contacts its F.Cu face, which remains
+bare. The central spacer also formerly touched B.Cu in that band. It now has a
+0.3 mm deep, rounded recess over global X13.3–82.3, Y99.5–103.5, Z31.6–31.9.
+Only covered B.Cu tracks may cross local X9–77, Y94–97; no vias, exposed pads,
+lead tails or copper pours are permitted there. The recess extends 0.5 mm beyond
+that permitted rectangle, retains 1.6 mm of spacer below the insulating-sheet
+slot, and leaves corner posts, the edge frame and outward F.Cu support intact.
+The primary-facing spacer surface is unchanged. Print/PCB tolerance, abrasion,
+structural and dielectric qualification remain separate; solder mask is not the
+sole insulating barrier.
+
 The four cassette screws compress posts and board/spacer lands. They do not
 press the cells. Smooth ribs in the lid sit 0.7 mm above the conservative loaded
 holder envelope. Their geometry limits motion if a cell escapes its holder; the
@@ -74,10 +88,55 @@ concentric 5.0 mm features, two recommended 4.0 mm PCB holes and a locating
 feature. It does not clearly dimension the screw-seat section/height. Their PCB
 holes must be preserved. A nominal 5.5 mm M3 socket head cannot be assumed to fit
 a 5.0 mm recess; equally, the concentric feature alone does not establish that
-it is such a recess. The exact screw/peg retention arrangement remains unresolved. Any backside fastener must also respect the 1.5 mm
-protrusion limit beside the insulating sheet. The cassette
+it is such a recess. This candidate therefore uses the separate plastic-rim
+capture described below, without treating those features as qualified screw
+seats. Any future backside fastener must respect the 1.5 mm protrusion limit
+beside the insulating sheet. The cassette
 and board posts do not by themselves prove that insertion force bypasses every
 holder solder joint.
+
+## Holder capture and service fixture
+
+Two integral end-comb ribs in each cassette half now provide four plastic-only
+capture feet per holder. They add no installed parts or fasteners. Each foot is
+3 × 1.6 mm, at X offsets −9.5…−6.5 and +6.5…+9.5 from the holder centre,
+and global Y15.6–17.2 / Y94.6–96.2. The supplier model places these on broad
+plastic end-wall flats, outside its central contact strip and the cell ends.
+That model omits the mounting-hole details shown in the drawing; it is supporting
+geometry evidence, not proof of the purchased holder's contact surfaces.
+
+The drawing gives a 15.6 ± 0.5 mm rim height. The current candidate uses the
+16.1 mm upper envelope and an independent 0.2 mm gap: rear capture faces are
+at Z13.7 and front faces at Z54.5. Consequently the supplier's nominal rim has
+0.7 mm free movement and the drawing's low end has up to 1.2 mm. This is **bounded
+capture, not preload or a verified solder-force bypass**. Actual contact settings,
+holder motion, printed stiffness and temperature must be qualified before the
+ribs are relied on for load retention. The parameter makes the fit explicit;
+it does not convert an uncertain surface into a manufacturing tolerance.
+
+`cad/source/holder_service_fixture.scad` supplies a separate reusable workshop
+fixture: one backing base, two removable end combs, four M3×30 screws and four
+M3 nuts. Its three backing lands are local X11–19 / X37–45 / X63–71, Y25–75,
+on the inward face of either carrier. Exposed pads, vias, test points, solder and
+tails are excluded from these lands. Covered traces require contact/wear review.
+The underside stands 6 mm above the base, leaving 1.5 mm nominal clearance to
+the drawing's maximum 4.5 mm untrimmed holder tails. The end combs sit behind
+the holder ends and reach only the plastic corner flats; the cell channel is
+open. The fixture has the same explicit rim/gap parameters as the cassette.
+
+First dry-fit an empty carrier and dimensional cell surrogates. The screw stops,
+actual end-rim contact, seating without FR4 bending, tail clearance and insertion
+trajectory must be qualified before using the fixture with cells. No tightening
+torque or preload is inferred from a fit check. A fitted contact setting and
+approved, depowered pack-service procedure are required. The final permanent
+raw-link construction and insertion sequence remain design work: this fixture
+supports an individual carrier and is not claimed to service a rigidly joined
+pack. Both carriers must be empty when their permanent insulated raw-link wires
+are soldered and continuity-checked. Open-book handling would require a checked
+slack-storage and strain-relief route; alternatively, a future spacer-backed
+assembly may allow loading both outward faces after wiring. Neither complete
+construction sequence has been demonstrated by this fixture. It does not
+prescribe joining live raw-group wires after loading cells.
 
 ## Electrical and service reservations
 
@@ -272,12 +331,14 @@ Maintain smooth cell-facing surfaces, deburr holes and remove loose debris.
    Verify that the guard fasteners do not obstruct the shaft or base fasteners.
    The current +7 mm shaft-offset candidate remains the supported model; the
    earlier zero-offset guard conflict has not been resolved by this enclosure.
-4. Assemble the unloaded carrier boards, enclosed raw-group connections, spacer
-   and insulating sheet. Inspect the clipped solder tails and every clearance.
+4. Dry-assemble the unloaded carrier boards, enclosed raw-group connections,
+   spacer and insulating sheet. Inspect the clipped solder tails and every clearance.
    Permanently terminate and identify the protected pigtail, dress it on the two
    lid bars and fit its cable ties before closing the cassette.
-   Only then perform the electrical commissioning and controlled matched-cell
-   installation procedure. Four M3×60 screws close the cassette; these are
+   The complete cell-loading and commissioning sequence remains a design gate:
+   the one-carrier fixture does not establish how to load the permanently wired
+   pair. Perform this mechanical sequence with empty holders or surrogates until
+   that gate is resolved. Four M3×60 screws close the cassette; these are
    separate from the single wall-plate mounting screw.
 5. Engage the closed cassette over the two cleats from 2.5 mm above its final
    position, slide it down and install its one mounting screw. Install the controller frame, then

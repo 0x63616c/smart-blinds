@@ -22,6 +22,15 @@ encoder_transition_y=46.5; encoder_bundle=2.2;
 encoder_board_corridor=[46,40,51,45.1];
 controller_mounts=[[102.5,9],[102.5,97]];
 board_origin=[4.8,6]; board_size=[86,104];
+// Drawing upper rim envelope plus an independent fit gap. These are capture
+// stops, not a claim of preload or solder unloading across holder tolerances.
+holder_rim_height=16.1; holder_contact_gap=0.2;
+holder_foot_width=3; holder_foot_length=1.6;
+holder_foot_x=[-9.5,6.5]; holder_foot_y=[15.6,94.6];
+wall_head_ceiling=8.2; wall_pocket_roof=1.2;
+wall_head_pocket_y=[98.5,105]; // ±2 mm wall slot plus 2.5 mm cassette release.
+spacer_relief_xy=[13.3,99.5,69,4]; // Allowed track band plus 0.5 mm edge margin.
+spacer_relief_depth=0.3;
 wire_od=1.85; // Molex2147561061 maximum; no clamp-grip diameter inferred.
 wire_zs=[45.5,47.7,49.9,52.1,54.3,56.5];
 module box(p,s){translate(p)cube(s);}
@@ -72,6 +81,8 @@ module retained_backplate(){difference(){union(){
  }
  // Do not trap the upper cassette ear inside the raised motor deck.
  box([73,111.3,3],[8.3,11,3.5]);
+ // The full wall-slot adjustment pocket also needs its 2.5 mm release sweep.
+ box([37.2,113.8,3],[15.6,1.5,3.1]);
 }}
 module retained_cover(){difference(){union(){
  difference(){
@@ -96,6 +107,21 @@ module carrier_board(z){difference(){
 module cassette_outline(z,h){rr([3.4,4.6,z],[88.8,106.8,h],5.4);}
 module cassette_inner(z,h){rr([4.8,6,z],[86,104,h],4);}
 module pack_ear(p){hull(){zz([p[0],p[1],3],6,3.4);box([p[0]-3,109,3.4],[6,2,3]);}}
+module holder_end_combs(front=false){
+ // Integral ribs and four plastic-only contact feet per holder. Their end zones
+ // avoid the metal contact strip and cell ends in the supplier family model.
+ contact_z=front?38.2+holder_rim_height+holder_contact_gap:30-holder_rim_height-holder_contact_gap;
+ for(y=holder_foot_y){
+  box([7.0,y,front?62.9:4.5],[77.6,holder_foot_length,3.1]);
+  for(x=[19.8,45.8,71.8],dx=holder_foot_x)
+   box([x+dx,y,front?contact_z:4.5],
+       [holder_foot_width,holder_foot_length,front?66-contact_z:contact_z-4.5]);
+ }
+}
+module wall_head_pocket_outer(){hull()for(y=wall_head_pocket_y)
+ zz([45,y,4.5],15,wall_head_ceiling+wall_pocket_roof-4.5);}
+module wall_head_pocket_void(){hull()for(y=wall_head_pocket_y)
+ zz([45,y,3.2],12.6,wall_head_ceiling-3.2);}
 module cassette_rear(){difference(){union(){
  difference(){cassette_outline(3.4,30.6);cassette_inner(4.6,29.5);}
  // These compression posts carry board/holder forces to the cassette floor.
@@ -110,11 +136,12 @@ module cassette_rear(){difference(){union(){
  for(x=[32.8,58.8])box([x-1.6,5.5,28.5],[3.2,2.7,1.5]);
  for(p=pack_mounts)pack_ear(p);
  catch_pocket_solids();
+ holder_end_combs(false);
  for(p=pack_holes)zz([p[0],p[1],3],7.6,.5);
  // A closed raised pocket clears the wall-screw pad below the upper end band.
- hull()for(y=[100.5,103])zz([45,y,4.5],15,3.1);
+ wall_head_pocket_outer();
  }
- hull()for(y=[100.5,103])zz([45,y,3.2],12.6,3.2);
+ wall_head_pocket_void();
  catch_pocket_voids();
  for(p=pack_holes){
   zz([p[0],p[1],4],3.4,30.1);hex_hole([p[0],p[1],4.6]);
@@ -136,6 +163,10 @@ module cassette_spacer(){difference(){
  spacer_frame(31.6,5);
  // 1.2 mm slot captures a separate 1 mm unclad insulating sheet.
  rr([6.1,7.3,33.5],[83.4,101.4,1.2],3);
+ // Companion B.Cu covered tracks may cross beneath its outward F.Cu support.
+ // Keep corner posts and the upper end frame; no pad/via/tail is allowed here.
+ rr([spacer_relief_xy[0],spacer_relief_xy[1],31.59],
+    [spacer_relief_xy[2],spacer_relief_xy[3],spacer_relief_depth+.01],.5);
 }}
 module insulating_barrier(){difference(){
  rr([6.3,7.5,33.6],[83,101,1],3);
@@ -147,6 +178,7 @@ module cassette_front(){difference(){union(){
  for(p=pack_holes)zz([p[0],p[1],38.2],7.6,27.8);
  // Smooth ribs retain cells without pushing on their wrapper corners.
  for(y=[34,78])box([4.8,y,63.9],[86,6,2.1]);
+ holder_end_combs(true);
  // Keep the upper component/header band free; the four posts support its corners.
  difference(){box([8.8,8,38.2],[78,3,1.5]);box([13.8,7.9,38.1],[68,3.2,1.7]);}
  // Raised inline-motor connector tray, outside the closed raw-tap cavity.
@@ -306,12 +338,14 @@ module cassette_service_envelope(slide=0,forward=0){
  // Contains the entire closed cassette, boards/cells, closure heads and tray.
  // Linear expansion is a continuous conservative sweep along one axis.
  box([3.4,4.6+slide,3],[88.8,106.8,64.3+forward]);
+ hull()for(y=wall_head_pocket_y)zz([45,y+slide,3],15,6.4+forward);
  for(p=pack_mounts)box([p[0]-3,109+slide,3],[6,10,3.4+forward]);
  box([44,110.9+slide,52],[28.5,15.1,1.7+forward]);
  box([46.8,114.75+slide,53.9],[25.5,8.5,11.2+forward]);
 }
 module cassette_slide_envelope(){
  box([3.4,4.6,3],[88.8,106.8+service_slide,64.3]);
+ hull()for(y=[wall_head_pocket_y[0],wall_head_pocket_y[1]+service_slide])zz([45,y,3],15,6.4);
  for(p=pack_mounts)box([p[0]-3,109,3],[6,10+service_slide,3.4]);
  box([44,110.9,52],[28.5,15.1+service_slide,1.7]);
  box([46.8,114.75,53.9],[25.5,8.5+service_slide,11.2]);
@@ -378,6 +412,28 @@ else if(part=="collision_mount_head")intersection(){
  for(p=pack_mounts)zz([p[0],p[1],6.41],5.5,2.99);
  union(){cassette_rear();cassette_front();retained_drive();controller_frame();}
 }
+else if(part=="collision_wall_head")intersection(){
+ // Continuous central slot-adjustment plus release sweep; nominal seat is Z3.
+ hull()for(y=wall_head_pocket_y)zz([45,y,3.01],9,4.99);
+ cassette_rear();
+}
+else if(part=="collision_wall_roof_missing")difference(){
+ // Positive thickness control expressed as an empty missing-material result.
+ hull()for(y=wall_head_pocket_y)zz([45,y,wall_head_ceiling+.01],12.4,wall_pocket_roof-.02);
+ cassette_rear();
+}
+else if(part=="collision_holder_combs")intersection(){
+ union(){holder_end_combs(false);holder_end_combs(true);}
+ carrier_contents();
+}
+else if(part=="collision_spacer_relief")intersection(){
+ box([13.8,100,31.61],[68,3,.28]);cassette_spacer();
+}
+else if(part=="collision_spacer_section_missing")difference(){
+ // Preserve 1.6 mm nominal section beneath the barrier slot; ignore boundary faces.
+ box([13.8,100.51,31.91],[68,1.98,1.58]);cassette_spacer();
+}
+else if(part=="collision_spacer_barrier")intersection(){cassette_spacer();insulating_barrier();}
 else if(part=="collision_cleat_engagement"){
  // Sample actual pocket sliding/lifting; intersect each pose before unioning.
  for(p=concat([for(y=[0,.625,1.25,1.875,2.5])[0,y,0]],

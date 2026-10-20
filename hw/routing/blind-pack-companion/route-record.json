@@ -1,0 +1,415 @@
+{
+  "status": "EXPERIMENTAL hand route; pending DRC, physical and thermal validation",
+  "canonical_pcb_sha256": "629badeee425db788ad6c0246485f998eafa8df5b7ab3ce49790716f5382a712",
+  "mechanical_sha256": "bc67cfa48bf2719dd567bf6f0341244dfb0ad02026c8ea6d6882630177c0f330",
+  "route_source_sha256": "7b6487a86c1d46d4b37bab1bd3f7bb4ee216246972ec4287e22bcdd4f11f31fd",
+  "routed_pcb_sha256": "7a207586e9b9d2424f9d30c21f8511ecec0c5f9ead75571b568618d00ee49494",
+  "authorized_deltas": [
+    "Three nonpolar fuse footprint rotations90\u2192270 degrees; physical pin/net identities unchanged",
+    "F.Cu upper support retained, exact recessed B.Cu covered-track window only",
+    "Bottom fixture lands prohibit pads/vias/exposed features; masked tracks only",
+    "NativeKiCad10 serialization and equivalent relative model/library paths",
+    "All item UUIDs deterministically re-keyed; no group references in this board"
+  ],
+  "traces": [
+    {
+      "label": "cell1-unfused-short",
+      "net": "1",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          15,
+          9.9
+        ],
+        [
+          15,
+          6.455
+        ]
+      ],
+      "length_mm": 3.4450000000000003
+    },
+    {
+      "label": "cell1-fused-via-entry",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          15,
+          1.545
+        ],
+        [
+          17.4,
+          1.545
+        ]
+      ],
+      "length_mm": 2.3999999999999986
+    },
+    {
+      "label": "cell1-via-bank-front",
+      "net": "2",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          17.4,
+          1.4
+        ],
+        [
+          17.4,
+          4.1
+        ]
+      ],
+      "length_mm": 2.6999999999999997
+    },
+    {
+      "label": "cell1-via-bank-back",
+      "net": "2",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          17.4,
+          1.4
+        ],
+        [
+          17.4,
+          6.6
+        ]
+      ],
+      "length_mm": 5.199999999999999
+    },
+    {
+      "label": "cell1-fused-fanout",
+      "net": "2",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          17.4,
+          6.6
+        ],
+        [
+          19.5,
+          8.7
+        ],
+        [
+          19.5,
+          21
+        ]
+      ],
+      "length_mm": 15.269848480983502
+    },
+    {
+      "label": "cell2-unfused-short",
+      "net": "carrier-1",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          41,
+          9.9
+        ],
+        [
+          41,
+          6.455
+        ]
+      ],
+      "length_mm": 3.4450000000000003
+    },
+    {
+      "label": "cell2-fused-via-entry",
+      "net": "carrier-2",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          41,
+          1.545
+        ],
+        [
+          43.4,
+          1.545
+        ]
+      ],
+      "length_mm": 2.3999999999999986
+    },
+    {
+      "label": "cell2-via-bank-front",
+      "net": "carrier-2",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          43.4,
+          1.4
+        ],
+        [
+          43.4,
+          4.1
+        ]
+      ],
+      "length_mm": 2.6999999999999997
+    },
+    {
+      "label": "cell2-via-bank-back",
+      "net": "carrier-2",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          43.4,
+          1.4
+        ],
+        [
+          43.4,
+          6.6
+        ]
+      ],
+      "length_mm": 5.199999999999999
+    },
+    {
+      "label": "cell2-fused-fanout",
+      "net": "carrier-2",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          43.4,
+          6.6
+        ],
+        [
+          45.5,
+          8.7
+        ],
+        [
+          45.5,
+          21
+        ]
+      ],
+      "length_mm": 15.269848480983502
+    },
+    {
+      "label": "cell3-unfused-short",
+      "net": "carrier-1-1",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          67,
+          9.9
+        ],
+        [
+          67,
+          6.455
+        ]
+      ],
+      "length_mm": 3.4450000000000003
+    },
+    {
+      "label": "cell3-fused-via-entry",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          67,
+          1.545
+        ],
+        [
+          69.4,
+          1.545
+        ]
+      ],
+      "length_mm": 2.4000000000000057
+    },
+    {
+      "label": "cell3-via-bank-front",
+      "net": "raw_top",
+      "layer": "F.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          69.4,
+          1.4
+        ],
+        [
+          69.4,
+          4.1
+        ]
+      ],
+      "length_mm": 2.6999999999999997
+    },
+    {
+      "label": "cell3-via-bank-back",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 2,
+      "points_local_xy": [
+        [
+          69.4,
+          1.4
+        ],
+        [
+          69.4,
+          6.6
+        ]
+      ],
+      "length_mm": 5.199999999999999
+    },
+    {
+      "label": "cell3-fused-fanout",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          69.4,
+          6.6
+        ],
+        [
+          71.5,
+          8.7
+        ],
+        [
+          71.5,
+          21
+        ]
+      ],
+      "length_mm": 15.269848480983496
+    },
+    {
+      "label": "junction1-current-rail",
+      "net": "2",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          19.5,
+          21
+        ],
+        [
+          41,
+          42.5
+        ],
+        [
+          41,
+          89.9
+        ],
+        [
+          33.2,
+          97.7
+        ],
+        [
+          33.2,
+          100
+        ]
+      ],
+      "length_mm": 91.13645737753168
+    },
+    {
+      "label": "junction2-current-rail",
+      "net": "carrier-2",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          45.5,
+          21
+        ],
+        [
+          67,
+          42.5
+        ],
+        [
+          67,
+          89.9
+        ],
+        [
+          57,
+          99.9
+        ],
+        [
+          51.2,
+          99.9
+        ],
+        [
+          51.2,
+          100
+        ]
+      ],
+      "length_mm": 97.8477272147525
+    },
+    {
+      "label": "raw-top-current-rail",
+      "net": "raw_top",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          71.5,
+          21
+        ],
+        [
+          76,
+          25.5
+        ],
+        [
+          76,
+          76
+        ],
+        [
+          71,
+          81
+        ],
+        [
+          71,
+          96
+        ],
+        [
+          69.2,
+          97.8
+        ],
+        [
+          69.2,
+          100
+        ]
+      ],
+      "length_mm": 83.68061325481597
+    },
+    {
+      "label": "raw-ground-current-rail",
+      "net": "raw_ground",
+      "layer": "B.Cu",
+      "width_mm": 3,
+      "points_local_xy": [
+        [
+          15,
+          89.9
+        ],
+        [
+          15.2,
+          90.1
+        ],
+        [
+          15.2,
+          100
+        ]
+      ],
+      "length_mm": 10.182842712474617
+    }
+  ],
+  "unique_item_uuids": 291,
+  "vias": {
+    "count": 12,
+    "diameter_mm": 0.9,
+    "drill_mm": 0.4,
+    "tenting": "front and back"
+  },
+  "current_assumptions": {
+    "total_pack_a": 4,
+    "equal_branch_a": 2,
+    "not_guaranteed": "Equal current sharing, holder rating, fuse clearing, trace/via temperature and assembly fit"
+  }
+}

@@ -1,0 +1,6 @@
+(version 1)
+(rule "Carrier minimum copper clearance" (constraint clearance (min 0.25mm)))
+(rule "Carrier copper to edge" (constraint edge_clearance (min 0.30mm)))
+(rule "Carrier minimum track" (constraint track_width (min 0.25mm)))
+(rule "Carrier hole to copper" (constraint hole_clearance (min 0.25mm)))
+(rule "Carrier via annular ring" (condition "A.Type == 'Via'") (constraint annular_width (min 0.25mm)))

@@ -1,0 +1,569 @@
+{
+  "status": "EXPERIMENTAL: connected shape-checked companion route; physical/thermal/fabrication acceptance remains open",
+  "kicad_version": "10.0.4",
+  "source_hashes": {
+    "hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb": "629badeee425db788ad6c0246485f998eafa8df5b7ab3ce49790716f5382a712",
+    "cad/parameters/retained-interfaces.json": "bc67cfa48bf2719dd567bf6f0341244dfb0ad02026c8ea6d6882630177c0f330",
+    "hw/routing/blind-pack-companion/companion-routed.kicad_pcb": "7a207586e9b9d2424f9d30c21f8511ecec0c5f9ead75571b568618d00ee49494",
+    "hw/routing/blind-pack-companion/route.py": "7b6487a86c1d46d4b37bab1bd3f7bb4ee216246972ec4287e22bcdd4f11f31fd",
+    "hw/routing/blind-pack-companion/companion-routed.kicad_dru": "71aff538f6f2edbdc91c9727aebe82def615cb7cb069d51d81fed469781c0250",
+    "hw/routing/blind-pack-companion/companion-routed.kicad_pro": "92f42096681cfc65330e0f415788def7a50b57e0dbbcef66d212ff7fbe1d646d",
+    "hw/routing/blind-pack-companion/checks.py": "22b5775cf542db804a157866fa56d0ceddc9f8464685751dd7df09ed81331699",
+    "hw/placement/footprint-clearances.json": "f5fffb4b6e49529e8dbec5e3b98c78563ebc29c7626633817ec1581193539fe0",
+    "tools/check_footprint_clearances.py": "45ac9559578af2da2b2074eaaaba6200296e0ca2c0b49a6dea2c951f1e63bf8a",
+    "tools/complete_courtyards.py": "f68a33e3d64e880d1593ce1e4a779a05faaf2c0b7e8df28ae945aeaabb4b4b00",
+    "hw/parts/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod": "e5af29e62bdfd0218d06bf79d2cdd8c8a112e91f8dbb0caf41441d0ae474b01b",
+    "hw/parts/blind-carrier/FUSE-SMD_L6.1-W2.7.kicad_mod": "f4a8bd7a25150fd2c69b395b27575ba2e8ac8a22fcac182efd7b9dcf7cf1c38f",
+    "hw/parts/blind-pack-features/WirePad18.kicad_mod": "6197d4165079dbc9327970025e7c6c744721154bf95adf6a69e3bf163116c815",
+    "hw/parts/blind-pack-features/MountingHole_M3_3.4mm.kicad_mod": "e8b6dc9422809bac91e4e5ff4f9d3e79b0aa342c1510c9ed147e6be4b22ae155"
+  },
+  "geometry": {
+    "footprints": 14,
+    "electrical_footprints": 10,
+    "board_only_holes": 4,
+    "tracks": 35,
+    "vias": 12,
+    "covered_support_rail_nets": [
+      "2",
+      "carrier-2",
+      "raw_ground",
+      "raw_top"
+    ],
+    "copper_fill_zones": 0,
+    "courtyards": {
+      "electrical_footprints": 10,
+      "with_courtyards": 10,
+      "new_envelopes_checked": 3
+    },
+    "unique_item_uuids": 291,
+    "track_summary": [
+      {
+        "net": "raw_top",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 7.071067811865476,
+        "start_local_xy": [
+          76.0,
+          76.0
+        ],
+        "end_local_xy": [
+          71.0,
+          81.0
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 50.5,
+        "start_local_xy": [
+          76.0,
+          25.5
+        ],
+        "end_local_xy": [
+          76.0,
+          76.0
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 6.363961030678928,
+        "start_local_xy": [
+          71.5,
+          21.0
+        ],
+        "end_local_xy": [
+          76.0,
+          25.5
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 12.3,
+        "start_local_xy": [
+          71.5,
+          8.699999999999989
+        ],
+        "end_local_xy": [
+          71.5,
+          21.0
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 2.5455844122715714,
+        "start_local_xy": [
+          71.0,
+          96.0
+        ],
+        "end_local_xy": [
+          69.2,
+          97.8
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 15.0,
+        "start_local_xy": [
+          71.0,
+          81.0
+        ],
+        "end_local_xy": [
+          71.0,
+          96.0
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 2.9698484809835,
+        "start_local_xy": [
+          69.4,
+          6.599999999999994
+        ],
+        "end_local_xy": [
+          71.5,
+          8.699999999999989
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "B.Cu",
+        "width_mm": 2.0,
+        "length_mm": 5.2,
+        "start_local_xy": [
+          69.4,
+          1.4000000000000057
+        ],
+        "end_local_xy": [
+          69.4,
+          6.599999999999994
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "F.Cu",
+        "width_mm": 2.0,
+        "length_mm": 2.7,
+        "start_local_xy": [
+          69.4,
+          1.4000000000000057
+        ],
+        "end_local_xy": [
+          69.4,
+          4.099999999999994
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 2.2,
+        "start_local_xy": [
+          69.2,
+          97.8
+        ],
+        "end_local_xy": [
+          69.2,
+          100.0
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 14.142135623730953,
+        "start_local_xy": [
+          67.0,
+          89.9
+        ],
+        "end_local_xy": [
+          57.0,
+          99.9
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 47.4,
+        "start_local_xy": [
+          67.0,
+          42.5
+        ],
+        "end_local_xy": [
+          67.0,
+          89.9
+        ]
+      },
+      {
+        "net": "carrier-1-1",
+        "layer": "F.Cu",
+        "width_mm": 2.0,
+        "length_mm": 3.445,
+        "start_local_xy": [
+          67.0,
+          9.900000000000006
+        ],
+        "end_local_xy": [
+          67.0,
+          6.4550000000000125
+        ]
+      },
+      {
+        "net": "raw_top",
+        "layer": "F.Cu",
+        "width_mm": 2.0,
+        "length_mm": 2.4,
+        "start_local_xy": [
+          67.0,
+          1.5449999999999875
+        ],
+        "end_local_xy": [
+          69.4,
+          1.5449999999999875
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 5.8,
+        "start_local_xy": [
+          57.0,
+          99.9
+        ],
+        "end_local_xy": [
+          51.19999999999999,
+          99.9
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 0.1,
+        "start_local_xy": [
+          51.19999999999999,
+          99.9
+        ],
+        "end_local_xy": [
+          51.19999999999999,
+          100.0
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 30.405591591021544,
+        "start_local_xy": [
+          45.5,
+          21.0
+        ],
+        "end_local_xy": [
+          67.0,
+          42.5
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 12.3,
+        "start_local_xy": [
+          45.5,
+          8.699999999999989
+        ],
+        "end_local_xy": [
+          45.5,
+          21.0
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 2.9698484809835,
+        "start_local_xy": [
+          43.400000000000006,
+          6.599999999999994
+        ],
+        "end_local_xy": [
+          45.5,
+          8.699999999999989
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "B.Cu",
+        "width_mm": 2.0,
+        "length_mm": 5.2,
+        "start_local_xy": [
+          43.400000000000006,
+          1.4000000000000057
+        ],
+        "end_local_xy": [
+          43.400000000000006,
+          6.599999999999994
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "F.Cu",
+        "width_mm": 2.0,
+        "length_mm": 2.7,
+        "start_local_xy": [
+          43.400000000000006,
+          1.4000000000000057
+        ],
+        "end_local_xy": [
+          43.400000000000006,
+          4.099999999999994
+        ]
+      },
+      {
+        "net": "2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 11.030865786510141,
+        "start_local_xy": [
+          41.0,
+          89.9
+        ],
+        "end_local_xy": [
+          33.19999999999999,
+          97.7
+        ]
+      },
+      {
+        "net": "2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 47.4,
+        "start_local_xy": [
+          41.0,
+          42.5
+        ],
+        "end_local_xy": [
+          41.0,
+          89.9
+        ]
+      },
+      {
+        "net": "carrier-1",
+        "layer": "F.Cu",
+        "width_mm": 2.0,
+        "length_mm": 3.445,
+        "start_local_xy": [
+          41.0,
+          9.900000000000006
+        ],
+        "end_local_xy": [
+          41.0,
+          6.4550000000000125
+        ]
+      },
+      {
+        "net": "carrier-2",
+        "layer": "F.Cu",
+        "width_mm": 2.0,
+        "length_mm": 2.4,
+        "start_local_xy": [
+          41.0,
+          1.5449999999999875
+        ],
+        "end_local_xy": [
+          43.400000000000006,
+          1.5449999999999875
+        ]
+      },
+      {
+        "net": "2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 2.3,
+        "start_local_xy": [
+          33.19999999999999,
+          97.7
+        ],
+        "end_local_xy": [
+          33.19999999999999,
+          100.0
+        ]
+      },
+      {
+        "net": "2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 30.405591591021544,
+        "start_local_xy": [
+          19.5,
+          21.0
+        ],
+        "end_local_xy": [
+          41.0,
+          42.5
+        ]
+      },
+      {
+        "net": "2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 12.3,
+        "start_local_xy": [
+          19.5,
+          8.699999999999989
+        ],
+        "end_local_xy": [
+          19.5,
+          21.0
+        ]
+      },
+      {
+        "net": "2",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 2.9698484809835,
+        "start_local_xy": [
+          17.400000000000006,
+          6.599999999999994
+        ],
+        "end_local_xy": [
+          19.5,
+          8.699999999999989
+        ]
+      },
+      {
+        "net": "2",
+        "layer": "B.Cu",
+        "width_mm": 2.0,
+        "length_mm": 5.2,
+        "start_local_xy": [
+          17.400000000000006,
+          1.4000000000000057
+        ],
+        "end_local_xy": [
+          17.400000000000006,
+          6.599999999999994
+        ]
+      },
+      {
+        "net": "2",
+        "layer": "F.Cu",
+        "width_mm": 2.0,
+        "length_mm": 2.7,
+        "start_local_xy": [
+          17.400000000000006,
+          1.4000000000000057
+        ],
+        "end_local_xy": [
+          17.400000000000006,
+          4.099999999999994
+        ]
+      },
+      {
+        "net": "raw_ground",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 9.9,
+        "start_local_xy": [
+          15.199999999999989,
+          90.1
+        ],
+        "end_local_xy": [
+          15.199999999999989,
+          100.0
+        ]
+      },
+      {
+        "net": "raw_ground",
+        "layer": "B.Cu",
+        "width_mm": 3.0,
+        "length_mm": 0.28284271247461906,
+        "start_local_xy": [
+          15.0,
+          89.9
+        ],
+        "end_local_xy": [
+          15.199999999999989,
+          90.1
+        ]
+      },
+      {
+        "net": "1",
+        "layer": "F.Cu",
+        "width_mm": 2.0,
+        "length_mm": 3.445,
+        "start_local_xy": [
+          15.0,
+          9.900000000000006
+        ],
+        "end_local_xy": [
+          15.0,
+          6.4550000000000125
+        ]
+      },
+      {
+        "net": "2",
+        "layer": "F.Cu",
+        "width_mm": 2.0,
+        "length_mm": 2.4,
+        "start_local_xy": [
+          15.0,
+          1.5449999999999875
+        ],
+        "end_local_xy": [
+          17.400000000000006,
+          1.5449999999999875
+        ]
+      }
+    ]
+  },
+  "drc": {
+    "all_severities": [
+      "error",
+      "warning",
+      "exclusion"
+    ],
+    "remaining_violations": {
+      "missing_courtyard": 4,
+      "silk_edge_clearance": 3,
+      "silk_over_copper": 3
+    },
+    "missing_courtyards_board_only_NPTH": [
+      "H1",
+      "H2",
+      "H3",
+      "H4"
+    ],
+    "unconnected_items": 0,
+    "ignored_checks": [
+      "footprint_filters_mismatch",
+      "track_not_centered_on_via",
+      "tuning_profile_track_geometries"
+    ]
+  },
+  "negative_controls": [
+    "removed_current_rail_detected_by_actual_DRC",
+    "support_via_permission_rejected",
+    "new_soldermask_opening_rejected",
+    "purchased_component_missing_courtyard_not_exempted"
+  ],
+  "limits": [
+    "Six inherited silkscreen findings and four board-only NPTH missing-courtyard errors remain; no waivers were added.",
+    "Three unrelated KiCad checks retain their default disabled state; included severities do not enable disabled checks.",
+    "Covered B.Cu tracks use the mechanically allocated0.3mm spacer relief; printed tolerance and contact wear are unqualified.",
+    "Copper-loss estimates do not qualify current capacity, holders, fuse clearing, thermal behavior or battery assembly.",
+    "Canonical circuit and placement remain authority; only three nonpolar fuse rotations and documented rule-area deltas are approved."
+  ]
+}

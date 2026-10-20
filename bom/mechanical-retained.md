@@ -19,8 +19,8 @@ dimensions into an asserted total project cost.
 | M2 ISO4032 hex nuts | 4 | 32 | One captive nut and one jam nut per adjustable button |
 | Nylon cable ties, nominal 100 × 2.5 mm | 4 | 32 | Two protected pigtail ties and two inline motor-connector tray ties; actual locking head and pull/insulation qualification required |
 | 1.0 mm unclad insulating sheet | 1 cut shape | 8 | Approx. 83 × 101 mm blank; electrical/temperature material specification not yet frozen |
-| M4 flat washers, maximum 9 mm outside diameter | 3 | 24 | Fit 10 mm wall recesses; combined washer + screw-head height ≤3.2 mm under the current central cassette pocket |
-| Wall screws and anchors accepting approx. 4 mm screw shank | 3 sets | 24 sets | Wall-specific selection and proof load required; 4.8 mm slotted plate holes and combined head/washer height ≤3.2 mm |
+| M4 flat washers, maximum 9 mm outside diameter | 3 | 24 | Fit 10 mm wall recesses; combined washer + screw-head height ≤5.0 mm under the revised central cassette pocket |
+| Wall screws and anchors accepting approx. 4 mm screw shank | 3 sets | 24 sets | Wall-specific selection and proof load required; 4.8 mm slotted plate holes and combined head/washer height ≤5.0 mm |
 
 The retained exporter supplies ten printed types: backplate, cover, cassette
 rear, cassette front with inline-connector tray, cassette spacer, controller
@@ -32,8 +32,16 @@ halves, bearing pod, bearing retainer, wheel and guard), giving **18 file types 
 insulating sheets. Do not reuse the earlier fixed plunger or guide bar. The
 retained source implements only the 71 mm trimmed-pin variant.
 
-The checked meshes total **320.167 cm³ per unit**, equivalent to **406.61 g of
-fully solid PETG**, or **3.253 kg for eight** at the [Prusament PETG data sheet's
+The integrated holder end-comb ribs add no installed parts or screws. A separate
+reusable service-fixture candidate adds **three workshop print pieces and four
+M3×30 screws/four M3 nuts per fixture**, shared across the build rather than
+multiplied by eight. Its fit, load path and final cell-insertion sequence remain
+unqualified; it is excluded from the installed-piece count and unit mass below.
+Its checked solid model is **122.84 g of PETG**; see the separate
+[workshop volume table](mechanical-workshop-volume.csv).
+
+The checked meshes total **322.271 cm³ per unit**, equivalent to **409.28 g of
+fully solid PETG**, or **3.274 kg for eight** at the [Prusament PETG data sheet's
 1.27 g/cm³ density](https://prusament.com/wp-content/uploads/2022/10/PETG_Prusament_TDS_2021_10_EN.pdf).
 The reproducible [per-part volume table](mechanical-print-volume.csv) and
 [estimate evidence](mechanical-print-estimate.json) bind this calculation to

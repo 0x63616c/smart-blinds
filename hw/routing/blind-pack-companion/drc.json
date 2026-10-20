@@ -1,0 +1,228 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-10-20T02:11:33",
+    "ignored_checks": [
+        {
+            "description": "Track endpoint not centered on via",
+            "key": "track_not_centered_on_via"
+        },
+        {
+            "description": "Tuning profile track geometries",
+            "key": "tuning_profile_track_geometries"
+        },
+        {
+            "description": "Footprint doesn't match symbol's footprint filters",
+            "key": "footprint_filters_mismatch"
+        }
+    ],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.4",
+    "schematic_parity": [],
+    "source": "companion-routed.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Footprint has no courtyard defined",
+            "items": [
+                {
+                    "description": "Footprint H1",
+                    "pos": {
+                        "x": 182.0,
+                        "y": 200.0
+                    },
+                    "uuid": "25954904-454f-54c7-a01a-365dd6ff9d3c"
+                }
+            ],
+            "severity": "error",
+            "type": "missing_courtyard"
+        },
+        {
+            "description": "Footprint has no courtyard defined",
+            "items": [
+                {
+                    "description": "Footprint H2",
+                    "pos": {
+                        "x": 104.0,
+                        "y": 200.0
+                    },
+                    "uuid": "ae0d822c-ac43-5aa3-bca9-bbbf893ac94d"
+                }
+            ],
+            "severity": "error",
+            "type": "missing_courtyard"
+        },
+        {
+            "description": "Footprint has no courtyard defined",
+            "items": [
+                {
+                    "description": "Footprint H3",
+                    "pos": {
+                        "x": 182.0,
+                        "y": 104.0
+                    },
+                    "uuid": "45a4e00c-5f08-52af-8b4a-61c2eddbd483"
+                }
+            ],
+            "severity": "error",
+            "type": "missing_courtyard"
+        },
+        {
+            "description": "Footprint has no courtyard defined",
+            "items": [
+                {
+                    "description": "Footprint H4",
+                    "pos": {
+                        "x": 104.0,
+                        "y": 104.0
+                    },
+                    "uuid": "70c0dfca-b379-5bbd-a4b8-8411e2fbfdba"
+                }
+            ],
+            "severity": "error",
+            "type": "missing_courtyard"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Segment on Edge.Cuts",
+                    "pos": {
+                        "x": 182.0,
+                        "y": 204.0
+                    },
+                    "uuid": "7378146a-069b-5d1a-b1fa-69797c321bae"
+                },
+                {
+                    "description": "Segment of F3 on F.Silkscreen",
+                    "pos": {
+                        "x": 120.4,
+                        "y": 204.06
+                    },
+                    "uuid": "cdf55eae-cd96-55cb-b1fd-a17b58544972"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Segment on Edge.Cuts",
+                    "pos": {
+                        "x": 182.0,
+                        "y": 204.0
+                    },
+                    "uuid": "7378146a-069b-5d1a-b1fa-69797c321bae"
+                },
+                {
+                    "description": "Segment of F1 on F.Silkscreen",
+                    "pos": {
+                        "x": 172.4,
+                        "y": 204.06
+                    },
+                    "uuid": "763a0a8e-9e1d-51d4-9821-f6a30a5af583"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by board edge",
+            "items": [
+                {
+                    "description": "Segment on Edge.Cuts",
+                    "pos": {
+                        "x": 182.0,
+                        "y": 204.0
+                    },
+                    "uuid": "7378146a-069b-5d1a-b1fa-69797c321bae"
+                },
+                {
+                    "description": "Segment of F2 on F.Silkscreen",
+                    "pos": {
+                        "x": 146.4,
+                        "y": 204.06
+                    },
+                    "uuid": "c0525b4e-add7-5f17-b3aa-1d7b09a4db5e"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_edge_clearance"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Segment of BT3 on F.Silkscreen",
+                    "pos": {
+                        "x": 106.5,
+                        "y": 195.6
+                    },
+                    "uuid": "a558fffb-659e-5779-989f-71724b841490"
+                },
+                {
+                    "description": "NPTH pad of BT3",
+                    "pos": {
+                        "x": 107.5,
+                        "y": 192.85
+                    },
+                    "uuid": "ae435fd8-2e51-55f9-8937-a3777678322c"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Segment of BT2 on F.Silkscreen",
+                    "pos": {
+                        "x": 132.5,
+                        "y": 195.6
+                    },
+                    "uuid": "4d7f7e95-403e-5c1b-aebb-017c31068afa"
+                },
+                {
+                    "description": "NPTH pad of BT2",
+                    "pos": {
+                        "x": 133.5,
+                        "y": 192.85
+                    },
+                    "uuid": "d5d267d1-fe42-5326-bc83-1edbcfe07c59"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        },
+        {
+            "description": "Silkscreen clipped by solder mask",
+            "items": [
+                {
+                    "description": "Segment of BT1 on F.Silkscreen",
+                    "pos": {
+                        "x": 158.5,
+                        "y": 195.6
+                    },
+                    "uuid": "b5cd1812-cc80-5a3d-afb4-33eaa9b63c7e"
+                },
+                {
+                    "description": "NPTH pad of BT1",
+                    "pos": {
+                        "x": 159.5,
+                        "y": 192.85
+                    },
+                    "uuid": "220ca2aa-f4bf-5e6a-a5bd-a418d0885d8f"
+                }
+            ],
+            "severity": "warning",
+            "type": "silk_over_copper"
+        }
+    ]
+}

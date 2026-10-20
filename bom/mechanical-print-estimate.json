@@ -2,16 +2,17 @@
   "status": "Solid CAD material estimate; not a slicer prediction, purchase quantity or physical mass",
   "parts_per_unit": 21,
   "parts_for_eight": 168,
-  "model_volume_cm3_per_unit": 320.167,
-  "solid_petg_grams_per_unit": 406.61,
-  "solid_petg_kg_for_eight": 3.253,
+  "model_volume_cm3_per_unit": 322.271,
+  "solid_petg_grams_per_unit": 409.28,
+  "solid_petg_kg_for_eight": 3.274,
   "density_g_cm3": 1.27,
   "density_source": "https://prusament.com/wp-content/uploads/2022/10/PETG_Prusament_TDS_2021_10_EN.pdf",
   "source_reports_sha256": {
     "cad/generated/compact-direct-verification.json": "ab7e11d0080b427e6d15f23b15c043e297c75841cb6b06368d544aeadec8f46f",
-    "cad/generated/retained-compact-verification.json": "7b5fe44418ccba9eab9e4e22f02177ab50b46d35d79aa0a574d55bac429ccf0f"
+    "cad/generated/retained-compact-verification.json": "8f0df417c64df776ad225fa8b59848f8d72d515ee134320b9d8965d9a11b4df0",
+    "cad/generated/holder-service-fixture-verification.json": "728bb126311e1f62d8319c18b9d5e34f2874ad438e3697a9a795f32a5cd48582"
   },
-  "calculator_sha256": "5aa70b2fa16bd4391566538f5e729bf0ad10ca4765f7bd35e2f99b7147286787",
+  "calculator_sha256": "ab6b8d551b41d36d8bc65facc63f27f5653b46790ed1823bd961b6521524c59d",
   "limits": [
     "Infill, perimeter settings, supports, brims, purge and failed prints change consumption.",
     "Separate insulating sheets, cells, boards, purchased hardware and cables are excluded.",
@@ -103,10 +104,10 @@
       "part": "backplate",
       "per_unit": 1,
       "for_eight": 8,
-      "single_model_cm3": 86.064,
-      "unit_model_cm3": 86.064,
-      "unit_solid_petg_g": 109.3,
-      "stl_sha256": "311208261a75b16594d8aa54e933fa849b7bf0842fb9a0693e5ecb058f90bc69"
+      "single_model_cm3": 86.003,
+      "unit_model_cm3": 86.003,
+      "unit_solid_petg_g": 109.22,
+      "stl_sha256": "e7fe7249a613dd36e990ec0995e80c09bed0f15200d0c4b6ecef5f64c17162f3"
     },
     {
       "family": "retained-compact",
@@ -116,37 +117,37 @@
       "single_model_cm3": 132.735,
       "unit_model_cm3": 132.735,
       "unit_solid_petg_g": 168.57,
-      "stl_sha256": "df6e6a02d32fe75ede57f3296c693a7b545441cdba5b9885ce193a171952116e"
+      "stl_sha256": "a6e5ad4a39e6ffdbffe50a37af07e1da9656a32bf20c1032aa78cebb1a289bdc"
     },
     {
       "family": "retained-compact",
       "part": "cassette_rear",
       "per_unit": 1,
       "for_eight": 8,
-      "single_model_cm3": 32.086,
-      "unit_model_cm3": 32.086,
-      "unit_solid_petg_g": 40.75,
-      "stl_sha256": "2cbca14e5dd65c9482f2fce191e56c5b9b5a15e26a3d2ee7a31e59a1e810be54"
+      "single_model_cm3": 33.063,
+      "unit_model_cm3": 33.063,
+      "unit_solid_petg_g": 41.99,
+      "stl_sha256": "556c0a7e06ae633f7d6dd96258f54cc46d8ca2aeef690670f5678b8ec7b6ba1e"
     },
     {
       "family": "retained-compact",
       "part": "cassette_front",
       "per_unit": 1,
       "for_eight": 8,
-      "single_model_cm3": 36.744,
-      "unit_model_cm3": 36.744,
-      "unit_solid_petg_g": 46.66,
-      "stl_sha256": "f1dd8ed902b0b303e06cfbbc3cd0d4889c1e3ac81af968099ac61f2b19b88ccc"
+      "single_model_cm3": 37.973,
+      "unit_model_cm3": 37.973,
+      "unit_solid_petg_g": 48.23,
+      "stl_sha256": "a0db54b44120e99b62a1b98e3debc2b78e1d6e55b49a12961f4c52aaad943889"
     },
     {
       "family": "retained-compact",
       "part": "cassette_spacer",
       "per_unit": 1,
       "for_eight": 8,
-      "single_model_cm3": 5.954,
-      "unit_model_cm3": 5.954,
-      "unit_solid_petg_g": 7.56,
-      "stl_sha256": "a7e9370e864a7745df8200cbbf7329b36930a142260a2f7605d7c22a531dca8c"
+      "single_model_cm3": 5.913,
+      "unit_model_cm3": 5.913,
+      "unit_solid_petg_g": 7.51,
+      "stl_sha256": "c39712dda92f2690000238d7ad7ee0da5598cc26ce5a577adef6f1816e2febff"
     },
     {
       "family": "retained-compact",
@@ -156,7 +157,7 @@
       "single_model_cm3": 1.745,
       "unit_model_cm3": 1.745,
       "unit_solid_petg_g": 2.22,
-      "stl_sha256": "1ea9ed2c3b8f52ee1e2f66aea22925be35cf93f6c7aa38ad719a3055e64a1dda"
+      "stl_sha256": "e95f67bcc083313e5f73913aaab2f6d158441ec8a5a8d918699077c1300eb3ca"
     },
     {
       "family": "retained-compact",
@@ -166,7 +167,7 @@
       "single_model_cm3": 0.108,
       "unit_model_cm3": 0.216,
       "unit_solid_petg_g": 0.27,
-      "stl_sha256": "a98f5bc42abe671f8f2f79ec567bb9335cf03b8ee86bde45d32571277d84bf85"
+      "stl_sha256": "27940e0357d6f4d7fde5900d63d5e900c33f59d5c4d16f9f0e6fc2efbc41a8b1"
     },
     {
       "family": "retained-compact",
@@ -176,7 +177,7 @@
       "single_model_cm3": 0.132,
       "unit_model_cm3": 0.264,
       "unit_solid_petg_g": 0.34,
-      "stl_sha256": "63922e020e49391058bb575a6828763cf8d367ca4e94f476f33a5ebeb16561de"
+      "stl_sha256": "f3918f29a09ace5f762f86a4af2a7a7001838502d3f9f5b7fe4deb7b43c947c6"
     },
     {
       "family": "retained-compact",
@@ -186,7 +187,7 @@
       "single_model_cm3": 0.087,
       "unit_model_cm3": 0.174,
       "unit_solid_petg_g": 0.22,
-      "stl_sha256": "24b6ce76ee4aa79781d30e863158532538f5b6bd840010ff2bb34bcc4bf135c1"
+      "stl_sha256": "441619d57b21631fa6b0750abff569388fda2c2a3acbeb1089bf7a0cb9c4afbb"
     },
     {
       "family": "retained-compact",
@@ -196,7 +197,42 @@
       "single_model_cm3": 0.757,
       "unit_model_cm3": 0.757,
       "unit_solid_petg_g": 0.96,
-      "stl_sha256": "e9a6fb55668a16afc29ec23485d516e13b174a279bdfcb54dd4be7600a81dd80"
+      "stl_sha256": "d34fe9f07c754e1e7fad3666a274a48c6994fd075652df989e2f0700b721fea1"
     }
-  ]
+  ],
+  "workshop_fixture": {
+    "scope": "One reusable fixture shared across eight builds; excluded from installed unit quantities and mass",
+    "shared_fixture_count": 1,
+    "printed_pieces": 3,
+    "model_volume_cm3": 96.723,
+    "solid_petg_g": 122.84,
+    "hardware_excluded": "Four M3x30 screws and four M3 nuts",
+    "limit": "Dry-fit candidate; rim contact, load path and controlled pack assembly sequence remain unqualified",
+    "parts": [
+      {
+        "part": "base",
+        "per_fixture": 1,
+        "for_eight_unit_build": 1,
+        "model_volume_cm3": 91.009,
+        "solid_petg_g": 115.58,
+        "stl_sha256": "74dbb3ceb4a18a00c47345883382981534eda38ae35e25724e0aa17b62224bb3"
+      },
+      {
+        "part": "lower_comb",
+        "per_fixture": 1,
+        "for_eight_unit_build": 1,
+        "model_volume_cm3": 2.85,
+        "solid_petg_g": 3.62,
+        "stl_sha256": "3156f23be423a43df3dbee18ce28a888fad703a9970d27e2cf4fba7c1e4a8e12"
+      },
+      {
+        "part": "upper_comb",
+        "per_fixture": 1,
+        "for_eight_unit_build": 1,
+        "model_volume_cm3": 2.864,
+        "solid_petg_g": 3.64,
+        "stl_sha256": "6f47e11dc49af1dea768552516233025dd7db95555e03773dcad5d5835ddd5e0"
+      }
+    ]
+  }
 }

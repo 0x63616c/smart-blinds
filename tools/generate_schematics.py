@@ -44,6 +44,8 @@ def prop(key, value, x, y, hidden=False, angle=0):
 
 def board_graph(path):
     pcb = parse(path.read_text())
+    versions = children(pcb, "version")
+    name_only_nets = len(versions) == 1 and versions[0][1:] == [Atom("20260206")]
     result = {}
     for fp in children(pcb, "footprint"):
         properties = {p[1]: p[2] for p in children(fp, "property")}
@@ -79,7 +81,18 @@ def board_graph(path):
         for pad in children(fp, "pad"):
             if not pad[1]:
                 continue
-            net = one(pad, "net")[2]
+            connection = one(pad, "net")
+            if len(connection) == 3:
+                net = connection[2]
+            elif len(connection) == 2 and name_only_nets:
+                # KiCad 10 saves the quoted name directly, without a numeric ID.
+                # Read it natively so routed boards never need the intentionally
+                # unrouted-only compatibility converter.
+                net = connection[1]
+            else:
+                raise ValueError(f"Unsupported pad net encoding {ref}.{pad[1]}")
+            if type(net) is not str or not net:
+                raise ValueError(f"Missing quoted net identity {ref}.{pad[1]}")
             if pad[1] in pads and pads[pad[1]] != net:
                 raise ValueError(f"Inconsistent repeated pad {ref}.{pad[1]}")
             pads[pad[1]] = net

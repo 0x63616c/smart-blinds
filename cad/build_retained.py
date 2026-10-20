@@ -18,7 +18,8 @@ PARTS = ["backplate", "cover", "cassette_rear", "cassette_front", "cassette_spac
 CHECKS = ["cassette_contents", "cassette_controller", "cassette_drive", "cassette_cover",
           "case_pillars_drive", "controller_cover", "controller_buttons", "controller_keys", "connector_frame", "connector_pcb", "rf_metal", "wiring_drive",
           "wiring_cover", "wiring_cassette", "wiring_pillars", "cassette_backplate",
-          "mount_tool", "button_guides", "button_adjuster", "signal_header_buttons", "wiring_controller", "mount_head", "cleat_engagement", "service_drive", "service_controller", "connector_buttons", "signal_wires_switches"]
+          "mount_tool", "button_guides", "button_adjuster", "signal_header_buttons", "wiring_controller", "mount_head", "cleat_engagement", "service_drive", "service_controller", "connector_buttons", "signal_wires_switches",
+          "wall_head", "wall_roof_missing", "holder_combs", "spacer_relief", "spacer_section_missing", "spacer_barrier"]
 
 
 def sha(path):
@@ -119,9 +120,30 @@ def check_shared_interfaces():
     assert abs(overboard["nearest_wire_x"]-overboard["component_face_x"]-overboard["clearance"]-overboard["maximum_mounted_component_height"]) < 1e-9
     assert overboard["local_uv"] == [51,42.4,54,extent]
     assert overboard["global_wire_box_min"][0] == overboard["nearest_wire_x"]
+    relief = data["carrier"]["companion_upper_support_trace_relief"]
+    x,y,w,h = declaration("spacer_relief_xy")
+    assert [x,y,round(x+w,6),round(y+h,6)] == relief["spacer_recess_global_xy"]
+    assert declaration("spacer_relief_depth") == relief["spacer_recess_depth"]
+    assert round(33.5 - (31.6 + relief["spacer_recess_depth"]),6) == relief["remaining_spacer_below_barrier_slot"]
+    assert relief["allowed_track_band_local_xy"] == [9,94,77,97]
+    holder = data["holder_body_capture"]
+    assert declaration("holder_rim_height") == holder["modeled_rim_upper_height"]
+    assert declaration("holder_contact_gap") == holder["independent_contact_gap"]
+    assert declaration("holder_foot_x") == holder["foot_start_x_relative_to_holder_centre"]
+    assert declaration("holder_foot_y") == holder["foot_start_global_y"]
+    assert declaration("holder_foot_width") == holder["foot_width_x"]
+    assert declaration("holder_foot_length") == holder["foot_length_y"]
+    assert round(30-holder["modeled_rim_upper_height"]-holder["independent_contact_gap"],6) == holder["rear_capture_face_global_z"]
+    assert round(38.2+holder["modeled_rim_upper_height"]+holder["independent_contact_gap"],6) == holder["front_capture_face_global_z"]
+    wall = data["wall_head_pocket"]
+    assert declaration("wall_head_ceiling") == wall["ceiling_global_z"]
+    assert declaration("wall_pocket_roof") == wall["roof_thickness"]
+    assert declaration("wall_head_pocket_y") == wall["pocket_capsule_centres_global_y"]
+    assert wall["seat_global_z"] + wall["maximum_head_and_washer_height"] < wall["ceiling_global_z"]
     return {"cad_and_pcb_contract_match": True,
             "attachment_geometry_declarations_match": True,
             "header_and_encoder_route_declarations_match": True,
+            "holder_capture_spacer_relief_and_wall_pocket_match": True,
             "cleat_nominal_capture_mm": {"per_side_x": overlap, "length_y": capture},
             "button_first_closure_setting_z_mm": required,
             "limit": "Dimensional contract only; actuation, tolerance, retention loads, creep and print qualification are separate."}
@@ -144,6 +166,7 @@ def main():
     generated = ROOT / "generated"
     output.mkdir(parents=True, exist_ok=True)
     generated.mkdir(parents=True, exist_ok=True)
+    interfaces = json.loads((ROOT / "parameters/retained-interfaces.json").read_text())
     evidence = {
         "status": "Retained enclosure fit candidate; no physical qualification or fabrication release",
         "shared_interface_check": check_shared_interfaces(),
@@ -156,6 +179,9 @@ def main():
         "cassette_mount_driver_corridor_diameter_mm": 8,
         "cassette_disengagement_slide_mm": 2.5,
         "cassette_forward_service_sweep_mm": 72,
+        "holder_body_capture": interfaces["holder_body_capture"],
+        "wall_head_pocket": interfaces["wall_head_pocket"],
+        "companion_support_relief": interfaces["carrier"]["companion_upper_support_trace_relief"],
         "controller_component_height_reservation_mm": 9,
         "controller_outline_mm": [54, 68.5, 1.6],
         "controller_local_mapping": "u=global Z-8; v=global Y-3",
@@ -240,7 +266,9 @@ def main():
     evidence["limits"] = [
         "Named nominal static intersections plus conservative continuous service envelopes are checked; no tolerance or structural analysis.",
         "Service drive/controller tests expand closed-cassette bounds through the 2.5 mm rise and 72 mm forward removal, including boards/cells, lid and inline tray/housing. Cable manipulation is excluded.",
-        "Cleat/backplate engagement uses 12 sampled actual rear-tray positions, not a continuous pocket sweep. The central washer pocket is elongated for the 2.5 mm rise.",
+        "Cleat/backplate engagement uses 12 sampled actual rear-tray positions, not a continuous pocket sweep. The central washer pocket covers a continuous head sweep combining +/-2 mm wall-slot adjustment and 2.5 mm rise.",
+        "Integral holder end combs are capture stops with an independent gap, not preload or a verified solder-force bypass. Actual rim fit and controlled insertion-fixture use remain unqualified.",
+        "The companion spacer relief permits only covered B.Cu tracks; remaining section and barrier clearance are geometric checks, not dielectric, abrasion or structural qualification.",
         "The motor rear cable allocation is excluded from the wire/drive test because the wire intentionally enters it.",
         "The cassette/contents test excludes intended PCB face seating planes with 0.02 mm contact bands.",
         "The cassette/backplate test excludes the intended Z3 seating plane with a 0.02 mm contact band.",

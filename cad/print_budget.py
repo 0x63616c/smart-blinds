@@ -51,6 +51,28 @@ def calculate(verify_stls=False):
                          "stl_sha256": mesh["sha256"]})
         evidence[report_path.relative_to(REPO).as_posix()] = sha(report_path)
     total_volume = round(sum(row["unit_model_cm3"] for row in rows), 3)
+    fixture_path = CAD / "generated/holder-service-fixture-verification.json"
+    fixture = json.loads(fixture_path.read_text())
+    if not fixture.get("source_snapshot_verified_unchanged") or fixture["installed_parts_added"] != 0:
+        raise ValueError("Unverified or misclassified workshop fixture")
+    for name, digest in fixture["source_sha256"].items():
+        if sha(CAD / name) != digest:
+            raise ValueError(f"Fixture report is stale: {name}")
+    workshop_rows = []
+    for mesh in fixture["meshes"]:
+        if not mesh["closed_edge_mesh"] or mesh["connected_shells"] != 1:
+            raise ValueError(f"Invalid workshop print mesh: {mesh['file']}")
+        path = CAD / mesh["file"]
+        if verify_stls and (sha(path) != mesh["sha256"] or path.stat().st_size != mesh["bytes"]):
+            raise ValueError(f"Workshop STL differs from checked report: {path}")
+        workshop_rows.append({"part": path.stem, "per_fixture": 1, "for_eight_unit_build": 1,
+                              "model_volume_cm3": mesh["volume_cm3"],
+                              "solid_petg_g": round(mesh["volume_cm3"] * DENSITY, 2),
+                              "stl_sha256": mesh["sha256"]})
+    if {row["part"] for row in workshop_rows} != {"base", "lower_comb", "upper_comb"}:
+        raise ValueError("Incomplete workshop fixture export")
+    workshop_volume = round(sum(row["model_volume_cm3"] for row in workshop_rows), 3)
+    evidence[fixture_path.relative_to(REPO).as_posix()] = sha(fixture_path)
     return {
         "status": "Solid CAD material estimate; not a slicer prediction, purchase quantity or physical mass",
         "parts_per_unit": sum(row["per_unit"] for row in rows),
@@ -66,6 +88,15 @@ def calculate(verify_stls=False):
                    "Separate insulating sheets, cells, boards, purchased hardware and cables are excluded.",
                    "No filament price, machine time, print settings or structural qualification is inferred."],
         "parts": rows,
+        "workshop_fixture": {
+            "scope": "One reusable fixture shared across eight builds; excluded from installed unit quantities and mass",
+            "shared_fixture_count": 1, "printed_pieces": 3,
+            "model_volume_cm3": workshop_volume,
+            "solid_petg_g": round(workshop_volume * DENSITY, 2),
+            "hardware_excluded": "Four M3x30 screws and four M3 nuts",
+            "limit": "Dry-fit candidate; rim contact, load path and controlled pack assembly sequence remain unqualified",
+            "parts": workshop_rows,
+        },
     }
 
 
@@ -79,9 +110,14 @@ def main():
     writer = csv.DictWriter(stream, fieldnames=list(result["parts"][0]), lineterminator="\n")
     writer.writeheader()
     writer.writerows(result["parts"])
+    workshop_stream = io.StringIO(newline="")
+    workshop_writer = csv.DictWriter(workshop_stream, fieldnames=list(result["workshop_fixture"]["parts"][0]), lineterminator="\n")
+    workshop_writer.writeheader()
+    workshop_writer.writerows(result["workshop_fixture"]["parts"])
     outputs = {
         REPO / "bom/mechanical-print-estimate.json": json.dumps(result, indent=2) + "\n",
         REPO / "bom/mechanical-print-volume.csv": stream.getvalue(),
+        REPO / "bom/mechanical-workshop-volume.csv": workshop_stream.getvalue(),
     }
     for path, expected in outputs.items():
         if args.check:
@@ -90,6 +126,7 @@ def main():
         else:
             path.write_bytes(expected.encode())
     print(f"{result['parts_per_unit']} printed pieces per unit; {result['solid_petg_grams_per_unit']} g solid-model PETG; {result['solid_petg_kg_for_eight']} kg for eight, before slicer changes and waste.")
+    print(f"Separate shared workshop fixture: 3 pieces, {result['workshop_fixture']['solid_petg_g']} g solid-model PETG; not multiplied by eight.")
 
 
 if __name__ == "__main__":

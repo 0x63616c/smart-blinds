@@ -3,7 +3,8 @@
 Updated 20 October 2026. [Public repository](https://github.com/0x63616c/smart-blinds).
 
 **Prototype design in progress.** The enclosure, circuit captures and control software
-are reviewable. The three boards remain unrouted; no unit has been fabricated,
+are reviewable. A separate experimental companion-carrier board is connected;
+the canonical board captures remain unrouted. No unit has been fabricated,
 powered, charged or installed. The next physical milestone is two prototypes,
 followed by an eight-unit build only after their tests pass.
 
@@ -14,7 +15,7 @@ followed by an eight-unit build only after their tests pass.
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
 | Main controller | 196 circuit features, 609 pin identities and 142 net partitions; native eleven-sheet KiCad schematic; 54 × 68.5 mm four-layer placement with USB tab | Route copper, refine critical loops, resolve manufacturing/thermal rules and ERC/DRC findings |
-| Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Routing, holder fastening, insulation and qualified protection settings |
+| Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete primary/main routing, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session and settling; source-timed faults and supervised motor-off path | Physical reference/commissioning, final hardware qualification, idle local-button wake and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
 | Radio transport | Pinned C6 Thread evaluation build; seven-peer localhost DTLS group adapter, durable sequence reservations and source-timed failure propagation | Compact radio protocol and airtime budget, commissioned identities/keys, RF power measurements and hub compatibility |
@@ -26,20 +27,25 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All ten Design checks jobs passed for `8975687`](https://github.com/0x63616c/smart-blinds/actions/runs/39376671584):
+[All ten Design checks jobs passed for `f8827ac`](https://github.com/0x63616c/smart-blinds/actions/runs/39378127521):
 control/parameter tests, electrical models, native schematic rebuilds, Home Assistant,
 real local transport tests, both C6 cross-builds, both mechanical-fit jobs and the
-source-bound print material budget. The newer group bridge below awaits its own CI run.
+source-bound print material budget, including the 59-test group-transport batch.
+The newer enclosure/companion-route checkpoint below has passed its local checks
+and awaits its own CI run.
 New changes must be checked against their own source revision.
 
-The retained-enclosure artifact contains 27 named empty-intersection checks, a
+The retained-enclosure artifact contains 33 named empty-intersection checks, a
 positive cleat-capture control and ten closed printable mesh types. Its seven CAD
 source hashes match the checked source. The service tests include a conservative
 2.5 mm cassette release and 72 mm forward removal envelope. These results establish
 what the nominal model does; they do not establish printed fit or load capacity.
-The 21 installed printed pieces total 320.167 cm³ per unit: about 406.61 g of
+The 21 installed printed pieces total 322.271 cm³ per unit: about 409.28 g of
 solid PETG at 1.27 g/cm³. This is a CAD estimate, before infill, supports and waste;
-CI recalculates it from the freshly checked meshes.
+CI recalculates it from the freshly checked meshes. A separate three-piece
+workshop fixture adds about 122.84 g once for the eight-unit build. Its three
+clearance checks and closed print meshes pass; holder contact, insertion forces
+and the complete wired-pack loading sequence remain unqualified.
 
 The complete main native schematic independently matches the compiled PCB graph.
 Seven explicit ERC findings remain documented. Main and carrier circuits also have
@@ -54,6 +60,15 @@ sizes and mechanical anchors are unchanged. Actual KiCad DRC reports zero
 courtyard/keepout findings on all three boards. Four package families still use
 explicit molding/outline allowances. Copper routing and the remaining manufacturing
 findings are separate unfinished work. See the [clearance record](electrical/footprint-clearances.md).
+
+The [experimental companion route](../hw/routing/blind-pack-companion/README.md)
+preserves the circuit graph, footprint pads and mechanical anchors. It has 35
+segments, 12 vias and zero unconnected items in actual KiCad DRC, with no copper,
+edge, hole, courtyard-overlap or keepout failures. Six inherited silkscreen
+findings and four explicitly enabled mounting-hole courtyard errors remain.
+Four injected failures are rejected. Covered inward-face tracks pass through a
+coordinated 0.3 mm spacer recess; current, temperature and insulation wear remain
+physical qualification gates. The primary and main routes are unfinished.
 
 The [host group bridge](firmware/thread-group-bridge.md) joins the coordinator to
 seven real localhost DTLS sessions with synthetic motors and calibration records.

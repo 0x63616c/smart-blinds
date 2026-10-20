@@ -2,7 +2,7 @@
   "status": "PASS: isolated frozen circuits and separate full canonical placement checks",
   "atopile": "0.15.9",
   "validation_sources_sha256": {
-    "cad/parameters/retained-interfaces.json": "9e0a64f66b19123973ba59b6f0662d8b1510a2c5d6a60777f5b824af9f24a6a4",
+    "cad/parameters/retained-interfaces.json": "bc67cfa48bf2719dd567bf6f0341244dfb0ad02026c8ea6d6882630177c0f330",
     "hw/boards/blind-carrier/carrier-connectivity.json": "5c27f179cecae31d7e4984c43f96c47e049a2c9891c7598f13ed601d19f7ab07",
     "hw/boards/blind-pack-companion/ato.yaml": "397a0949894239b7866da56f06830b42e7398d09c075a976e120451db48d18e2",
     "hw/boards/blind-pack-companion/carrier.ato": "9601d1965d3b1d4341ee4f07fada095047a8ae92119cb128e3a1857610c357fd",
@@ -21,7 +21,7 @@
     "tools/check_footprint_clearances.py": "45ac9559578af2da2b2074eaaaba6200296e0ca2c0b49a6dea2c951f1e63bf8a",
     "tools/check_pack_frozen.py": "009430bb1ef2f9a0eb1e5a5849a8b0811328a927d48d894de3081c309cbefbba",
     "tools/complete_courtyards.py": "f68a33e3d64e880d1593ce1e4a779a05faaf2c0b7e8df28ae945aeaabb4b4b00",
-    "tools/generate_schematics.py": "6b0bb74769beba19d64df3178c2d15762a7dc9cd6c8ff205e90841303116eb80",
+    "tools/generate_schematics.py": "cda24e8995e1fff8431022d10cd4ae228bf70035c5206ae970e09aa4ffcedee3",
     "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
     "tools/normalize_placement_pcb.py": "431606aae44d0122ca58a9cae41e90319a05587b982e9d4e9a9e48c97e0dde48",
     "tools/restore_pack_holes.py": "c6637dcf1ff13ad7ed4e2f70997895cee130a0cadbf8290a90f55516d91880de"
@@ -34,7 +34,7 @@
       "status": "PASS: isolated circuit-only frozen build",
       "removed_mechanical_holes_in_copy": 4,
       "electrical_footprints": 50,
-      "build_id": "406592540a46ac17",
+      "build_id": "ea8a9a3dc77a65b2",
       "canonical_pcb_sha256": "fecc56c96206151d1abf174f17da5756d6655759b423a150b72ef37fc5cad8c6",
       "source_sha256": {
         "hw/boards/blind-pack-primary/ato.yaml": "62616b5aa05aa3d51e33f2e0601ff242d6b0bac3080dc20424e6a4901d0dcd72",
@@ -46,7 +46,7 @@
       "status": "PASS: isolated circuit-only frozen build",
       "removed_mechanical_holes_in_copy": 4,
       "electrical_footprints": 10,
-      "build_id": "ad99700a175af994",
+      "build_id": "c99a263ef80e03fd",
       "canonical_pcb_sha256": "629badeee425db788ad6c0246485f998eafa8df5b7ab3ce49790716f5382a712",
       "source_sha256": {
         "hw/boards/blind-pack-companion/ato.yaml": "397a0949894239b7866da56f06830b42e7398d09c075a976e120451db48d18e2",

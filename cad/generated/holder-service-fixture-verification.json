@@ -1,0 +1,129 @@
+{
+  "status": "Reusable workshop fixture candidate; no fit/load/insertion qualification",
+  "source_sha256": {
+    "source/holder_service_fixture.scad": "f848ca932a7e08309d1ce7dea7dee3504509649451392aeebf6be427e4cd3850",
+    "source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+    "source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
+    "parameters/retained-interfaces.json": "bc67cfa48bf2719dd567bf6f0341244dfb0ad02026c8ea6d6882630177c0f330",
+    "build_holder_fixture.py": "90c3c7ca84c28990e477e5bdb798c390ee988d5df22fcb5cee377f1c58f79acf",
+    "build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882"
+  },
+  "shared_interface_check": "Backing lands, board size and rim/gap declarations match the shared JSON",
+  "installed_parts_added": 0,
+  "workshop_printed_parts": 3,
+  "workshop_hardware": "Four M3x30 socket screws and four M3 nuts",
+  "backing_lands_local_xy": [
+    [
+      11,
+      25,
+      19,
+      75
+    ],
+    [
+      37,
+      25,
+      45,
+      75
+    ],
+    [
+      63,
+      25,
+      71,
+      75
+    ]
+  ],
+  "default_contact_gap_over_upper_rim_envelope_mm": 0.2,
+  "default_maximum_gap_over_lower_drawing_rim_mm": 1.2,
+  "nominal_intersections": [
+    {
+      "pair": "holders",
+      "intersection": "empty"
+    },
+    {
+      "pair": "pcb",
+      "intersection": "empty"
+    },
+    {
+      "pair": "tails",
+      "intersection": "empty"
+    }
+  ],
+  "meshes": [
+    {
+      "file": "exports/holder-service-fixture/base.stl",
+      "sha256": "74dbb3ceb4a18a00c47345883382981534eda38ae35e25724e0aa17b62224bb3",
+      "bytes": 183884,
+      "triangles": 3676,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          106.0,
+          124.0,
+          31.7
+        ]
+      ],
+      "volume_cm3": 91.009,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/holder-service-fixture/lower_comb.stl",
+      "sha256": "3156f23be423a43df3dbee18ce28a888fad703a9970d27e2cf4fba7c1e4a8e12",
+      "bytes": 24284,
+      "triangles": 484,
+      "bounds_mm": [
+        [
+          1.0,
+          -21.2,
+          0.0
+        ],
+        [
+          105.0,
+          -10.0,
+          5.8
+        ]
+      ],
+      "volume_cm3": 2.85,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    },
+    {
+      "file": "exports/holder-service-fixture/upper_comb.stl",
+      "sha256": "6f47e11dc49af1dea768552516233025dd7db95555e03773dcad5d5835ddd5e0",
+      "bytes": 24284,
+      "triangles": 484,
+      "bounds_mm": [
+        [
+          1.0,
+          -110.0,
+          0.0
+        ],
+        [
+          105.0,
+          -98.6,
+          5.8
+        ]
+      ],
+      "volume_cm3": 2.864,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+    }
+  ],
+  "limits": [
+    "The default gap gives capture, not preload or verified solder unloading.",
+    "Actual holder rim/seat, cell insertion trajectory, force and fixture stiffness require qualification.",
+    "Backing lands require electrical reservation against exposed pads, vias and tails before routing.",
+    "Future fixture use requires a fitted contact setting and depowered pack service procedure."
+  ],
+  "source_snapshot_verified_unchanged": true
+}

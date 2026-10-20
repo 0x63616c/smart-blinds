@@ -183,6 +183,63 @@
         ]
       },
       "note": "Component-side support lands. Corner posts remain on both boards. Cell insertion requires a backing fixture; these installed supports do not qualify holder contact load paths."
+    },
+    "companion_upper_support_trace_relief": {
+      "status": "Coordinated routing allocation; physical print/PCB/insulation tolerance qualification pending",
+      "outward_contact_face": "F.Cu remains completely bare beneath the existing plastic support",
+      "opposite_face": "B.Cu permits covered tracks only inside the band; no vias, pads, tails, exposed copper or copper pours",
+      "allowed_track_band_local_xy": [
+        9,
+        94,
+        77,
+        97
+      ],
+      "spacer_recess_global_xy": [
+        13.3,
+        99.5,
+        82.3,
+        103.5
+      ],
+      "spacer_recess_corner_radius": 0.5,
+      "spacer_recess_global_z": [
+        31.6,
+        31.9
+      ],
+      "spacer_recess_depth": 0.3,
+      "remaining_spacer_below_barrier_slot": 1.6,
+      "barrier_slot_global_z": [
+        33.5,
+        34.7
+      ],
+      "nominal_recess_margin_beyond_allowed_band": 0.5,
+      "retained_supports": "Corner posts, edge frame and outward F.Cu support retained; primary-facing spacer surface unchanged",
+      "insulation": "Covered traces are recessed from the spacer; the separate insulating barrier remains. Solder mask is not the sole insulation."
+    },
+    "service_fixture_backing": {
+      "status": "Proposed reusable workshop fixture lands checked against unrouted placements; not an installed part",
+      "face": "Inward/underside face on either carrier",
+      "local_rectangles_xy": [
+        [
+          11,
+          25,
+          19,
+          75
+        ],
+        [
+          37,
+          25,
+          45,
+          75
+        ],
+        [
+          63,
+          25,
+          71,
+          75
+        ]
+      ],
+      "rule": "No exposed copper, pads, vias, test points, solder or lead tails on these contact lands; covered tracks require fixture contact/wear qualification",
+      "limit": "A fitted end-rim clamp plus backing is required for service; these lands alone do not prove solder unloading."
     }
   },
   "controller": {
@@ -723,5 +780,60 @@
     ],
     "service": "Unplug protected connector, release inline tray ties and disconnect motor pair; remove one mounting screw, raise cassette 2.5 mm, then withdraw forwards. Controller and four cassette closure screws remain installed.",
     "limits": "Nominal digital access only. Two-axis service checks and pocket engagement do not qualify printed creep, pull/drop/installation loads or actual wire handling."
+  },
+  "holder_body_capture": {
+    "status": "Integral capture ribs; no assumed preload or verified solder unloading",
+    "rim_nominal_height": 15.6,
+    "rim_drawing_range": [
+      15.1,
+      16.1
+    ],
+    "modeled_rim_upper_height": 16.1,
+    "independent_contact_gap": 0.2,
+    "nominal_gap_to_supplier_model": 0.7,
+    "maximum_gap_to_drawing_low_end": 1.2,
+    "foot_width_x": 3,
+    "foot_length_y": 1.6,
+    "foot_start_x_relative_to_holder_centre": [
+      -9.5,
+      6.5
+    ],
+    "foot_start_global_y": [
+      15.6,
+      94.6
+    ],
+    "rear_capture_face_global_z": 13.7,
+    "front_capture_face_global_z": 54.5,
+    "installed_printed_parts_added": 0,
+    "installed_fasteners_added": 0,
+    "limit": "Supplier-model plastic corner surfaces are provisional; actual rim fit, contact setting, holder movement and load path need qualification. Controlled cell service uses a separate fitted fixture."
+  },
+  "wall_head_pocket": {
+    "seat_global_z": 3,
+    "ceiling_global_z": 8.2,
+    "roof_thickness": 1.2,
+    "maximum_head_and_washer_height": 5,
+    "maximum_washer_diameter": 9,
+    "wall_slot_adjustment_y": [
+      -2,
+      2
+    ],
+    "pocket_capsule_centres_global_y": [
+      98.5,
+      105
+    ],
+    "pocket_inner_diameter": 12.6,
+    "pocket_outer_diameter": 15,
+    "release_deck_relief_global_min": [
+      37.2,
+      113.8,
+      3
+    ],
+    "release_deck_relief_size": [
+      15.6,
+      1.5,
+      3.1
+    ],
+    "limit": "Wall-specific anchor/screw selection and proof load remain open; digital envelope is not wall qualification."
   }
 }

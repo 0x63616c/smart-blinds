@@ -111,6 +111,60 @@
       "role": "54 \u00d7 68.5 mm black-board study, with USB-C, protected battery connection, motor tails and encoder/home ports. All 196 footprints are placed; no copper is routed. Thermal design, manufacturing rules and physical qualification remain open."
     },
     {
+      "id": "companion-routed",
+      "kind": "pcb",
+      "title": "Companion battery carrier \u2014 experimental copper",
+      "source": "hw/routing/blind-pack-companion/companion-routed.kicad_pcb",
+      "dependencies": [
+        "hw/routing/blind-pack-companion/route.py",
+        "hw/routing/blind-pack-companion/checks.py",
+        "hw/routing/blind-pack-companion/route-record.json",
+        "hw/routing/blind-pack-companion/companion-routed.kicad_pro",
+        "hw/routing/blind-pack-companion/companion-routed.kicad_dru",
+        "cad/parameters/retained-interfaces.json"
+      ],
+      "image_size": [
+        1500,
+        1700
+      ],
+      "rotate": [
+        12,
+        0,
+        0
+      ],
+      "zoom": 0.83,
+      "collapsed": true,
+      "role": "Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected nets. Four mounting-hole courtyard and six inherited silkscreen findings remain. Experimental only: current capacity, holder loading, insulation and pack assembly still require qualification."
+    },
+    {
+      "id": "holder-service-fixture",
+      "kind": "openscad",
+      "title": "Reusable holder assembly fixture",
+      "source": "cad/source/holder_service_fixture.scad",
+      "dependencies": [
+        "cad/source/compact_direct.scad",
+        "cad/source/compact_buttons.scad",
+        "cad/build_holder_fixture.py",
+        "cad/build.py",
+        "cad/parameters/retained-interfaces.json"
+      ],
+      "camera": [
+        0,
+        0,
+        0,
+        30,
+        0,
+        20,
+        350
+      ],
+      "defines": {
+        "part": "assembly"
+      },
+      "collapsed": true,
+      "role": "One reusable three-piece workshop fixture, shared across all eight builds. The modeled clearance and print meshes pass; actual rim contact, insertion forces and the complete pack-loading sequence remain unqualified. It adds no installed enclosure parts.",
+      "auto_frame": true
+    },
+    {
       "id": "main-controller-schematic",
       "kind": "schematic",
       "title": "Complete controller schematic",

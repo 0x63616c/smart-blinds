@@ -11,6 +11,35 @@ from generate_schematics import ROOT, board_graph, verify_netlist
 from kicad_sexpr import children, dumps, parse
 
 
+class NativeBoardNetEncodingTests(unittest.TestCase):
+    def inspect(self, version, net, second=""):
+        source = '(kicad_pcb (version ' + version + ') (footprint "test:R" (property "Reference" "R1") (pad "1" smd rect ' + net + ')' + second + '))'
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'native.kicad_pcb'
+            path.write_text(source)
+            return board_graph(path)
+
+    def test_native_ten_and_numbered_nine_have_identical_graphs(self):
+        self.assertEqual(self.inspect('20260206', '(net "GND")'),
+                         self.inspect('20241229', '(net 3 "GND")'))
+
+    def test_name_only_requires_reviewed_version(self):
+        with self.assertRaises(ValueError):
+            self.inspect('20241229', '(net "GND")')
+
+    def test_numeric_id_is_not_a_name(self):
+        with self.assertRaises(ValueError):
+            self.inspect('20260206', '(net 3)')
+
+    def test_empty_name_is_not_an_electrical_identity(self):
+        with self.assertRaises(ValueError):
+            self.inspect('20260206', '(net "")')
+
+    def test_native_repeated_pad_must_keep_its_net(self):
+        with self.assertRaises(ValueError):
+            self.inspect('20260206', '(net "GND")', '(pad "1" thru_hole circle (net "VBAT"))')
+
+
 class MechanicalFeatureGraphTests(unittest.TestCase):
     def inspect(self, footprint):
         with tempfile.TemporaryDirectory() as folder:
