@@ -6,7 +6,7 @@ The derivative retains the 54 × 68.5 mm outline with its USB tab, all 196
 footprints, 609 physical pin identities, 142 net partitions, 17 mechanical/thermal
 anchors and 13 RF, connector-foot and clamp reservations.
 
-The checkpoint contains 631 segments and 178 vias. It routes the local charger
+The checkpoint contains 636 segments and 178 vias. It routes the local charger
 switching/bypass network, motor-driver fly/pump/VM and output paths, regulator
 bypass/output/sense paths, and a 3.3 V feed to the radio module. In1 remains a
 continuous filled ground-return island; no signal traces use that layer. The
@@ -25,7 +25,7 @@ Three unrelated default-disabled DRC categories are listed in `checks.json`.
 partitions, layer/rotation/placement, outline, keepouts, courtyard bounds and
 encoder-wire height clearance. It also follows physical copper shapes through
 72 required connection groups, including the ground fill. A matching net name
-alone cannot pass. Twenty-five injected faults are rejected: moved USB connector, changed motor pad,
+alone cannot pass. Twenty-six injected faults are rejected: moved USB connector, changed motor pad,
 weakened RF reservation, cut module supply, removed return plane, cut charger
 bypass return, cut PD bypass, cut USB input, removed quiet return via, and an
 extra connection from the quiet return to the input-capacitor return, plus open
@@ -84,6 +84,17 @@ margin, including same-net lands. Five new deliberate opens and a same-net
 control-via intrusion are rejected. These connections need switch-noise,
 feedback accuracy, thermal and transient review; full charger control, bus and
 charge-permission wiring remain unfinished.
+
+A subsequent assembly-clearance pass moves twelve ordinary vias by at most
+0.35 mm and adjusts their sixteen incident traces. Five short top-layer stubs
+preserve connections that previously relied on via copper touching a solder
+land. No component moves. All 178 routed via drills now remain at least 0.20 mm
+from every top solder land, including lands on the same net; the ordinary
+KiCad same-net clearance check alone does not ensure this. A deliberate
+same-net intrusion at the USB input capacitor is rejected. The explicit
+`via-land-clearance.json` changes replay through `via_lands.py`; this is not a
+filled/capped via-in-pad process. Thermal holes inside library footprints still
+require their separate solder/paste and assembly-process review.
 
 The complete placement change list is in `checks.json`. Many support components
 have moved from the first placement to make local electrical loops possible.

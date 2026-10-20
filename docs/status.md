@@ -15,7 +15,7 @@ followed by an eight-unit build only after their tests pass.
 |---|---|---|
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | Native eleven-sheet schematic and partial four-layer power route; 631 segments, 178 vias, 72 physical connection groups, preserved circuit and mechanical anchors | 257 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
+| Main controller | Native eleven-sheet schematic and partial four-layer power route; 636 segments, 178 vias, 72 physical connection groups, preserved circuit and mechanical anchors | 257 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete primary/main routing, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
@@ -28,11 +28,11 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All thirteen Design checks jobs passed for `220aa74`](https://github.com/0x63616c/smart-blinds/actions/runs/39398463242),
-including both mechanical assemblies and the updated material estimate,
+[All thirteen Design checks jobs passed for `f659635`](https://github.com/0x63616c/smart-blinds/actions/runs/39400827375),
+including the charger sensing/control extension, both mechanical assemblies and the updated material estimate,
 eighteen portable firmware targets with healthy-refresh retention, the C6 gauge adapter, and the separate
 Wi-Fi motion target's default/bench builds against the pinned real SDK.
-The enclosure, loading fixtures and prior routing [source-generated previews were published successfully](https://github.com/0x63616c/smart-blinds/actions/runs/39399695721).
+The enclosure, loading fixtures and charger routing [source-generated previews were published successfully](https://github.com/0x63616c/smart-blinds/actions/runs/39400827106).
 
 The new [portable local ownership core](firmware/local-ownership.md) passes
 all eighteen host targets, the same suite under ASan/UBSan, 59 native transport,
@@ -93,15 +93,16 @@ primary and main routes remain unfinished.
 
 The [partial main power route](../hw/routing/blind-main/README.md) preserves all
 196 footprints, the 609-pin/142-net graph, 17 mechanical/thermal anchors and 13
-reservations. Its 631 segments and 178 vias connect 72 checked copper groups,
+reservations. Its 636 segments and 178 vias connect 72 checked copper groups,
 including local charger/motor/regulator paths, radio power, USB input/CC/bypass
 connections, negotiated-enable/divider/discharge chains, the charger input and
-PMID/SYS capacitor banks, ground return, VAC/BATP sensing, TS/ILIM and PROG networks. Twenty-five injected geometric/copper
-failures are rejected locally, including same-net via-to-solder-land intrusion. All 38 new
-distribution vias and seventeen control-area vias retain a 0.20 mm
-drill-to-solder-land margin. The control extension moves six electrical parts
+PMID/SYS capacitor banks, ground return, VAC/BATP sensing, TS/ILIM and PROG networks. Twenty-six injected geometric/copper
+failures are rejected locally, including same-net via-to-solder-land intrusion. All 178 ordinary
+route vias retain a 0.20 mm drill-to-solder-land margin, including same-net lands.
+The assembly pass moves twelve vias and preserves their connections with
+adjusted traces and five short stubs; components remain fixed. The control extension moves six electrical parts
 and one bootstrap via; all mechanical anchors remain fixed. Its latest route
-checks are local; the CI link above precedes this extension.
+solder-land clearance checks are local; the CI link above precedes that final via adjustment.
 Actual DRC retains 257 unconnected items, 260 silk/text findings, four library differences and five
 footprint-type findings. This is a reproducible partial checkpoint; critical-loop,
 current/thermal, USB, supervisory and full-routing work remain.

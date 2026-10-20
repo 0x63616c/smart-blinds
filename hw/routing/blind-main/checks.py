@@ -251,6 +251,20 @@ def verify_control_lands(b):
      assert not probe.GetEffectiveShape(pcbnew.F_Cu).Collide(land.GetEffectiveShape(pcbnew.F_Cu),200000),'Control via drill too close to solder land'
  return {'checked_vias':len(expected),'minimum_drill_to_solder_land_mm':.2}
 
+def verify_all_via_lands(b):
+ """Keep every ordinary route drill away from every top solder land."""
+ probes=[];count=0
+ for via in b.GetTracks():
+  if not isinstance(via,pcbnew.PCB_VIA):continue
+  probe=pcbnew.PCB_VIA(b);probe.SetPosition(via.GetPosition());probe.SetWidth(via.GetDrillValue());probes.append(probe)
+  for footprint in b.GetFootprints():
+   for land in footprint.Pads():
+    if land.IsOnLayer(pcbnew.F_Cu):
+     assert not probe.GetEffectiveShape(pcbnew.F_Cu).Collide(land.GetEffectiveShape(pcbnew.F_Cu),200000),'Ordinary via drill too close to solder land'
+  count+=1
+ assert count==178,'Unexpected ordinary via inventory'
+ return {'checked_vias':count,'minimum_drill_to_solder_land_mm':.2,'scope':'All route vias, including same-net lands; footprint thermal holes require separate process review'}
+
 def run_drc(path):
  cli=shutil.which('kicad-cli') or '/Applications/KiCad.app/Contents/MacOS/kicad-cli'
  version=subprocess.check_output([cli,'version'],text=True).strip();assert version.startswith('10.')
@@ -285,7 +299,7 @@ def main():
  assert sha(BOARD)==record['pcb_sha256'] and sha(BOARD.with_suffix('.kicad_pro'))==record['project_sha256']
  readset=[BOARD,BOARD.with_suffix('.kicad_pro'),HERE/'checks.py',HERE/'fp-lib-table',ROOT/'cad/parameters/retained-interfaces.json',*[ROOT/p for p in record['source_hashes']]]
  snapshot={str(p.relative_to(ROOT)):sha(p) for p in readset}
- b,geometry=verify_geometry(BOARD);copper=verify_copper(b);copper['distribution_via_solder_land_margin']=verify_distribution_lands(b);copper['control_via_solder_land_margin']=verify_control_lands(b);version,report=run_drc(BOARD);drc=verify_drc(b,report);faults=[]
+ b,geometry=verify_geometry(BOARD);copper=verify_copper(b);copper['distribution_via_solder_land_margin']=verify_distribution_lands(b);copper['control_via_solder_land_margin']=verify_control_lands(b);copper['all_route_via_solder_land_margin']=verify_all_via_lands(b);version,report=run_drc(BOARD);drc=verify_drc(b,report);faults=[]
  if args.negative_tests:
   negative_boards=[];removed_items=[]
   with tempfile.TemporaryDirectory() as d:
@@ -316,6 +330,15 @@ def main():
     assert 'Control via drill too close to solder land' in str(error),error
     faults.append('same_net_control_via_in_solder_land_rejected')
    else:raise AssertionError('Accepted control via in solder land')
+   bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
+   pad=next(p for p in parts(bad)['usb.c_raw'].Pads() if p.GetNumber()=='2')
+   via=next(t for t in bad.GetTracks() if isinstance(t,pcbnew.PCB_VIA) and t.GetPosition()==pcbnew.VECTOR2I(120850000,164400000))
+   assert via.GetNetCode()==pad.GetNetCode();via.SetPosition(pad.GetPosition())
+   try:verify_all_via_lands(bad)
+   except AssertionError as error:
+    assert 'Ordinary via drill too close to solder land' in str(error),error
+    faults.append('same_net_existing_via_in_solder_land_rejected')
+   else:raise AssertionError('Accepted existing ordinary via in solder land')
    for mode,a,pin in [('cut_pd_enable','usb.pd',16),('cut_uv_divider','usb.r_uv_top2',2),('cut_raw_discharge','usb.pd',18),('cut_address_ground','usb.r_addr0',2)]:
     bad=pcbnew.LoadBoard(str(BOARD));negative_boards.append(bad)
     pad=next(p for p in parts(bad)[a].Pads() if p.GetNumber()==str(pin))
