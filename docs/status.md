@@ -15,7 +15,7 @@ followed by an eight-unit build only after their tests pass.
 |---|---|---|
 | Enclosure | 115 × 174 × 71 mm retained case; 72.2 mm maximum at buttons; removable six-cell cassette, controller supports, cable paths, adjustable buttons and replaceable motor-fit parts | Exact holder retention, internal wire fan, home-sensor mount, tolerances, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | Native eleven-sheet schematic and partial four-layer power route; 1013 segments, 255 vias, 70 checked groups plus USB, local clamp and 59 supervision branches, preserved circuit and mechanical anchors | 122 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
+| Main controller | Native eleven-sheet schematic and partial four-layer power route; 1013 segments, 255 vias, 70 checked groups plus USB, local clamp and 59 supervision branches, preserved circuit and mechanical anchors | Revise input surge protection and resolve the motor energy path; 122 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
@@ -28,31 +28,36 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All thirteen Design checks jobs passed for `de4f9a3`](https://github.com/0x63616c/smart-blinds/actions/runs/39419685205),
-including both carrier routes, the protected USB/main power route, mechanical
-assemblies and material estimate, all 22 host firmware targets and pinned real-SDK
-builds. This also covers the five battery-energy checks and the unchanged local
-supervision routing checkpoint.
-The [source-generated previews from `de4f9a3` also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39419685203).
-All 34 preview entries' input and output hashes matched their sources after
-publication in `fb6a774`, including the new battery wake-cost chart. Actual KiCad
+[All thirteen Design checks jobs passed for `b6e2558`](https://github.com/0x63616c/smart-blinds/actions/runs/39425327049),
+including the monitored-PD circuit/runtime, both carrier routes, the partial
+main route, mechanical assemblies and material estimate, all 23 host firmware
+targets and pinned real-SDK builds. The five battery-energy checks also pass.
+The [source-generated previews from `b6e2558` passed](https://github.com/0x63616c/smart-blinds/actions/runs/39425327277).
+All 34 entries were checked after publication in `d5c61d7`: 247 input-file,
+52 output-file and 129 model-file hashes match. Actual KiCad
 images show the specified black board finish.
 Preview publication revalidates source inputs
 when another commit arrives during rendering.
 
-The subsequent monitored-PD checkpoint passes locally: fresh23/23 host firmware
-targets, six behavioral fault controls and both pinned C6 applications. The
+The monitored-PD checkpoint also passes six local behavioral fault controls. The
 sensor owner now monitors USB source events and reconciles parked/stationary
 cable changes while keeping charging inhibited. Its board revision shares the
 existing bus and adds one bypass capacitor and one interrupt pull-up, removing
 two resistors; all three SKUs already occur in the design. The maintained route
-rebuild preserves1268 surviving copper items and194 existing footprint geometries,
-removing only nine obsolete segments and two vias. All47 physical routing fault
-controls,23 integrated circuit controls and nine native schematic controls pass.
-New PD supply/bus/interrupt routing remains open. The first publication CI run
-caught one stale standalone-USB test expectation (113 old pins versus111 now);
-the corrected full37-test native schematic suite passes locally. Corrected CI
-is pending.
+rebuild preserves 1268 surviving copper items and 194 existing footprint geometries,
+removing only nine obsolete segments and two vias. All 47 physical routing fault
+controls, 23 integrated circuit controls and nine native schematic controls pass.
+New PD supply/bus/interrupt routing remains open. CI caught a stale standalone-USB
+pin-count expectation; its correction and the full 37-test native schematic suite
+pass in the run above.
+
+The subsequent [transient and motor-energy review](electrical/transient-review.md)
+identifies unresolved input clamp coordination, dump-load thermal capacity and
+continued back-drive after thermal isolation. A higher-voltage input cutoff
+revision is being captured; it is not yet on the published board. The original
+blind must also [hold independently of motor power](mechanical/existing-blind-holding.md).
+These findings prevent a fabrication or unattended-wall-operation claim despite
+the passing automated checks.
 
 The carrier silkscreen cleanup passes both native routing checks locally and in
 the CI run above, including all sixteen injected-fault controls. It preserves
