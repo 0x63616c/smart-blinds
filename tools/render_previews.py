@@ -12,6 +12,7 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -91,6 +92,8 @@ def render() -> None:
                 env['KICAD10_3DMODEL_DIR'] = candidate
                 break
     versions = {}
+    if any(e['kind'] == 'energy' for e in entries):
+        versions['matplotlib'] = run([sys.executable, '-c', 'import matplotlib; print(matplotlib.__version__)'])
     kicad = None
     if any(e['kind'] in ('pcb', 'schematic') for e in entries):
         kicad = executable('kicad-cli', '/Applications/KiCad.app/Contents/MacOS/kicad-cli')
@@ -123,7 +126,10 @@ def render() -> None:
             folder = destination / entry['id']
             folder.mkdir()
             print(f"Rendering {entry['title']}", flush=True)
-            if entry['kind'] == 'pcb':
+            if entry['kind'] == 'energy':
+                run([sys.executable, str(source), '--output-dir', str(folder)])
+                image = folder / 'energy.png'
+            elif entry['kind'] == 'pcb':
                 item['models_sha256'] = model_files(source, env)
                 image = folder / 'assembly.png'
                 size=entry.get('image_size',[1600,1000]);rotate=entry.get('rotate',[335,0,15]);zoom=entry.get('zoom',1)

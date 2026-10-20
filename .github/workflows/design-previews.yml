@@ -3,9 +3,9 @@ name: Design previews
 on:
   push:
     branches: [main]
-    paths: ['hw/**', 'cad/**', 'tools/*.py', 'docs/previews.json', '.github/workflows/design-previews.yml']
+    paths: ['hw/**', 'cad/**', 'tools/*.py', 'docs/previews.json', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-previews.yml']
   pull_request:
-    paths: ['hw/**', 'cad/**', 'tools/*.py', 'docs/previews.json', '.github/workflows/design-previews.yml']
+    paths: ['hw/**', 'cad/**', 'tools/*.py', 'docs/previews.json', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-previews.yml']
   workflow_dispatch:
 
 permissions:
@@ -27,7 +27,7 @@ jobs:
         run: |
           sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends kicad kicad-packages3d openscad xvfb xauth
+          sudo apt-get install -y --no-install-recommends kicad kicad-packages3d openscad xvfb xauth python3-matplotlib
       - name: Check CAD parameters
         run: |
           python3 cad/build.py --check-parameters

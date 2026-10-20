@@ -60,6 +60,22 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual((self.root / 'README.md').read_bytes(), before)
         self.assertFalse((self.root / 'docs/generated').exists())
 
+    def assert_energy_input_rejects(self, name):
+        source = self.root / name
+        source.parent.mkdir(parents=True, exist_ok=True)
+        source.write_text('{"changed": true}')
+        self.commit()
+        before = (self.root / 'README.md').read_bytes()
+        self.assertFalse(adopt(self.root, self.artifact, self.source))
+        self.assertEqual((self.root / 'README.md').read_bytes(), before)
+        self.assertFalse((self.root / 'docs/generated').exists())
+
+    def test_new_energy_assumptions_discard_stale_preview(self):
+        self.assert_energy_input_rejects('docs/electrical/planning-profile.json')
+
+    def test_new_measurements_discard_stale_preview(self):
+        self.assert_energy_input_rejects('docs/measurements.json')
+
     def test_wrong_source_rejects(self):
         with self.assertRaises(ValueError):
             adopt(self.root, self.artifact, '0' * 40)

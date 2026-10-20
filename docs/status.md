@@ -28,16 +28,16 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All thirteen Design checks jobs passed for `373f80d`](https://github.com/0x63616c/smart-blinds/actions/runs/39415721326),
+[All thirteen Design checks jobs passed for `d50df47`](https://github.com/0x63616c/smart-blinds/actions/runs/39417753826),
 including both carrier routes, the protected USB/main power route, mechanical
 assemblies and material estimate, all 22 host firmware targets and pinned real-SDK
 builds. This covers the long-idle sensor runtime, the corrected 100 mA OFF-only
-input-current profile and the new portable parked cable-event helper.
-The [source-generated previews from `41c80d3` also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39415039846).
-All 33 preview entries' input and output hashes matched the USB checkpoint sources;
-actual KiCad images now show the specified black board finish. The firmware
-helper changes no preview input. The subsequent local supervision routing stage
-passes locally; its CI and refreshed previews are pending. Preview publication revalidates source inputs
+input-current profile, portable parked cable-event helper and 59 local supervision routing branches.
+The [source-generated previews from `d50df47` also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39417753949).
+All 33 preview entries' input and output hashes matched the routing checkpoint sources;
+actual KiCad images show the specified black board finish. The subsequent
+energy-accounting update passes its five local checks; its CI and new chart are pending.
+Preview publication revalidates source inputs
 when another commit arrives during rendering.
 
 The carrier silkscreen cleanup passes both native routing checks locally and in

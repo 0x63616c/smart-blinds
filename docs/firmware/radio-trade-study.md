@@ -176,6 +176,8 @@ Do not double-count active MCU energy if a future measured moving-pack current a
 
 The 73→150 mA difference costs **1.53 Wh over 60 days**, less than 2% of assumed usable capacity. Motor load and standby dominate. At 150 mA awake, the 90-day stretch permits only ~0.851 A motor-branch average under these assumptions. The 60-day goal is not established at 1.5 A.
 
+These examples are now executable in [the energy calculation](../../hw/sim/blind-control/README.md), with assumptions in the shared planning profile and a source-generated wake-cost chart. That model distinguishes this motor-branch calculation from the earlier **total moving-pack current** sweep. It also subtracts service wake time from idle: an additional assumed 100 ms awake at 150 mA every three seconds reduces the example to 43.44 days. Actual task duration/current and whether the measured idle average already includes it must be established before applying that penalty.
+
 Converting Espressif's idle references at nominal pack voltage and 90% efficiency:
 
 | Vendor rail reference | Equivalent pack current, MCU contribution only | Contribution/day |

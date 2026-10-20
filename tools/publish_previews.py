@@ -14,6 +14,7 @@ MARKERS = re.compile(r'<!-- previews:start -->.*?<!-- previews:end -->', re.S)
 # Match the render workflow's input paths. README prose outside the gallery may
 # advance while rendering; a firmware-only change must not strand new images.
 INPUTS = ['hw', 'cad', ':(glob)tools/*.py', 'docs/previews.json',
+          'docs/electrical/planning-profile.json', 'docs/measurements.json',
           '.github/workflows/design-previews.yml']
 
 

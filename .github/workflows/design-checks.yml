@@ -282,6 +282,7 @@ jobs:
         run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends ngspice
       - name: Check the documented electrical assumptions
         run: |
+          python3 -m unittest discover -s hw/sim/blind-control -p test_energy.py -v
           python3 hw/sim/blind-control/run_checks.py
           python3 hw/sim/blind-regen/run_spice.py
       - uses: actions/upload-artifact@v4

@@ -5,5 +5,19 @@
   "fabric_acceleration_mm_s2": 40.0,
   "full_open_close_cycles_per_day": 1,
   "motion_duration_sensitivity_seconds_per_day": [60, 120, 300, 600],
+  "split_load_energy": {
+    "status": "Illustrative state averages, not measured radio, MCU or motor power",
+    "preflight_seconds_per_day": 20,
+    "awake_logic_rail_v": 3.3,
+    "awake_logic_rail_ma": 150,
+    "awake_logic_rail_ma_sensitivity": [73, 100, 150, 200],
+    "awake_conversion_efficiency": 0.9,
+    "awake_conversion_efficiency_sensitivity": [0.8, 0.85, 0.9, 0.95],
+    "motor_branch_average_a": 1.5,
+    "idle_total_pack_ma": 0.5,
+    "additional_service_period_s": 3,
+    "additional_service_duration_ms_sensitivity": [0, 1, 10, 25, 100, 500],
+    "note": "Motor branch current is measured at the battery side, not winding PWM current. Awake logic is a separate load. Idle pack current includes all idle components and normal radio behavior. Additional service wakes replace idle time; use zero additional time if the measured idle average already includes those wakes. The 73 mA row is only a radio RX reference, not a complete application estimate."
+  },
   "note": "Matches the coordinator's illustrative 20 mm/s request. Travel is owner-reported. Actual pack current changes with PWM, speed, torque and supply voltage; independent current/duration sweeps are scenarios, not a motor model."
 }

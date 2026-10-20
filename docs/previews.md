@@ -6,13 +6,14 @@ legacy layout generators or silently modify the PCB. Missing models cause a fail
 an apparently complete board image with absent components.
 
 Supported entries are `pcb` (KiCad 3D PNG and top-layer SVG), `schematic` (all KiCad SVG sheets),
-`footprints` / `holder-footprints` (the CAD comparisons at a common scale), and `openscad` (colored source-preview PNG, with optional `defines`, seven-value OpenSCAD `camera`, and dependency globs). Register new
+`footprints` / `holder-footprints` (the CAD comparisons at a common scale), `energy`
+(fresh planning arithmetic as PNG/SVG/JSON), and `openscad` (colored source-preview PNG, with optional `defines`, seven-value OpenSCAD `camera`, and dependency globs). Register new
 schematics and CAD only when their real source files exist. Enclosure previews must identify
 provisional purchased-part envelopes and distinguish a study from a released printable assembly.
 
 ## Local generation
 
-Install KiCad 10 and its 3D libraries, Python 3.11+, and OpenSCAD for mechanical sources.
+Install KiCad 10 and its 3D libraries, Python 3.11+ with Matplotlib, and OpenSCAD for mechanical sources.
 The renderer locates the usual macOS/Linux KiCad library; set `KICAD10_3DMODEL_DIR` for other paths.
 
 ```sh

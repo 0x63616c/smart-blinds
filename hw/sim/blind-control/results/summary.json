@@ -61,6 +61,37 @@
         300,
         600
       ],
+      "split_load_energy": {
+        "status": "Illustrative state averages, not measured radio, MCU or motor power",
+        "preflight_seconds_per_day": 20,
+        "awake_logic_rail_v": 3.3,
+        "awake_logic_rail_ma": 150,
+        "awake_logic_rail_ma_sensitivity": [
+          73,
+          100,
+          150,
+          200
+        ],
+        "awake_conversion_efficiency": 0.9,
+        "awake_conversion_efficiency_sensitivity": [
+          0.8,
+          0.85,
+          0.9,
+          0.95
+        ],
+        "motor_branch_average_a": 1.5,
+        "idle_total_pack_ma": 0.5,
+        "additional_service_period_s": 3,
+        "additional_service_duration_ms_sensitivity": [
+          0,
+          1,
+          10,
+          25,
+          100,
+          500
+        ],
+        "note": "Motor branch current is measured at the battery side, not winding PWM current. Awake logic is a separate load. Idle pack current includes all idle components and normal radio behavior. Additional service wakes replace idle time; use zero additional time if the measured idle average already includes those wakes. The 73 mA row is only a radio RX reference, not a complete application estimate."
+      },
       "note": "Matches the coordinator's illustrative 20 mm/s request. Travel is owner-reported. Actual pack current changes with PWM, speed, torque and supply voltage; independent current/duration sweeps are scenarios, not a motor model.",
       "reported_travel_mm": 3048,
       "total_moving_seconds_per_day": 305.8
@@ -135,6 +166,503 @@
         "mean_motion_pack_current_limit_a": 0.0
       }
     ],
+    "current_definition": "Whole-device pack current while moving; do not add active MCU/radio energy to these scenarios",
+    "split_load_planning": {
+      "current_definition": "Motor-branch battery-side current plus separate awake logic and whole-device idle; winding current is not pack current",
+      "baseline": {
+        "motor_branch_average_a": 1.5,
+        "awake_logic_rail_ma": 150,
+        "awake_conversion_efficiency": 0.9,
+        "idle_total_pack_ma": 0.5,
+        "additional_service_period_s": 3,
+        "additional_service_duration_ms": 0,
+        "motion_seconds_per_day": 305.8,
+        "preflight_seconds_per_day": 20,
+        "additional_service_seconds_per_day": 0.0,
+        "awake_seconds_per_day": 325.8,
+        "idle_seconds_per_day": 86074.2,
+        "motor_wh_per_day": 1.3761000000000003,
+        "awake_logic_wh_per_day": 0.049775,
+        "idle_wh_per_day": 0.1291113,
+        "daily_wh": 1.5549863000000002,
+        "estimated_days": 55.56319049241784,
+        "motor_budget": [
+          {
+            "target_days": 60,
+            "nonmotor_loads_fit_budget": true,
+            "maximum_motor_branch_average_a": 1.374661
+          },
+          {
+            "target_days": 90,
+            "nonmotor_loads_fit_budget": true,
+            "maximum_motor_branch_average_a": 0.851443
+          }
+        ]
+      },
+      "active_logic_sensitivity": [
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 73,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 0,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 0.0,
+          "awake_seconds_per_day": 325.8,
+          "idle_seconds_per_day": 86074.2,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.02422383333333333,
+          "idle_wh_per_day": 0.1291113,
+          "daily_wh": 1.5294351333333336,
+          "estimated_days": 56.49144453200521,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.402512
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.879295
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 100,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 0,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 0.0,
+          "awake_seconds_per_day": 325.8,
+          "idle_seconds_per_day": 86074.2,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.033183333333333336,
+          "idle_wh_per_day": 0.1291113,
+          "daily_wh": 1.5383946333333336,
+          "estimated_days": 56.16244241101638,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.392746
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.869528
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 0,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 0.0,
+          "awake_seconds_per_day": 325.8,
+          "idle_seconds_per_day": 86074.2,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.049775,
+          "idle_wh_per_day": 0.1291113,
+          "daily_wh": 1.5549863000000002,
+          "estimated_days": 55.56319049241784,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.374661
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.851443
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 200,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 0,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 0.0,
+          "awake_seconds_per_day": 325.8,
+          "idle_seconds_per_day": 86074.2,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.06636666666666667,
+          "idle_wh_per_day": 0.1291113,
+          "daily_wh": 1.571577966666667,
+          "estimated_days": 54.976591573916814,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.356575
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.833357
+            }
+          ]
+        }
+      ],
+      "conversion_sensitivity": [
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.8,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 0,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 0.0,
+          "awake_seconds_per_day": 325.8,
+          "idle_seconds_per_day": 86074.2,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.055996874999999995,
+          "idle_wh_per_day": 0.1291113,
+          "daily_wh": 1.5612081750000002,
+          "estimated_days": 55.34175479192581,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.367879
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.844661
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.85,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 0,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 0.0,
+          "awake_seconds_per_day": 325.8,
+          "idle_seconds_per_day": 86074.2,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.05270294117647059,
+          "idle_wh_per_day": 0.1291113,
+          "daily_wh": 1.5579142411764708,
+          "estimated_days": 55.45876513379478,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.371469
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.848251
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 0,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 0.0,
+          "awake_seconds_per_day": 325.8,
+          "idle_seconds_per_day": 86074.2,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.049775,
+          "idle_wh_per_day": 0.1291113,
+          "daily_wh": 1.5549863000000002,
+          "estimated_days": 55.56319049241784,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.374661
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.851443
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.95,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 0,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 0.0,
+          "awake_seconds_per_day": 325.8,
+          "idle_seconds_per_day": 86074.2,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.04715526315789474,
+          "idle_wh_per_day": 0.1291113,
+          "daily_wh": 1.552366563157895,
+          "estimated_days": 55.65695760944579,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.377516
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.854298
+            }
+          ]
+        }
+      ],
+      "additional_service_sensitivity": [
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 0,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 0.0,
+          "awake_seconds_per_day": 325.8,
+          "idle_seconds_per_day": 86074.2,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.049775,
+          "idle_wh_per_day": 0.1291113,
+          "daily_wh": 1.5549863000000002,
+          "estimated_days": 55.56319049241784,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.374661
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.851443
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 1,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 28.691399999999998,
+          "awake_seconds_per_day": 354.4914,
+          "idle_seconds_per_day": 86045.5086,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.054158408333333324,
+          "idle_wh_per_day": 0.1290682629,
+          "daily_wh": 1.5593266712333336,
+          "estimated_days": 55.40853087035496,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.36993
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.846712
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 10,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 286.914,
+          "awake_seconds_per_day": 612.7139999999999,
+          "idle_seconds_per_day": 85787.286,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.0936090833333333,
+          "idle_wh_per_day": 0.128680929,
+          "daily_wh": 1.5983900123333337,
+          "estimated_days": 54.05439181509466,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.327349
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.804131
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 25,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 717.285,
+          "awake_seconds_per_day": 1043.085,
+          "idle_seconds_per_day": 85356.915,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.1593602083333333,
+          "idle_wh_per_day": 0.1280353725,
+          "daily_wh": 1.6634955808333338,
+          "estimated_days": 51.938821476590654,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 1.256382
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.733164
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 100,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 2869.14,
+          "awake_seconds_per_day": 3194.94,
+          "idle_seconds_per_day": 83205.06,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 0.4881158333333333,
+          "idle_wh_per_day": 0.12480759,
+          "daily_wh": 1.9890234233333337,
+          "estimated_days": 43.438402477536094,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.901544
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": true,
+              "maximum_motor_branch_average_a": 0.378326
+            }
+          ]
+        },
+        {
+          "motor_branch_average_a": 1.5,
+          "awake_logic_rail_ma": 150,
+          "awake_conversion_efficiency": 0.9,
+          "idle_total_pack_ma": 0.5,
+          "additional_service_period_s": 3,
+          "additional_service_duration_ms": 500,
+          "motion_seconds_per_day": 305.8,
+          "preflight_seconds_per_day": 20,
+          "additional_service_seconds_per_day": 14345.7,
+          "awake_seconds_per_day": 14671.5,
+          "idle_seconds_per_day": 71728.5,
+          "motor_wh_per_day": 1.3761000000000003,
+          "awake_logic_wh_per_day": 2.2414791666666662,
+          "idle_wh_per_day": 0.10759275000000001,
+          "daily_wh": 3.7251719166666666,
+          "estimated_days": 23.1935604403761,
+          "motor_budget": [
+            {
+              "target_days": 60,
+              "nonmotor_loads_fit_budget": false,
+              "maximum_motor_branch_average_a": 0.0
+            },
+            {
+              "target_days": 90,
+              "nonmotor_loads_fit_budget": false,
+              "maximum_motor_branch_average_a": 0.0
+            }
+          ]
+        }
+      ],
+      "continuous_awake_stress": {
+        "motor_branch_average_a": 1.5,
+        "awake_logic_rail_ma": 150,
+        "awake_conversion_efficiency": 0.9,
+        "idle_total_pack_ma": 0.5,
+        "additional_service_period_s": 0.1,
+        "additional_service_duration_ms": 100,
+        "motion_seconds_per_day": 305.8,
+        "preflight_seconds_per_day": 20,
+        "additional_service_seconds_per_day": 86074.2,
+        "awake_seconds_per_day": 86400.0,
+        "idle_seconds_per_day": 0.0,
+        "motor_wh_per_day": 1.3761000000000003,
+        "awake_logic_wh_per_day": 13.199999999999998,
+        "idle_wh_per_day": 0.0,
+        "daily_wh": 14.576099999999999,
+        "estimated_days": 5.927511474262664,
+        "motor_budget": [
+          {
+            "target_days": 60,
+            "nonmotor_loads_fit_budget": false,
+            "maximum_motor_branch_average_a": 0.0
+          },
+          {
+            "target_days": 90,
+            "nonmotor_loads_fit_budget": false,
+            "maximum_motor_branch_average_a": 0.0
+          }
+        ]
+      },
+      "limits": [
+        "All state currents, wake durations and efficiencies are illustrative",
+        "Additional wakes displace idle; set them to zero when already included in measured idle",
+        "Awake logic figure includes its rail loads; do not add individual component current twice",
+        "No battery-only lifetime penalty is inferred from fast polling while externally powered",
+        "Actual board quiescent and leakage loads must be included in measured state averages"
+      ]
+    },
     "excluded_or_unmeasured": [
       "actual cell capacity/aging",
       "standby radio profile",
