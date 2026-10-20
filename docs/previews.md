@@ -6,7 +6,7 @@ legacy layout generators or silently modify the PCB. Missing models cause a fail
 an apparently complete board image with absent components.
 
 Supported entries are `pcb` (KiCad 3D PNG and top-layer SVG), `schematic` (all KiCad SVG sheets),
-`footprints` (the CAD comparison at a common scale), and `openscad` (colored source-preview PNG, with optional `defines` and dependency globs). Register new
+`footprints` / `holder-footprints` (the CAD comparisons at a common scale), and `openscad` (colored source-preview PNG, with optional `defines` and dependency globs). Register new
 schematics and CAD only when their real source files exist. Enclosure previews must identify
 provisional purchased-part envelopes and distinguish a study from a released printable assembly.
 
@@ -38,3 +38,9 @@ A passing preview workflow confirms export/render success. It does not run the f
 firmware, mechanical or physical validation gates. The gallery includes provisional enclosure studies and the inherited PD12V6Mini reference.
 OpenSCAD images use its colored preview renderer; full part geometry/mesh checks are separate.
 The fresh integrated controller is under development.
+
+The first native motor schematic is generated separately with
+`python3 tools/generate_schematics.py hw/schematics/blind-controller/motor-test.layout.json`.
+Its independently exported KiCad netlist must match every PCB pad, and ERC must match the
+explicit open-block findings. CI rejects a stale drawing or changed connection. The recorded
+ERC boundary findings are not exclusions and do not count as a clean whole-board ERC result.

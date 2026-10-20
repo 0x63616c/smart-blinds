@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_UCM1E221MCL1GS:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Nichicon", partnumber="UCM1E221MCL1GS", footprint="CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod", symbol="UCM1E221MCL1GS.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C340768", manufacturer="Nichicon", partno="UCM1E221MCL1GS">
+    trait has_designator_prefix<prefix="C">
+
+    pin 1
+    pin 2

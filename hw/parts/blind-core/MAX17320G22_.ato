@@ -1,0 +1,60 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_MAX17320G22_:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Analog Devices", partnumber="MAX17320G22+", footprint="QFN-24_L4.0-W4.0-P0.50-BL-EP2.6.kicad_mod", symbol="MAX17320G22_.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2914309", manufacturer="Analog Devices", partno="MAX17320G22+">
+    trait has_designator_prefix<prefix="U">
+
+    signal IN
+    IN ~ pin 1
+    signal CP
+    CP ~ pin 2
+    signal CHG
+    CHG ~ pin 3
+    signal DIS
+    DIS ~ pin 4
+    signal ZVC
+    ZVC ~ pin 5
+    signal PCKP
+    PCKP ~ pin 6
+    signal ALRT
+    ALRT ~ pin 7
+    signal SCL_DOD
+    SCL_DOD ~ pin 8
+    signal SDA_DQ
+    SDA_DQ ~ pin 9
+    signal TH1
+    TH1 ~ pin 10
+    signal PFALL
+    PFALL ~ pin 11
+    signal AOLDO
+    AOLDO ~ pin 12
+    signal REG3
+    REG3 ~ pin 13
+    signal CSN
+    CSN ~ pin 14
+    signal CSP
+    CSP ~ pin 15
+    signal TH2
+    TH2 ~ pin 16
+    signal REG2
+    REG2 ~ pin 17
+    signal TH3
+    TH3 ~ pin 18
+    signal TH4
+    TH4 ~ pin 19
+    signal GND
+    GND ~ pin 20
+    signal CELL1
+    CELL1 ~ pin 21
+    signal CELL2
+    CELL2 ~ pin 22
+    signal CELL3
+    CELL3 ~ pin 23
+    signal BATTS
+    BATTS ~ pin 24
+    signal EP
+    EP ~ pin 25

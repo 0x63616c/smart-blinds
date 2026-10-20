@@ -3,9 +3,9 @@ name: Design checks
 on:
   push:
     branches: [main]
-    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build.py', 'hw/sim/blind-control/**', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
+    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
   pull_request:
-    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build.py', 'hw/sim/blind-control/**', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
+    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
   workflow_dispatch:
 
 permissions:
@@ -24,10 +24,51 @@ jobs:
           ctest --test-dir work/firmware-build --output-on-failure
       - name: Test group coordinator
         run: python3 -m unittest discover -s integrations/home_assistant -p 'test_*.py'
+      - name: Test authenticated simulator bridge
+        run: python3 -m unittest discover -s integrations/bridge -p 'test_*.py' -v
       - name: Test gauge readback and offline profile calculations
         run: python3 -m unittest discover -s firmware/tools -p 'test_*.py'
       - name: Check CAD parameter consistency
-        run: python3 cad/build.py --check-parameters
+        run: |
+          python3 cad/build.py --check-parameters
+          python3 cad/build_v2.py --check-parameters
+          python3 cad/build_v2.py
+          git diff --exit-code -- cad/generated/holder-verification.json cad/generated/holder-footprints.svg
+
+  home-assistant:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Install pinned Home Assistant test framework
+        run: python -m pip install -r integrations/home_assistant/ha_tests/requirements.txt
+      - name: Exercise actual integration and loopback bridge
+        run: python -m pytest -q integrations/home_assistant/ha_tests
+
+  native-schematic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install KiCad 10
+        run: |
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends kicad
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Install pinned circuit compiler
+        run: python -m pip install atopile==0.15.9
+      - name: Compile motor source and verify selected-part ratings
+        run: python tools/verify_motor_build.py
+      - name: Verify schematic source, physical graph and documented ERC boundaries
+        run: |
+          python3 tools/generate_schematics.py hw/schematics/blind-controller/motor-test.layout.json --check
+          python3 -m unittest discover -s tools -p test_schematic_graph.py -v
 
   electrical-assumptions:
     runs-on: ubuntu-24.04

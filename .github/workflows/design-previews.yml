@@ -3,9 +3,9 @@ name: Design previews
 on:
   push:
     branches: [main]
-    paths: ['hw/**', 'cad/**', 'tools/render_previews.py', 'docs/previews.json', '.github/workflows/design-previews.yml']
+    paths: ['hw/**', 'cad/**', 'tools/*.py', 'docs/previews.json', '.github/workflows/design-previews.yml']
   pull_request:
-    paths: ['hw/**', 'cad/**', 'tools/render_previews.py', 'docs/previews.json', '.github/workflows/design-previews.yml']
+    paths: ['hw/**', 'cad/**', 'tools/*.py', 'docs/previews.json', '.github/workflows/design-previews.yml']
   workflow_dispatch:
 
 permissions:
@@ -27,7 +27,11 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends kicad kicad-packages3d openscad xvfb xauth
       - name: Check CAD parameters
-        run: python3 cad/build.py --check-parameters
+        run: |
+          python3 cad/build.py --check-parameters
+          python3 cad/build_v2.py --check-parameters
+      - name: Check generated native schematic
+        run: python3 tools/generate_schematics.py hw/schematics/blind-controller/motor-test.layout.json --check
       - name: Generate previews from sources
         run: xvfb-run -a python3 tools/render_previews.py
       - name: Prepare review artifact

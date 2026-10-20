@@ -1,0 +1,117 @@
+import ElectricPower
+import ElectricLogic
+import ElectricSignal
+import Electrical
+
+from "../../parts/blind-core/DRV8874PWPR.ato" import Part_DRV8874PWPR
+from "../../parts/blind-core/0402B223K500NT.ato" import Part_0402B223K500NT
+from "../../parts/blind-core/0402WGF1201TCE.ato" import Part_0402WGF1201TCE
+from "../../parts/blind-core/UCM1E221MCL1GS.ato" import Part_UCM1E221MCL1GS
+from "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package
+from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
+
+module MotorBridge:
+    """UNVERIFIED original DRV8874 bridge, provisional 3 A nominal chopping.
+
+    Connect pack (protected 3S), logic (3.3 V), in1/in2 PWM, awake, fault_n,
+    current ADC and motor_a/b. The parent must add an independently powered
+    regenerative clamp; this block alone is NOT a complete motor supply.
+    Usage: bridge = new MotorBridge; pack ~ bridge.pack; rail ~ bridge.logic.
+    IMODE floats intentionally for fixed-off-time regulation and latched OCP.
+    PWM truth table: 00 coast, 01 reverse, 10 forward, 11 low-side brake.
+    TI SLVSF66A pages 3, 6, 13, 17-20. Re-rate divider/RIPROPI together;
+    motor, thermal and pulse ratings are still measurement release gates.
+    """
+    pack = new ElectricPower
+    logic = new ElectricPower
+    in1 = new ElectricLogic
+    in2 = new ElectricLogic
+    awake = new ElectricLogic
+    fault_n = new ElectricLogic
+    current = new ElectricSignal
+    motor_a = new Electrical
+    motor_b = new Electrical
+
+    pack.voltage = 9V to 12.6V
+    logic.voltage = 3.3V +/- 3%
+    pack.lv ~ logic.lv
+    in1.reference ~ logic
+    in2.reference ~ logic
+    awake.reference ~ logic
+    fault_n.reference ~ logic
+    current.reference ~ logic
+
+    ic = new Part_DRV8874PWPR
+    ic.VM ~ pack.hv
+    ic.GND ~ pack.lv
+    ic.PGND ~ pack.lv
+    ic.EP ~ pack.lv
+    ic.OUT1 ~ motor_a
+    ic.OUT2 ~ motor_b
+    ic.EN_IN1 ~ in1.line
+    ic.PH_IN2 ~ in2.line
+    ic.nSLEEP ~ awake.line
+    ic.nFAULT ~ fault_n.line
+    ic.IPROPI ~ current.line
+
+    # Charge pump: 22 nF must be VM-rated; 100 nF VCP-VM >=16 V.
+    c_fly = new Part_0402B223K500NT
+    c_fly.1 ~ ic.CPH
+    c_fly.2 ~ ic.CPL
+    c_pump = new SAMSUNG_CL05B104KB54PNC_package
+    c_pump.1 ~ ic.VCP
+    c_pump.2 ~ pack.hv
+    c_vm = new SAMSUNG_CL05B104KB54PNC_package
+    c_vm.1 ~ pack.hv
+    c_vm.2 ~ pack.lv
+    c_bulk = new Part_UCM1E221MCL1GS
+    c_bulk.1 ~ pack.hv
+    c_bulk.2 ~ pack.lv
+
+    # External default-off pulls also work while MCU pins are high impedance.
+    r_in1 = new UNI_ROYAL_0402WGF1002TCE_package
+    r_in2 = new UNI_ROYAL_0402WGF1002TCE_package
+    r_sleep = new UNI_ROYAL_0402WGF1002TCE_package
+    r_fault = new UNI_ROYAL_0402WGF1002TCE_package
+    r_mode = new UNI_ROYAL_0402WGF1002TCE_package
+    r_in1.1 ~ in1.line
+    r_in1.2 ~ pack.lv
+    r_in2.1 ~ in2.line
+    r_in2.2 ~ pack.lv
+    r_sleep.1 ~ awake.line
+    r_sleep.2 ~ pack.lv
+    r_fault.1 ~ logic.hv
+    r_fault.2 ~ fault_n.line
+    r_mode.1 ~ logic.hv
+    r_mode.2 ~ ic.PMODE
+
+    # VREF=1.65 V nominal; IPROPI gain=450 uA/A (not the old model's500).
+    r_ref_hi = new UNI_ROYAL_0402WGF1002TCE_package
+    r_ref_lo = new UNI_ROYAL_0402WGF1002TCE_package
+    r_current = new Part_0402WGF1201TCE
+    c_ref = new SAMSUNG_CL05B104KB54PNC_package
+    r_ref_hi.1 ~ logic.hv
+    r_ref_hi.2 ~ ic.VREF
+    r_ref_lo.1 ~ ic.VREF
+    r_ref_lo.2 ~ pack.lv
+    c_ref.1 ~ ic.VREF
+    c_ref.2 ~ pack.lv
+    r_current.1 ~ ic.IPROPI
+    r_current.2 ~ pack.lv
+
+    # Fixed-point cross-checks only: atomic wrappers do not expose ratings.
+    # Authoritative named limits and MPN-linked records: motor-ratings.json,
+    # checked against source instances and the build BOM by check_motor_ratings.py.
+    # Kept here as redundant arithmetic, not parametric part-validation claims.
+    # Gain error at 2-4 A is 5.5%; excludes PWM overshoot and VREF leakage.
+    assert (3.201V * 0.99 / 2) / (1.212kohm * 0.00047475) >= 2.7A
+    assert (3.399V * 1.01 / 2) / (1.188kohm * 0.00042525) <= 3.4A
+    assert (3.399V * 1.01 / 2) < 3.6V
+    assert 50V >= 12.6V
+    assert 25V >= 12.6V
+    # Cbulk220uF±20% gives176uF minimum. ESR/ripple is a separate thermal gate.
+    assert 220uF * 0.8 >= 176uF
+
+module MotorTest:
+    """Build harness only; no connector or board-outline/manufacturing claim."""
+    bridge = new MotorBridge

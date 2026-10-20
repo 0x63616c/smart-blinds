@@ -1,0 +1,25 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect the Smart Blinds simulator",
+        "description": "This release controls seven virtual blinds. Run the simulator bridge on this Home Assistant host. It does not control hardware.",
+        "data": {"base_url": "Bridge URL", "access_token": "Access token"}
+      },
+      "reauth_confirm": {
+        "title": "Reconnect to the simulator",
+        "data": {"access_token": "Access token"}
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to a compatible simulator bridge.",
+      "invalid_auth": "The bridge rejected this access token.",
+      "invalid_config": "Use a valid local URL and a token of at least 32 characters. Network connections require HTTPS."
+    },
+    "abort": {
+      "already_configured": "This bridge is already configured.",
+      "wrong_bridge": "The bridge identity changed.",
+      "reauth_successful": "Access token updated."
+    }
+  }
+}

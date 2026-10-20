@@ -1,0 +1,20 @@
+{
+  "status": "PASS: fixed-part steady-state arithmetic only",
+  "physical_components": 14,
+  "build_bom_checked": true,
+  "trip_min_a": 2.7537421988644364,
+  "trip_max_a": 3.3976745705140776,
+  "vref_min_v": 1.584495,
+  "vref_max_v": 1.716495,
+  "divider_nominal_total_ohm": 20000,
+  "pull_resistor_worst_power_w": 0.00116699,
+  "ipropi_resistor_power_at_3ma_w": 0.010908000000000001,
+  "pmode_high_min_v": 1.6859999999999997,
+  "unresolved": [
+    "Regenerative voltage clamp is outside this block and not yet implemented; checks cover the stated 9-12.6 V steady supply only.",
+    "DRV8874 thermal path, copper area, motor stall current, PWM overshoot and chopping behavior need bench validation.",
+    "VREF input leakage has no specified bound in the primary table; divider calculation is unloaded and excludes it.",
+    "Ceramic effective capacitance with DC bias, actual bulk ESR/ripple heating and footprint mechanical accuracy remain release gates.",
+    "No motor-disabled schematic/export/ERC result proves safe movement or battery protection."
+  ]
+}

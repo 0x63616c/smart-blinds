@@ -1,0 +1,8 @@
+requires-atopile: ^0.15.7
+paths:
+  src: ./
+  layout: ../../layouts/blind-controller
+builds:
+  motor-test:
+    entry: motor.ato:MotorTest
+    hide_designators: true

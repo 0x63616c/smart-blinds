@@ -1,28 +1,118 @@
 {
   "schema": 1,
-  "source_commit": "cc9a368bb2a31e07a621ae198a278449447d96d9",
+  "source_commit": "6a0305a32656f76d25904039feca461fbeb56a4f",
   "tools": {
-    "kicad": "10.0.7",
+    "kicad": "10.0.4",
     "openscad": "OpenSCAD version 2021.01"
   },
-  "manifest_sha256": "1edbbc5e2da641597210ac45d2c0e46d790187c0594f71e5543d12e3e0775a1f",
-  "renderer_sha256": "decd81c71b8233fcd83b0fb0440b38810f03278b7799fde10776ed67121d7137",
+  "manifest_sha256": "36497785c654da9d06589a939b5191761280ccfaeebc90f98cb05152c43be31c",
+  "renderer_sha256": "85bfd465904be2b05cf0d97dc62ace255eca3ae2f6325402ea6776aa61061180",
   "validation": "preview generation only; no physical validation",
   "designs": [
+    {
+      "id": "holder-closed",
+      "source": "cad/source/packaging_v2.scad",
+      "inputs_sha256": {
+        "cad/build_v2.py": "62e8a41aefb26a6b32ceee198887ab9f088737d696a87e8e4d1bee68fdd2fa41",
+        "cad/parameters/packaging-v2.json": "0726135dcbd21b67dcf7d97a0186270c909b64edc40ba323dfc9511bfcb72ca1",
+        "cad/source/packaging_v2.scad": "8fe878acb5de1fa57cdfdbb4dcf6270e12b8dd7f67ac2fcd129c2da787705945",
+        "cad/source/packaging_v2_parameters.scad": "1758fa6a548456aabb20f0eea603291e4e302977963af7d871f10e0c5cc3adc9"
+      },
+      "source_files_dirty": false,
+      "role": "Original 170 \u00d7 158 \u00d7 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.",
+      "outputs": [
+        {
+          "path": "holder-closed/assembly.png",
+          "sha256": "5a153343c17032d8cf5938c8bb6599f9feb374ced7c419e38cfafc8b93cf34ab"
+        }
+      ]
+    },
+    {
+      "id": "holder-comparison",
+      "source": "cad/parameters/packaging-v2.json",
+      "inputs_sha256": {
+        "cad/build_v2.py": "62e8a41aefb26a6b32ceee198887ab9f088737d696a87e8e4d1bee68fdd2fa41",
+        "cad/parameters/packaging-v2.json": "0726135dcbd21b67dcf7d97a0186270c909b64edc40ba323dfc9511bfcb72ca1"
+      },
+      "source_files_dirty": false,
+      "role": "Six packaging reservations. The two welded-pack options remain size references; the holder alternatives compare assembly effort, width and depth.",
+      "outputs": [
+        {
+          "path": "holder-comparison/footprints.svg",
+          "sha256": "01ce591d44931153759500cbb27c57a7b3c270111655e053d40ff9ea0f75d976"
+        }
+      ]
+    },
+    {
+      "id": "holder-exploded",
+      "source": "cad/source/packaging_v2.scad",
+      "inputs_sha256": {
+        "cad/build_v2.py": "62e8a41aefb26a6b32ceee198887ab9f088737d696a87e8e4d1bee68fdd2fa41",
+        "cad/parameters/packaging-v2.json": "0726135dcbd21b67dcf7d97a0186270c909b64edc40ba323dfc9511bfcb72ca1",
+        "cad/source/packaging_v2.scad": "8fe878acb5de1fa57cdfdbb4dcf6270e12b8dd7f67ac2fcd129c2da787705945",
+        "cad/source/packaging_v2_parameters.scad": "1758fa6a548456aabb20f0eea603291e4e302977963af7d871f10e0c5cc3adc9"
+      },
+      "source_files_dirty": false,
+      "role": "Original 170 \u00d7 158 \u00d7 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.",
+      "outputs": [
+        {
+          "path": "holder-exploded/assembly.png",
+          "sha256": "c9e28e4cff62c8294b9d621aaca17ef7fcb1271b297cf22a32b3b15db2f1864d"
+        }
+      ]
+    },
+    {
+      "id": "holder-inside",
+      "source": "cad/source/packaging_v2.scad",
+      "inputs_sha256": {
+        "cad/build_v2.py": "62e8a41aefb26a6b32ceee198887ab9f088737d696a87e8e4d1bee68fdd2fa41",
+        "cad/parameters/packaging-v2.json": "0726135dcbd21b67dcf7d97a0186270c909b64edc40ba323dfc9511bfcb72ca1",
+        "cad/source/packaging_v2.scad": "8fe878acb5de1fa57cdfdbb4dcf6270e12b8dd7f67ac2fcd129c2da787705945",
+        "cad/source/packaging_v2_parameters.scad": "1758fa6a548456aabb20f0eea603291e4e302977963af7d871f10e0c5cc3adc9"
+      },
+      "source_files_dirty": false,
+      "role": "Original 170 \u00d7 158 \u00d7 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.",
+      "outputs": [
+        {
+          "path": "holder-inside/assembly.png",
+          "sha256": "6f49bcba90714a5432608b338e34f5ca9f26d29a68d42f6fa89ed95681c3dcbe"
+        }
+      ]
+    },
+    {
+      "id": "motor-schematic",
+      "source": "hw/schematics/blind-controller/motor-test.kicad_sch",
+      "inputs_sha256": {
+        "hw/schematics/blind-controller/motor-test.kicad_sch": "5f6e47eeac08a5b70c30da0735599822644a73012147fe6632bc94f1a30420b1",
+        "hw/schematics/blind-controller/motor-test.layout.json": "7f416ab6f0583848ade80e02d74009b905e2fb2637ac6950ef137f9ac41ed8f0",
+        "hw/schematics/blind-controller/motor-test.verification.json": "3b85c213c1e698f20dde93b6118ef641165c87b3ee4c2637ec50bd1b041e965b",
+        "tools/generate_schematics.py": "410ced1f9182fa32c7cefb4be1fb2c4368e984b6e8c9167ed8e54c75b53de7e6",
+        "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583"
+      },
+      "source_files_dirty": true,
+      "role": "Fourteen components and 43 physical pin connections agree with the atopile board graph. This open block has four documented ERC boundary findings; supply, controller, motor connector and regenerative-energy clamp are not yet integrated.",
+      "outputs": [
+        {
+          "path": "motor-schematic/motor-test.svg",
+          "sha256": "09f8169b8955cd3d28789d9d5a4579f916fe5aa27d3fea5b91051cc77a223e65"
+        }
+      ]
+    },
     {
       "id": "compact-closed",
       "source": "cad/source/smart_blinds.scad",
       "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
         "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
       "source_files_dirty": false,
-      "role": "Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.",
       "outputs": [
         {
           "path": "compact-closed/assembly.png",
-          "sha256": "7adaa4723f2a9a8153fed08c5f89602d806a704d73662f7475920bc8d1c0edcf"
+          "sha256": "f7339de96623f01294111e410c6a9049f731b4a7a6a31a6f21eadd856bf25a03"
         }
       ]
     },
@@ -30,11 +120,11 @@
       "id": "packaging-comparison",
       "source": "cad/parameters/packaging.json",
       "inputs_sha256": {
-        "cad/build.py": "323c2c962392152a71969894cfa8dc4bbb217b84854e0ff56b92060f4b22c903",
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
         "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02"
       },
       "source_files_dirty": false,
-      "role": "Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.",
       "outputs": [
         {
           "path": "packaging-comparison/footprints.svg",
@@ -46,16 +136,17 @@
       "id": "compact-exploded",
       "source": "cad/source/smart_blinds.scad",
       "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
         "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
       "source_files_dirty": false,
-      "role": "Enclosure and internal fit study. Motor, cells and PCB are reserved envelopes; attachment and drive details are still being developed.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Enclosure and internal fit study. Motor, cells and PCB are reserved envelopes; attachment and drive details are still being developed.",
       "outputs": [
         {
           "path": "compact-exploded/assembly.png",
-          "sha256": "026897ce1e193dc1a0ce9276ebb3e6442e068183d394ebb840148b71c0ffe829"
+          "sha256": "58d1740cb2c95eb8229a97cf486e2203a791611afaa94cf4b45ccba590ca6cb5"
         }
       ]
     },
@@ -63,16 +154,17 @@
       "id": "compact-assembly",
       "source": "cad/source/smart_blinds.scad",
       "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
         "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
       "source_files_dirty": false,
-      "role": "Compact direct drive with three cell columns and two depth layers. Provisional packaging study.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Compact direct drive with three cell columns and two depth layers. Provisional packaging study.",
       "outputs": [
         {
           "path": "compact-assembly/assembly.png",
-          "sha256": "ada4e0caab2d0fcb0116e0c31e8fc7d06f786d13aed7dad62dc52ccf706b1139"
+          "sha256": "fb8738e4542f935416191968dc3f2ad69844e13d8d38e1fc799d810cdc985423"
         }
       ]
     },
@@ -80,16 +172,17 @@
       "id": "broad-assembly",
       "source": "cad/source/smart_blinds.scad",
       "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
         "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
       "source_files_dirty": false,
-      "role": "Six cells across one depth layer. Provisional packaging study.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Six cells across one depth layer. Provisional packaging study.",
       "outputs": [
         {
           "path": "broad-assembly/assembly.png",
-          "sha256": "44018258b99888aba609d32f247fdb53384ca0a4ce2043355d722322a8e17dac"
+          "sha256": "e16b1e77d27351861940e046012b8c3b188f241a235d4f55861232c679d384f0"
         }
       ]
     },
@@ -97,16 +190,17 @@
       "id": "narrow-assembly",
       "source": "cad/source/smart_blinds.scad",
       "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
         "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
       "source_files_dirty": false,
-      "role": "Narrow footprint with a right-angle transmission envelope. Gears are not yet functional designs.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Narrow footprint with a right-angle transmission envelope. Gears are not yet functional designs.",
       "outputs": [
         {
           "path": "narrow-assembly/assembly.png",
-          "sha256": "338a5caf291b250ffa6f021f42a44822bb3d4419299eeb9f5fa48eb074093c76"
+          "sha256": "0f924b6bdc0f516937ce832c6883bb312c9ddceade7d090355bfd6049d273035"
         }
       ]
     },
@@ -114,16 +208,17 @@
       "id": "slim-assembly",
       "source": "cad/source/smart_blinds.scad",
       "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
         "cad/parameters/packaging.json": "7957949e7141fdbefe63dd44566c6a5e116ffbdae76b801b6942d6ffc6d64c02",
         "cad/source/parameters.scad": "3e165d664b2a1af37967090af2a7cd39e9f3248227c4d999c201ca1840a1c74b",
         "cad/source/smart_blinds.scad": "5390cbe43c2e88f69ea1bdcd13115dec50348f5df537e01e3f70c9642da4ac61"
       },
       "source_files_dirty": false,
-      "role": "Two vertical rows of three cells in a single depth layer. Provisional packaging study.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Two vertical rows of three cells in a single depth layer. Provisional packaging study.",
       "outputs": [
         {
           "path": "slim-assembly/assembly.png",
-          "sha256": "77921ec10be988125cdb876584b3394a80614e78aa700b72247acfca0d3aef67"
+          "sha256": "345e6cd2c35fdbb9bdd7bfaba25ae3a1c1f216ab2dcc967d24214d6f3e9ee508"
         }
       ]
     },
@@ -138,11 +233,11 @@
       "outputs": [
         {
           "path": "pd12v6mini-reference/assembly.png",
-          "sha256": "ad848f9907f3deb155d63c0919ae8b70f7cfc0da1b830c5ce6aaf3941baff6a6"
+          "sha256": "4fd619dd89a98f63ce2c008aa7c073d17251c827de3a99a978dd1d2a0b4c1bd2"
         },
         {
           "path": "pd12v6mini-reference/top.svg",
-          "sha256": "b669c39c4edc5cfee5298995caa2119e166b42b08f403b04725733299cfedda9"
+          "sha256": "80d997a999243cacbcd7ec0881254b6e4b10802add7421586cbd2580e20cf425"
         }
       ],
       "models_sha256": {

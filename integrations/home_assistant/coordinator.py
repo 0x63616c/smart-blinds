@@ -8,7 +8,10 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from enum import Enum
 from math import isfinite
-from freshness import FreshnessTracker, SourceStamp, earliest_sample
+if __package__:
+    from .freshness import FreshnessTracker, SourceStamp, earliest_sample
+else:  # Existing standalone unittest discovery entry point.
+    from freshness import FreshnessTracker, SourceStamp, earliest_sample
 
 
 class Phase(str, Enum):

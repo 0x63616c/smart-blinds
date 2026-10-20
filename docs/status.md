@@ -11,15 +11,27 @@ A green preview result only confirms generation of the documented images.
 
 ## Initial design work — in progress
 
-- Original parametric enclosure alternatives, provisional assembly/exploded views and fit-part
-  meshes are being compared. Purchased motor/pack envelopes remain provisional.
+- The second packaging comparison includes PCB-mounted holders, supported inline shafts and
+  a belt alternative. The simplest single carrier currently reserves 170 × 158 × 64 mm; the
+  twin carrier reserves 150 × 158 × 74 mm. Further antenna/holder placement work is aimed at
+  reducing depth. Purchased motor/holder fit and the retained assembly remain provisional.
 - Charger, gauge/protection, motor driver and C6 radio candidates have sourced trade studies and
   a dated JLC catalog snapshot. The cost sensitivity is not a complete BOM or manufacturing quote.
 - Portable motion/calibration code and the group coordinator pass local host tests, including
   seven different calibration maps following a shared physical-height trajectory. No motor has
   been driven and no Home Assistant integration is installed on the owner's system.
+- The real Home Assistant custom component passes seven framework tests against HA 2026.10.2,
+  including HA service calls through an authenticated loopback simulator to seven virtual blinds
+  reaching the same 1030 mm height. The simulator is explicitly separate from real hardware;
+  Thread transport and commissioning remain in progress.
 - The motor-disabled C6 bring-up image cross-builds with official ESP-IDF v5.5.4. Actual board
   drivers, complete circuitry/routing and radio integration are in progress.
+- A read-only MAX17320 I2C component compiles for the C6 with finite transaction requests and
+  a capture deadline. The application does not call it; no battery hardware has been accessed.
+- The first native KiCad motor-block schematic has 14 components and 43 pin connections
+  independently checked against the atopile PCB graph. Four external-interface ERC findings
+  remain explicit. A pinned atopile 0.15.9 frozen build and BOM-linked rating checks also pass
+  locally; CI reruns both. It is not a routed board or a complete controller.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
 - The exact motor listing is identified and partial seller dimensions are recorded. The owner is
@@ -28,6 +40,8 @@ A green preview result only confirms generation of the documented images.
 The first complete study snapshot is `49f1d17`. Its [control/CAD-parameter/electrical-model checks](https://github.com/0x63616c/smart-blinds/actions/runs/39341111874)
 and [source-generated preview workflow](https://github.com/0x63616c/smart-blinds/actions/runs/39341111797)
 passed on GitHub. These checks validate the declared models and exports, not a physical product.
+The subsequent [firmware freshness/gauge-tool checks and C6 cross-build](https://github.com/0x63616c/smart-blinds/actions/runs/39342005798)
+also passed. Latest changes must be evaluated against their own workflow runs.
 
 ## Inherited references
 

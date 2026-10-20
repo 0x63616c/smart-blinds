@@ -139,13 +139,14 @@ def render() -> None:
                 if not pages:
                     raise RuntimeError('No schematic pages produced')
                 image = pages[0]
-            elif entry['kind'] == 'footprints':
+            elif entry['kind'] in ('footprints', 'holder-footprints'):
                 # The CAD study owns the comparison dimensions and SVG generator.
-                spec = importlib.util.spec_from_file_location('cad_study', ROOT / 'cad/build.py')
+                holder_study = entry['kind'] == 'holder-footprints'
+                spec = importlib.util.spec_from_file_location('cad_study', ROOT / ('cad/build_v2.py' if holder_study else 'cad/build.py'))
                 module = importlib.util.module_from_spec(spec)
                 spec.loader.exec_module(module)
                 image = folder / 'footprints.svg'
-                module.write_footprints(json.loads(source.read_text()), image)
+                (module.svg if holder_study else module.write_footprints)(json.loads(source.read_text()), image)
             elif entry['kind'] == 'openscad':
                 image = folder / 'assembly.png'
                 command = [openscad, '--preview', '--imgsize=1600,1000', '--viewall', '--autocenter',

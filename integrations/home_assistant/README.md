@@ -1,49 +1,51 @@
 # Home Assistant and local coordinator
 
-This directory contains a tested, transport-independent coordinator engine. **It is not yet an installed Home Assistant integration, MQTT daemon, Matter implementation or radio bridge.** Run the coordinator and source-freshness scenarios with:
+The `custom_components/smart_blinds` directory is an installable Home Assistant integration for the [seven-blind simulator bridge](../bridge/README.md). It is tested with **Home Assistant 2026.10.2**. It currently accepts simulation mode only; no user's Home Assistant configuration has been changed and no physical blind is controlled.
+
+It adds one shared-height room cover, seven individual covers, seven battery sensors, seven charging indicators and an explicit **Align at 50%** button. Simulation is visible in the device/entity names. The group percentage uses the common physical range; individual covers use their own full travel. A stock HA cover group forwarding seven identical percentages would not preserve bottom-edge alignment.
+
+## Try in a local test Home Assistant
+
+1. Copy `custom_components/smart_blinds` into the test HA configuration directory's `custom_components` folder and restart that test instance.
+2. Run the simulator bridge in the same host/network namespace using its README instructions. It binds only to loopback. HA OS/add-on and separate-container packaging are not supplied yet.
+3. In Settings → Devices & services → Add integration, choose Smart Blinds. Use `http://127.0.0.1:8765` and the simulator's access token. The form labels this as simulation.
+4. Move the room cover to 50%, or use an individual full-open/full-close command. Individual commands can leave the group unaligned; use the separate alignment button before the next synced group move.
+
+The token stays in HA's private config-entry storage. Do not commit that storage or the simulator token file. Plain HTTP is permitted only to loopback/localhost; network URLs require HTTPS with certificate verification. Redirects are disabled, responses are size-bounded and requests have a five-second timeout. Commands are never retried automatically because a lost acknowledgment does not establish that a movement request was rejected.
+
+The component displays reported position, not the requested target. An unaligned group has unknown position, not an average that suggests alignment. Missing members make the group unavailable. A disconnected bridge makes its entities unavailable. Battery samples older than 30 minutes become unknown, never zero; the current simulator's battery/charging data is explicitly synthetic.
+
+The room cover's 0/100 endpoints are its **common reachable endpoints**. Use individual covers for each blind's physical fully open/closed position. Stop from any cover aborts the one active bridge job. Rejoin can move members different distances and finish at different times; normal synchronized travel requires aligned starting edges.
+
+## Verification
+
+The dependency-free coordinator and bridge tests run on a normal Python installation:
 
 ```sh
 python3 -m unittest discover -s integrations/home_assistant -p 'test_*.py' -v
+python3 -m unittest discover -s integrations/bridge -p 'test_*.py' -v
 ```
 
-`coordinator.py` prepares one shared physical-height trajectory, waits for every member, commits a future start and renews short running leases only after all members acknowledge. A missing member, fault, reboot or stale active report stops the group. Local STOP is always a node action first. The [control contract](../../docs/firmware/control-contract.md) specifies transport and clock boundaries.
+The HA framework tests need Python 3.14.2 or newer within the supported HA version and the pinned requirements:
 
-ACKs and active reports require `SourceStamp(sample_ms, sequence, clock_error_ms)`. The authenticated adapter translates the actual source sample time into the coordinator's monotonic epoch and supplies an absolute error bound. `freshness.py` rejects replayed or old samples even when they arrive now; uncertainty subtracts from the sample timestamp for age calculations. Device boot and command binding remain separate checks. An ACK should include newly sampled readiness, not merely repeat cached status. The authentication and clock estimator themselves are still platform work.
+```sh
+python3.14 -m venv work/ha-test-venv
+work/ha-test-venv/bin/pip install -r integrations/home_assistant/ha_tests/requirements.txt
+work/ha-test-venv/bin/pytest -q integrations/home_assistant/ha_tests
+```
 
-## Proposed Home Assistant surface
+The HA tests exercise real config flows, entities, services, unload and state handling. One test sends a real HA service call through a real authenticated loopback HTTP connection into the seven-member coordinator, verifies all members have the same physical target and stops them. Other tests mock HTTP replies to inject authentication failures, stale battery data, unaligned positions, missing members and failed commands. None demonstrates RF performance, a flashed MCU or movement on hardware.
 
-| Entity/action | Meaning |
-|---|---|
-| Group cover: “Blinds · aligned” | 0–100% of the group's common physical range; all bottom edges finish at one height |
-| Group alignment action | Explicitly bring unequal starting levels together, then permit normal synced moves |
-| Individual cover for each blind | Its own calibrated full travel; use this for individual full-open/full-close |
-| Stop group | Stop every member immediately when awake; offline devices stop on lease expiry |
-| Per-device battery percentage | Last measured/estimated percentage with timestamp and validity; never substitute zero for unknown |
-| Charging state | Charging / full / not charging / temperature hold / fault / unknown |
-| Diagnostics | Bottom-edge height, calibration/reference validity, last seen, signal, firmware revision, pack voltage/current and fault |
-| Group status | Preparing / waiting / moving / aligned / needs alignment / fault, with missing device identified |
+## Coordinator and source freshness
 
-A group slider must address the coordinator, not a stock HA group forwarding the same percentage to each cover. Display measured state, not optimistic state. If the members disagree, do not publish an average that looks perfectly aligned; expose the spread and mark group position unavailable until calibrated/aligned.
+`coordinator.py` is a transport-independent engine. It prepares one physical trajectory, waits for every member, commits a future start and renews short running leases only after all members acknowledge. A missing member, fault, reboot or stale active report stops the group. Local STOP acts on the node first. The [control contract](../../docs/firmware/control-contract.md) defines the safety and timing boundaries.
 
-## MQTT adapter contract (candidate)
+ACKs and active reports require `SourceStamp(sample_ms, sequence, clock_error_ms)`. The authenticated adapter must translate the **source's actual measurement time** into the coordinator's monotonic epoch with a bounded error. `freshness.py` rejects replayed or delayed samples even when delivered now; clock uncertainty subtracts from the source timestamp for age calculation. The host fixture authenticates serialized messages but shares a clock. The real network clock estimator and provisioning remain unimplemented.
 
-A future local daemon can bridge either Wi-Fi or Thread nodes into HA using MQTT discovery. HA's cover entity supports separate state/position/availability topics and defaults to 0 closed, 100 open. The group entity's percentage maps to the common physical range; individual entities map to their own ranges. [Home Assistant MQTT cover](https://www.home-assistant.io/integrations/cover.mqtt/)
+Proposed hardware telemetry cadence is every 15 minutes idle, promptly after movement and every minute charging; active supervision is at most 100 ms. HA's one-second HTTP refresh is only presentation and user intent. It does not renew device leases or keep the radio awake. The bridge supervises motion separately. These proposed radio settings still need measured energy and latency results.
 
-Suggested topics under `smart-blinds/v1/`:
+## Physical deployment work remaining
 
-| Topic | Payload/policy |
-|---|---|
-| `groups/room/set_position` | New user intent, percentage 0..100; unretained, adapter rejects retained deliveries |
-| `groups/room/command` | OPEN, CLOSE, STOP; unretained |
-| `groups/room/state` | Measured HA state (`opening`, `closing`, `stopped`, `open`, `closed`) |
-| `groups/room/position` | Measured group percentage only when members are in agreement |
-| `groups/room/availability` | Available only with all required members and coordinator reachable; LWT offline |
-| `devices/<id>/telemetry` | Source sample timestamp, boot ID, sequence, physical height, reference, power, fault and firmware state |
+Implement and validate the C6 transport, onboarding, authenticated clock estimation, per-message strict decoding, persistent identity, secure updates and recovery, service packaging and real pack/reference state. Confirm the actual HA deployment and HomePod model. A HomePod can be a compatible Thread border router, but it is neither this coordinator nor proof that a custom Thread device is a Matter cover. See the [concrete Thread plan](../../docs/firmware/thread-transport-plan.md) and [radio trade](../../docs/firmware/2026-10-19-radio-and-sleep.md).
 
-Only discovery/state may be retained. Movement requests never are. QoS duplicates are expected; boot/sequence checks provide idempotence. On process/broker reconnect discard historical motion intent, cancel pending jobs and wait for a fresh user request. Transport messages between coordinator and nodes require authentication, per-device identity, bounded lifetime and exact uint64 parsing. TLS broker credentials and per-device secrets stay outside the repository.
-
-Idle telemetry can be less frequent than command polls. Proposed initial battery reporting: every 15 minutes while idle, promptly after a move and every minute while charging; include the last sample time. Group readiness always asks for a fresh report. Mark a battery reading stale after two missed reporting intervals instead of pretending it is current. While moving, the supervision report interval is ≤100 ms. These are prototype power/latency settings to measure, not runtime claims.
-
-## Installation work remaining
-
-Choose and implement secure provisioning, transport, service packaging, discovery, credential storage, operational logging and update/recovery. Check the actual Home Assistant deployment and HomePod model before relying on an existing Thread border router. A custom Thread node will not appear as a Matter cover automatically. No Home Assistant configuration has been changed by this work.
+The current custom integration follows HA's [config-entry flow](https://developers.home-assistant.io/docs/config_entries_config_flow_handler/), [data coordinator](https://developers.home-assistant.io/docs/integration_fetching_data/) and [cover entity](https://developers.home-assistant.io/docs/core/entity/cover/) interfaces. It is a project integration, not an official Home Assistant integration or a HACS release.

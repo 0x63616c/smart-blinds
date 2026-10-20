@@ -10,7 +10,7 @@ White printed enclosures, USB-C charging, physical buttons and Home Assistant co
 USB-C boards below are references, not the new blind controller or a battery charger.
 No complete unit has been built or physically validated.
 
-[Enclosure comparison](docs/mechanical/2026-10-19-packaging-trade-study.md) · [Electronics comparison](docs/electrical/2026-10-19-power-control-trade.md) ·
+[Enclosure comparison](docs/mechanical/2026-10-19-holder-and-drive-trade-study.md) · [Electronics comparison](docs/electrical/2026-10-19-power-control-trade.md) ·
 [Design brief](docs/brief.md) · [Progress](docs/status.md) · [Measurements](docs/measurements.json) ·
 [Validation plan](docs/verification-plan.md) · [Shopping list](bom/README.md)
 
@@ -35,34 +35,89 @@ These images are generated from the design sources. [Preview generation and prov
 A green preview badge means the images generated successfully, not that the hardware is validated.
 
 <!-- previews:start -->
-### Compact enclosure — provisional exterior
+### Holder carrier enclosure — provisional exterior
 
-Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.
+Original 170 × 158 × 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.
+
+![Holder carrier enclosure — provisional exterior](docs/generated/holder-closed/assembly.png)
+
+[Source](cad/source/packaging_v2.scad) · [Generated files](docs/generated/holder-closed/)
+
+### Battery holders and supported drives, at the same scale
+
+Six packaging reservations. The two welded-pack options remain size references; the holder alternatives compare assembly effort, width and depth.
+
+![Battery holders and supported drives, at the same scale](docs/generated/holder-comparison/footprints.svg)
+
+[Source](cad/parameters/packaging-v2.json) · [Generated files](docs/generated/holder-comparison/)
+
+### Protected carrier and supported drive — exploded study
+
+Original 170 × 158 × 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.
+
+![Protected carrier and supported drive — exploded study](docs/generated/holder-exploded/assembly.png)
+
+[Source](cad/source/packaging_v2.scad) · [Generated files](docs/generated/holder-exploded/)
+
+<details>
+<summary>One protected carrier — internal arrangement</summary>
+
+Original 170 × 158 × 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.
+
+![One protected carrier — internal arrangement](docs/generated/holder-inside/assembly.png)
+
+[Source](cad/source/packaging_v2.scad) · [Generated files](docs/generated/holder-inside/)
+
+</details>
+
+<details>
+<summary>Motor driver — native KiCad circuit study</summary>
+
+Fourteen components and 43 physical pin connections agree with the atopile board graph. This open block has four documented ERC boundary findings; supply, controller, motor connector and regenerative-energy clamp are not yet integrated.
+
+![Motor driver — native KiCad circuit study](docs/generated/motor-schematic/motor-test.svg)
+
+[Source](hw/schematics/blind-controller/motor-test.kicad_sch) · [Generated files](docs/generated/motor-schematic/)
+
+</details>
+
+<details>
+<summary>Compact enclosure — provisional exterior</summary>
+
+Earlier study, before PCB-mounted holders and independent shaft support. Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.
 
 ![Compact enclosure — provisional exterior](docs/generated/compact-closed/assembly.png)
 
 [Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/compact-closed/)
 
-### Four layouts at the same scale
+</details>
 
-Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.
+<details>
+<summary>Four layouts at the same scale</summary>
+
+Earlier study, before PCB-mounted holders and independent shaft support. Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.
 
 ![Four layouts at the same scale](docs/generated/packaging-comparison/footprints.svg)
 
 [Source](cad/parameters/packaging.json) · [Generated files](docs/generated/packaging-comparison/)
 
-### Compact enclosure — exploded study
+</details>
 
-Enclosure and internal fit study. Motor, cells and PCB are reserved envelopes; attachment and drive details are still being developed.
+<details>
+<summary>Compact enclosure — exploded study</summary>
+
+Earlier study, before PCB-mounted holders and independent shaft support. Enclosure and internal fit study. Motor, cells and PCB are reserved envelopes; attachment and drive details are still being developed.
 
 ![Compact enclosure — exploded study](docs/generated/compact-exploded/assembly.png)
 
 [Source](cad/source/smart_blinds.scad) · [Generated files](docs/generated/compact-exploded/)
 
+</details>
+
 <details>
 <summary>Compact direct drive — packaging study</summary>
 
-Compact direct drive with three cell columns and two depth layers. Provisional packaging study.
+Earlier study, before PCB-mounted holders and independent shaft support. Compact direct drive with three cell columns and two depth layers. Provisional packaging study.
 
 ![Compact direct drive — packaging study](docs/generated/compact-assembly/assembly.png)
 
@@ -73,7 +128,7 @@ Compact direct drive with three cell columns and two depth layers. Provisional p
 <details>
 <summary>Wide and shallow — packaging study</summary>
 
-Six cells across one depth layer. Provisional packaging study.
+Earlier study, before PCB-mounted holders and independent shaft support. Six cells across one depth layer. Provisional packaging study.
 
 ![Wide and shallow — packaging study](docs/generated/broad-assembly/assembly.png)
 
@@ -84,7 +139,7 @@ Six cells across one depth layer. Provisional packaging study.
 <details>
 <summary>Narrow with right-angle drive — packaging study</summary>
 
-Narrow footprint with a right-angle transmission envelope. Gears are not yet functional designs.
+Earlier study, before PCB-mounted holders and independent shaft support. Narrow footprint with a right-angle transmission envelope. Gears are not yet functional designs.
 
 ![Narrow with right-angle drive — packaging study](docs/generated/narrow-assembly/assembly.png)
 
@@ -95,7 +150,7 @@ Narrow footprint with a right-angle transmission envelope. Gears are not yet fun
 <details>
 <summary>Tall and shallow direct drive — packaging study</summary>
 
-Two vertical rows of three cells in a single depth layer. Provisional packaging study.
+Earlier study, before PCB-mounted holders and independent shaft support. Two vertical rows of three cells in a single depth layer. Provisional packaging study.
 
 ![Tall and shallow direct drive — packaging study](docs/generated/slim-assembly/assembly.png)
 

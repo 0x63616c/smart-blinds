@@ -1,0 +1,29 @@
+{
+  "status": "fixed-part arithmetic checks; no physical or transient validation",
+  "limits": {
+    "pack_min_v": 9.0,
+    "pack_max_v": 12.6,
+    "logic_nominal_v": 3.3,
+    "logic_tolerance": 0.03,
+    "trip_min_a": 2.7,
+    "trip_max_a": 3.4,
+    "resistor_power_derating": 2,
+    "ceramic_voltage_derating": 2,
+    "minimum_bulk_f": 0.000176
+  },
+  "parts": {
+    "DRV8874PWPR": {"lcsc": "C1855818", "wrapper": "../../parts/blind-core/DRV8874PWPR.ato", "instances": ["ic"], "vm_min_v": 4.5, "vm_max_v": 37, "vref_max_v": 3.6, "pump_differential_max_v": 7, "ipropr_gain_a_per_a": 0.00045, "gain_tolerance_2_to_4_a": 0.055, "ipropi_max_a": 0.003, "pmode_high_min_v": 1.5, "pmode_high_input_max_a": 0.00015, "source": "https://www.ti.com/lit/ds/symlink/drv8874.pdf", "evidence": "SLVSF66A pp3-6; PMODE input current specified at 5 V is conservatively applied at 3.3 V. IPROPI 3 mA is a recommended-operation bound, not an asserted fault-current clamp."},
+    "0402WGF1002TCE": {"lcsc": "C25744", "wrapper": "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato", "instances": ["r_in1", "r_in2", "r_sleep", "r_fault", "r_mode", "r_ref_hi", "r_ref_lo"], "resistance_ohm": 10000, "tolerance": 0.01, "max_power_w_at_70c": 0.0625, "max_voltage_v": 50, "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"},
+    "0402WGF1201TCE": {"lcsc": "C25862", "wrapper": "../../parts/blind-core/0402WGF1201TCE.ato", "instances": ["r_current"], "resistance_ohm": 1200, "tolerance": 0.01, "max_power_w_at_70c": 0.0625, "max_voltage_v": 50, "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"},
+    "0402B223K500NT": {"lcsc": "C1532", "wrapper": "../../parts/blind-core/0402B223K500NT.ato", "instances": ["c_fly"], "capacitance_f": 2.2e-8, "tolerance": 0.1, "max_voltage_v": 50, "dielectric": "X7R", "source": "https://fhcomp.com/en/product_info/?prod_code=0402B223K500NT"},
+    "CL05B104KB54PNC": {"lcsc": "C307331", "wrapper": "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato", "instances": ["c_pump", "c_vm", "c_ref"], "capacitance_f": 1e-7, "tolerance": 0.1, "max_voltage_v": 50, "dielectric": "X7R", "source": "https://product.samsungsem.com/mlcc/CL05B104KB54PN.do"},
+    "UCM1E221MCL1GS": {"lcsc": "C340768", "wrapper": "../../parts/blind-core/UCM1E221MCL1GS.ato", "instances": ["c_bulk"], "capacitance_f": 0.00022, "tolerance": 0.2, "max_voltage_v": 25, "ripple_a_120hz_105c": 0.3, "source": "https://www.nichicon.co.jp/english/products/pdfs/e-ucm.pdf", "evidence": "220 uF, 25 V, 6.3 x 7.7 mm UCM; ESR/ripple at motor PWM remains unqualified."}
+  },
+  "unresolved": [
+    "Regenerative voltage clamp is outside this block and not yet implemented; checks cover the stated 9-12.6 V steady supply only.",
+    "DRV8874 thermal path, copper area, motor stall current, PWM overshoot and chopping behavior need bench validation.",
+    "VREF input leakage has no specified bound in the primary table; divider calculation is unloaded and excludes it.",
+    "Ceramic effective capacitance with DC bias, actual bulk ESR/ripple heating and footprint mechanical accuracy remain release gates.",
+    "No motor-disabled schematic/export/ERC result proves safe movement or battery protection."
+  ]
+}

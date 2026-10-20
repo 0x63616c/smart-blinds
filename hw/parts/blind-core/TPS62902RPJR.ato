@@ -1,0 +1,28 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TPS62902RPJR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS62902RPJR", footprint="VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod", symbol="TPS62902RPJR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2870154", manufacturer="Texas Instruments", partno="TPS62902RPJR">
+    trait has_designator_prefix<prefix="U">
+
+    signal PG
+    PG ~ pin 1
+    signal SW
+    SW ~ pin 2
+    signal VOS
+    VOS ~ pin 3
+    signal GND
+    GND ~ pin 4
+    signal EN
+    EN ~ pin 5
+    signal VIN
+    VIN ~ pin 6
+    signal MODE_S_CONF
+    MODE_S_CONF ~ pin 7
+    signal SS_TR
+    SS_TR ~ pin 8
+    signal FB_VSET
+    FB_VSET ~ pin 9

@@ -1,0 +1,14 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component SAMSUNG_CL05B104KB54PNC_package:
+    # Local copy for nested smart-blinds layouts; atomic geometry inherited.
+
+    trait is_atomic_part<manufacturer="SAMSUNG", partnumber="CL05B104KB54PNC", footprint="C0402.kicad_mod", symbol="CL05B104KB54PNC.kicad_sym", model="C0402_L1.0-W0.5-H0.5.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C307331", manufacturer="SAMSUNG", partno="CL05B104KB54PNC">
+    trait has_designator_prefix<prefix="C">
+
+    # pins
+    pin 1
+    pin 2

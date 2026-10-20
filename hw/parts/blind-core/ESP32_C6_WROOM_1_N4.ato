@@ -1,0 +1,74 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_ESP32_C6_WROOM_1_N4:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Espressif", partnumber="ESP32-C6-WROOM-1-N4", footprint="WIRELM-SMD_ESP32-C6-WROOM-1.kicad_mod", symbol="ESP32_C6_WROOM_1_N4.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C6034714", manufacturer="Espressif", partno="ESP32-C6-WROOM-1-N4">
+    trait has_designator_prefix<prefix="U">
+
+    signal GND
+    GND ~ pin 1
+    signal VDD3V3
+    VDD3V3 ~ pin 2
+    signal EN
+    EN ~ pin 3
+    signal IO4
+    IO4 ~ pin 4
+    signal IO5
+    IO5 ~ pin 5
+    signal IO6
+    IO6 ~ pin 6
+    signal IO7
+    IO7 ~ pin 7
+    signal IO0
+    IO0 ~ pin 8
+    signal IO1
+    IO1 ~ pin 9
+    signal IO8
+    IO8 ~ pin 10
+    signal IO10
+    IO10 ~ pin 11
+    signal IO11
+    IO11 ~ pin 12
+    signal IO12
+    IO12 ~ pin 13
+    signal IO13
+    IO13 ~ pin 14
+    signal IO9
+    IO9 ~ pin 15
+    signal IO18
+    IO18 ~ pin 16
+    signal IO19
+    IO19 ~ pin 17
+    signal IO20
+    IO20 ~ pin 18
+    signal IO21
+    IO21 ~ pin 19
+    signal IO22
+    IO22 ~ pin 20
+    signal IO23
+    IO23 ~ pin 21
+    signal NC
+    NC ~ pin 22
+    signal IO15
+    IO15 ~ pin 23
+    signal RXD0
+    RXD0 ~ pin 24
+    signal TXD0
+    TXD0 ~ pin 25
+    signal IO3
+    IO3 ~ pin 26
+    signal IO2
+    IO2 ~ pin 27
+    GND ~ pin 28
+    GND ~ pin 29
+    GND ~ pin 30
+    GND ~ pin 31
+    GND ~ pin 32
+    GND ~ pin 33
+    GND ~ pin 34
+    GND ~ pin 35
+    GND ~ pin 36
+    GND ~ pin 37

@@ -1,0 +1,388 @@
+{
+  "title": "Smart Blinds / DRV8874 motor block",
+  "pcb": "hw/layouts/blind-controller/motor-test/motor-test.kicad_pcb",
+  "output": "hw/schematics/blind-controller/motor-test.kicad_sch",
+  "symbols": {
+    "DRV": {
+      "source": "hw/parts/blind-core/DRV8874PWPR.kicad_sym",
+      "name": "DRV8874PWPR",
+      "pins": {
+        "1": {
+          "name": "EN/IN1",
+          "type": "input"
+        },
+        "2": {
+          "name": "PH/IN2",
+          "type": "input"
+        },
+        "3": {
+          "name": "nSLEEP",
+          "type": "input"
+        },
+        "4": {
+          "name": "nFAULT",
+          "type": "open_collector"
+        },
+        "5": {
+          "name": "VREF",
+          "type": "input"
+        },
+        "6": {
+          "name": "IPROPI",
+          "type": "output"
+        },
+        "7": {
+          "name": "IMODE",
+          "type": "input"
+        },
+        "8": {
+          "name": "OUT1",
+          "type": "output"
+        },
+        "9": {
+          "name": "PGND",
+          "type": "power_in"
+        },
+        "10": {
+          "name": "OUT2",
+          "type": "output"
+        },
+        "11": {
+          "name": "VM",
+          "type": "power_in"
+        },
+        "12": {
+          "name": "VCP",
+          "type": "power_out"
+        },
+        "13": {
+          "name": "CPH",
+          "type": "output"
+        },
+        "14": {
+          "name": "CPL",
+          "type": "output"
+        },
+        "15": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "16": {
+          "name": "PMODE",
+          "type": "input"
+        },
+        "17": {
+          "name": "EP",
+          "type": "power_in"
+        }
+      }
+    },
+    "R10K": {
+      "source": "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym",
+      "name": "0402WGF1002TCE",
+      "type": "passive"
+    },
+    "R1K2": {
+      "source": "hw/parts/blind-core/0402WGF1201TCE.kicad_sym",
+      "name": "0402WGF1201TCE",
+      "type": "passive"
+    },
+    "C100N": {
+      "source": "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym",
+      "name": "CL05B104KB54PNC",
+      "type": "passive"
+    },
+    "C22N": {
+      "source": "hw/parts/blind-core/0402B223K500NT.kicad_sym",
+      "name": "0402B223K500NT",
+      "type": "passive"
+    },
+    "C220U": {
+      "source": "hw/parts/blind-core/UCM1E221MCL1GS.kicad_sym",
+      "name": "UCM1E221MCL1GS",
+      "type": "passive"
+    }
+  },
+  "components": {
+    "U1": {
+      "symbol": "DRV",
+      "value": "DRV8874PWPR",
+      "mpn": "DRV8874PWPR",
+      "at": [
+        127,
+        68.58,
+        0
+      ],
+      "label_offset": 20.32,
+      "no_connect": [
+        "7"
+      ]
+    },
+    "C1": {
+      "symbol": "C220U",
+      "value": "220u / 25V",
+      "mpn": "UCM1E221MCL1GS",
+      "at": [
+        200.66,
+        68.58,
+        0
+      ],
+      "label_offset": 15.24,
+      "text_offset": [
+        10.16,
+        -1.27
+      ]
+    },
+    "C5": {
+      "symbol": "C100N",
+      "value": "100n / 50V",
+      "mpn": "CL05B104KB54PNC",
+      "at": [
+        238.76,
+        68.58,
+        0
+      ],
+      "label_offset": 15.24
+    },
+    "C2": {
+      "symbol": "C22N",
+      "value": "22n / 50V",
+      "mpn": "0402B223K500NT",
+      "at": [
+        200.66,
+        124.46,
+        0
+      ],
+      "label_offset": 15.24
+    },
+    "C3": {
+      "symbol": "C100N",
+      "value": "100n / 50V",
+      "mpn": "CL05B104KB54PNC",
+      "at": [
+        238.76,
+        124.46,
+        0
+      ],
+      "label_offset": 15.24
+    },
+    "R3": {
+      "symbol": "R10K",
+      "value": "10k",
+      "mpn": "0402WGF1002TCE",
+      "at": [
+        35.56,
+        124.46,
+        270
+      ],
+      "label_offset": 15.24,
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R4": {
+      "symbol": "R10K",
+      "value": "10k",
+      "mpn": "0402WGF1002TCE",
+      "at": [
+        66.04,
+        124.46,
+        270
+      ],
+      "label_offset": 15.24,
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R8": {
+      "symbol": "R10K",
+      "value": "10k",
+      "mpn": "0402WGF1002TCE",
+      "at": [
+        96.52,
+        124.46,
+        270
+      ],
+      "label_offset": 15.24,
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R2": {
+      "symbol": "R10K",
+      "value": "10k",
+      "mpn": "0402WGF1002TCE",
+      "at": [
+        127,
+        124.46,
+        270
+      ],
+      "label_offset": 15.24,
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R5": {
+      "symbol": "R10K",
+      "value": "10k",
+      "mpn": "0402WGF1002TCE",
+      "at": [
+        157.48,
+        124.46,
+        270
+      ],
+      "label_offset": 15.24,
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R6": {
+      "symbol": "R10K",
+      "value": "10k",
+      "mpn": "0402WGF1002TCE",
+      "at": [
+        35.56,
+        160.02,
+        0
+      ],
+      "label_offset": 10.16
+    },
+    "R7": {
+      "symbol": "R10K",
+      "value": "10k",
+      "mpn": "0402WGF1002TCE",
+      "at": [
+        96.52,
+        160.02,
+        0
+      ],
+      "label_offset": 10.16
+    },
+    "R1": {
+      "symbol": "R1K2",
+      "value": "1.2k",
+      "mpn": "0402WGF1201TCE",
+      "at": [
+        157.48,
+        160.02,
+        0
+      ],
+      "label_offset": 10.16
+    },
+    "C4": {
+      "symbol": "C100N",
+      "value": "100n / 50V",
+      "mpn": "CL05B104KB54PNC",
+      "at": [
+        228.6,
+        157.48,
+        0
+      ],
+      "label_offset": 15.24
+    }
+  },
+  "net_names": {
+    "CPL": "CPL",
+    "VCP": "VCP",
+    "1": "VREF_1V65",
+    "in1-1": "MOTOR_IN1",
+    "motor_b": "MOTOR_B",
+    "pack-hv": "PACK_9V_12V6",
+    "CPH": "CPH",
+    "PMODE": "PWM_MODE",
+    "nSLEEP": "MOTOR_AWAKE",
+    "IPROPI": "CURRENT_SENSE",
+    "IMODE": "IMODE_FLOAT",
+    "motor_a": "MOTOR_A",
+    "nFAULT": "MOTOR_FAULT_N",
+    "lv": "GND",
+    "in2-1": "MOTOR_IN2",
+    "hv": "LOGIC_3V3"
+  },
+  "expected_erc_types": {
+    "power_pin_not_driven": 2,
+    "isolated_pin_label": 2
+  },
+  "erc_scope": "Open motor subcircuit: external supplies, MCU, motor connector and regenerative-energy clamp are absent. IMODE is intentionally floating per DRV8874 fixed-off-time/latched-OCP mode. Export is checked against the atopile PCB graph, not a validated whole-board design.",
+  "notes": [
+    {
+      "at": [
+        15.24,
+        17.78
+      ],
+      "size": 2,
+      "text": "MOTOR DRIVER / CIRCUIT STUDY"
+    },
+    {
+      "at": [
+        15.24,
+        25.4
+      ],
+      "text": "DRV8874; 9\u201312.6 V pack; 3.3 V logic. External controller and protection not shown."
+    },
+    {
+      "at": [
+        15.24,
+        31.75
+      ],
+      "text": "Default off via pull-downs. IMODE floats deliberately: fixed off-time / latched overcurrent fault."
+    },
+    {
+      "at": [
+        20.32,
+        43.18
+      ],
+      "text": "Control and status"
+    },
+    {
+      "at": [
+        198.12,
+        43.18
+      ],
+      "text": "Supply and charge pump"
+    },
+    {
+      "at": [
+        15.24,
+        101.6
+      ],
+      "text": "Default-off inputs / fault pull-up / PWM mode"
+    },
+    {
+      "at": [
+        15.24,
+        142.24
+      ],
+      "text": "Current threshold and measurement"
+    },
+    {
+      "at": [
+        15.24,
+        172.72
+      ],
+      "text": "Nominal limit 3.06 A; tolerance about 2.75\u20133.40 A before transient overshoot. Motor data unmeasured."
+    },
+    {
+      "at": [
+        15.24,
+        177.8
+      ],
+      "text": "Regenerative-energy clamp and thermal layout remain open. Not a complete controller; not for fabrication."
+    }
+  ],
+  "expected_erc_items": {
+    "power_pin_not_driven": [
+      "Symbol U1 Pin 11 [VM, Power input, Line]",
+      "Symbol U1 Pin 9 [PGND, Power input, Line]"
+    ],
+    "isolated_pin_label": [
+      "Label 'MOTOR_A'",
+      "Label 'MOTOR_B'"
+    ]
+  }
+}

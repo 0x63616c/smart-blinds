@@ -1,20 +1,97 @@
 {
   "designs": [
     {
+      "id": "holder-closed",
+      "kind": "openscad",
+      "title": "Holder carrier enclosure \u2014 provisional exterior",
+      "source": "cad/source/packaging_v2.scad",
+      "dependencies": [
+        "cad/source/packaging_v2_parameters.scad",
+        "cad/parameters/packaging-v2.json",
+        "cad/build_v2.py"
+      ],
+      "defines": {
+        "option": "holders_broad",
+        "part": "closed"
+      },
+      "role": "Original 170 \u00d7 158 \u00d7 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.",
+      "collapsed": false
+    },
+    {
+      "id": "holder-comparison",
+      "kind": "holder-footprints",
+      "title": "Battery holders and supported drives, at the same scale",
+      "source": "cad/parameters/packaging-v2.json",
+      "dependencies": [
+        "cad/build_v2.py"
+      ],
+      "role": "Six packaging reservations. The two welded-pack options remain size references; the holder alternatives compare assembly effort, width and depth.",
+      "collapsed": false
+    },
+    {
+      "id": "holder-exploded",
+      "kind": "openscad",
+      "title": "Protected carrier and supported drive \u2014 exploded study",
+      "source": "cad/source/packaging_v2.scad",
+      "dependencies": [
+        "cad/source/packaging_v2_parameters.scad",
+        "cad/parameters/packaging-v2.json",
+        "cad/build_v2.py"
+      ],
+      "defines": {
+        "option": "holders_broad",
+        "part": "exploded"
+      },
+      "role": "Original 170 \u00d7 158 \u00d7 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.",
+      "collapsed": false
+    },
+    {
+      "id": "holder-inside",
+      "kind": "openscad",
+      "title": "One protected carrier \u2014 internal arrangement",
+      "source": "cad/source/packaging_v2.scad",
+      "dependencies": [
+        "cad/source/packaging_v2_parameters.scad",
+        "cad/parameters/packaging-v2.json",
+        "cad/build_v2.py"
+      ],
+      "defines": {
+        "option": "holders_broad",
+        "part": "assembly"
+      },
+      "role": "Original 170 \u00d7 158 \u00d7 64 mm packaging study using six PCB-mounted holders and an independent chain shaft. Retention, electrical layout and purchased-part fit are still in development.",
+      "collapsed": true
+    },
+    {
+      "id": "motor-schematic",
+      "kind": "schematic",
+      "title": "Motor driver \u2014 native KiCad circuit study",
+      "source": "hw/schematics/blind-controller/motor-test.kicad_sch",
+      "dependencies": [
+        "hw/schematics/blind-controller/motor-test.layout.json",
+        "hw/schematics/blind-controller/motor-test.verification.json",
+        "tools/generate_schematics.py",
+        "tools/kicad_sexpr.py"
+      ],
+      "role": "Fourteen components and 43 physical pin connections agree with the atopile board graph. This open block has four documented ERC boundary findings; supply, controller, motor connector and regenerative-energy clamp are not yet integrated.",
+      "collapsed": true
+    },
+    {
       "id": "compact-closed",
       "kind": "openscad",
       "title": "Compact enclosure \u2014 provisional exterior",
       "source": "cad/source/smart_blinds.scad",
       "dependencies": [
-        "cad/source/*.scad",
-        "cad/parameters/*.json"
+        "cad/source/parameters.scad",
+        "cad/parameters/packaging.json",
+        "cad/build.py"
       ],
       "defines": {
         "option": "compact",
         "part": "closed"
       },
-      "role": "Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.",
-      "collapsed": false
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Initial compact direct-drive packaging candidate. Original parametric geometry; purchased-part fit and the holder-carrier alternative remain under review.",
+      "collapsed": true
     },
     {
       "id": "packaging-comparison",
@@ -24,8 +101,8 @@
       "dependencies": [
         "cad/build.py"
       ],
-      "role": "Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.",
-      "collapsed": false
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Calculated front footprints from the original packaging study. Dimensions and purchased-part envelopes remain provisional.",
+      "collapsed": true
     },
     {
       "id": "compact-exploded",
@@ -33,15 +110,16 @@
       "title": "Compact enclosure \u2014 exploded study",
       "source": "cad/source/smart_blinds.scad",
       "dependencies": [
-        "cad/source/*.scad",
-        "cad/parameters/*.json"
+        "cad/source/parameters.scad",
+        "cad/parameters/packaging.json",
+        "cad/build.py"
       ],
       "defines": {
         "option": "compact",
         "part": "exploded"
       },
-      "role": "Enclosure and internal fit study. Motor, cells and PCB are reserved envelopes; attachment and drive details are still being developed.",
-      "collapsed": false
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Enclosure and internal fit study. Motor, cells and PCB are reserved envelopes; attachment and drive details are still being developed.",
+      "collapsed": true
     },
     {
       "id": "compact-assembly",
@@ -49,14 +127,15 @@
       "title": "Compact direct drive \u2014 packaging study",
       "source": "cad/source/smart_blinds.scad",
       "dependencies": [
-        "cad/source/*.scad",
-        "cad/parameters/*.json"
+        "cad/source/parameters.scad",
+        "cad/parameters/packaging.json",
+        "cad/build.py"
       ],
       "defines": {
         "option": "compact",
         "part": "assembly"
       },
-      "role": "Compact direct drive with three cell columns and two depth layers. Provisional packaging study.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Compact direct drive with three cell columns and two depth layers. Provisional packaging study.",
       "collapsed": true
     },
     {
@@ -65,14 +144,15 @@
       "title": "Wide and shallow \u2014 packaging study",
       "source": "cad/source/smart_blinds.scad",
       "dependencies": [
-        "cad/source/*.scad",
-        "cad/parameters/*.json"
+        "cad/source/parameters.scad",
+        "cad/parameters/packaging.json",
+        "cad/build.py"
       ],
       "defines": {
         "option": "broad",
         "part": "assembly"
       },
-      "role": "Six cells across one depth layer. Provisional packaging study.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Six cells across one depth layer. Provisional packaging study.",
       "collapsed": true
     },
     {
@@ -81,14 +161,15 @@
       "title": "Narrow with right-angle drive \u2014 packaging study",
       "source": "cad/source/smart_blinds.scad",
       "dependencies": [
-        "cad/source/*.scad",
-        "cad/parameters/*.json"
+        "cad/source/parameters.scad",
+        "cad/parameters/packaging.json",
+        "cad/build.py"
       ],
       "defines": {
         "option": "narrow",
         "part": "assembly"
       },
-      "role": "Narrow footprint with a right-angle transmission envelope. Gears are not yet functional designs.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Narrow footprint with a right-angle transmission envelope. Gears are not yet functional designs.",
       "collapsed": true
     },
     {
@@ -97,14 +178,15 @@
       "title": "Tall and shallow direct drive \u2014 packaging study",
       "source": "cad/source/smart_blinds.scad",
       "dependencies": [
-        "cad/source/*.scad",
-        "cad/parameters/*.json"
+        "cad/source/parameters.scad",
+        "cad/parameters/packaging.json",
+        "cad/build.py"
       ],
       "defines": {
         "option": "slim",
         "part": "assembly"
       },
-      "role": "Two vertical rows of three cells in a single depth layer. Provisional packaging study.",
+      "role": "Earlier study, before PCB-mounted holders and independent shaft support. Two vertical rows of three cells in a single depth layer. Provisional packaging study.",
       "collapsed": true
     },
     {

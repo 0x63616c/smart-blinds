@@ -1,0 +1,66 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_BQ25798RQMR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="BQ25798RQMR", footprint="QFN-29_L4.0-W4.0-P0.40-TL-BQ25792RQMR.kicad_mod", symbol="BQ25798RQMR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2876593", manufacturer="Texas Instruments", partno="BQ25798RQMR">
+    trait has_designator_prefix<prefix="U">
+
+    signal STAT
+    STAT ~ pin 1
+    signal VBUS
+    VBUS ~ pin 2
+    VBUS ~ pin 3
+    signal BTST1
+    BTST1 ~ pin 4
+    signal REGN
+    REGN ~ pin 5
+    signal DP
+    DP ~ pin 6
+    signal DM
+    DM ~ pin 7
+    signal VAC2
+    VAC2 ~ pin 8
+    signal VAC1
+    VAC1 ~ pin 9
+    signal ACDRV2
+    ACDRV2 ~ pin 10
+    signal ACDRV1
+    ACDRV1 ~ pin 11
+    signal QON_n
+    QON_n ~ pin 12
+    signal CE_n
+    CE_n ~ pin 13
+    signal SCL
+    SCL ~ pin 14
+    signal SDA
+    SDA ~ pin 15
+    signal TS
+    TS ~ pin 16
+    signal ILIM_HIZ
+    ILIM_HIZ ~ pin 17
+    signal BATP
+    BATP ~ pin 18
+    signal BTST2
+    BTST2 ~ pin 19
+    signal PROG
+    PROG ~ pin 20
+    signal INT_n
+    INT_n ~ pin 21
+    signal BAT
+    BAT ~ pin 22
+    BAT ~ pin 23
+    signal SDRV
+    SDRV ~ pin 24
+    signal SYS
+    SYS ~ pin 25
+    signal SW2
+    SW2 ~ pin 26
+    signal GND
+    GND ~ pin 27
+    signal SW1
+    SW1 ~ pin 28
+    signal PMID
+    PMID ~ pin 29

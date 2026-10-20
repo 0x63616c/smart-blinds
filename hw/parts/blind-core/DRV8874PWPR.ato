@@ -1,0 +1,44 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_DRV8874PWPR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="DRV8874PWPR", footprint="HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP.kicad_mod", symbol="DRV8874PWPR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C1855818", manufacturer="Texas Instruments", partno="DRV8874PWPR">
+    trait has_designator_prefix<prefix="U">
+
+    signal EN_IN1
+    EN_IN1 ~ pin 1
+    signal PH_IN2
+    PH_IN2 ~ pin 2
+    signal nSLEEP
+    nSLEEP ~ pin 3
+    signal nFAULT
+    nFAULT ~ pin 4
+    signal VREF
+    VREF ~ pin 5
+    signal IPROPI
+    IPROPI ~ pin 6
+    signal IMODE
+    IMODE ~ pin 7
+    signal OUT1
+    OUT1 ~ pin 8
+    signal PGND
+    PGND ~ pin 9
+    signal OUT2
+    OUT2 ~ pin 10
+    signal VM
+    VM ~ pin 11
+    signal VCP
+    VCP ~ pin 12
+    signal CPH
+    CPH ~ pin 13
+    signal CPL
+    CPL ~ pin 14
+    signal GND
+    GND ~ pin 15
+    signal PMODE
+    PMODE ~ pin 16
+    signal EP
+    EP ~ pin 17
