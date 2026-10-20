@@ -1,17 +1,17 @@
 {
-  "status": "PLACEMENT-ONLY: no courtyard/keepout/edge/short/hole findings; silkscreen and unrouted items remain",
+  "status": "PLACEMENT-ONLY: zero reported courtyard/keepout/edge/short/hole/clearance findings; known imported-envelope audit remains open; silkscreen and unrouted items remain",
   "kicad_version": "10.0.4",
   "boards": {
     "primary": {
-      "pcb_sha256": "71b36b334e1f07c66bb75e551272a91088f0a4fb8e6175343b2dc0509ebd6f5f",
+      "pcb_sha256": "e18c831d3ca13a8ea7327126731d7050a7e6bce527f5f3b4e12b011456b0f5e0",
       "violation_counts": {
-        "silk_over_copper": 15,
-        "silk_overlap": 15
+        "silk_over_copper": 22,
+        "silk_overlap": 23
       },
       "unconnected_items": 77
     },
     "companion": {
-      "pcb_sha256": "cc51213c20aa1de399b84f003214cfe2d14ae6b8123fc8265a59f85d3ba5e625",
+      "pcb_sha256": "583581e9e0ddf1a648888efa0558385437fc1a3fcca3fafebb27b8f672b3940e",
       "violation_counts": {
         "silk_over_copper": 3,
         "silk_overlap": 3
@@ -21,7 +21,8 @@
   },
   "limits": [
     "This is not a clean final DRC. The boards remain unrouted.",
+    "Some existing imported courtyards including gauge/fuses omit pad tips; zero reported courtyard collisions does not establish complete assembly clearance.",
     "No thermal, current, insertion-load, retention or physical-fit qualification follows from these geometry checks.",
-    "Primary courtyard coverage is 44/50 electrical footprints; companion is 10/10. Six shared 0402 passives require courtyard/body-clearance review."
+    "Courtyard presence is 50/50 primary and 10/10 companion; source envelope repair is a separate pending review."
   ]
 }

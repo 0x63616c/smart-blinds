@@ -30,6 +30,7 @@ def source_snapshot():
     """Hash the complete read set before copying, including directory membership."""
     paths=[ROOT/p for p in [
         'tools/check_pack_frozen.py','tools/restore_pack_holes.py',
+        'tools/apply_pack_placement.py','tools/normalize_placement_pcb.py',
         'tools/generate_schematics.py','tools/kicad_sexpr.py',
         'hw/placement/blind-pack/checks.py','hw/placement/blind-pack/placement.json',
         'hw/sim/blind-pack/checks.py','hw/boards/blind-carrier/carrier-connectivity.json',
@@ -109,6 +110,7 @@ def main():
         'atopile':version,'validation_sources_sha256':{k:v for k,v in sources.items() if not k.startswith('hw/parts/')},'copied_parts_tree_sha256':parts_digest,'copied_parts_files':len(part_inputs),'source_snapshot_rechecked':True,'boards':results,'final_placement':checked,
         'limits':['Frozen compilation deliberately excludes only the four reviewed NPTH holes in a temporary copy.',
                   'Final placement checks include those holes, support/RF restrictions and the independent electrical contract.',
+                  'Counted courtyard coverage is complete, but some existing imported envelopes omit pad tips and await a separate repair.',
                   'This does not route or qualify the pack. KiCad DRC and physical/thermal tests remain separate.']}
     text=json.dumps(result,indent=2)+'\n'
     if a.output:

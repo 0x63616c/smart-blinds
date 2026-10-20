@@ -18,17 +18,27 @@ explicitly restored as board-level areas and checked after compilation.
 The main motor connector uses two soldered, separately retained 18 AWG tails to
 an inline keyed disconnect in the upper bay. That avoids a tall board-mounted
 motor plug. Encoder and home headers have their own cable corridors. The home
-header is dry-contact only: pin 2 remains isolated. Cable bend, pull, insertion
+header is dry-contact only: pin 2 remains isolated. The pack header is at
+u45.675/v55.02, shifted 2.2 mm away from the lower button after the complete
+courtyard check exposed their conflict. Two small encoder-supply parts were
+repositioned to clear the complete regulator outline. The encoder corridor ends
+at v45.1, retaining 0.5 mm beyond the modeled 2.2 mm wire sweep; its continuation
+over low passives has a separate height restriction in the enclosure model.
+Cable bend, pull, insertion
 and owned-motor compatibility remain physical qualification gates.
 
 ## Current checks and outstanding work
 
 - 196 placements and 609 circuit pin identities survive normal and frozen builds.
 - Manufacturer land checks cover the charger, motor driver, radio and USB input.
-- Actual KiCad DRC reports no courtyard overlap or keepout infringement in this placement.
-  However, 98 inherited footprints currently lack front courtyards, so that overlap
-  result has incomplete coverage. Their clearance outlines must be added and checked
-  before routing or a full component-clearance claim.
+- All 196 circuit footprints now have front courtyards. The 98 missing outlines
+  were generated from manufacturer package dimensions and actual pad extents; the
+  switch and SOD-523 package retain explicitly conditional physical allowances.
+  Actual KiCad 10 DRC reports no courtyard overlap or keepout infringement with
+  the current outlines. A broader audit then found 80 other inherited instances
+  whose outlines omit pad tips. Physical overlap coverage therefore remains
+  incomplete; those envelopes and the resulting placement need another repair
+  pass. The [clearance record](footprint-clearances.md) documents this limit.
 - The board has no routed tracks/vias. Hundreds of unrouted connections remain.
 - Default DRC still reports the eFuse's 0.19 mm pad spacing against a 0.20 mm
   default, USB NPTH/edge clearances, 0.20 mm thermal drill size against a 0.30 mm
@@ -55,7 +65,10 @@ outline and rule areas, resolves existing local model paths, then converts only
 reviewed KiCad 10 defaults to the pinned compiler's KiCad 9 representation.
 `tools/normalize_placement_pcb.py` rejects circuit changes, routed copper and
 unsupported via-process overrides. Normal/frozen atopile builds and independent
-net checks follow the replay. This helper must not be used once routing begins.
+net checks follow the replay. `tools/complete_courtyards.py --check` verifies the
+source envelopes and `tools/check_footprint_clearances.py --drc` checks compiled
+coverage, reserved corridors and the actual three-board KiCad assembly findings.
+Other DRC findings remain visible. This helper must not be used once routing begins.
 
 The `hw/layouts/parts` symlink resolves inherited model paths for both the old
 two-level layout folders and new three-level build folders. It points to the same

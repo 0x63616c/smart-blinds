@@ -69,9 +69,12 @@ A green preview result only confirms generation of the documented images.
   reset-gated 5 V encoder supply and an independent thermal latch. Eight preserved blocks and twenty integration tests
   check power-domain separation, factory-bus isolation and key control connections. Normal
   and frozen local builds pass. The keyed pack, motor, encoder and home connections are captured. An explicit
-  54 × 68.5 mm placement rebuilds and passes the present keepout checks. Courtyard coverage is
-  incomplete: 98 of 196 footprints lack those clearance outlines. They must be corrected before
-  relying on an overlap report; routing remains open. Regeneration and
+  54 × 68.5 mm placement rebuilds and passes the present keepout checks. All 196
+  footprints now have clearance outlines; the pack connector and two small supply
+  parts were moved to resolve newly exposed clashes. Actual KiCad assembly-clearance
+  checks pass against those outlines, with two package envelopes explicitly conditional.
+  A broader audit found 80 other main-board outlines that omit pad tips; their
+  correction and a fresh placement review remain mandatory before routing. Regeneration and
   thermal models have explicit transient and sustained-backdrive limits, not hardware approval.
 - Offline STUSB4500 tooling checks documented PDO fields and full 40-byte readback. Static inspection of the pinned manufacturer GUI binary now identifies
   its above-5 V gate-policy field; unqualified discharge timers and device baseline still keep
@@ -92,7 +95,9 @@ A green preview result only confirms generation of the documented images.
   fabrication, cables and mechanics. Both 86 × 104 mm carriers now have explicit placements,
   with four mechanical holes per board, preserved support/RF restrictions and eight corruption
   checks. The isolated circuit builds and full canonical-placement checks pass locally. The
-  primary still lacks six shared 0402 courtyards; both carriers remain unrouted.
+  primary now has all 50 electrical courtyards and the companion all 10, but
+  inherited envelopes still omit pad tips on 24 primary parts and three companion
+  fuses. Both carriers remain unrouted and require the next envelope repair pass.
 - The bounded motion session joins authenticated command ingress to the portable controller
   and executor, with source-timed leases and measured settling. All ten host targets and
   both pinned C6 builds pass CI for `2561ced`. The real application remains uninstantiated.

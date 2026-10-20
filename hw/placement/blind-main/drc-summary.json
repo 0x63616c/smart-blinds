@@ -1,0 +1,27 @@
+{
+  "status": "UNROUTED placement study; current outlined-envelope DRC only; inherited envelope audit remains incomplete",
+  "pcb_sha256": "1b8a938153b6b64dfe45fd4965172a2b2aeade21cbd200ccc4f8040c00c6aa7b",
+  "kicad_version": "10.0.4",
+  "assembly_clearance_findings": 0,
+  "remaining_violations": {
+    "clearance": 1,
+    "copper_edge_clearance": 2,
+    "drill_out_of_range": 12,
+    "hole_clearance": 4,
+    "lib_footprint_mismatch": 4,
+    "silk_edge_clearance": 4,
+    "silk_over_copper": 55
+  },
+  "ignored_checks": [
+    "footprint_filters_mismatch",
+    "footprint_type_mismatch",
+    "missing_courtyard",
+    "track_not_centered_on_via",
+    "tuning_profile_track_geometries"
+  ],
+  "unconnected_items": 451,
+  "limits": [
+    "80 inherited main-board instances across23 aliases omit pad tips in the broader envelope audit. Zero reported courtyard overlap is not complete physical-clearance acceptance.",
+    "No current, thermal, transient, installed RF or physical qualification. Manufacturing rules and silkscreen findings are unresolved."
+  ]
+}

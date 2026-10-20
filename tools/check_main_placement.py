@@ -15,6 +15,16 @@ def check(path=BOARD):
     plan=json.loads((ROOT/'hw/placement/blind-main/placement.json').read_text())
     mechanical=json.loads((ROOT/'cad/parameters/retained-interfaces.json').read_text())['controller']
     assert mechanical['board_size_xyz'][1:]==[68.5,54]
+    anchors={'pack_connector.header':mechanical['header_reservation']['footprint_origin_local_uv'],
+             'encoder_port.header':mechanical['encoder_connector']['footprint_origin_local_uv'],
+             'home_port.header':mechanical['home_connector']['footprint_origin_local_uv'],
+             'controller.up':mechanical['switch_centres_local_uv'][0],
+             'controller.down':mechanical['switch_centres_local_uv'][1],
+             'motor_output.landing1':mechanical['motor_solder_pads_local_uv'][0],
+             'motor_output.landing2':mechanical['motor_solder_pads_local_uv'][1]}
+    for name,uv in anchors.items():
+        assert plan['placements'][name]['uv']==uv,name+' differs from mechanical anchor'
+    assert dict(plan['reserved'])['encoder-cable']==mechanical['encoder_connector']['cable_transition']['board_corridor_local_uv']
     assert not any(children(board,k) for k in ('segment','arc','via')), 'Study must still be labelled unrouted'
     actual={}
     for fp in children(board,'footprint'):

@@ -1,0 +1,311 @@
+{
+  "status": "Assembly clearance study; two physical envelopes include unqualified allowances",
+  "reviewed_on": "2026-10-20",
+  "policy": "Union package/terminal envelope and existing pad copper, including custom polygon stroke; expand0.25mm, round outward0.05mm. Copper is unchanged.",
+  "evidence": "docs/electrical/footprint-clearances.md",
+  "footprints": [
+    {
+      "source": "hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod",
+      "mirrors": [],
+      "compiled_alias": "SAMSUNG_CL10A105KB8NNNC:C0603",
+      "main_instances": 4,
+      "parts": [
+        "CL10A105KB8NNNC"
+      ],
+      "body_lead_bounds_mm": [
+        -0.85,
+        -0.45,
+        0.85,
+        0.45
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://product.samsungsem.com/mlcc/CL10A105KB8NNN.do",
+      "source_location": "exact part size table"
+    },
+    {
+      "source": "hw/parts/UNI_ROYAL_0402WGF3903TCE/R0402.kicad_mod",
+      "mirrors": [],
+      "compiled_alias": "UNI_ROYAL_0402WGF3903TCE:R0402",
+      "main_instances": 2,
+      "parts": [
+        "0402WGF3903TCE"
+      ],
+      "body_lead_bounds_mm": [
+        -0.55,
+        -0.275,
+        0.55,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "0402 family table, p1"
+    },
+    {
+      "source": "hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod",
+      "mirrors": [],
+      "compiled_alias": "UNI_ROYAL_0603WAF1001T5E:R0603",
+      "main_instances": 6,
+      "parts": [
+        "0603WAF1001T5E"
+      ],
+      "body_lead_bounds_mm": [
+        -0.85,
+        -0.45,
+        0.85,
+        0.45
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "0603 family table, p1"
+    },
+    {
+      "source": "hw/parts/blind-control-io/SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-control-io/blind-control-io.pretty/SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod"
+      ],
+      "compiled_alias": "blind-control-io:SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6",
+      "main_instances": 2,
+      "parts": [
+        "TS-1081S-AC01326"
+      ],
+      "body_lead_bounds_mm": [
+        -2.4,
+        -1.6,
+        2.4,
+        2.35
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "conditional_engineering_allowance",
+      "source_url": "https://jlcpcb.com/partdetail/XUNPU-TS_1081SAC01326/C720493",
+      "source_location": "XUNPU family drawing p1; nominal plus provisional0.10mm per physical side"
+    },
+    {
+      "source": "hw/parts/blind-controller-common/C0402.kicad_mod",
+      "mirrors": [],
+      "compiled_alias": "SAMSUNG_CL05B104KB54PNC:C0402",
+      "main_instances": 25,
+      "parts": [
+        "CL05B104KB54PNC"
+      ],
+      "body_lead_bounds_mm": [
+        -0.525,
+        -0.275,
+        0.525,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://product.samsungsem.com/mlcc/CL05B104KB54PN.do",
+      "source_location": "exact part size table"
+    },
+    {
+      "source": "hw/parts/blind-controller-common/R0402.kicad_mod",
+      "mirrors": [],
+      "compiled_alias": "UNI_ROYAL_0402WGF1002TCE:R0402",
+      "main_instances": 35,
+      "parts": [
+        "0402WGF1002TCE"
+      ],
+      "body_lead_bounds_mm": [
+        -0.55,
+        -0.275,
+        0.55,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "0402 family table, p1"
+    },
+    {
+      "source": "hw/parts/blind-encoder/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-encoder/blind-encoder.pretty/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod"
+      ],
+      "compiled_alias": "blind-encoder:SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR",
+      "main_instances": 1,
+      "parts": [
+        "TPS70950DBVR"
+      ],
+      "body_lead_bounds_mm": [
+        -1.5,
+        -1.775,
+        1.5,
+        1.775
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://www.ti.com/lit/ds/symlink/tps709.pdf",
+      "source_location": "DBV0005A 4214839/K 08/2024 p33, including note4 flash 0.25mm per side"
+    },
+    {
+      "source": "hw/parts/blind-power/C1206.kicad_mod",
+      "mirrors": [],
+      "compiled_alias": "SAMSUNG_CL31A106KBHNNNE:C1206",
+      "main_instances": 15,
+      "parts": [
+        "CL31A106KBHNNNE"
+      ],
+      "body_lead_bounds_mm": [
+        -1.7,
+        -0.9,
+        1.7,
+        0.9
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://product.samsungsem.com/mlcc/CL31A106KBHNNN.do",
+      "source_location": "exact part size table"
+    },
+    {
+      "source": "hw/parts/blind-usb/C1206.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-usb/blind-usb.pretty/C1206.kicad_mod"
+      ],
+      "compiled_alias": "blind-usb:C1206",
+      "main_instances": 2,
+      "parts": [
+        "CL31A475KBHNNNE"
+      ],
+      "body_lead_bounds_mm": [
+        -1.7,
+        -0.9,
+        1.7,
+        0.9
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://product.samsungsem.com/mlcc/CL31A475KBHNNN.do",
+      "source_location": "exact part size table"
+    },
+    {
+      "source": "hw/parts/blind-usb/DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-usb/blind-usb.pretty/DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod"
+      ],
+      "compiled_alias": "blind-usb:DFN1610-2_L1.6-W1.0-P1.05-RD",
+      "main_instances": 1,
+      "parts": [
+        "ESDA25P35-1U1M"
+      ],
+      "body_lead_bounds_mm": [
+        -0.825,
+        -0.525,
+        0.825,
+        0.525
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://www.st.com/resource/en/datasheet/esda25p35-1u1m.pdf",
+      "source_location": "DS14419 Rev4 March2025 p9 Table11"
+    },
+    {
+      "source": "hw/parts/blind-usb/QFN-24_L4.0-W4.0-P0.50-BL-EP2.8.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-usb/blind-usb.pretty/QFN-24_L4.0-W4.0-P0.50-BL-EP2.8.kicad_mod"
+      ],
+      "compiled_alias": "blind-usb:QFN-24_L4.0-W4.0-P0.50-BL-EP2.8",
+      "main_instances": 1,
+      "parts": [
+        "STUSB4500QTR"
+      ],
+      "body_lead_bounds_mm": [
+        -2.025,
+        -2.025,
+        2.025,
+        2.025
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://www.st.com/resource/en/datasheet/stusb4500.pdf",
+      "source_location": "DS12499 Rev4 pp31-32 Table23"
+    },
+    {
+      "source": "hw/parts/blind-usb/R0402.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-usb/blind-usb.pretty/R0402.kicad_mod"
+      ],
+      "compiled_alias": "blind-usb:R0402",
+      "main_instances": 1,
+      "parts": [
+        "0402WGF1651TCE"
+      ],
+      "body_lead_bounds_mm": [
+        -0.55,
+        -0.275,
+        0.55,
+        0.275
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf",
+      "source_location": "0402 family table, p1"
+    },
+    {
+      "source": "hw/parts/blind-usb/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-usb/blind-usb.pretty/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod"
+      ],
+      "compiled_alias": "blind-usb:SOD-523_L1.2-W0.8-LS1.6-RD",
+      "main_instances": 1,
+      "parts": [
+        "RB521S30T1G"
+      ],
+      "body_lead_bounds_mm": [
+        -0.85,
+        -0.55,
+        0.85,
+        0.55
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "conditional_engineering_allowance",
+      "source_url": "https://www.onsemi.com/pdf/datasheet/rb521s30t1-d.pdf",
+      "source_location": "Case502 IssueF 2024-02-08 p3; undefined body flash has provisional0.10mm per body side"
+    },
+    {
+      "source": "hw/parts/blind-usb/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-usb/blind-usb.pretty/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod"
+      ],
+      "compiled_alias": "blind-usb:SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR",
+      "main_instances": 1,
+      "parts": [
+        "ESDA25W"
+      ],
+      "body_lead_bounds_mm": [
+        -1.2,
+        -1.1,
+        1.2,
+        1.1
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://www.st.com/resource/en/datasheet/esdaxxxwx.pdf",
+      "source_location": "Rev 2 p7; H local X, D local Y"
+    },
+    {
+      "source": "hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod",
+      "mirrors": [
+        "hw/parts/blind-usb/blind-usb.pretty/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod"
+      ],
+      "compiled_alias": "blind-usb:VQFN-10_L2.0-W2.0-P0.45-TL",
+      "main_instances": 1,
+      "parts": [
+        "TPS259470LRPWR"
+      ],
+      "body_lead_bounds_mm": [
+        -1.05,
+        -1.05,
+        1.05,
+        1.05
+      ],
+      "clearance_margin_mm": 0.25,
+      "envelope_status": "manufacturer_dimensional_table",
+      "source_url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
+      "source_location": "RPW0010A 4225183/A 08/2019 pp72-73; current custom polygon strokes included"
+    }
+  ]
+}

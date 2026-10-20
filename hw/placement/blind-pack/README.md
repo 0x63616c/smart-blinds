@@ -19,11 +19,23 @@ The protection IC, FET pair, shunt, balancing parts and fuses occupy the primary
 lower end strip. Signal-entry clamps and retained wire landings occupy its
 upper end. This placement is a starting point for routing. In particular, the
 shunt-to-gauge Kelvin pair, cell-sense filters, FET gate paths and current-path
-copper still need a routing review. The primary currently has courtyards on 44 of its 50 electrical footprints;
-six shared 0402 capacitor/resistor instances lack them. The companion has
-10 of 10. A DRC report of no courtyard overlaps therefore has incomplete
-coverage until those shared footprints are corrected. Courtyard clearance does not establish
+copper still need a routing review. The primary now has courtyards on all 50
+electrical footprints, and the companion has all 10. The shared passive
+outlines include the reviewed maximum body size and pad extent. Courtyard clearance does not establish
 acceptable FET, fuse, shunt or holder temperature.
+
+This is complete **outline coverage**, not complete envelope validation.
+A follow-up audit found existing imported courtyards that describe only the
+nominal body and omit some pad tips, including the MAX17320 gauge and the
+companion fuses. Their repair is a separate pending footprint review. Zero
+reported courtyard collisions therefore does not yet prove sufficient physical
+assembly clearance, even though the newly added passive outlines are reviewed.
+
+Two bare support bridges on the companion join its interrupted lower support
+lands to the cassette wall. Their local rectangles are X=26.4–29.6 and
+52.4–55.6 mm, Y=0–2.2 mm. Both copper layers prohibit pads, tracks, vias, fills
+and component footprints there. These areas belong only to the companion;
+the primary has electronics in the corresponding lower strip.
 
 The four raw current-link pads match cassette channels at global X=20, 38, 56
 and 74 mm, Y=106 mm. They are permanently retained internal wires. The primary
@@ -35,10 +47,13 @@ connections.
 `checks.py` examines the actual KiCad boards, not just the placement plan. It
 checks every electrical component's position, rotation and side, the unchanged
 pin graph, holder polarity, the rounded outline, thickness, mounting holes,
-both-layer support/RF rule areas and raw-link channel alignment. Eight altered
+both-layer support/RF rule areas and raw-link channel alignment. Fourteen altered
 board cases must be rejected: reversed holder, plated mounting hole, duplicate
 electrical address, changed outline corner, missing RF area, allowed copper in
-that area, a shrunken RF area and a complete raw-to-protected positive net merge. KiCad DRC is a separate check.
+that area, a shrunken RF area, a complete raw-to-protected positive net merge,
+missing courtyard, a companion-only bridge copied onto the primary, and
+missing, shrunken, copper-permissive or single-layer companion bridge areas.
+KiCad DRC is a separate check.
 
 The maximum holder-body envelopes leave 0.5 mm between adjacent holders and
 only 0.2 mm to the nearest corner support. These are drawing-based gaps, not

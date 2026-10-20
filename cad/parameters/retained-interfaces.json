@@ -140,6 +140,46 @@
         "global_z": [
           28.5,
           30
+        ],
+        "lower_bridge_bare_rectangles_local_xy": [
+          [
+            26.4,
+            0,
+            29.6,
+            2.2
+          ],
+          [
+            52.4,
+            0,
+            55.6,
+            2.2
+          ]
+        ],
+        "lower_bridges_global_xyz": [
+          [
+            [
+              31.2,
+              5.5,
+              28.5
+            ],
+            [
+              3.2,
+              2.7,
+              1.5
+            ]
+          ],
+          [
+            [
+              57.2,
+              5.5,
+              28.5
+            ],
+            [
+              3.2,
+              2.7,
+              1.5
+            ]
+          ]
         ]
       },
       "note": "Component-side support lands. Corner posts remain on both boards. Cell insertion requires a backing fixture; these installed supports do not qualify holder contact load paths."
@@ -363,28 +403,28 @@
       "part": "Molex430450600 / JLC C127367",
       "footprint_origin_global_xyz": [
         100.6,
-        55.82,
+        58.02,
         53.675
       ],
       "footprint_origin_local_uv": [
         45.675,
-        52.82
+        55.02
       ],
       "footprint_forward_direction": "+globalY / +localv",
       "header_housing_global_min": [
         100.6,
-        56.33,
+        58.53,
         47.35
       ],
       "header_housing_global_max": [
         109.37,
-        66.24,
+        68.44,
         60
       ],
-      "terminal_rear_global_y": 54.0,
-      "retention_peg_global_y": 61.64,
+      "terminal_rear_global_y": 56.2,
+      "retention_peg_global_y": 63.84,
       "drawing_peg_to_edge_maximum": 10.16,
-      "wire_exit_global_y": 73.89,
+      "wire_exit_global_y": 76.09,
       "mated_height_nominal": 10.81,
       "mated_height_tolerance_reservation": 11.06,
       "latch_height_reservation": 11.35,
@@ -399,30 +439,30 @@
       "physical_pin_origins_local_uv": {
         "1": [
           42.675,
-          54.32
+          56.52
         ],
         "2": [
           45.675,
-          54.32
+          56.52
         ],
         "3": [
           48.675,
-          54.32
+          56.52
         ],
         "4": [
           42.675,
-          51.32
+          53.52
         ],
         "5": [
           45.675,
-          51.32
+          53.52
         ],
         "6": [
           48.675,
-          51.32
+          53.52
         ]
       },
-      "peg_to_board_edge_distance": 9.86
+      "peg_to_board_edge_distance": 7.66
     },
     "protected_harness": {
       "part": "Molex2147561061",
@@ -430,8 +470,8 @@
       "wire_diameter_maximum": 1.85,
       "free_wire_length_after_housing": 12.7,
       "wire_free_interval_global_y": [
-        73.89,
-        86.59
+        76.09,
+        88.79
       ],
       "initial_wire_envelope_global_xz": [
         [
@@ -443,10 +483,10 @@
           57.925
         ]
       ],
-      "bend_radius_nominal": 13.91,
+      "bend_radius_nominal": 11.71,
       "bend_centre_global_xy": [
-        91.69,
-        86.59
+        93.89,
+        88.79
       ],
       "cassette_port_global_y": 100.5,
       "cassette_wire_centres_global_z": [
@@ -458,7 +498,8 @@
         56.5
       ],
       "strain_retention": "Two nylon2.5mm cable ties on integral retained cassette bars; compression and pull qualification required",
-      "service": "Unplug keyed controller connector with cover removed, then remove closed cassette; raw group connections stay enclosed."
+      "service": "Unplug keyed controller connector with cover removed, then remove closed cassette; raw group connections stay enclosed.",
+      "straight_extension_to_cassette_port": 1.69
     },
     "antenna_baseboard": "PCB ends at v68.5/global Y71.5; module antenna v68.5..75 overhangs, no FR4 substrate below it.",
     "switch_centres_local_uv": [
@@ -513,7 +554,43 @@
       "mating_direction": "+localu/globalZ",
       "body_width_maximum": 10.55,
       "mated_height_maximum": 3.6,
-      "wire_exit_from_pad_row": 6
+      "wire_exit_from_pad_row": 6,
+      "cable_transition": {
+        "global_y": 46.5,
+        "bundle_square_side": 2.2,
+        "board_corridor_local_uv": [
+          46,
+          40,
+          51,
+          45.1
+        ],
+        "upper_v_extent_actual": 44.6,
+        "upper_v_allowance": 0.5,
+        "front_edge_continuation": "At X110 the route continues past u51 to the front edge; its nearest-to-PCB extent is X108.9, so components beneath that continuation must be no taller than8.3mm before additional assembly allowance."
+      },
+      "over_board_wire_constraint": {
+        "local_uv": [
+          51,
+          42.4,
+          54,
+          44.6
+        ],
+        "component_face_x": 100.6,
+        "nearest_wire_x": 108.9,
+        "clearance": 0.5,
+        "maximum_mounted_component_height": 7.8,
+        "global_wire_box_min": [
+          108.9,
+          45.4,
+          59
+        ],
+        "global_wire_box_max": [
+          111.1,
+          47.6,
+          62
+        ],
+        "policy": "Parent PCB placement checker must reject unreviewed parts beneath this route. Existing approved r_down/r_charge use exact0402WGF1002TCE/C25744 at0.4mm body+0.15mm solder allowance; no general0402 height assumption."
+      }
     },
     "home_connector": {
       "part": "Molex532610371 candidate",
@@ -591,5 +668,60 @@
     ],
     "termination_positions": "Electrical carrier placement to assign protected solder pads. Internal wire route remains an allocation until that placement."
   },
-  "frozen_interface_checkpoint": "2026-10-20: 54x68.5 plus USB tongue; controller X99; switch u52.2; clamp bare lands u52.5; motor pads u42/48 v34.5; encoder u40 v43.5; home u30.5 v52. All are physical-fit candidates."
+  "frozen_interface_checkpoint": "2026-10-20: 54x68.5 plus USB tongue; controller X99; switch u52.2; clamp bare lands u52.5; pack header u45.675/v55.02; motor pads u42/48 v34.5; encoder u40/v43.5 with cable corridor v<=45.1; home u30.5/v52. All are physical-fit candidates.",
+  "cassette_attachment": {
+    "type": "Two integral T-head backplate cleats, closed cassette catch pockets and one accessible M3x6 lock screw",
+    "cleat_centres_global_xy": [
+      [
+        32.8,
+        11.5
+      ],
+      [
+        58.8,
+        11.5
+      ]
+    ],
+    "cleat_stem_xyz": [
+      4,
+      3,
+      4.8
+    ],
+    "cleat_head_xyz": [
+      8,
+      4,
+      1.6
+    ],
+    "cleat_head_global_z": [
+      7.8,
+      9.4
+    ],
+    "pocket_roof_global_z": [
+      10.4,
+      12
+    ],
+    "catch_floor_global_z": [
+      3.4,
+      7.5
+    ],
+    "capture_per_side_x": 1.7,
+    "capture_length_y": 2.2,
+    "screw_global_xy": [
+      77,
+      116
+    ],
+    "screw": "M3x6 ISO4762 with captured M3 nut",
+    "driver_corridor_diameter": 8,
+    "disengage_translation_xyz": [
+      0,
+      2.5,
+      0
+    ],
+    "withdraw_translation_xyz": [
+      0,
+      0,
+      72
+    ],
+    "service": "Unplug protected connector, release inline tray ties and disconnect motor pair; remove one mounting screw, raise cassette 2.5 mm, then withdraw forwards. Controller and four cassette closure screws remain installed.",
+    "limits": "Nominal digital access only. Two-axis service checks and pocket engagement do not qualify printed creep, pull/drop/installation loads or actual wire handling."
+  }
 }

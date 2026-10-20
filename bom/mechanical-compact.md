@@ -1,5 +1,9 @@
 # Compact prototype mechanical parts
 
+For the later fixed case/cassette/controller additions, use
+[the retained enclosure BOM](mechanical-retained.md). Its adjustable button plunger, face and guide bar
+replace this study's original plunger and guide; the eight drive shapes are reused.
+
 This is the retained drive/button portion of the 115 × 174 × 71 mm candidate, with a 78 mm untrimmed-holder fallback. It is **not** a complete build or purchase list: the wall/cover, controller and protected battery cassette fastening remain unfinished. No purchase or fabrication is authorized by this file.
 
 | Item | Per device | For eight | Status |

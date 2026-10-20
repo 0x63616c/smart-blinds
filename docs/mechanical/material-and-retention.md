@@ -25,3 +25,10 @@ For first coupons, use a calibrated 0.4 mm nozzle and 0.2 mm layer height as a s
 A low-power sensor can be mounted beside a straight chain strand, but an added magnet/collar may not pass the bead pockets. A wheel or chain-loop index repeats and cannot by itself establish absolute fabric height. Keep a sensor/header provision and supervised position recovery until a real reference strategy is selected with firmware.
 
 The v2 comparison models remain occupied-volume studies. The later [independent drive cartridge](retained-drive-prototype.md) and [compact shared-shaft candidate](2026-10-19-compact-drive-and-holder-study.md) add replaceable clamps, bearing retainers and screwed chain guards. The compact [front-button interface](front-button-interface.md) adds guides, captive plungers and a removable rear guide bar. The cassette, controller mounting, wall/cover retention and final wiring still need full retained design work. Passing named intersection or mesh checks does not turn these fit prototypes into production parts.
+
+The subsequent [retained enclosure candidate](retained-compact-enclosure.md) adds actual
+wall/cover fasteners, an independently screwed cassette with a separate insulating
+sheet, and a removable controller edge frame. This implements the previously missing
+retention geometry for the trimmed-pin case; actual routed-board placement, final
+connectors/strain relief, material qualification and physical assembly tests remain
+open. The earlier allocation studies are preserved as comparisons.

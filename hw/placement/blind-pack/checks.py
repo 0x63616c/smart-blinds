@@ -53,6 +53,17 @@ def outline_check(board,which,plan):
 def keepout_check(zones,which,mechanical):
     byname={one(z,'name')[1]:z for z in zones}
     assert len(byname)==len(zones), 'Duplicate rule-area name'
+    support=mechanical['outward_supports']['front_primary' if which=='primary' else 'rear_companion']
+    spans=support['local_x_intervals'] if which=='primary' else support['lower_local_x_intervals']
+    bridges=support['lower_bridge_bare_rectangles_local_xy'] if which=='companion' else []
+    expected_names={
+        *[f'RF_NO_METAL_{i}' for i in range(len(mechanical['copper_keepout_local_xy']))],
+        *[f'BARE_CORNER_SUPPORT_{i}_{q}' for i in range(len(mechanical['mounting_holes_local'])) for q in range(4)],
+        *[f'LOWER_SUPPORT_{i}' for i in range(len(spans))],
+        *[f'LOWER_BRIDGE_SUPPORT_{i}' for i in range(len(bridges))],
+    }
+    if which=='companion':expected_names.add('UPPER_SUPPORT')
+    assert set(byname)==expected_names, ('Missing or unexpected support/RF area',set(byname)^expected_names)
     def polygons(z):
         return [[assembly_point(p[1:3],which) for p in one(poly,'pts')[1:]] for poly in children(z,'polygon')]
     def bbox(points):return [min(p[0] for p in points),min(p[1] for p in points),max(p[0] for p in points),max(p[1] for p in points)]
@@ -78,8 +89,6 @@ def keepout_check(zones,which,mechanical):
             for end,angle in [(outer[0],quadrant*math.pi/2),(outer[-1],(quadrant+1)*math.pi/2)]:
                 radius=mechanical['bare_support_land_diameter']/2
                 near(end,[centre[0]+radius*math.cos(angle),centre[1]+radius*math.sin(angle)])
-    support=mechanical['outward_supports']['front_primary' if which=='primary' else 'rear_companion']
-    spans=support['local_x_intervals'] if which=='primary' else support['lower_local_x_intervals']
     y0,y1=support['local_y'] if which=='primary' else support['lower_local_y']
     for i,(x0,x1) in enumerate(spans):
         points=polygons(byname[f'LOWER_SUPPORT_{i}']);assert len(points)==1
@@ -93,6 +102,14 @@ def keepout_check(zones,which,mechanical):
     if which=='companion':
         points=polygons(byname['UPPER_SUPPORT']);assert len(points)==1 and len(points[0])==4
         x0,x1=support['upper_local_x'];y0,y1=support['upper_local_y'];near(bbox(points[0]),[x0,y0,x1,y1])
+    for i,(x0,y0,x1,y1) in enumerate(bridges):
+        points=polygons(byname[f'LOWER_BRIDGE_SUPPORT_{i}'])
+        assert len(points)==1 and len(points[0])==4, 'Bridge support must be one rectangle'
+        corners=points[0]
+        assert sorted(tuple(round(v,5) for v in p) for p in corners)==sorted(((x0,y0),(x1,y0),(x1,y1),(x0,y1))), 'Bridge support extent changed'
+        # Corner membership alone would admit a self-crossed bow-tie polygon.
+        assert all((abs(a[0]-b[0])<1e-6) != (abs(a[1]-b[1])<1e-6)
+                   for a,b in zip(corners,corners[1:]+corners[:1])), 'Bridge support edges must follow its perimeter'
 
 
 def check_board(which, path, plan, mechanical):
@@ -128,6 +145,7 @@ def check_board(which, path, plan, mechanical):
             near(assembly,[x,9.9 if pad[1]=='1' else 89.9])
     missing_courtyards=sorted(name for name,fp in electrical.items() if not any(
         children(item,'layer') and one(item,'layer')[1]=='F.CrtYd' for item in fp if isinstance(item,list)))
+    assert not missing_courtyards, ('Missing carrier courtyards',missing_courtyards)
     graph=board_graph(path)
     pins={f"{which}.{c['properties']['atopile_address'].removeprefix('carrier.')}.{pin}":net
           for c in graph.values() for pin,net in c['pads'].items()}
@@ -172,12 +190,17 @@ def physical_margins(plan,mechanical):
             'minimum_maximum_body_gap_between_holders_mm':round(min(b[0]-a[2] for a,b in zip(rectangles,rectangles[1:])),5)}
 
 
-def negative_controls(path,plan,mechanical):
+def negative_controls(path,plan,mechanical,companion_path):
     original=parse(path.read_text())
     def electrical(d):return next(f for f in children(d,'footprint') if any(p[1]=='atopile_address' for p in children(f,'property')))
     def holder(d):return next(f for f in children(d,'footprint') if any(p[1:3]==['atopile_address','carrier.holder1'] for p in children(f,'property')))
     def hole(d):return next(f for f in children(d,'footprint') if 'board_only' in one(f,'attr')[1:])
     def rf(d):return next(z for z in children(d,'zone') if one(z,'name')[1]=='RF_NO_METAL_0')
+    def remove_courtyard(d):
+        fp=electrical(d)
+        fp[:]=[item for item in fp if not (isinstance(item,list) and children(item,'layer') and one(item,'layer')[1]=='F.CrtYd')]
+    def add_primary_bridge(d):
+        zone=deepcopy(rf(d));one(zone,'name')[1]='LOWER_BRIDGE_SUPPORT_0';d.append(zone)
     def short_rails(d):
         def pad(name):
             fp=next(f for f in children(d,'footprint') if any(p[1:3]==['atopile_address','carrier.'+name] for p in children(f,'property')))
@@ -197,6 +220,8 @@ def negative_controls(path,plan,mechanical):
         'missing_RF_keepout':lambda d:d.remove(rf(d)),
         'RF_copper_allowed':lambda d:one(one(rf(d),'keepout'),'copperpour').__setitem__(1,'allowed'),
         'shrunk_RF_keepout':lambda d:one(one(rf(d),'polygon'),'pts')[1].__setitem__(1,'182'),
+        'missing_carrier_courtyard':remove_courtyard,
+        'companion_bridge_on_primary':add_primary_bridge,
     }
     passed=[]
     with tempfile.TemporaryDirectory() as folder:
@@ -204,6 +229,24 @@ def negative_controls(path,plan,mechanical):
             data=deepcopy(original);mutate(data)
             candidate=Path(folder)/f'{name}.kicad_pcb';candidate.write_text(dumps(data)+'\n')
             try:check_board('primary',candidate,plan,mechanical)
+            except (AssertionError,ValueError):passed.append(name)
+            else:raise AssertionError('Corrupted placement was accepted: '+name)
+        companion=parse(companion_path.read_text())
+        def bridge(d):return next(z for z in children(d,'zone') if one(z,'name')[1]=='LOWER_BRIDGE_SUPPORT_0')
+        def shrink_bridge(d):
+            pts=one(one(bridge(d),'polygon'),'pts')
+            # Companion PCB X runs opposite to assembly X.
+            old=float(pts[1][1]);pts[1][1]=str(old-.1)
+        companion_cases={
+            'missing_companion_bridge':lambda d:d.remove(bridge(d)),
+            'shrunk_companion_bridge':shrink_bridge,
+            'companion_bridge_copper_allowed':lambda d:one(one(bridge(d),'keepout'),'copperpour').__setitem__(1,'allowed'),
+            'companion_bridge_wrong_layers':lambda d:one(bridge(d),'layers').__setitem__(slice(1,None),['F.Cu']),
+        }
+        for name,mutate in companion_cases.items():
+            data=deepcopy(companion);mutate(data)
+            candidate=Path(folder)/f'{name}.kicad_pcb';candidate.write_text(dumps(data)+'\n')
+            try:check_board('companion',candidate,plan,mechanical)
             except (AssertionError,ValueError):passed.append(name)
             else:raise AssertionError('Corrupted placement was accepted: '+name)
     return passed
@@ -221,10 +264,12 @@ def main():
         path=args.work_dir/f'{which}-normalized.kicad_pcb' if args.work_dir else ROOT/f'hw/layouts/blind-pack-{which}/{which}-test/{which}-test.kicad_pcb'
         results[which]=check_board(which,path,plan,mechanical)
     primary=args.work_dir/'primary-normalized.kicad_pcb' if args.work_dir else ROOT/'hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb'
-    regressions=negative_controls(primary,plan,mechanical)
+    companion=args.work_dir/'companion-normalized.kicad_pcb' if args.work_dir else ROOT/'hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb'
+    regressions=negative_controls(primary,plan,mechanical,companion)
     result={'status':'PASS: actual unrouted placement geometry, component sides, mounting holes, holder polarity and independent pin contract',
             'boards':results,**physical_margins(plan,mechanical),'rejected_faults':regressions,
-            'limits':['KiCad DRC is a separate step; six shared primary passives lack courtyards, so no-overlap results have incomplete coverage.',
+            'limits':['All electrical footprints have courtyards, but existing imported envelopes including gauge/fuses omit some pad tips; full envelope audit/repair remains open.',
+                      'KiCad DRC is separate; zero reported courtyard collisions does not yet establish complete assembly clearance.',
                       '0.2 mm holder-to-boss margin is not a tolerance-qualified fit.',
                       'Holder fasteners and insertion backing fixture remain unresolved.',
                       'Solder tails must be trimmed/insulated to the 1.5 mm inner protrusion budget.']}

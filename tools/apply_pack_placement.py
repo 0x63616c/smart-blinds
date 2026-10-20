@@ -146,6 +146,8 @@ def apply(which, output):
     if which == 'companion':
         x0, x1 = support['upper_local_x']; y0, y1 = support['upper_local_y']
         keepout('UPPER_SUPPORT', [(x0,y0),(x1,y0),(x1,y1),(x0,y1)])
+        for i, (x0,y0,x1,y1) in enumerate(support['lower_bridge_bare_rectangles_local_xy']):
+            keepout(f'LOWER_BRIDGE_SUPPORT_{i}', [(x0,y0),(x1,y0),(x1,y1),(x0,y1)])
     output.parent.mkdir(parents=True, exist_ok=True)
     # Never leave a KiCad-10 file in the canonical layout if normalization or
     # the independent graph check fails. The pinned compiler reads KiCad 9.

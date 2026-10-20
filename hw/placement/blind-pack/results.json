@@ -6,18 +6,11 @@
       "board_only_mounting_holes": 4,
       "physical_electrical_pins": 120,
       "courtyard_coverage": {
-        "present": 44,
-        "missing_addresses": [
-          "carrier.protection.c_cell1",
-          "carrier.protection.c_cell3",
-          "carrier.protection.c_cell4",
-          "carrier.protection.c_charge_gate",
-          "carrier.protection.c_supply",
-          "carrier.protection.r_aoldo"
-        ]
+        "present": 50,
+        "missing_addresses": []
       },
       "side": "all front/component-side; primary faces +Z, companion faces -Z",
-      "board_sha256": "71b36b334e1f07c66bb75e551272a91088f0a4fb8e6175343b2dc0509ebd6f5f"
+      "board_sha256": "e18c831d3ca13a8ea7327126731d7050a7e6bce527f5f3b4e12b011456b0f5e0"
     },
     "companion": {
       "electrical_footprints": 10,
@@ -28,7 +21,7 @@
         "missing_addresses": []
       },
       "side": "all front/component-side; primary faces +Z, companion faces -Z",
-      "board_sha256": "cc51213c20aa1de399b84f003214cfe2d14ae6b8123fc8265a59f85d3ba5e625"
+      "board_sha256": "583581e9e0ddf1a648888efa0558385437fc1a3fcca3fafebb27b8f672b3940e"
     }
   },
   "minimum_holder_to_corner_support_mm": 0.2,
@@ -41,10 +34,17 @@
     "moved_outline_corner",
     "missing_RF_keepout",
     "RF_copper_allowed",
-    "shrunk_RF_keepout"
+    "shrunk_RF_keepout",
+    "missing_carrier_courtyard",
+    "companion_bridge_on_primary",
+    "missing_companion_bridge",
+    "shrunk_companion_bridge",
+    "companion_bridge_copper_allowed",
+    "companion_bridge_wrong_layers"
   ],
   "limits": [
-    "KiCad DRC is a separate step; six shared primary passives lack courtyards, so no-overlap results have incomplete coverage.",
+    "All electrical footprints have courtyards, but existing imported envelopes including gauge/fuses omit some pad tips; full envelope audit/repair remains open.",
+    "KiCad DRC is separate; zero reported courtyard collisions does not yet establish complete assembly clearance.",
     "0.2 mm holder-to-boss margin is not a tolerance-qualified fit.",
     "Holder fasteners and insertion backing fixture remain unresolved.",
     "Solder tails must be trimmed/insulated to the 1.5 mm inner protrusion budget."
