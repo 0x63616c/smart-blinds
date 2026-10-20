@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_CYA0630_2_2UH:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="SHOU HAN", partnumber="CYA0630-2.2UH", footprint="IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod", symbol="CYA0630_2_2UH.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C5189746", manufacturer="SHOU HAN", partno="CYA0630-2.2UH">
+    trait has_designator_prefix<prefix="L">
+
+    pin 2
+    pin 1

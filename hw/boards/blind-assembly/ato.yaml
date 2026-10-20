@@ -1,0 +1,8 @@
+requires-atopile: ^0.15.9
+paths:
+  src: ./
+  layout: ../../layouts/blind-assembly
+builds:
+  controller-test:
+    entry: controller.ato:ControllerAssembly
+    hide_designators: true

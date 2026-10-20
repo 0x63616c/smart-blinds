@@ -1,0 +1,106 @@
+import ElectricPower
+import ElectricLogic
+import Electrical
+
+from "../../parts/blind-supervisor/TPS3430WDRCR.ato" import Part_TPS3430WDRCR
+from "../../parts/blind-supervisor/TPS3808G33DBVR.ato" import Part_TPS3808G33DBVR
+from "../../parts/blind-supervisor/SN74AUP1G97DCKR.ato" import Part_SN74AUP1G97DCKR
+from "../../parts/blind-supervisor/CL05C121JB5NNNC.ato" import Part_CL05C121JB5NNNC
+from "../../parts/blind-control-io/SN74LVC2G17DCKR.ato" import Part_SN74LVC2G17DCKR
+from "../../parts/blind-control-io/0402WGF1001TCE.ato" import Part_0402WGF1001TCE
+from "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package
+from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
+
+module MotorSupervisor:
+    """UNVERIFIED independent timing and reset capture; not a safety certification.
+
+    A HIGH motor_request_n both disables watchdog and forces motor_sleep_n LOW.
+    A LOW request enables a 1:8 window watchdog; healthy control-task falling
+    WDI edges are intended every 20ms. Watchdog WDO triggers the voltage
+    supervisor MR, whose stretched RESET both gates the motor and resets C6 EN.
+    C6 reset must restore request HIGH before RESET releases. No auto-resume.
+    Existing C6 EN RC capacitor MUST NOT be attached to this open-drain output
+    without a rated discharge path; this supervisor supplies the reset delay.
+    See check_supervisor.py for sourced timing/threshold calculations and gaps.
+    """
+    rail = new ElectricPower
+    rail.voltage = 3.3V +/- 2%
+    motor_request_n = new ElectricLogic
+    heartbeat = new ElectricLogic
+    motor_sleep_n = new ElectricLogic
+    reset_n = new Electrical
+    motor_request_n.reference ~ rail
+    heartbeat.reference ~ rail
+    motor_sleep_n.reference ~ rail
+
+    watchdog = new Part_TPS3430WDRCR
+    supervisor = new Part_TPS3808G33DBVR
+    inputs = new Part_SN74LVC2G17DCKR
+    gate = new Part_SN74AUP1G97DCKR
+
+    watchdog.VDD1 ~ rail.hv
+    watchdog.VDD2 ~ rail.hv
+    watchdog.GND ~ rail.lv
+    watchdog.EP ~ rail.lv
+    watchdog.SET1 ~ rail.lv
+    # CRST unconnected: nominal 200ms WDO pulse; NC pin9 left isolated.
+    # SET0 HIGH disables immediately, even during WDO; RESET is stretched below.
+    c_timing = new Part_CL05C121JB5NNNC
+    c_timing.1 ~ watchdog.CWD
+    c_timing.2 ~ rail.lv
+
+    # Schmitt receivers give guaranteed rail levels at the watchdog pins.
+    # Its SET0 VIL is 0.25V; C6 maximum VOL alone is not sufficient evidence.
+    inputs.VCC ~ rail.hv
+    inputs.GND ~ rail.lv
+    inputs.A1 ~ motor_request_n.line
+    inputs.Y1 ~ watchdog.SET0
+    inputs.A2 ~ heartbeat.line
+    inputs.Y2 ~ watchdog.WDI
+    r_request = new UNI_ROYAL_0402WGF1002TCE_package
+    r_request.1 ~ rail.hv
+    r_request.2 ~ motor_request_n.line
+    r_wdi = new UNI_ROYAL_0402WGF1002TCE_package
+    r_wdi.1 ~ rail.hv
+    r_wdi.2 ~ heartbeat.line
+
+    supervisor.VDD ~ rail.hv
+    supervisor.SENSE ~ rail.hv
+    supervisor.GND ~ rail.lv
+    supervisor.MR ~ watchdog.WDO
+    supervisor.RESET ~ reset_n
+    # CT unconnected: 12..28ms reset release delay after MR and SENSE recover.
+    r_wdo = new UNI_ROYAL_0402WGF1002TCE_package
+    r_wdo.1 ~ rail.hv
+    r_wdo.2 ~ watchdog.WDO
+    r_reset = new UNI_ROYAL_0402WGF1002TCE_package
+    r_reset.1 ~ rail.hv
+    r_reset.2 ~ reset_n
+
+    # TI table1: Y = IN2 ? IN0 : IN1. IN0=0 implements RESET && !REQUEST.
+    gate.VCC ~ rail.hv
+    gate.GND ~ rail.lv
+    gate.IN0 ~ rail.lv
+    gate.IN1 ~ reset_n
+    gate.IN2 ~ inputs.Y1
+    gate.Y ~ motor_sleep_n.line
+    r_sleep = new Part_0402WGF1001TCE
+    r_sleep.1 ~ motor_sleep_n.line
+    r_sleep.2 ~ rail.lv
+
+    c_wd = new SAMSUNG_CL05B104KB54PNC_package
+    c_sup = new SAMSUNG_CL05B104KB54PNC_package
+    c_inputs = new SAMSUNG_CL05B104KB54PNC_package
+    c_gate = new SAMSUNG_CL05B104KB54PNC_package
+    c_wd.1 ~ rail.hv
+    c_wd.2 ~ rail.lv
+    c_sup.1 ~ rail.hv
+    c_sup.2 ~ rail.lv
+    c_inputs.1 ~ rail.hv
+    c_inputs.2 ~ rail.lv
+    c_gate.1 ~ rail.hv
+    c_gate.2 ~ rail.lv
+
+module SupervisorTest:
+    """Compile-only harness; no connectors, routing or physical fault tests."""
+    block = new MotorSupervisor

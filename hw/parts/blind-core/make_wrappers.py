@@ -41,6 +41,14 @@ if __name__ == "__main__":
         footprint_source = ROOT / "blind-core.pretty" / (footprint + ".kicad_mod")
         footprint_text = footprint_source.read_text().replace('${KIPRJMOD}/hw/parts/', '${KIPRJMOD}/../../../parts/')
         (ROOT / (footprint + ".kicad_mod")).write_text(footprint_text)
+        if name == "UCM1E221MCL1GS":
+            # Imported vertical pins face away from the capacitor body. Correct
+            # drawing orientation without changing terminal numbers/positions.
+            for unit in children(sym, "symbol"):
+                for pin in children(unit, "pin"):
+                    number = children(pin, "number")[0][1]
+                    children(pin, "at")[0][3] = 270 if number == "1" else 90
+                    children(pin, "length")[0][1] = 3.81
         (ROOT / (stem + ".kicad_sym")).write_text(sx.dumps([lib[0], *lib[1:3], sym]) + "\n")
         pins = []
         for unit in children(sym, "symbol"):

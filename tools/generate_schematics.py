@@ -193,9 +193,9 @@ def main():
                 result.append(n("no_connect", n("at", *point), n("uuid", uid(key))))
                 continue
             # Extend outward from the pin and place the shared net label at the end.
-            outward = math.radians(pa - angle + 180)
+            outward = math.radians(pa + angle + 180)
             end = (round(point[0] + 7.62 * math.cos(outward), 4),
-                   round(point[1] + 7.62 * math.sin(outward), 4))
+                   round(point[1] - 7.62 * math.sin(outward), 4))
             wire(point, end, key)
             net_name = spec["net_names"][component["pads"][number]]
             label(net_name, end, key + ".label", end[0] < point[0] - 0.01)

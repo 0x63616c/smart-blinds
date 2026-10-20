@@ -32,10 +32,19 @@ A green preview result only confirms generation of the documented images.
   independently checked against the atopile PCB graph. Four external-interface ERC findings
   remain explicit. A pinned atopile 0.15.9 frozen build and BOM-linked rating checks also pass
   locally; CI reruns both. It is not a routed board or a complete controller.
-- The separate C6 interface capture now builds with 36 components: buttons, USB data protection,
-  encoder receivers, I2C and current readout. Its watchdog/reset/power-down interfaces remain
-  unresolved and it has not passed whole-circuit ERC/DRC or physical tests. The reset review
-  changed GPIO20/22/23 requests to active low so weak pull-ups agree with OFF.
+- The C6 interface, watchdog/reset gate and motor bridge now compose into a 61-component,
+  207-pin capture with independent boundary checks. The earlier EN capacitor is removed;
+  active-low requests agree with reset pull-ups. Front-button switches and an active-production
+  MCU bulk capacitor replace earlier candidates. Whole-board routing/DRC and physical tests remain open.
+- A second native schematic covers all 49 supervision pins, with two explicit external-power ERC
+  findings. Both native schematics are checked by KiCad netlist export; vertical wire generation
+  and an imported capacitor drawing were corrected without changing PCB connectivity.
+- The 35-component BQ25798 charger capture builds with source/BOM-linked rating checks. USB-PD,
+  protected carrier, regulator and regeneration integration remain separate work.
+- A full motor-disabled Thread/DTLS evaluation target linked successfully; startup hardening is
+  awaiting a fresh CI cross-build. It has no motion endpoint, commissioned credentials or measured
+  peer interoperability. Portable heartbeat policy tests now cover acknowledged arming/edges,
+  fresh control iterations, strict feed intervals and no command replay.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
 - The exact motor listing is identified and partial seller dimensions are recorded. The owner is

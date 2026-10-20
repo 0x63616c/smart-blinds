@@ -1,0 +1,65 @@
+{
+  "scope": "Fixed-network arithmetic tied to source and selected MPNs; no BQ25798 loop or silicon simulation.",
+  "physical_components": 35,
+  "build_bom_checked": true,
+  "ilim_v_range": [
+    1.0419858778625954,
+    1.2395359013327099
+  ],
+  "ilim_command_a_range": [
+    0.1,
+    0.2994198766658873
+  ],
+  "usb_note": "Not proof of 100 mA USB pre-enumeration compliance. Radio/charge stay off; input current and inrush need measurement.",
+  "ntc": {
+    "cold": {
+      "nominal_c": -0.14341797700617412,
+      "resistor_comparator_corners_c": [
+        -2.8816149551023047,
+        2.5222354545508363
+      ],
+      "excludes": "NTC resistance/B tolerance, self-heating and mounting lag"
+    },
+    "warm_suspend_40c": {
+      "nominal_c": 39.83696605938725,
+      "resistor_comparator_corners_c": [
+        38.76901201776734,
+        40.94650685294326
+      ],
+      "excludes": "NTC resistance/B tolerance, self-heating and mounting lag"
+    },
+    "hard_hot": {
+      "nominal_c": 60.348129645244896,
+      "resistor_comparator_corners_c": [
+        59.19483707283963,
+        61.546587856802915
+      ],
+      "excludes": "NTC resistance/B tolerance, self-heating and mounting lag"
+    }
+  },
+  "ntc_open_min_regn_ratio": 0.8494269026518401,
+  "ntc_short_regn_ratio": 0,
+  "inductor_peak_bound_a": 4.388888888888888,
+  "inductor_rms_bound_a": 3.1053186817501253,
+  "inductor_sat_30percent_drop_a": 10,
+  "inductor_rms_40c_rise_rating_a": 7,
+  "inductor_dcr_max_ohm": 0.0175,
+  "inductor_dcr_loss_at_input_limit_w": 0.15750000000000003,
+  "ce_pull_power_w": 0.0027313131313131318,
+  "proposed_charge_target_v": 12.45,
+  "charge_target_plus_accuracy_planning_v": 12.530924999999998,
+  "charge_gpio_contract": "Active LOW, PNP inversion, external pullup; absent 3V3 leaves NFET gate pulled down.",
+  "system_steady_planning_range_v": [
+    8.8,
+    13.2
+  ],
+  "release_gates": [
+    "USB source entitlement, power-off I2C isolation, inrush and reset/detach current-limit handling are external and unfinished.",
+    "PNP/NFET default-off topology reviewed; no worst-case full-temperature leakage/startup bench proof.",
+    "Charger thermistor tolerance, placement and thermal lag; independent MAX17320 protection profile unfinished.",
+    "Charge target 12.45 V is proposed; applying the 12.6 V accuracy test-point to it is a planning assumption.",
+    "Ceramic DC-bias capacitance, converter stability, layout parasitics and thermal behavior not validated.",
+    "Protected carrier and regenerative clamp are separate unfinished blocks.",
+    "Standalone PCB is unrouted without fabrication outline; imported footprint geometry is not qualified."
+  ]
+}

@@ -1,0 +1,306 @@
+{
+  "status": "Original circuit capture; fixed-network arithmetic, not hardware validation",
+  "limits": {
+    "source_min_v": 5,
+    "source_max_v": 20,
+    "battery_min_v": 9,
+    "battery_max_v": 12.6,
+    "system_min_v": 8.8,
+    "system_max_v": 13.2,
+    "logic_nominal_v": 3.3,
+    "logic_tolerance": 0.03,
+    "input_limit_max_a": 3,
+    "charge_limit_a": 1,
+    "charge_target_v": 12.45,
+    "ceramic_voltage_derating": 2,
+    "resistor_power_derating": 2
+  },
+  "parts": {
+    "BQ25798RQMR": {
+      "lcsc": "C2876593",
+      "wrapper": "../../parts/blind-core/BQ25798RQMR.ato",
+      "instances": [
+        "ic"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/bq25798.pdf",
+      "revision": "SLUSDV2C, June 2026",
+      "input_recommended_min_v": 3.6,
+      "input_recommended_max_v": 24,
+      "battery_abs_max_v": 20,
+      "system_abs_max_v": 20,
+      "regn_min_v": 4.6,
+      "regn_max_v": 5.2,
+      "ilim_leak_a": 1.5e-06,
+      "ce_leak_a": 1e-06,
+      "ce_high_min_v": 1.3,
+      "ce_low_max_v": 0.4,
+      "program_3s_750khz_ohm": 13700,
+      "frequency_nominal_hz": 750000,
+      "frequency_min_planning_factor": 0.9,
+      "charge_voltage_error_test_12p6v_upper": 0.0065,
+      "ntc_threshold_ratios": {
+        "cold": [
+          0.724,
+          0.733,
+          0.742
+        ],
+        "warm_suspend_40c": [
+          0.479,
+          0.484,
+          0.489
+        ],
+        "hard_hot": [
+          0.337,
+          0.342,
+          0.347
+        ]
+      }
+    },
+    "CYA0630-2.2UH": {
+      "lcsc": "C5189746",
+      "wrapper": "../../parts/blind-power/CYA0630_2_2UH.ato",
+      "instances": [
+        "inductor"
+      ],
+      "inductance_h": 2.2e-06,
+      "tolerance": 0.2,
+      "dcr_max_ohm": 0.0175,
+      "saturation_a_30_percent_drop": 10,
+      "rms_a_40c_rise": 7,
+      "source": "https://atta.szlcsc.com/upload/public/pdf/source/20250922/76986EE95556632A8212F631091E723A.pdf",
+      "evidence": "SHOUHAN CYA0630 2R2M row; 25 C test; saturation is 30 percent inductance drop."
+    },
+    "0402B473K500NT": {
+      "lcsc": "C82219",
+      "wrapper": "../../parts/blind-power/0402B473K500NT.ato",
+      "instances": [
+        "c_boot1",
+        "c_boot2",
+        "c_batp"
+      ],
+      "capacitance_f": 4.7e-08,
+      "tolerance": 0.1,
+      "max_voltage_v": 50,
+      "dielectric": "X7R",
+      "source": "https://fhcomp.com/en/product_info/?prod_code=0402B473K500NT"
+    },
+    "0402B102K500NT": {
+      "lcsc": "C1523",
+      "wrapper": "../../parts/blind-power/0402B102K500NT.ato",
+      "instances": [
+        "c_sdrv"
+      ],
+      "capacitance_f": 1e-09,
+      "tolerance": 0.1,
+      "max_voltage_v": 50,
+      "dielectric": "X7R",
+      "source": "https://fhcomp.com/en/product_info/?prod_code=0402B102K500NT"
+    },
+    "RC0402FR-0713K7L": {
+      "lcsc": "C274888",
+      "wrapper": "../../parts/blind-power/RC0402FR_0713K7L.ato",
+      "instances": [
+        "r_prog"
+      ],
+      "resistance_ohm": 13700,
+      "tolerance": 0.01,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.yageogroup.com/component-documentation/download/specsheet/RC0402FR-0713K7L"
+    },
+    "0402WGF1002TCE": {
+      "lcsc": "C25744",
+      "wrapper": "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato",
+      "instances": [
+        "r_ce",
+        "r_permission_base",
+        "r_permission_off",
+        "r_charge_off",
+        "r_ilim_bottom"
+      ],
+      "resistance_ohm": 10000,
+      "tolerance": 0.01,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"
+    },
+    "AO3400A": {
+      "lcsc": "C20917",
+      "wrapper": "../../parts/blind-power/AO3400A.ato",
+      "instances": [
+        "q_charge"
+      ],
+      "vds_max_v": 30,
+      "vgs_abs_max_v": 12,
+      "rds_max_ohm_at2p5v": 0.048,
+      "source": "https://www.aosmd.com/sites/default/files/res/datasheets/AO3400A.pdf"
+    },
+    "MMBT3906LT1G": {
+      "lcsc": "C53444",
+      "wrapper": "../../parts/blind-power/MMBT3906LT1G.ato",
+      "instances": [
+        "q_permission"
+      ],
+      "vce_abs_max_v": 40,
+      "collector_max_a": 0.2,
+      "source": "https://www.onsemi.com/pdf/datasheet/mmbt3906lt1-d.pdf",
+      "evidence": "PNP 1=B, 2=E, 3=C. The 10 mA saturation specification is not claimed as a guaranteed sub-mA bound."
+    },
+    "0402WGF3302TCE": {
+      "lcsc": "C25779",
+      "wrapper": "../../parts/blind-power/0402WGF3302TCE.ato",
+      "instances": [
+        "r_ilim_top"
+      ],
+      "resistance_ohm": 33000,
+      "tolerance": 0.01,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"
+    },
+    "0402WGF5231TCE": {
+      "lcsc": "C25907",
+      "wrapper": "../../parts/blind-power/0402WGF5231TCE.ato",
+      "instances": [
+        "r_ts_top"
+      ],
+      "resistance_ohm": 5230,
+      "tolerance": 0.01,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"
+    },
+    "0402WGF3012TCE": {
+      "lcsc": "C29402",
+      "wrapper": "../../parts/blind-power/0402WGF3012TCE.ato",
+      "instances": [
+        "r_ts_bottom"
+      ],
+      "resistance_ohm": 30100,
+      "tolerance": 0.01,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"
+    },
+    "CL05B104KB54PNC": {
+      "lcsc": "C307331",
+      "wrapper": "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato",
+      "instances": [
+        "c_ts",
+        "c_input_fast",
+        "c_pmid_fast",
+        "c_sys_fast"
+      ],
+      "capacitance_f": 1e-07,
+      "tolerance": 0.1,
+      "max_voltage_v": 50,
+      "dielectric": "X7R",
+      "source": "https://product.samsungsem.com/mlcc/CL05B104KB54PN.do"
+    },
+    "0402WGF1000TCE": {
+      "lcsc": "C25076",
+      "wrapper": "../../parts/blind-power/0402WGF1000TCE.ato",
+      "instances": [
+        "r_batp"
+      ],
+      "resistance_ohm": 100,
+      "tolerance": 0.01,
+      "max_power_w": 0.0625,
+      "max_voltage_v": 50,
+      "source": "https://www.royalohm.com/assets/pdf/products/smd/1.pdf"
+    },
+    "CL31A106KBHNNNE": {
+      "lcsc": "C13585",
+      "wrapper": "../../parts/blind-power/SAMSUNG_CL31A106KBHNNNE.ato",
+      "instances": [
+        "c_input1",
+        "c_input2",
+        "c_pmid1",
+        "c_pmid2",
+        "c_pmid3",
+        "c_sys1",
+        "c_sys2",
+        "c_sys3",
+        "c_sys4",
+        "c_sys5",
+        "c_bat1",
+        "c_bat2"
+      ],
+      "capacitance_f": 1e-05,
+      "tolerance": 0.1,
+      "max_voltage_v": 50,
+      "dielectric": "X5R",
+      "source": "https://product.samsungsem.com/mlcc/CL31A106KBHNNN.do"
+    },
+    "CL21A475KAQNNNE": {
+      "lcsc": "C1779",
+      "wrapper": "../../parts/blind-power/CL21A475KAQNNNE.ato",
+      "instances": [
+        "c_regn"
+      ],
+      "capacitance_f": 4.7e-06,
+      "tolerance": 0.1,
+      "max_voltage_v": 25,
+      "dielectric": "X5R",
+      "source": "https://product.samsungsem.com/mlcc/CL21A475KAQNNN.do",
+      "lifecycle": "Mass Production, checked 2026-10-19"
+    }
+  },
+  "external_ntc": {
+    "mpn": "103AT-2",
+    "nominal_ohm": 10000,
+    "b_25_85_k": 3435,
+    "source": "https://www.semitec-global.com/uploads/2022/01/P12-13-AT-Thermistor.pdf",
+    "nominal_table_c_ohm": [
+      [
+        -10,
+        42470
+      ],
+      [
+        0,
+        27280
+      ],
+      [
+        10,
+        17960
+      ],
+      [
+        20,
+        12090
+      ],
+      [
+        25,
+        10000
+      ],
+      [
+        30,
+        8313
+      ],
+      [
+        40,
+        5827
+      ],
+      [
+        50,
+        4160
+      ],
+      [
+        60,
+        3020
+      ],
+      [
+        70,
+        2228
+      ]
+    ]
+  },
+  "unresolved": [
+    "USB source entitlement, power-off I2C isolation, inrush and reset/detach current-limit handling are external and unfinished.",
+    "PNP/NFET default-off topology reviewed; no worst-case full-temperature leakage/startup bench proof.",
+    "Charger thermistor tolerance, placement and thermal lag; independent MAX17320 protection profile unfinished.",
+    "Charge target 12.45 V is proposed; applying the 12.6 V accuracy test-point to it is a planning assumption.",
+    "Ceramic DC-bias capacitance, converter stability, layout parasitics and thermal behavior not validated.",
+    "Protected carrier and regenerative clamp are separate unfinished blocks.",
+    "Standalone PCB is unrouted without fabrication outline; imported footprint geometry is not qualified."
+  ]
+}

@@ -1,0 +1,14 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TS_1081S_AC01326:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="XUNPU", partnumber="TS-1081S-AC01326", footprint="SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod", symbol="TS_1081S_AC01326.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C720493", manufacturer="XUNPU", partno="TS-1081S-AC01326">
+    trait has_designator_prefix<prefix="SW">
+
+    pin 3
+    pin 4
+    pin 2
+    pin 1

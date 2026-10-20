@@ -1,0 +1,32 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TPS3430WDRCR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS3430WDRCR", footprint="VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod", symbol="TPS3430WDRCR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2870545", manufacturer="Texas Instruments", partno="TPS3430WDRCR">
+    trait has_designator_prefix<prefix="U">
+
+    signal VDD1
+    VDD1 ~ pin 1
+    signal CWD
+    CWD ~ pin 2
+    signal SET0
+    SET0 ~ pin 3
+    signal CRST
+    CRST ~ pin 4
+    signal GND
+    GND ~ pin 5
+    signal SET1
+    SET1 ~ pin 6
+    signal WDI
+    WDI ~ pin 7
+    signal WDO
+    WDO ~ pin 8
+    signal NC
+    NC ~ pin 9
+    signal VDD2
+    VDD2 ~ pin 10
+    signal EP
+    EP ~ pin 11

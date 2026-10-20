@@ -1,0 +1,16 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_MMBT3906LT1G:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="onsemi", partnumber="MMBT3906LT1G", footprint="SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod", symbol="MMBT3906LT1G.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C53444", manufacturer="onsemi", partno="MMBT3906LT1G">
+    trait has_designator_prefix<prefix="Q">
+
+    signal B
+    B ~ pin 1
+    signal E
+    E ~ pin 2
+    signal C
+    C ~ pin 3

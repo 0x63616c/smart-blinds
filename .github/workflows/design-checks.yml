@@ -3,9 +3,9 @@ name: Design checks
 on:
   push:
     branches: [main]
-    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-control-io/**', 'hw/boards/blind-io/**', 'hw/layouts/blind-io/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
+    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-control-io/**', 'hw/boards/blind-io/**', 'hw/layouts/blind-io/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'hw/boards/blind-supervisor/**', 'hw/layouts/blind-supervisor/**', 'hw/parts/blind-supervisor/**', 'hw/boards/blind-assembly/**', 'hw/layouts/blind-assembly/**', 'hw/parts/blind-power/**', 'hw/boards/blind-charger/**', 'hw/layouts/blind-charger/**', 'hw/sim/blind-charge/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
   pull_request:
-    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-control-io/**', 'hw/boards/blind-io/**', 'hw/layouts/blind-io/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
+    paths: ['firmware/**', 'integrations/**', 'cad/source/**', 'cad/parameters/**', 'cad/build*.py', 'hw/sim/blind-control/**', 'hw/schematics/**', 'hw/layouts/blind-controller/**', 'hw/parts/blind-core/**', 'hw/parts/blind-control-io/**', 'hw/boards/blind-io/**', 'hw/layouts/blind-io/**', 'hw/parts/blind-controller-common/**', 'hw/boards/blind-controller/**', 'hw/boards/blind-supervisor/**', 'hw/layouts/blind-supervisor/**', 'hw/parts/blind-supervisor/**', 'hw/boards/blind-assembly/**', 'hw/layouts/blind-assembly/**', 'hw/parts/blind-power/**', 'hw/boards/blind-charger/**', 'hw/layouts/blind-charger/**', 'hw/sim/blind-charge/**', 'tools/verify_motor_build.py', 'tools/*schematic*.py', 'tools/kicad_sexpr.py', 'docs/electrical/planning-profile.json', 'docs/measurements.json', '.github/workflows/design-checks.yml']
   workflow_dispatch:
 
 permissions:
@@ -28,6 +28,11 @@ jobs:
         run: python3 -m unittest discover -s integrations/bridge -p 'test_*.py' -v
       - name: Test gauge readback and offline profile calculations
         run: python3 -m unittest discover -s firmware/tools -p 'test_*.py'
+      - name: Test bounded sleepy-radio wake policy
+        run: |
+          cmake -S firmware/radio -B work/radio-tests
+          cmake --build work/radio-tests
+          ctest --test-dir work/radio-tests --output-on-failure
       - name: Check CAD parameter consistency
         run: |
           python3 cad/build.py --check-parameters
@@ -67,9 +72,24 @@ jobs:
         run: python tools/verify_motor_build.py
       - name: Compile incomplete controller interface capture
         run: ato build hw/boards/blind-io -b controller-test --frozen -v
+      - name: Compile and audit independent motor supervision capture
+        run: |
+          ato build hw/boards/blind-supervisor -b supervisor-test --frozen -v
+          python hw/boards/blind-supervisor/check_supervisor.py
+          python -m unittest discover -s hw/boards/blind-supervisor -p 'test_*.py' -v
+      - name: Compile charger capture and verify selected-part ratings
+        run: |
+          ato build hw/boards/blind-charger -b charger-test --frozen -v
+          python hw/sim/blind-charge/checks.py
+      - name: Compile and audit controller, supervisor and motor integration
+        run: |
+          ato build hw/boards/blind-assembly -b controller-test --frozen -v
+          python hw/boards/blind-assembly/check_assembly.py
+          python -m unittest discover -s hw/boards/blind-assembly -p 'test_*.py' -v
       - name: Verify schematic source, physical graph and documented ERC boundaries
         run: |
           python3 tools/generate_schematics.py hw/schematics/blind-controller/motor-test.layout.json --check
+          python3 tools/generate_schematics.py hw/schematics/blind-supervisor/supervisor-test.layout.json --check
           python3 -m unittest discover -s tools -p test_schematic_graph.py -v
 
   electrical-assumptions:
@@ -109,5 +129,28 @@ jobs:
             work/c6-build/flasher_args.json
             work/c6-build/bootloader/bootloader.bin
             work/c6-build/partition_table/partition-table.bin
+          if-no-files-found: error
+          retention-days: 14
+
+  embedded-thread:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cross-build motor-disabled C6 Thread and DTLS evaluation
+        run: |
+          docker run --rm -v "$PWD:/project" -w /project/firmware/esp-idf-thread \
+            espressif/idf:v5.5.4@sha256:b9f2d6ea1c19e0c9f7959bdb74a9e3c775642f9d0f3b841937c5fa3363db892b \
+            idf.py -B /project/work/c6-thread-build set-target esp32c6 build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: motor-disabled-c6-thread-evaluation
+          path: |
+            work/c6-thread-build/*.bin
+            work/c6-thread-build/*.elf
+            work/c6-thread-build/*.map
+            work/c6-thread-build/flasher_args.json
+            work/c6-thread-build/bootloader/bootloader.bin
+            work/c6-thread-build/partition_table/partition-table.bin
           if-no-files-found: error
           retention-days: 14

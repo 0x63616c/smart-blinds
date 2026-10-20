@@ -1,0 +1,39 @@
+{
+  "status": "block_graph_verified_not_complete_controller",
+  "pin_connections_checked": 49,
+  "physical_components": 14,
+  "erc_clean": false,
+  "erc_findings": {
+    "power_pin_not_driven": 2
+  },
+  "erc_affected_items": {
+    "power_pin_not_driven": [
+      "Symbol U1 Pin 2 [GND, Power input, Line]",
+      "Symbol U1 Pin 5 [VCC, Power input, Line]"
+    ]
+  },
+  "erc_scope": "Isolated block needs external 3V3 and ground. No power flags or ERC exclusions; no full-controller or physical cutoff claim.",
+  "source_sha256": {
+    "hw/layouts/blind-supervisor/supervisor-test/fp-lib-table": "86831663abb244dcbded63e772dec9e1eccd8e248fd9103c323edc742b7eff59",
+    "hw/layouts/blind-supervisor/supervisor-test/supervisor-test.kicad_pcb": "6b8282852f7fb6316c2f16d713027a8b2034be9a3836591906d4fdefada8ccb9",
+    "hw/parts/blind-control-io/0402WGF1001TCE.kicad_sym": "a4c3643679774d1d34924509b61e529c2ecdbb77d45d8b0642c280dbef633a9d",
+    "hw/parts/blind-control-io/R0402.kicad_mod": "3499f9017972c1e9b8a23188427d5c1bfbf31ac56474099aa37992f5d3aff816",
+    "hw/parts/blind-control-io/SN74LVC2G17DCKR.kicad_sym": "1874d532b93895ddb95c20a8459e897a74fef3a02f66ff9d87224dc565f40e58",
+    "hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "bf3653cb10cd497bb89e5a159613d257b32cbb60970d10021149a26ac0ce694b",
+    "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym": "81c087f94ceab9f615ba1aa036628532fbae2ff8c6cfc259e8361c72c016ccde",
+    "hw/parts/blind-controller-common/C0402.kicad_mod": "3ccf0309de5b72a57c2ebb81ff69201ddadd3ad0bcd5964a4d47a1e28bea0732",
+    "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym": "a6f837f69fafd8ed9ca31684a2e001d76e2bf3e35819f4b2858f7eb27127a83c",
+    "hw/parts/blind-controller-common/R0402.kicad_mod": "c47e3e203d4ad99b5e7194b9c283226505d323e35237c1461fde5a8fb8287e7e",
+    "hw/parts/blind-supervisor/C0402.kicad_mod": "0a21ccc6df0e8f4f5da23a9fd3dede16fe84fa63593b77f3e30f56ed087d952b",
+    "hw/parts/blind-supervisor/CL05C121JB5NNNC.kicad_sym": "245d05b4116521569697ca9ab06879c1204f10bc5d4e99b50322fef01422ff5a",
+    "hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "49f64c384cbf7fa64a36cc6450d774c234be555acbbe7b5136a64f0659cf6ae5",
+    "hw/parts/blind-supervisor/SN74AUP1G97DCKR.kicad_sym": "b9787f1c42f088b9a1be93aad8aaae934cb2bc9b84b5f0993bbee58b45d91cf5",
+    "hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": "a86a131e16cc07518367f1e52df861a24efc7b47ad8607f70b2c2c78a112351c",
+    "hw/parts/blind-supervisor/TPS3430WDRCR.kicad_sym": "0572c5494968a8440b3548a702fe255b3e42eee4f98208080d456c38b7c7234b",
+    "hw/parts/blind-supervisor/TPS3808G33DBVR.kicad_sym": "bc6aaba4eee9cde99f4325c3012f7d29556c26d1762ab4ec0d1ffeecee9ee917",
+    "hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": "1dd8e14672b1e6fbff9ba1ae7f5ac50af4604bb80d4b1db4e5facb21f1868b26",
+    "hw/schematics/blind-supervisor/supervisor-test.layout.json": "308e5e6ee828e34748e2c764cac87b860fc260abecb5ffd7636a9a8ef233cb01",
+    "tools/generate_schematics.py": "64b39695c07923bcdb5ad3252b8ff6f98560ec6f4df2929eb29fd64e42fd118e",
+    "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583"
+  }
+}

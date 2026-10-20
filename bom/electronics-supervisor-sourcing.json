@@ -1,0 +1,477 @@
+{
+  "schema": 1,
+  "status": "candidate-parts-not-orderable-bom",
+  "note": "Public JLC pages. Catalog eligibility and supply are provisional; no purchase or stock reservation. TPS3431 variants and G30 supervisor are comparison-only. G30 threshold2.79V is below the C6 supply minimum. LVC1G97 is comparison-only; AUP1G97 keeps logic operation specified below the motor sleep-input high threshold.",
+  "selected": [
+    "TPS3430WDRCR",
+    "TPS3808G33DBVR",
+    "SN74AUP1G97DCKR",
+    "CL05C121JB5NNNC"
+  ],
+  "parts": [
+    {
+      "mpn": "TPS3431SDRBR",
+      "lcsc": "C702145",
+      "url": "https://jlcpcb.com/partdetail/TPS3431SDRBR/C702145",
+      "observed_utc": "2026-10-20T01:36:26+00:00",
+      "currency": "USD",
+      "metadata": {
+        "componentModelEn": "TPS3431SDRBR",
+        "componentLibraryType": "expand",
+        "assemblyMode": "smtWeld",
+        "assemblyComponentFlag": false,
+        "xrayFlag": false,
+        "componentProductType": 0,
+        "fixtureFlag": false,
+        "specialComponentFee": 0,
+        "overseasStockCount": 0,
+        "canPresaleNumber": 0,
+        "preMinPurchaseNum": 5,
+        "leastPatchNumber": 0,
+        "lossNumber": 0,
+        "noBuyReason": null,
+        "initialPrice": 2.1406
+      },
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 9,
+          "productPrice": 2.1406
+        },
+        {
+          "startNumber": 10,
+          "endNumber": 29,
+          "productPrice": 2.1014
+        },
+        {
+          "startNumber": 30,
+          "endNumber": 99,
+          "productPrice": 2.0752
+        },
+        {
+          "startNumber": 100,
+          "endNumber": 101,
+          "productPrice": 2.0491
+        },
+        {
+          "startNumber": 102,
+          "endNumber": 103,
+          "productPrice": 2.0491
+        },
+        {
+          "startNumber": 104,
+          "endNumber": -1,
+          "productPrice": 2.0491
+        }
+      ],
+      "pcba_type": "Economic and Standard",
+      "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+    },
+    {
+      "mpn": "SN74LVC1G97DCKR",
+      "lcsc": "C30743",
+      "url": "https://jlcpcb.com/partdetail/SN74LVC1G97DCKR/C30743",
+      "observed_utc": "2026-10-20T01:36:26+00:00",
+      "currency": "USD",
+      "metadata": {
+        "componentModelEn": "SN74LVC1G97DCKR",
+        "overseasStockCount": 27819,
+        "canPresaleNumber": 27733,
+        "preMinPurchaseNum": 70,
+        "leastPatchNumber": 5,
+        "lossNumber": 0,
+        "noBuyReason": null,
+        "initialPrice": 0.1657,
+        "componentLibraryType": "expand",
+        "assemblyMode": "smtWeld",
+        "assemblyComponentFlag": false,
+        "xrayFlag": false,
+        "componentProductType": 0,
+        "fixtureFlag": false,
+        "specialComponentFee": 0
+      },
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 49,
+          "productPrice": 0.1657
+        },
+        {
+          "startNumber": 50,
+          "endNumber": 149,
+          "productPrice": 0.1304
+        },
+        {
+          "startNumber": 150,
+          "endNumber": 499,
+          "productPrice": 0.1152
+        },
+        {
+          "startNumber": 500,
+          "endNumber": 2999,
+          "productPrice": 0.0963
+        },
+        {
+          "startNumber": 3000,
+          "endNumber": 5999,
+          "productPrice": 0.0858
+        },
+        {
+          "startNumber": 6000,
+          "endNumber": -1,
+          "productPrice": 0.0808
+        }
+      ],
+      "pcba_type": "Economic and Standard",
+      "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+    },
+    {
+      "mpn": "TPS3808G30DBVR",
+      "lcsc": "C189211",
+      "url": "https://jlcpcb.com/partdetail/TPS3808G30DBVR/C189211",
+      "observed_utc": "2026-10-20T01:36:26+00:00",
+      "currency": "USD",
+      "metadata": {
+        "componentModelEn": "TPS3808G30DBVR",
+        "overseasStockCount": 16723,
+        "canPresaleNumber": 16712,
+        "preMinPurchaseNum": 13,
+        "leastPatchNumber": 2,
+        "lossNumber": 0,
+        "noBuyReason": null,
+        "initialPrice": 0.8971,
+        "componentLibraryType": "expand",
+        "assemblyMode": "smtWeld",
+        "assemblyComponentFlag": false,
+        "xrayFlag": false,
+        "componentProductType": 0,
+        "fixtureFlag": false,
+        "specialComponentFee": 0
+      },
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 9,
+          "productPrice": 0.8971
+        },
+        {
+          "startNumber": 10,
+          "endNumber": 29,
+          "productPrice": 0.7288
+        },
+        {
+          "startNumber": 30,
+          "endNumber": 99,
+          "productPrice": 0.6455
+        },
+        {
+          "startNumber": 100,
+          "endNumber": 499,
+          "productPrice": 0.5229
+        },
+        {
+          "startNumber": 500,
+          "endNumber": 999,
+          "productPrice": 0.4739
+        },
+        {
+          "startNumber": 1000,
+          "endNumber": -1,
+          "productPrice": 0.4478
+        }
+      ],
+      "pcba_type": "Economic and Standard",
+      "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+    },
+    {
+      "mpn": "TPS3430WDRCR",
+      "lcsc": "C2870545",
+      "url": "https://jlcpcb.com/partdetail/TPS3430WDRCR/C2870545",
+      "observed_utc": "2026-10-20T01:36:50+00:00",
+      "currency": "USD",
+      "metadata": {
+        "componentModelEn": "TPS3430WDRCR",
+        "overseasStockCount": 729,
+        "canPresaleNumber": 703,
+        "preMinPurchaseNum": 6,
+        "leastPatchNumber": 0,
+        "lossNumber": 0,
+        "noBuyReason": null,
+        "initialPrice": 1.5932,
+        "componentLibraryType": "expand",
+        "assemblyMode": "smtWeld",
+        "assemblyComponentFlag": false,
+        "xrayFlag": false,
+        "componentProductType": 0,
+        "fixtureFlag": false,
+        "specialComponentFee": 0
+      },
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 9,
+          "productPrice": 1.5932
+        },
+        {
+          "startNumber": 10,
+          "endNumber": 29,
+          "productPrice": 1.4069
+        },
+        {
+          "startNumber": 30,
+          "endNumber": 99,
+          "productPrice": 1.2746
+        },
+        {
+          "startNumber": 100,
+          "endNumber": 499,
+          "productPrice": 1.1537
+        },
+        {
+          "startNumber": 500,
+          "endNumber": 999,
+          "productPrice": 1.0965
+        },
+        {
+          "startNumber": 1000,
+          "endNumber": -1,
+          "productPrice": 1.0752
+        }
+      ],
+      "pcba_type": "Economic and Standard",
+      "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+    },
+    {
+      "mpn": "TPS3808G33DBVR",
+      "lcsc": "C43698",
+      "url": "https://jlcpcb.com/partdetail/TPS3808G33DBVR/C43698",
+      "observed_utc": "2026-10-20T01:36:50+00:00",
+      "currency": "USD",
+      "metadata": {
+        "componentModelEn": "TPS3808G33DBVR",
+        "overseasStockCount": 49057,
+        "canPresaleNumber": 48897,
+        "preMinPurchaseNum": 23,
+        "leastPatchNumber": 5,
+        "lossNumber": 0,
+        "noBuyReason": null,
+        "initialPrice": 0.3968,
+        "componentLibraryType": "expand",
+        "assemblyMode": "smtWeld",
+        "assemblyComponentFlag": false,
+        "xrayFlag": false,
+        "componentProductType": 0,
+        "fixtureFlag": false,
+        "specialComponentFee": 0
+      },
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 49,
+          "productPrice": 0.3968
+        },
+        {
+          "startNumber": 50,
+          "endNumber": 149,
+          "productPrice": 0.3035
+        },
+        {
+          "startNumber": 150,
+          "endNumber": 499,
+          "productPrice": 0.2581
+        },
+        {
+          "startNumber": 500,
+          "endNumber": 2999,
+          "productPrice": 0.1924
+        },
+        {
+          "startNumber": 3000,
+          "endNumber": 5999,
+          "productPrice": 0.1813
+        },
+        {
+          "startNumber": 6000,
+          "endNumber": -1,
+          "productPrice": 0.1746
+        }
+      ],
+      "pcba_type": "Economic and Standard",
+      "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+    },
+    {
+      "mpn": "CL05C121JB5NNNC",
+      "lcsc": "C307442",
+      "url": "https://jlcpcb.com/partdetail/CL05C121JB5NNNC/C307442",
+      "observed_utc": "2026-10-20T01:36:50+00:00",
+      "currency": "USD",
+      "metadata": {
+        "componentModelEn": "CL05C121JB5NNNC",
+        "overseasStockCount": 59093,
+        "canPresaleNumber": 58714,
+        "preMinPurchaseNum": 772,
+        "leastPatchNumber": 20,
+        "lossNumber": 10,
+        "noBuyReason": null,
+        "initialPrice": 0.0141,
+        "componentLibraryType": "expand",
+        "assemblyMode": "smtWeld",
+        "assemblyComponentFlag": false,
+        "xrayFlag": false,
+        "componentProductType": 0,
+        "fixtureFlag": false,
+        "specialComponentFee": 0
+      },
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 499,
+          "productPrice": 0.0141
+        },
+        {
+          "startNumber": 500,
+          "endNumber": 1499,
+          "productPrice": 0.0117
+        },
+        {
+          "startNumber": 1500,
+          "endNumber": 9999,
+          "productPrice": 0.0103
+        },
+        {
+          "startNumber": 10000,
+          "endNumber": 19999,
+          "productPrice": 0.0095
+        },
+        {
+          "startNumber": 20000,
+          "endNumber": 49999,
+          "productPrice": 0.0088
+        },
+        {
+          "startNumber": 50000,
+          "endNumber": -1,
+          "productPrice": 0.0084
+        }
+      ],
+      "pcba_type": "Economic and Standard",
+      "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+    },
+    {
+      "mpn": "TPS3431SQDRBRQ1",
+      "lcsc": "C2878091",
+      "url": "https://jlcpcb.com/partdetail/TPS3431SQDRBRQ1/C2878091",
+      "observed_utc": "2026-10-20T01:37:06+00:00",
+      "currency": "USD",
+      "metadata": {
+        "componentModelEn": "TPS3431SQDRBRQ1",
+        "componentLibraryType": "expand",
+        "assemblyMode": "smtWeld",
+        "assemblyComponentFlag": false,
+        "xrayFlag": false,
+        "componentProductType": 0,
+        "fixtureFlag": false,
+        "specialComponentFee": 0,
+        "overseasStockCount": 1,
+        "canPresaleNumber": 0,
+        "preMinPurchaseNum": 3,
+        "leastPatchNumber": 0,
+        "lossNumber": 0,
+        "noBuyReason": null,
+        "initialPrice": 3.7093
+      },
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 9,
+          "productPrice": 3.7093
+        },
+        {
+          "startNumber": 10,
+          "endNumber": 29,
+          "productPrice": 3.2713
+        },
+        {
+          "startNumber": 30,
+          "endNumber": 99,
+          "productPrice": 3.0491
+        },
+        {
+          "startNumber": 100,
+          "endNumber": 499,
+          "productPrice": 2.7501
+        },
+        {
+          "startNumber": 500,
+          "endNumber": 999,
+          "productPrice": 2.6422
+        },
+        {
+          "startNumber": 1000,
+          "endNumber": -1,
+          "productPrice": 2.5965
+        }
+      ],
+      "pcba_type": "Economic and Standard",
+      "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+    },
+    {
+      "mpn": "SN74AUP1G97DCKR",
+      "lcsc": "C2682139",
+      "url": "https://jlcpcb.com/partdetail/SN74AUP1G97DCKR/C2682139",
+      "observed_utc": "2026-10-20T01:59:14+00:00",
+      "currency": "USD",
+      "metadata": {
+        "componentModelEn": "SN74AUP1G97DCKR",
+        "overseasStockCount": 2978,
+        "canPresaleNumber": 2978,
+        "preMinPurchaseNum": 41,
+        "leastPatchNumber": 0,
+        "lossNumber": 0,
+        "noBuyReason": null,
+        "initialPrice": 0.2205,
+        "componentLibraryType": "expand",
+        "assemblyMode": "smtWeld",
+        "assemblyComponentFlag": false,
+        "xrayFlag": false,
+        "componentProductType": 0,
+        "fixtureFlag": false,
+        "specialComponentFee": 0
+      },
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 49,
+          "productPrice": 0.2205
+        },
+        {
+          "startNumber": 50,
+          "endNumber": 149,
+          "productPrice": 0.1832
+        },
+        {
+          "startNumber": 150,
+          "endNumber": 499,
+          "productPrice": 0.1673
+        },
+        {
+          "startNumber": 500,
+          "endNumber": 2999,
+          "productPrice": 0.1474
+        },
+        {
+          "startNumber": 3000,
+          "endNumber": 5999,
+          "productPrice": 0.1385
+        },
+        {
+          "startNumber": 6000,
+          "endNumber": -1,
+          "productPrice": 0.1332
+        }
+      ],
+      "pcba_type": "Economic and Standard",
+      "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+    }
+  ]
+}

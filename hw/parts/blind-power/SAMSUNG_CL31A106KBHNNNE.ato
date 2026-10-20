@@ -1,0 +1,15 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component SAMSUNG_CL31A106KBHNNNE_package:
+    """10uF (106) ±10% 50V"""
+
+
+    trait is_atomic_part<manufacturer="SAMSUNG", partnumber="CL31A106KBHNNNE", footprint="C1206.kicad_mod", symbol="CL31A106KBHNNNE.kicad_sym", model="C1206_L3.2-W1.6-H1.3.step">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C13585", manufacturer="SAMSUNG", partno="CL31A106KBHNNNE">
+    trait has_designator_prefix<prefix="C">
+
+    # pins
+    pin 1
+    pin 2

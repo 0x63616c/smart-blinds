@@ -77,6 +77,18 @@
       "collapsed": true
     },
     {
+      "id": "supervisor-schematic",
+      "kind": "schematic",
+      "title": "Motor cutoff and reset \u2014 native KiCad circuit study",
+      "source": "hw/schematics/blind-supervisor/supervisor-test.kicad_sch",
+      "dependencies": [
+        "hw/schematics/blind-supervisor/supervisor-test.layout.json",
+        "hw/schematics/blind-supervisor/supervisor-test.verification.json"
+      ],
+      "role": "Four ICs and ten passive parts. All49 physical pin connections checked against the compiled circuit; two explicit external-power ERC findings. Physical cutoff and full-board qualification remain open.",
+      "collapsed": true
+    },
+    {
       "id": "compact-closed",
       "kind": "openscad",
       "title": "Compact enclosure \u2014 provisional exterior",

@@ -1,0 +1,197 @@
+import ElectricPower
+import ElectricLogic
+import Electrical
+from "../../parts/blind-core/BQ25798RQMR.ato" import Part_BQ25798RQMR
+from "../../parts/blind-power/0402WGF3302TCE.ato" import Part_0402WGF3302TCE
+from "../../parts/blind-power/MMBT3906LT1G.ato" import Part_MMBT3906LT1G
+from "../../parts/blind-power/AO3400A.ato" import Part_AO3400A
+from "../../parts/blind-power/CYA0630_2_2UH.ato" import Part_CYA0630_2_2UH
+from "../../parts/blind-power/CL21A475KAQNNNE.ato" import Part_CL21A475KAQNNNE
+from "../../parts/blind-power/0402B473K500NT.ato" import Part_0402B473K500NT
+from "../../parts/blind-power/0402B102K500NT.ato" import Part_0402B102K500NT
+from "../../parts/blind-power/0402WGF1000TCE.ato" import Part_0402WGF1000TCE
+from "../../parts/blind-power/0402WGF5231TCE.ato" import Part_0402WGF5231TCE
+from "../../parts/blind-power/0402WGF3012TCE.ato" import Part_0402WGF3012TCE
+from "../../parts/blind-power/RC0402FR_0713K7L.ato" import Part_RC0402FR_0713K7L
+from "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package
+from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
+from "../../parts/blind-power/SAMSUNG_CL31A106KBHNNNE.ato" import SAMSUNG_CL31A106KBHNNNE_package
+
+module Charger3S:
+    """UNVERIFIED fresh BQ25798 charger/power path, 3S/750 kHz/2.2 uH.
+
+    Host must hold allow_charge_n HIGH until source entitlement, MAX17320 pack
+    readiness, NTC limits and charger settings have been checked/read back.
+    Input is AFTER a protected PD-controlled load switch, not raw USB VBUS.
+    I2C address 0x6B. Parent provides pullups on 3.3 V SDA/SCL/INT/STAT.
+    No external ship-FET. Motor connects to protected battery, not SYS.
+    Independently protected pack and regeneration clamp remain external.
+    Pin and bypass source: TI SLUSDV2C pp4-6,19,38,45-46,113-117.
+    CE default-off is physical; low startup ILIM is not USB certification.
+    This module does not implement the USB PD input block or pack protector.
+    """
+    source = new ElectricPower
+    battery = new ElectricPower
+    system = new ElectricPower
+    logic = new ElectricPower
+    allow_charge_n = new ElectricLogic
+    irq_n = new ElectricLogic
+    status_n = new ElectricLogic
+    sda = new Electrical
+    scl = new Electrical
+    ntc = new Electrical
+    ntc_return = new Electrical
+
+    source.voltage = 5V to 20V
+    battery.voltage = 9V to 12.6V
+    system.voltage = 8.8V to 13.2V
+    logic.voltage = 3.3V +/- 3%
+    source.lv ~ battery.lv
+    battery.lv ~ system.lv
+    system.lv ~ logic.lv
+    ntc_return ~ source.lv
+    allow_charge_n.reference ~ logic
+    irq_n.reference ~ logic
+    status_n.reference ~ logic
+
+    ic = new Part_BQ25798RQMR
+    ic.GND ~ source.lv
+    ic.VBUS ~ source.hv
+    ic.VAC1 ~ source.hv
+    ic.VAC2 ~ source.hv
+    # Single-input operation with no ACFET/RBFET per pin-table instructions.
+    ic.ACDRV1 ~ source.lv
+    ic.ACDRV2 ~ source.lv
+    ic.BAT ~ battery.hv
+    ic.SYS ~ system.hv
+    ic.SDA ~ sda
+    ic.SCL ~ scl
+    ic.INT_n ~ irq_n.line
+    ic.STAT ~ status_n.line
+    # DP/DM intentionally NC: USB data belongs to native MCU USB.
+    # Host must disable AUTO_INDET/HVDCP; PD controller owns power detection.
+    # QON intentionally NC, internal pullup; do not attach a bare MCU pin.
+
+    inductor = new Part_CYA0630_2_2UH
+    inductor.1 ~ ic.SW1
+    inductor.2 ~ ic.SW2
+    c_boot1 = new Part_0402B473K500NT
+    c_boot1.1 ~ ic.BTST1
+    c_boot1.2 ~ ic.SW1
+    c_boot2 = new Part_0402B473K500NT
+    c_boot2.1 ~ ic.BTST2
+    c_boot2.2 ~ ic.SW2
+    c_regn = new Part_CL21A475KAQNNNE
+    c_regn.1 ~ ic.REGN
+    c_regn.2 ~ source.lv
+    c_sdrv = new Part_0402B102K500NT
+    c_sdrv.1 ~ ic.SDRV
+    c_sdrv.2 ~ source.lv
+
+    # Default 3S, 750 kHz: PROG 13.7 kohm (TI Table 7-1).
+    r_prog = new Part_RC0402FR_0713K7L
+    r_prog.1 ~ ic.PROG
+    r_prog.2 ~ source.lv
+    # CE must stay HIGH even before the 3.3 V controller rail exists.
+    r_ce = new UNI_ROYAL_0402WGF1002TCE_package
+    r_ce.1 ~ ic.REGN
+    r_ce.2 ~ ic.CE_n
+    q_charge = new Part_AO3400A
+    q_charge.D ~ ic.CE_n
+    q_charge.S ~ source.lv
+    # GPIO22 has a weak pullup at reset. Active-LOW permission reinforces OFF.
+    # PNP inversion is powered from 3V3; absent 3V3 leaves the NFET pulled off.
+    q_permission = new Part_MMBT3906LT1G
+    q_permission.E ~ logic.hv
+    q_permission.C ~ q_charge.G
+    r_permission_base = new UNI_ROYAL_0402WGF1002TCE_package
+    r_permission_base.1 ~ allow_charge_n.line
+    r_permission_base.2 ~ q_permission.B
+    r_permission_off = new UNI_ROYAL_0402WGF1002TCE_package
+    r_permission_off.1 ~ q_permission.B
+    r_permission_off.2 ~ logic.hv
+    r_charge_off = new UNI_ROYAL_0402WGF1002TCE_package
+    r_charge_off.1 ~ q_charge.G
+    r_charge_off.2 ~ source.lv
+
+    # Low startup input limit; lift EN_EXTILIM only after source negotiation.
+    # REGN min/max and BQ minimum-limit clamp are reviewed outside Ato.
+    r_ilim_top = new Part_0402WGF3302TCE
+    r_ilim_bottom = new UNI_ROYAL_0402WGF1002TCE_package
+    r_ilim_top.1 ~ ic.REGN
+    r_ilim_top.2 ~ ic.ILIM_HIZ
+    r_ilim_bottom.1 ~ ic.ILIM_HIZ
+    r_ilim_bottom.2 ~ source.lv
+
+    # Independent charger thermistor on pack, Semitec 103AT-2, 10k/B3435.
+    # These are TI nominal JEITA-network values, NOT a hard 45 C cutoff.
+    # Default T5 ~60 C; program warm-suspend and independent pack protection.
+    r_ts_top = new Part_0402WGF5231TCE
+    r_ts_bottom = new Part_0402WGF3012TCE
+    r_ts_top.1 ~ ic.REGN
+    r_ts_top.2 ~ ic.TS
+    r_ts_bottom.1 ~ ic.TS
+    r_ts_bottom.2 ~ source.lv
+    ic.TS ~ ntc
+    c_ts = new SAMSUNG_CL05B104KB54PNC_package
+    c_ts.1 ~ ic.TS
+    c_ts.2 ~ source.lv
+
+    # Kelvin BATP sense. Place 100 ohm/47 nF close to BATP for hot-plug filtering.
+    r_batp = new Part_0402WGF1000TCE
+    r_batp.1 ~ battery.hv
+    r_batp.2 ~ ic.BATP
+    c_batp = new Part_0402B473K500NT
+    c_batp.1 ~ ic.BATP
+    c_batp.2 ~ source.lv
+
+    # 50 V ceramic banks. Effective DC-biased capacitance remains a layout gate.
+    c_input1 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_input2 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_input_fast = new SAMSUNG_CL05B104KB54PNC_package
+    c_input1.1 ~ source.hv
+    c_input2.1 ~ source.hv
+    c_input_fast.1 ~ source.hv
+    c_input1.2 ~ source.lv
+    c_input2.2 ~ source.lv
+    c_input_fast.2 ~ source.lv
+    c_pmid1 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_pmid2 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_pmid3 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_pmid_fast = new SAMSUNG_CL05B104KB54PNC_package
+    c_pmid1.1 ~ ic.PMID
+    c_pmid2.1 ~ ic.PMID
+    c_pmid3.1 ~ ic.PMID
+    c_pmid_fast.1 ~ ic.PMID
+    c_pmid1.2 ~ source.lv
+    c_pmid2.2 ~ source.lv
+    c_pmid3.2 ~ source.lv
+    c_pmid_fast.2 ~ source.lv
+    c_sys1 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_sys2 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_sys3 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_sys4 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_sys5 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_sys_fast = new SAMSUNG_CL05B104KB54PNC_package
+    c_sys1.1 ~ system.hv
+    c_sys2.1 ~ system.hv
+    c_sys3.1 ~ system.hv
+    c_sys4.1 ~ system.hv
+    c_sys5.1 ~ system.hv
+    c_sys_fast.1 ~ system.hv
+    c_sys1.2 ~ source.lv
+    c_sys2.2 ~ source.lv
+    c_sys3.2 ~ source.lv
+    c_sys4.2 ~ source.lv
+    c_sys5.2 ~ source.lv
+    c_sys_fast.2 ~ source.lv
+    c_bat1 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_bat2 = new SAMSUNG_CL31A106KBHNNNE_package
+    c_bat1.1 ~ battery.hv
+    c_bat2.1 ~ battery.hv
+    c_bat1.2 ~ source.lv
+    c_bat2.2 ~ source.lv
+
+module ChargerTest:
+    """External ports intentionally open. No fabrication outline or routing."""
+    charger = new Charger3S

@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_RC0402FR_0713K7L:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="YAGEO", partnumber="RC0402FR-0713K7L", footprint="R0402.kicad_mod", symbol="RC0402FR_0713K7L.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C274888", manufacturer="YAGEO", partno="RC0402FR-0713K7L">
+    trait has_designator_prefix<prefix="R">
+
+    pin 2
+    pin 1

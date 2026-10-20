@@ -1,0 +1,16 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_AO3400A:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Alpha & Omega", partnumber="AO3400A", footprint="SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod", symbol="AO3400A.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C20917", manufacturer="Alpha & Omega", partno="AO3400A">
+    trait has_designator_prefix<prefix="Q">
+
+    signal D
+    D ~ pin 3
+    signal G
+    G ~ pin 1
+    signal S
+    S ~ pin 2

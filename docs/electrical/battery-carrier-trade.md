@@ -15,8 +15,8 @@ The controller connector should expose only protected PACK+, system GND, SDA, SC
 
 | Part | Geometry from manufacturer drawing | JLC observation | Eight-device holder subtotal |
 |---|---|---|---:|
-| MYOUNG BH-21700-A5BJ001, C20606809 | TH,83±0.8 ×25±0.5mm body;15.6±0.5mm unloaded height;4±0.5mm tails | Economic and Standard, manual/wave;278 overseas,219 presale,min6;48-piece tier$1.2246 | $58.78, or$7.35/device |
-| MYOUNG BH-21700-B1BJ001, C20606791 | SMT,82.5±0.8mm body;92.6±1.5mm tab span;25±0.5mm width;93.6mm land extent | Standard Only,2078 overseas,1938 presale,min10;$0.9079 | $43.58, or$5.45/device |
+| MYOUNG BH-21700-A5BJ001, C20606809 | TH,83±0.8 ×25±0.5mm body;15.6±0.5mm unloaded height;4±0.5mm tails | Economic and Standard, manual/wave;278 overseas,219 presale; MOQ not confirmed;48-piece tier$1.2246 | $58.78, or$7.35/device |
+| MYOUNG BH-21700-B1BJ001, C20606791 | SMT,82.5±0.8mm body;92.6±1.5mm tab span;25±0.5mm width;93.6mm land extent | Standard Only,2078 overseas,1938 presale; MOQ not confirmed;$0.9079 | $43.58, or$5.45/device |
 | Keystone1121 TH /1122 SMT | Manufacturer explicitly lists20700/21700; nylon UL94V-0 | Current JLC assembly eligibility and purchase price not verified | Unpriced alternative |
 
 The [dated sourcing snapshot](../../bom/electronics-sourcing-snapshot.json) records public metadata; overseas stock is not in-house allocation. [A5 manufacturer drawing](https://datasheet.lcsc.com/datasheet/pdf/ea18f085f5f9b6da9d587816ecf7f47a.pdf), [B1 manufacturer drawing](https://datasheet.lcsc.com/datasheet/pdf/f19fdde684eed5e7f56342763817f937.pdf), [Keystone1122](https://www.keyelco.com/product.cfm/product_id/14551). Body height excludes the protruding loaded cell; use a complete loaded-holder envelope.

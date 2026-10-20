@@ -1,0 +1,22 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TPS3808G33DBVR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS3808G33DBVR", footprint="SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod", symbol="TPS3808G33DBVR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C43698", manufacturer="Texas Instruments", partno="TPS3808G33DBVR">
+    trait has_designator_prefix<prefix="U">
+
+    signal RESET
+    RESET ~ pin 1
+    signal GND
+    GND ~ pin 2
+    signal MR
+    MR ~ pin 3
+    signal CT
+    CT ~ pin 4
+    signal SENSE
+    SENSE ~ pin 5
+    signal VDD
+    VDD ~ pin 6

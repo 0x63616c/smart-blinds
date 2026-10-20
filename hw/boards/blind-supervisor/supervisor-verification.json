@@ -1,0 +1,35 @@
+{
+  "status": "PASS: compiled graph, BOM and static arithmetic; not physical cutoff proof",
+  "components": 14,
+  "pins": 49,
+  "assumed_timing_stray_budget_pf": 5,
+  "timing_cap_min_pf": 113.7777,
+  "timing_cap_max_pf": 131.2457,
+  "watchdog_lower_max_ms": 8.9185583515125,
+  "watchdog_upper_min_ms": 57.744786551900006,
+  "watchdog_upper_max_ms": 71.3484668121,
+  "proposed_falling_edge_interval_ms": 20,
+  "firmware_feed_interval_limits_ms": [
+    10,
+    45
+  ],
+  "reset_release_delay_ms": [
+    12,
+    28
+  ],
+  "supervisor_trip_min_v": 3.0239499999999997,
+  "supervisor_release_max_v": 3.193951249999999,
+  "rail_min_v": 3.234,
+  "static_release_margin_v": 0.040048750000000854,
+  "sleep_high_load_max_a": 0.003475,
+  "sleep_poweroff_voltage_bound_v": 0.0056560000000000004,
+  "unresolved": [
+    "Full controller integration must remove/replace the 1uF EN RC load; supervisor output maximum 5mA is not a capacitor discharge rating.",
+    "Reset must physically return GPIO20 HIGH before release; scope-test frozen control task, IRQ lockout, debug halt, boot, repeated faults and no automatic motion restart.",
+    "Watchdog SET/WDI input leakage lacks a bound in the primary table; buffered logic-drive assumption needs physical qualification.",
+    "MR assertion latency has a typical, not maximum, datasheet value; entire last-heartbeat-to-motor-terminal cutoff must be measured against 100ms target.",
+    "Capacitor stray allowance, 3V3 ripple/load transients, rail collapse and motor coasting are not proven by these calculations.",
+    "SN74AUP1G97 rating limits this block to -40..85C. Pack operating temperatures are more restrictive.",
+    "Native schematic separately checks 49 pins with two explicit external-power ERC findings. Placement/routing, DRC, fabrication and physical cutoff tests remain open."
+  ]
+}

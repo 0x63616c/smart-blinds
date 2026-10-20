@@ -1,0 +1,435 @@
+{
+  "title": "Smart Blinds / motor supervision",
+  "pcb": "hw/layouts/blind-supervisor/supervisor-test/supervisor-test.kicad_pcb",
+  "output": "hw/schematics/blind-supervisor/supervisor-test.kicad_sch",
+  "symbols": {
+    "P_TPS3430WDRCR": {
+      "source": "hw/parts/blind-supervisor/TPS3430WDRCR.kicad_sym",
+      "name": "TPS3430WDRCR",
+      "pins": {
+        "1": {
+          "name": "VDD1",
+          "type": "power_in"
+        },
+        "2": {
+          "name": "CWD",
+          "type": "passive"
+        },
+        "3": {
+          "name": "SET0",
+          "type": "input"
+        },
+        "4": {
+          "name": "CRST",
+          "type": "passive"
+        },
+        "5": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "6": {
+          "name": "SET1",
+          "type": "input"
+        },
+        "7": {
+          "name": "WDI",
+          "type": "input"
+        },
+        "8": {
+          "name": "~{WDO}",
+          "type": "open_collector"
+        },
+        "9": {
+          "name": "NC",
+          "type": "no_connect"
+        },
+        "10": {
+          "name": "VDD2",
+          "type": "power_in"
+        },
+        "11": {
+          "name": "EP",
+          "type": "passive"
+        }
+      }
+    },
+    "P_TPS3808G33DBVR": {
+      "source": "hw/parts/blind-supervisor/TPS3808G33DBVR.kicad_sym",
+      "name": "TPS3808G33DBVR",
+      "pins": {
+        "1": {
+          "name": "~{RESET}",
+          "type": "open_collector"
+        },
+        "2": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "~{MR}",
+          "type": "input"
+        },
+        "4": {
+          "name": "CT",
+          "type": "passive"
+        },
+        "5": {
+          "name": "SENSE",
+          "type": "input"
+        },
+        "6": {
+          "name": "VDD",
+          "type": "power_in"
+        }
+      }
+    },
+    "P_SN74LVC2G17DCKR": {
+      "source": "hw/parts/blind-control-io/SN74LVC2G17DCKR.kicad_sym",
+      "name": "SN74LVC2G17DCKR",
+      "pins": {
+        "1": {
+          "name": "1A",
+          "type": "input"
+        },
+        "2": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "2A",
+          "type": "input"
+        },
+        "4": {
+          "name": "2Y",
+          "type": "output"
+        },
+        "5": {
+          "name": "VCC",
+          "type": "power_in"
+        },
+        "6": {
+          "name": "1Y",
+          "type": "output"
+        }
+      }
+    },
+    "P_SN74AUP1G97DCKR": {
+      "source": "hw/parts/blind-supervisor/SN74AUP1G97DCKR.kicad_sym",
+      "name": "SN74AUP1G97DCKR",
+      "pins": {
+        "1": {
+          "name": "B",
+          "type": "input"
+        },
+        "2": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "A",
+          "type": "input"
+        },
+        "4": {
+          "name": "Y",
+          "type": "output"
+        },
+        "5": {
+          "name": "VCC",
+          "type": "power_in"
+        },
+        "6": {
+          "name": "C",
+          "type": "input"
+        }
+      }
+    },
+    "P_CL05C121JB5NNNC": {
+      "source": "hw/parts/blind-supervisor/CL05C121JB5NNNC.kicad_sym",
+      "name": "CL05C121JB5NNNC",
+      "type": "passive"
+    },
+    "P_0402WGF1002TCE": {
+      "source": "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym",
+      "name": "0402WGF1002TCE",
+      "type": "passive"
+    },
+    "P_0402WGF1001TCE": {
+      "source": "hw/parts/blind-control-io/0402WGF1001TCE.kicad_sym",
+      "name": "0402WGF1001TCE",
+      "type": "passive"
+    },
+    "P_CL05B104KB54PNC": {
+      "source": "hw/parts/blind-controller-common/CL05B104KB54PNC.kicad_sym",
+      "name": "CL05B104KB54PNC",
+      "type": "passive"
+    }
+  },
+  "components": {
+    "U4": {
+      "symbol": "P_TPS3430WDRCR",
+      "mpn": "TPS3430WDRCR",
+      "value": "TPS3430WDRCR",
+      "at": [
+        64.77,
+        50.8,
+        0
+      ],
+      "text_offset": [
+        0,
+        -13
+      ],
+      "no_connect": [
+        "4",
+        "9"
+      ]
+    },
+    "U3": {
+      "symbol": "P_TPS3808G33DBVR",
+      "mpn": "TPS3808G33DBVR",
+      "value": "TPS3808G33DBVR",
+      "at": [
+        199.39,
+        50.8,
+        0
+      ],
+      "text_offset": [
+        0,
+        -13
+      ],
+      "no_connect": [
+        "4"
+      ]
+    },
+    "U2": {
+      "symbol": "P_SN74LVC2G17DCKR",
+      "mpn": "SN74LVC2G17DCKR",
+      "value": "SN74LVC2G17DCKR",
+      "at": [
+        64.77,
+        88.9,
+        0
+      ],
+      "text_offset": [
+        0,
+        -13
+      ]
+    },
+    "U1": {
+      "symbol": "P_SN74AUP1G97DCKR",
+      "mpn": "SN74AUP1G97DCKR",
+      "value": "SN74AUP1G97DCKR",
+      "at": [
+        199.39,
+        88.9,
+        0
+      ],
+      "text_offset": [
+        0,
+        -13
+      ]
+    },
+    "C4": {
+      "symbol": "P_CL05C121JB5NNNC",
+      "mpn": "CL05C121JB5NNNC",
+      "value": "120p C0G",
+      "at": [
+        30.48,
+        120.65,
+        0
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R1": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        82.55,
+        120.65,
+        90
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R4": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        134.62,
+        120.65,
+        90
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R5": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        185.42,
+        120.65,
+        90
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R2": {
+      "symbol": "P_0402WGF1002TCE",
+      "mpn": "0402WGF1002TCE",
+      "value": "10k",
+      "at": [
+        237.49,
+        120.65,
+        90
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "R3": {
+      "symbol": "P_0402WGF1001TCE",
+      "mpn": "0402WGF1001TCE",
+      "value": "1k",
+      "at": [
+        30.48,
+        149.86,
+        90
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "C5": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n",
+      "at": [
+        82.55,
+        149.86,
+        90
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "C3": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n",
+      "at": [
+        134.62,
+        149.86,
+        90
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "C2": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n",
+      "at": [
+        185.42,
+        149.86,
+        90
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    },
+    "C1": {
+      "symbol": "P_CL05B104KB54PNC",
+      "mpn": "CL05B104KB54PNC",
+      "value": "100n",
+      "at": [
+        237.49,
+        149.86,
+        90
+      ],
+      "text_offset": [
+        6.35,
+        -1.27
+      ]
+    }
+  },
+  "net_names": {
+    "hv": "3V3",
+    "lv": "GND",
+    "CWD": "TIMING",
+    "6": "REQ_BUFFERED",
+    "CRST": "NC_CRST",
+    "WDI": "WDI_BUFFERED",
+    "MR": "WATCHDOG_FAULT_N",
+    "NC": "NC_WD",
+    "reset_n": "RESET_N",
+    "CT": "NC_CT",
+    "1": "MOTOR_REQUEST_N",
+    "2": "HEARTBEAT",
+    "Y": "MOTOR_SLEEP_N"
+  },
+  "notes": [
+    {
+      "at": [
+        15,
+        17
+      ],
+      "size": 2,
+      "text": "MOTOR SUPERVISION / CIRCUIT STUDY"
+    },
+    {
+      "at": [
+        15,
+        26
+      ],
+      "text": "External 3.3 V supply. Reset and heartbeat boundary for ESP32-C6 and DRV8874."
+    },
+    {
+      "at": [
+        15,
+        32
+      ],
+      "text": "Request HIGH disables motor and watchdog. LOW requires healthy control-task falling edges."
+    },
+    {
+      "at": [
+        15,
+        187
+      ],
+      "text": "Upper window 57.74\u201371.35 ms; lower maximum 8.92 ms."
+    },
+    {
+      "at": [
+        15,
+        192
+      ],
+      "text": "No EN capacitor. Reset cancels motion. Not for fabrication."
+    }
+  ],
+  "expected_erc_types": {
+    "power_pin_not_driven": 2
+  },
+  "expected_erc_items": {
+    "power_pin_not_driven": [
+      "Symbol U1 Pin 2 [GND, Power input, Line]",
+      "Symbol U1 Pin 5 [VCC, Power input, Line]"
+    ]
+  },
+  "erc_scope": "Isolated block needs external 3V3 and ground. No power flags or ERC exclusions; no full-controller or physical cutoff claim."
+}

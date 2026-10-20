@@ -1,0 +1,1237 @@
+(kicad_symbol_lib
+  (version 20241209)
+  (generator "smart_blinds_schematic")
+  (symbol
+    "P_TPS3430WDRCR"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "U"
+      (at 0 11.43 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "TPS3430WDRCR"
+      (at 0 -13.97 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-supervisor:VSON-10_L3.0-W3.0-P0.50-TL-EP"
+      (at 0 -16.51 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://www.lcsc.com/datasheet/C2870545.pdf"
+      (at 0 -19.05 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "TI(德州仪器)"
+      (at 0 -21.59 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "TPS3430WDRCR"
+      (at 0 -24.13 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C2870545"
+      (at 0 -26.67 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Monitors & Reset Circuits"
+      (at 0 -29.21 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_TPS3430WDRCR_0_1"
+      (rectangle
+        (start -8.89 8.89)
+        (end 8.89 -6.35)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type background)))
+      (circle
+        (center -7.62 7.62)
+        (radius 0.38)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        power_in
+        line
+        (at -11.43 6.35 0)
+        (length 2.54)
+        (name
+          "VDD1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -11.43 3.81 0)
+        (length 2.54)
+        (name
+          "CWD"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at -11.43 1.27 0)
+        (length 2.54)
+        (name
+          "SET0"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "3"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -11.43 -1.27 0)
+        (length 2.54)
+        (name
+          "CRST"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "4"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at -11.43 -3.81 0)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "5"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at 11.43 -3.81 180)
+        (length 2.54)
+        (name
+          "SET1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "6"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at 11.43 -1.27 180)
+        (length 2.54)
+        (name
+          "WDI"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "7"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        open_collector
+        line
+        (at 11.43 1.27 180)
+        (length 2.54)
+        (name
+          "~{WDO}"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "8"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        no_connect
+        line
+        (at 11.43 3.81 180)
+        (length 2.54)
+        (name
+          "NC"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "9"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at 11.43 6.35 180)
+        (length 2.54)
+        (name
+          "VDD2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "10"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 0.0 -8.89 90)
+        (length 2.54)
+        (name
+          "EP"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "11"
+          (effects
+            (font
+              (size 1.27 1.27)))))))
+  (symbol
+    "P_TPS3808G33DBVR"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "U"
+      (at 0 7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "TPS3808G33DBVR"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-supervisor:SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Microprocessor-Microcontroller-Supervisors_TI_TPS3808G33DBVR_TPS3808G33DBVR_C43698.html"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "TI(德州仪器)"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "TPS3808G33DBVR"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C43698"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Monitors & Reset Circuits"
+      (at 0 -22.86 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_description"
+      "Low Quiescent Current, Programmable-Delay Supervisory Circuit, 1 Supply Monitored, -40 to 125 degC, 6-pin SOT-23 (DBV), Green (RoHS  no SbBr)"
+      (at 0 -25.4 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_TPS3808G33DBVR_0_1"
+      (rectangle
+        (start -11.43 5.08)
+        (end 11.43 -5.08)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type background)))
+      (circle
+        (center -10.16 3.81)
+        (radius 0.38)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        open_collector
+        line
+        (at -13.97 2.54 0)
+        (length 2.54)
+        (name
+          "~{RESET}"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at -13.97 -0.0 0)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at -13.97 -2.54 0)
+        (length 2.54)
+        (name
+          "~{MR}"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "3"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 13.97 -2.54 180)
+        (length 2.54)
+        (name
+          "CT"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "4"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at 13.97 -0.0 180)
+        (length 2.54)
+        (name
+          "SENSE"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "5"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at 13.97 2.54 180)
+        (length 2.54)
+        (name
+          "VDD"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "6"
+          (effects
+            (font
+              (size 1.27 1.27)))))))
+  (symbol
+    "P_SN74LVC2G17DCKR"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "U"
+      (at 0 11.43 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "SN74LVC2G17DCKR"
+      (at 0 -11.43 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:SOT-363_L2.0-W1.3-P0.65-LS2.1-BR"
+      (at 0 -13.97 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/74-Series_TI_SN74LVC2G17DCKR_SN74LVC2G17DCKR_C50714.html"
+      (at 0 -16.51 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "TI(德州仪器)"
+      (at 0 -19.05 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "SN74LVC2G17DCKR"
+      (at 0 -21.59 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C50714"
+      (at 0 -24.13 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Buffers / Drivers"
+      (at 0 -26.67 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_SN74LVC2G17DCKR_0_1"
+      (rectangle
+        (start -2.54 8.89)
+        (end 5.84 -9.4)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type background)))
+      (circle
+        (center -1.78 8.13)
+        (radius 0.38)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        input
+        line
+        (at -5.08 6.35 0)
+        (length 2.54)
+        (name
+          "1A"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at -5.08 3.81 0)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at -5.08 1.27 0)
+        (length 2.54)
+        (name
+          "2A"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "3"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        output
+        line
+        (at -5.08 -1.27 0)
+        (length 2.54)
+        (name
+          "2Y"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "4"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at -5.08 -3.81 0)
+        (length 2.54)
+        (name
+          "VCC"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "5"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        output
+        line
+        (at -5.08 -6.35 0)
+        (length 2.54)
+        (name
+          "1Y"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "6"
+          (effects
+            (font
+              (size 1.27 1.27)))))))
+  (symbol
+    "P_SN74AUP1G97DCKR"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "U"
+      (at 0 7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "SN74AUP1G97DCKR"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-supervisor:SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://www.lcsc.com/datasheet/C2682139.pdf"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "TI(德州仪器)"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "SN74AUP1G97DCKR"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C2682139"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Gates"
+      (at 0 -22.86 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_SN74AUP1G97DCKR_0_1"
+      (rectangle
+        (start -6.35 5.08)
+        (end 6.35 -5.08)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type background)))
+      (circle
+        (center -5.08 3.81)
+        (radius 0.38)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        input
+        line
+        (at -8.89 2.54 0)
+        (length 2.54)
+        (name
+          "B"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at -8.89 -0.0 0)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at -8.89 -2.54 0)
+        (length 2.54)
+        (name
+          "A"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "3"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        output
+        line
+        (at 8.89 -2.54 180)
+        (length 2.54)
+        (name
+          "Y"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "4"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at 8.89 -0.0 180)
+        (length 2.54)
+        (name
+          "VCC"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "5"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at 8.89 2.54 180)
+        (length 2.54)
+        (name
+          "C"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "6"
+          (effects
+            (font
+              (size 1.27 1.27)))))))
+  (symbol
+    "P_CL05C121JB5NNNC"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "C"
+      (at 0 10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "CL05C121JB5NNNC"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-supervisor:C0402"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Others_Samsung-Electro-Mechanics_CL05C121JB5NNNC_Samsung-Electro-Mechanics-CL05C121JB5NNNC_C307442.html"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "SAMSUNG(三星)"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "CL05C121JB5NNNC"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C307442"
+      (at 0 -22.86 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      (at 0 -25.4 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_CL05C121JB5NNNC_0_1"
+      (polyline
+        (pts
+          (xy 2.03 -0.51)
+          (xy -2.03 -0.51))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy 0.0 2.54)
+          (xy 0.0 0.51))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy -2.03 0.51)
+          (xy 2.03 0.51))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy 0.0 -0.51)
+          (xy 0.0 -2.54))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        passive
+        line
+        (at 0.0 -5.08 90)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 0.0 5.08 270)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_0402WGF1002TCE"
+    (property
+      "Reference"
+      "R"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "0402WGF1002TCE"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "C25744:R0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_10KR-1002-1_C25744.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "LCSC Part"
+      "C25744"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (in_bom yes)
+    (on_board yes)
+    (symbol
+      "P_0402WGF1002TCE_0_1"
+      (rectangle
+        (start -2.54 1.02)
+        (end 2.54 -1.02)
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type background)))
+      (pin
+        passive
+        line
+        (at 5.08 -0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -5.08 -0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_0402WGF1001TCE"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "R"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "0402WGF1001TCE"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:R0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_1KR-1001-1_C11702.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "UNI-ROYAL(厚声)"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "0402WGF1001TCE"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C11702"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Resistors"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_description"
+      "1KΩ (1001) ±1%"
+      (at 0 -22.86 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_0402WGF1001TCE_0_1"
+      (rectangle
+        (start -2.54 1.02)
+        (end 2.54 -1.02)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type background)))
+      (pin
+        passive
+        line
+        (at 5.08 -0.0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -5.08 -0.0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_CL05B104KB54PNC"
+    (property
+      "Reference"
+      "C"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "CL05B104KB54PNC"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "C307331:C0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Others_Samsung-Electro-Mechanics_CL05B104KB54PNC_Samsung-Electro-Mechanics-CL05B104KB54PNC_C307331.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "LCSC Part"
+      "C307331"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (in_bom yes)
+    (on_board yes)
+    (symbol
+      "P_CL05B104KB54PNC_0_1"
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy -0.51 2.03)
+          (xy -0.51 -2.03)))
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy 2.54 -0)
+          (xy 0.51 -0)))
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy 0.51 -2.03)
+          (xy 0.51 2.03)))
+      (polyline
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none))
+        (pts
+          (xy -0.51 -0)
+          (xy -2.54 -0)))
+      (pin
+        passive
+        line
+        (at -5.08 -0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 5.08 -0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide)))

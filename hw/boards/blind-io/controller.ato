@@ -5,13 +5,12 @@ import Electrical
 from "../../parts/blind-core/ESP32_C6_WROOM_1_N4.ato" import Part_ESP32_C6_WROOM_1_N4
 from "../../parts/blind-control-io/SN74LVC2G17DCKR.ato" import Part_SN74LVC2G17DCKR
 from "../../parts/blind-control-io/TPD2E2U06DRLR.ato" import Part_TPD2E2U06DRLR
-from "../../parts/blind-control-io/TS_1088_AR02016.ato" import Part_TS_1088_AR02016
+from "../../parts/blind-control-io/TS_1081S_AC01326.ato" import Part_TS_1081S_AC01326
 from "../../parts/blind-control-io/0402WGF220JTCE.ato" import Part_0402WGF220JTCE
 from "../../parts/blind-control-io/0402WGF1001TCE.ato" import Part_0402WGF1001TCE
 from "../../parts/blind-control-io/0402WGF1003TCE.ato" import Part_0402WGF1003TCE
 from "../../parts/blind-control-io/0402WGF4701TCE.ato" import Part_0402WGF4701TCE
-from "../../parts/blind-control-io/CL21A226MAQNNNE.ato" import Part_CL21A226MAQNNNE
-from "../../parts/blind-control-io/CL05A105KA5NQNC.ato" import Part_CL05A105KA5NQNC
+from "../../parts/blind-power/CL21A226MAYNNNE.ato" import Part_CL21A226MAYNNNE
 from "../../parts/blind-controller-common/UNI_ROYAL_0402WGF1002TCE.ato" import UNI_ROYAL_0402WGF1002TCE_package
 from "../../parts/blind-controller-common/SAMSUNG_CL05B104KB54PNC.ato" import SAMSUNG_CL05B104KB54PNC_package
 
@@ -27,7 +26,7 @@ module ControllerIO:
     """
     rail = new ElectricPower
     encoder_rail = new ElectricPower
-    rail.voltage = 3.3V +/- 3%
+    rail.voltage = 3.3V +/- 2%
     encoder_rail.voltage = 5V +/- 5%
     rail.lv ~ encoder_rail.lv
     reset_n = new Electrical
@@ -77,18 +76,13 @@ module ControllerIO:
     # IO4/5/15 remain strap-only; module pin22 (NC) remains unconnected.
     # No external 32 kHz crystal: GPIO0/1 are physical buttons.
 
-    c_bulk = new Part_CL21A226MAQNNNE
+    c_bulk = new Part_CL21A226MAYNNNE
     c_bulk.1 ~ rail.hv
     c_bulk.2 ~ rail.lv
     c_bypass = new SAMSUNG_CL05B104KB54PNC_package
     c_bypass.1 ~ rail.hv
     c_bypass.2 ~ rail.lv
-    r_reset = new UNI_ROYAL_0402WGF1002TCE_package
-    c_reset = new Part_CL05A105KA5NQNC
-    r_reset.1 ~ rail.hv
-    r_reset.2 ~ reset_n
-    c_reset.1 ~ reset_n
-    c_reset.2 ~ rail.lv
+    # External TPS3808 supplies reset pull-up and delay. No EN capacitor.
     r_boot = new UNI_ROYAL_0402WGF1002TCE_package
     r_strap8 = new UNI_ROYAL_0402WGF1002TCE_package
     r_boot.1 ~ rail.hv
@@ -96,11 +90,9 @@ module ControllerIO:
     r_strap8.1 ~ rail.hv
     r_strap8.2 ~ mcu.IO8
 
-    r_request = new UNI_ROYAL_0402WGF1002TCE_package
     r_charge = new UNI_ROYAL_0402WGF1002TCE_package
     r_encoder = new UNI_ROYAL_0402WGF1002TCE_package
-    r_request.1 ~ rail.hv
-    r_request.2 ~ motor_request_n.line
+    # External motor supervisor supplies MOTOR_REQUEST_N pull-up.
     r_charge.1 ~ rail.hv
     r_charge.2 ~ charge_allow_n.line
     r_encoder.1 ~ rail.hv
@@ -162,8 +154,10 @@ module ControllerIO:
     enc_esd.NC1 ~ rail.lv
     enc_esd.NC2 ~ rail.lv
 
-    up = new Part_TS_1088_AR02016
-    down = new Part_TS_1088_AR02016
+    # Four-terminal side switch: catalog symbol pairs1/2 and3/4.
+    # Manufacturer drawing lacks the terminal circuit; verify on samples.
+    up = new Part_TS_1081S_AC01326
+    down = new Part_TS_1081S_AC01326
     r_up = new UNI_ROYAL_0402WGF1002TCE_package
     r_down = new UNI_ROYAL_0402WGF1002TCE_package
     c_up = new SAMSUNG_CL05B104KB54PNC_package
@@ -177,9 +171,13 @@ module ControllerIO:
     c_down.1 ~ mcu.IO1
     c_down.2 ~ rail.lv
     up.1 ~ mcu.IO0
-    up.2 ~ rail.lv
+    up.2 ~ mcu.IO0
+    up.3 ~ rail.lv
+    up.4 ~ rail.lv
     down.1 ~ mcu.IO1
-    down.2 ~ rail.lv
+    down.2 ~ mcu.IO1
+    down.3 ~ rail.lv
+    down.4 ~ rail.lv
 
     # Optional dry contact only. Sensor rail/pinout not selected.
     r_home = new UNI_ROYAL_0402WGF1002TCE_package

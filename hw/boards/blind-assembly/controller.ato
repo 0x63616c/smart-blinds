@@ -1,0 +1,39 @@
+import ElectricPower
+import Electrical
+
+from "../blind-io/controller.ato" import ControllerIO
+from "../blind-supervisor/supervisor.ato" import MotorSupervisor
+from "../blind-controller/motor.ato" import MotorBridge
+
+module ControllerAssembly:
+    """INCOMPLETE integrated controller, independent supervision and motor capture.
+
+    No external connector, charger, regulator, protected carrier or regenerative
+    clamp yet. Not for powering a motor or fabrication. No retained motion after
+    reset is a firmware requirement, not a consequence of this netlist alone.
+    """
+    controller = new ControllerIO
+    supervision = new MotorSupervisor
+    motor = new MotorBridge
+
+    rail = new ElectricPower
+    pack = new ElectricPower
+    encoder_supply = new ElectricPower
+    motor_a = new Electrical
+    motor_b = new Electrical
+    rail ~ controller.rail
+    rail ~ supervision.rail
+    rail ~ motor.logic
+    pack ~ motor.pack
+    encoder_supply ~ controller.encoder_rail
+    motor.motor_a ~ motor_a
+    motor.motor_b ~ motor_b
+
+    controller.motor_request_n ~ supervision.motor_request_n
+    controller.watchdog_heartbeat ~ supervision.heartbeat
+    controller.reset_n ~ supervision.reset_n
+    supervision.motor_sleep_n ~ motor.awake
+    controller.motor_in1 ~ motor.in1
+    controller.motor_in2 ~ motor.in2
+    controller.motor_fault_n ~ motor.fault_n
+    controller.current_raw ~ motor.current.line

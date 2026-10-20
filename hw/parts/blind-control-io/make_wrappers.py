@@ -18,6 +18,7 @@ PARTS = {
     "CL05A105KA5NQNC": ("SAMSUNG", "C52923", "C"),
     "SN74LVC2G17DCKR": ("Texas Instruments", "C50714", "U"),
     "TS-1088-AR02016": ("XUNPU", "C720477", "SW"),
+    "TS-1081S-AC01326": ("XUNPU", "C720493", "SW"),
     "0402WGF220JTCE": ("UNI-ROYAL", "C25092", "R"),
     "TPD2E2U06DRLR": ("Texas Instruments", "C1972959", "D"),
 }
@@ -40,7 +41,10 @@ if __name__ == "__main__":
         footprint = props["Footprint"].split(":", 1)[1]
         # atopile0.15 expects atomic footprint files beside their .ato source.
         footprint_source = ROOT / "blind-control-io.pretty" / (footprint + ".kicad_mod")
-        footprint_text = footprint_source.read_text().replace('${KIPRJMOD}/hw/parts/', '${KIPRJMOD}/../../../parts/')
+        footprint_text = footprint_source.read_text().replace('${KIPRJMOD}/hw/parts/', '${KIPRJMOD}/../../../parts/').replace('${KIPRJMOD}hw/parts/', '${KIPRJMOD}/../../../parts/')
+        if name == "TS-1081S-AC01326":
+            # Plastic locating posts: imported blank plated pads must be NPTH.
+            footprint_text = footprint_text.replace('(pad "" thru_hole', '(pad "" np_thru_hole')
         (ROOT / (footprint + ".kicad_mod")).write_text(footprint_text)
         (ROOT / (stem + ".kicad_sym")).write_text(sx.dumps([lib[0], *lib[1:3], sym]) + "\n")
         pins = []

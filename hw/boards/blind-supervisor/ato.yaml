@@ -1,0 +1,8 @@
+requires-atopile: ^0.15.9
+paths:
+  src: ./
+  layout: ../../layouts/blind-supervisor
+builds:
+  supervisor-test:
+    entry: supervisor.ato:SupervisorTest
+    hide_designators: true

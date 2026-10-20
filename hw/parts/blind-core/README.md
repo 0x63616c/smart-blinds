@@ -26,3 +26,5 @@ copies beside the Ato files are required by this installed atopile release. The
 3D files are visual aids; no STEP shape establishes fit or pin accuracy. Keep
 unused parts labelled provisional when publishing this library. A motor-block
 build does not validate the unused charger, gauge, radio or regulator assets.
+
+The UCM1E221MCL1GS atomic symbol corrects imported vertical pin directions to face the capacitor body, with 3.81 mm pin graphics. Terminal numbers, positions, polarity and PCB connections are unchanged. `make_wrappers.py` reproduces this drawing correction. Native KiCad exports independently check the resulting netlist.

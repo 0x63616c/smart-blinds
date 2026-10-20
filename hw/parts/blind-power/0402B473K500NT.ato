@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_0402B473K500NT:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="FH", partnumber="0402B473K500NT", footprint="C0402.kicad_mod", symbol="0402B473K500NT.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C82219", manufacturer="FH", partno="0402B473K500NT">
+    trait has_designator_prefix<prefix="C">
+
+    pin 1
+    pin 2

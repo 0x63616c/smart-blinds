@@ -520,5 +520,64 @@
     ],
     "pcba_type": "Economic and Standard",
     "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+  },
+  {
+    "mpn": "TS-1081S-AC01326",
+    "lcsc": "C720493",
+    "url": "https://jlcpcb.com/partdetail/TS-1081S-AC01326/C720493",
+    "observed_utc": "2026-10-20T02:05:58+00:00",
+    "currency": "USD",
+    "metadata": {
+      "componentModelEn": "TS-1081S-AC01326",
+      "overseasStockCount": 258,
+      "canPresaleNumber": 250,
+      "preMinPurchaseNum": 67,
+      "leastPatchNumber": 5,
+      "lossNumber": 2,
+      "noBuyReason": null,
+      "initialPrice": 0.1649,
+      "componentLibraryType": "expand",
+      "assemblyMode": "smtWeld",
+      "assemblyComponentFlag": false,
+      "xrayFlag": false,
+      "componentProductType": 0,
+      "fixtureFlag": false,
+      "specialComponentFee": 0
+    },
+    "price_breaks": [
+      {
+        "startNumber": 1,
+        "endNumber": 49,
+        "productPrice": 0.1649
+      },
+      {
+        "startNumber": 50,
+        "endNumber": 149,
+        "productPrice": 0.1352
+      },
+      {
+        "startNumber": 150,
+        "endNumber": 499,
+        "productPrice": 0.1203
+      },
+      {
+        "startNumber": 500,
+        "endNumber": 2999,
+        "productPrice": 0.1092
+      },
+      {
+        "startNumber": 3000,
+        "endNumber": 5999,
+        "productPrice": 0.0788
+      },
+      {
+        "startNumber": 6000,
+        "endNumber": -1,
+        "productPrice": 0.0744
+      }
+    ],
+    "pcba_type": "Economic and Standard",
+    "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required",
+    "selection_note": "Front-actuated SMT candidate replaces the top-actuated switch in the compact study; new Extended feeder, not a final assembly quote. Manufacturer drawing lacks contact terminal numbering; sample verification required."
   }
 ]

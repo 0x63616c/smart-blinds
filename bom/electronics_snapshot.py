@@ -81,7 +81,7 @@ def fetch(pair):
         match = re.search(r"PCBA Type\s+(Economic and Standard|Standard Only)", visible)
         result.update(metadata=metadata, price_breaks=[prices[k] for k in sorted(prices)],
                       pcba_type=match.group(1) if match else "not exposed in page",
-                      stock_note="overseasStockCount is not in-house SMT stock; final BOM matching and quote still required")
+                      stock_note="overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required")
         if not metadata or not prices:
             result["error"] = "Incomplete public page extraction; do not treat as confirmed sourcing"
         elif metadata.get("componentModelEn") != mpn:

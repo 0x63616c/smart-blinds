@@ -57,5 +57,45 @@ class NativeSchematicTests(unittest.TestCase):
             self.check(self.source, graph)
 
 
+class SupervisorSchematicTests(unittest.TestCase):
+    check = NativeSchematicTests.check
+    @classmethod
+    def setUpClass(cls):
+        cls.spec = json.loads((ROOT / "hw/schematics/blind-supervisor/supervisor-test.layout.json").read_text())
+        cls.graph = board_graph(ROOT / cls.spec["pcb"])
+        cls.source = parse((ROOT / cls.spec["output"]).read_text())
+        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+
+    def test_real_graph_roundtrip(self):
+        # Includes vertical capacitor and exposed-pad pins; inward-facing wire
+        # extensions would short the timing capacitor or cross the IC body.
+        self.assertEqual(self.check(self.source), 49)
+
+    def test_reject_timing_capacitor_short(self):
+        changed = copy.deepcopy(self.source)
+        for label in children(changed, "label"):
+            if label[1] == "TIMING":
+                label[1] = "GND"
+                break
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+    def test_reject_missing_timing_capacitor(self):
+        changed = copy.deepcopy(self.source)
+        for symbol in children(changed, "symbol"):
+            props = {p[1]: p[2] for p in children(symbol, "property")}
+            if props.get("Reference") == "C4":
+                changed.remove(symbol)
+                break
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+    def test_reject_connected_pcb_pin_marked_nc(self):
+        graph = copy.deepcopy(self.graph)
+        graph["U4"]["pads"]["4"] = graph["U4"]["pads"]["5"]
+        with self.assertRaisesRegex(ValueError, "NC is connected in the PCB"):
+            self.check(self.source, graph)
+
+
 if __name__ == "__main__":
     unittest.main()

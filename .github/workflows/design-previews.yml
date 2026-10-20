@@ -31,7 +31,9 @@ jobs:
           python3 cad/build.py --check-parameters
           python3 cad/build_v2.py --check-parameters
       - name: Check generated native schematic
-        run: python3 tools/generate_schematics.py hw/schematics/blind-controller/motor-test.layout.json --check
+        run: |
+          python3 tools/generate_schematics.py hw/schematics/blind-controller/motor-test.layout.json --check
+          python3 tools/generate_schematics.py hw/schematics/blind-supervisor/supervisor-test.layout.json --check
       - name: Generate previews from sources
         run: xvfb-run -a python3 tools/render_previews.py
       - name: Prepare review artifact
