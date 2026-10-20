@@ -51,6 +51,14 @@ CI builds both the telemetry fixture and a client-only library, verifying
 that synthetic peer symbols do not enter the latter. All thirteen jobs passed
 in the run linked above, including the actual default/bench C6 builds.
 
+An independent fresh run of the subsequent motion-to-idle candidate passes
+22 of 23 host targets but fails the actual C6 worker composition. Deterministic
+follow-up reproduces ordinary command ingress invalidating the physical-OFF
+identity while the sensor owner is parking. The candidate remains unpublished
+while that transition is corrected; a passing rerun alone will not close the
+finding. The last published thirteen-job checkpoint above is unchanged, and
+no physical movement or power result is inferred from it.
+
 Native populated-PCB export exposed a [confirmed enclosure orientation error](mechanical/pcb-orientation-review.md):
 the old allocation reflected the component side. The current preview and the
 joint-service study therefore do not establish physical PCB fit, despite their
