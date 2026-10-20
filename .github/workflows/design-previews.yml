@@ -21,6 +21,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+      - name: Test source-aware preview publication
+        run: python3 -m unittest discover -s tools -p test_publish_previews.py -v
       - name: Install rendering tools
         run: |
           sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
@@ -64,21 +66,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
       - uses: actions/download-artifact@v4
         with:
           name: design-previews
           path: work/preview-artifact
-      - name: Publish only if source is still current
+      - name: Publish only if design inputs are still current
         env:
           SOURCE_SHA: ${{ github.sha }}
         run: |
-          if [ "$(git rev-parse HEAD)" != "$SOURCE_SHA" ]; then
-            echo 'Newer source exists; leaving its previews to the newer run.'
-            exit 0
-          fi
-          cp work/preview-artifact/README.md README.md
-          rm -rf docs/generated
-          cp -R work/preview-artifact/docs/generated docs/
+          python3 tools/publish_previews.py --artifact-dir work/preview-artifact --source-commit "$SOURCE_SHA"
           git add README.md docs/generated
           if git diff --cached --quiet; then exit 0; fi
           git config user.name 'github-actions[bot]'
