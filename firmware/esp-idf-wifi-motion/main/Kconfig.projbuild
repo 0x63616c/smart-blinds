@@ -1,0 +1,10 @@
+menu "Smart blinds Wi-Fi evaluation"
+    config SB_WIFI_PLAINTEXT_DISPOSABLE_BENCH
+        bool "Permit disposable bench credentials without flash encryption"
+        default n
+        help
+            Explicit bench-only exception for disposable keys and a test AP.
+            Default requires already enabled flash encryption. This firmware
+            does not provision keys, burn eFuses or enable flash encryption.
+            Never use this exception for the owner's network or production keys.
+endmenu

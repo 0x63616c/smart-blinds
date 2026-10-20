@@ -1,6 +1,14 @@
 # Smart Blinds firmware
 
-Fresh, hardware-independent control groundwork. The [motor-disabled ESP32-C6 bring-up image](esp-idf/README.md) cross-compiled successfully with ESP-IDF v5.5.4 on 2026-10-19. **No device has been flashed or validated on the purchased motor.** The control core returns a physical fabric velocity request; a future board port must close the encoder speed loop and implement the actual motor, power, radio and sensor drivers.
+Portable control software plus default-unqualified ESP32-C6 targets. The separate
+[Wi-Fi motion target](esp-idf-wifi-motion/README.md) binds authenticated commands to
+the owned motion session, C6 motor port and power readers. Its empty physical
+records and default-OFF compile option prevent motor initialization. The
+[radio-only evaluation](esp-idf-wifi/README.md), Thread target and
+[bring-up image](esp-idf/README.md) remain available separately.
+**No device has been flashed or validated on the purchased motor.** All seventeen
+portable test targets and the pinned Wi-Fi motion default/bench builds pass
+locally; see the [runtime evidence and limits](../docs/firmware/wifi-motion.md).
 
 ```sh
 cmake -S firmware -B work/firmware-build
@@ -30,4 +38,11 @@ Read the [control contract](../docs/firmware/control-contract.md), [radio trade 
 
 All default limits in `Limits` are illustrative test values, including current, voltage and speed. Replace them with measured, reviewed settings for the actual motor, gearing, pack and blind. The core is not a safety-rated controller. The board's independent current limiting, battery protection and default-off output remain necessary.
 
-Remaining implementation includes the encoder velocity loop, MCU pin assignment, watchdog/output-enable hardware, authenticated transport, clock synchronization estimator, persistent calibration with corruption checks, low-power transitions, battery state-of-charge estimation, homing and commissioning flow, and firmware recovery/update path. The physical reference procedure must be completed before calling `establish_reference`; the software cannot infer a bottom-edge height from an encoder counter at boot.
+The executor, board pin mapping, authenticated transport and clock checks are
+implemented as reviewed checkpoints, with physical timing and electrical
+qualification still pending. Remaining implementation includes local endpoint
+ownership/gestures, qualified gauge continuity integration, persistent calibration
+and record admission, credential commissioning, charge permission, homing and
+firmware update/recovery. The physical reference procedure must be completed
+before calling `establish_reference`; the software cannot infer a bottom-edge
+height from an encoder counter at boot.

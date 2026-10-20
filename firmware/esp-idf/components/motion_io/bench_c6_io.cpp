@@ -67,6 +67,12 @@ bool BenchC6Io::initialize() {
     inputs.mode=GPIO_MODE_INPUT; inputs.intr_type=GPIO_INTR_DISABLE;
     if(!record(gpio_config(&inputs)) || !record(esp_pm_lock_create(ESP_PM_NO_LIGHT_SLEEP,0,"blind-motion",&awake_pm_)) ||
        !record(esp_pm_lock_create(ESP_PM_APB_FREQ_MAX,0,"blind-pcnt-init",&init_apb_pm_))) { shutdown(); return false; }
+    // The qualified owner never inherits the evaluation application's permanent
+    // GPIO holds. Retain these pads/peripherals through automatic light sleep.
+    for(const int pin:{P::request_n,P::charge_n,P::encoder_n,P::wdi,P::in1,P::in2,
+                      P::up,P::down,P::fault_n,P::reference,P::encoder_a,P::encoder_b}) {
+        if(!record(gpio_sleep_sel_dis(static_cast<gpio_num_t>(pin)))) { shutdown(); return false; }
+    }
     if(!record(esp_pm_lock_acquire(init_apb_pm_))) { shutdown(); return false; }
     init_apb_held_=true;
     if(!configure_counter()) { shutdown(); return false; }
@@ -303,6 +309,16 @@ bool BenchC6Io::heartbeat_pulse() {
     if(low!=ESP_OK || high!=ESP_OK || !low_seen || !high_seen || now_us()<began || now_us()-began>100) return trip();
     pulse_seen_=true;
     return true;
+}
+bool BenchC6Io::stop_pressed() const {
+    return !ready() || !level(P::up) || !level(P::down);
+}
+bool BenchC6Io::parked_off() {
+    if(!ready() || counter_running_ || counter_enabled_ || encoder_on_ || timer_enabled_ || awake_ ||
+       !request_high_ || active_direction_ || active_ticks_) return false;
+    return digital_matches(P::request_n,true) && digital_matches(P::charge_n,true) &&
+        digital_matches(P::encoder_n,true) && digital_matches(P::wdi,true) &&
+        !level(P::in1) && !level(P::in2) && check_counter(false) && check_pwm(0,0,false);
 }
 FastInputs BenchC6Io::sample_fast() {
     if(!ready()) return {};

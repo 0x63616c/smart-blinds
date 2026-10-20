@@ -1,6 +1,7 @@
 #pragma once
 #include "smart_blinds/motion_session.hpp"
 #include "smart_blinds/port_checks.hpp"
+#include "smart_blinds/runtime_lifecycle.hpp"
 #include <cinttypes>
 #include <cstdio>
 #include <type_traits>
@@ -29,7 +30,11 @@ struct Network {
     std::optional<smart_blinds::ClockBounds> clock;
     std::uint64_t connection=0,probe=0;
     bool attached=false,awake=false;
+    std::uint32_t revocation=0; // Local asynchronous invalidation generation.
 };
+inline Network admitted_network(Network value,const Revocation& signals) {
+    return value.revocation==signals.generation() && !signals.failed() ? value : Network{};
+}
 struct Power {
     std::uint32_t window=0; // Local sensing generation, never received over radio.
     power::Report gauge{};
@@ -40,6 +45,7 @@ struct Power {
 struct Snapshot {
     MotionSession::Status status{};
     std::uint64_t connection=0,probe=0;
+    Parked parking{};
 };
 // The RTOS copies these through length-one queues. No pointers, heap ownership,
 // seqlock/data-race assumptions or receipt-time freshness substitution.
@@ -48,7 +54,7 @@ static_assert(std::is_trivially_copyable<Power>::value);
 static_assert(std::is_trivially_copyable<MotionSession::Status>::value);
 static_assert(std::is_trivially_copyable<Snapshot>::value);
 
-// Sole producer is the OpenThread lock owner. The control worker consumes inbox.
+// Sole producer is the transport owner. The control worker consumes inbox.
 class Ingress {
 public:
     enum class Result { queued,malformed,unauthenticated,rejected };
@@ -79,15 +85,31 @@ public:
         if(!authenticated || !network_.connection) return Result::unauthenticated;
         const auto request=wire::decode(bytes,size);
         if(!request) return Result::malformed;
-        return inbox_.push({*request,network_.connection,now,true}) ? Result::queued : Result::rejected;
+        if(!activity_.begin()) return Result::rejected;
+        const bool queued=inbox_.push({*request,network_.connection,now,true});
+        activity_.end();
+        return queued ? Result::queued : Result::rejected;
     }
+    std::uint32_t activity() const { return activity_.current(); }
 private:
     MotionSession::Inbox& inbox_;
     std::uint32_t generation_=0;
     Network network_{};
+    Activity activity_;
 };
 inline SessionInput input(const FastObservation& fast,const Power& power,const Network& network,std::uint64_t now) {
     return {fast,power.at(now),network.clock,network.probe,network.connection,network.attached,network.awake,false};
+}
+template<class Sample>
+FastObservation observe(bool initialized,bool raw_stop,MotionSession::Phase previous,
+                        Revocation& signals,Sample sample) {
+    const bool stop=signals.take_stop() || raw_stop;
+    FastObservation fast{};
+    // Do not wait for ADC to issue the first STOP. While already settling the
+    // motor is inhibited, so continue sampling to assess the final coordinate.
+    if(initialized && (!stop || previous==MotionSession::Phase::settling)) fast=sample();
+    fast.stop_pressed=fast.stop_pressed || stop || signals.take_stop();
+    return fast;
 }
 inline const char* name(MotionSession::Phase phase) {
     switch(phase) {
