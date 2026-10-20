@@ -90,11 +90,11 @@ Two-layer companion carrier with 35 copper segments, 12 vias and no disconnected
 </details>
 
 <details>
-<summary>Primary battery carrier — partial current and sensing route</summary>
+<summary>Primary battery carrier — connected routing study</summary>
 
-Experimental 102-segment, 32-via current/Kelvin checkpoint. Ten current-path groups and two isolated sense branches are physically connected; 55 signal/bypass connections and 30 documented DRC findings remain. Thermal, holder, protection and assembly qualification are unfinished. Not a fabrication release.
+Experimental 451-segment, 129-via route with all 35 nets physically connected and zero unconnected items. Eleven injected-fault checks cover current/Kelvin topology, protected-ground communication clamps and same-net solder-land clearance. Twenty-two drawing/mechanical findings and thermal, transient, holder and assembly qualification remain. Not a fabrication release.
 
-![Primary battery carrier — partial current and sensing route](docs/generated/primary-current-route/assembly.png)
+![Primary battery carrier — connected routing study](docs/generated/primary-current-route/assembly.png)
 
 [Source](hw/routing/blind-pack-primary/primary-routed.kicad_pcb) · [Generated files](docs/generated/primary-current-route/)
 
