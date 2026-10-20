@@ -216,7 +216,7 @@
       "insulation": "Covered traces are recessed from the spacer; the separate insulating barrier remains. Solder mask is not the sole insulation."
     },
     "service_fixture_backing": {
-      "status": "Proposed reusable workshop fixture lands checked against unrouted placements; not an installed part",
+      "status": "Reserved inward lands now contacted by the integrated spacer backing during paired loading; original single-carrier fixture is historical",
       "face": "Inward/underside face on either carrier",
       "local_rectangles_xy": [
         [
@@ -238,7 +238,7 @@
           75
         ]
       ],
-      "rule": "No exposed copper, pads, vias, test points, solder or lead tails on these contact lands; covered tracks require fixture contact/wear qualification",
+      "rule": "No exposed copper, pads, vias, test points, solder or lead tails on these contact lands; covered tracks require contact/wear qualification",
       "limit": "A fitted end-rim clamp plus backing is required for service; these lands alone do not prove solder unloading."
     },
     "primary_upper_wire_tail_relief": {
@@ -883,5 +883,115 @@
       3.1
     ],
     "limit": "Wall-specific anchor/screw selection and proof load remain open; digital envelope is not wall qualification."
+  },
+  "paired_loading": {
+    "status": "Geometric candidate only; controlled battery loading and loaded handling are not qualified",
+    "installed_parts_added": 0,
+    "installed_fasteners_added": 0,
+    "backing_lands_global_xy": [
+      [
+        15.8,
+        31,
+        23.8,
+        81
+      ],
+      [
+        41.8,
+        31,
+        49.8,
+        81
+      ],
+      [
+        67.8,
+        31,
+        75.8,
+        81
+      ]
+    ],
+    "backing_global_z": [
+      [
+        31.6,
+        33.5
+      ],
+      [
+        34.7,
+        36.6
+      ]
+    ],
+    "temporary_corner_catch_release_x": 1.3,
+    "temporary_corner_catch_face_gap": 0.2,
+    "partial_shell_separation_each_z": 8,
+    "shell_approach_travel_z": 35,
+    "shell_fit_allowance_per_side": 0.4,
+    "shell_seam_expansion_per_side": 0.2,
+    "seam_outer_bounds_xy": [
+      [
+        3.2,
+        4.4
+      ],
+      [
+        92.4,
+        111.6
+      ]
+    ],
+    "nominal_local_shell_wall": 1.2,
+    "workshop_printed_pieces": 8,
+    "workshop_hardware": {
+      "M3x16_socket_screw": 4,
+      "M3x10_socket_screw": 2,
+      "M3_hex_nut": 6
+    },
+    "workshop_base_size": [
+      106,
+      124,
+      6
+    ],
+    "fixture_translation_xyz": [
+      5.2,
+      4,
+      5.4
+    ],
+    "turn_axis_global_xyz": [
+      47.8,
+      0,
+      34.1
+    ],
+    "turn_bounds_global_xyz": [
+      [
+        3.2,
+        -0.2,
+        -10.6
+      ],
+      [
+        92.4,
+        185,
+        63.2
+      ]
+    ],
+    "turn_lift_before_rotation": 100,
+    "maximum_fixture_height": 62.5,
+    "upper_clamp_approach_x_offset": -25,
+    "pressure_pad_release": 0.4,
+    "protected_pigtail_parking": {
+      "minimum_global_xyz": [
+        32,
+        130,
+        26
+      ],
+      "size_xyz": [
+        54,
+        55,
+        36
+      ],
+      "status": "Space-only reservation. Final trim, continuous installed fan, strain-free restraint and loaded handling are unfinished"
+    },
+    "sequence": "Wire and inspect both empty carriers in the fixed 5 mm gap; load companion using the paired fixture, fit rear tray and temporary broad-pad clamps, lift and turn onto tray-bearing cradle, load primary, remove clamps while supported, dress protected harness and fit front shell/closure screws. Qualify first with surrogates.",
+    "limits": [
+      "Four temporary corner catches do not replace the screwed installed cassette or qualify loaded retention.",
+      "The model prescribes simultaneous catch displacement; a practical retained or sequential catch-release method is unfinished.",
+      "The assumed 3 mm axial/20 degree cell insertion path is not a manufacturer specification.",
+      "Holder insertion/removal force, solder load path, clamp pressure, printed strength/creep, insulation and actual wire restraint need qualification.",
+      "One-piece spacer/catches require a slicer/support review; no support-free print claim."
+    ]
   }
 }

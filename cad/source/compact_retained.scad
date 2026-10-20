@@ -7,6 +7,7 @@ $fn=40;
 W=115; H=174; D=71;
 pcb_x=99; pcb_y=3; pcb_z=8; pcb_t=1.6; pcb_h=68.5; pcb_depth=54;
 include <retained_buttons.scad>
+include <holder_pair_handling.scad>
 case_screws=[[12,120],[103,120],[12,166],[103,166]];
 wall_screws=[[45,103],[106,107.5],[45,166]];
 pack_holes=[[8.8,10],[86.8,10],[8.8,106],[86.8,106]];
@@ -127,7 +128,7 @@ module wall_head_pocket_outer(){hull()for(y=wall_head_pocket_y)
  zz([45,y,4.5],15,wall_head_ceiling+wall_pocket_roof-4.5);}
 module wall_head_pocket_void(){hull()for(y=wall_head_pocket_y)
  zz([45,y,3.2],12.6,wall_head_ceiling-3.2);}
-module cassette_rear(){difference(){union(){
+module cassette_rear_base(){difference(){union(){
  difference(){cassette_outline(3.4,30.6);cassette_inner(4.6,29.5);}
  // These compression posts carry board/holder forces to the cassette floor.
  for(p=pack_holes)zz([p[0],p[1],4.5],7.6,25.5);
@@ -164,7 +165,7 @@ module spacer_frame(z,h){difference(){
  // Four permanently enclosed raw-group strap channels, not a user connector.
  for(x=[20,38,56,74])box([x-2,104,z-.1],[4,4,h+.2]);
 }}
-module cassette_spacer(){difference(){
+module cassette_spacer_base(){difference(){
  spacer_frame(31.6,5);
  // 1.2 mm slot captures a separate 1 mm unclad insulating sheet.
  rr([6.1,7.3,33.5],[83.4,101.4,1.2],3);
@@ -185,7 +186,7 @@ module insulating_barrier(){difference(){
  for(p=pack_holes)zz([p[0],p[1],33.5],8,1.2);
  for(x=[20,38,56,74])box([x-2.3,103.8,33.5],[4.6,5,1.2]);
 }}
-module cassette_front(){difference(){union(){
+module cassette_front_base(){difference(){union(){
  difference(){cassette_outline(34.3,33);cassette_inner(34.2,31.7);}
  for(p=pack_holes)zz([p[0],p[1],38.2],7.6,27.8);
  // Smooth ribs retain cells without pushing on their wrapper corners.
@@ -356,14 +357,14 @@ module mounting_hardware(){color([.6,.62,.64]){
 module cassette_service_envelope(slide=0,forward=0){
  // Contains the entire closed cassette, boards/cells, closure heads and tray.
  // Linear expansion is a continuous conservative sweep along one axis.
- box([3.4,4.6+slide,3],[88.8,106.8,64.3+forward]);
+ box([3.2,4.4+slide,3],[89.2,107.2,64.3+forward]);
  hull()for(y=wall_head_pocket_y)zz([45,y+slide,3],15,6.4+forward);
  for(p=pack_mounts)box([p[0]-3,109+slide,3],[6,10,3.4+forward]);
  box([44,110.9+slide,52],[28.5,15.1,1.7+forward]);
  box([46.8,114.75+slide,53.9],[25.5,8.5,11.2+forward]);
 }
 module cassette_slide_envelope(){
- box([3.4,4.6,3],[88.8,106.8+service_slide,64.3]);
+ box([3.2,4.4,3],[89.2,107.2+service_slide,64.3]);
  hull()for(y=[wall_head_pocket_y[0],wall_head_pocket_y[1]+service_slide])zz([45,y,3],15,6.4);
  for(p=pack_mounts)box([p[0]-3,109,3],[6,10+service_slide,3.4]);
  box([44,110.9,52],[28.5,15.1+service_slide,1.7]);
@@ -374,7 +375,7 @@ if(part=="backplate")retained_backplate();
 else if(part=="cover")translate([0,0,D])rotate([180,0,0])retained_cover();
 else if(part=="cassette_rear")translate([0,0,-3])cassette_rear();
 else if(part=="cassette_front")translate([0,0,67.3])rotate([180,0,0])cassette_front();
-else if(part=="cassette_spacer")translate([0,0,-31.6])cassette_spacer();
+else if(part=="cassette_spacer")translate([0,0,-28.8])cassette_spacer();
 else if(part=="barrier")translate([0,0,-33.6])insulating_barrier();
 else if(part=="barrier_outline")projection(cut=true)translate([0,0,-34.1])insulating_barrier();
 else if(part=="controller_frame")translate([0,0,-96.2])rotate([0,-90,0])controller_frame();
@@ -386,6 +387,16 @@ else if(part=="controller_clip")translate([0,0,102.6])rotate([0,90,0])controller
 else if(part=="cassette")cassette(25);
 else if(part=="closed"){color([.95,.96,.94])retained_cover();color([.84,.86,.82])retained_backplate();front_button_hardware();translate([0,2,0])chain();mounting_hardware();}
 else if(part=="exploded"){assembly();translate([0,0,85])color([.9,.91,.88])cassette_front();translate([135,0,0])color([.95,.96,.94])retained_cover();}
+else if(part=="collision_pair_release_tools")intersection(){pair_release_tools();union(){
+ translate([0,0,-pair_partial_shell_release])cassette_rear();translate([0,0,pair_partial_shell_release])cassette_front();}}
+else if(part=="collision_pair_front_approach")intersection(){pair_clearance();pair_swept_shell(true);}
+else if(part=="collision_pair_rear_approach")intersection(){pair_clearance();pair_swept_shell(false);}
+else if(part=="collision_pair_front_release")intersection(){
+ translate([0,0,.01])hull(){carrier_board(36.6);translate([0,0,30])carrier_board(36.6);}pair_captures(pair_catch_release);}
+else if(part=="collision_pair_rear_release")intersection(){
+ translate([0,0,-.01])hull(){carrier_board(30);translate([0,0,-30])carrier_board(30);}pair_captures(pair_catch_release);}
+else if(part=="pair_capture_front")intersection(){translate([0,0,.3])carrier_board(36.6);pair_captures();}
+else if(part=="pair_capture_rear")intersection(){translate([0,0,-.3])carrier_board(30);pair_captures();}
 else if(part=="collision_cassette_contents")intersection(){carrier_contents();difference(){union(){cassette_rear();cassette_front();cassette_spacer();insulating_barrier();}for(z=[30,31.6,36.6,38.2])box([0,0,z-.01],[116,175,.02]);}}
 else if(part=="collision_cassette_controller")intersection(){cassette();retained_controller();}
 else if(part=="collision_cassette_drive")intersection(){cassette();retained_drive();}

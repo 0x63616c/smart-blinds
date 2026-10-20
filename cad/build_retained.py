@@ -4,6 +4,8 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import hashlib
 import json
+import math
+import struct
 import re
 from pathlib import Path
 import subprocess
@@ -19,12 +21,28 @@ CHECKS = ["cassette_contents", "cassette_controller", "cassette_drive", "cassett
           "case_pillars_drive", "controller_cover", "controller_buttons", "controller_keys", "connector_frame", "connector_pcb", "rf_metal", "wiring_drive",
           "wiring_cover", "wiring_cassette", "wiring_pillars", "cassette_backplate",
           "mount_tool", "button_guides", "button_adjuster", "signal_header_buttons", "wiring_controller", "mount_head", "cleat_engagement", "service_drive", "service_controller", "connector_buttons", "signal_wires_switches",
-          "wall_head", "wall_roof_missing", "holder_combs", "spacer_relief", "spacer_section_missing", "spacer_barrier", "primary_wire_tails", "primary_corner_support_missing"]
+          "wall_head", "wall_roof_missing", "holder_combs", "spacer_relief", "spacer_section_missing", "spacer_barrier", "primary_wire_tails", "primary_corner_support_missing", "pair_release_tools", "pair_front_approach", "pair_rear_approach", "pair_front_release", "pair_rear_release"]
 
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
+
+
+def unrounded_volume_mm3(path):
+    """Retain small positive controls that round to 0.000 in displayed cm3."""
+    data = path.read_bytes()
+    count = struct.unpack_from("<I", data, 80)[0]
+    if len(data) != 84 + 50 * count:
+        raise ValueError(f"Invalid binary STL witness: {path}")
+    terms = []
+    for offset in range(84, len(data), 50):
+        values = struct.unpack_from("<12fH", data, offset)
+        a, b, c = values[3:6], values[6:9], values[9:12]
+        terms.append((a[0]*(b[1]*c[2]-b[2]*c[1]) +
+                      a[1]*(b[2]*c[0]-b[0]*c[2]) +
+                      a[2]*(b[0]*c[1]-b[1]*c[0])) / 6)
+    return abs(math.fsum(terms))
 
 def run(output, part, preview=False, empty=False):
     command = ["openscad", "-o", str(output), "-D", f'part="{part}"']
@@ -75,7 +93,7 @@ def check_shared_interfaces():
     low,high = adjustment["screw_tip_adjustment_global_z"]
     assert low <= required[0] <= required[1] <= high
     # Attachment declarations drive the geometry, rather than merely documenting it.
-    source = SOURCE.read_text()
+    source = SOURCE.read_text() + "\n" + (ROOT / "source/holder_pair_handling.scad").read_text()
     def declaration(name):
         match = re.search(r"\b" + re.escape(name) + r"=(\[[^;]+\]|[0-9.]+);", source)
         assert match, f"Missing CAD attachment declaration: {name}"
@@ -151,8 +169,22 @@ def check_shared_interfaces():
     assert declaration("wall_pocket_roof") == wall["roof_thickness"]
     assert declaration("wall_head_pocket_y") == wall["pocket_capsule_centres_global_y"]
     assert wall["seat_global_z"] + wall["maximum_head_and_washer_height"] < wall["ceiling_global_z"]
+    paired = data["paired_loading"]
+    assert declaration("pair_backing_lands") == paired["backing_lands_global_xy"]
+    local = data["carrier"]["service_fixture_backing"]["local_rectangles_xy"]
+    origin = data["carrier"]["global_origin_xy"]
+    expected = [[round(r[i]+origin[i%2],6) for i in range(4)] for r in local]
+    assert paired["backing_lands_global_xy"] == expected
+    for name, key in (("pair_side_clearance","shell_fit_allowance_per_side"),
+                      ("pair_seam_expansion","shell_seam_expansion_per_side"),
+                      ("pair_catch_release","temporary_corner_catch_release_x"),
+                      ("pair_partial_shell_release","partial_shell_separation_each_z"),
+                      ("pair_shell_travel","shell_approach_travel_z")):
+        assert declaration(name) == paired[key]
+    assert paired["installed_parts_added"] == paired["installed_fasteners_added"] == 0
     return {"cad_and_pcb_contract_match": True,
             "attachment_geometry_declarations_match": True,
+            "paired_loading_backing_and_fit_declarations_match": True,
             "header_and_encoder_route_declarations_match": True,
             "holder_capture_spacer_relief_and_wall_pocket_match": True,
             "cleat_nominal_capture_mm": {"per_side_x": overlap, "length_y": capture},
@@ -170,7 +202,7 @@ def main():
     if args.jobs < 1 or args.jobs > 4:
         parser.error("--jobs must be 1..4")
     started = time.monotonic()
-    inputs = [SOURCE, ROOT / "source/compact_direct.scad", ROOT / "source/compact_buttons.scad", ROOT / "source/retained_buttons.scad",
+    inputs = [SOURCE, ROOT / "source/compact_direct.scad", ROOT / "source/compact_buttons.scad", ROOT / "source/retained_buttons.scad", ROOT / "source/holder_pair_handling.scad",
               Path(__file__).resolve(), ROOT / "build.py", ROOT / "parameters/retained-interfaces.json"]
     snapshot = {p.relative_to(ROOT).as_posix(): sha(p) for p in inputs}
     output = ROOT / "exports/retained-compact-fit"
@@ -191,6 +223,7 @@ def main():
         "cassette_disengagement_slide_mm": 2.5,
         "cassette_forward_service_sweep_mm": 72,
         "holder_body_capture": interfaces["holder_body_capture"],
+        "paired_loading": interfaces["paired_loading"],
         "wall_head_pocket": interfaces["wall_head_pocket"],
         "companion_support_relief": interfaces["carrier"]["companion_upper_support_trace_relief"],
         "primary_wire_tail_clearance": interfaces["carrier"]["primary_upper_wire_tail_relief"],
@@ -252,6 +285,18 @@ def main():
             "mesh": capture,
             "limit": "Shows geometric capture only, not load capacity, creep or print tolerance."
         }
+        evidence["temporary_corner_capture_controls"] = []
+        for side in ("front", "rear"):
+            path = checks_dir / f"pair-capture-{side}.stl"
+            run(path, "pair_capture_" + side)
+            mesh = inspect_stl(path)
+            witness_volume = unrounded_volume_mm3(path)
+            if not mesh["closed_edge_mesh"] or not math.isfinite(witness_volume) or witness_volume <= 1e-9:
+                raise RuntimeError(f"Temporary {side} capture control failed: {mesh}")
+            evidence["temporary_corner_capture_controls"].append({
+                "side": side, "result": "0.3 mm outward board motion intersects temporary tips",
+                "mesh": mesh, "unrounded_volume_mm3": witness_volume,
+                "limit": "Nominal geometric capture only; no strength or loaded-retention claim"})
     if args.export:
         def export(name):
             path = output / f"{name}.stl"
@@ -280,6 +325,8 @@ def main():
         "Service drive/controller tests expand closed-cassette bounds through the 2.5 mm rise and 72 mm forward removal, including boards/cells, lid and inline tray/housing. Cable manipulation is excluded.",
         "Cleat/backplate engagement uses 12 sampled actual rear-tray positions, not a continuous pocket sweep. The central washer pocket covers a continuous head sweep combining +/-2 mm wall-slot adjustment and 2.5 mm rise.",
         "Integral holder end combs are capture stops with an independent gap, not preload or a verified solder-force bypass. Actual rim fit and controlled insertion-fixture use remain unqualified.",
+        "Paired-loading backing uses the existing reserved lands. Temporary catches, shell approach and tool corridors are geometric candidates; practical catch-release method and actual insertion/retention remain unfinished.",
+        "The protected pigtail parking is space-only; it does not complete the internal harness or prove strain-free loaded handling.",
         "The companion spacer relief permits only covered B.Cu tracks; remaining section and barrier clearance are geometric checks, not dielectric, abrasion or structural qualification.",
         "Primary upper crossbar is removed while corner posts/perimeter remain. Twelve actual wire/NTC pad anchors use full-pad-diameter 1.5 mm protrusion cylinders; 0.5 mm nominal barrier gap does not establish tolerance, dielectric or load acceptance.",
         "The motor rear cable allocation is excluded from the wire/drive test because the wire intentionally enters it.",

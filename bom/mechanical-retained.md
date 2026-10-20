@@ -32,16 +32,23 @@ halves, bearing pod, bearing retainer, wheel and guard), giving **18 file types 
 insulating sheets. Do not reuse the earlier fixed plunger or guide bar. The
 retained source implements only the 71 mm trimmed-pin variant.
 
-The integrated holder end-comb ribs add no installed parts or screws. A separate
-reusable service-fixture candidate adds **three workshop print pieces and four
-M3×30 screws/four M3 nuts per fixture**, shared across the build rather than
-multiplied by eight. Its fit, load path and final cell-insertion sequence remain
-unqualified; it is excluded from the installed-piece count and unit mass below.
-Its checked solid model is **122.84 g of PETG**; see the separate
-[workshop volume table](mechanical-workshop-volume.csv).
+The integrated holder end-comb ribs, spacer backing and temporary catches add
+no installed pieces or screws. The selected [paired-loading workshop set](../docs/mechanical/paired-loading.md)
+adds **eight reusable print pieces**: raised base, two removable combs, two
+C-clamps, two captive broad pressure pads and one tray-bearing cradle. Its
+hardware is **four M3×16 screws, two M3×10 screws and six M3 nuts** for the whole
+workshop set, shared across eight builds. The older three-piece single-carrier
+fixture is historical, not an additional required set. Pigtail restraint,
+actual insertion/retention, catch release and force/creep remain unresolved.
+The workshop set is excluded from installed piece counts and unit mass. See the
+separate [workshop volume table](mechanical-workshop-volume.csv): **179.106 cm³ /
+227.46 g of solid-model PETG** for the shared set.
 
-The checked meshes total **321.975 cm³ per unit**, equivalent to **408.91 g of
-fully solid PETG**, or **3.271 kg for eight** at the [Prusament PETG data sheet's
+The current source-bound mesh material estimate is **326.435 cm³ / 414.57 g of
+solid-model PETG per blind**, or **3.317 kg for eight**, before slicer changes and
+waste. The backing/capture and shell revisions add 4.460 cm³ / 5.66 g per blind
+compared with the preceding retained candidate, with no increase in installed
+piece count. Mass uses the [Prusament PETG data sheet's
 1.27 g/cm³ density](https://prusament.com/wp-content/uploads/2022/10/PETG_Prusament_TDS_2021_10_EN.pdf).
 The reproducible [per-part volume table](mechanical-print-volume.csv) and
 [estimate evidence](mechanical-print-estimate.json) bind this calculation to

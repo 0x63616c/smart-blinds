@@ -51,7 +51,7 @@ def calculate(verify_stls=False):
                          "stl_sha256": mesh["sha256"]})
         evidence[report_path.relative_to(REPO).as_posix()] = sha(report_path)
     total_volume = round(sum(row["unit_model_cm3"] for row in rows), 3)
-    fixture_path = CAD / "generated/holder-service-fixture-verification.json"
+    fixture_path = CAD / "generated/holder-pair-fixture-verification.json"
     fixture = json.loads(fixture_path.read_text())
     if not fixture.get("source_snapshot_verified_unchanged") or fixture["installed_parts_added"] != 0:
         raise ValueError("Unverified or misclassified workshop fixture")
@@ -69,7 +69,7 @@ def calculate(verify_stls=False):
                               "model_volume_cm3": mesh["volume_cm3"],
                               "solid_petg_g": round(mesh["volume_cm3"] * DENSITY, 2),
                               "stl_sha256": mesh["sha256"]})
-    if {row["part"] for row in workshop_rows} != {"base", "lower_comb", "upper_comb"}:
+    if {row["part"] for row in workshop_rows} != {"base", "lower_comb", "upper_comb", "lower_clamp", "upper_clamp", "cradle", "lower_pad", "upper_pad"}:
         raise ValueError("Incomplete workshop fixture export")
     workshop_volume = round(sum(row["model_volume_cm3"] for row in workshop_rows), 3)
     evidence[fixture_path.relative_to(REPO).as_posix()] = sha(fixture_path)
@@ -90,11 +90,11 @@ def calculate(verify_stls=False):
         "parts": rows,
         "workshop_fixture": {
             "scope": "One reusable fixture shared across eight builds; excluded from installed unit quantities and mass",
-            "shared_fixture_count": 1, "printed_pieces": 3,
+            "shared_fixture_count": 1, "printed_pieces": 8,
             "model_volume_cm3": workshop_volume,
             "solid_petg_g": round(workshop_volume * DENSITY, 2),
-            "hardware_excluded": "Four M3x30 screws and four M3 nuts",
-            "limit": "Dry-fit candidate; rim contact, load path and controlled pack assembly sequence remain unqualified",
+            "hardware_excluded": "Four M3x16 screws, two M3x10 screws and six M3 nuts",
+            "limit": "Dry-fit paired-loading candidate; pigtail restraint, catch release, rim contact, load path and actual loading remain unqualified",
             "parts": workshop_rows,
         },
     }
@@ -126,7 +126,7 @@ def main():
         else:
             path.write_bytes(expected.encode())
     print(f"{result['parts_per_unit']} printed pieces per unit; {result['solid_petg_grams_per_unit']} g solid-model PETG; {result['solid_petg_kg_for_eight']} kg for eight, before slicer changes and waste.")
-    print(f"Separate shared workshop fixture: 3 pieces, {result['workshop_fixture']['solid_petg_g']} g solid-model PETG; not multiplied by eight.")
+    print(f"Separate shared workshop fixture: 8 pieces, {result['workshop_fixture']['solid_petg_g']} g solid-model PETG; not multiplied by eight.")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,514 @@
+{
+  "status": "Reusable workshop geometric candidate; not a released cell-loading procedure",
+  "source_sha256": {
+    "source/holder_pair_fixture.scad": "4af90b20c1c1a617fc483265f0e49288f51ed48b8da8ea70c50419813a4b8bcc",
+    "source/compact_retained.scad": "5da983a0f1c0ed52d1d203af1896aacd973fb3ff913e85752414e023f106b87d",
+    "source/holder_pair_handling.scad": "2d7aba0a416b69fe3f29f9a391592202c0cbdc00df87bc5a7d4797ee7c88c40d",
+    "source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+    "source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
+    "source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55",
+    "parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
+    "build_holder_pair_fixture.py": "aec0f6e55468ce3d2635e98601d822f0fbbc770eb76b3ffd50cbc6e48b508d5d",
+    "build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
+    "build_retained.py": "06791bc290b205359a5f3eac15f038d5f654c0fc003e1615a02666f5423797cc"
+  },
+  "shared_interface_check": {
+    "shared_interfaces": {
+      "cad_and_pcb_contract_match": true,
+      "attachment_geometry_declarations_match": true,
+      "paired_loading_backing_and_fit_declarations_match": true,
+      "header_and_encoder_route_declarations_match": true,
+      "holder_capture_spacer_relief_and_wall_pocket_match": true,
+      "cleat_nominal_capture_mm": {
+        "per_side_x": 1.7,
+        "length_y": 2.2
+      },
+      "button_first_closure_setting_z_mm": [
+        62.55,
+        62.75
+      ],
+      "limit": "Dimensional contract only; actuation, tolerance, retention loads, creep and print qualification are separate."
+    },
+    "workshop_declarations_match": true
+  },
+  "installed_parts_added": 0,
+  "workshop_printed_parts": 8,
+  "workshop_hardware": "Four M3x16 + two M3x10 socket screws; six M3 nuts",
+  "scope": "One set shared across eight builds; not eight installed sets",
+  "turn_envelope": {
+    "scope": "Full-box rotation after straight lift; combs removed, rear tray clamped, primary row empty",
+    "box_global_xyz": [
+      [
+        3.2,
+        -0.2,
+        -10.6
+      ],
+      [
+        92.4,
+        185,
+        63.2
+      ]
+    ],
+    "axis_global_xyz": [
+      47.8,
+      0,
+      34.1
+    ],
+    "lift_before_turn_mm": 100,
+    "radius_xz_mm": 63.1447,
+    "minimum_height_above_bench_mm": 76.3553,
+    "maximum_fixture_height_mm": 62.5,
+    "minimum_fixture_clearance_mm": 13.8553,
+    "limit": "Requires actual pigtail restraint inside this box; no loaded-handling or clamp-force qualification"
+  },
+  "nominal_intersections": [
+    {
+      "pair": "clear_base",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 17.18
+    },
+    {
+      "pair": "clear_base",
+      "companion_up": true,
+      "intersection": "empty",
+      "seconds": 17.34
+    },
+    {
+      "pair": "clear_catches",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 40.75
+    },
+    {
+      "pair": "clear_catches",
+      "companion_up": true,
+      "intersection": "empty",
+      "seconds": 43.05
+    },
+    {
+      "pair": "load_retracted",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 187.95
+    },
+    {
+      "pair": "load_retracted",
+      "companion_up": true,
+      "intersection": "empty",
+      "seconds": 195.22
+    },
+    {
+      "pair": "comb_contents",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 42.9
+    },
+    {
+      "pair": "comb_contents",
+      "companion_up": true,
+      "intersection": "empty",
+      "seconds": 46.81
+    },
+    {
+      "pair": "parked_fixture",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 31.71
+    },
+    {
+      "pair": "parked_fixture",
+      "companion_up": true,
+      "intersection": "empty",
+      "seconds": 34.81
+    },
+    {
+      "pair": "parked_combs",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 23.53
+    },
+    {
+      "pair": "parked_combs",
+      "companion_up": true,
+      "intersection": "empty",
+      "seconds": 27.22
+    },
+    {
+      "pair": "clamps_contents",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 118.92
+    },
+    {
+      "pair": "clamps_fixture",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 33.21
+    },
+    {
+      "pair": "clamps_parking",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 25.08
+    },
+    {
+      "pair": "cradle_contents",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 126.85
+    },
+    {
+      "pair": "primary_loading",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 211.47
+    },
+    {
+      "pair": "paths_contents",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 236.05
+    },
+    {
+      "pair": "paths_fixture",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 135.09
+    },
+    {
+      "pair": "pad_travel",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 7.88
+    },
+    {
+      "pair": "rear_shell_fixture",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 260.4
+    },
+    {
+      "pair": "turn_bound",
+      "companion_up": false,
+      "intersection": "empty",
+      "seconds": 133.15
+    }
+  ],
+  "positive_controls": [
+    {
+      "name": "pad_hook_control",
+      "mesh": {
+        "file": "exports/holder-pair-fixture/pad_hook_control.stl",
+        "sha256": "7ca46f78676ca0d71321baddabf4b6e3c452b2228858fa76c31a0607dbb4e45f",
+        "bytes": 2484,
+        "triangles": 48,
+        "bounds_mm": [
+          [
+            39.5,
+            7.5,
+            -5.2
+          ],
+          [
+            49.5,
+            89.0,
+            -4.6
+          ]
+        ],
+        "volume_cm3": 0.012,
+        "non_manifold_edges": 0,
+        "closed_edge_mesh": true,
+        "connected_shells": 4,
+        "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+      },
+      "seconds": 5.2,
+      "limit": "Geometric retention/contact witness only; no load capacity"
+    },
+    {
+      "name": "pad_seat_control",
+      "mesh": {
+        "file": "exports/holder-pair-fixture/pad_seat_control.stl",
+        "sha256": "0d6ffae381278cb36ae2cf17d7feb901e6af38c01824a3b1e34e373b60bfe46c",
+        "bytes": 10884,
+        "triangles": 216,
+        "bounds_mm": [
+          [
+            43.13429,
+            9.0,
+            1.05
+          ],
+          [
+            45.8657,
+            85.3895,
+            1.95
+          ]
+        ],
+        "volume_cm3": 0.001,
+        "non_manifold_edges": 0,
+        "closed_edge_mesh": true,
+        "connected_shells": 2,
+        "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+      },
+      "seconds": 6.11,
+      "limit": "Geometric retention/contact witness only; no load capacity"
+    },
+    {
+      "name": "pad_head_control",
+      "mesh": {
+        "file": "exports/holder-pair-fixture/pad_head_control.stl",
+        "sha256": "fe2e4729f55520a4d7debb76f9ed08740379dcdf1a7df561dd2235ca938f966f",
+        "bytes": 32084,
+        "triangles": 640,
+        "bounds_mm": [
+          [
+            41.75,
+            7.75,
+            -7.4
+          ],
+          [
+            47.25,
+            88.75,
+            -7.39
+          ]
+        ],
+        "volume_cm3": 0.0,
+        "non_manifold_edges": 0,
+        "closed_edge_mesh": true,
+        "connected_shells": 2,
+        "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance."
+      },
+      "seconds": 8.74,
+      "limit": "Geometric retention/contact witness only; no load capacity"
+    }
+  ],
+  "meshes": [
+    {
+      "file": "exports/holder-pair-fixture/base.stl",
+      "sha256": "8018199a140ed3a15f601f6b93dfd1d812a6f53d9a605d09fc0f90fd8f5136d0",
+      "bytes": 225484,
+      "triangles": 4508,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          106.0,
+          124.0,
+          62.5
+        ]
+      ],
+      "volume_cm3": 96.569,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "seconds": 16.61
+    },
+    {
+      "file": "exports/holder-pair-fixture/lower_comb.stl",
+      "sha256": "75d1c5b373682e7c9290610c691bb87cea5ffc4f8a746883cf9c18d5aa2416a2",
+      "bytes": 70284,
+      "triangles": 1404,
+      "bounds_mm": [
+        [
+          -3.0,
+          -21.3,
+          0.0
+        ],
+        [
+          107.0,
+          -10.0,
+          5.3
+        ]
+      ],
+      "volume_cm3": 3.043,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "seconds": 4.27
+    },
+    {
+      "file": "exports/holder-pair-fixture/upper_comb.stl",
+      "sha256": "d99c33d4f61b210ff6228cb54990caef00aa5581cc7b051afd0bafc4080f3129",
+      "bytes": 70284,
+      "triangles": 1404,
+      "bounds_mm": [
+        [
+          -3.0,
+          -119.3,
+          0.0
+        ],
+        [
+          107.0,
+          -98.6,
+          5.3
+        ]
+      ],
+      "volume_cm3": 3.345,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "seconds": 4.31
+    },
+    {
+      "file": "exports/holder-pair-fixture/lower_clamp.stl",
+      "sha256": "158e83f4fb3226ed474c2b6076f00715e34eb4a6f5d05ec5ca4233935b9fdb21",
+      "bytes": 27684,
+      "triangles": 552,
+      "bounds_mm": [
+        [
+          -7.4,
+          -0.2,
+          0.0
+        ],
+        [
+          42.5,
+          14.5,
+          10.0
+        ]
+      ],
+      "volume_cm3": 2.228,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "seconds": 1.9
+    },
+    {
+      "file": "exports/holder-pair-fixture/upper_clamp.stl",
+      "sha256": "20ee71ce5080bd0641ef01f6c0fb925f2d2392b5ba9955c5cba35bb198688a86",
+      "bytes": 27684,
+      "triangles": 552,
+      "bounds_mm": [
+        [
+          -7.4,
+          82.0,
+          0.0
+        ],
+        [
+          42.5,
+          116.2,
+          10.0
+        ]
+      ],
+      "volume_cm3": 3.398,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "seconds": 2.3
+    },
+    {
+      "file": "exports/holder-pair-fixture/cradle.stl",
+      "sha256": "ad3ab8fe43f71ec1b0e02c39aa54a288dfb95c7ffd56d3510538f04ae040a0b6",
+      "bytes": 67084,
+      "triangles": 1340,
+      "bounds_mm": [
+        [
+          0.0,
+          -124.0,
+          0.0
+        ],
+        [
+          96.0,
+          0.0,
+          17.4
+        ]
+      ],
+      "volume_cm3": 69.725,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "seconds": 3.93
+    },
+    {
+      "file": "exports/holder-pair-fixture/lower_pad.stl",
+      "sha256": "a25ee00bd9165f394cbba7817531bca1e95bb883d035daf2de72408ced1a30c8",
+      "bytes": 11084,
+      "triangles": 220,
+      "bounds_mm": [
+        [
+          38.0,
+          -15.5,
+          0.0
+        ],
+        [
+          51.0,
+          -5.5,
+          11.0
+        ]
+      ],
+      "volume_cm3": 0.399,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "seconds": 0.64
+    },
+    {
+      "file": "exports/holder-pair-fixture/upper_pad.stl",
+      "sha256": "18fd18acb0a74573b72cb53adb249364c841bad63ca8a36fd58d7e8ce72566ae",
+      "bytes": 11084,
+      "triangles": 220,
+      "bounds_mm": [
+        [
+          38.0,
+          -91.0,
+          0.0
+        ],
+        [
+          51.0,
+          -81.0,
+          11.0
+        ]
+      ],
+      "volume_cm3": 0.399,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "seconds": 0.75
+    }
+  ],
+  "renders": [
+    {
+      "file": "generated/holder-pair-open.png",
+      "sha256": "384381771b4ae25e350daeec4afa7a9fb441fd2497cb3d6bf685acfa3cb6826a",
+      "bytes": 105243,
+      "seconds": 89.99
+    },
+    {
+      "file": "generated/holder-pair-assembly.png",
+      "sha256": "6f66e45118ce48b6c4ea4ec450a9054b5e32fc7491aecc744864732013cd1383",
+      "bytes": 102743,
+      "seconds": 90.65
+    },
+    {
+      "file": "generated/holder-pair-tray_stage.png",
+      "sha256": "c24270b2d2586cda3e11bfa21dc834bae83a5951362df5f75bf4a9ef85147363",
+      "bytes": 109873,
+      "seconds": 96.16
+    },
+    {
+      "file": "generated/holder-pair-pad_detail.png",
+      "sha256": "dc45a8555187afa7239e9145ca056b46e9cc7c838fa350748d61d0493625c850",
+      "bytes": 32986,
+      "seconds": 9.6
+    }
+  ],
+  "limits": [
+    "Protected pigtail parking is space-only; trim, installed fan and strain-free handling restraint are unfinished.",
+    "Cell insertion uses an assumed 3 mm axial movement / 20 degree tilt and 40 mm normal approach, not a manufacturer-specified path.",
+    "Four temporary catches require a practical retained or sequential release method; modeled simultaneous displacement is not an assembly demonstration.",
+    "Holder current/polarity/retention, solder load path, clamp pressure, print strength/creep and insulation require qualification.",
+    "Broad captive pads prevent modeled screw-tip contact with the tray; their head stops do not establish safe force or torque.",
+    "Wire and inspect both carriers empty; fixed raw links never open or unfold. Qualify sequence with surrogates before a separately reviewed cell-loading procedure."
+  ],
+  "source_snapshot_verified_unchanged": true,
+  "build_elapsed_seconds": 1377.91
+}

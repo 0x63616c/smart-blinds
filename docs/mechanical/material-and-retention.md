@@ -32,3 +32,13 @@ sheet, and a removable controller edge frame. This implements the previously mis
 retention geometry for the trimmed-pin case; actual routed-board placement, final
 connectors/strain relief, material qualification and physical assembly tests remain
 open. The earlier allocation studies are preserved as comparisons.
+
+The later [paired-loading candidate](paired-loading.md) uses integrated backing
+at the previously reserved inward PCB lands and a separate tray-bearing workshop
+fixture. Its temporary spacer catches only assist controlled assembly; they are
+not the installed cell restraint or an electrical-safety closure. The one-piece
+spacer needs support/slicer review, and its 1 mm temporary arms and 1.2 mm local
+shell walls require actual fit, repeated-release and creep testing. The workshop
+clamps use captive broad pressure pads; neither their screw stop nor their
+geometric capture establishes a permissible tightening force. Protected-pigtail
+handling restraint and the practical catch-release method remain design work.

@@ -56,8 +56,8 @@ rectangles X26.4–29.6 / X52.4–55.6, Y0–2.2. These bridges do not appear on
 the primary carrier, whose lower strip contains electronics. The front carrier's lower support is removed over
 local X9–77 so the actual fuse/protection placement can occupy the end strip.
 Corner posts and end lands remain. These support lands are on the **component
-faces**, not the opposing solder-tail faces. Use a separate backing fixture for
-cell insertion: the installed supports do not establish a qualified insertion
+faces**, not the opposing solder-tail faces. Use the paired spacer backing and workshop fixture for
+cell insertion evaluation: the installed supports do not establish a qualified insertion
 force path around each holder's solder joints. The holders' maximum modeled metal/cell extent
 is X84.55, before the reserved antenna region beginning at X85.6, leaving 1.05 mm beyond
 the modeled 15 mm clearance zone.
@@ -131,29 +131,22 @@ holder motion, printed stiffness and temperature must be qualified before the
 ribs are relied on for load retention. The parameter makes the fit explicit;
 it does not convert an uncertain surface into a manufacturing tolerance.
 
-`cad/source/holder_service_fixture.scad` supplies a separate reusable workshop
-fixture: one backing base, two removable end combs, four M3×30 screws and four
-M3 nuts. Its three backing lands are local X11–19 / X37–45 / X63–71, Y25–75,
-on the inward face of either carrier. Exposed pads, vias, test points, solder and
-tails are excluded from these lands. Covered traces require contact/wear review.
-The underside stands 6 mm above the base, leaving 1.5 mm nominal clearance to
-the drawing's maximum 4.5 mm untrimmed holder tails. The end combs sit behind
-the holder ends and reach only the plastic corner flats; the cell channel is
-open. The fixture has the same explicit rim/gap parameters as the cassette.
+The current [paired-loading candidate](paired-loading.md) integrates backing at
+those three reserved inward lands into the one-piece spacer, with temporary
+corner catches and corrected shell fits. Its separate raised fixture, removable
+combs, two broad-pad tray clamps and broad cradle form **eight reusable workshop
+pieces**. Both carriers are wired and inspected empty at their final 5 mm gap.
+The companion row is enclosed by the rear tray before the turn onto the cradle;
+the primary row is then loaded without another loaded flip. No open-book raw-link
+slack is assumed. The old single-carrier fixture is a historical alternative.
 
-First dry-fit an empty carrier and dimensional cell surrogates. The screw stops,
-actual end-rim contact, seating without FR4 bending, tail clearance and insertion
-trajectory must be qualified before using the fixture with cells. No tightening
-torque or preload is inferred from a fit check. A fitted contact setting and
-approved, depowered pack-service procedure are required. The final permanent
-raw-link construction and insertion sequence remain design work: this fixture
-supports an individual carrier and is not claimed to service a rigidly joined
-pack. Both carriers must be empty when their permanent insulated raw-link wires
-are soldered and continuity-checked. Open-book handling would require a checked
-slack-storage and strain-relief route; alternatively, a future spacer-backed
-assembly may allow loading both outward faces after wiring. Neither complete
-construction sequence has been demonstrated by this fixture. It does not
-prescribe joining live raw-group wires after loading cells.
+The shell seam now allows 0.4 mm per side and expands locally by 0.2 mm to retain
+1.2 mm nominal wall thickness. The case exterior and electrical anchors remain
+fixed. Temporary catch release, actual insertion/retention, clamp force/creep,
+insulation and protected-pigtail restraint still need qualification. The pigtail
+parking envelope is space-only; the complete harness and controlled battery
+assembly procedure remain unfinished. Evaluate the sequence with surrogates
+before any actual cell-loading release.
 
 ## Electrical and service reservations
 
@@ -328,14 +321,16 @@ Use the white PETG candidate and temperature/print gates in
 [material and retention](material-and-retention.md). Exported orientations put each
 part on Z0, but mesh closure is not a slicer or load test. The cover, cassette
 lid, button plunger and removable button face are exported face-down; the controller frame and clips lie on their broad
-back faces. Use the retained exporter's plunger, face and guide bar together; they replace the earlier fixed plunger and guide. Nut pockets and port bridges need a slicer review before printing.
+back faces. Use the retained exporter's plunger, face and guide bar together; they replace the earlier fixed plunger and guide. Nut pockets and port bridges need a slicer review before printing. The revised
+one-piece spacer/catches also require supports and inspection; no support-free
+print is claimed.
 The backplate prints flat against the bed. Its cleat heads project 2 mm beyond
 the stems; inspect those short overhangs in the slicer and qualify the resulting
 layer bonding. The rear cassette prints floor-down; its closed catch-pocket
 roofs bridge a 9.4 mm span. Supports, bridge sag and pocket dimensions must be
 checked before loaded use. The 1.6 mm head/roof thicknesses and 4.1 mm catch
-floors do not establish creep, drop or pull strength. Cell insertion is performed
-with the cassette removed and its carrier supported by a fixture, so insertion
+floors do not establish creep, drop or pull strength. Cell insertion is evaluated
+with the cassette removed and its paired carriers supported by the workshop fixture/cradle, so insertion
 loads are not deliberately reacted by the wall cleats.
 Maintain smooth cell-facing surfaces, deburr holes and remove loose debris.
 
@@ -352,10 +347,10 @@ Maintain smooth cell-facing surfaces, deburr holes and remove loose debris.
    spacer and insulating sheet. Inspect the clipped solder tails and every clearance.
    Permanently terminate and identify the protected pigtail, dress it on the two
    lid bars and fit its cable ties before closing the cassette.
-   The complete cell-loading and commissioning sequence remains a design gate:
-   the one-carrier fixture does not establish how to load the permanently wired
-   pair. Perform this mechanical sequence with empty holders or surrogates until
-   that gate is resolved. Four M3×60 screws close the cassette; these are
+   Follow the modeled paired-loading sequence with empty holders or surrogates:
+   companion row, rear tray and broad-pad clamps, turn onto the cradle, then
+   primary row and front lid. Actual loading, wire restraint, catch release and
+   commissioning remain qualification/design gates. Four M3×60 screws close the cassette; these are
    separate from the single wall-plate mounting screw.
 5. Engage the closed cassette over the two cleats from 2.5 mm above its final
    position, slide it down and install its one mounting screw. Install the controller frame, then

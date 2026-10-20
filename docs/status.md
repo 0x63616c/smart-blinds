@@ -28,33 +28,36 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All twelve Design checks jobs passed for `25c4c01`](https://github.com/0x63616c/smart-blinds/actions/runs/39393679149),
+[All twelve Design checks jobs passed for `c89b8fc`](https://github.com/0x63616c/smart-blinds/actions/runs/39395322397),
 including the charger-distribution extension's nineteen injected failures,
-seventeen portable firmware targets, the C6 gauge adapter, and the separate
+eighteen portable firmware targets, the C6 gauge adapter, and the separate
 Wi-Fi motion target's default/bench builds against the pinned real SDK.
-Its [source-generated previews also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39393679663).
+The charger-routing [source-generated previews also passed](https://github.com/0x63616c/smart-blinds/actions/runs/39393679663).
 
 The new [portable local ownership core](firmware/local-ownership.md) passes
 all eighteen host targets, the same suite under ASan/UBSan, 59 native transport,
 clock, motion and group-bridge checks, and pinned C6 Wi-Fi default/bench and
-Thread cross-builds locally. Its next published CI run remains pending.
+Thread cross-builds locally. The published CI run above also passes.
 One executor owns local and remote motion, with fresh single-use local intents,
 independent internal epochs and actual OFF readback at admission and handoff.
 C6 applications still provide raw button STOP only; physical gesture/admission
 wiring and qualification remain unfinished. Exact dependency pins and
 modified-source rejection remain enforced.
 
-The retained-enclosure artifact contains 35 named empty-intersection checks, a
-positive cleat-capture control and ten closed printable mesh types. Its seven CAD
-source hashes match the checked source. The service tests include a conservative
+The revised retained-enclosure artifact passes 40 named empty-intersection checks,
+three positive capture controls and ten closed printable mesh types locally. Its
+eight CAD source hashes match the checked source. The service tests include a conservative
 2.5 mm cassette release and 72 mm forward removal envelope. These results establish
 what the nominal model does; they do not establish printed fit or load capacity.
-The 21 installed printed pieces total 321.975 cm³ per unit: about 408.91 g of
+The 21 installed printed pieces total 326.435 cm³ per unit: about 414.57 g of
 solid PETG at 1.27 g/cm³. This is a CAD estimate, before infill, supports and waste;
-CI recalculates it from the freshly checked meshes. A separate three-piece
-workshop fixture adds about 122.84 g once for the eight-unit build. Its three
-clearance checks and closed print meshes pass; holder contact, insertion forces
-and the complete wired-pack loading sequence remain unqualified.
+CI recalculates it from the freshly checked meshes. The separate eight-piece
+[paired-loading workshop set](mechanical/paired-loading.md) adds about 227.46 g
+once for the eight-unit build. Its 22 clearance checks, three positive controls
+and eight closed print meshes pass locally. The modeled sequence fits the rear
+tray before turning the carrier pair, with broad captive clamp pads and a
+supporting cradle. Practical catch release, protected-pigtail restraint, holder
+contact, insertion forces and actual loaded handling remain unfinished.
 
 The complete main native schematic independently matches the compiled PCB graph.
 Seven explicit ERC findings remain documented. Main and carrier circuits also have

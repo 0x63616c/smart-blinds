@@ -75,8 +75,6 @@ jobs:
           sudo apt-get install -y --no-install-recommends openscad xvfb xauth
       - name: Check retained case, cassette and service access
         run: xvfb-run -a python3 cad/build_retained.py --export --intersections --render
-      - name: Check reusable holder assembly fixture
-        run: xvfb-run -a python3 cad/build_holder_fixture.py --export --render
       - uses: actions/upload-artifact@v4
         with:
           name: retained-enclosure-fit-candidate
@@ -84,14 +82,32 @@ jobs:
             cad/exports/retained-compact-fit/
             cad/generated/retained-compact-verification.json
             cad/generated/retained-compact-*.png
-            cad/exports/holder-service-fixture/
-            cad/generated/holder-service-fixture.png
-            cad/generated/holder-service-fixture-verification.json
+          if-no-files-found: error
+          retention-days: 14
+
+  paired-battery-workshop:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install geometry tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends openscad xvfb xauth
+      - name: Check paired holder loading, tray handling and the reusable fixture
+        run: xvfb-run -a python3 cad/build_holder_pair_fixture.py --export --render --intersections --jobs 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paired-battery-workshop-candidate
+          path: |
+            cad/exports/holder-pair-fixture/
+            cad/generated/holder-pair-*.png
+            cad/generated/holder-pair-fixture-verification.json
           if-no-files-found: error
           retention-days: 14
 
   mechanical-material-budget:
-    needs: [mechanical-fit, retained-mechanical-fit]
+    needs: [mechanical-fit, retained-mechanical-fit, paired-battery-workshop]
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
@@ -103,6 +119,10 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: retained-enclosure-fit-candidate
+          path: cad
+      - uses: actions/download-artifact@v4
+        with:
+          name: paired-battery-workshop-candidate
           path: cad
       - name: Calculate material from the freshly verified print meshes
         run: python3 cad/print_budget.py --verify-stls
