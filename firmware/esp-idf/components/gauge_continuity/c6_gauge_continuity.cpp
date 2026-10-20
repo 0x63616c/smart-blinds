@@ -1,4 +1,5 @@
 #include "c6_gauge_continuity.hpp"
+#include "smart_blinds/power_mailbox.hpp"
 #include "esp_timer.h"
 #include "sdkconfig.h"
 
@@ -7,6 +8,15 @@ GaugeContinuity::GaugeContinuity(power::continuity::Profile profile,Context cont
                                  power::continuity::BusEpoch& epoch)
     : owner_(xTaskGetCurrentTaskHandle()),
       session_(profile,context,*this,epoch,reinterpret_cast<power::continuity::Owner>(owner_)) {}
+GaugeContinuity::GaugeContinuity(power::continuity::Profile profile,Context context,
+        power::continuity::BusEpoch& epoch,power::continuity::JointMailbox& joint,
+        smart_blinds::charger::Bq25798& charger)
+    : owner_(xTaskGetCurrentTaskHandle()),
+      session_(profile,context,*this,epoch,reinterpret_cast<power::continuity::Owner>(owner_),joint,charger) {}
+power::continuity::Refresh GaugeContinuity::refresh(Context context,power::continuity::Window window) {
+    if(xTaskGetCurrentTaskHandle()!=owner_ || !attached_) { retire();return power::continuity::Refresh::failed; }
+    return session_.refresh(context,window);
+}
 GaugeContinuity::~GaugeContinuity() {
     // Destruction must be after all users stop and on the owning task. A
     // wrong-task close only cancels evidence and leaves handles for the owner;

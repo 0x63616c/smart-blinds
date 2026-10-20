@@ -1,0 +1,2 @@
+#pragma once
+#define CONFIG_BLINDS_GAUGE_CONTINUITY_BENCH 1

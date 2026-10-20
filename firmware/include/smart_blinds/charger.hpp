@@ -69,6 +69,17 @@ public:
     Error configure(SourceVoltage voltage);
     Capture capture();
     OffCapture capture_off();
+    // Owner-only transitions. The second independent guard must verify actual
+    // motor OFF; both guards are checked around each synchronous transfer.
+    // A failed transition is terminal for this object, even if configure() is
+    // called later. A clean cold session may use a new object, never this one.
+    OffCapture park_off(Inhibit& motor_off);
+    // New owner-session object, same proven stationary hardware park. Read-only
+    // adoption; never accepts a watchdog-reset/default image as parked.
+    OffCapture adopt_parked(SourceVoltage voltage,Inhibit& motor_off);
+    OffCapture resume_off(Inhibit& motor_off);
+    bool parked() const { return parked_; }
+    Error transition_failure() const { return transition_failure_; }
     bool configured() const { return configured_; }
     bool reports_to(const FailureSink& sink) const { return sink_==&sink; }
     // Owner-only diagnostics; primary cause remains separate from OFF failure.
@@ -84,6 +95,9 @@ private:
     bool verify_register(const Register& reg);
     bool verify_profile();
     bool fail(Error error);
+    bool off_guards();
+    bool inspect_off(OffCapture& result);
+    OffCapture transition_off(Inhibit& motor_off,bool park);
     Bus& bus_;
     Inhibit& inhibit_;
     FailureSink* const sink_;
@@ -93,7 +107,9 @@ private:
     Error first_error_=Error::none;
     bool inhibit_failed_=false;
     std::uint64_t started_ms_ = 0, last_ms_ = 0;
-    bool configured_ = false;
+    bool configured_ = false,parked_=false;
+    Inhibit* transition_guard_=nullptr;
+    Error transition_failure_=Error::none;
 };
 
 // These are evidence contracts for future integration, not booleans derived

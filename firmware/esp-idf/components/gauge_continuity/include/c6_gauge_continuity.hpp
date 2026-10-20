@@ -13,12 +13,15 @@ public:
     using Context=power::continuity::Context;
     using Publication=power::continuity::Publication;
     GaugeContinuity(power::continuity::Profile profile,Context context,power::continuity::BusEpoch& epoch);
+    GaugeContinuity(power::continuity::Profile profile,Context context,power::continuity::BusEpoch& epoch,
+                    power::continuity::JointMailbox& joint,smart_blinds::charger::Bq25798& charger);
     ~GaugeContinuity();
     GaugeContinuity(const GaugeContinuity&)=delete;
     GaugeContinuity& operator=(const GaugeContinuity&)=delete;
     esp_err_t attach(i2c_master_bus_handle_t bus,Context context);
     esp_err_t close(); // Only owner removes handles; wrong-task call retires.
     Publication read(Context context);
+    power::continuity::Refresh refresh(Context context,power::continuity::Window window);
     bool park_light_sleep(Context context);
     bool resume_light_sleep(Context context);
     void retire() { session_.retire(); } // Atomic cancellation, any task.

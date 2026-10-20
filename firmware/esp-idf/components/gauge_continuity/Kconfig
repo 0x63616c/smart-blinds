@@ -4,7 +4,8 @@ config BLINDS_GAUGE_CONTINUITY_BENCH
     depends on IDF_TARGET_ESP32C6
     default n
     help
-        Compile-time bench gate only. No application instantiates this adapter.
+        Compile-time bench gate only. The experimental motion runtime also
+        requires an explicit local handoff qualification before attachment.
         Attachment also requires explicit boot-bound pack/continuity records.
         It cannot create a bus, write a register or approve physical actuation.
 endmenu

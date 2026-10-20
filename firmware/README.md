@@ -6,9 +6,10 @@ the owned motion session, C6 motor port and power readers. Its empty physical
 records and default-OFF compile option prevent motor initialization. The
 [radio-only evaluation](esp-idf-wifi/README.md), Thread target and
 [bring-up image](esp-idf/README.md) remain available separately.
-**No device has been flashed or validated on the purchased motor.** All eighteen
-portable test targets and the pinned Wi-Fi motion default/bench builds pass
-locally; see the [runtime evidence and limits](../docs/firmware/wifi-motion.md)
+**No device has been flashed or validated on the purchased motor.** All 21
+host test targets and the pinned Wi-Fi motion default/bench builds pass
+locally, including the actual C6 sensor/control workers against a fake SDK.
+See the [runtime evidence and limits](../docs/firmware/wifi-motion.md)
 and the [portable local ownership checkpoint](../docs/firmware/local-ownership.md).
 
 ```sh
@@ -42,8 +43,15 @@ All default limits in `Limits` are illustrative test values, including current, 
 The executor, board pin mapping, authenticated transport and clock checks are
 implemented as reviewed checkpoints, with physical timing and electrical
 qualification still pending. Portable local endpoint ownership is implemented. Remaining implementation
-includes C6 gesture/admission wiring, qualified gauge continuity integration, persistent calibration
+includes C6 gesture/admission wiring, physical gauge continuity qualification, persistent calibration
 and record admission, credential commissioning, charge permission, homing and
 firmware update/recovery. The physical reference procedure must be completed
 before calling `establish_reference`; the software cannot infer a bottom-edge
 height from an encoder counter at boot.
+
+The sensor owner now uses a coherent charger/gauge mailbox, retains qualified
+measurement history through bounded idle, and starts a new cold monitoring
+session after a longer clean idle. Motor and charge outputs remain OFF during
+charger park/resume, and control keeps its power locks until sensor closure and
+actual OFF readback agree. These are implemented lifetimes, not measured wake
+latency or battery life; see the [sensor runtime](../docs/firmware/sensor-runtime.md).

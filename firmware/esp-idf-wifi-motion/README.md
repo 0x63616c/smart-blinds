@@ -2,7 +2,7 @@
 
 Separate from the unchanged [radio-only evaluation](../esp-idf-wifi/README.md).
 This image connects authenticated Wi-Fi resources to the existing owned motion
-runtime, power readers and C6 port. **It ships with empty physical records,
+runtime, coherent charger/gauge mailbox and C6 port. **It ships with empty physical records,
 the bench motion option OFF, and no physical reference. It cannot move a motor.**
 
 Without previously approved encrypted Wi-Fi configuration it does not join or
@@ -13,6 +13,10 @@ not manufacture measurements, pack qualification or a reference.
 
 The [runtime contract](../../docs/firmware/wifi-motion.md) describes cancellation,
 raw button STOP/wake, physical parking evidence and remaining qualification.
+The [sensor runtime](../../docs/firmware/sensor-runtime.md) documents the same-owner
+bus lifetime, qualified short-idle continuity, cold restart after a longer clean
+idle, and charger OFF-only park/resume. PM release requires both actual motor OFF
+and sensor closure. Physical handoff and continuity records remain empty.
 No credentials or physical qualification are provided. There is no provisioning,
 charge-enable, OTA or local tap-to-endpoint service.
 
@@ -33,7 +37,8 @@ evaluation: `idf-extra-components` **cad43839020fc329722035a35640a54e06fee09b**,
 libcoap **d9b4031ee61df1a40ecec46fe3817a1f985b3919**, GCC 14.2.0
 `esp-14.2.0_20260121`. No download occurs implicitly during configuration.
 
-The explicit compile-coverage variant exercises the C6 initialization branch,
+The explicit compile-coverage variant enables both motion and gauge-continuity
+options and exercises their C6 initialization branches,
 while the application still supplies empty records and cannot initialize it:
 
 ```sh

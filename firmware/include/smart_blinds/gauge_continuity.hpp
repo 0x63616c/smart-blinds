@@ -79,7 +79,8 @@ struct Result {
 
 // A private RAM continuity ticket, NOT cached measurements. No restore/import,
 // copy, reset or approval API; an invalid instance requires a new trusted
-// session and the original cold warmup. Not connected to either C6 app.
+// session and the original cold warmup. The experimental runtime requires
+// separate explicit handoff qualification; default configurations remain OFF.
 class Monitor {
 public:
     Monitor(Profile profile,Context context);

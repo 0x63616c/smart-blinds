@@ -3,7 +3,7 @@
 #include "smart_blinds/power_mailbox.hpp"
 
 namespace blinds::c6 {
-// Compile-only adapter; neither application instantiates a joint mailbox.
+// Experimental motion runtime gate; every physical qualification defaults OFF.
 // C6 UNICORE enters interrupt masking. It has no useful try-lock timeout:
 // fixed-size copy duration must be measured before physical qualification.
 class PowerMailboxGate final:public power::continuity::MailboxGate {

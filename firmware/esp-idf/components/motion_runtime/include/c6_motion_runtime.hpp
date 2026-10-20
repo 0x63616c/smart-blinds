@@ -4,6 +4,8 @@
 #include "freertos/queue.h"
 #include "freertos/task.h"
 #include <atomic>
+#include "c6_power_mailbox.hpp"
+#include "smart_blinds/sensor_access.hpp"
 
 namespace blinds::c6 {
 // Lifetime is the application lifetime. No destructor can race running workers.
@@ -31,6 +33,19 @@ public:
     // recovery workflow must supply independent physical evidence.
     bool reference(const PhysicalReference& reference);
 private:
+    struct SensorRequest {
+        std::uint32_t sequence=0,activity=0,revocation=0;
+        bool enabled=false;
+    };
+    struct SensorPark {
+        SensorRequest request{};
+        std::uint32_t epoch=0;
+        std::uint64_t parked_us=0;
+        bool clean=false,continuity=false;
+    };
+    struct PhysicalOff { std::uint64_t sampled_us=0;bool off=false; };
+    runtime::Power power_snapshot();
+    bool sensor_closed() const;
     static void control_entry(void* context);
     static void power_entry(void* context);
     void control();
@@ -42,7 +57,11 @@ private:
     MotionSession::Inbox inbox_;
     runtime::Ingress ingress_;
     TaskHandle_t control_task_=nullptr,power_task_=nullptr,radio_task_=nullptr;
-    QueueHandle_t network_queue_=nullptr,power_queue_=nullptr,status_queue_=nullptr,reference_queue_=nullptr;
+    QueueHandle_t network_queue_=nullptr,status_queue_=nullptr,reference_queue_=nullptr;
+    QueueHandle_t sensor_request_queue_=nullptr,sensor_park_queue_=nullptr,physical_off_queue_=nullptr;
+    power::continuity::BusEpoch bus_epoch_;
+    PowerMailboxGate selector_gate_,mailbox_gate_;
+    power::continuity::SensorAccess sensors_{selector_gate_,bus_epoch_};
     std::atomic<bool> awake_{false},io_ready_{false},sampling_{false};
     std::atomic<std::uint32_t> sensing_window_{0};
     runtime::Revocation signals_;

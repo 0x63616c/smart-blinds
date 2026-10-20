@@ -2,6 +2,7 @@
 #include "smart_blinds/motion_session.hpp"
 #include "smart_blinds/port_checks.hpp"
 #include "smart_blinds/runtime_lifecycle.hpp"
+#include "smart_blinds/gauge_continuity.hpp"
 #include <cinttypes>
 #include <cstdio>
 #include <type_traits>
@@ -10,19 +11,19 @@ namespace blinds::runtime {
 // Only trusted local commissioning may supply these records. Radio credentials
 // are deliberately absent. The application supplies the empty default.
 struct Configuration {
-    bool task_timing_verified=false, bus_readback_verified=false;
+    bool task_timing_verified=false, bus_readback_verified=false, sensor_handoff_verified=false;
     std::uint64_t verified_for_boot=0;
     port::Profile port{};
     BenchMotionProfile motion{};
     Calibration calibration{};
     Limits limits{};
-    power::PackProfile pack{};
+    power::continuity::Profile gauge{};
     smart_blinds::ClockModel clock{};
     bool valid(std::uint64_t boot) const {
-        return boot && verified_for_boot==boot && task_timing_verified && bus_readback_verified &&
+        return boot && verified_for_boot==boot && task_timing_verified && bus_readback_verified && sensor_handoff_verified &&
             port.valid() && motion.bench_qualified && motion.holding_qualified &&
             motion.qualification_id==port.qualification_id && motion.max_duty<=port.max_duty &&
-            calibration.valid() && pack.valid(boot) && clock.validated &&
+            calibration.valid() && gauge.valid(boot) && clock.validated &&
             clock.growth_ppm<=10000 && clock.stamp_guard_us<=1000;
     }
 };

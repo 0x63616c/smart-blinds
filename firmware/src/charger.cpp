@@ -14,7 +14,7 @@ Profile profile(SourceVoltage voltage) {
              {0x01,2,1245,0xFFFF}, // VREG=12.45 V / 10 mV.
              {0x03,2,100,0xFFFF}, // ICHG=1 A / 10 mA.
              {0x05,1,static_cast<std::uint16_t>(voltage == SourceVoltage::nine ? 80 : 130),0xFF},
-             {0x06,2,150,0xFFFF}, // IINDPM=1.5 A / 10 mA, independent hardware limit retained.
+             {0x06,2,10,0xFFFF}, // OFF-only IINDPM=100 mA; keep the board's external ILIM clamp.
              {0x08,1,0xC3,0xFF}, // 71.4% VREG precharge threshold; 120 mA.
              {0x0D,1,0x4B,0xFF}, // 2 h precharge; unused OTG limit at documented default.
              {0x0E,1,0x3C,0xFF}, // All safety timers on, fast=12 h, no 2x extension/topoff.
@@ -30,6 +30,8 @@ Profile profile(SourceVoltage voltage) {
 }
 bool Bq25798::fail(Error error) {
     configured_ = false;
+    parked_=false;
+    if(transition_guard_ && transition_failure_==Error::none) transition_failure_=error;
     if(first_error_==Error::none) {
         first_error_=error;
         if(sink_) sink_->failed(error);
@@ -59,14 +61,14 @@ bool Bq25798::within_budget() {
     return true;
 }
 bool Bq25798::read(std::uint8_t reg, std::uint8_t* bytes, std::size_t size) {
-    if (!within_budget()) return false;
+    if (!within_budget() || !off_guards()) return false;
     if (!bus_.read(reg, bytes, size)) return fail(Error::bus);
-    return within_budget();
+    return off_guards() && within_budget();
 }
 bool Bq25798::write(std::uint8_t reg, const std::uint8_t* bytes, std::size_t size) {
-    if (!within_budget()) return false;
+    if (!within_budget() || !off_guards()) return false;
     if (!bus_.write(reg, bytes, size)) return fail(Error::bus);
-    return within_budget();
+    return off_guards() && within_budget();
 }
 bool Bq25798::write_register(const Register& reg) {
     const std::uint8_t bytes[] = {static_cast<std::uint8_t>(reg.value >> 8), static_cast<std::uint8_t>(reg.value)};
@@ -89,6 +91,10 @@ bool Bq25798::verify_profile() {
 Error Bq25798::configure(SourceVoltage voltage) {
     configured_ = false;
     if (!begin()) return error_;
+    if(transition_failure_!=Error::none || parked_) {
+        if(transition_failure_==Error::none) transition_failure_=Error::unconfigured;
+        fail(Error::unconfigured);return error_;
+    }
     if (voltage != SourceVoltage::nine && voltage != SourceVoltage::fifteen) {
         fail(Error::unconfigured); return error_;
     }
@@ -97,6 +103,16 @@ Error Bq25798::configure(SourceVoltage voltage) {
     if (identity != 0x19) { fail(Error::identity); return error_; }
     if (!read(0x0A,&cells,1) || !read(0x13,&frequency,1)) return error_;
     if ((cells & 0xC0) != 0x80 || !(frequency & 0x20)) { fail(Error::strap); return error_; }
+    // Initial trusted setup may consume POR watchdog state, but may never
+    // clear temperature/fault evidence before the first write.
+    std::array<std::uint8_t,7> initial_status{};
+    std::array<std::uint8_t,6> initial_flags{};
+    if(!read(0x1B,initial_status.data(),initial_status.size()) ||
+       !read(0x22,initial_flags.data(),initial_flags.size())) return error_;
+    if(initial_status[5] || initial_status[6] || initial_flags[4] || initial_flags[5]) {
+        fail(Error::fault);return error_;
+    }
+    if((initial_status[4]|initial_flags[3])&0x0F) { fail(Error::temperature);return error_; }
     source_ = voltage;
     profile_ = profile(voltage);
     for (const auto& reg : profile_)
@@ -112,17 +128,16 @@ Error Bq25798::configure(SourceVoltage voltage) {
     configured_ = true;
     return Error::none;
 }
-OffCapture Bq25798::capture_off() {
-    OffCapture result;
-    const bool had_configuration=configured_;
-    if(!begin()) { result.error=error_; return result; }
-    result.started_ms=started_ms_;
-    if(!had_configuration) { fail(Error::unconfigured); result.error=error_; return result; }
-    const auto inspect=[&]() {
-        if(!verify_profile() || !read(0x1B,result.status.data(),result.status.size())) return false;
-        std::array<std::uint8_t,6> flags{};
-        if(!read(0x22,flags.data(),flags.size())) return false;
-        for(std::size_t i=0;i<flags.size();++i) result.flags[i]|=flags[i];
+bool Bq25798::off_guards() {
+    if(!transition_guard_) return true;
+    if(!inhibit_.hold_off() || !transition_guard_->hold_off()) return fail(Error::inhibit);
+    return true;
+}
+bool Bq25798::inspect_off(OffCapture& result) {
+    if(!read(0x1B,result.status.data(),result.status.size())) return false;
+    std::array<std::uint8_t,6> flags{};
+    if(!read(0x22,flags.data(),flags.size())) return false;
+    for(std::size_t i=0;i<flags.size();++i) result.flags[i]|=flags[i];
         const auto mode=(result.status[1]>>1)&0x0F;
         // PG and adapter insertion/removal may change while operating from the
         // protected battery. They do not authorize charging or an input limit.
@@ -133,7 +148,59 @@ OffCapture Bq25798::capture_off() {
         if(result.status[5] || result.status[6] || result.flags[4] || result.flags[5]) return fail(Error::fault);
         if((result.status[4]|result.flags[3])&0x0F) return fail(Error::temperature);
         return true;
+}
+OffCapture Bq25798::adopt_parked(SourceVoltage voltage,Inhibit& motor_off) {
+    OffCapture result;
+    const bool allowed=!configured_ && !parked_ && transition_failure_==Error::none &&
+        (voltage==SourceVoltage::nine || voltage==SourceVoltage::fifteen);
+    transition_guard_=&motor_off;
+    if(begin()) {
+        result.started_ms=started_ms_;
+        if(!allowed) fail(Error::unconfigured);
+        else {
+            source_=voltage;profile_=profile(voltage);
+            for(auto& reg:profile_) if(reg.address==0x10) reg.value=0x90;
+            if(inspect_off(result) && verify_profile() && off_guards()) {
+                if(last_ms_-started_ms_>250) fail(Error::timeout);
+                else parked_=true;
+            }
+        }
+    }
+    result.finished_ms=last_ms_;result.error=error_;transition_guard_=nullptr;
+    return result;
+}
+OffCapture Bq25798::park_off(Inhibit& guard) { return transition_off(guard,true); }
+OffCapture Bq25798::resume_off(Inhibit& guard) { return transition_off(guard,false); }
+OffCapture Bq25798::transition_off(Inhibit& motor_off,bool park) {
+    OffCapture result;
+    const bool allowed=transition_failure_==Error::none && (park ? configured_ && !parked_:parked_ && !configured_);
+    transition_guard_=&motor_off;
+    const auto work=[&] {
+        if(!begin()) return;
+        result.started_ms=started_ms_;
+        if(!allowed) { fail(Error::unconfigured);return; }
+        // Read-to-clear history precedes any write AND any profile mismatch.
+        // An expected watchdog expiry has no bypass here: it remains a fault.
+        if(!inspect_off(result) || !verify_profile() || !off_guards()) return;
+        const auto value=static_cast<std::uint16_t>(park ? 0x90:0x93);
+        if(!write_register({0x10,1,value,0xFF})) return;
+        for(auto& reg:profile_) if(reg.address==0x10) reg.value=value;
+        if(!inspect_off(result) || !verify_profile() || !off_guards()) return;
+        if(last_ms_-started_ms_>250) { fail(Error::timeout);return; }
+        configured_=!park;parked_=park;
     };
+    work();
+    result.finished_ms=last_ms_;result.error=error_;
+    transition_guard_=nullptr;
+    return result;
+}
+OffCapture Bq25798::capture_off() {
+    OffCapture result;
+    const bool had_configuration=configured_;
+    if(!begin()) { result.error=error_; return result; }
+    result.started_ms=started_ms_;
+    if(!had_configuration) { fail(Error::unconfigured); result.error=error_; return result; }
+    const auto inspect=[&]() { return verify_profile() && inspect_off(result); };
     if(inspect() && write_register({0x10,1,0x9B,0xF7}) && inspect()) {
         if(bus_.now_ms()-started_ms_>250) fail(Error::timeout);
     }

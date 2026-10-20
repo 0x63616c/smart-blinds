@@ -1,15 +1,16 @@
 # Battery observation after MCU light sleep
 
-This is an **isolated, host-tested module**. No C6 application instantiates
-it; the existing gauge reader, power freshness rules and motor-disabled defaults
-are unchanged. There is no supplied production qualification record. It has no
+The read-only module is now integrated into the experimental C6 motion runtime
+through the joint power mailbox. Power freshness rules and motor-disabled
+defaults are unchanged. There is no supplied production qualification record. It has no
 write, flag-clear, gauge-wake, NVM, charger or motor-control operation.
 
-The present runtime restarts its gauge history after every idle gap, so it waits
-another 2.8–4 seconds for the qualified thermal conversion period. That conflicts
-with prompt local-button operation. The MAX17320 is supplied independently from
+The previous runtime restarted gauge history after every idle gap, adding
+2.8–4 seconds for the qualified thermal conversion period. The new owner can
+retain that history across a proven bounded idle; it still requires full cold
+warmup after a longer clean idle. The MAX17320 is supplied independently from
 the raw pack and can continue its own measurements during C6 light sleep.
-Preserving that *history* could avoid repeated warmup; reusing a cached battery
+Preserving that *history* can avoid repeated warmup; reusing a cached battery
 reading cannot.
 
 ## Qualification and the private continuity ticket
@@ -98,7 +99,7 @@ proof of a conversion deadline. DNR and the gauge Timer are not ADC timestamps.
 
 ## Completed reports during active refresh
 
-The isolated owned adapter retains exactly the previous completed publication
+The standalone owned adapter retains exactly the previous completed publication
 during an ordinary active read. It preserves that report's original source
 times, values and binding; a new ready serial supersedes it only after the
 whole capture passes. The old report still expires at its original age limit.
@@ -118,10 +119,14 @@ successful transfer cannot restore a retired generation. Unreported worker
 loss remains bounded by source-age expiry; the code cannot immediately detect
 a task which silently stops or interrupt an SDK call which never returns.
 
-This remains separate from runtime integration. The serial replacement and
-delivery of the new copied report need a coherent handoff before the control
-task can consume this adapter without a queue-publication gap. No application
-instantiates it, and no qualification records or button admission are added.
+The runtime instead uses the [joint mailbox](power-mailbox.md), which publishes
+the completed charger/gauge pair and sole serial together. Control and status
+take independent immediate snapshots through a pinned selector. The sensor owner
+closes the window before parking; control releases PM locks only after matching
+closure and actual OFF evidence. A clean expired interval retires the old
+session, closes its handles on their owner, and reconstructs a new cold session
+without reusing its report. No qualification records or button admission are added.
+See the [sensor runtime](sensor-runtime.md) for the charger watchdog lifetime.
 
 ## Response and energy targets
 
@@ -156,9 +161,12 @@ against a frozen pre-change numeric policy. Healthy later reads cannot
 silently repair a failed instance.
 
 The [read-only C6 adapter](../../firmware/esp-idf/components/gauge_continuity/README.md)
-now implements the bounded capture with explicit task/epoch ownership and
-publication invalidation. It is compiled but not instantiated. Connecting its
-reports to actual power evidence still requires a separately reviewed owner
-and physical qualification. The separate original
+implements bounded capture with explicit task/epoch ownership and publication
+invalidation in the qualified runtime branch. Default and bench C6 builds
+compile that wiring; empty records still prohibit initialization. Host tests
+also run the actual sensor/control workers over a fake SDK, including short
+idle, hours-long cold restart, independent readers and blocked-transfer closure.
+Physical conversion continuity, handoff timing and installed pack qualification
+remain required. The separate original
 Thread-labelled host group timing failure remains unresolved; this module does
 not explain that failure or validate C6 scheduling or battery life.

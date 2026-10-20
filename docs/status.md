@@ -28,17 +28,19 @@ CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisiona
 
 ## Latest verified checkpoint
 
-[All thirteen Design checks jobs passed for `1785d02`](https://github.com/0x63616c/smart-blinds/actions/runs/39403449107),
+[All thirteen Design checks jobs passed for `be9cd20`](https://github.com/0x63616c/smart-blinds/actions/runs/39406704670),
 including the corrected primary battery circuit and connected route, main-board
 solder-land clearances, both mechanical assemblies, material estimate, nineteen
 portable firmware targets and pinned real-SDK default/bench builds.
-The [source-generated previews were published successfully from `d71f231`](https://github.com/0x63616c/smart-blinds/actions/runs/39403773988),
-including the corrected battery route. Preview publication now revalidates its
+The [source-generated previews were published successfully from `be9cd20`](https://github.com/0x63616c/smart-blinds/actions/runs/39406704555),
+including the corrected battery route and cleaned carrier silkscreen. All 33
+preview entries' input and output hashes were independently verified against
+the current checkout. Preview publication now revalidates its
 source inputs when another commit arrives during rendering.
 
-The subsequent carrier silkscreen cleanup passes both native routing checks locally,
-including all sixteen injected-fault controls. It preserves all copper, pads,
-polarity marks and mechanical geometry. Its own CI run is pending.
+The carrier silkscreen cleanup passes both native routing checks locally and in
+the CI run above, including all sixteen injected-fault controls. It preserves
+all copper, pads, polarity marks and mechanical geometry.
 
 The new [portable local ownership core](firmware/local-ownership.md) passes
 all eighteen host targets, the same suite under ASan/UBSan, 59 native transport,
@@ -143,10 +145,10 @@ The read-only C6 bus adapter brings the suite to sixteen passing portable
 targets in CI, including task/epoch loss at all 52 read positions and both
 disabled and enabled build gates. Pinned C6 builds also pass, including the
 normally excluded attachment branch compiled separately against the real SDK.
-No application instantiates the adapter. Local response and physical conversion continuity still require
-qualification.
+The later sensor runtime integration below instantiates the adapter. Local response
+and physical conversion continuity still require qualification.
 
-The isolated [joint power mailbox](firmware/power-mailbox.md) now commits charger
+The [joint power mailbox](firmware/power-mailbox.md) commits charger
 and gauge reports with one accepted serial. Healthy refreshes retain the previous
 fresh pair; a first detected fault or clean window close invalidates it. Readers
 receive immediate, single-use snapshots. A fresh parent build passes all nineteen
@@ -154,9 +156,19 @@ portable targets; the source-bound checkpoint also passes three focused sanitize
 targets, competing readers under ThreadSanitizer, nine restored-bug controls and
 both pinned real-SDK Wi-Fi builds. The nineteen-target suite and pinned builds
 also pass in the [corrected CI run](https://github.com/0x63616c/smart-blinds/actions/runs/39403449107), along with all its geometry jobs.
-The C6 gate is compile-only: no application instantiates the mailbox yet, no
-qualification records are supplied and hardware permissions are unchanged.
-Runtime wiring, physical critical-section timing and sleep handoff remain.
+The subsequent [sensor runtime integration](firmware/sensor-runtime.md) now
+instantiates it on the actual C6 sensor task, with separate control/status reads,
+OFF-only charger parking and owner acknowledgment before sleep. Expired sleep
+continuity creates a fresh cold monitoring session without rebooting. All 21 host
+targets pass in a fresh independent parent build; the source-bound checkpoint
+also records Linux GCC, focused sanitizers, five restored-bug controls and pinned
+default/bench C6 builds. This integration's CI is pending. No physical
+qualification records are supplied; hardware permissions remain disabled.
+Physical critical-section, acquisition and sleep timing remain unmeasured.
+An independent board/profile audit also corrected the OFF-only input-current
+request to 100 mA so it fits the board's low startup clamp. The external limit
+remains enabled; clamp-aware tests reject the former 1.5 A request. Normal
+charging and USB source-change handling remain unfinished.
 
 The separate [Wi-Fi motion target](firmware/wifi-motion.md) binds authenticated
 requests to the existing owned control runtime. Raw button STOP precedes ADC
@@ -167,7 +179,8 @@ portable suite passes locally, as do pinned default/bench C6 builds and the
 existing Thread target after the shared runtime changes. The application supplies
 empty qualification records, so it cannot initialize motor I/O or establish a
 physical reference. It has no local endpoint gesture, charge-enable, commissioning
-or OTA path. The gauge continuity adapter remains separate.
+or OTA path. The gauge continuity adapter is now connected through the sensor
+runtime above; a cable-change policy and physical qualification remain.
 
 The [host group bridge](firmware/thread-group-bridge.md) joins the coordinator to
 seven real localhost DTLS sessions with synthetic motors and calibration records.

@@ -1,10 +1,11 @@
-# Isolated joint power mailbox
+# Joint power mailbox
 
-This is portable implementation and compile evidence. **No application creates
-the mailbox, no physical qualification is supplied, and no motor or charge
-permission changes.** The current C6 runtime still uses its previous sensor
-worker. The earlier Thread group timing failure is unrelated and remains an
-open investigation.
+The qualified C6 motion runtime now creates the mailbox on its sole sensor
+owner. **No physical qualification is supplied; default images cannot initialize
+the motor or sensor branch, and no charge-enable path is added.** Portable and
+actual-runtime fake-SDK tests plus C6 cross-builds establish software behavior.
+The earlier Thread group timing failure is unrelated and remains an open
+investigation.
 
 The mailbox solves the interval between accepting a new gauge serial and
 delivering its report to a consumer. A joint-mode `OwnedSession` owns one
@@ -85,7 +86,10 @@ error still prioritizes failure to establish OFF. The mailbox preserves the
 first cause across later operations/cleanup. The sink must not reenter the
 charger or perform I/O. `capture_off()` still services the configured watchdog
 and consumes read-to-clear flags: it is not a read-only charger operation.
-No additional charger write or charge-enable operation is introduced.
+The original mailbox checkpoint introduced no additional charger writes. The
+subsequent runtime integration adds separately guarded OFF-only watchdog park
+and resume operations; it still exposes no charge-enable operation. See the
+[sensor runtime](sensor-runtime.md).
 
 ## Gate and runtime integration
 
@@ -93,7 +97,7 @@ Only fixed-size copy and metadata/atomic checks occur under `MailboxGate`.
 Readiness arithmetic, bus access, GPIO, clock calls, notifications, logging,
 allocation and waits stay outside. `JointRecord` is trivially copyable with a
 compile-time maximum size of 384 bytes. The test gate uses a host mutex; the C6
-backend uses a FreeRTOS critical section and is compiled without an instance.
+backend uses a FreeRTOS critical section in the qualified runtime branch.
 
 In the pinned ESP-IDF C6 single-core configuration this masks interrupts; the
 single-core try-enter timeout is not a duration bound. Actual copy duration
@@ -101,11 +105,17 @@ must be physically measured before admission. The backend does not spin or
 wait for the lower-priority sensor worker. The mailbox, epoch and gate must
 outlive the session and all snapshots; concurrent destruction is unsupported.
 
-The next runtime integration must provide qualified continuity records, a
-single sensor owner, monotonic clock values, clean closure/park acknowledgment
-before PM locks are released, independent control/status snapshots, and
-retirement if required notification/handoff fails. Take the snapshot near the
-control input boundary and recheck asynchronous STOP/faults as usual.
+The runtime now supplies a single sensor owner, monotonic clocks, matching
+closure/park acknowledgment before PM release, independent control/status
+snapshots, and retirement on required handoff failure. Its fixed storage slot
+uses `SensorAccess` reader pins: withdrawal immediately prevents new grants,
+and same-owner replacement waits for all pins before destroying the session.
+No I/O or clock callback runs under the selector gate. Status cannot own PM
+transitions or consume the control task's snapshot.
+
+Qualified continuity and measured handoff records remain empty. The control
+snapshot follows raw STOP and actual input sampling, with asynchronous
+STOP/fault rechecks retained.
 Retirement after a final sampled check can only be acted on at the next control
 boundary; this API does not promise instantaneous hardware shutdown.
 
@@ -128,4 +138,11 @@ cleanup, including a secondary inhibit failure and preserved legacy error
 precedence. Existing standalone gauge tests continue to cover every guard
 position and incremental/full predicate parity. Sanitizers, restored-bug
 controls and pinned default/bench C6 compile results are recorded in the
-source-bound checkpoint manifest under `work/gauge-mailbox-checkpoint`.
+source-bound historical checkpoint manifest under `work/gauge-mailbox-checkpoint`.
+The later runtime checkpoint adds `sensor_access_tests` and
+`c6_runtime_owner_tests`: independent snapshots, held-reader retirement,
+blocked charger/gauge calls, physical OFF before request publication, PM closure,
+short continuity wake and explicit cold restart after eight simulated idle hours.
+All 21 host targets passed under Clang and pinned Linux GCC; focused ASan/UBSan
+and TSan runs and five restored-bug controls also passed. These tests establish
+software behavior, not physical I²C timing or sleep-current measurements.

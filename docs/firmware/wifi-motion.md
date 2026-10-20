@@ -109,11 +109,20 @@ remain physical measurement gates. Three association attempts and five
 authentication errors per boot can still require a restart after ordinary
 network outages; that bounded bench behavior is not final unattended recovery.
 
-The current power reader deliberately restarts its qualified history after
-idle, requiring roughly **2.8–4 s** of temperature history before remote motion.
-That fits the bounded preflight concept but does not meet the future ordinary
-local-start target. The isolated [gauge continuity](gauge-continuity.md) adapter
-is not connected here. Raw STOP is independent of that warmup.
+The sensor owner now connects [gauge continuity](gauge-continuity.md) through a
+joint charger/gauge mailbox. A proven bounded idle retains measurement history
+but requires a complete fresh capture. An expired interval or incomplete prior
+warmup starts a new monitoring session with the original **2.8–4 s** cold history
+requirement. DTIM/status wakes cannot renew the parked interval. Raw STOP is
+independent of this warmup; local endpoint gestures are still unwired.
+
+Control publishes actual OFF before requesting sensor closure and holds its PM
+locks until the matching sensor acknowledgment arrives. A blocked I²C call
+cannot authorize sleep. The charger is parked with charging physically inhibited
+and its watchdog disabled; wake restores and verifies the unchanged 2 s watchdog
+before joint evidence can publish. Failed transitions remain terminal.
+See the [sensor runtime](sensor-runtime.md), including the unresolved stationary
+USB connection-change policy.
 
 ## Evidence and remaining work
 
@@ -125,11 +134,11 @@ revocation during queued commit, raw STOP before/during ADC, valid settling,
 failed OFF readback, STOP sequence floors and active-disconnect refusal.
 No fixture record is installed or made loadable by the application.
 
-All 17 host CTest targets passed locally. The motion binding and runtime tests
+The original motion-binding checkpoint passed all 17 host CTest targets. Its motion binding and runtime tests
 also passed AddressSanitizer/UndefinedBehaviorSanitizer with AppleClang and Linux
 GCC. Pinned C6 builds cover
 the default target, the explicit bench compile branch and the existing Thread
-target after shared runtime changes. Local final build sizes on 2026-10-20:
+target after that checkpoint's shared runtime changes. Its historical build sizes on 2026-10-20 were:
 
 | Image | Application bytes | Free in each 0x1d0000 slot |
 |---|---:|---:|
@@ -142,10 +151,19 @@ fresh CI artifacts bind build evidence to a published revision.
 No real-radio group, PM timing, current accuracy, watchdog waveform, motor,
 pack or physical button latency has been tested.
 
+The integrated sensor-runtime checkpoint passes all **21 host targets** under
+Clang and pinned Linux GCC, including the actual C6 control/sensor workers against
+a fake SDK. Focused sanitizer runs pass 3/3 ASan/UBSan and 2/2 TSan targets;
+five restored-bug controls fail as expected. Fresh pinned Wi-Fi motion builds
+produce `0x114d90` bytes (40% slot free) by default and `0x119cd0` (39%) with
+both motion and gauge-continuity compile branches enabled. Application
+qualification records remain empty in both. These supersede the two Wi-Fi image
+sizes above; the earlier Thread image is historical evidence only.
+
 Still absent: accepted board/port and motor measurements, full verified pack
 profile/timing, calibration and room datum, physical reference workflow,
-current-boot admission/record loader, credential commissioning, local endpoint
-ownership/gestures, continuity integration, charging permission, OTA and live HA
+current-boot admission/record loader, credential commissioning, C6 local endpoint
+gestures/admission, physical continuity/handoff qualification, charging permission, OTA and live HA
 binding. The default remains OFF until a separately reviewed admission path has
 real evidence. The earlier
 [Thread-labelled host group timing investigation](thread-group-bridge.md)

@@ -1,24 +1,27 @@
 # C6 read-only gauge continuity adapter
 
-**Compiled only; no application instantiates this component.**
+**Integrated into the qualified branch of `MotionRuntime`; default images remain OFF.**
 `CONFIG_BLINDS_GAUGE_CONTINUITY_BENCH` defaults OFF, and the portable
 qualification profile defaults invalid. Enabling that build option alone
-cannot attach a device. There is no bus creation, GPIO configuration, gauge
-register write, flag clear, NVM command, charger control or motor approval.
+cannot attach a device. The adapter itself creates no bus, configures no GPIO,
+writes no gauge register, clears no gauge flag, and grants no motor approval.
+The runtime's joint session also owns a separate charger adapter; its OFF-only
+operations are described in the [sensor runtime](../../../../docs/firmware/sensor-runtime.md).
 
 The [continuity model](../../../../docs/firmware/gauge-continuity.md) remains
 unchanged. This component connects it to the actual ESP-IDF synchronous I²C
 API through a tested portable ownership and wire-format boundary.
 
-## Existing and future ownership
+## Runtime ownership
 
-Currently `MotionRuntime::power()` creates I²C0 with GPIO10/11 and physical
-pullups, then uses `Max17320Reader` and `Bq25798Config` sequentially on that one
-lower-priority task. Its monitor still restarts on each sensing window; this
-checkpoint does not replace it. The Wi-Fi evaluation app has no I²C owner.
+The qualified `MotionRuntime::power()` branch creates I²C0 with GPIO10/11 and
+physical pullups. That one lower-priority task constructs `GaugeContinuity`,
+`Bq25798Config` and the joint mailbox, then reads the charger before the gauge.
+It replaces the legacy reader in this worker; they never share ownership.
+The radio-only Wi-Fi evaluation app still has no I²C owner.
 
-A future qualified owner must create `GaugeContinuity` **on the sensor task**
-and explicitly attach an existing bus from that task. The bus must use the
+The runtime creates `GaugeContinuity` **on the sensor task**
+and explicitly attaches its existing bus from that task. The bus must use the
 synchronous SDK mode, with no asynchronous callback registration or competing
 task accessing its clients. The existing `exclusive_access_verified` physical
 qualification includes this ownership condition. The adapter cannot introspect
@@ -34,7 +37,10 @@ and qualification ID.
 `BusEpoch` must outlive the adapter and all publication consumers. Any task can
 atomically retire it; retirement cannot wrap. A session can retire only its own
 generation, so stale-object cleanup cannot cancel a deliberately issued newer
-generation. There is no automatic reattachment or epoch restoration.
+generation. A clean expired idle can explicitly retire and replace the monitoring
+session on the same owner, after reader withdrawal and handle closure. This
+issues a new epoch and repeats the full cold warmup; it never restores an old
+epoch or repairs a failed session.
 
 | Event | Required owner action before accepting more evidence |
 |---|---|
@@ -87,17 +93,19 @@ then apply the existing joint `motion_power()` freshness/charger checks.
 The publication fence reads atomics and immutable copies across tasks without
 touching the single-owner monitor. It never grants actuation.
 
-**Runtime handoff remains unresolved and this adapter remains uninstantiated.**
-Replacing a serial before delivering its new report to a consumer queue leaves
-a fail-closed interval in which the consumer's older copy rejects. Connecting
-the adapter needs a reviewed coherent report/serial handoff; accepting arbitrary
-older serials or bypassing `current` is not a solution.
+The runtime uses the [joint power mailbox](../../../../docs/firmware/power-mailbox.md)
+mode instead of queueing standalone publications. That mode atomically publishes
+the completed pair and its sole serial. A stable `SensorAccess` selector pins
+the immutable session while control and status take independent immediate
+snapshots. The owner withdraws it and waits for pins before destroying old
+storage. No arbitrary older serial is accepted, and standalone `current()` is
+not the runtime admission path.
 
-The separate [joint power mailbox](../../../../docs/firmware/power-mailbox.md)
-now implements a portable charger-first/coherent-publication alternative and
-a compile-only C6 critical-section backend. It does not change this adapter's
-standalone read mode or instantiate a joint session in either application.
-Runtime closure, power-lock handoff and physical timing remain integration gates.
+Control retains its PM locks until a matching sensor closure acknowledgment and
+fresh actual OFF evidence agree. A blocked synchronous bus call cannot authorize
+sleep or prevent raw STOP handling on the independent control worker. Qualified
+idle preserves the original park time; expired continuity starts a new cold
+session. Physical gate duration, SDK fault timing and continuity remain unmeasured.
 
 ## Requested timeouts versus physical timing
 
@@ -134,10 +142,14 @@ remain unmeasured.
   fake SDK, with the bench gate both OFF and ON. They test no default SDK access,
   qualification rejection, actual attachment address selection, transaction
   shape, partial-attach cleanup, first error and wrong-task teardown.
-- Real pinned C6 cross-builds compile the component in Thread and Wi-Fi targets.
-  A separate bench-option compile checks the normally excluded attachment
-  branch against the real SDK. No image is flashed, and the applications still
-  contain no adapter instance.
+- Earlier pinned C6 cross-builds covered the isolated component in Thread and
+  Wi-Fi targets. The runtime-integration checkpoint adds fresh real Wi-Fi motion
+  default and bench builds; the latter enables both motion and continuity
+  branches, while its application records stay empty.
+- `sensor_access_tests` checks pinned-reader lifetime and independent snapshots.
+  `c6_runtime_owner_tests` compiles the actual runtime and both C6 bus adapters
+  against a fake SDK, including blocked transfers, PM ownership, clean long-idle
+  replacement and terminal-fault refusal. No image has been flashed.
 
 The host SDK seam does not model ESP-IDF interrupt, electrical or scheduling
 behavior. It supplements the real cross-build; it does not establish hardware

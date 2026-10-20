@@ -30,7 +30,7 @@ add_executable(board_io_tests tests/board_io_tests.cpp)
 target_include_directories(board_io_tests PRIVATE include)
 target_compile_options(board_io_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_test(NAME board_io_tests COMMAND board_io_tests)
-add_library(blinds_motion src/motion_executor.cpp src/motion_session.cpp)
+add_library(blinds_motion src/motion_executor.cpp src/motion_session.cpp src/gauge_continuity.cpp)
 target_link_libraries(blinds_motion PUBLIC blinds_control)
 target_compile_options(blinds_motion PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_executable(motion_executor_tests tests/motion_executor_tests.cpp)
@@ -99,3 +99,21 @@ target_include_directories(power_mailbox_tests PRIVATE include)
 target_link_libraries(power_mailbox_tests PRIVATE Threads::Threads)
 target_compile_options(power_mailbox_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_test(NAME power_mailbox_tests COMMAND power_mailbox_tests)
+add_executable(sensor_access_tests tests/sensor_access_tests.cpp src/power_mailbox.cpp
+  src/gauge_bus_session.cpp src/gauge_continuity.cpp src/charger.cpp)
+target_include_directories(sensor_access_tests PRIVATE include)
+target_link_libraries(sensor_access_tests PRIVATE Threads::Threads)
+target_compile_options(sensor_access_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
+add_test(NAME sensor_access_tests COMMAND sensor_access_tests)
+add_executable(c6_runtime_owner_tests tests/c6_runtime_owner_tests.cpp
+  esp-idf/components/motion_runtime/c6_motion_runtime.cpp
+  esp-idf/components/gauge_continuity/c6_gauge_continuity.cpp
+  esp-idf/components/gauge_continuity/c6_power_mailbox.cpp
+  esp-idf/components/charger_config/bq25798_config.cpp
+  src/gauge_bus_session.cpp src/power_mailbox.cpp src/charger.cpp)
+target_include_directories(c6_runtime_owner_tests PRIVATE tests/fakes/runtime_idf include
+  esp-idf/components/motion_runtime/include esp-idf/components/gauge_continuity/include
+  esp-idf/components/charger_config/include)
+target_link_libraries(c6_runtime_owner_tests PRIVATE blinds_motion Threads::Threads)
+target_compile_options(c6_runtime_owner_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
+add_test(NAME c6_runtime_owner_tests COMMAND c6_runtime_owner_tests)

@@ -2,6 +2,11 @@
 
 The portable charger module and ESP-IDF I2C component configure and verify a proposed BQ25798 profile while **holding external charge permission off and leaving `EN_CHG=0`**. They cannot enable charging. The current bring-up application compiles the component but does not instantiate it, configure I2C pins or drive GPIO22. No charger, cell or owner device has been written by this work.
 
+The experimental [motion runtime](sensor-runtime.md) now instantiates the
+component on its sensor task behind empty-by-default physical qualification
+records. Its guarded OFF parking and cold restart are distinct from the
+unchanged bring-up application.
+
 The register map was derived from [TI BQ25798 SLUSDV2C, June 2026](https://www.ti.com/lit/ds/symlink/bq25798.pdf), primarily sections 7.5.1.1–21, 7.5.1.23–35, 7.5.1.42–57. It was checked against the current charger capture with the electronics designer. This is a source-reviewed, host-tested configuration proposal; it is not a validated Samsung 50E charging prescription or proof of converter behavior.
 
 ## Interface and invariants
@@ -26,7 +31,7 @@ Two-byte values are sent most-significant byte first at the register's starting 
 | `01–02` | `04 DD` | Charge target 12.45 V, 10 mV steps |
 | `03–04` | `00 64` | Charge-current setting 1 A, 10 mA steps |
 | `05` | `50` / `82` | Input-voltage regulation 8 V / 13 V for 9 V / 15 V source |
-| `06–07` | `00 96` | Input-current setting 1.5 A, 10 mA steps |
+| `06–07` | `00 0A` | OFF-only input-current request 100 mA, 10 mA steps |
 | `08` | `C3` | 120 mA precharge, 71.4% VREG transition setting |
 | `09` | `25` | 200 mA termination, watchdog stops charging, register reset clear |
 | `0A` | `A3` | 3S, 1024 ms recharge debounce, 200 mV recharge offset |
@@ -51,9 +56,24 @@ TI's REG09 bit 5 diagram is labelled read-only while its field description expli
 
 ## Electrical interpretation
 
-The proposed STUSB4500 factory contract is 9 V/2.5 A or 15 V/2.5 A; 5 V fallback is blocked by the qualified input stage. The component does not implement PD negotiation or infer entitlement from BQ `VBUS_STAT`. A 1.5 A register setting is a nominal regulator target, not an exact current ceiling; TI's accuracy table has specific test points rather than a universal guarantee at this setting. Hardware input limiting, detach/hard-reset behavior and valid-contract evidence remain separate requirements.
+The proposed STUSB4500 factory contract is 9 V/2.5 A or 15 V/2.5 A; 5 V fallback is blocked by the qualified input stage. The component does not implement PD negotiation or infer entitlement from BQ `VBUS_STAT`. Hardware input limiting, detach/hard-reset behavior and valid-contract evidence remain separate requirements.
 
-At 9 V, 1 A into a nearly full 12.45 V pack can exceed the input budget after conversion losses and system load, so input regulation may reduce charging current. Lower current can also make the deliberately unextended 12 h timer expire before full charge. This is acceptable for the first conservative profile, but charge time and thermal behavior need measurement.
+The 33 kΩ/10 kΩ ILIM divider intentionally imposes a low startup limit. TI
+§7.3.4.3 prohibits host requests above that clamp while external limiting remains
+enabled. The former exact 1.5 A register expectation was incompatible with this
+circuit. The corrected OFF-only profile requests the documented 100 mA minimum,
+retaining both current-limit mechanisms (`REG14=0x16`). The physical numbered-pad
+graphs in the standalone charger, main capture and main route were independently
+checked against the resistor MPNs.
+
+Existing planning corners give a 100–299.420 mA pin-equation command range, using
+test-point REGN and leakage assumptions. That is not a guaranteed physical
+current range or proof of USB compliance. Actual silicon accuracy and operating
+conditions remain measurement gates. The dormant 1 A battery-current register
+does not make this a 1 A charger: charge permission remains OFF. Normal charging
+needs its own negotiated-current policy, reviewed input budget and thermal tests.
+At a future 1.5 A input setting, even 9 V may not sustain 1 A into a nearly full
+12.45 V pack after conversion losses and system load.
 
 The 12.45 V target leaves planning margin below 12.6 V. Applying the datasheet's +0.65% result at its 12.6 V test point gives about 12.531 V, but that extrapolation is not a guaranteed bound at 12.45 V. Individual-cell protection and measurement remain necessary. The Semitec 103AT-2 and 5.23 kΩ/30.1 kΩ divider approximate the selected 10–40°C window; component tolerance, thermal placement and lag require validation. The hard TS cutoff is not a 40°C guarantee. The low die thresholds are proposed enclosure-protection settings and may substantially derate charging.
 
@@ -86,7 +106,13 @@ cmake --build work/firmware-build
 ctest --test-dir work/firmware-build --output-on-failure
 ```
 
-Host tests pass. The C6 component is included in the motor-disabled bring-up target for the next pinned ESP-IDF build. No physical I2C, charging, temperature, timeout or watchdog measurement has been performed.
+The charger and actual-runtime fake buses now enforce the external clamp.
+Tests cover each representable 100–300 mA clamp for both voltage profiles through
+configure, capture, OFF park, write-free parked adoption and resume. Restoring the
+old 1.5 A source fails its configuration readback. All 21 host targets pass with
+Clang and pinned Linux GCC; focused ASan/UBSan tests and actual C6 default/bench
+builds also pass. See the [source-bound record](sensor-runtime-checkpoint.json).
+No physical I2C, charging, temperature, timeout or watchdog measurement has been performed.
 
 The separate [`capture_off()` motion observation](motion-power-evidence.md)
 now verifies the OFF profile and fault status without requiring a connected USB
