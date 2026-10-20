@@ -13,7 +13,8 @@ joints = n * a["smt_joints_per_unit"] * f["smt_per_joint"]
 economic = f["economic_setup"] + f["economic_stencil"] + a["ordinary_extended_part_numbers"] * f["economic_extended_feeder"] + joints
 standard = f["standard_single_side_setup"] + f["standard_single_side_stencil"] + a["unique_total_part_numbers"] * f["standard_feeder_all_unique"] + joints + a["standard_fixture_allowance_usd"] + a["standard_packing_allowance_usd"]
 component_allowance = core + a["other_components_per_unit_usd"]
-lines = ["# Electronics cost sensitivity", "", "**Planning calculation only. Not a quote or orderable BOM.**", "", model["partition"] + ".", "",
+lines = ["# Electronics cost sensitivity", "", "**Planning calculation only. Not a quote or orderable BOM.**", "",
+         "Historical architecture sensitivity. The current three-board component demand is tracked in [captured parts](README.md#captured-electronic-parts); the older allowance below is not the current device budget.", "", model["partition"] + ".", "",
          "The five major candidate ICs total **$%.2f per board** using the live public 1+ prices, before attrition/MOQ. The remaining $%.2f component allowance and $%.2f bare-board allowance are estimates, not sourced BOM totals." % (core,a["other_components_per_unit_usd"],a["pcb_per_unit_usd"]), "",
          "| Eight-board scenario | Economic | Standard, single side |", "|---|---:|---:|",
          f"| Assembly fee model | ${economic:.2f} | ${standard:.2f} |",

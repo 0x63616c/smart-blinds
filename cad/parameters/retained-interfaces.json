@@ -1,0 +1,595 @@
+{
+  "status": "Provisional mechanical allocations; actual electrical placement and physical fit not accepted",
+  "units": "mm",
+  "coordinates": "X across wall, Y upwards, Z out from wall",
+  "case": {
+    "width": 115,
+    "height": 174,
+    "depth": 71,
+    "button_projection_extra": 1.2
+  },
+  "carrier": {
+    "outline": [
+      86,
+      104
+    ],
+    "corner_radius": 4,
+    "thickness": 1.6,
+    "global_origin_xy": [
+      4.8,
+      6
+    ],
+    "pcb_rear_z": [
+      30,
+      36.6
+    ],
+    "mounting_holes_local": [
+      [
+        4,
+        4
+      ],
+      [
+        82,
+        4
+      ],
+      [
+        4,
+        100
+      ],
+      [
+        82,
+        100
+      ]
+    ],
+    "mounting_hole_diameter": 3.4,
+    "bare_support_land_diameter": 7.6,
+    "holder_centres_local_x": [
+      15,
+      41,
+      67
+    ],
+    "holder_start_local_y": 8,
+    "holder_envelope": [
+      25.5,
+      83.8,
+      25
+    ],
+    "opposed_pcb_gap": 5,
+    "maximum_pin_and_fillet_protrusion": 1.5,
+    "insulating_sheet_thickness": 1,
+    "insulating_sheet_slot": 1.2,
+    "raw_group_channels_global_xy": [
+      [
+        20,
+        106
+      ],
+      [
+        38,
+        106
+      ],
+      [
+        56,
+        106
+      ],
+      [
+        74,
+        106
+      ]
+    ],
+    "raw_group_channels": "Permanent insulated connections only; no externally accessible raw group connector",
+    "copper_keepout_local_xy": [
+      [
+        80.8,
+        50.5,
+        86,
+        87
+      ]
+    ],
+    "outward_supports": {
+      "front_primary": {
+        "local_y": [
+          2,
+          5
+        ],
+        "local_x_intervals": [
+          [
+            4,
+            9
+          ],
+          [
+            77,
+            82
+          ]
+        ],
+        "global_z": [
+          38.2,
+          39.7
+        ]
+      },
+      "rear_companion": {
+        "lower_local_y": [
+          2,
+          5
+        ],
+        "lower_local_x_intervals": [
+          [
+            4,
+            11
+          ],
+          [
+            19,
+            37
+          ],
+          [
+            45,
+            63
+          ],
+          [
+            71,
+            82
+          ]
+        ],
+        "upper_local_y": [
+          94,
+          97
+        ],
+        "upper_local_x": [
+          4,
+          82
+        ],
+        "global_z": [
+          28.5,
+          30
+        ]
+      },
+      "note": "Component-side support lands. Corner posts remain on both boards. Cell insertion requires a backing fixture; these installed supports do not qualify holder contact load paths."
+    }
+  },
+  "controller": {
+    "global_pcb_origin_xyz": [
+      99.0,
+      3,
+      8
+    ],
+    "board_axes": "Thickness along X; 68.5 mm length along Y; 54 mm depth along Z",
+    "board_size_xyz": [
+      1.6,
+      68.5,
+      54
+    ],
+    "component_height_reservation": 9,
+    "component_face": "+X",
+    "case_inner_straight_wall_x": 112.6,
+    "edge_clamp_global_y": [
+      12,
+      67.5
+    ],
+    "edge_clamp_board_land_global_z": [
+      61,
+      62
+    ],
+    "edge_clamp_screw_axis_z": 65.5,
+    "switch_global_y": [
+      28,
+      52
+    ],
+    "antenna_keepout_global_min": [
+      85.6,
+      56.5,
+      -1.5
+    ],
+    "antenna_keepout_global_max": [
+      118.7,
+      93,
+      46.5
+    ],
+    "usb_metal_global_min": [
+      100.6,
+      0,
+      33.03
+    ],
+    "usb_metal_global_max": [
+      103.86,
+      7.35,
+      41.97
+    ],
+    "battery_connector": "Molex430450600 dual-rowRA header, protected150mm2147561061 pigtail from fixed cassette",
+    "local_mapping": "u = global Z - 8; v = global Y - 3. Component side faces global +X.",
+    "board_outline_local_uv": [
+      [
+        0,
+        0
+      ],
+      [
+        24.3,
+        0
+      ],
+      [
+        24.3,
+        -2.54
+      ],
+      [
+        34.7,
+        -2.54
+      ],
+      [
+        34.7,
+        0
+      ],
+      [
+        54,
+        0
+      ],
+      [
+        54,
+        68.5
+      ],
+      [
+        0,
+        68.5
+      ]
+    ],
+    "edge_notches": {
+      "edge_local_u": 54,
+      "centres_local_v": [
+        9,
+        64.5
+      ],
+      "depth_along_u": 1.2,
+      "width_along_v": 2.4,
+      "inside_corner_radius": 0.6,
+      "extent_global_z": [
+        60.8,
+        62
+      ],
+      "bare_land_local_uv": [
+        [
+          52.5,
+          5,
+          54,
+          13
+        ],
+        [
+          52.5,
+          60.5,
+          54,
+          68.5
+        ]
+      ],
+      "purpose": "Printed removable clamp tongues react USB axial loads through board edge",
+      "laminate_gap_to_upper_edge_along_v": 2.8
+    },
+    "switch_body_local_uv": [
+      [
+        50.7,
+        23.25,
+        53.7,
+        26.75
+      ],
+      [
+        50.7,
+        47.25,
+        53.7,
+        50.75
+      ]
+    ],
+    "switch_terminal_local_v": [
+      [
+        22.7,
+        27.3
+      ],
+      [
+        46.7,
+        51.3
+      ]
+    ],
+    "switch_actuator_local_u": 54.45,
+    "switch_actuator_axis_global_x": 101.9,
+    "switch_actuation_direction": "global -Z / local -u when pressed",
+    "module_body_local_uv": [
+      5.5,
+      49.5,
+      23.5,
+      68.5
+    ],
+    "module_antenna_local_uv": [
+      5.5,
+      68.5,
+      23.5,
+      75
+    ],
+    "module_total_height_above_component_face": 3.1,
+    "antenna_keepout_local_uv": [
+      -9.5,
+      53.5,
+      38.5,
+      90
+    ],
+    "antenna_keepout_policy": "No metal/copper/components except manufacturer-required module geometry. Follow module antenna/ground datasheet.",
+    "usb_metal_local_uv": [
+      25.03,
+      -3,
+      33.97,
+      4.35
+    ],
+    "usb_case_cutout_global_min": [
+      97.5,
+      0,
+      30
+    ],
+    "usb_case_cutout_global_max": [
+      107.5,
+      2.4,
+      45
+    ],
+    "frame_mounts_global_xy": [
+      [
+        102.5,
+        9
+      ],
+      [
+        102.5,
+        97
+      ]
+    ],
+    "frame_screw": "M3x6 countersunk; head flush at global Z6.3 below PCB rear edge Z8",
+    "switch_tip_global_z": 62.45,
+    "guide_bar_global_z": [
+      63.1,
+      65.1
+    ],
+    "front_board_to_guide_bar_clearance": 1.1,
+    "usb_part": "HRO TYPE-C-31-M-12 / JLC C165948",
+    "usb_drawing_source": "https://datasheet.lcsc.com/datasheet/pdf/9e56b777c022540fcce7c7f67825f55e.pdf?productCode=C165948",
+    "usb_mouth_global_y": 0,
+    "usb_centre_global_z": 37.5,
+    "usb_tongue_global_bounds_yz": [
+      [
+        0.46,
+        32.3
+      ],
+      [
+        3,
+        42.7
+      ]
+    ],
+    "usb_recommended_edge_global_y": 0.46,
+    "usb_npth_line_global_y": 6.25,
+    "usb_datum_explanation": "Drawing NPTH line to mouth6.25 minus NPTH line to recommended edge5.79 gives0.46mm overhang. Tongue edgeY0.46 sets mouthY0. Exact pad/slot positions remain owned by electrical footprint.",
+    "connector_height_exception": "430450600/430250600 mated10.81mm nominal; allocate11.35mm including drawing latching tolerance. FaceX100.6toinnerwall112.6 gives12.0mm, leaving0.65mm to that latch reserve.",
+    "ordinary_component_height_reservation": 9,
+    "antenna_wall_note": "Antenna reservation extends1.5mm behind wall plane; metal wall structure/anchors in that region require installed RF qualification.",
+    "header_reservation": {
+      "part": "Molex430450600 / JLC C127367",
+      "footprint_origin_global_xyz": [
+        100.6,
+        55.82,
+        53.675
+      ],
+      "footprint_origin_local_uv": [
+        45.675,
+        52.82
+      ],
+      "footprint_forward_direction": "+globalY / +localv",
+      "header_housing_global_min": [
+        100.6,
+        56.33,
+        47.35
+      ],
+      "header_housing_global_max": [
+        109.37,
+        66.24,
+        60
+      ],
+      "terminal_rear_global_y": 54.0,
+      "retention_peg_global_y": 61.64,
+      "drawing_peg_to_edge_maximum": 10.16,
+      "wire_exit_global_y": 73.89,
+      "mated_height_nominal": 10.81,
+      "mated_height_tolerance_reservation": 11.06,
+      "latch_height_reservation": 11.35,
+      "housing_width_nominal": 9.85,
+      "housing_width_maximum": 10.2,
+      "latching_reservation_global_max_x": 111.95,
+      "drawing_header": "https://store.comet.bg/download-file.php?id=29300",
+      "drawing_housing": "430250000-SD RevA, inspected local manufacturer drawing",
+      "caution": "Imported footprint orientation/pin numbering and supplier drawing tolerances must be checked by electrical placement; these are mechanical targets.",
+      "parent_pcb_mapping": "KiCad x=100+u,y=175-v",
+      "parent_pcb_rotation_degrees": 180,
+      "physical_pin_origins_local_uv": {
+        "1": [
+          42.675,
+          54.32
+        ],
+        "2": [
+          45.675,
+          54.32
+        ],
+        "3": [
+          48.675,
+          54.32
+        ],
+        "4": [
+          42.675,
+          51.32
+        ],
+        "5": [
+          45.675,
+          51.32
+        ],
+        "6": [
+          48.675,
+          51.32
+        ]
+      },
+      "peg_to_board_edge_distance": 9.86
+    },
+    "protected_harness": {
+      "part": "Molex2147561061",
+      "wire_type": "Six black18AWGUL1061 wires, identify each by continuity before permanent termination",
+      "wire_diameter_maximum": 1.85,
+      "free_wire_length_after_housing": 12.7,
+      "wire_free_interval_global_y": [
+        73.89,
+        86.59
+      ],
+      "initial_wire_envelope_global_xz": [
+        [
+          102.85,
+          49.425
+        ],
+        [
+          108.35,
+          57.925
+        ]
+      ],
+      "bend_radius_nominal": 13.91,
+      "bend_centre_global_xy": [
+        91.69,
+        86.59
+      ],
+      "cassette_port_global_y": 100.5,
+      "cassette_wire_centres_global_z": [
+        45.5,
+        47.7,
+        49.9,
+        52.1,
+        54.3,
+        56.5
+      ],
+      "strain_retention": "Two nylon2.5mm cable ties on integral retained cassette bars; compression and pull qualification required",
+      "service": "Unplug keyed controller connector with cover removed, then remove closed cassette; raw group connections stay enclosed."
+    },
+    "antenna_baseboard": "PCB ends at v68.5/global Y71.5; module antenna v68.5..75 overhangs, no FR4 substrate below it.",
+    "switch_centres_local_uv": [
+      [
+        52.2,
+        25
+      ],
+      [
+        52.2,
+        49
+      ]
+    ],
+    "button_adjustment": {
+      "method": "M2x6 socket screw, captive M2 hex nut and separate M2 jam nut in each removable plunger. Set first electrical closure at the independent positive stop; no assumed extra overtravel.",
+      "positive_stop_travel": 0.4,
+      "screw_tip_adjustment_global_z": [
+        62.5,
+        62.9
+      ],
+      "expected_first_closure_setting_global_z": [
+        62.55,
+        62.75
+      ],
+      "released_gap_target": [
+        0.1,
+        0.3
+      ],
+      "switch_travel_manufacturer_range": [
+        0.1,
+        0.3
+      ],
+      "stop_load_path": "Plunger flange to guide bar to cover bosses; no intended force path through switch once at stop.",
+      "qualification": "Verify actual release/no preload, repeatable closure, jam-nut retention, friction and acceptable switch overtravel/force. No maximum overtravel rating was supplied."
+    },
+    "motor_solder_pads_local_uv": [
+      [
+        42,
+        34.5
+      ],
+      [
+        48,
+        34.5
+      ]
+    ],
+    "encoder_connector": {
+      "part": "Molex532610471",
+      "footprint_origin_local_uv": [
+        40,
+        43.5
+      ],
+      "parent_pcb_rotation_degrees": 90,
+      "mating_direction": "+localu/globalZ",
+      "body_width_maximum": 10.55,
+      "mated_height_maximum": 3.6,
+      "wire_exit_from_pad_row": 6
+    },
+    "home_connector": {
+      "part": "Molex532610371 candidate",
+      "footprint_origin_local_uv": [
+        30.5,
+        52
+      ],
+      "mating_direction": "-localv/globalY",
+      "purpose": "Optional home reference connector; actual reference sensor mounting remains provisional."
+    }
+  },
+  "drive": {
+    "motor_axis_yz": [
+      142,
+      28
+    ],
+    "shaft_axis_yz": [
+      142,
+      35
+    ],
+    "shaft_offset_z": 7,
+    "mounting_pattern_global_xy": [
+      [
+        25,
+        127
+      ],
+      [
+        25,
+        157
+      ],
+      [
+        65,
+        127
+      ],
+      [
+        65,
+        157
+      ],
+      [
+        95.5,
+        128
+      ],
+      [
+        95.5,
+        156
+      ]
+    ],
+    "caution": "Shared motor shaft/outboard bearing still loads gearbox. Zero-offset variant not supported by current guard."
+  },
+  "pack_pigtail": {
+    "protected_pigtail_only": true,
+    "pcb_header": null,
+    "permanent_board_termination": "Six protected pads/wires, strain retained before cassette sidewall. No raw series taps exposed.",
+    "pigtail_exit_global_xyz": [
+      92.2,
+      100.5,
+      51
+    ],
+    "sidewall_port_global_min": [
+      90.7,
+      99,
+      44
+    ],
+    "sidewall_port_global_max": [
+      92.3,
+      102,
+      58
+    ],
+    "cable_ties": [
+      {
+        "width": 2.5,
+        "length_candidate": 100,
+        "quantity": 2
+      }
+    ],
+    "termination_positions": "Electrical carrier placement to assign protected solder pads. Internal wire route remains an allocation until that placement."
+  },
+  "frozen_interface_checkpoint": "2026-10-20: 54x68.5 plus USB tongue; controller X99; switch u52.2; clamp bare lands u52.5; motor pads u42/48 v34.5; encoder u40 v43.5; home u30.5 v52. All are physical-fit candidates."
+}

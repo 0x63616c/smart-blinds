@@ -11,6 +11,58 @@ from generate_schematics import ROOT, board_graph, verify_netlist
 from kicad_sexpr import children, dumps, parse
 
 
+class MechanicalFeatureGraphTests(unittest.TestCase):
+    def inspect(self, footprint):
+        with tempfile.TemporaryDirectory() as folder:
+            path=Path(folder)/'test.kicad_pcb'
+            path.write_text('(kicad_pcb '+footprint+')')
+            return board_graph(path)
+
+    hole='''(footprint "MountingHole_M3_3.4mm"
+        (property "Reference" "H1")
+        (attr board_only exclude_from_bom exclude_from_pos_files)
+        (pad "" np_thru_hole circle (at 0 0) (size 3.4 3.4) (drill 3.4)
+             (layers "*.Cu" "*.Mask")))'''
+
+    def test_explicit_isolated_mechanical_hole_omitted(self):
+        self.assertEqual(self.inspect(self.hole),{})
+
+    def test_numbered_hole_cannot_hide_electrical_pin(self):
+        with self.assertRaises(ValueError):
+            self.inspect(self.hole.replace('pad ""','pad "1"'))
+
+    def test_plated_hole_cannot_hide_electrical_pin(self):
+        with self.assertRaises(ValueError):
+            self.inspect(self.hole.replace('np_thru_hole','thru_hole'))
+
+    def test_net_cannot_hide_in_mechanical_feature(self):
+        with self.assertRaises(ValueError):
+            self.inspect(self.hole.replace('(at 0 0)','(net 1 "GND") (at 0 0)'))
+
+    def test_atopile_part_cannot_be_silently_omitted(self):
+        with self.assertRaises(ValueError):
+            self.inspect(self.hole.replace('(attr','(property "atopile_address" "circuit.part") (attr'))
+
+    def test_purchased_hole_must_not_be_silently_omitted(self):
+        with self.assertRaises(ValueError):
+            self.inspect(self.hole.replace('exclude_from_bom',''))
+
+    def test_absent_board_only_tag_preserves_component(self):
+        self.assertIn('H1',self.inspect(self.hole.replace('board_only','')))
+
+    def test_oversized_npth_land_cannot_hide_copper(self):
+        with self.assertRaisesRegex(ValueError,'conductive pad geometry'):
+            self.inspect(self.hole.replace('(size 3.4 3.4)','(size 4.4 4.4)'))
+
+    def test_copper_graphic_cannot_hide_in_mechanical_feature(self):
+        with self.assertRaisesRegex(ValueError,'copper graphics'):
+            self.inspect(self.hole.replace('(attr','(fp_line (start 0 0) (end 2 0) (layer "F.Cu")) (attr'))
+
+    def test_offset_drill_not_accepted_as_copper_free(self):
+        with self.assertRaisesRegex(ValueError,'pad geometry'):
+            self.inspect(self.hole.replace('(drill 3.4)','(drill 3.4 (offset 0.5 0))'))
+
+
 class NativeSchematicTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

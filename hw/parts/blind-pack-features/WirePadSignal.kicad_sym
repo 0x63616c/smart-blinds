@@ -1,0 +1,8 @@
+(kicad_symbol_lib (version 20241229) (generator "smart-blinds")
+ (symbol "WirePadSignal" (in_bom no) (on_board yes)
+ (property "Reference" "TP" (at 0 2.54 0) (effects (font (size 1.27 1.27))))
+ (property "Value" "WirePadSignal" (at 0 -2.54 0) (effects (font (size 1.27 1.27))))
+ (property "Footprint" "blind-pack-features:WirePadSignal" (at 0 -5.08 0) (effects (font (size 1.27 1.27)) (hide yes)))
+ (symbol "WirePadSignal_0_1" (circle (center 0 0) (radius 1.27) (stroke (width 0) (type default)) (fill (type none)))
+ (symbol "WirePadSignal_1_1" (pin passive line (at -3.81 0 0) (length 2.54)
+ (name "WIRE" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27))))))))

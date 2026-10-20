@@ -1,0 +1,8 @@
+requires-atopile: ^0.15.9
+paths:
+  src: ./
+  layout: ../../layouts/blind-harness
+builds:
+  harness-test:
+    entry: harness.ato:HarnessTest
+    hide_designators: true

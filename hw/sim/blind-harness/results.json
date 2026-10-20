@@ -1,0 +1,103 @@
+{
+  "status": "PASS: selected two signal headers and two solder landings; no powered or mechanical qualification",
+  "footprints": 4,
+  "physical_pins": 9,
+  "selected_pcba_parts": 2,
+  "geometry": {
+    "CONN-SMD_4P-P1.25_53261-0471": {
+      "signal_pitch_mm": 1.25,
+      "signal_land_mm": [
+        0.8,
+        1.6
+      ],
+      "mount_land_mm": [
+        2.1,
+        3.0
+      ],
+      "mount_centres_mm": [
+        [
+          -4.425,
+          2.9
+        ],
+        [
+          4.425,
+          2.9
+        ]
+      ],
+      "pad_bounds_mm": [
+        -5.475,
+        -0.8,
+        5.475,
+        4.4
+      ],
+      "body_y_mm": [
+        0.8,
+        5.0
+      ],
+      "body_nominal_width_mm": 10.15,
+      "mated_wire_exit_y_mm": 6.0,
+      "mating_direction": "+Y",
+      "height_mm": 3.4
+    },
+    "CONN-TH_532610371": {
+      "signal_pitch_mm": 1.25,
+      "signal_land_mm": [
+        0.8,
+        1.6
+      ],
+      "mount_land_mm": [
+        2.1,
+        3.0
+      ],
+      "mount_centres_mm": [
+        [
+          -3.8,
+          2.9
+        ],
+        [
+          3.8,
+          2.9
+        ]
+      ],
+      "pad_bounds_mm": [
+        -4.85,
+        -0.8,
+        4.85,
+        4.4
+      ],
+      "body_y_mm": [
+        0.8,
+        5.0
+      ],
+      "body_nominal_width_mm": 8.9,
+      "mated_wire_exit_y_mm": 6.0,
+      "mating_direction": "+Y",
+      "height_mm": 3.4
+    }
+  },
+  "negative_controls_detected": [
+    "4way_mirrored_pin1",
+    "3way_mirrored_pin1",
+    "encoder_power_ground_swap"
+  ],
+  "input_sha256": {
+    "hw/boards/blind-harness/harness.ato": "147e59d85780fcdb89472f1ff4f30bb16b458c29fbd64f41cbca480acf9c9590",
+    "hw/parts/blind-harness/430450200.ato": "1395d21d9f5e549a3b7ef69669a555fbc14cb269ca80eeaacfbf99b8da0a61a0",
+    "hw/parts/blind-harness/430450200.kicad_sym": "173fef257ff93ee16f62920b2b3a2cb06e12d7f957113d4b7ab03d33451c195e",
+    "hw/parts/blind-harness/532610371.ato": "3f5daad83d5909649be41b3602275a70de8914f762e8000594b34c478bceb878",
+    "hw/parts/blind-harness/532610371.kicad_sym": "f81cc904249681abe0e595a0644cdc5adc4d73f7c1d063228f707a4014dd3a20",
+    "hw/parts/blind-harness/532610471.ato": "a08d82409cac76e709af92457080794666efad6cc5aca2eb2a361ffe677e6fc4",
+    "hw/parts/blind-harness/532610471.kicad_sym": "b01cb381c2bc1b046d3a8a5f25a0927b1a0b13725f758a7267ee6baec9298d04",
+    "hw/parts/blind-harness/CONN-SMD_4P-P1.25_53261-0471.kicad_mod": "48b39aebd98b89764c3d29f055de29fa3c7991c5209c8f04cfc282f38f6ff949",
+    "hw/parts/blind-harness/CONN-TH_43045-0200.kicad_mod": "1b597060ac782ff36835103f1a85a0553850160fee11ec27228996c7786b59e4",
+    "hw/parts/blind-harness/CONN-TH_532610371.kicad_mod": "e2553b4ef0e9180d9cf631f3e3fb2d9e32a87bf290a722062edfb89d1b74101d",
+    "hw/parts/blind-harness/blind-harness.kicad_sym": "741f60389d91f850276f1ed145817906af27a762c88b406aa5f6210434422477"
+  },
+  "limits": [
+    "Current motor pinout and encoder supply still need bench identification.",
+    "Imported 3D models are visual aids; manufacturer drawing controls geometry.",
+    "PicoBlade plastic-foot rule areas prohibit front copper/pads; full footprint courtyard also reserves component space.",
+    "Mating access, cable bend radii, inline motor pair geometry and actual enclosure placement are separate checks.",
+    "The two-way and eight-way PCB Micro-Fit studies are not selected."
+  ]
+}

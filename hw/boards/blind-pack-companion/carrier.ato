@@ -1,0 +1,40 @@
+from "../../parts/blind-holders/BH_21700_A5BJ001.ato" import Part_BH_21700_A5BJ001
+from "../../parts/blind-carrier/0451003_MRL.ato" import Part_0451003_MRL
+from "../../parts/blind-pack-features/WirePad18.ato" import WirePad18
+from "../../parts/blind-pack-features/WirePadSignal.ato" import WirePadSignal
+
+module CompanionCarrier:
+    """UNVERIFIED retained three-holder board, one half of a matched 3S2P cassette.
+    Four raw rails are permanent enclosed soldered links, not user connectors.
+    No live cell insertion, random replacement, polarity rejection or fuse clearing claim.
+    """
+    signal raw_ground
+    link_raw_ground = new WirePad18
+    link_raw_ground.contact ~ raw_ground
+    signal junction1
+    link_junction1 = new WirePad18
+    link_junction1.contact ~ junction1
+    signal junction2
+    link_junction2 = new WirePad18
+    link_junction2.contact ~ junction2
+    signal raw_top
+    link_raw_top = new WirePad18
+    link_raw_top.contact ~ raw_top
+    holder1 = new Part_BH_21700_A5BJ001
+    fuse1 = new Part_0451003_MRL
+    holder1.negative ~ raw_ground
+    holder1.positive ~ fuse1.1
+    fuse1.2 ~ junction1
+    holder2 = new Part_BH_21700_A5BJ001
+    fuse2 = new Part_0451003_MRL
+    holder2.negative ~ junction1
+    holder2.positive ~ fuse2.1
+    fuse2.2 ~ junction2
+    holder3 = new Part_BH_21700_A5BJ001
+    fuse3 = new Part_0451003_MRL
+    holder3.negative ~ junction2
+    holder3.positive ~ fuse3.1
+    fuse3.2 ~ raw_top
+
+module CompanionCarrierTest:
+    carrier = new CompanionCarrier

@@ -2,22 +2,147 @@
   "status": "Captured components only; not an order-ready BOM or manufacturing quote",
   "currency": "USD",
   "board_source_sha256": {
-    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "c64790633d574b1aec08c4106e65a740a68c7b259d03edff0cbed91b7511be4f",
-    "hw/layouts/blind-carrier/carrier-test/carrier-test.kicad_pcb": "d0ca7a0ff589dbfaa1383e2cec0c25fcf846ff3cfef281df171f61bf0f573511"
+    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "283e148a1408ab6f419386e171013d380cd9e3e5775a8f318f6b4434222a3c11",
+    "hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb": "ce9c993ba20fa36bbbd470a9bfa4cc7c34cfbf2ade3e0d3dbd240b05df365e82",
+    "hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb": "82c07592730e2ccd01253a41d438348695d00f7f2c1a7f67ee963b3f99b8c29c"
   },
   "counts_by_board": {
-    "main": 191,
-    "carrier": 33
+    "main": 194,
+    "pack_primary": 33,
+    "pack_companion": 6
   },
-  "unique_part_numbers": 64,
+  "non_purchased_circuit_features": {
+    "main": [
+      {
+        "reference": "TP1",
+        "address": "motor_output.landing1",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP2",
+        "address": "motor_output.landing2",
+        "footprint": "blind-pack-features:WirePad18"
+      }
+    ],
+    "pack_primary": [
+      {
+        "reference": "TP12",
+        "address": "carrier.link_raw_ground",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP10",
+        "address": "carrier.link_junction1",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP11",
+        "address": "carrier.link_junction2",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP13",
+        "address": "carrier.link_raw_top",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP9",
+        "address": "carrier.harness_pack_positive",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP8",
+        "address": "carrier.harness_pack_ground",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP7",
+        "address": "carrier.harness_gauge_sda",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP6",
+        "address": "carrier.harness_gauge_scl",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP15",
+        "address": "carrier.ntc1_sense",
+        "footprint": "blind-pack-features:WirePadSignal"
+      },
+      {
+        "reference": "TP14",
+        "address": "carrier.ntc1_return",
+        "footprint": "blind-pack-features:WirePadSignal"
+      },
+      {
+        "reference": "TP17",
+        "address": "carrier.ntc2_sense",
+        "footprint": "blind-pack-features:WirePadSignal"
+      },
+      {
+        "reference": "TP16",
+        "address": "carrier.ntc2_return",
+        "footprint": "blind-pack-features:WirePadSignal"
+      },
+      {
+        "reference": "TP2",
+        "address": "carrier.charger_ntc_sense",
+        "footprint": "blind-pack-features:WirePadSignal"
+      },
+      {
+        "reference": "TP5",
+        "address": "carrier.harness_charger_ntc_sense",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP1",
+        "address": "carrier.charger_ntc_return",
+        "footprint": "blind-pack-features:WirePadSignal"
+      },
+      {
+        "reference": "TP4",
+        "address": "carrier.harness_charger_ntc_return",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP3",
+        "address": "carrier.gauge_alert_test",
+        "footprint": "blind-pack-features:WirePadSignal"
+      }
+    ],
+    "pack_companion": [
+      {
+        "reference": "TP3",
+        "address": "carrier.link_raw_ground",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP1",
+        "address": "carrier.link_junction1",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP2",
+        "address": "carrier.link_junction2",
+        "footprint": "blind-pack-features:WirePad18"
+      },
+      {
+        "reference": "TP4",
+        "address": "carrier.link_raw_top",
+        "footprint": "blind-pack-features:WirePad18"
+      }
+    ]
+  },
+  "unique_part_numbers": 67,
   "batch_totals_usd": {
-    "2": "77.3354",
-    "8": "299.3256"
+    "2": "95.0560",
+    "8": "363.0752"
   },
   "exclusions": [
     "PCB fabrication, setup, feeders, stencil, X-ray and assembly",
     "Procurement rounding, attrition, minimum quantities and per-job price differences",
-    "Battery holders, cell/motor inventory, uncaptured connectors, harnesses and remaining circuitry",
+    "Cell/motor inventory, cable harnesses and any remaining uncaptured circuitry",
     "Enclosure, fasteners, transmission, insulation, charger/cable, tools, shipping and tax"
   ],
   "lines": [
@@ -26,18 +151,18 @@
       "mpn": "0402WGF1001TCE",
       "counts": {
         "main": 6,
-        "carrier": 2
+        "pack_primary": 2
       },
       "references": {
         "main": [
-          "R68",
+          "R39",
           "R12",
+          "R91",
           "R17",
           "R25",
-          "R91",
-          "R39"
+          "R68"
         ],
-        "carrier": [
+        "pack_primary": [
           "R9",
           "R8"
         ]
@@ -122,19 +247,19 @@
       "references": {
         "main": [
           "C6",
-          "C7",
           "C9",
-          "C10",
+          "C2",
           "C11",
-          "C12",
-          "C16",
-          "C17",
+          "C42",
           "C18",
-          "C19",
           "C20",
           "C1",
-          "C2",
-          "C42",
+          "C12",
+          "C17",
+          "C16",
+          "C7",
+          "C10",
+          "C19",
           "C40"
         ]
       },
@@ -158,10 +283,10 @@
       "lcsc": "C13967",
       "mpn": "CL21B474KBFNNNE",
       "counts": {
-        "carrier": 3
+        "pack_primary": 3
       },
       "references": {
-        "carrier": [
+        "pack_primary": [
           "C5",
           "C6",
           "C7"
@@ -187,16 +312,19 @@
       "lcsc": "C13982",
       "mpn": "0451003.MRL",
       "counts": {
-        "carrier": 6
+        "pack_primary": 3,
+        "pack_companion": 3
       },
       "references": {
-        "carrier": [
+        "pack_primary": [
           "F1",
           "F2",
-          "F3",
-          "F4",
-          "F5",
-          "F6"
+          "F3"
+        ],
+        "pack_companion": [
+          "F1",
+          "F2",
+          "F3"
         ]
       },
       "source": "bom/electronics-carrier-sourcing.json",
@@ -250,8 +378,8 @@
       },
       "references": {
         "main": [
-          "C50",
-          "C15"
+          "C15",
+          "C50"
         ]
       },
       "source": "bom/electronics-charger-sourcing.json",
@@ -305,8 +433,8 @@
       },
       "references": {
         "main": [
-          "C51",
           "C47",
+          "C51",
           "C48",
           "C53"
         ]
@@ -362,8 +490,8 @@
       },
       "references": {
         "main": [
-          "C14",
-          "C39"
+          "C39",
+          "C14"
         ]
       },
       "source": "bom/electronics-charger-sourcing.json",
@@ -386,10 +514,10 @@
       "lcsc": "C17901",
       "mpn": "1206W4F1000T5E",
       "counts": {
-        "carrier": 3
+        "pack_primary": 3
       },
       "references": {
-        "carrier": [
+        "pack_primary": [
           "R3",
           "R4",
           "R5"
@@ -442,12 +570,13 @@
       "lcsc": "C1972959",
       "mpn": "TPD2E2U06DRLR",
       "counts": {
-        "main": 2
+        "main": 3
       },
       "references": {
         "main": [
-          "D2",
-          "D1"
+          "D6",
+          "D1",
+          "D2"
         ]
       },
       "source": "bom/electronics-controller-sourcing.json",
@@ -455,14 +584,14 @@
       "url": "https://jlcpcb.com/partdetail/TPD2E2U06DRLR/C1972959",
       "batches": {
         "2": {
-          "quantity": 4,
+          "quantity": 6,
           "unit_price_usd": "0.3238",
-          "extension_usd": "1.2952"
+          "extension_usd": "1.9428"
         },
         "8": {
-          "quantity": 16,
+          "quantity": 24,
           "unit_price_usd": "0.3238",
-          "extension_usd": "5.1808"
+          "extension_usd": "7.7712"
         }
       }
     },
@@ -494,6 +623,41 @@
       }
     },
     {
+      "lcsc": "C20606809",
+      "mpn": "BH-21700-A5BJ001",
+      "counts": {
+        "pack_primary": 3,
+        "pack_companion": 3
+      },
+      "references": {
+        "pack_primary": [
+          "BT1",
+          "BT2",
+          "BT3"
+        ],
+        "pack_companion": [
+          "BT1",
+          "BT2",
+          "BT3"
+        ]
+      },
+      "source": "bom/electronics-sourcing-snapshot.json",
+      "observed_utc": "2026-10-19T23:25:27+00:00",
+      "url": "https://jlcpcb.com/partdetail/BH-21700-A5BJ001/C20606809",
+      "batches": {
+        "2": {
+          "quantity": 12,
+          "unit_price_usd": "1.3732",
+          "extension_usd": "16.4784"
+        },
+        "8": {
+          "quantity": 48,
+          "unit_price_usd": "1.2246",
+          "extension_usd": "58.7808"
+        }
+      }
+    },
+    {
       "lcsc": "C20917",
       "mpn": "AO3400A",
       "counts": {
@@ -501,10 +665,10 @@
       },
       "references": {
         "main": [
-          "Q1",
           "Q4",
-          "Q7",
-          "Q10"
+          "Q1",
+          "Q10",
+          "Q7"
         ]
       },
       "source": "bom/electronics-charger-sourcing.json",
@@ -527,10 +691,10 @@
       "lcsc": "C2116",
       "mpn": "BZT52C4V7",
       "counts": {
-        "carrier": 3
+        "pack_primary": 3
       },
       "references": {
-        "carrier": [
+        "pack_primary": [
           "D3",
           "D2",
           "D1"
@@ -560,11 +724,11 @@
       },
       "references": {
         "main": [
-          "R59",
-          "R60",
           "R61",
           "R53",
           "R54",
+          "R59",
+          "R60",
           "R55"
         ]
       },
@@ -589,13 +753,13 @@
       "mpn": "0402WGF1000TCE",
       "counts": {
         "main": 1,
-        "carrier": 2
+        "pack_primary": 2
       },
       "references": {
         "main": [
           "R1"
         ],
-        "carrier": [
+        "pack_primary": [
           "R6",
           "R7"
         ]
@@ -620,10 +784,10 @@
       "lcsc": "C25077",
       "mpn": "0402WGF100JTCE",
       "counts": {
-        "carrier": 1
+        "pack_primary": 1
       },
       "references": {
-        "carrier": [
+        "pack_primary": [
           "R12"
         ]
       },
@@ -647,10 +811,10 @@
       "lcsc": "C25082",
       "mpn": "0402WGF1500TCE",
       "counts": {
-        "carrier": 3
+        "pack_primary": 3
       },
       "references": {
-        "carrier": [
+        "pack_primary": [
           "R11",
           "R10",
           "R1"
@@ -680,8 +844,8 @@
       },
       "references": {
         "main": [
-          "R23",
-          "R21"
+          "R21",
+          "R23"
         ]
       },
       "source": "bom/electronics-controller-sourcing.json",
@@ -708,24 +872,24 @@
       },
       "references": {
         "main": [
+          "R41",
+          "R64",
+          "R63",
+          "R51",
+          "R77",
+          "R15",
+          "R82",
+          "R40",
+          "R14",
+          "R81",
+          "R16",
           "R47",
           "R48",
-          "R63",
-          "R64",
-          "R51",
-          "R67",
-          "R65",
-          "R11",
-          "R16",
-          "R14",
-          "R15",
-          "R40",
-          "R41",
-          "R77",
           "R78",
-          "R82",
-          "R81",
-          "R88"
+          "R88",
+          "R11",
+          "R67",
+          "R65"
         ]
       },
       "source": "bom/electronics-controller-sourcing.json",
@@ -749,47 +913,47 @@
       "mpn": "0402WGF1002TCE",
       "counts": {
         "main": 35,
-        "carrier": 1
+        "pack_primary": 1
       },
       "references": {
         "main": [
-          "R62",
-          "R49",
-          "R50",
-          "R2",
-          "R6",
-          "R7",
-          "R3",
-          "R4",
-          "R44",
-          "R46",
-          "R19",
-          "R29",
-          "R20",
-          "R24",
-          "R13",
           "R18",
+          "R29",
           "R30",
+          "R79",
+          "R37",
+          "R3",
+          "R83",
+          "R33",
           "R22",
           "R26",
-          "R89",
           "R92",
-          "R93",
+          "R44",
           "R90",
-          "R33",
-          "R34",
-          "R38",
-          "R32",
-          "R35",
-          "R36",
-          "R37",
-          "R87",
           "R85",
-          "R83",
-          "R79",
-          "R80"
+          "R34",
+          "R49",
+          "R89",
+          "R19",
+          "R13",
+          "R35",
+          "R24",
+          "R46",
+          "R62",
+          "R20",
+          "R2",
+          "R4",
+          "R36",
+          "R50",
+          "R38",
+          "R6",
+          "R87",
+          "R32",
+          "R7",
+          "R80",
+          "R93"
         ],
-        "carrier": [
+        "pack_primary": [
           "R2"
         ]
       },
@@ -953,8 +1117,8 @@
       },
       "references": {
         "main": [
-          "R58",
-          "R45"
+          "R45",
+          "R58"
         ]
       },
       "source": "bom/electronics-regulator-sourcing.json",
@@ -981,8 +1145,8 @@
       },
       "references": {
         "main": [
-          "R28",
-          "R27"
+          "R27",
+          "R28"
         ]
       },
       "source": "bom/electronics-controller-sourcing.json",
@@ -1250,10 +1414,10 @@
       "lcsc": "C2914309",
       "mpn": "MAX17320G22+",
       "counts": {
-        "carrier": 1
+        "pack_primary": 1
       },
       "references": {
-        "carrier": [
+        "pack_primary": [
           "U1"
         ]
       },
@@ -1301,6 +1465,33 @@
       }
     },
     {
+      "lcsc": "C293630",
+      "mpn": "532610371",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "J3"
+        ]
+      },
+      "source": "bom/electronics-harness-sourcing.json",
+      "observed_utc": "2026-10-20T03:57:24+00:00",
+      "url": "https://jlcpcb.com/partdetail/532610371/C293630",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1476",
+          "extension_usd": "0.2952"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1476",
+          "extension_usd": "1.1808"
+        }
+      }
+    },
+    {
       "lcsc": "C29402",
       "mpn": "0402WGF3012TCE",
       "counts": {
@@ -1308,8 +1499,8 @@
       },
       "references": {
         "main": [
-          "R56",
-          "R9"
+          "R9",
+          "R56"
         ]
       },
       "source": "bom/electronics-charger-sourcing.json",
@@ -1333,37 +1524,37 @@
       "mpn": "CL05B104KB54PNC",
       "counts": {
         "main": 25,
-        "carrier": 5
+        "pack_primary": 5
       },
       "references": {
         "main": [
-          "C22",
-          "C8",
-          "C13",
-          "C21",
-          "C41",
-          "C45",
-          "C52",
-          "C26",
-          "C28",
           "C30",
-          "C27",
-          "C29",
-          "C24",
-          "C60",
-          "C58",
-          "C57",
-          "C56",
-          "C33",
-          "C35",
-          "C34",
+          "C52",
+          "C28",
           "C36",
+          "C23",
+          "C56",
           "C38",
+          "C8",
+          "C34",
+          "C26",
+          "C45",
+          "C57",
+          "C27",
+          "C35",
+          "C41",
+          "C29",
+          "C33",
           "C55",
+          "C58",
+          "C60",
+          "C13",
           "C37",
-          "C23"
+          "C22",
+          "C24",
+          "C21"
         ],
-        "carrier": [
+        "pack_primary": [
           "C8",
           "C1",
           "C2",
@@ -1557,8 +1748,8 @@
       },
       "references": {
         "main": [
-          "U2",
-          "U14"
+          "U14",
+          "U2"
         ]
       },
       "source": "bom/electronics-controller-sourcing.json",
@@ -1612,9 +1803,9 @@
       },
       "references": {
         "main": [
-          "Q3",
           "Q2",
           "Q5",
+          "Q3",
           "Q8"
         ]
       },
@@ -1642,9 +1833,9 @@
       },
       "references": {
         "main": [
+          "C25",
           "C43",
-          "C44",
-          "C25"
+          "C44"
         ]
       },
       "source": "bom/electronics-regulator-sourcing.json",
@@ -1687,6 +1878,33 @@
           "quantity": 8,
           "unit_price_usd": "3.935",
           "extension_usd": "31.480"
+        }
+      }
+    },
+    {
+      "lcsc": "C696092",
+      "mpn": "532610471",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "J2"
+        ]
+      },
+      "source": "bom/electronics-harness-sourcing.json",
+      "observed_utc": "2026-10-20T04:04:47+00:00",
+      "url": "https://jlcpcb.com/partdetail/532610471/C696092",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1497",
+          "extension_usd": "0.2994"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1497",
+          "extension_usd": "1.1976"
         }
       }
     },
@@ -1754,10 +1972,10 @@
       },
       "references": {
         "main": [
-          "C4",
-          "C5",
           "C3",
-          "C46"
+          "C4",
+          "C46",
+          "C5"
         ]
       },
       "source": "bom/electronics-charger-sourcing.json",
@@ -1784,14 +2002,14 @@
       },
       "references": {
         "main": [
-          "R42",
-          "R43",
-          "R69",
-          "R70",
-          "R71",
           "R72",
+          "R42",
+          "R71",
           "R73",
-          "R74"
+          "R74",
+          "R43",
+          "R70",
+          "R69"
         ]
       },
       "source": "bom/electronics-regen-sourcing.json",
@@ -1814,10 +2032,10 @@
       "lcsc": "C844901",
       "mpn": "WSL2512R0100FEA",
       "counts": {
-        "carrier": 1
+        "pack_primary": 1
       },
       "references": {
-        "carrier": [
+        "pack_primary": [
           "R13"
         ]
       },
@@ -1842,14 +2060,14 @@
       "mpn": "AON7400A",
       "counts": {
         "main": 2,
-        "carrier": 2
+        "pack_primary": 2
       },
       "references": {
         "main": [
           "Q6",
           "Q9"
         ],
-        "carrier": [
+        "pack_primary": [
           "Q1",
           "Q2"
         ]

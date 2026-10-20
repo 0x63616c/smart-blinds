@@ -1,38 +1,41 @@
-# Integrated controller capture
+# Integrated controller study
 
-This unrouted 191-component, 595-pin study connects the C6 interface, independent
-motor supervision, motor bridge, USB-C PD/eFuse input, BQ25798 charger, 3.3 V buck
-switched 5 V encoder supply and independent regenerative-energy clamp. Each block's reviewed physical net graph and
-exact part identities are preserved, and independent boundary checks keep:
+The main circuit contains **196 footprints and 609 independently checked logical
+pin identities**: 194 purchased parts and two bare motor-wire solder landings.
+Repeated ground/thermal pads are checked for consistent net identity and counted
+once per physical pad number. Eight separately reviewed circuit blocks are preserved.
 
-- The motor on protected PACK, separate from charger SYS.
-- The charger behind the USB input eFuse, with raw and switched USB distinct.
-- Logic and encoder regulators on SYS, with reset-gated encoder permission.
-- Charger CE permission, IRQ and I2C on their assigned controller pins.
-- The factory PD I2C bus separate from the always-on MCU/gauge bus.
-- BQ25798 exposed pad on PMID, never ground.
+The current **54 × 68.5 mm**, four-layer placement has an underside USB-C tab,
+a keyed protected-pack header, retained motor solder tails, encoder connector,
+optional dry-contact input and two side switches. Its black mask is a design
+preference; the final assembly service, panel and price remain unquoted.
 
-Normal and frozen builds pass locally; nine integration tests include injected
-power-domain, factory-bus, exposed-pad, reset and thermal-inhibit faults. These checks preserve
-circuit intentions, not behavior of physical silicon or a routed board.
+Independent boundary checks keep protected PACK separate from charger SYS,
+raw USB separate from the eFuse output, and the factory PD bus separate from
+the host/gauge bus. The reset-gated encoder rail feeds the encoder port.
+Home pin 2 is isolated/reserved; only pins 1 (ground) and 3 (contact) are used.
+BQ25798 pin 29 is an elongated perimeter PMID lead, not an exposed ground pad.
 
-The mechanical team is evaluating a **47 × 75 mm** controller outline inside the
-unchanged 115 × 174 × 71 mm enclosure, with a large antenna reservation. This
-capture has no accepted outline or placement. Carrier/motor/home connectors and
-factory pads are still being integrated. The independent thermal latch gates motor
-permission and pulls the shared driver-fault line low; firmware cannot distinguish
-those two fault sources from that pin alone. The clamp is only a conditional pulse
-design; sustained regeneration and local thermal behavior remain unqualified. NVM commissioning, a full native integrated drawing,
-placement/routing/DRC, thermal/RF/EMI and prototype tests remain open. Do not
-fabricate or power hardware from this study.
+Normal and frozen builds, twenty integration tests, manufacturer land-pattern
+checks, explicit placement and RF-rule checks pass locally. Injected wrong rails,
+swapped ports and shorted signals are rejected. The actual KiCad placement check
+has no courtyard overlap or keepout infringement. It remains **entirely unrouted**;
+manufacturing rules, silkscreen cleanup, power/thermal layout, full-board schematic,
+RF/EMI and prototype qualification remain unfinished. Passing these checks does
+not establish physical function or fabrication readiness.
+
+The thermal latch independently gates motor permission and pulls the shared driver
+fault line low; firmware cannot distinguish those two faults on that pin alone.
+The regenerative clamp remains a conditional pulse design, with sustained
+backdrive and actual thermal performance unresolved.
 
 ```sh
 ato build hw/boards/blind-main -b main-test --frozen -v
 python3 hw/boards/blind-main/check_main.py
+python3 tools/check_main_placement.py
 python3 -m unittest discover -s hw/boards/blind-main -p 'test_*.py' -v
 ```
 
-The six-contact protected-pack header is now captured. Its keyed pigtail assignment is
-checked at the physical pin boundary; three negative controls reject swapped power,
-a shorted charger thermistor and swapped gauge bus. Geometry and harness evidence
-are in `../../../docs/electrical/battery-connector.md`. Motor/home/service ports remain open.
+[Placement evidence](../../../docs/electrical/main-placement.md) ·
+[Motor and signal harness](../../../docs/electrical/motor-signal-harness.md) ·
+[Protected-pack connection](../../../docs/electrical/battery-connector.md).

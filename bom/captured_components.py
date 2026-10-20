@@ -20,7 +20,8 @@ from generate_schematics import board_graph
 
 BOARDS = {
     'main': 'hw/layouts/blind-main/main-test/main-test.kicad_pcb',
-    'carrier': 'hw/layouts/blind-carrier/carrier-test/carrier-test.kicad_pcb',
+    'pack_primary': 'hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb',
+    'pack_companion': 'hw/layouts/blind-pack-companion/companion-test/companion-test.kicad_pcb',
 }
 
 
@@ -41,11 +42,20 @@ def build():
     mpns = {}
     references = defaultdict(lambda: defaultdict(list))
     hashes = {}
+    bare_features = {}
     for board, relative in BOARDS.items():
         path = ROOT / relative
         hashes[relative] = hashlib.sha256(path.read_bytes()).hexdigest()
+        bare_features[board] = []
         for ref, component in board_graph(path).items():
-            props = component['properties']; code = props['LCSC']; mpn = props['Partnumber']
+            props = component['properties']
+            if 'exclude_from_bom' in component['attributes']:
+                if props.get('LCSC') or props.get('Partnumber'):
+                    raise ValueError(f'Purchased part unexpectedly excluded: {board}/{ref}')
+                bare_features[board].append(dict(reference=ref, address=props['atopile_address'],
+                                                  footprint=component['footprint']))
+                continue
+            code = props['LCSC']; mpn = props['Partnumber']
             if code in mpns and mpns[code] != mpn:
                 raise ValueError(f'Conflicting manufacturer part for {code}')
             mpns[code] = mpn; counts[code][board] += 1
@@ -74,16 +84,18 @@ def build():
         lines.append(line)
     result = dict(status='Captured components only; not an order-ready BOM or manufacturing quote', currency='USD',
                   board_source_sha256=hashes, counts_by_board={b: sum(c[b] for c in counts.values()) for b in BOARDS},
+                  non_purchased_circuit_features=bare_features,
                   unique_part_numbers=len(counts), batch_totals_usd={str(k):str(v) for k,v in totals.items()},
                   exclusions=['PCB fabrication, setup, feeders, stencil, X-ray and assembly',
                               'Procurement rounding, attrition, minimum quantities and per-job price differences',
-                              'Battery holders, cell/motor inventory, uncaptured connectors, harnesses and remaining circuitry',
+                              'Cell/motor inventory, cable harnesses and any remaining uncaptured circuitry',
                               'Enclosure, fasteners, transmission, insulation, charger/cable, tools, shipping and tax'],
                   lines=lines)
     stream=io.StringIO(); writer=csv.writer(stream, lineterminator="\n")
-    writer.writerow(['LCSC','MPN','Main qty','Carrier qty','2 units qty','2 units USD','8 units qty','8 units USD','Catalog URL'])
+    writer.writerow(['LCSC','MPN','Main qty','Primary pack qty','Companion pack qty','2 units qty','2 units USD','8 units qty','8 units USD','Catalog URL'])
     for line in lines:
-        writer.writerow([line['lcsc'],line['mpn'],line['counts'].get('main',0),line['counts'].get('carrier',0),
+        writer.writerow([line['lcsc'],line['mpn'],line['counts'].get('main',0),line['counts'].get('pack_primary',0),
+                         line['counts'].get('pack_companion',0),
                          line['batches']['2']['quantity'],line['batches']['2']['extension_usd'],
                          line['batches']['8']['quantity'],line['batches']['8']['extension_usd'],line['url']])
     return {'bom/captured-components.json':json.dumps(result,indent=2)+'\n', 'bom/captured-components.csv':stream.getvalue()}

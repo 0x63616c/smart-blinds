@@ -1,0 +1,15 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_532610371:
+    """UNVERIFIED manufacturing; Molex drawing-audited contact geometry."""
+    trait is_atomic_part<manufacturer="Molex", partnumber="532610371", footprint="CONN-TH_532610371.kicad_mod", symbol="532610371.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C293630", manufacturer="Molex", partno="532610371">
+    trait has_designator_prefix<prefix="J">
+    signal contact1
+    contact1 ~ pin 1
+    signal contact2
+    contact2 ~ pin 2
+    signal contact3
+    contact3 ~ pin 3

@@ -14,6 +14,10 @@ from "../blind-charger/charger.ato" import Charger3S
 from "../blind-regulator/regulator.ato" import LogicSupply
 from "../blind-encoder/encoder.ato" import EncoderSupply
 from "../blind-connectors/connector.ato" import ProtectedPackConnector
+from "../blind-harness/harness.ato" import MotorSolderTails
+from "../blind-harness/harness.ato" import EncoderConnector
+from "../blind-harness/harness.ato" import HomeConnector
+from "../../parts/blind-control-io/TPD2E2U06DRLR.ato" import Part_TPD2E2U06DRLR
 
 module MainController:
     """INCOMPLETE integrated USB-C, charger, logic supply and motor controller.
@@ -36,6 +40,10 @@ module MainController:
     logic_supply = new LogicSupply
     encoder = new EncoderSupply
     pack_connector = new ProtectedPackConnector
+    motor_output = new MotorSolderTails
+    encoder_port = new EncoderConnector
+    home_port = new HomeConnector
+    home_esd = new Part_TPD2E2U06DRLR
     battery = new ElectricPower
     battery.voltage = 9V to 12.6V
     battery ~ charger.battery
@@ -83,6 +91,25 @@ module MainController:
     controller.motor_in2 ~ motor.in2
     controller.motor_fault_n ~ motor.fault_n
     controller.current_raw ~ motor.current.line
+
+    # Retained motor wires terminate in a keyed inline connector in the upper bay.
+    # Encoder pinout/supply compatibility must be established on the owned motor.
+    motor_output.motor1 ~ motor.motor_a
+    motor_output.motor2 ~ motor.motor_b
+    encoder_port.ground ~ battery.lv
+    encoder_port.supply ~ encoder.output.hv
+    encoder_port.channel_a ~ controller.encoder_a_raw
+    encoder_port.channel_b ~ controller.encoder_b_raw
+
+    # Dry contact only: home pin 2 is deliberately isolated/reserved, not powered.
+    # Both independent ESD channels protect the one exposed sense conductor.
+    home_port.ground ~ battery.lv
+    home_port.sense ~ controller.home_contact_n
+    home_esd.IO1 ~ controller.home_contact_n
+    home_esd.IO2 ~ controller.home_contact_n
+    home_esd.GND ~ battery.lv
+    home_esd.NC1 ~ battery.lv
+    home_esd.NC2 ~ battery.lv
 
     # Final independent AND: thermal permission AND supervised motor request.
     # AUP input tolerates the independent 3.3V rail with main VCC absent.

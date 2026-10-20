@@ -79,6 +79,29 @@
       "role": "Source geometry for the housing, holders and supported drive. Carrier/case fastening and full electrical placement remain unfinished; these are prototype-fit parts, not final manufacturing files."
     },
     {
+      "id": "main-controller-placement",
+      "kind": "pcb",
+      "title": "Integrated controller \u2014 first component placement",
+      "source": "hw/layouts/blind-main/main-test/main-test.kicad_pcb",
+      "dependencies": [
+        "hw/placement/blind-main/placement.json",
+        "cad/parameters/retained-interfaces.json",
+        "tools/check_main_placement.py"
+      ],
+      "image_size": [
+        1500,
+        1700
+      ],
+      "rotate": [
+        12,
+        0,
+        0
+      ],
+      "zoom": 0.83,
+      "collapsed": false,
+      "role": "54 \u00d7 68.5 mm black-board study, with USB-C, protected battery connection, motor tails and encoder/home ports. All 196 footprints are placed; no copper is routed. Thermal design, manufacturing rules and physical qualification remain open."
+    },
+    {
       "kind": "openscad",
       "source": "cad/source/compact_direct.scad",
       "dependencies": [

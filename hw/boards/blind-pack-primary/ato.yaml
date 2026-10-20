@@ -1,0 +1,8 @@
+requires-atopile: ^0.15.9
+paths:
+  src: ./
+  layout: ../../layouts/blind-pack-primary
+builds:
+  primary-test:
+    entry: carrier.ato:PrimaryCarrierTest
+    hide_designators: true

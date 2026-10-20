@@ -47,6 +47,31 @@ def board_graph(path):
     result = {}
     for fp in children(pcb, "footprint"):
         properties = {p[1]: p[2] for p in children(fp, "property")}
+        attributes = {str(a) for row in children(fp, "attr") for a in row[1:]}
+        if "board_only" in attributes:
+            # Only explicitly mechanical, nonconductive mounting holes may be
+            # absent from the circuit graph. Reject disguised electrical parts.
+            pads = children(fp, "pad")
+            if (properties.get("atopile_address") or not pads or
+                not {"exclude_from_bom", "exclude_from_pos_files"} <= attributes or
+                any(p[1] or p[2] != "np_thru_hole" or children(p, "net") for p in pads)):
+                raise ValueError("Board-only feature is not an isolated mechanical hole")
+            # NPTH alone is insufficient: a land larger than its drill still
+            # flashes copper. Accept only the reviewed circular, copper-free
+            # hole geometry, with no hidden copper graphics or local zones.
+            for pad in pads:
+                drill=one(pad,"drill");size=one(pad,"size")
+                if (pad[3]!="circle" or len(drill)!=2 or len(size)!=3 or
+                    not math.isfinite(float(drill[1])) or float(drill[1])<=0 or
+                    any(float(v)!=float(drill[1]) for v in size[1:]) or
+                    children(pad,"primitives") or children(pad,"offset") or
+                    one(pad,"layers")[1:]!=["*.Cu","*.Mask"]):
+                    raise ValueError("Board-only hole has unsupported or conductive pad geometry")
+            for item in fp[2:]:
+                if not isinstance(item,list) or not item or item[0]=="pad":continue
+                if item[0]=="zone" or any(str(layer[1]).endswith(".Cu") for layer in children(item,"layer")):
+                    raise ValueError("Board-only hole contains copper graphics or zones")
+            continue
         ref = properties["Reference"]
         if ref in result:
             raise ValueError(f"Duplicate reference {ref}")
@@ -58,7 +83,8 @@ def board_graph(path):
             if pad[1] in pads and pads[pad[1]] != net:
                 raise ValueError(f"Inconsistent repeated pad {ref}.{pad[1]}")
             pads[pad[1]] = net
-        result[ref] = dict(properties=properties, footprint=fp[1], pads=pads)
+        result[ref] = dict(properties=properties, footprint=fp[1], pads=pads,
+                           attributes=sorted(attributes))
     return result
 
 

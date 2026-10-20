@@ -2,6 +2,8 @@
 
 **Planning calculation only. Not a quote or orderable BOM.**
 
+Historical architecture sensitivity. The current three-board component demand is tracked in [captured parts](README.md#captured-electronic-parts); the older allowance below is not the current device budget.
+
 Single assembled PCB baseline for comparison only; proposed separate protected carrier adds PCB, setup and interconnect costs.
 
 The five major candidate ICs total **$14.85 per board** using the live public 1+ prices, before attrition/MOQ. The remaining $10.00 component allowance and $2.00 bare-board allowance are estimates, not sourced BOM totals.

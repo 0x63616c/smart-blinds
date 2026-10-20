@@ -1,0 +1,58 @@
+from "../../parts/blind-harness/430450200.ato" import Part_430450200
+from "../../parts/blind-harness/532610471.ato" import Part_532610471
+from "../../parts/blind-harness/532610371.ato" import Part_532610371
+from "../../parts/blind-pack-features/WirePad18.ato" import WirePad18
+
+module MotorConnector:
+    """UNSELECTED board-header study; mating cable corridor does not fit.
+    UNVERIFIED manufacturing; motor polarity is established during calibration.
+    Two high-current leads only. Never connect either pin to encoder ground.
+    """
+    signal motor1
+    signal motor2
+    header = new Part_430450200
+    header.contact1 ~ motor1
+    header.contact2 ~ motor2
+
+module MotorSolderTails:
+    """UNVERIFIED retained solder tails to an upper-bay inline motor disconnect.
+    Motor polarity is established during calibration. Wires require strain relief.
+    """
+    signal motor1
+    signal motor2
+    landing1 = new WirePad18
+    landing2 = new WirePad18
+    landing1.contact ~ motor1
+    landing2.contact ~ motor2
+
+module EncoderConnector:
+    """UNVERIFIED exact motor encoder supply, channel pinout and lead identity.
+    Four-pin low-current PicoBlade. Map black cable wires by continuity.
+    """
+    signal ground
+    signal supply
+    signal channel_a
+    signal channel_b
+    header = new Part_532610471
+    header.contact1 ~ ground
+    header.contact2 ~ supply
+    header.contact3 ~ channel_a
+    header.contact4 ~ channel_b
+
+module HomeConnector:
+    """Optional low-current reference sensor, 3.3 V or dry contact input.
+    Supply/current and external protection must be set by the controller.
+    """
+    signal ground
+    signal supply
+    signal sense
+    header = new Part_532610371
+    header.contact1 ~ ground
+    header.contact2 ~ supply
+    header.contact3 ~ sense
+
+module HarnessTest:
+    """Unrouted passive connector assignment study, not a powered assembly."""
+    motor = new MotorSolderTails
+    encoder = new EncoderConnector
+    home = new HomeConnector

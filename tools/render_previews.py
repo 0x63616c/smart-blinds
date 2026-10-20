@@ -126,9 +126,16 @@ def render() -> None:
             if entry['kind'] == 'pcb':
                 item['models_sha256'] = model_files(source, env)
                 image = folder / 'assembly.png'
-                run([kicad, 'pcb', 'render', '--output', str(image), '--width', '1600',
-                     '--height', '1000', '--quality', 'high', '--background', 'transparent',
-                     '--rotate', '335,0,15', str(source)], env=env)
+                size=entry.get('image_size',[1600,1000]);rotate=entry.get('rotate',[335,0,15]);zoom=entry.get('zoom',1)
+                if len(size)!=2 or any(type(v)!=int or not 256<=v<=4096 for v in size):
+                    raise ValueError('PCB image size requires two bounded integer dimensions')
+                if len(rotate)!=3 or any(type(v) not in (int,float) or not -360<=v<=360 for v in rotate):
+                    raise ValueError('PCB rotation requires three finite angles')
+                if type(zoom) not in (int,float) or not .1<=zoom<=3:
+                    raise ValueError('PCB zoom must be within 0.1–3')
+                run([kicad, 'pcb', 'render', '--output', str(image), '--width', str(size[0]),
+                     '--height', str(size[1]), '--quality', 'high', '--background', 'transparent',
+                     '--rotate', ','.join(map(str,rotate)), '--zoom', str(zoom), str(source)], env=env)
                 layout = folder / 'top.svg'
                 run([kicad, 'pcb', 'export', 'svg', '--output', str(layout), '--mode-single',
                      '--layers', 'F.Cu,F.SilkS,Edge.Cuts', '--page-size-mode', '2',

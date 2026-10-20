@@ -6,8 +6,8 @@ Budget for eight complete units: seven installations plus one spare. The first p
 |---|---:|---:|---:|---|
 | Samsung INR21700-50E cells | 6 | 12 | 48 | Owner has cells; count, condition and matching to verify |
 | Recfountik JGB37-520 encoder motor, 12 V / 111 RPM | 1 | 2 | 8 | Archived purchase reports six; current inventory to verify |
-| Integrated populated controller PCB | 1 | 2 | 8 | 191 components captured; placement/routing unfinished |
-| Protected 3S2P pack assembly | 1 | 2 | 8 | Opposed holder carriers; 33 protection components captured |
+| Integrated populated controller PCB | 1 | 2 | 8 | 194 purchased parts placed; routing unfinished |
+| Protected 3S2P pack assembly | 1 | 2 | 8 | Two holder carriers; 39 purchased parts captured |
 | Printed enclosure/drive pieces | set | 2 sets | 8 sets | Four original packaging studies and provisional fit meshes available |
 | Buttons, cables, terminals, fixings | set | 2 sets | 8 sets | Design dependent |
 
@@ -30,14 +30,17 @@ insertion, assembly fees and the extra interconnect must be included in this com
 
 ## Captured electronic parts
 
-The current main/controller and carrier graphs contain **224 components across
-64 unique part numbers per device**. The dated catalog calculation gives
-**$77.34 for two** or **$299.33 for eight** ($37.42 per device at eight) for
-those captured parts only. This excludes fabrication, assembly/setup/feeders,
-connectors and holders still being integrated, quantity rounding/attrition,
-mechanics, cells/motors, shipping and tax. It is not the complete device price.
+The main controller and two holder-carrier graphs contain **233 purchased
+components across 67 unique part numbers per device**. The dated catalog calculation
+gives **$95.06 for two** or **$363.08 for eight** ($45.38 per device at eight).
+This includes six holders, six branch fuses and captured board connectors per unit.
+Bare solder landings are explicitly excluded from purchased quantities.
+
+These are raw component-demand costs only. Fabrication, assembly/setup/feeders,
+wire harnesses, procurement rounding/attrition, mechanics, cells/motors, shipping
+and tax remain outside this total. It is not the complete device price.
 
 [Line-item CSV](captured-components.csv) · [Source and calculation evidence](captured-components.json).
 Regenerate with `python3 bom/captured_components.py`; `--check` detects stale
-board counts or catalog inputs. Demand is aggregated across the two captures;
+board counts or catalog inputs. Demand is aggregated across three captures;
 separate assembly jobs may have different procurement prices and minimums.

@@ -1,0 +1,13 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_BH_21700_A5BJ001:
+    """UNVERIFIED holder: drawing has no current rating or reverse-cell protection claim."""
+    trait is_atomic_part<manufacturer="MYOUNG", partnumber="BH-21700-A5BJ001", footprint="BAT-TH_BH-21700-A5BJ001.kicad_mod", symbol="BH-21700-A5BJ001.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C20606809", manufacturer="MYOUNG", partno="BH-21700-A5BJ001">
+    trait has_designator_prefix<prefix="BT">
+    signal positive
+    signal negative
+    positive ~ pin 1
+    negative ~ pin 2

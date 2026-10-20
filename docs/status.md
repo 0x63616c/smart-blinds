@@ -65,11 +65,11 @@ A green preview result only confirms generation of the documented images.
 - A host-tested BQ25798 component proposes and reads back charger settings, checks fresh ADC
   conversions, and rejects bus/register/timer/temperature faults. It has no charging-enable
   operation; the C6 application compiles but does not call it. No cell or device was programmed.
-- The partial main board now composes 191 components and 595 physical pins, including a
-  reset-gated 5 V encoder supply and an independent thermal latch. Eight preserved blocks and twelve integration tests
+- The main board now composes 196 circuit footprints and 609 logical physical-pin identities, including a
+  reset-gated 5 V encoder supply and an independent thermal latch. Eight preserved blocks and twenty integration tests
   check power-domain separation, factory-bus isolation and key control connections. Normal
-  and frozen local builds pass. The keyed protected-pack connector is captured; motor
-  ports and actual layout remain in progress. Regeneration and
+  and frozen local builds pass. The keyed pack, motor, encoder and home connections are captured. An explicit
+  54 × 68.5 mm placement passes courtyard/keepout checks and rebuilds; routing remains open. Regeneration and
   thermal models have explicit transient and sustained-backdrive limits, not hardware approval.
 - Offline STUSB4500 tooling checks documented PDO fields and full 40-byte readback. Static inspection of the pinned manufacturer GUI binary now identifies
   its above-5 V gate-policy field; unqualified discharge timers and device baseline still keep
@@ -80,10 +80,17 @@ A green preview result only confirms generation of the documented images.
 - Three imported core footprints now follow manufacturer land drawings: charger corner
   pads, motor-driver thermal lands and radio-module thermal barrels. Independent drawing
   review and compiled-instance geometry checks pass; all logical connections remain intact.
-  Actual main-board placement, manufacturing rules and routing are still in progress.
+  Main-board placement is now captured; manufacturing rules and routing remain in progress.
 - The battery-only motion evidence path passes eight host test targets and both pinned C6
   builds. It distinguishes protection readback from slower ADC conversion ages, requires a
   qualified pack profile, and keeps charging disabled. No physical hardware was exercised.
+- Two opposing holder-carrier captures now contain 39 purchased parts per unit,
+  including six holders and branch fuses. Their 136-pin contract and negative controls pass.
+  Main and carrier raw component demand totals $363.08 for eight units, excluding assembly,
+  fabrication, cables and mechanics. Carrier placement is the next step.
+- The bounded motion session joins authenticated command ingress to the portable controller
+  and executor, with source-timed leases and measured settling. All ten host targets and
+  both pinned C6 builds pass CI for `2561ced`. The real application remains uninstantiated.
 - The owner now prefers PCB-mounted cell holders; a separate protected holder carrier is being
   compared with main-board holders and welded construction. This may change the initial layouts.
 - The exact motor listing is identified and partial seller dimensions are recorded. The owner is
@@ -108,7 +115,8 @@ The [regenerative-clamp and captured-cost checks](https://github.com/0x63616c/sm
 and [motion-executor/C6 I/O checks](https://github.com/0x63616c/smart-blinds/actions/runs/39365933426)
 also passed all eight jobs. The C6 application still does not instantiate motion hardware.
 The [pack evidence and battery-only motion checks](https://github.com/0x63616c/smart-blinds/actions/runs/39368534452)
-also passed all eight jobs for `cd7b9be`. Newer changes must be checked against their own runs.
+also passed all eight jobs for `cd7b9be`. The [bounded session and stopping checks](https://github.com/0x63616c/smart-blinds/actions/runs/39369765494)
+passed all eight jobs for `2561ced`. Newer changes must be checked against their own runs.
 
 ## Inherited references
 

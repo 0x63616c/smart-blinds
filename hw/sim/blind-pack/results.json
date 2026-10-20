@@ -1,0 +1,49 @@
+{
+  "status": "PASS: two-board circuit partition, independent reference pin contract, holder geometry and six negative controls",
+  "boards": {
+    "primary": {
+      "footprints": 50,
+      "physical_pins": 120
+    },
+    "companion": {
+      "footprints": 10,
+      "physical_pins": 16
+    }
+  },
+  "purchased_components": {
+    "primary": 33,
+    "companion": 6
+  },
+  "permanent_intercarrier_wires": 4,
+  "semantic_graph_sha256": "3f443c645a60acb86cadf2b62e9d5c26702063f8ebea8bce4ca7eb015861e8ad",
+  "negative_controls_detected": [
+    "charger_ntc_return_joined_raw_ground",
+    "companion_branch_fuse_bypass",
+    "intercarrier_middle_rails_swapped",
+    "primary_branch_fuse_bypass",
+    "protected_ground_bypassed",
+    "wrong_cell2_short"
+  ],
+  "input_sha256": {
+    "hw/boards/blind-pack-companion/carrier.ato": "9601d1965d3b1d4341ee4f07fada095047a8ae92119cb128e3a1857610c357fd",
+    "hw/boards/blind-pack-primary/carrier.ato": "68814121661dbb2e16896f45edbd531c04707289d5ea9abfef9dbbb5184a2166",
+    "hw/boards/blind-pack-primary/protection.ato": "6cb5a22b461760ee065bbe1eedc50e39dc9b367c9eb4eb03e20688a444d32520",
+    "hw/parts/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod": "e5af29e62bdfd0218d06bf79d2cdd8c8a112e91f8dbb0caf41441d0ae474b01b",
+    "hw/parts/blind-holders/BH_21700_A5BJ001.ato": "d3a7ce4c0ab8eac1c69ec8b05b409d780194dfe890a522e8e48bfa25c1c3047b",
+    "hw/parts/blind-pack-features/README.md": "5e83233ee7bd921c7bc08ed3dc9a592412f45781036911eab37f309ad76dbad1",
+    "hw/parts/blind-pack-features/WirePad18.ato": "18a7eabe273ccc72e1aa5ecf8e1c1281bf4c86eb537270216ea9197c04e8b591",
+    "hw/parts/blind-pack-features/WirePad18.kicad_mod": "6197d4165079dbc9327970025e7c6c744721154bf95adf6a69e3bf163116c815",
+    "hw/parts/blind-pack-features/WirePad18.kicad_sym": "c31a78e5bedcd8f1e309c7760e9cd1e87876a178e9947eb98805b966f6c22bc2",
+    "hw/parts/blind-pack-features/WirePadSignal.ato": "7ad0c1e247f0f807c9984e66aa699505f3462f680d4afa16736ae6e0896a98c4",
+    "hw/parts/blind-pack-features/WirePadSignal.kicad_mod": "0c3e7f7ed98ac61a7bdf9c5d06ed8144a98ba16971f9f2831b287a365642227e",
+    "hw/parts/blind-pack-features/WirePadSignal.kicad_sym": "3d51f7f6e876dad979a23c04044c5e66a1977120045791de34fb67ed01e5bf82"
+  },
+  "limits": [
+    "Not routed or mechanically placed. No DRC/thermal/current qualification.",
+    "Wire landing diameter is a design choice; actual stripped 18 AWG strand/tinning fit must be checked.",
+    "Holder drawing gives no current rating and no validated reverse-insertion protection.",
+    "Fuse clearing, mismatched-cell equalization, failed-short FET faults, complete NVM settings and physical cell temperature sensing remain unresolved.",
+    "Four raw rails must remain permanently retained and insulated inside the screwed cassette.",
+    "An open middle-node interconnect can leave companion cell voltages unmonitored; this topology is not single-open-fault tolerant."
+  ]
+}
