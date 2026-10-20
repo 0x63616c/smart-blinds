@@ -1,6 +1,11 @@
 # Existing blind holding condition
 
-20 October 2026. **Installation requirement; not physically verified.**
+20 October 2026. **Existing holding is owner-reported; the added drive is unverified.**
+
+The owner confirms that the existing blinds stay in place when the chain is
+released. The design therefore plans to switch the motor off between moves
+and retain the original holding mechanism. This report does not qualify the
+added chain preload or independently establish the behavior of every installation.
 
 The added chain wheel engages the existing bead-chain loop. It retains the
 headrail, clutch, roller and fabric attachment. The CAD does not include an
@@ -9,7 +14,7 @@ independent brake, ratchet or rated self-locking gearbox.
 The original blind must hold its fabric position without motor current,
 electronic braking or the dump resistor. Added chain wrap and preload must
 not release or defeat that holding action. None of the seven installations
-has been checked against this condition.
+has yet been checked with the added drive against this condition.
 
 The future prototype plan must distinguish the original blind's holding
 action from incidental motor or gearbox friction:

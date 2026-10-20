@@ -73,3 +73,7 @@ The owner is away for several weeks and cannot measure the motors. Use documente
 family dimensions with a stated variant allowance; keep the motor bracket and shaft adapter
 replaceable. Continue the design now, with physical fit qualification before fabrication.
 The exact purchased 111 RPM listing is [Amazon B0H4Y1BQ8Y](https://www.amazon.com/dp/B0H4Y1BQ8Y).
+
+On 20 October the owner confirmed the existing blinds stay in place when the
+chain is released. Plan for motor-off holding through that existing mechanism;
+qualify that the added chain path and preload preserve it on each installation.
