@@ -19,7 +19,7 @@ followed by an eight-unit build only after their tests pass.
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete primary/main routing, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session and settling; source-timed faults and supervised motor-off path | Physical reference/commissioning, final hardware qualification, idle local-button wake and installed radio tests |
 | Home Assistant | Seven framework tests against HA 2026.10.2 using an authenticated simulator; shared physical height across different calibration maps | Bind the qualified real transport adapter to the live HA service |
-| Radio transport | Pinned C6 Thread evaluation build; seven-peer localhost DTLS group adapter, durable sequence reservations and source-timed failure propagation | Compact radio protocol and airtime budget, commissioned identities/keys, RF power measurements and hub compatibility |
+| Radio transport | Motor-disabled C6 Wi-Fi automatic-light-sleep evaluation with six real localhost DTLS tests; separate Thread target and seven-peer group adapter remain | Actual RF/power tests, qualified motion binding, temperature freshness, commissioned configuration and unattended recovery |
 | Costs | Dated parts inventory and component demand for two/eight units, sourced harness candidates and a source-bound print-volume estimate | Final board/assembly quote, slicer-based filament use, hardware totals, shipping, tax and stock refresh |
 
 The owner is away for several weeks. Design continues with the documented motor
@@ -89,6 +89,16 @@ the central support that would intersect their solder tails. Corner supports,
 the perimeter and separate barrier remain; 0.5 mm nominal tail clearance still
 needs tolerance and assembly qualification.
 
+The new [Wi-Fi evaluation](firmware/wifi-evaluation.md) passes its full pinned C6
+build, all twelve portable test targets and six actual localhost DTLS tests.
+It uses existing encrypted configuration, authenticated ownership and bounded
+awake periods; its default image joins no network, and configured outputs stay
+held OFF. It has no motion worker or physical qualification. Automatic light
+sleep leads the radio comparison, with Thread retained as a separate target.
+The radio-only 1.5-second preflight aim does not yet include the current
+2.8–4-second temperature-monitor warmup; button-to-motion timing is under review.
+These new sources await their own CI checkpoint.
+
 The [host group bridge](firmware/thread-group-bridge.md) joins the coordinator to
 seven real localhost DTLS sessions with synthetic motors and calibration records.
 Its latest local batch passes 59 transport/schema/clock/bridge tests, including a
@@ -97,8 +107,8 @@ batch had two intermittent timing failures; their exact cause remains unresolved
 and retained first-fault diagnostics now make a recurrence inspectable. No deadline
 was relaxed or test retried automatically. This is a correctness fixture, not radio
 qualification: about 109 kB/s of application bodies exceeds the intended Thread
-PHY's raw capacity before overhead. Compact traffic and real-device timing remain
-required before deployment or a battery-life claim.
+PHY's raw capacity before overhead. That result informed the Wi-Fi-first evaluation; real-device timing and power
+measurements remain required before deployment or a battery-life claim.
 
 ## Decisions and limits that affect the build
 
@@ -112,11 +122,12 @@ required before deployment or a battery-life claim.
   it does not isolate the gearbox from chain force.
 - The firmware defaults have no qualification records and do not configure motor or
   battery I/O. Charger tooling remains OFF-only; no cell or device has been programmed.
-- Thread is not Matter. HomePod/Thread-border-router support and the Home Assistant
-  network/commissioning path remain to be confirmed.
+- Wi-Fi is the leading evaluation path. Thread remains a separate fallback study;
+  HomePod/Thread-border-router compatibility has not been established.
 - The 60-day runtime target and 90-day stretch depend strongly on measured motor and
-  standby current. At the current assumptions, 1.5 A moving current and 0.5 mA standby
-  estimate about 57 days; 5 mA standby reduces that to about 25 days.
+  standby current. With 1.5 A motor-branch current, an assumed 150 mA awake MCU/radio at 3.3 V
+  and 0.5 mA whole-pack standby, the updated energy scenario estimates about
+  55.6 days. It is a planning calculation, not a measured runtime.
 - Current component demand is **$363.08 for eight units** (about $45.38 each), excluding
   boards, assembly, cells, motors, cables, mechanics, shipping and tax. This is not a quote.
 - USB transients, charge/protection behavior, regenerative energy, sustained back-drive,
@@ -127,7 +138,7 @@ required before deployment or a battery-life claim.
 
 1. Establish manufacturing rules and route/review critical power and sensing paths.
 2. Finish holder retention, wiring details and a complete print/fastener budget.
-3. Reduce group-control airtime and test the transport on actual C6 radios.
+3. Bind qualified motion and local buttons to the selected radio, then test actual C6 timing/power.
 4. Complete all three routed boards, manufacturing outputs and an assembly quote.
 5. Test two physical prototypes before committing to the eight-unit build.
 
