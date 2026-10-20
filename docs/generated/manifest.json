@@ -1,65 +1,74 @@
 {
   "schema": 1,
-  "source_commit": "b3f09851aa7fdc980254082d8bf3b347f9781ab0",
+  "source_commit": "061805c1f2f41e575c50881a77a056e0747c7e07",
   "tools": {
     "kicad": "10.0.7",
     "openscad": "OpenSCAD version 2021.01"
   },
-  "manifest_sha256": "7289b5ddfe130a4234f8a729c6d37e609c72b86ef28367798dfe7f58c78b6071",
-  "renderer_sha256": "886a0fc2a8bd569afca967be1d85704b88b866fe3467c6d876005e04a8de1766",
+  "manifest_sha256": "2406aa5dffc36a0d87f8b320a9190dc37e870322423606f1a371c59f518eeefa",
+  "renderer_sha256": "a21ec1f19388e517a7ce19fc41ebe39f7be6143eee9f25f58fdd99b948176a43",
   "validation": "preview generation only; no physical validation",
   "designs": [
     {
       "id": "compact-holder-closed",
-      "source": "cad/source/compact_direct.scad",
+      "source": "cad/source/compact_retained.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_compact.py": "01788656e2e2c70896022e0448b82105e156b281b10b1325f8e246fefdb92d29",
+        "cad/build_retained.py": "fdc1900b8b674170f5c077129b339554f4664931da682bee0197f222a5ac407a",
+        "cad/parameters/retained-interfaces.json": "9e0a64f66b19123973ba59b6f0662d8b1510a2c5d6a60777f5b824af9f24a6a4",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
-        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669"
+        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+        "cad/source/compact_retained.scad": "4709ad73edc4ddff803376dae142d796b2153e135c5c28854c501e77d2018205",
+        "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
-      "role": "115 \u00d7 174 \u00d7 71 mm candidate, or 78 mm deep with untrimmed holder pins. Front buttons and underside USB-C; motor-family fit, printed tolerances and full fastening remain provisional.",
+      "role": "115 \u00d7 174 \u00d7 71 mm white enclosure candidate, with front buttons and underside USB-C. Buttons project to 72.2 mm. This compact version requires holder tails and solder joints trimmed to the documented limit; motor-family fit and printed tolerances remain provisional.",
       "outputs": [
         {
           "path": "compact-holder-closed/assembly.png",
-          "sha256": "9a59b7897831b8d8bf4464f78261fd0a38a22029d04c9fe605ace460acbd1e1d"
+          "sha256": "1f370e199ab969a474c8a62896de3d6e477d6834284e57b0efab138abcf77813"
         }
       ]
     },
     {
       "id": "compact-holder-assembly",
-      "source": "cad/source/compact_direct.scad",
+      "source": "cad/source/compact_retained.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_compact.py": "01788656e2e2c70896022e0448b82105e156b281b10b1325f8e246fefdb92d29",
+        "cad/build_retained.py": "fdc1900b8b674170f5c077129b339554f4664931da682bee0197f222a5ac407a",
+        "cad/parameters/retained-interfaces.json": "9e0a64f66b19123973ba59b6f0662d8b1510a2c5d6a60777f5b824af9f24a6a4",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
-        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669"
+        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+        "cad/source/compact_retained.scad": "4709ad73edc4ddff803376dae142d796b2153e135c5c28854c501e77d2018205",
+        "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
-      "role": "Two three-cell carrier boards with an insulating barrier, controller reservation and replaceable motor-fit parts. An outboard bearing shares radial load with the motor; it does not isolate the gearbox from chain force.",
+      "role": "Two opposing three-cell carrier boards fit in a removable cassette. Separate controller supports, cable routes and adjustable front buttons are modeled. The controller is shown as a reserved volume; exact holder fastening and physical load tests remain open.",
       "outputs": [
         {
           "path": "compact-holder-assembly/assembly.png",
-          "sha256": "715294278a2be9ccc324149f952d33a75b5b16161b70bc4727365f9d3e450aea"
+          "sha256": "9521f52ce492931a62d0369bacc1365b8799e13aa0e3bcee243282690bf008f2"
         }
       ]
     },
     {
       "id": "compact-holder-exploded",
-      "source": "cad/source/compact_direct.scad",
+      "source": "cad/source/compact_retained.scad",
       "inputs_sha256": {
         "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_compact.py": "01788656e2e2c70896022e0448b82105e156b281b10b1325f8e246fefdb92d29",
+        "cad/build_retained.py": "fdc1900b8b674170f5c077129b339554f4664931da682bee0197f222a5ac407a",
+        "cad/parameters/retained-interfaces.json": "9e0a64f66b19123973ba59b6f0662d8b1510a2c5d6a60777f5b824af9f24a6a4",
         "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
-        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669"
+        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+        "cad/source/compact_retained.scad": "4709ad73edc4ddff803376dae142d796b2153e135c5c28854c501e77d2018205",
+        "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
       },
       "source_files_dirty": false,
-      "role": "Source geometry for the housing, holders and supported drive. Carrier/case fastening and full electrical placement remain unfinished; these are prototype-fit parts, not final manufacturing files.",
+      "role": "The cover and cassette lid are separated to show access. Two integral cleats and one mounting screw retain the cassette; its modeled release and removal paths clear the controller and drive. These are prototype-fit files, pending tolerance and load qualification.",
       "outputs": [
         {
           "path": "compact-holder-exploded/assembly.png",
-          "sha256": "b42bcd0d5e5042da18e9bc464defa78ba08a2cd6e3953c856cf9c5c7dcca8c1d"
+          "sha256": "62ce7a704c8e417d91c401995b9271210ce6140fea1ead5db4fbfa7976af46ba"
         }
       ]
     },
@@ -67,21 +76,21 @@
       "id": "main-controller-placement",
       "source": "hw/layouts/blind-main/main-test/main-test.kicad_pcb",
       "inputs_sha256": {
-        "cad/parameters/retained-interfaces.json": "3e52e9bb9fa29d1734e6f36ef27d92d4b982f122f206f706ec66dd0607184453",
-        "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "283e148a1408ab6f419386e171013d380cd9e3e5775a8f318f6b4434222a3c11",
-        "hw/placement/blind-main/placement.json": "ac169c4ff858fd6c46b3d744a7d406cd44e22e1f509eb1b9bd1ef4cd6a228328",
-        "tools/check_main_placement.py": "cf6b38f5e9e0adde50cf87a047deaa6a70cbf83d4bd955ed52a923020968992c"
+        "cad/parameters/retained-interfaces.json": "9e0a64f66b19123973ba59b6f0662d8b1510a2c5d6a60777f5b824af9f24a6a4",
+        "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "1b8a938153b6b64dfe45fd4965172a2b2aeade21cbd200ccc4f8040c00c6aa7b",
+        "hw/placement/blind-main/placement.json": "a118715fb4fa6ce8c9a20e191d0afd6f440741bab78d80db01df19e39c7ee623",
+        "tools/check_main_placement.py": "e74b60f6af34ce36f64b498137290a44bf3e4c1637d27d980a7444e7ed6b91b2"
       },
       "source_files_dirty": false,
       "role": "54 \u00d7 68.5 mm black-board study, with USB-C, protected battery connection, motor tails and encoder/home ports. All 196 footprints are placed; no copper is routed. Thermal design, manufacturing rules and physical qualification remain open.",
       "outputs": [
         {
           "path": "main-controller-placement/assembly.png",
-          "sha256": "5e83f3a82a59b10afedcaf3a641ba4bc583ede9b48f49a83f253a58c022a95cb"
+          "sha256": "25bffccc974a4d31b51da69690f1e966952efba48ea3ba4ce131c0bfb21db182"
         },
         {
           "path": "main-controller-placement/top.svg",
-          "sha256": "72fcb9a2bbbab558d1dcb43dd50eda15d6ccc031ae99292f7580ef6dc5384f13"
+          "sha256": "5ec9c8fe15c2e986f4c19498cfa52748bc08e364c89d220b11b7ddda819f3699"
         }
       ],
       "models_sha256": {
@@ -135,20 +144,144 @@
       }
     },
     {
-      "id": "compact-holder-buttons",
-      "source": "cad/source/compact_direct.scad",
+      "id": "main-controller-schematic",
+      "source": "hw/schematics/blind-main/smart-blinds-main.kicad_sch",
       "inputs_sha256": {
-        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
-        "cad/build_compact.py": "01788656e2e2c70896022e0448b82105e156b281b10b1325f8e246fefdb92d29",
-        "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
-        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669"
+        "hw/schematics/blind-main/01-usb.kicad_sch": "37bd645f3e13ea73a6df10759091533bad0f7b1422facebb7e0f2fa555b65a2d",
+        "hw/schematics/blind-main/02-charger.kicad_sch": "6729f8c5de0a697df819dac30c41ceb68a0983dfad18dd45581d5f01df57790a",
+        "hw/schematics/blind-main/03-logic.kicad_sch": "0d757e0e900af859f48d1e895aebe1839e4fe80899e32ef1309d10ba8a2fd3bb",
+        "hw/schematics/blind-main/04-motor.kicad_sch": "ab2771bf4fe0aa2ba7d89f4e0b55ed4c8755f6454f881354ef8aa08df80529d5",
+        "hw/schematics/blind-main/05-supervision.kicad_sch": "4ae5f94e7fe667aced1d1c6ed223864eafe537d8101cf8304a1ea98571bd06e7",
+        "hw/schematics/blind-main/06-regen.kicad_sch": "1e3054230f2a8008e13c0777932d0139a6eb0ce0be1d0accc7db94f731cc0dbb",
+        "hw/schematics/blind-main/07-radio.kicad_sch": "aa2b25f0ac5d8dbf20485ff22fdcde243cb2769f10f9941d3c510af67fb7a25b",
+        "hw/schematics/blind-main/08-encoder-input.kicad_sch": "28e1a1b0750029903bf0dfefc435816d909762dc44644d3cf2bbb85ba987f5ad",
+        "hw/schematics/blind-main/09-local-input.kicad_sch": "32ee1a533c94a0a313d86b70823735c0dc2f68bb6110ba9c018d777e19a91bb8",
+        "hw/schematics/blind-main/10-interfaces.kicad_sch": "08484be79aec9ce7a1ba53c48f167d8005c4b2c1ed2734b00f7a08185cf4c578",
+        "hw/schematics/blind-main/SmartBlinds.kicad_sym": "926e73427de4b2c3379dcbe57ac0e3cfdc0af25b2d53460b87cb86f5816219aa",
+        "hw/schematics/blind-main/fp-lib-table": "d85896f0d000581381e72f3659fb6197dc3701f927f1d86a402b7a5722764dea",
+        "hw/schematics/blind-main/main.layout.json": "f9fae4fb90f892ba2697bfb520fdb52550021944103d793ee77aa1a41d711bca",
+        "hw/schematics/blind-main/smart-blinds-main.kicad_pro": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+        "hw/schematics/blind-main/smart-blinds-main.kicad_sch": "ce17d7e20f958f8e129ccfef492d673f21c4068beb73cc33722ad2d1a9cf23a1",
+        "hw/schematics/blind-main/smart-blinds-main.verification.json": "b408d314e6bc0da1542b9ff108deb82be480411886c2305236f08e5624282d4a",
+        "hw/schematics/blind-main/sym-lib-table": "1fed0cafbb778d6b3cdbfecb631b8b3ca4615bb53378f1ad252fa090e730e581",
+        "tools/generate_main_schematic.py": "030184c8beec906657f423f97771c882f69004b0bcbe1ad2c13a5ffcc965b442",
+        "tools/generate_schematics.py": "6b0bb74769beba19d64df3178c2d15762a7dc9cd6c8ff205e90841303116eb80",
+        "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+        "tools/main_schematic_page.py": "6d6dcafe1036ff3b8b296a24078e4cdb80dfacb52f010fe19cb45a30a6545e30"
       },
       "source_files_dirty": false,
-      "role": "Straight plungers operate side-actuated board switches. Nominal gap 0.15 mm and mechanical stop 0.4 mm; printed tolerance, actuation and safe overtravel require qualification.",
+      "role": "Eleven native KiCad sheets cover all 196 circuit features and 609 pin identities. The exported net partition matches the PCB; seven documented ERC findings remain. Unrouted and unpowered.",
+      "outputs": [
+        {
+          "path": "main-controller-schematic/schematic.pdf",
+          "sha256": "fd04471399d97a74e771ead242f0a9024be9cb6b06606b762a51ca4f2433da48"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-3S charger.svg",
+          "sha256": "bb6fdc9310a3bfdf12da5a78c9d4042573d1b3bbed4c39f4cc5d415e70e8fc1d"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-Buttons and home input.svg",
+          "sha256": "7edf641e2352647bf5da4b41005f424e1d031930b9c92daa4c72cd07930a4a78"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-Encoder input.svg",
+          "sha256": "3c6983fcb6312aa044b3db410f2c755c5b4de3a02396e38b0cc50aae8d6305cb"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-Logic supply.svg",
+          "sha256": "12288e2d56a853991358c73c8dfe87dbc473f46d9d4029c1210f619ddaa14aeb"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-Motor bridge.svg",
+          "sha256": "b95676d353b669b9e509778bae3450772986bfdb9f66dee107a11c6f14502f91"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-Motor supervision.svg",
+          "sha256": "721079c5178ddb1b0af196fcec95e4f21255feff008c3dfd1fe95dcc14e5263a"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-Power and motor permission.svg",
+          "sha256": "ebd227f98e13ab3197b633f2bc956cddb8fe0c3416c7c8463619849eabacd2fd"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-Radio and USB data.svg",
+          "sha256": "06486ecd94454d1ee546a68ba54f0168d3401d7711fe978dfb8c9b5f0c1ed3fa"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-Regenerative clamp.svg",
+          "sha256": "e31604587b72ab97040d086853cf38e9cb9f797c54421c2c709785b7414163aa"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main-USB-C input.svg",
+          "sha256": "f37b94e150a4858de8f01b48ebb02988e01c0006be8075b4baa5069712950580"
+        },
+        {
+          "path": "main-controller-schematic/smart-blinds-main.svg",
+          "sha256": "7699e58f41bb24aa8cfc38a4f6335f1a9285ed36813c611f5eaceb96977432ad"
+        }
+      ]
+    },
+    {
+      "id": "compact-holder-buttons",
+      "source": "cad/source/compact_retained.scad",
+      "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
+        "cad/build_retained.py": "fdc1900b8b674170f5c077129b339554f4664931da682bee0197f222a5ac407a",
+        "cad/parameters/retained-interfaces.json": "9e0a64f66b19123973ba59b6f0662d8b1510a2c5d6a60777f5b824af9f24a6a4",
+        "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
+        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+        "cad/source/compact_retained.scad": "4709ad73edc4ddff803376dae142d796b2153e135c5c28854c501e77d2018205",
+        "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
+      },
+      "source_files_dirty": false,
+      "role": "Two captive M2 adjusters set the plungers to first electrical closure at the 0.4 mm positive stop. Jam nuts lock the setting. Switch return, printed friction, adjustment and repeated operation still require physical tests.",
       "outputs": [
         {
           "path": "compact-holder-buttons/assembly.png",
-          "sha256": "cb69dc7d5f9a720901a32f37fe8112233777c80e37f715dc6bf9e6275c706c18"
+          "sha256": "787a0b7e0c694e1b592f15bc4100f46a59530c08831ed9821afe9a75ef33710a"
+        }
+      ]
+    },
+    {
+      "id": "retained-cassette",
+      "source": "cad/source/compact_retained.scad",
+      "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
+        "cad/build_retained.py": "fdc1900b8b674170f5c077129b339554f4664931da682bee0197f222a5ac407a",
+        "cad/parameters/retained-interfaces.json": "9e0a64f66b19123973ba59b6f0662d8b1510a2c5d6a60777f5b824af9f24a6a4",
+        "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
+        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+        "cad/source/compact_retained.scad": "4709ad73edc4ddff803376dae142d796b2153e135c5c28854c501e77d2018205",
+        "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
+      },
+      "source_files_dirty": false,
+      "role": "Six holders on opposing carrier boards, a separate insulating barrier and a removable printed shell. The assembled cassette releases with a 2.5 mm lift and then moves forward; disconnect and handle the cables separately.",
+      "outputs": [
+        {
+          "path": "retained-cassette/assembly.png",
+          "sha256": "4b34750f8c73e13f16eb509199899ba62bcf5dc0068ef0d8bf7fd512b5899933"
+        }
+      ]
+    },
+    {
+      "id": "retained-cleat-section",
+      "source": "cad/source/compact_retained.scad",
+      "inputs_sha256": {
+        "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
+        "cad/build_retained.py": "fdc1900b8b674170f5c077129b339554f4664931da682bee0197f222a5ac407a",
+        "cad/parameters/retained-interfaces.json": "9e0a64f66b19123973ba59b6f0662d8b1510a2c5d6a60777f5b824af9f24a6a4",
+        "cad/source/compact_buttons.scad": "2bafd8b547d9c28b43a27fe365853f482148791cd438638e9d38330f3f9484d7",
+        "cad/source/compact_direct.scad": "feeddc98e10038fd945715579feecfdeb544121d08f7b370f28b7a3f48132669",
+        "cad/source/compact_retained.scad": "4709ad73edc4ddff803376dae142d796b2153e135c5c28854c501e77d2018205",
+        "cad/source/retained_buttons.scad": "ac8054ace9a702721bc8891f0f31bb7f39108be8dea17088fc5eb1e177d35d55"
+      },
+      "source_files_dirty": false,
+      "role": "The cassette pocket captures the integral backplate cleat. Nominal interference confirms capture before the release slide; printed strength, creep and fit remain prototype tests.",
+      "outputs": [
+        {
+          "path": "retained-cleat-section/assembly.png",
+          "sha256": "a698e2ce0d246379b77d0d87f1aa99c3035a6595ee880ea0a13814f6072df74f"
         }
       ]
     },
@@ -166,7 +299,7 @@
       "outputs": [
         {
           "path": "holder-closed/assembly.png",
-          "sha256": "20d85855847aec510f9f595d43e68d193855620d13634e623429ed536d381a46"
+          "sha256": "283b395826ad6b027f0c234355a5f7fff80a1f26a1233a7f83223d377683b2bb"
         }
       ]
     },
@@ -200,7 +333,7 @@
       "outputs": [
         {
           "path": "holder-exploded/assembly.png",
-          "sha256": "fa14da235f8abd2262c61021d30d15740c451150a7420faa29f3b5d2c515c10a"
+          "sha256": "27d03fd33a2fcfba7e4b6c28469cedc7d0b12b941f8d3c16f316eb818297b8c8"
         }
       ]
     },
@@ -228,7 +361,7 @@
       "inputs_sha256": {
         "hw/schematics/blind-controller/motor-test.kicad_sch": "1c050aad38cfe625254fa7fba9e60b2f228d436a957801b8f69d7851ce4cbb05",
         "hw/schematics/blind-controller/motor-test.layout.json": "7f416ab6f0583848ade80e02d74009b905e2fb2637ac6950ef137f9ac41ed8f0",
-        "hw/schematics/blind-controller/motor-test.verification.json": "2712ba438f1ed1617d6340e2ce202ddbfdd900bd86177b9459ac1b9f232ba906",
+        "hw/schematics/blind-controller/motor-test.verification.json": "163a6d88de4a5a4b7cb45debda4741fc2b237a1e5eb9802be624c4c2d972d9db",
         "tools/generate_schematics.py": "6b0bb74769beba19d64df3178c2d15762a7dc9cd6c8ff205e90841303116eb80",
         "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583"
       },
@@ -237,7 +370,7 @@
       "outputs": [
         {
           "path": "motor-schematic/motor-test.svg",
-          "sha256": "21d6b407bd6cfd74e8d9d7d3ef699dfbea9aae612545b2bd66ac3c381c247475"
+          "sha256": "6944ddfcad7a00b616723806e4f4f005ed457998fd10c8fcae6251a0a36ab832"
         }
       ]
     },
@@ -247,14 +380,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-supervisor/supervisor-test.kicad_sch": "5281fe58b3e0fbbf00c8839b86ae6cd70ad559d761f3f9f77e4b6c332786d9ee",
         "hw/schematics/blind-supervisor/supervisor-test.layout.json": "308e5e6ee828e34748e2c764cac87b860fc260abecb5ffd7636a9a8ef233cb01",
-        "hw/schematics/blind-supervisor/supervisor-test.verification.json": "ad1c820cb4282ac43457a2bcd3186ff99a285394b9fad1111dd645ab0dc2302a"
+        "hw/schematics/blind-supervisor/supervisor-test.verification.json": "61d209d8d98a861275ef862f67f35d59c78d339822221eb228f5d7f2e7b49327"
       },
       "source_files_dirty": false,
       "role": "Four ICs and ten passive parts. All 49 physical pin connections checked against the compiled circuit; two explicit external-power ERC findings. Physical cutoff and full-board qualification remain open.",
       "outputs": [
         {
           "path": "supervisor-schematic/supervisor-test.svg",
-          "sha256": "9a27120077955e20616382748acbe5bea33bd90d73df90fd977eeecf3c19a000"
+          "sha256": "7bd35946ff23048852238e8cb6e53099a6fd38de97fbf4e22ec6c4fc4df389d5"
         }
       ]
     },
@@ -264,14 +397,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-charger/charger-test.kicad_sch": "cfb0c271e74e0f0cfba378de2aa40de711ef7cfa98411169c32b43b8b0820f06",
         "hw/schematics/blind-charger/charger-test.layout.json": "637355dd5ba0633a4e455c1d38d9cd5962089934e9ab7cde29f7f09e68315378",
-        "hw/schematics/blind-charger/charger-test.verification.json": "d14234c5f50553ae9c73333e999606d78484dd1ce3206ff78fcc1299f4b924e6"
+        "hw/schematics/blind-charger/charger-test.verification.json": "4e8e157a5b6dc8b402b54fde98c4bf3199f7ae330889dbe8fd3b5b8b251493fc"
       },
       "source_files_dirty": false,
       "role": "36-part capture with 101 physical pins checked. A fourth PMID capacitor follows DC-bias review; effective capacitance remains a curve-based planning estimate. Ten explicit ERC findings and unfinished power/pack integration. Not a charging or fabrication release.",
       "outputs": [
         {
           "path": "charger-schematic/charger-test.svg",
-          "sha256": "002af34473151c745daf6abeb20fe03fdd5b369a81af113db15a5a8f95fec665"
+          "sha256": "7c00fa84a37a022be54d878a35a73d1a6d3ffb5020604390ecfb298a49dc026f"
         }
       ]
     },
@@ -281,14 +414,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-regen/regen-test.kicad_sch": "4e7b82dbf0337e577bf886f704e9466a8282adcf03d1e90ab5c3f68f6d3a5f17",
         "hw/schematics/blind-regen/regen-test.layout.json": "b70ae421058a04558779af039ed33b3804e8b7e1695718df2982d0ed8564cbe4",
-        "hw/schematics/blind-regen/regen-test.verification.json": "e1a3876df9fdf725bdfc599a46b649f89a17bbe3799ff0a742f5ea4137969aea"
+        "hw/schematics/blind-regen/regen-test.verification.json": "ad1777a92bcead7d5eddd78a9bba64ab2c3367e1dc9b6456bcd77b554e1e5534"
       },
       "source_files_dirty": false,
       "role": "38 parts and 105 physical pins checked. Two explicit external-power ERC findings. Pulse energy, response time, thermal coupling and sustained back-drive remain unqualified.",
       "outputs": [
         {
           "path": "regen-schematic/regen-test.svg",
-          "sha256": "4927fe54b7e6ec4df3bbab732e015722b60c4a798f4fcd0ba1b0e24e496f9d92"
+          "sha256": "2763cf89ee5be6d52cce33bc09486b8731970babd10708570c27fd179b1de14c"
         }
       ]
     },
@@ -298,14 +431,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-regulator/regulator-test.kicad_sch": "22e599594f25b2b81a052e7039bb6fb6bb354102df6c4d313dd557b282ab676c",
         "hw/schematics/blind-regulator/regulator-test.layout.json": "c100c14bea96bc7ee988c5f2892427d6f1eb29e7c250e1cc60251d72f2efc8b8",
-        "hw/schematics/blind-regulator/regulator-test.verification.json": "fbfb76b9178d6aacf81beaa2deea47445741af10b260afa93f06f0f404a69583"
+        "hw/schematics/blind-regulator/regulator-test.verification.json": "8d653b8cc3378a40469380303f34fd7b854f2dc873af0680dd5967c882e2e49a"
       },
       "source_files_dirty": false,
       "role": "12 parts and 31 physical pins checked. Internal 3.3 V divider; 1 A design envelope. Two external-power ERC findings. Biased capacitance, load transients, layout and hardware qualification remain open.",
       "outputs": [
         {
           "path": "regulator-schematic/regulator-test.svg",
-          "sha256": "029e45d6bc20548f866b920ac05799d2b003122937f7b3143ed504dec5970013"
+          "sha256": "0beb8738e3ddb31fef8a6a866f0b03e8ceec0049a4fed2608ca8f66bb8cda470"
         }
       ]
     },
@@ -315,14 +448,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-carrier/carrier-test.kicad_sch": "a5c9b4211d7988493d872846bec0deae22df6f5b04eff8e44b4656cab07e90f5",
         "hw/schematics/blind-carrier/carrier-test.layout.json": "9bb599c16efb9f8011d23672c71331ebc4dbb84ce222beab7526270b5fec56dc",
-        "hw/schematics/blind-carrier/carrier-test.verification.json": "86874afe2fa840962dca46f1f76a776ccdd510f16167c9839bbb7b97a7f14f6d"
+        "hw/schematics/blind-carrier/carrier-test.verification.json": "14424e3d51cf29ef611dd994ee20eb74312950278452b1a673379311ef197982"
       },
       "source_files_dirty": false,
       "role": "33 parts and 103 physical pins checked, including three-cell sensing and six branch fuses. Fifteen explicit ERC boundary findings. Holder, thermistor, connector and secondary protection integration remain open; no battery fault safety or fabrication approval is implied.",
       "outputs": [
         {
           "path": "carrier-schematic/carrier-test.svg",
-          "sha256": "068a1c97a11201808e315136eb51c8eff434d5fc8eaa91d8e79026236231397b"
+          "sha256": "65c3956dfb500ff9ad18f9a8e0dc28bd1335366b2a0876f6298285d7233c647f"
         }
       ]
     },
@@ -332,14 +465,14 @@
       "inputs_sha256": {
         "hw/schematics/blind-usb/usb-test.kicad_sch": "3d4fbd4cfd2416ff711972fa4a30da7a5d754c81f4691419f7d532560f4a1959",
         "hw/schematics/blind-usb/usb-test.layout.json": "4711a87df21cdbe44cfd3fe1a440a92b8c825e078c70c1a15f132015cc16483c",
-        "hw/schematics/blind-usb/usb-test.verification.json": "56e038bd6367511e8ac891959cba964e64d92a23178729a1e6f0e8099feed9ff"
+        "hw/schematics/blind-usb/usb-test.verification.json": "d3f60dd0e8dd921cddf410cbeace675be5b43f4b847690a212998b504eeb5cb3"
       },
       "source_files_dirty": false,
       "role": "33 parts and 113 physical pins checked. Three explicit external-power ERC findings. Mandatory factory PD profile, surge behavior, startup and integrated charging remain unqualified; not a fabrication release.",
       "outputs": [
         {
           "path": "usb-schematic/usb-test.svg",
-          "sha256": "e158583a946c63ae93b8b563deba199dffdfe59758304fbb00161e682be015b2"
+          "sha256": "339969d09beabd9b8af7c2602a0e42e9f1d5317c53e9daa8f0f6c6e3613d7e7d"
         }
       ]
     },
@@ -391,7 +524,7 @@
       "outputs": [
         {
           "path": "compact-exploded/assembly.png",
-          "sha256": "a0a4d605b6dab9c62f5db9721bedbb60c41e9c69a2789b90c7409f09e150bd04"
+          "sha256": "cbc27785a6a47da0b439c25449bc40673de8263f0b4c073a973bd5f008c81f57"
         }
       ]
     },
@@ -409,7 +542,7 @@
       "outputs": [
         {
           "path": "compact-assembly/assembly.png",
-          "sha256": "bb3121972c85f04e79ed470a0e8e5ff73c97c2bc104bce1a221151da1b949df2"
+          "sha256": "b2ef6203b771badfcc5150cead3e5eea07546ae7a17ea0bbd7872d6027a71f45"
         }
       ]
     },
@@ -427,7 +560,7 @@
       "outputs": [
         {
           "path": "broad-assembly/assembly.png",
-          "sha256": "576a568731dfce73e463d9c7624a86e3091f1b48ddbc7440437cabed0a77ddbc"
+          "sha256": "78c0559bf8a0747368d9aea1019f2ffe92a156d551a88cda80ccee0c5fe892ca"
         }
       ]
     },
@@ -463,7 +596,7 @@
       "outputs": [
         {
           "path": "slim-assembly/assembly.png",
-          "sha256": "230758fecf454410e05ffea2ca555df397af8e799c3a636563584f41b963233c"
+          "sha256": "7f14e9133b167bcbeed023ba4c6d5ed34309b28cd2decef924e7a4fd1ea63f40"
         }
       ]
     },
@@ -478,11 +611,11 @@
       "outputs": [
         {
           "path": "pd12v6mini-reference/assembly.png",
-          "sha256": "7a1eab432b8ba40e35e5361db69610277e10b563282ea6b9d013b3608e99f3b0"
+          "sha256": "1950d39e5b0e649bf4ea5606c0d698e03710665e50de7dfc36269baf49c631b1"
         },
         {
           "path": "pd12v6mini-reference/top.svg",
-          "sha256": "b4f7053d8e0036e16d1801293d0667a8ecf6437ada7c8ed66ab0fe786ece30ff"
+          "sha256": "a38d421f55ec9769afcd102c1f061373a86c4531b47451649f823466bdb13162"
         }
       ],
       "models_sha256": {
