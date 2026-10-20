@@ -28,7 +28,10 @@ def build():
     evidence = {}
     for path in sorted((ROOT / 'bom').glob('*sourcing*.json')):
         data = json.loads(path.read_text())
-        for row in data if isinstance(data, list) else data.get('parts', []):
+        rows = data if isinstance(data, list) else data.get('parts', [])
+        if isinstance(data, dict) and 'header' in data:
+            rows = [*rows, data['header']]
+        for row in rows:
             if 'price_breaks' not in row:
                 continue
             code = row['lcsc']
@@ -74,7 +77,7 @@ def build():
                   unique_part_numbers=len(counts), batch_totals_usd={str(k):str(v) for k,v in totals.items()},
                   exclusions=['PCB fabrication, setup, feeders, stencil, X-ray and assembly',
                               'Procurement rounding, attrition, minimum quantities and per-job price differences',
-                              'Battery holders, cell/motor inventory, connectors, harnesses and remaining uncaptured circuitry',
+                              'Battery holders, cell/motor inventory, uncaptured connectors, harnesses and remaining circuitry',
                               'Enclosure, fasteners, transmission, insulation, charger/cable, tools, shipping and tax'],
                   lines=lines)
     stream=io.StringIO(); writer=csv.writer(stream, lineterminator="\n")

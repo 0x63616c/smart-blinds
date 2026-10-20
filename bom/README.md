@@ -6,7 +6,7 @@ Budget for eight complete units: seven installations plus one spare. The first p
 |---|---:|---:|---:|---|
 | Samsung INR21700-50E cells | 6 | 12 | 48 | Owner has cells; count, condition and matching to verify |
 | Recfountik JGB37-520 encoder motor, 12 V / 111 RPM | 1 | 2 | 8 | Archived purchase reports six; current inventory to verify |
-| Integrated populated controller PCB | 1 | 2 | 8 | 190 components captured; placement/routing unfinished |
+| Integrated populated controller PCB | 1 | 2 | 8 | 191 components captured; placement/routing unfinished |
 | Protected 3S2P pack assembly | 1 | 2 | 8 | Opposed holder carriers; 33 protection components captured |
 | Printed enclosure/drive pieces | set | 2 sets | 8 sets | Four original packaging studies and provisional fit meshes available |
 | Buttons, cables, terminals, fixings | set | 2 sets | 8 sets | Design dependent |
@@ -30,9 +30,9 @@ insertion, assembly fees and the extra interconnect must be included in this com
 
 ## Captured electronic parts
 
-The current main/controller and carrier graphs contain **223 components across
-63 unique part numbers per device**. The dated catalog calculation gives
-**$76.22 for two** or **$294.88 for eight** ($36.86 per device at eight) for
+The current main/controller and carrier graphs contain **224 components across
+64 unique part numbers per device**. The dated catalog calculation gives
+**$77.34 for two** or **$299.33 for eight** ($37.42 per device at eight) for
 those captured parts only. This excludes fabrication, assembly/setup/feeders,
 connectors and holders still being integrated, quantity rounding/attrition,
 mechanics, cells/motors, shipping and tax. It is not the complete device price.

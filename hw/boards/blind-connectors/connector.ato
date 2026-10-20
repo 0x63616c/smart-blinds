@@ -1,0 +1,24 @@
+from "../../parts/blind-connectors/430450600.ato" import Part_430450600
+
+module ProtectedPackConnector:
+    """UNVERIFIED manufacturing. Protected pack only; no raw cell taps.
+    This assignment must match labelled pigtail continuity and the carrier.
+    Physical housing key does not protect against a miswired cable.
+    """
+    signal pack_positive
+    signal pack_ground
+    signal gauge_sda
+    signal gauge_scl
+    signal charger_ntc
+    signal charger_ntc_return
+    header = new Part_430450600
+    header.contact1 ~ pack_positive
+    header.contact2 ~ pack_ground
+    header.contact3 ~ gauge_sda
+    header.contact4 ~ gauge_scl
+    header.contact5 ~ charger_ntc
+    header.contact6 ~ charger_ntc_return
+
+module ConnectorTest:
+    """Unrouted, passive connector assignment check; no powered circuit."""
+    connector = new ProtectedPackConnector

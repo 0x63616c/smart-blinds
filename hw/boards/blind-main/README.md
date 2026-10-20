@@ -1,6 +1,6 @@
 # Integrated controller capture
 
-This unrouted 190-component, 589-pin study connects the C6 interface, independent
+This unrouted 191-component, 595-pin study connects the C6 interface, independent
 motor supervision, motor bridge, USB-C PD/eFuse input, BQ25798 charger, 3.3 V buck
 switched 5 V encoder supply and independent regenerative-energy clamp. Each block's reviewed physical net graph and
 exact part identities are preserved, and independent boundary checks keep:
@@ -31,3 +31,8 @@ ato build hw/boards/blind-main -b main-test --frozen -v
 python3 hw/boards/blind-main/check_main.py
 python3 -m unittest discover -s hw/boards/blind-main -p 'test_*.py' -v
 ```
+
+The six-contact protected-pack header is now captured. Its keyed pigtail assignment is
+checked at the physical pin boundary; three negative controls reject swapped power,
+a shorted charger thermistor and swapped gauge bus. Geometry and harness evidence
+are in `../../../docs/electrical/battery-connector.md`. Motor/home/service ports remain open.

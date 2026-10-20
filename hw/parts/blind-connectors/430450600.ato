@@ -1,0 +1,22 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_430450600:
+    """UNVERIFIED manufacturing; six pins and one locator audited against SD-43045-001 Rev H."""
+    trait is_atomic_part<manufacturer="Molex", partnumber="430450600", footprint="CONN-TH_43045-0600.kicad_mod", symbol="430450600.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C127367", manufacturer="Molex", partno="430450600">
+    trait has_designator_prefix<prefix="J">
+
+    signal contact1
+    contact1 ~ pin 1
+    signal contact2
+    contact2 ~ pin 2
+    signal contact3
+    contact3 ~ pin 3
+    signal contact4
+    contact4 ~ pin 4
+    signal contact5
+    contact5 ~ pin 5
+    signal contact6
+    contact6 ~ pin 6

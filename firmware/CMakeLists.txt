@@ -37,3 +37,8 @@ add_executable(motion_executor_tests tests/motion_executor_tests.cpp)
 target_link_libraries(motion_executor_tests PRIVATE blinds_motion)
 target_compile_options(motion_executor_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
 add_test(NAME motion_executor_tests COMMAND motion_executor_tests)
+
+add_executable(port_checks_tests tests/port_checks_tests.cpp)
+target_include_directories(port_checks_tests PRIVATE include)
+target_compile_options(port_checks_tests PRIVATE -Wall -Wextra -Wpedantic -Werror)
+add_test(NAME port_checks_tests COMMAND port_checks_tests)

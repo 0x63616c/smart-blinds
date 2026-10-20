@@ -1,0 +1,10 @@
+menu "Smart Blinds bench motion"
+    config BLINDS_BENCH_MOTION
+        bool "Compile permission for explicit bench motion initialization"
+        default n
+        depends on PM_ENABLE
+        help
+            Enables the initialization permission only. No application creates
+            this port. A reviewed bench profile, physical reference and explicit
+            harness are still required. Never enable for an unqualified board.
+endmenu

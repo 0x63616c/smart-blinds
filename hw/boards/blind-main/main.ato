@@ -13,6 +13,7 @@ from "../blind-usb/usb.ato" import UsbPdInput
 from "../blind-charger/charger.ato" import Charger3S
 from "../blind-regulator/regulator.ato" import LogicSupply
 from "../blind-encoder/encoder.ato" import EncoderSupply
+from "../blind-connectors/connector.ato" import ProtectedPackConnector
 
 module MainController:
     """INCOMPLETE integrated USB-C, charger, logic supply and motor controller.
@@ -34,6 +35,7 @@ module MainController:
     charger = new Charger3S
     logic_supply = new LogicSupply
     encoder = new EncoderSupply
+    pack_connector = new ProtectedPackConnector
     battery = new ElectricPower
     battery.voltage = 9V to 12.6V
     battery ~ charger.battery
@@ -67,6 +69,12 @@ module MainController:
     pack_scl ~ charger.scl
     pack_ntc ~ charger.ntc
     pack_ntc_return ~ charger.ntc_return
+    pack_connector.pack_positive ~ battery.hv
+    pack_connector.pack_ground ~ battery.lv
+    pack_connector.gauge_sda ~ pack_sda
+    pack_connector.gauge_scl ~ pack_scl
+    pack_connector.charger_ntc ~ pack_ntc
+    pack_connector.charger_ntc_return ~ pack_ntc_return
 
     controller.motor_request_n ~ supervision.motor_request_n
     controller.watchdog_heartbeat ~ supervision.heartbeat

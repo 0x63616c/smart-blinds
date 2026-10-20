@@ -2,22 +2,22 @@
   "status": "Captured components only; not an order-ready BOM or manufacturing quote",
   "currency": "USD",
   "board_source_sha256": {
-    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "48bd79a638c09cf13a04c4f905142c578b8f5a5bd49ee182a06eab50a76cc38c",
+    "hw/layouts/blind-main/main-test/main-test.kicad_pcb": "036602c0ca3cb13a92ff9cf562ef08f78a6ba7934d383cacdda9f472594f1d14",
     "hw/layouts/blind-carrier/carrier-test/carrier-test.kicad_pcb": "d0ca7a0ff589dbfaa1383e2cec0c25fcf846ff3cfef281df171f61bf0f573511"
   },
   "counts_by_board": {
-    "main": 190,
+    "main": 191,
     "carrier": 33
   },
-  "unique_part_numbers": 63,
+  "unique_part_numbers": 64,
   "batch_totals_usd": {
-    "2": "76.2242",
-    "8": "294.8808"
+    "2": "77.3354",
+    "8": "299.3256"
   },
   "exclusions": [
     "PCB fabrication, setup, feeders, stencil, X-ray and assembly",
     "Procurement rounding, attrition, minimum quantities and per-job price differences",
-    "Battery holders, cell/motor inventory, connectors, harnesses and remaining uncaptured circuitry",
+    "Battery holders, cell/motor inventory, uncaptured connectors, harnesses and remaining circuitry",
     "Enclosure, fasteners, transmission, insulation, charger/cable, tools, shipping and tax"
   ],
   "lines": [
@@ -55,6 +55,33 @@
           "quantity": 64,
           "unit_price_usd": "0.0013",
           "extension_usd": "0.0832"
+        }
+      }
+    },
+    {
+      "lcsc": "C127367",
+      "mpn": "430450600",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "J1"
+        ]
+      },
+      "source": "bom/electronics-connectors-sourcing.json",
+      "observed_utc": "2026-10-20T03:47:32+00:00",
+      "url": "https://jlcpcb.com/partdetail/430450600/C127367",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.5556",
+          "extension_usd": "1.1112"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.5556",
+          "extension_usd": "4.4448"
         }
       }
     },

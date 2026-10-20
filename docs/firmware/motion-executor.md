@@ -37,3 +37,13 @@ The defaults are deliberately provisional: 50% maximum duty, 30 mm/s fabric spee
 Run `cmake -S firmware -B work/firmware-check`, `cmake --build work/firmware-check`, then `ctest --test-dir work/firmware-check --output-on-failure`. The motion test joins the host suite. It covers operation-by-operation failures, over-budget operations including cleanup, permanently latched faults, malformed/stale/future evidence, lease margin, expired sensing, output validation, immediate STOP, heartbeat order, nonlinear slope conversion, reversal waiting/timeout and no-progress shutdown.
 
 The test also connects the actual controller and executor through two illustrative first-order motor plants with different response gains. Both cross a calibration-slope change and reach the commanded physical endpoint; reversed plant wiring causes the controller's wrong-direction/reference-loss stop. The plants are intentionally synthetic and are not identified models of the purchased motors. These tests establish logic behavior, not actual settling, precision, current, battery runtime or wall-mounted safety. The added disabled C6 peripheral component and portable executor source await the next pinned ESP-IDF CI build; no C6 motor interoperability or hardware test is claimed.
+
+## Actual C6 adapter checkpoint
+
+The separate [bench C6 adapter](../../firmware/esp-idf/components/motion_io/README.md)
+now implements this executor's I/O interface with hardware PCNT, MCPWM, calibrated
+ADC, synchronous WDI pulses and register/pad readback. It remains uninstantiated
+and initialization is disabled by default. The shipped application has no active
+motion entry point. Host tests cover its portable measurement/readback acceptance
+rules; its fresh cross-build and physical qualification are recorded separately
+in that component's README. The radio-to-executor integration is not complete yet.

@@ -65,10 +65,11 @@ A green preview result only confirms generation of the documented images.
 - A host-tested BQ25798 component proposes and reads back charger settings, checks fresh ADC
   conversions, and rejects bus/register/timer/temperature faults. It has no charging-enable
   operation; the C6 application compiles but does not call it. No cell or device was programmed.
-- The partial main board now composes 190 components and 589 physical pins, including a
-  reset-gated 5 V encoder supply and an independent thermal latch. Eight preserved blocks and nine integration tests
+- The partial main board now composes 191 components and 595 physical pins, including a
+  reset-gated 5 V encoder supply and an independent thermal latch. Eight preserved blocks and twelve integration tests
   check power-domain separation, factory-bus isolation and key control connections. Normal
-  and frozen local builds pass; connectors and actual layout are next. Regeneration and
+  and frozen local builds pass. The keyed protected-pack connector is captured; motor
+  ports and actual layout remain in progress. Regeneration and
   thermal models have explicit transient and sustained-backdrive limits, not hardware approval.
 - Offline STUSB4500 tooling checks documented PDO fields and full 40-byte readback. Static inspection of the pinned manufacturer GUI binary now identifies
   its above-5 V gate-policy field; unqualified discharge timers and device baseline still keep

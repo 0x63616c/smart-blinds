@@ -15,7 +15,16 @@ class IntegrationTests(unittest.TestCase):
         with self.assertRaises(AssertionError):verify(graph)
 
     def test_captured_boundaries(self):
-        self.assertEqual(verify(self.graph)['components'],190)
+        self.assertEqual(verify(self.graph)['components'],191)
+
+    def test_swapped_pack_power(self):
+        self.change('pack_connector.header','1','charger.ic','10')
+
+    def test_pack_ntc_shorted_to_return(self):
+        self.change('pack_connector.header','5','pack_connector.header','6')
+
+    def test_pack_gauge_bus_swapped(self):
+        self.change('pack_connector.header','3','charger.ic','14')
 
     def test_motor_on_charger_sys(self):
         self.change('motor.ic','11','charger.ic','25')

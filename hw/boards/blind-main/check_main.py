@@ -44,13 +44,19 @@ def verify(graph):
     extra={'thermal_gate':('SN74AUP1G97DCKR','C2682139'),
            'r_thermal_sleep':('0402WGF1001TCE','C11702'),
            'c_thermal_gate':('CL05B104KB54PNC','C307331'),
-           'q_thermal_fault':('AO3400A','C20917')}
+           'q_thermal_fault':('AO3400A','C20917'),
+           'pack_connector.header':('430450600','C127367')}
     assert actual.keys()==expected_names | extra.keys(),'Unexpected integrated components'
     for name,(mpn,code) in extra.items():
         assert actual[name]['properties']['Partnumber']==mpn and actual[name]['properties']['LCSC']==code,name
     pins={name+'.'+pin:net for name,c in actual.items() for pin,net in c['pads'].items()}
     # Independent physical-number boundary anchors, not .ato alias names.
     shared=[
+        ['pack_connector.header.1','charger.ic.22'],
+        ['pack_connector.header.2','charger.ic.10','pack_connector.header.6'],
+        ['pack_connector.header.3','charger.ic.15'],
+        ['pack_connector.header.4','charger.ic.14'],
+        ['pack_connector.header.5','charger.ic.16'],
         ['usb.efuse.6','charger.ic.2','charger.ic.3','charger.ic.8','charger.ic.9'],
         ['charger.ic.22','charger.ic.23','motor.ic.11','regen.detector.5','regen.thermal_supply.1'],
         ['charger.ic.25','logic_supply.ic.6','encoder.ic.1'],

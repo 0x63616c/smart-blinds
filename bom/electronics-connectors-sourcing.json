@@ -1,0 +1,125 @@
+{
+  "status": "Provisional selected dual-row controller header and permanently retained protected-pack pigtail; no order release",
+  "header": {
+    "mpn": "430450600",
+    "lcsc": "C127367",
+    "url": "https://jlcpcb.com/partdetail/430450600/C127367",
+    "observed_utc": "2026-10-20T03:47:32+00:00",
+    "currency": "USD",
+    "metadata": {
+      "componentModelEn": "430450600",
+      "componentLibraryType": "expand",
+      "assemblyMode": "manualWeld",
+      "assemblyComponentFlag": false,
+      "xrayFlag": false,
+      "componentProductType": 0,
+      "fixtureFlag": false,
+      "specialComponentFee": 0,
+      "overseasStockCount": 34749,
+      "canPresaleNumber": 34188,
+      "preMinPurchaseNum": 21,
+      "leastPatchNumber": 2,
+      "lossNumber": 0,
+      "noBuyReason": null,
+      "initialPrice": 0.5556
+    },
+    "price_breaks": [
+      {
+        "startNumber": 1,
+        "endNumber": 9,
+        "productPrice": 0.5556
+      },
+      {
+        "startNumber": 10,
+        "endNumber": 29,
+        "productPrice": 0.451
+      },
+      {
+        "startNumber": 30,
+        "endNumber": 143,
+        "productPrice": 0.4069
+      },
+      {
+        "startNumber": 144,
+        "endNumber": 431,
+        "productPrice": 0.3497
+      },
+      {
+        "startNumber": 432,
+        "endNumber": 1007,
+        "productPrice": 0.3252
+      },
+      {
+        "startNumber": 1008,
+        "endNumber": -1,
+        "productPrice": 0.3105
+      }
+    ],
+    "pcba_type": "Economic and Standard",
+    "stock_note": "overseasStockCount is not in-house SMT stock. preMinPurchaseNum is unverified internal metadata, not a confirmed MOQ. Final BOM matching and quote still required"
+  },
+  "harness": {
+    "mpn": "2147561061",
+    "manufacturer": "Molex",
+    "status_from_primary": "Active",
+    "length_mm": 150,
+    "wire_awg": 18,
+    "wire_type": "UL1061",
+    "insulation_od_max_mm": 1.85,
+    "od_source_note": "Manufacturer-generated 2020 sheet; exact current sample OD and minimum not established",
+    "circuits": 6,
+    "housing_series": "43025",
+    "plating": "Tin",
+    "primary_url": "https://www.molex.com/en-us/products/part-detail/2147561061",
+    "seller_url": "https://www.digikey.com/en/products/detail/molex/2147561061/12180656",
+    "observed_utc": "2026-10-20T03:50:50.210812+00:00",
+    "currency": "USD",
+    "stock": 3794,
+    "price_breaks": [
+      {
+        "minimum": 1,
+        "unit_price": 4.4
+      },
+      {
+        "minimum": 10,
+        "unit_price": 3.741
+      }
+    ],
+    "quote_scope": "No stock reserved; excludes tariff, freight, tax and assembly. All black wires require contact identification; strip/tin dimensions unverified."
+  },
+  "quantity_per_device": {
+    "header": 1,
+    "harness": 1
+  },
+  "eight_device_material_estimate_usd": 39.6448,
+  "ten_sets_material_estimate_usd": 41.92,
+  "excluded_costs": [
+    "THT assembly and secondary process fees",
+    "Header procurement minimums and process loss",
+    "Freight, tariff and tax",
+    "Pigtail soldering, clamp hardware and assembly inspection"
+  ],
+  "alternatives": [
+    {
+      "mpn": "436500600 + 2147501061",
+      "status": "Evaluated but not selected",
+      "reason": "Two headers and full cable cost more; wide connector needs additional mating space.",
+      "prior_eight_device_material_usd": 53.4176
+    },
+    {
+      "mpn": "436500612",
+      "status": "Not selected",
+      "reason": "About $4.74 qty10 SMT header versus $0.451 selected THT; compare complete PCBA quote if needed."
+    },
+    {
+      "mpn": "2060-453/998-404",
+      "status": "Not selected",
+      "reason": "Standard-only assembly, six wire insertions, different termination process."
+    },
+    {
+      "mpn": "797580002",
+      "status": "Rejected",
+      "reason": "Manufacturer obsolete."
+    }
+  ]
+}
