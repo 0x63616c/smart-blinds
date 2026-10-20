@@ -41,6 +41,22 @@ class ArithmeticTests(unittest.TestCase):
             with self.assertRaises(ClockUncertain):
                 bound.source_age_us(source, 1002300)
 
+    def test_explicit_motion_model_encloses_default_and_bounds_source_age(self):
+        values = (1000000, 1101000, 1101100, 1002100)
+        default = ClockBounds.estimate(*values)
+        conservative = ClockBounds.estimate(*values, growth_ppm=10000, stamp_guard_us=1000)
+        self.assertLessEqual(conservative.lower_us, default.lower_us)
+        self.assertGreaterEqual(conservative.upper_us, default.upper_us)
+        self.assertGreater(conservative.error_us(1502100), default.error_us(1502100))
+        with self.assertRaises(ClockUncertain):
+            conservative.error_us(1902100)
+        self.assertGreater(conservative.source_age_us(1002200, 1002300, 250000), 100000)
+        with self.assertRaises(ClockUncertain):
+            conservative.source_age_us(1002200, 1002300)
+        for kwargs in ({'growth_ppm': True}, {'growth_ppm': 10001}, {'stamp_guard_us': -1}, {'stamp_guard_us': 1001}):
+            with self.assertRaises(ClockUncertain):
+                ClockBounds.estimate(*values, **kwargs)
+
 
 class ClockTransportTests(unittest.TestCase):
     def test_real_assessment_remains_unvalidated_and_motor_disabled(self):

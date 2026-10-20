@@ -37,6 +37,7 @@ target_link_libraries(sb_thread PRIVATE coap-3 OpenSSL::SSL OpenSSL::Crypto Thre
 target_compile_options(sb_thread PRIVATE -Wall -Wextra -Wpedantic -Werror)
 option(SB_BUILD_TEST_PEER "Build loopback-only peer fixture (never deploy this)" OFF)
 if(SB_BUILD_TEST_PEER)
-  target_sources(sb_thread PRIVATE native/test_peer.cpp)
+  target_sources(sb_thread PRIVATE native/test_peer.cpp native/motion_test_peer.cpp
+    ../../firmware/src/control.cpp ../../firmware/src/motion_executor.cpp ../../firmware/src/motion_session.cpp)
   target_include_directories(sb_thread PRIVATE ../../firmware/include)
 endif()

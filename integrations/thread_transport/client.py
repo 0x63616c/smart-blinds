@@ -92,6 +92,8 @@ def _load(path: Path):
     library = C.CDLL(str(path.resolve(strict=True)))
     library.sb_client_new.argtypes = [C.c_char_p, C.c_uint16, C.c_char_p, C.POINTER(C.c_uint8)]
     library.sb_client_new.restype = C.c_void_p
+    library.sb_motion_client_new.argtypes = library.sb_client_new.argtypes
+    library.sb_motion_client_new.restype = C.c_void_p
     library.sb_client_free.argtypes = [C.c_void_p]
     library.sb_client_free.restype = None
     library.sb_client_request.argtypes = [C.c_void_p, C.c_int, C.POINTER(C.c_uint8), C.c_size_t,
@@ -109,6 +111,7 @@ class Session:
     initial status call completes and proves the authenticated connection. Failure permanently closes this object's network
     session; create a new object and obtain fresh status deliberately to recover.
     """
+    _native_constructor = "sb_client_new"
     def __init__(self, library: Path, host: str, port: int, identity: str, key: bytes,
                  *, timeout_ms: int = 3000):
         if not isinstance(host, str) or '%' in host:
@@ -136,7 +139,8 @@ class Session:
         self._timeout = timeout_ms
         key_copy = (C.c_uint8 * 32).from_buffer_copy(key)
         try:
-            self._handle = self._library.sb_client_new(host.encode("ascii"), port, identity.encode("ascii"), key_copy)
+            self._handle = getattr(self._library, self._native_constructor)(
+                host.encode("ascii"), port, identity.encode("ascii"), key_copy)
         finally:
             C.memset(key_copy, 0, 32)
         if not self._handle:
@@ -170,7 +174,7 @@ class Session:
         # Caller owns the Python lock. The native handle also serializes I/O.
         if not self._handle or self._failed:
             raise TransportError("Session is closed; explicit recovery and fresh status required")
-        output = (C.c_uint8 * 512)()
+        output = (C.c_uint8 * 1024)()
         payload = (C.c_uint8 * len(body)).from_buffer_copy(body)
         size, code = C.c_size_t(), C.c_int()
         result = self._library.sb_client_request(self._handle, kind, payload, len(body), self._timeout,

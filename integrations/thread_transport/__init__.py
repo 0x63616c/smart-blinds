@@ -1,3 +1,3 @@
-"""Motor-disabled CoAP/DTLS transport; no motion or provisioning endpoints."""
+"""Motor-disabled evaluation API; explicit motion API lives in .motion."""
 from .client import ProtocolError, Rejected, Session, Status, TransportError
 __all__ = ["ProtocolError", "Rejected", "Session", "Status", "TransportError"]

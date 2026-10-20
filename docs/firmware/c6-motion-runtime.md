@@ -56,9 +56,11 @@ clock diagnostic schema with `motor_ready:false`; use `v1/motion-status` for the
 control session. Status/wake use `io_qualified` for initialized backend
 qualification; they do not label this as live motor output.
 
-The existing Python/libcoap client deliberately accepts only the motor-disabled
-status contract and does not yet expose these motion resources. Its coordinator
-binding is a following step; no production Home Assistant actuation is implied.
+The default Python/libcoap client still accepts only the motor-disabled contract.
+A separate explicit [motion client](host-motion-transport.md) now exposes these
+resources and tests them against the shared portable runtime over local DTLS.
+Coordinator binding is a following step; no production Home Assistant actuation
+is implied.
 
 ## Clock and power evidence
 
