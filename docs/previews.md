@@ -76,3 +76,9 @@ explicit open-block findings. CI rejects a stale drawing or changed connection. 
 ERC boundary findings are not exclusions and do not count as a clean whole-board ERC result.
 
 OpenSCAD entries can set `render_mode` to `render` for exact intersection geometry and correct section-view bounds; the default `preview` is faster for full assemblies.
+
+The preview workflow uses Python 3.14 for the pinned atopile compiler and the
+Ubuntu system Python for native KiCad/wxPython/Shapely rendering. The initial
+preview run for the source-driven migration failed before compilation because
+Ubuntu’s default interpreter does not satisfy atopile 0.15.9’s Python requirement;
+no design input or native check was bypassed to correct that setup.

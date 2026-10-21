@@ -28,6 +28,9 @@ jobs:
           sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends kicad kicad-packages3d openscad xvfb xauth python3-matplotlib python3-wxgtk4.0 python3-shapely python3-venv
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
       - name: Recompile the live controller source before preview generation
         run: |
           python3 -m venv work/preview-compiler
@@ -49,7 +52,7 @@ jobs:
           python3 tools/generate_schematics.py hw/schematics/blind-regen/regen-test.layout.json --check
           python3 tools/generate_main_schematic.py --check
       - name: Generate previews from sources
-        run: xvfb-run -a python3 tools/render_previews.py
+        run: xvfb-run -a /usr/bin/python3 tools/render_previews.py
       - name: Prepare review artifact
         run: |
           mkdir -p work/preview-artifact/docs
