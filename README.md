@@ -49,12 +49,11 @@ these images must not be used as physical PCB-fit evidence.
 <!-- previews:start -->
 ### Cleaner controller — current routing draft
 
-54 × 80 mm black four-layer controller with gridded parts and outward connectors.
-417 connections remain open; electrical, thermal and enclosure qualification is unfinished.
+54 × 80 mm black four-layer controller draft with outward-facing connectors and gridded parts. The local regulator and USB-C PD routes are implemented; 417 connections remain open. Ground reference, remaining power/signal routing, enclosure fit and electrical/thermal qualification are unfinished. Not a fabrication release.
 
 ![Cleaner controller — current routing draft](docs/generated/clean-controller-route/assembly.png)
 
-[Editable source](hw/studies/clean-main/placement.kicad_pcb) · [Review](docs/reviews/2026-10-21-clean-layout/pd-routing.md)
+[Source](hw/studies/clean-main/placement.kicad_pcb) · [Generated files](docs/generated/clean-controller-route/)
 
 ### Retained enclosure — current exterior
 
