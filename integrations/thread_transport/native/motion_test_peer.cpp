@@ -10,6 +10,8 @@
 #include <cmath>
 #include <memory>
 #include <thread>
+#include <ctime>
+#include <limits>
 
 namespace sbthread {
 namespace {
@@ -27,43 +29,97 @@ blinds::BenchMotionProfile profile() {
     p.bench_qualified=p.holding_qualified=true; p.qualification_id=123;
     p.feedforward=.00025; return p;
 }
+// Fixture-only operation attribution. These stamps observe the exact existing
+// executor before/call/after envelope; they never replace or advance its clock.
+enum class IoOperation : unsigned { none,parked,request,charge,coast,wdi,encoder,
+    counter_start,counter_stop,awake,pwm,heartbeat };
+constexpr std::uint64_t no_cpu=std::numeric_limits<std::uint64_t>::max();
+std::uint64_t thread_cpu_ns() {
+    timespec t{};
+    if(clock_gettime(CLOCK_THREAD_CPUTIME_ID,&t)!=0) return no_cpu;
+    return static_cast<std::uint64_t>(t.tv_sec)*1000000000ULL+static_cast<std::uint64_t>(t.tv_nsec);
+}
+struct IoTrace {
+    unsigned operation=0;
+    std::uint64_t before=0,entered=0,returned=0,after=0,cpu_before=no_cpu,cpu_after=no_cpu;
+    bool ok=false;
+    unsigned injected=0;
+    bool ordered() const { return before<=entered && entered<=returned && returned<=after; }
+    std::uint64_t wall() const { return after>=before ? after-before : 0; }
+    bool cpu_valid() const { return cpu_before!=no_cpu && cpu_after!=no_cpu && cpu_after>=cpu_before; }
+};
 struct Plant : blinds::MotionIo,blinds::CounterOrigin {
     bool off=true,counter=false,rail=false,awake=false;
     double count=500,duty=0;
     int direction=0;
     std::uint64_t epoch=0,last=mono_us();
-    mutable std::uint64_t previous_read_us=0,max_read_gap_us=0;
-    mutable bool reversed_read=false;
+    mutable std::uint64_t previous_read_us=0,previous_cpu_ns=no_cpu,max_read_gap_us=0;
+    mutable bool reversed_read=false,inside_io=false;
+    mutable IoTrace pending{},first_bad{};
+    mutable unsigned after_return_wait_us=0;
+    // High16 target operation, next16 probe kind, low32 duration. Only the
+    // control owner consumes this atomic test request; no plant state races.
+    std::atomic<std::uint64_t> io_probe{0};
     void begin_cycle() { max_read_gap_us=0; reversed_read=false; }
-    bool parked_off() override { return off && !counter && !rail && !awake && duty==0; }
     std::uint64_t now_us() const override {
+        if(pending.operation && !inside_io && after_return_wait_us) {
+            const auto wait=after_return_wait_us; after_return_wait_us=0;
+            std::this_thread::sleep_for(std::chrono::microseconds(wait));
+        }
         const auto now=mono_us();
+        const auto cpu=thread_cpu_ns();
+        if(pending.operation && !inside_io) {
+            pending.after=now; pending.cpu_after=cpu;
+            if(!first_bad.operation && (!pending.ok || !pending.ordered() ||
+                pending.wall()>blinds::MotionExecutor::io_budget_us)) first_bad=pending;
+            pending={};
+        }
         if(previous_read_us) {
             if(now<previous_read_us) reversed_read=true;
             else max_read_gap_us=std::max(max_read_gap_us,now-previous_read_us);
         }
-        previous_read_us=now;
+        previous_read_us=now; previous_cpu_ns=cpu;
         return now;
+    }
+    template<class F> bool operation(IoOperation id,F call) {
+        IoTrace trace;
+        trace.operation=static_cast<unsigned>(id);
+        trace.before=previous_read_us; trace.cpu_before=previous_cpu_ns;
+        trace.entered=mono_us();
+        inside_io=true;
+        auto probe=io_probe.load();
+        if((probe>>48)==trace.operation && io_probe.compare_exchange_strong(probe,0)) {
+            trace.injected=static_cast<unsigned>((probe>>32)&0xffff);
+            const auto delay=static_cast<unsigned>(probe&0xffffffff);
+            if(trace.injected==1) std::this_thread::sleep_for(std::chrono::microseconds(delay));
+            if(trace.injected==2) after_return_wait_us=delay;
+        }
+        trace.ok=call();
+        if(trace.injected==3) trace.ok=false;
+        trace.returned=mono_us();
+        inside_io=false; pending=trace;
+        return trace.ok;
     }
     void advance() {
         const auto now=now_us();
         if(!off && counter) count+=direction*duty*4000*(now-last)/1000000.0;
         last=now;
     }
-    bool request_n(bool high) override { advance(); off=high; return true; }
-    bool charge_off() override { return true; }
-    bool coast() override { advance(); duty=0; direction=0; return true; }
-    bool wdi_high() override { return true; }
-    bool encoder_power(bool value) override { rail=value; return true; }
-    bool counter_start(std::uint64_t value) override { counter=rail && epoch==value; return counter; }
-    bool counter_stop() override { counter=false; return true; }
-    bool awake_lock(bool held) override { awake=held; return true; }
-    bool pwm(int dir,double value) override {
+    bool parked_off() override { return operation(IoOperation::parked,[&]{return off && !counter && !rail && !awake && duty==0;}); }
+    bool request_n(bool high) override { return operation(IoOperation::request,[&]{advance();off=high;return true;}); }
+    bool charge_off() override { return operation(IoOperation::charge,[]{return true;}); }
+    bool coast() override { return operation(IoOperation::coast,[&]{advance();duty=0;direction=0;return true;}); }
+    bool wdi_high() override { return operation(IoOperation::wdi,[]{return true;}); }
+    bool encoder_power(bool value) override { return operation(IoOperation::encoder,[&]{rail=value;return true;}); }
+    bool counter_start(std::uint64_t value) override { return operation(IoOperation::counter_start,[&]{counter=rail && epoch==value;return counter;}); }
+    bool counter_stop() override { return operation(IoOperation::counter_stop,[&]{counter=false;return true;}); }
+    bool awake_lock(bool held) override { return operation(IoOperation::awake,[&]{awake=held;return true;}); }
+    bool pwm(int dir,double value) override { return operation(IoOperation::pwm,[&]{
         advance();
         if(off || !counter || (dir!=1 && dir!=-1) || value<0 || value>.5) return false;
         direction=dir; duty=value; return true;
-    }
-    bool heartbeat_pulse() override { return !off; }
+    }); }
+    bool heartbeat_pulse() override { return operation(IoOperation::heartbeat,[&]{return !off;}); }
     bool set_counter_origin(std::uint64_t value,double origin) override {
         if(!off || counter) return false;
         epoch=value; count=origin; return true;
@@ -98,6 +154,7 @@ public:
     std::atomic<unsigned> stall_next_us{0},first_executor_fault{0};
     std::atomic<std::uint64_t> fault_read_gap_us{0};
     std::atomic<bool> fault_read_reversed{false};
+    std::array<std::atomic<std::uint64_t>,11> fault_io{};
     std::thread network_worker,control_worker;
     std::mutex publication;
     blinds::MotionSession::Inbox inbox;
@@ -262,6 +319,11 @@ public:
                         fault_duration_us=after-before;
                         fault_read_gap_us=plant.max_read_gap_us;
                         fault_read_reversed=plant.reversed_read;
+                        const auto& io=plant.first_bad;
+                        const std::uint64_t metrics[]={io.operation,io.before,io.entered,io.returned,io.after,
+                            io.wall(),io.cpu_valid()?io.cpu_after-io.cpu_before:0,
+                            io.cpu_valid(),io.ok,io.ordered(),io.injected};
+                        for(std::size_t i=0;i<fault_io.size();++i) fault_io[i]=metrics[i];
                         first_executor_fault=static_cast<unsigned>(motion.executor_fault());
                     }
                     previous_cycle_start=before;previous_cycle_end=after;
@@ -327,6 +389,18 @@ bool sb_motion_peer_stall_next(void* p,unsigned us) {
     auto& peer=*static_cast<sbthread::MotionPeer*>(p);
     unsigned expected=0;
     return peer.stall_next_us.compare_exchange_strong(expected,us);
+}
+std::uint64_t sb_motion_peer_io_timing(void* p,unsigned metric) {
+    auto& peer=*static_cast<sbthread::MotionPeer*>(p);
+    return metric<peer.fault_io.size()?peer.fault_io[metric].load():0;
+}
+bool sb_motion_peer_io_probe_next(void* p,unsigned operation,unsigned kind,unsigned us) {
+    if(!operation || operation>static_cast<unsigned>(sbthread::IoOperation::heartbeat) ||
+       kind<1 || kind>3 || (kind==3 ? us!=0 : us<101 || us>10000)) return false;
+    auto& peer=*static_cast<sbthread::MotionPeer*>(p);
+    std::uint64_t expected=0;
+    const auto probe=(static_cast<std::uint64_t>(operation)<<48)|(static_cast<std::uint64_t>(kind)<<32)|us;
+    return peer.plant.io_probe.compare_exchange_strong(expected,probe);
 }
 bool sb_motion_peer_off(void* p) { return static_cast<sbthread::MotionPeer*>(p)->off; }
 }

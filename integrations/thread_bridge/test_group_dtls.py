@@ -70,7 +70,7 @@ class GroupDTLSTests(unittest.TestCase):
             g=stack.enter_context(Group(selected,ledger,LIBRARY));g.start(90)
             until=time.monotonic()+4
             while g.job.phase!=Phase.MOVING and time.monotonic()<until:
-                self.assertNotEqual(g.step(),Phase.ABORTED,g.job.reason);time.sleep(.005)
+                self.assertNotEqual(g.step(),Phase.ABORTED,g.job.reason+str([p.diagnostics for p in peers]));time.sleep(.005)
             peers[3].mode(2)
             self.assertEqual(self.finish(g),Phase.ABORTED)
             g.close()
@@ -97,7 +97,7 @@ class GroupDTLSTests(unittest.TestCase):
             g=stack.enter_context(Group(selected,ledger,LIBRARY));g.start(90)
             until=time.monotonic()+1
             while g.job.phase!=Phase.ARMED and time.monotonic()<until:
-                self.assertNotEqual(g.step(),Phase.ABORTED,g.job.reason);time.sleep(.005)
+                self.assertNotEqual(g.step(),Phase.ABORTED,g.job.reason+str([p.diagnostics for p in peers]));time.sleep(.005)
             g.workers['1'].shutdown.set()
             self.assertEqual(self.finish(g),Phase.ABORTED)
             g.close()

@@ -25,6 +25,8 @@ class MotionPeer:
             ('executor_fault', [C.c_void_p], C.c_uint),
             ('timing', [C.c_void_p, C.c_uint], C.c_uint64),
             ('stall_next', [C.c_void_p, C.c_uint], C.c_bool),
+            ('io_timing', [C.c_void_p, C.c_uint], C.c_uint64),
+            ('io_probe_next', [C.c_void_p, C.c_uint, C.c_uint, C.c_uint], C.c_bool),
             ('free', [C.c_void_p], None), ('mode', [C.c_void_p, C.c_uint], C.c_bool),
             ('requests', [C.c_void_p], C.c_uint), ('off', [C.c_void_p], C.c_bool)):
             fn = getattr(self.library, 'sb_motion_peer_' + name)
@@ -58,10 +60,25 @@ class MotionPeer:
     @property
     def diagnostics(self):
         # First executor-fault timing is diagnostic evidence, never permission.
-        return dict(executor_fault=self.executor_fault, **{
+        result = dict(executor_fault=self.executor_fault, **{
             label:self.library.sb_motion_peer_timing(self.handle,i)
             for i,label in enumerate(('start_gap_us','end_gap_us','cycle_duration_us',
                                       'max_clock_read_gap_us','clock_read_reversed','first_executor_fault'))})
+        result.update({label:self.library.sb_motion_peer_io_timing(self.handle,i)
+                       for i,label in enumerate(('io_operation','io_before_us','io_entered_us',
+                            'io_returned_us','io_after_us','io_wall_us','io_cpu_ns','io_cpu_valid',
+                            'io_result','io_ordered','io_injected'))})
+        operations=('none','parked','request','charge','coast','wdi','encoder',
+                    'counter_start','counter_stop','awake','pwm','heartbeat')
+        result['io_name']=operations[result['io_operation']]
+        return result
+
+    def io_probe_next(self, operation, kind, us=0):
+        operations=('none','parked','request','charge','coast','wdi','encoder',
+                    'counter_start','counter_stop','awake','pwm','heartbeat')
+        kinds={'during_call':1,'after_return':2,'false_result':3}
+        if not self.library.sb_motion_peer_io_probe_next(self.handle,operations.index(operation),kinds[kind],us):
+            raise ValueError('Invalid or already pending I/O probe')
 
     def stall_next(self, us):
         if not self.library.sb_motion_peer_stall_next(self.handle,us):
@@ -242,6 +259,40 @@ class MotionTests(unittest.TestCase):
             time.sleep(.04)
             self.assertEqual(s.motion_status().phase,'fault')
             self.assertTrue(peer.off)
+
+    def _io_probe_fault(self, kind, delay):
+        with MotionPeer() as peer, peer.session() as s:
+            connected(s); prepare(s,lead=500000)
+            wait_for(s,lambda r:r.ready)
+            peer.io_probe_next('coast',kind,delay)
+            s.commit(message=2,command=1,sent_us=_now_us())
+            report=wait_for(s,lambda r:r.phase=='fault')
+            d=peer.diagnostics
+            self.assertEqual(d['first_executor_fault'],5,d)
+            self.assertEqual(d['io_name'],'coast',d)
+            self.assertEqual(d['io_injected'],{'during_call':1,'after_return':2,'false_result':3}[kind],d)
+            self.assertEqual(d['io_ordered'],1,d)
+            self.assertEqual(d['io_wall_us'],d['io_after_us']-d['io_before_us'])
+            self.assertEqual(d['io_result'],0 if kind=='false_result' else 1,d)
+            if kind=='during_call':self.assertGreaterEqual(d['io_returned_us']-d['io_entered_us'],delay,d)
+            if kind=='after_return':self.assertGreaterEqual(d['io_after_us']-d['io_returned_us'],delay,d)
+            if delay:self.assertGreater(d['io_wall_us'],100,d)
+            self.assertEqual(report.result,'io')
+            self.assertFalse(report.reference_valid)
+            self.assertTrue(peer.off)
+            time.sleep(.04)
+            self.assertEqual(peer.diagnostics,d) # Successful OFF cleanup never replaces first bad operation.
+            self.assertEqual(s.motion_status().phase,'fault')
+            self.assertTrue(peer.off)
+
+    def test_slow_io_call_identifies_first_operation_and_stays_off(self):
+        self._io_probe_fault('during_call',1000)
+
+    def test_post_return_wait_is_not_misattributed_to_io_implementation(self):
+        self._io_probe_fault('after_return',1000)
+
+    def test_false_io_result_identifies_operation_before_cleanup(self):
+        self._io_probe_fault('false_result',0)
 
     def test_reconnect_cannot_resume_or_auto_commit(self):
         with MotionPeer() as peer, peer.session() as first:
