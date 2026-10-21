@@ -1,0 +1,43 @@
+{
+  "inputs": {
+    "exports/front.stl": "2a8ab8784e57bb4e86eb8e0c86eddad4a353c5afcf275d621f9e9b6e88cd35c2",
+    "exports/rear.stl": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271",
+    "exports/spacer.stl": "2332a97cd704563e705773f18d09f73792fec12fd7ad125046f1e48b7aaff923",
+    "exports/contents.stl": "07e560dd3761ba8c197396f792ec56f656091d0bb7180590053a82376150748a",
+    "exports/pack_fasteners.stl": "8e0065e12a040b681a21a59f3aac51e1c7d5887453132e793614306d3f0fd904",
+    "exports/motor_frame.stl": "b94d0637a4b57fa4faa4546607d0c6039cb5b1a28e6fa77c5c869198b47e113a",
+    "exports/guard_clamp.stl": "9c0f713b7887925d536ea37ac1884fe7c17927eea0d72b59025606ca52a88785",
+    "exports/backing.stl": "00e8e0ba60a4230156ea0f1a03f3fb99004d2800098901e207a528dc43e6ad60",
+    "exports/tail_keeper.stl": "864bf6c8d0dc66c2cebde37e177f55662ec6e5ce43b1246c4da16a0ecac39805",
+    "exports/cover.stl": "ae72cc930b40b6cf87696ecc1e0344135640149b54e140b5b9da36a5202fabfa",
+    "exports/backplate.stl": "0796c94c12684ab7c6cdca9428fd209054e6f06a7ff03e01521837511a0e30c1"
+  },
+  "checks": [
+    {
+      "name": "front_shell_approach_spacer",
+      "extruded_surface_prisms": 738,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "front_shell_approach_contents",
+      "extruded_surface_prisms": 40,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "rear_shell_approach_spacer",
+      "extruded_surface_prisms": 669,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "rear_shell_approach_contents",
+      "extruded_surface_prisms": 629,
+      "findings": [],
+      "pass": true
+    }
+  ],
+  "passed": true,
+  "status": "Trial path, full source-export checking still required"
+}

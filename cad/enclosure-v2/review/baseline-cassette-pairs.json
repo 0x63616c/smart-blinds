@@ -1,0 +1,193 @@
+{
+  "inputs": {
+    "exports/front.stl": "2a8ab8784e57bb4e86eb8e0c86eddad4a353c5afcf275d621f9e9b6e88cd35c2",
+    "exports/contents.stl": "07e560dd3761ba8c197396f792ec56f656091d0bb7180590053a82376150748a",
+    "exports/motor_frame.stl": "b94d0637a4b57fa4faa4546607d0c6039cb5b1a28e6fa77c5c869198b47e113a",
+    "exports/rear.stl": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271",
+    "exports/spacer.stl": "2332a97cd704563e705773f18d09f73792fec12fd7ad125046f1e48b7aaff923",
+    "exports/pack_fasteners.stl": "8e0065e12a040b681a21a59f3aac51e1c7d5887453132e793614306d3f0fd904",
+    "exports/backing.stl": "00e8e0ba60a4230156ea0f1a03f3fb99004d2800098901e207a528dc43e6ad60",
+    "exports/guard_clamp.stl": "9c0f713b7887925d536ea37ac1884fe7c17927eea0d72b59025606ca52a88785",
+    "exports/tail_keeper.stl": "864bf6c8d0dc66c2cebde37e177f55662ec6e5ce43b1246c4da16a0ecac39805"
+  },
+  "pairs": [
+    {
+      "parts": [
+        "front",
+        "contents"
+      ],
+      "empty": false,
+      "volume_mm3": 1.7999954223632812,
+      "regions": [
+        {
+          "volume_mm3": 1.7999954223632812,
+          "bounds": [
+            41.0,
+            109.5,
+            37.0,
+            44.0,
+            110.0,
+            38.19999694824219
+          ]
+        }
+      ]
+    },
+    {
+      "parts": [
+        "front",
+        "pack_fasteners"
+      ],
+      "empty": true,
+      "volume_mm3": 0.0,
+      "regions": []
+    },
+    {
+      "parts": [
+        "front",
+        "motor_frame"
+      ],
+      "empty": false,
+      "volume_mm3": 0.3523433267851168,
+      "regions": [
+        {
+          "volume_mm3": 0.3523433267851168,
+          "bounds": [
+            92.0999984741211,
+            67.28828394374415,
+            63.29999923706055,
+            92.19999694824219,
+            68.71171605625585,
+            67.30000305175781
+          ]
+        }
+      ]
+    },
+    {
+      "parts": [
+        "front",
+        "rear"
+      ],
+      "empty": true,
+      "volume_mm3": 0.0,
+      "regions": []
+    },
+    {
+      "parts": [
+        "front",
+        "spacer"
+      ],
+      "empty": false,
+      "volume_mm3": 28.91632692139001,
+      "regions": [
+        {
+          "volume_mm3": 4.016323869655468,
+          "bounds": [
+            42.0,
+            110.19999694824219,
+            37.0,
+            44.931288848975434,
+            111.4000015258789,
+            38.5
+          ]
+        },
+        {
+          "volume_mm3": 2.1000087737920725,
+          "bounds": [
+            89.69999694824219,
+            9.5,
+            38.20000076293945,
+            92.0,
+            10.5,
+            39.400001525878906
+          ]
+        },
+        {
+          "volume_mm3": 22.7999942779425,
+          "bounds": [
+            89.69999694824219,
+            98.30000305175781,
+            34.29999923706055,
+            92.19999694824219,
+            106.5,
+            39.400001525878906
+          ]
+        }
+      ]
+    },
+    {
+      "parts": [
+        "rear",
+        "contents"
+      ],
+      "empty": true,
+      "volume_mm3": 0.0,
+      "regions": []
+    },
+    {
+      "parts": [
+        "rear",
+        "pack_fasteners"
+      ],
+      "empty": true,
+      "volume_mm3": 0.0,
+      "regions": []
+    },
+    {
+      "parts": [
+        "rear",
+        "motor_frame"
+      ],
+      "empty": true,
+      "volume_mm3": 0.0,
+      "regions": []
+    },
+    {
+      "parts": [
+        "rear",
+        "spacer"
+      ],
+      "empty": false,
+      "volume_mm3": 23.839996871945893,
+      "regions": [
+        {
+          "volume_mm3": 23.839996871945893,
+          "bounds": [
+            91.19999694824219,
+            98.30000305175781,
+            29.899999618530273,
+            92.19999694824219,
+            106.5,
+            34.29999923706055
+          ]
+        }
+      ]
+    },
+    {
+      "parts": [
+        "spacer",
+        "contents"
+      ],
+      "empty": true,
+      "volume_mm3": 0.0,
+      "regions": []
+    },
+    {
+      "parts": [
+        "spacer",
+        "pack_fasteners"
+      ],
+      "empty": true,
+      "volume_mm3": 0.0,
+      "regions": []
+    },
+    {
+      "parts": [
+        "spacer",
+        "motor_frame"
+      ],
+      "empty": true,
+      "volume_mm3": 0.0,
+      "regions": []
+    }
+  ]
+}

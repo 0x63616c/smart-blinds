@@ -1,0 +1,688 @@
+{
+  "inputs": {
+    "cad/build.py": "331cb8a753d02a0530fd4585ba8494fb5f6466c011f898fd5122ec63187fb882",
+    "work/v13-service-clearance/print_bundle.py": "e37c90f6e95764234ee8a95e2474d9ac782b2a95801f2f7e7b485ed8fe28b115",
+    "work/edge-port-study/board80_screen.py": "32d38af0dee286bba62495b6e0fb0a5e36268f60e38216747ae75a7a6ce3e79b",
+    "work/v13-service-clearance/export-report.json": "a11ae3d79826942b59c10cb64fa86fcc8db24ed15465f3edcbce03af95040e62",
+    "work/v5-guarded-outlet/check-report.json": "36c52111e90049bf433db62eb3e6d314ebb783e84f9d40145b2dc4bac4656999",
+    "work/v5-enclosure-candidate/checkpoint.json": "594a1e4c42d7d263c03220dbd4d66c812222d0f5f6f293aefc2209a87fb9434c",
+    "cad/generated/compact-direct-verification.json": "ab7e11d0080b427e6d15f23b15c043e297c75841cb6b06368d544aeadec8f46f",
+    "work/v13-service-clearance/checks/backplate.stl": "465298ac64cd3fafe7c03854ed94a7a7c6f64f34cf3b3ccb4fa26d80b41bd4f9",
+    "work/v13-service-clearance/checks/cover.stl": "5d21e416f60925037fd95990e899d122b4cf48d36c835b78c3d3a3f7d3b4b91b",
+    "work/v13-service-clearance/checks/motor_frame.stl": "d0dbdea9e8a13d4ea6fa297280f7a8ba67eecca222b636a449c656d262dcc218",
+    "work/v13-service-clearance/checks/tail_keeper.stl": "dcb55ec10771589b44aa9efc9a7549734ffa775e8a9245c85d68a709547915ba",
+    "work/v13-service-clearance/checks/guard_clamp.stl": "2d741cca2b22861ac8fa2cb80587dcdb410a0943dad20cc47445a93b8d34b5f5",
+    "work/v13-service-clearance/checks/backing.stl": "4423c18affcb3e74394fe496c62135d40828a2a9bc101fd6e1dfd570c1d0d062",
+    "work/v13-service-clearance/checks/button_face.stl": "4f9db6585a7e7f396c8590bd96bf0e68e29cb726c0a643803628e508ba0622ab",
+    "work/v13-service-clearance/checks/plunger.stl": "2387453ad133647952fd90c887fdfbc84fccb3614ab5999de974e2582eb07a74",
+    "work/v13-service-clearance/checks/guide_bar.stl": "2a167170cccd7d08476415eb8e5c9af40d2d10945660a8cb7995225673bffd39",
+    "work/v5-guarded-outlet/checks/front.stl": "3e0b639a9d0ed58648c013a1856de6e418034a19d93f0469174647eb30e48185",
+    "work/v5-guarded-outlet/checks/rear.stl": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271",
+    "work/v5-guarded-outlet/checks/spacer.stl": "129777ca9dcc1109a1f321c99af96f59150f4915a6227913bfb4b87d0ce23d1c",
+    "work/v5-enclosure-candidate/checks-revised/upper_clip.stl": "8e54d5aebbecd0d59045b4c450c29bedcaabda4a0761d0a802eed8a2a7955cfc",
+    "work/v5-enclosure-candidate/checks-revised/lower_clip.stl": "9d4f8cc1c1ddb1c7d12c84f9c67ab2cf735b01efe7c2c6b9f2dee4783801978d",
+    "cad/exports/compact-direct-fit/rear_lower.stl": "536ddd01d08afe544b1f5527f2b8436404acbf3e1426d8ecc1652c8c047f7f62",
+    "cad/exports/compact-direct-fit/rear_upper.stl": "0fd88f320cc43d79364062366bcc20b01329e43b0dfcd73f13b717e24ca56dbc",
+    "cad/exports/compact-direct-fit/front_lower.stl": "b9c2fed01bbeda74581efe1ad2d8f4fa1268c4eb57868397077ccb485b827e31",
+    "cad/exports/compact-direct-fit/front_upper.stl": "42b22c2f2efb6bd1602d411cc135d10b00a305ad573c78e4c0faf4b1bb156222",
+    "cad/exports/compact-direct-fit/bearing_block.stl": "81702139ac5bd64744c107affb3812e743967697fd8d831294ef8129ee54cb25",
+    "cad/exports/compact-direct-fit/retainer.stl": "4fe4ff85d781473fea0c416190b46b3bafd81a3c0d25c8e1ebcda593068e8700",
+    "cad/exports/compact-direct-fit/wheel.stl": "973cd23eb02e46131fa965800fa5ce0612673298f2d98cc915a25e71db4caca6",
+    "cad/exports/compact-direct-fit/guard.stl": "cdf76b25aa7b626ec38a2a7ec5b7322010d8ce898bf165d12a5667f97d7801cc"
+  },
+  "parts_per_unit": 24,
+  "distinct_shapes": 22,
+  "parts_for_eight": 192,
+  "volume_cm3_per_unit": 369.0359691132996,
+  "solid_PETG_g_per_unit": 468.67568077389046,
+  "solid_PETG_kg_for_eight": 3.7494054461911235,
+  "density_g_cm3": 1.27,
+  "density_source": "https://prusament.com/wp-content/uploads/2022/10/PETG_Prusament_TDS_2021_10_EN.pdf",
+  "pieces": [
+    {
+      "file": "work/v13-service-clearance/prints/backplate.stl",
+      "sha256": "19dfa4cc6d05a144da909d113ea2560e26a48cc563ffc104676069fe34f26151",
+      "bytes": 170584,
+      "triangles": 3410,
+      "bounds_mm": [
+        [
+          0.0,
+          -11.0,
+          0.0
+        ],
+        [
+          118.0,
+          185.0,
+          62.7
+        ]
+      ],
+      "volume_cm3": 96.053,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "backplate",
+      "quantity_per_unit": 1,
+      "source_file": "work/v13-service-clearance/checks/backplate.stl",
+      "source_sha256": "465298ac64cd3fafe7c03854ed94a7a7c6f64f34cf3b3ccb4fa26d80b41bd4f9",
+      "reuse_basis": "fresh frozen export",
+      "unrounded_volume_cm3": 96.0525402831916
+    },
+    {
+      "file": "work/v13-service-clearance/prints/cover.stl",
+      "sha256": "ccd3b8aeb4fd41a387525decae369cf6c4058796701a3da31750aebd28520fdd",
+      "bytes": 160884,
+      "triangles": 3216,
+      "bounds_mm": [
+        [
+          0.0,
+          -11.0,
+          3.4
+        ],
+        [
+          118.0,
+          185.0,
+          77.0
+        ]
+      ],
+      "volume_cm3": 159.336,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "cover",
+      "quantity_per_unit": 1,
+      "source_file": "work/v13-service-clearance/checks/cover.stl",
+      "source_sha256": "5d21e416f60925037fd95990e899d122b4cf48d36c835b78c3d3a3f7d3b4b91b",
+      "reuse_basis": "fresh frozen export",
+      "unrounded_volume_cm3": 159.33583001527643
+    },
+    {
+      "file": "work/v13-service-clearance/prints/motor_frame.stl",
+      "sha256": "f72286650ab5259a498c60c2d20ef107443e18e0906fb53f5c2a18abd1aee9bc",
+      "bytes": 87484,
+      "triangles": 1748,
+      "bounds_mm": [
+        [
+          83.2,
+          -6.5,
+          3.4
+        ],
+        [
+          114.6,
+          110.8,
+          69.1
+        ]
+      ],
+      "volume_cm3": 5.052,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "motor_frame",
+      "quantity_per_unit": 1,
+      "source_file": "work/v13-service-clearance/checks/motor_frame.stl",
+      "source_sha256": "d0dbdea9e8a13d4ea6fa297280f7a8ba67eecca222b636a449c656d262dcc218",
+      "reuse_basis": "fresh frozen export",
+      "unrounded_volume_cm3": 5.051555798483434
+    },
+    {
+      "file": "work/v13-service-clearance/prints/tail_keeper.stl",
+      "sha256": "4280f4ae338a7e0918f45126e3808a2278c58e7adb50d4a6809a6f1337d454c3",
+      "bytes": 18084,
+      "triangles": 360,
+      "bounds_mm": [
+        [
+          92.1,
+          65.0,
+          69.1
+        ],
+        [
+          106.1,
+          71.0,
+          71.6
+        ]
+      ],
+      "volume_cm3": 0.134,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "tail_keeper",
+      "quantity_per_unit": 1,
+      "source_file": "work/v13-service-clearance/checks/tail_keeper.stl",
+      "source_sha256": "dcb55ec10771589b44aa9efc9a7549734ffa775e8a9245c85d68a709547915ba",
+      "reuse_basis": "fresh frozen export",
+      "unrounded_volume_cm3": 0.13407199410790646
+    },
+    {
+      "file": "work/v13-service-clearance/prints/guard_clamp.stl",
+      "sha256": "53cba4aae0adbfb2a229248d49f077b58078b8b423cd116f82ecb78b8e6b5123",
+      "bytes": 117784,
+      "triangles": 2354,
+      "bounds_mm": [
+        [
+          37.2,
+          101.8,
+          34.0
+        ],
+        [
+          94.0,
+          120.0,
+          65.9
+        ]
+      ],
+      "volume_cm3": 2.672,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "guard_clamp",
+      "quantity_per_unit": 1,
+      "source_file": "work/v13-service-clearance/checks/guard_clamp.stl",
+      "source_sha256": "2d741cca2b22861ac8fa2cb80587dcdb410a0943dad20cc47445a93b8d34b5f5",
+      "reuse_basis": "fresh frozen export",
+      "unrounded_volume_cm3": 2.671982576790906
+    },
+    {
+      "file": "work/v13-service-clearance/prints/backing.stl",
+      "sha256": "5eb3eb3185dee899c19ed09b01e55c4961ed4bb6bdcd9ce4258a3fb2c22fe246",
+      "bytes": 102584,
+      "triangles": 2050,
+      "bounds_mm": [
+        [
+          49.0,
+          98.4,
+          42.0
+        ],
+        [
+          84.0,
+          102.2,
+          65.9
+        ]
+      ],
+      "volume_cm3": 2.323,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "backing",
+      "quantity_per_unit": 1,
+      "source_file": "work/v13-service-clearance/checks/backing.stl",
+      "source_sha256": "4423c18affcb3e74394fe496c62135d40828a2a9bc101fd6e1dfd570c1d0d062",
+      "reuse_basis": "fresh frozen export",
+      "unrounded_volume_cm3": 2.323324650488161
+    },
+    {
+      "file": "work/v13-service-clearance/prints/button_face.stl",
+      "sha256": "a239871dfa14c0842ae784a06e9871e14816d7b978ade7087e12327bfaf6f18e",
+      "bytes": 31884,
+      "triangles": 636,
+      "bounds_mm": [
+        [
+          -4.95,
+          -4.95,
+          -0.0
+        ],
+        [
+          4.95,
+          4.95,
+          2.6
+        ]
+      ],
+      "volume_cm3": 0.087,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "button_face",
+      "quantity_per_unit": 2,
+      "source_file": "work/v13-service-clearance/checks/button_face.stl",
+      "source_sha256": "4f9db6585a7e7f396c8590bd96bf0e68e29cb726c0a643803628e508ba0622ab",
+      "reuse_basis": "fresh frozen export",
+      "unrounded_volume_cm3": 0.0866824696825283
+    },
+    {
+      "file": "work/v13-service-clearance/prints/plunger.stl",
+      "sha256": "6d85a8b77db585e57b71fd766c714b83e01b98d9c97354ca81b94872a63b1e82",
+      "bytes": 54684,
+      "triangles": 1092,
+      "bounds_mm": [
+        [
+          -4.95,
+          -4.95,
+          65.5
+        ],
+        [
+          4.95,
+          4.95,
+          77.0
+        ]
+      ],
+      "volume_cm3": 0.217,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "plunger",
+      "quantity_per_unit": 2,
+      "source_file": "work/v13-service-clearance/checks/plunger.stl",
+      "source_sha256": "2387453ad133647952fd90c887fdfbc84fccb3614ab5999de974e2582eb07a74",
+      "reuse_basis": "fresh frozen export",
+      "unrounded_volume_cm3": 0.21729032894955147
+    },
+    {
+      "file": "work/v13-service-clearance/prints/guide_bar.stl",
+      "sha256": "4e80c04b2d13d95ed81b67b059f1186d080fbc01eb822fe2f8e6f7927b1b9d76",
+      "bytes": 53884,
+      "triangles": 1076,
+      "bounds_mm": [
+        [
+          99.4,
+          16.0,
+          63.1
+        ],
+        [
+          114.0,
+          48.0,
+          65.1
+        ]
+      ],
+      "volume_cm3": 0.597,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "guide_bar",
+      "quantity_per_unit": 1,
+      "source_file": "work/v13-service-clearance/checks/guide_bar.stl",
+      "source_sha256": "2a167170cccd7d08476415eb8e5c9af40d2d10945660a8cb7995225673bffd39",
+      "reuse_basis": "fresh frozen export",
+      "unrounded_volume_cm3": 0.5967003905103808
+    },
+    {
+      "file": "work/v13-service-clearance/prints/cassette_front.stl",
+      "sha256": "2801ff20834d2f56471415f77bf1045d58636059e04d423624e783a89d7a6194",
+      "bytes": 209684,
+      "triangles": 4192,
+      "bounds_mm": [
+        [
+          3.2,
+          4.4,
+          34.3
+        ],
+        [
+          92.4,
+          120.0,
+          68.5
+        ]
+      ],
+      "volume_cm3": 34.497,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "cassette_front",
+      "quantity_per_unit": 1,
+      "source_file": "work/v5-guarded-outlet/checks/front.stl",
+      "source_sha256": "3e0b639a9d0ed58648c013a1856de6e418034a19d93f0469174647eb30e48185",
+      "reuse_basis": "unchanged frozen guarded-outlet mesh",
+      "unrounded_volume_cm3": 34.496903498811044
+    },
+    {
+      "file": "work/v13-service-clearance/prints/cassette_rear.stl",
+      "sha256": "aeb1d0e1dc5e669dddab0545a3db16fd69b000dbe7bfe76adb883553e4576a1e",
+      "bytes": 269284,
+      "triangles": 5384,
+      "bounds_mm": [
+        [
+          3.2,
+          4.4,
+          3.0
+        ],
+        [
+          92.4,
+          120.0,
+          34.3
+        ]
+      ],
+      "volume_cm3": 32.434,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "cassette_rear",
+      "quantity_per_unit": 1,
+      "source_file": "work/v5-guarded-outlet/checks/rear.stl",
+      "source_sha256": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271",
+      "reuse_basis": "unchanged frozen guarded-outlet mesh",
+      "unrounded_volume_cm3": 32.43397123847844
+    },
+    {
+      "file": "work/v13-service-clearance/prints/cassette_spacer.stl",
+      "sha256": "551e6058bd19bfc15a2c833f6fa96495f483b6f1c79c0e5efcd809bb946862af",
+      "bytes": 154684,
+      "triangles": 3092,
+      "bounds_mm": [
+        [
+          3.4,
+          4.6,
+          28.8
+        ],
+        [
+          92.2,
+          111.4,
+          39.4
+        ]
+      ],
+      "volume_cm3": 11.571,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "cassette_spacer",
+      "quantity_per_unit": 1,
+      "source_file": "work/v5-guarded-outlet/checks/spacer.stl",
+      "source_sha256": "129777ca9dcc1109a1f321c99af96f59150f4915a6227913bfb4b87d0ce23d1c",
+      "reuse_basis": "unchanged frozen guarded-outlet mesh",
+      "unrounded_volume_cm3": 11.571163617154932
+    },
+    {
+      "file": "work/v13-service-clearance/prints/upper_clip.stl",
+      "sha256": "eb8ce50b78b06c1c795b2a84afe82a24b5f2bbc5088ceefb67b6549a99aa9b98",
+      "bytes": 9684,
+      "triangles": 192,
+      "bounds_mm": [
+        [
+          106.6,
+          -3.6,
+          0.0
+        ],
+        [
+          111.8,
+          3.6,
+          7.2
+        ]
+      ],
+      "volume_cm3": 0.206,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "upper_clip",
+      "quantity_per_unit": 1,
+      "source_file": "work/v5-enclosure-candidate/checks-revised/upper_clip.stl",
+      "source_sha256": "8e54d5aebbecd0d59045b4c450c29bedcaabda4a0761d0a802eed8a2a7955cfc",
+      "reuse_basis": "unchanged frozen v5 print; global placement shifts do not change shape",
+      "unrounded_volume_cm3": 0.20647468244644454
+    },
+    {
+      "file": "work/v13-service-clearance/prints/lower_clip.stl",
+      "sha256": "27c8edfc26415024b43216f34ebafb549479a71ecab3b8dc0ff6b37233121fae",
+      "bytes": 9684,
+      "triangles": 192,
+      "bounds_mm": [
+        [
+          106.6,
+          -3.6,
+          -0.0
+        ],
+        [
+          111.8,
+          3.6,
+          5.5
+        ]
+      ],
+      "volume_cm3": 0.124,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "lower_clip",
+      "quantity_per_unit": 1,
+      "source_file": "work/v5-enclosure-candidate/checks-revised/lower_clip.stl",
+      "source_sha256": "9d4f8cc1c1ddb1c7d12c84f9c67ab2cf735b01efe7c2c6b9f2dee4783801978d",
+      "reuse_basis": "unchanged frozen v5 print; global placement shifts do not change shape",
+      "unrounded_volume_cm3": 0.12405802364089845
+    },
+    {
+      "file": "work/v13-service-clearance/prints/drive_rear_lower.stl",
+      "sha256": "a29a48b41e7de83c8cfb21f32f832bd32c3491e6a23b85a8e173d8b59c5e6ba1",
+      "bytes": 59684,
+      "triangles": 1192,
+      "bounds_mm": [
+        [
+          0.0,
+          2.3,
+          0.0
+        ],
+        [
+          10.0,
+          53.7,
+          22.0
+        ]
+      ],
+      "volume_cm3": 3.755,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "drive_rear_lower",
+      "quantity_per_unit": 1,
+      "source_file": "cad/exports/compact-direct-fit/rear_lower.stl",
+      "source_sha256": "536ddd01d08afe544b1f5527f2b8436404acbf3e1426d8ecc1652c8c047f7f62",
+      "reuse_basis": "unchanged source-verified compact drive print",
+      "unrounded_volume_cm3": 3.7549230765449164
+    },
+    {
+      "file": "work/v13-service-clearance/prints/drive_rear_upper.stl",
+      "sha256": "ed77eb86da6aa555db949366cff59fdc38bcfdeeb024d486b54502b3e2d9e0c0",
+      "bytes": 34284,
+      "triangles": 684,
+      "bounds_mm": [
+        [
+          0.0,
+          2.3,
+          -0.0
+        ],
+        [
+          10.0,
+          53.7,
+          19.9
+        ]
+      ],
+      "volume_cm3": 2.724,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "drive_rear_upper",
+      "quantity_per_unit": 1,
+      "source_file": "cad/exports/compact-direct-fit/rear_upper.stl",
+      "source_sha256": "0fd88f320cc43d79364062366bcc20b01329e43b0dfcd73f13b717e24ca56dbc",
+      "reuse_basis": "unchanged source-verified compact drive print",
+      "unrounded_volume_cm3": 2.7243930352942827
+    },
+    {
+      "file": "work/v13-service-clearance/prints/drive_front_lower.stl",
+      "sha256": "b335e4dd1dc484a1a092a8671b3a46651f2ea2c00bef17e102cea6dd912f538f",
+      "bytes": 61684,
+      "triangles": 1232,
+      "bounds_mm": [
+        [
+          0.0,
+          0.3,
+          0.0
+        ],
+        [
+          10.0,
+          55.7,
+          22.0
+        ]
+      ],
+      "volume_cm3": 3.493,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "drive_front_lower",
+      "quantity_per_unit": 1,
+      "source_file": "cad/exports/compact-direct-fit/front_lower.stl",
+      "source_sha256": "b9c2fed01bbeda74581efe1ad2d8f4fa1268c4eb57868397077ccb485b827e31",
+      "reuse_basis": "unchanged source-verified compact drive print",
+      "unrounded_volume_cm3": 3.493121997858228
+    },
+    {
+      "file": "work/v13-service-clearance/prints/drive_front_upper.stl",
+      "sha256": "e6c9d12c87ad93fa460fd1ab9a5ad8462ff49017b5ff3d2a5ebe4965940084ee",
+      "bytes": 34284,
+      "triangles": 684,
+      "bounds_mm": [
+        [
+          0.0,
+          0.3,
+          -0.0
+        ],
+        [
+          10.0,
+          55.7,
+          21.9
+        ]
+      ],
+      "volume_cm3": 2.972,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "drive_front_upper",
+      "quantity_per_unit": 1,
+      "source_file": "cad/exports/compact-direct-fit/front_upper.stl",
+      "source_sha256": "42b22c2f2efb6bd1602d411cc135d10b00a305ad573c78e4c0faf4b1bb156222",
+      "reuse_basis": "unchanged source-verified compact drive print",
+      "unrounded_volume_cm3": 2.9724547711891343
+    },
+    {
+      "file": "work/v13-service-clearance/prints/drive_bearing_block.stl",
+      "sha256": "1c14f0f0dbb5a8d2cd1fbe38f7eeef4a3222dd9809dac795c9065ec98f99606f",
+      "bytes": 116084,
+      "triangles": 2320,
+      "bounds_mm": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          8.0,
+          42.0,
+          38.0
+        ]
+      ],
+      "volume_cm3": 4.869,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "drive_bearing_block",
+      "quantity_per_unit": 1,
+      "source_file": "cad/exports/compact-direct-fit/bearing_block.stl",
+      "source_sha256": "81702139ac5bd64744c107affb3812e743967697fd8d831294ef8129ee54cb25",
+      "reuse_basis": "unchanged source-verified compact drive print",
+      "unrounded_volume_cm3": 4.868831155538344
+    },
+    {
+      "file": "work/v13-service-clearance/prints/drive_retainer.stl",
+      "sha256": "0128f0ec5923994f497f1a512567203bbd6871d2e7d4e0758f61c8dc627ef0ae",
+      "bytes": 59684,
+      "triangles": 1192,
+      "bounds_mm": [
+        [
+          -9.0,
+          -14.0,
+          0.0
+        ],
+        [
+          9.0,
+          14.0,
+          3.0
+        ]
+      ],
+      "volume_cm3": 0.731,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "drive_retainer",
+      "quantity_per_unit": 1,
+      "source_file": "cad/exports/compact-direct-fit/retainer.stl",
+      "source_sha256": "4fe4ff85d781473fea0c416190b46b3bafd81a3c0d25c8e1ebcda593068e8700",
+      "reuse_basis": "unchanged source-verified compact drive print",
+      "unrounded_volume_cm3": 0.7311059269819843
+    },
+    {
+      "file": "work/v13-service-clearance/prints/drive_wheel.stl",
+      "sha256": "d6bc06888922678ba9976399d3df3d52ec280c09852ec97992b724bac97fb9d0",
+      "bytes": 419484,
+      "triangles": 8388,
+      "bounds_mm": [
+        [
+          -15.0,
+          -15.0,
+          0.0
+        ],
+        [
+          15.0,
+          15.0,
+          8.0
+        ]
+      ],
+      "volume_cm3": 3.534,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "drive_wheel",
+      "quantity_per_unit": 1,
+      "source_file": "cad/exports/compact-direct-fit/wheel.stl",
+      "source_sha256": "973cd23eb02e46131fa965800fa5ce0612673298f2d98cc915a25e71db4caca6",
+      "reuse_basis": "unchanged source-verified compact drive print",
+      "unrounded_volume_cm3": 3.5343044216741872
+    },
+    {
+      "file": "work/v13-service-clearance/prints/drive_guard.stl",
+      "sha256": "4bef75afe3dd2be2effbe6c48787c53479fa6386bf364a842b1dae595cd23689",
+      "bytes": 55684,
+      "triangles": 1112,
+      "bounds_mm": [
+        [
+          -53.5,
+          116.0,
+          -0.0
+        ],
+        [
+          -15.0,
+          141.0,
+          10.3
+        ]
+      ],
+      "volume_cm3": 1.35,
+      "non_manifold_edges": 0,
+      "closed_edge_mesh": true,
+      "connected_shells": 1,
+      "note": "Mesh topology check only; not strength, slicer, fit or functional acceptance.",
+      "part": "drive_guard",
+      "quantity_per_unit": 1,
+      "source_file": "cad/exports/compact-direct-fit/guard.stl",
+      "source_sha256": "cdf76b25aa7b626ec38a2a7ec5b7322010d8ce898bf165d12a5667f97d7801cc",
+      "reuse_basis": "unchanged source-verified compact drive print",
+      "unrounded_volume_cm3": 1.3503123615737422
+    }
+  ],
+  "status": "Complete installed fit-study shape inventory, all single connected closed meshes; no slicer/print/strength or fabrication acceptance",
+  "limitations": [
+    "Dense geometric mass, not a slicer forecast; excludes supports, brim, purge and waste",
+    "Print orientations, overhang/support settings and PETG creep/thermal behavior still require review",
+    "Shared eight-piece workshop fixture is separate, not multiplied by eight and not yet requalified against this restraint",
+    "Barrier, two silicone pads, cables, hardware and tie are additional nonprinted items"
+  ]
+}

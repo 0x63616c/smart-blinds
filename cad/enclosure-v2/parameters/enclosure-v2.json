@@ -1,0 +1,1817 @@
+{
+  "schema": "smart-blinds.enclosure-v2.work-candidate.1",
+  "status": "Clearance successor; deliberate actual-board rebind pending fresh checks",
+  "physical_board": {
+    "file": "data/physical-board.kicad_pcb",
+    "sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+    "footprints": 206,
+    "rear_vias": 120,
+    "source": "work/source-reconciliation/repo/work/clean-main-metadata-native/candidate.kicad_pcb"
+  },
+  "case": {
+    "width": 118,
+    "height": 196,
+    "depth": 77,
+    "bottom_y": -11
+  },
+  "buttons": {
+    "x": 109.4,
+    "ys": [
+      22,
+      42
+    ],
+    "guide_fastener_x": 99.5,
+    "plain_projection": 78.8,
+    "optional_plug_projection": 79.5,
+    "default": "integral_plain",
+    "optional_plugs": false
+  },
+  "board_pose": {
+    "rear_x": 111.8,
+    "origin_y": -8,
+    "origin_z": 8,
+    "width_u": 54,
+    "height_v": 80,
+    "thickness": 1.6,
+    "local_mapping": "X=111.8-w,Y=v-8,Z=u+8; proper rotation; components inward"
+  },
+  "joint_removal": {
+    "slide": [
+      0,
+      2.5,
+      0
+    ],
+    "forward": [
+      0,
+      0,
+      72
+    ]
+  },
+  "pack_contact_rows": {
+    "nominal_height_above_component_face": [
+      2.185,
+      5.185
+    ],
+    "sensitivity": 0.5,
+    "status": "Assumed row centres and sensitivity, not dimensioned vendor tolerance"
+  },
+  "placement_reference_only": {
+    "status": "PROPOSED promotion contract, not a rebinding of historical evidence",
+    "schema_version": 2,
+    "source_capture": "work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pcb",
+    "source_capture_sha256": "abfc43352612c13e8cd04600169069ab54db32640b13e3547e1b7feff480e043",
+    "source_geometry_authority": "v17 source capture anchors only; mechanical volume tests remain bound to routed4102 snapshot",
+    "historical_fit_checkpoint": {
+      "path": "work/v13-service-clearance/checkpoint.json",
+      "sha256": "9cf87e2c2ab1f787b11cb2ee9d8e6b0367419da18fd1017c1b808acd6b1b932b",
+      "known_insertion_defect": "Original two-flange plunger cannot enter closed guide. Retain as rejected assembly detail."
+    },
+    "case": {
+      "width": 118,
+      "height": 196,
+      "depth": 77,
+      "bottom_global_y": -11,
+      "button_candidate_max_global_z": 78.8
+    },
+    "controller": {
+      "outline_uv": [
+        54,
+        80
+      ],
+      "thickness": 1.6,
+      "front_face_x": 110.2,
+      "rear_face_x": 111.8,
+      "local_to_wall": "X=111.8-w; Y=v-8; Z=u+8. Local w=0 at rear, w=1.6 at populated face; proper rigid rotation, determinant+1.",
+      "native_to_local": "u=KiCadX-100; v=175-KiCadY",
+      "anchors": {
+        "encoder_port.header": {
+          "ref": "J2",
+          "uv": [
+            49.0,
+            40.0
+          ],
+          "rotation": 90.0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            32.0,
+            57.0
+          ]
+        },
+        "controller.c_bulk": {
+          "ref": "C25",
+          "uv": [
+            1.5,
+            76.0
+          ],
+          "rotation": 90.0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            68.0,
+            9.5
+          ]
+        },
+        "usb.connector": {
+          "ref": "USBC1",
+          "uv": [
+            29.5,
+            5.75
+          ],
+          "rotation": 0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            -2.25,
+            37.5
+          ]
+        },
+        "controller.c_bypass": {
+          "ref": "C26",
+          "uv": [
+            3.75,
+            77.75
+          ],
+          "rotation": 180.0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            69.75,
+            11.75
+          ]
+        },
+        "pack_connector.header": {
+          "ref": "J1",
+          "uv": [
+            45.5,
+            69.5
+          ],
+          "rotation": 180.0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            61.5,
+            53.5
+          ]
+        },
+        "home_port.header": {
+          "ref": "J3",
+          "uv": [
+            49.0,
+            20.5
+          ],
+          "rotation": 90.0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            12.5,
+            57.0
+          ]
+        },
+        "controller.up": {
+          "ref": "SW2",
+          "uv": [
+            52.0,
+            50.0
+          ],
+          "rotation": 90.0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            42.0,
+            60.0
+          ]
+        },
+        "motor.c_bulk": {
+          "ref": "C31",
+          "uv": [
+            36.5,
+            60.0
+          ],
+          "rotation": 180.0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            52.0,
+            44.5
+          ]
+        },
+        "motor_output.landing1": {
+          "ref": "TP1",
+          "uv": [
+            51.5,
+            57.0
+          ],
+          "rotation": 0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            49.0,
+            59.5
+          ]
+        },
+        "controller.mcu": {
+          "ref": "U3",
+          "uv": [
+            14.5,
+            70.75
+          ],
+          "rotation": 0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            62.75,
+            22.5
+          ]
+        },
+        "controller.down": {
+          "ref": "SW1",
+          "uv": [
+            52.0,
+            30.0
+          ],
+          "rotation": 90.0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            22.0,
+            60.0
+          ]
+        },
+        "motor_output.landing2": {
+          "ref": "TP2",
+          "uv": [
+            51.5,
+            63.0
+          ],
+          "rotation": 0,
+          "global_footprint_datum_xyz": [
+            110.2,
+            55.0,
+            59.5
+          ]
+        }
+      },
+      "perimeter_directions": {
+        "pack_connector.header": "+v / global+Y",
+        "encoder_port.header": "+u / global+Z",
+        "home_port.header": "+u / global+Z",
+        "usb.connector": "-v / global-Y",
+        "motor_output": "initially away from populated face (-X), then toward upper bay (+Y), within declared paths"
+      },
+      "edge_source_primitives": [
+        [
+          "gr_line",
+          [
+            "start",
+            "100",
+            "96"
+          ],
+          [
+            "end",
+            "100",
+            "166.2"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "9b8baafe-ef80-4413-aabf-052b87652021"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "100",
+            "169.8"
+          ],
+          [
+            "end",
+            "100",
+            "174"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "e5266223-110a-4c38-abfa-6945f947ab9c"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "100.3",
+            "166.5"
+          ],
+          [
+            "end",
+            "100.6",
+            "166.5"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "3b486bb8-b1ff-4d2d-bc2b-7cf663474695"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "100.6",
+            "169.5"
+          ],
+          [
+            "end",
+            "100.3",
+            "169.5"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "dd5de795-b548-41cc-831a-17a06a4a4fa4"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "101",
+            "175"
+          ],
+          [
+            "end",
+            "153",
+            "175"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "6d1f0359-53b7-47d0-a58a-0be271cde08d"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "101.2",
+            "167.1"
+          ],
+          [
+            "end",
+            "101.2",
+            "168.9"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "9c91434e-0b7f-4989-a092-f1d3f1c2a556"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "152.8",
+            "99.6"
+          ],
+          [
+            "end",
+            "152.8",
+            "98.4"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "9262b91d-cf2b-4458-9b06-30447414ca8d"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "153",
+            "95"
+          ],
+          [
+            "end",
+            "101",
+            "95"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "908765d9-221d-4549-a198-18fe7b10628c"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "153.4",
+            "97.8"
+          ],
+          [
+            "end",
+            "153.7",
+            "97.8"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "52bdb585-d35b-4f4c-9cf7-1a0b3fa6d55c"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "153.7",
+            "100.2"
+          ],
+          [
+            "end",
+            "153.4",
+            "100.2"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "4de82e7a-da8a-42c1-8bd8-fbb9545e2b34"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "154",
+            "97.5"
+          ],
+          [
+            "end",
+            "154",
+            "96"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "5d88e21e-7d92-468b-ac8a-33944f4dd160"
+          ]
+        ],
+        [
+          "gr_line",
+          [
+            "start",
+            "154",
+            "174"
+          ],
+          [
+            "end",
+            "154",
+            "100.5"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "a6904927-351b-458f-8a04-d6b54b960e96"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "100",
+            "96"
+          ],
+          [
+            "mid",
+            "100.292893",
+            "95.292893"
+          ],
+          [
+            "end",
+            "101",
+            "95"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "4a86fce7-cc5b-4bde-ba8a-ef67fd7ce9d4"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "100",
+            "169.8"
+          ],
+          [
+            "mid",
+            "100.087868",
+            "169.587868"
+          ],
+          [
+            "end",
+            "100.3",
+            "169.5"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "1ecb33f6-f679-46d5-b978-97ba3f5a7825"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "100.3",
+            "166.5"
+          ],
+          [
+            "mid",
+            "100.087868",
+            "166.412132"
+          ],
+          [
+            "end",
+            "100",
+            "166.2"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "1f9d20fd-875b-4de2-a5fa-4de4fbabc1cc"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "100.6",
+            "166.5"
+          ],
+          [
+            "mid",
+            "101.024264",
+            "166.675735"
+          ],
+          [
+            "end",
+            "101.2",
+            "167.1"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "e9a1e27f-ea56-43b9-b5d7-bb35c4f1219a"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "101",
+            "175"
+          ],
+          [
+            "mid",
+            "100.292893",
+            "174.707107"
+          ],
+          [
+            "end",
+            "100",
+            "174"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "40dd3825-069c-4a87-9dfd-e34a53bf4775"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "101.2",
+            "168.9"
+          ],
+          [
+            "mid",
+            "101.024264",
+            "169.324264"
+          ],
+          [
+            "end",
+            "100.6",
+            "169.5"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "ca100c4f-551d-4a25-b732-bd38609c4c67"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "152.8",
+            "98.4"
+          ],
+          [
+            "mid",
+            "152.975735",
+            "97.975735"
+          ],
+          [
+            "end",
+            "153.4",
+            "97.8"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "d4a016f9-d70d-4e38-bb2b-ce8359f30b31"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "153",
+            "95"
+          ],
+          [
+            "mid",
+            "153.707107",
+            "95.292893"
+          ],
+          [
+            "end",
+            "154",
+            "96"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "2e3892c8-aebd-4583-9fd0-b2da9ef99a90"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "153.4",
+            "100.2"
+          ],
+          [
+            "mid",
+            "152.975735",
+            "100.024264"
+          ],
+          [
+            "end",
+            "152.8",
+            "99.6"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "025e6431-6c20-4c08-852a-675875902f02"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "153.7",
+            "100.2"
+          ],
+          [
+            "mid",
+            "153.912132",
+            "100.287868"
+          ],
+          [
+            "end",
+            "154",
+            "100.5"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "2278e950-ec89-472a-a1ae-ee1ddec83630"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "154",
+            "97.5"
+          ],
+          [
+            "mid",
+            "153.912132",
+            "97.712132"
+          ],
+          [
+            "end",
+            "153.7",
+            "97.8"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "c0d05b2c-e2b6-400b-89f1-aab13ed80b61"
+          ]
+        ],
+        [
+          "gr_arc",
+          [
+            "start",
+            "154",
+            "174"
+          ],
+          [
+            "mid",
+            "153.707107",
+            "174.707107"
+          ],
+          [
+            "end",
+            "153",
+            "175"
+          ],
+          [
+            "stroke",
+            [
+              "width",
+              "0.05"
+            ],
+            [
+              "type",
+              "default"
+            ]
+          ],
+          [
+            "layer",
+            "Edge.Cuts"
+          ],
+          [
+            "uuid",
+            "ede577d2-ddd0-4bf4-b153-826313f8826b"
+          ]
+        ]
+      ],
+      "source_rule_areas": [
+        {
+          "name": "PICOBLADE_FOOT_encoder_port.header_1",
+          "layers": [
+            "F.Cu"
+          ],
+          "keepout": [
+            [
+              "tracks",
+              "not_allowed"
+            ],
+            [
+              "vias",
+              "not_allowed"
+            ],
+            [
+              "pads",
+              "not_allowed"
+            ],
+            [
+              "copperpour",
+              "not_allowed"
+            ],
+            [
+              "footprints",
+              "allowed"
+            ]
+          ],
+          "polygon": [
+            "polygon",
+            [
+              "pts",
+              [
+                "xy",
+                "152.6",
+                "138.375"
+              ],
+              [
+                "xy",
+                "152.6",
+                "137.375"
+              ],
+              [
+                "xy",
+                "154.4",
+                "137.375"
+              ],
+              [
+                "xy",
+                "154.4",
+                "138.375"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "PICOBLADE_FOOT_encoder_port.header_2",
+          "layers": [
+            "F.Cu"
+          ],
+          "keepout": [
+            [
+              "tracks",
+              "not_allowed"
+            ],
+            [
+              "vias",
+              "not_allowed"
+            ],
+            [
+              "pads",
+              "not_allowed"
+            ],
+            [
+              "copperpour",
+              "not_allowed"
+            ],
+            [
+              "footprints",
+              "allowed"
+            ]
+          ],
+          "polygon": [
+            "polygon",
+            [
+              "pts",
+              [
+                "xy",
+                "149.4",
+                "132.625"
+              ],
+              [
+                "xy",
+                "149.4",
+                "131.625"
+              ],
+              [
+                "xy",
+                "151.2",
+                "131.625"
+              ],
+              [
+                "xy",
+                "151.2",
+                "132.625"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "PICOBLADE_FOOT_home_port.header_1",
+          "layers": [
+            "F.Cu"
+          ],
+          "keepout": [
+            [
+              "tracks",
+              "not_allowed"
+            ],
+            [
+              "vias",
+              "not_allowed"
+            ],
+            [
+              "pads",
+              "not_allowed"
+            ],
+            [
+              "copperpour",
+              "not_allowed"
+            ],
+            [
+              "footprints",
+              "allowed"
+            ]
+          ],
+          "polygon": [
+            "polygon",
+            [
+              "pts",
+              [
+                "xy",
+                "152.6",
+                "157.25"
+              ],
+              [
+                "xy",
+                "152.6",
+                "156.25"
+              ],
+              [
+                "xy",
+                "154.4",
+                "156.25"
+              ],
+              [
+                "xy",
+                "154.4",
+                "157.25"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "PICOBLADE_FOOT_home_port.header_2",
+          "layers": [
+            "F.Cu"
+          ],
+          "keepout": [
+            [
+              "tracks",
+              "not_allowed"
+            ],
+            [
+              "vias",
+              "not_allowed"
+            ],
+            [
+              "pads",
+              "not_allowed"
+            ],
+            [
+              "copperpour",
+              "not_allowed"
+            ],
+            [
+              "footprints",
+              "allowed"
+            ]
+          ],
+          "polygon": [
+            "polygon",
+            [
+              "pts",
+              [
+                "xy",
+                "149.4",
+                "152.75"
+              ],
+              [
+                "xy",
+                "149.4",
+                "151.75"
+              ],
+              [
+                "xy",
+                "151.2",
+                "151.75"
+              ],
+              [
+                "xy",
+                "151.2",
+                "152.75"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "PICOBLADE_FOOT_home_port.header_3",
+          "layers": [
+            "F.Cu"
+          ],
+          "keepout": [
+            [
+              "tracks",
+              "not_allowed"
+            ],
+            [
+              "vias",
+              "not_allowed"
+            ],
+            [
+              "pads",
+              "not_allowed"
+            ],
+            [
+              "copperpour",
+              "not_allowed"
+            ],
+            [
+              "footprints",
+              "allowed"
+            ]
+          ],
+          "polygon": [
+            "polygon",
+            [
+              "pts",
+              [
+                "xy",
+                "152.6",
+                "152.75"
+              ],
+              [
+                "xy",
+                "152.6",
+                "151.75"
+              ],
+              [
+                "xy",
+                "154.4",
+                "151.75"
+              ],
+              [
+                "xy",
+                "154.4",
+                "152.75"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "PICOBLADE_FOOT_home_port.header_0",
+          "layers": [
+            "F.Cu"
+          ],
+          "keepout": [
+            [
+              "tracks",
+              "not_allowed"
+            ],
+            [
+              "vias",
+              "not_allowed"
+            ],
+            [
+              "pads",
+              "not_allowed"
+            ],
+            [
+              "copperpour",
+              "not_allowed"
+            ],
+            [
+              "footprints",
+              "allowed"
+            ]
+          ],
+          "polygon": [
+            "polygon",
+            [
+              "pts",
+              [
+                "xy",
+                "149.4",
+                "157.25"
+              ],
+              [
+                "xy",
+                "149.4",
+                "156.25"
+              ],
+              [
+                "xy",
+                "151.2",
+                "156.25"
+              ],
+              [
+                "xy",
+                "151.2",
+                "157.25"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "PICOBLADE_FOOT_encoder_port.header_0",
+          "layers": [
+            "F.Cu"
+          ],
+          "keepout": [
+            [
+              "tracks",
+              "not_allowed"
+            ],
+            [
+              "vias",
+              "not_allowed"
+            ],
+            [
+              "pads",
+              "not_allowed"
+            ],
+            [
+              "copperpour",
+              "not_allowed"
+            ],
+            [
+              "footprints",
+              "allowed"
+            ]
+          ],
+          "polygon": [
+            "polygon",
+            [
+              "pts",
+              [
+                "xy",
+                "149.4",
+                "138.375"
+              ],
+              [
+                "xy",
+                "149.4",
+                "137.375"
+              ],
+              [
+                "xy",
+                "151.2",
+                "137.375"
+              ],
+              [
+                "xy",
+                "151.2",
+                "138.375"
+              ]
+            ]
+          ]
+        },
+        {
+          "name": "PICOBLADE_FOOT_encoder_port.header_3",
+          "layers": [
+            "F.Cu"
+          ],
+          "keepout": [
+            [
+              "tracks",
+              "not_allowed"
+            ],
+            [
+              "vias",
+              "not_allowed"
+            ],
+            [
+              "pads",
+              "not_allowed"
+            ],
+            [
+              "copperpour",
+              "not_allowed"
+            ],
+            [
+              "footprints",
+              "allowed"
+            ]
+          ],
+          "polygon": [
+            "polygon",
+            [
+              "pts",
+              [
+                "xy",
+                "152.6",
+                "132.625"
+              ],
+              [
+                "xy",
+                "152.6",
+                "131.625"
+              ],
+              [
+                "xy",
+                "154.4",
+                "131.625"
+              ],
+              [
+                "xy",
+                "154.4",
+                "132.625"
+              ]
+            ]
+          ]
+        }
+      ],
+      "lower_clip": {
+        "notch_center_uv": [
+          0,
+          7
+        ],
+        "axis_global_yz": [
+          -1,
+          6.6
+        ],
+        "bare_land_uv": [
+          0,
+          3,
+          3,
+          11
+        ]
+      },
+      "upper_clip": {
+        "notch_center_uv": [
+          54,
+          76
+        ],
+        "axis_global_yz": [
+          68,
+          64.4
+        ],
+        "bare_land_uv": [
+          52.5,
+          72,
+          54,
+          80
+        ]
+      },
+      "frame_feet_xy": [
+        [
+          86.8,
+          10
+        ],
+        [
+          86.8,
+          106
+        ]
+      ],
+      "rear_rail_relief_boxes_xyz": [
+        [
+          111.7,
+          5.7,
+          29.2,
+          112.2,
+          12,
+          53.4
+        ],
+        [
+          111.7,
+          -6.8,
+          44.95,
+          112.2,
+          -5.45,
+          46.35
+        ]
+      ],
+      "USB_physical_mouth": {
+        "global_y": -8.5,
+        "overhang_beyond_straight_PCB_bottom": 0.5,
+        "front_of_case_recess_mm": 2.5,
+        "NPTH_to_mouth_mm": 6.25,
+        "window_xyz": [
+          103.57,
+          -11.1,
+          30,
+          113.57,
+          -8.1,
+          45
+        ],
+        "status": "Primary drawing datum; boot shape/insertion remains physical gate"
+      }
+    },
+    "buttons_candidate": {
+      "axes_xy": [
+        [
+          109.4,
+          42
+        ],
+        [
+          109.4,
+          22
+        ]
+      ],
+      "semantic_order": [
+        "UP GPIO0 MCU pad8",
+        "DOWN GPIO1 MCU pad9"
+      ],
+      "cover_aperture_d": 10.3,
+      "face_d": 12,
+      "recess_d": 4.2,
+      "bar_fasteners_xy": [
+        [
+          99.5,
+          22
+        ],
+        [
+          99.5,
+          42
+        ]
+      ],
+      "bar_z": [
+        63.1,
+        65.1
+      ],
+      "flange_z": [
+        65.5,
+        66.8
+      ],
+      "rigid_stop_travel": 0.4,
+      "guide_outer_inner_d": [
+        11.6,
+        8.4
+      ],
+      "open_direction": "-Y",
+      "guide_install_translations": [
+        [
+          0,
+          8.5,
+          -16
+        ],
+        [
+          0,
+          8.5,
+          -0.2
+        ],
+        [
+          0,
+          0,
+          -0.2
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "plunger_hold_during_install_z": -0.4,
+      "adjuster": "M2x8 with one captive4AFx2.8max nylon insert nut, front adjusted",
+      "tip_adjustment_range_z": [
+        62.25,
+        62.75
+      ],
+      "first_closure_trial_z": [
+        62.35,
+        62.55
+      ],
+      "status": "Bounded insertion successor, no switch-overtravel/return/force qualification"
+    },
+    "mechanical_fixed": {
+      "case_screws_xy": [
+        [
+          12,
+          131
+        ],
+        [
+          106,
+          131
+        ],
+        [
+          12,
+          177
+        ],
+        [
+          106,
+          177
+        ]
+      ],
+      "wall_slots_xy": [
+        [
+          45,
+          103
+        ],
+        [
+          109,
+          107.5
+        ],
+        [
+          45,
+          177
+        ]
+      ],
+      "cassette_lock_xy": [
+        30,
+        116
+      ],
+      "drive_translation_relative_published": [
+        0,
+        11,
+        0
+      ],
+      "chain_exit_xyz": [
+        83.2,
+        182.5,
+        3.3,
+        90.2,
+        185.5,
+        50.4
+      ],
+      "pack_clamp_screw_axes_xz": [
+        [
+          56.5,
+          62.5
+        ],
+        [
+          64,
+          62.5
+        ]
+      ],
+      "motor_tail_keeper_screws_xy": [
+        [
+          95,
+          68
+        ],
+        [
+          103.2,
+          68
+        ]
+      ],
+      "inline_housing_family_box_xyz": [
+        93.45,
+        80,
+        64.85,
+        104.65,
+        105.5,
+        73.35
+      ],
+      "joint_extraction_translations": [
+        [
+          0,
+          2.5,
+          0
+        ],
+        [
+          0,
+          0,
+          72
+        ]
+      ],
+      "bench_controller_unplug_translation": [
+        0,
+        -8,
+        0
+      ]
+    },
+    "evidence_boundaries": [
+      "Keep 115x174x71 and54x68.5 evidence with its original schema/hash.",
+      "M2 button successor is not part of original77mm checkpoint.",
+      "Carrier anchors/holdouts must be retained as their independently verified contract.",
+      "No historical route/fit report becomes current simply because source paths are renamed."
+    ]
+  },
+  "limits": [
+    "Changing dimensions requires rechecking all constraints; this is not arbitrary-size physical acceptance.",
+    "Optional cosmetic plugs have unqualified physical retention and are not required by the mechanism.",
+    "Every raw battery link remains enclosed during service.",
+    "Motor, holder, cable bends, printed strength/creep and switch return/overtravel remain qualification gates."
+  ],
+  "cassette_relief": {
+    "primary_link_underside_z": 39.1,
+    "primary_substrate_top_z": 38.2,
+    "spacer_end_stop_top_z": 38.5,
+    "link_remaining_width_height": [
+      3,
+      3.9
+    ],
+    "motor_boss_relief_radius": 3.4,
+    "unchanged_motor_boss_radius": 2.9,
+    "inner_wall_patch_min": [
+      89.8,
+      64.4,
+      62.2
+    ],
+    "inner_wall_patch_size": [
+      1.2,
+      7.2,
+      5.2
+    ],
+    "capture_outer_clearance_x": 92.6,
+    "unchanged_capture_max_x": 92.2,
+    "new_side_band_outer_x": 93.8,
+    "minimum_side_band_thickness": 1.2,
+    "status": "Nominal clearances; FDM tolerance, insulation and structural strength unqualified",
+    "upper_seam_band_y": [
+      97.9,
+      106.5
+    ],
+    "guard_wall_start_y": 106.9,
+    "spacer_stop_roof_relief_min": [
+      41.9,
+      110.1,
+      38.4
+    ],
+    "spacer_stop_roof_relief_size": [
+      5.2,
+      1.4,
+      0.7
+    ]
+  }
+}

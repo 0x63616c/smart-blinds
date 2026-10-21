@@ -1,0 +1,490 @@
+{
+  "inputs": {
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "verification/clamp_sweep.py": "a41d66501fddfed210b50e92a4224397578f869604ddc3c5c7d8f86c88185416",
+    "source/definitions.scad": "7e158ddde12b27f3b82b929e3472cd414397bed086db700f4fd10aee8450c952",
+    "data/pack-paths.json": "055e7ece95a4abb05fbf811853a4db91adb61de05641c50e4529e70afddc7e16",
+    "data/pack-path-audit.json": "dcbdbb58d69460641e44bff56898ef9b814b487f15b716c71c5a8a0cb26da630",
+    "exports/guard_clamp.stl": "f7ed295cd5f8feaccebf5ad4f35b0288865526dd439c02ded031c94ce1b59da7",
+    "exports/backing.stl": "1401a85f27f25b8fa73b0a7c1e352b6443facbe5ef9767105239731cada108f6"
+  },
+  "method": "Each original mesh triangle extruded along the whole translation; endpoint and side surfaces retained without a Boolean union. Distance is from all continuous centerline segments to every prism surface, with maximum nominal cable radius plus original arc chord bound. Both full path endpoints must be outside swept bounds. Thus a nonintersecting result covers translation continuously, rather than merely checking sampled poses.",
+  "checks": [
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 0,
+      "wire": 1,
+      "minimum_clearance_or_3mm_bound": 0.059636703673569214,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 0,
+      "wire": 2,
+      "minimum_clearance_or_3mm_bound": 1.1289026128815887,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 0,
+      "wire": 3,
+      "minimum_clearance_or_3mm_bound": 1.2808200900557472,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 0,
+      "wire": 4,
+      "minimum_clearance_or_3mm_bound": 0.7879099738574814,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 0,
+      "wire": 5,
+      "minimum_clearance_or_3mm_bound": 1.278642833899486,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 0,
+      "wire": 6,
+      "minimum_clearance_or_3mm_bound": 0.5230171467326409,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 1,
+      "wire": 1,
+      "minimum_clearance_or_3mm_bound": 0.05561421369619979,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 1,
+      "wire": 2,
+      "minimum_clearance_or_3mm_bound": 1.1289636299537693,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 1,
+      "wire": 3,
+      "minimum_clearance_or_3mm_bound": 1.280820650636724,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 1,
+      "wire": 4,
+      "minimum_clearance_or_3mm_bound": 0.7879117522297895,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 1,
+      "wire": 5,
+      "minimum_clearance_or_3mm_bound": 1.2786441851980235,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 1,
+      "wire": 6,
+      "minimum_clearance_or_3mm_bound": 0.5221863666144448,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 2,
+      "wire": 1,
+      "minimum_clearance_or_3mm_bound": 0.04662278795418251,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 2,
+      "wire": 2,
+      "minimum_clearance_or_3mm_bound": 1.1290246219398643,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 2,
+      "wire": 3,
+      "minimum_clearance_or_3mm_bound": 1.2808211677840506,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 2,
+      "wire": 4,
+      "minimum_clearance_or_3mm_bound": 0.7879135075437184,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 2,
+      "wire": 5,
+      "minimum_clearance_or_3mm_bound": 1.2786454719978209,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "guard_clamp",
+      "translation": [
+        0,
+        12,
+        0
+      ],
+      "case": 2,
+      "wire": 6,
+      "minimum_clearance_or_3mm_bound": 0.5213550564949162,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 0,
+      "wire": 1,
+      "minimum_clearance_or_3mm_bound": 0.05787340891311843,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 0,
+      "wire": 2,
+      "minimum_clearance_or_3mm_bound": 0.053230372869267795,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 0,
+      "wire": 3,
+      "minimum_clearance_or_3mm_bound": 0.05592725127771836,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 0,
+      "wire": 4,
+      "minimum_clearance_or_3mm_bound": 0.052164355285032715,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 0,
+      "wire": 5,
+      "minimum_clearance_or_3mm_bound": 0.055721319419313686,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 0,
+      "wire": 6,
+      "minimum_clearance_or_3mm_bound": 0.05311709986663782,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 1,
+      "wire": 1,
+      "minimum_clearance_or_3mm_bound": 0.05762218347397663,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 1,
+      "wire": 2,
+      "minimum_clearance_or_3mm_bound": 0.052677409597878255,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 1,
+      "wire": 3,
+      "minimum_clearance_or_3mm_bound": 0.05470630258181519,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 1,
+      "wire": 4,
+      "minimum_clearance_or_3mm_bound": 0.05156984526289554,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 1,
+      "wire": 5,
+      "minimum_clearance_or_3mm_bound": 0.05505616977152106,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 1,
+      "wire": 6,
+      "minimum_clearance_or_3mm_bound": 0.05339361993639613,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 2,
+      "wire": 1,
+      "minimum_clearance_or_3mm_bound": 0.05703441272959009,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 2,
+      "wire": 2,
+      "minimum_clearance_or_3mm_bound": 0.05137408976737057,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 2,
+      "wire": 3,
+      "minimum_clearance_or_3mm_bound": 0.05278732636315653,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 2,
+      "wire": 4,
+      "minimum_clearance_or_3mm_bound": 0.05065414147471836,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 2,
+      "wire": 5,
+      "minimum_clearance_or_3mm_bound": 0.05280885714907402,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "part": "backing",
+      "translation": [
+        0,
+        0.4,
+        0
+      ],
+      "case": 2,
+      "wire": 6,
+      "minimum_clearance_or_3mm_bound": 0.052774399201721,
+      "pass": true,
+      "witness": null
+    }
+  ],
+  "passed": true,
+  "positive_control_clearance": -0.925,
+  "limits": [
+    "No free-route 0.3mm allowance at intentional compliant pressure seats; this checks max1.85mm nominal insulation geometry",
+    "Fan contact-row sensitivity is assumed +/-0.5mm, not a vendor tolerance",
+    "Guard movement assumes loosened clamp and pad not compressed; actual bending, friction, contact row and loading need physical qualification",
+    "The backing is checked only through its complete0.4mm adjustment/release range; complete removal is by lifting after guard is removed on the empty bench cassette"
+  ]
+}

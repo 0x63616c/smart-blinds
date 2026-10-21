@@ -41,6 +41,8 @@ jobs:
         run: |
           python3 cad/build.py --check-parameters
           python3 cad/build_v2.py --check-parameters
+          python3 cad/enclosure-v2/prepare.py --check
+          python3 tools/check_enclosure_board_binding.py --repo . --package cad/enclosure-v2 --source-only
       - name: Check generated native schematic
         run: |
           python3 tools/generate_schematics.py hw/schematics/blind-controller/motor-test.layout.json --check

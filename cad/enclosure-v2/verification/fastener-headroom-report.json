@@ -1,0 +1,278 @@
+{
+  "inputs": {
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "verification/fastener_headroom.py": "fe8858213c045dcefc04774137f1c3d52028a2074b0e9a790007af7699fdf338",
+    "source/definitions.scad": "7e158ddde12b27f3b82b929e3472cd414397bed086db700f4fd10aee8450c952",
+    "exports/backplate.stl": "1bf0360fbc72b7980c403765f620cf57739888b59025bc0c707262d6f94a5703",
+    "exports/cover.stl": "2b95279f2921345e124c49aceef7eab1eb64589ccc228e9e8f37ace8d235f2af",
+    "exports/drive.stl": "d7a4da95237e061cccaf515681374fde97f36b002f65d728fb84fb3136a32773",
+    "exports/motor_frame.stl": "320f50c53cdb039b697155fe80124b93352cee0f1854c1913f81742948253d19",
+    "exports/inline_body.stl": "61c2f89cf01f579e7bc5e1b2734cd44f91fa240398dd6e4ca2bcacdd683ee777",
+    "exports/housing_tie.stl": "a2f039e8acce4013697cf421236b6438791dba73e782ce34c6f5000206d70f21",
+    "exports/tail_keeper.stl": "13f5b020d51e667885f2d00747e60321b980fbc1e15dc4a3949564d18d620433",
+    "exports/guard_clamp.stl": "f7ed295cd5f8feaccebf5ad4f35b0288865526dd439c02ded031c94ce1b59da7",
+    "exports/backing.stl": "1401a85f27f25b8fa73b0a7c1e352b6443facbe5ef9767105239731cada108f6"
+  },
+  "checks": [
+    {
+      "name": "wall_driver_45_103_backplate",
+      "box": [
+        42.0,
+        98.0,
+        8.4,
+        48.0,
+        108.0,
+        100.0
+      ],
+      "pass": true
+    },
+    {
+      "name": "wall_driver_45_103_drive",
+      "box": [
+        42.0,
+        98.0,
+        8.4,
+        48.0,
+        108.0,
+        100.0
+      ],
+      "pass": true
+    },
+    {
+      "name": "wall_driver_109_107.5_backplate",
+      "box": [
+        106.0,
+        102.5,
+        8.4,
+        112.0,
+        112.5,
+        100.0
+      ],
+      "pass": true
+    },
+    {
+      "name": "wall_driver_109_107.5_drive",
+      "box": [
+        106.0,
+        102.5,
+        8.4,
+        112.0,
+        112.5,
+        100.0
+      ],
+      "pass": true
+    },
+    {
+      "name": "wall_driver_45_177_backplate",
+      "box": [
+        42.0,
+        172.0,
+        8.4,
+        48.0,
+        182.0,
+        100.0
+      ],
+      "pass": true
+    },
+    {
+      "name": "wall_driver_45_177_drive",
+      "box": [
+        42.0,
+        172.0,
+        8.4,
+        48.0,
+        182.0,
+        100.0
+      ],
+      "pass": true
+    },
+    {
+      "name": "lock_driver_motor_frame",
+      "box": [
+        27,
+        113,
+        10,
+        33,
+        119,
+        100
+      ],
+      "pass": true
+    },
+    {
+      "name": "lock_driver_guard_clamp",
+      "box": [
+        27,
+        113,
+        10,
+        33,
+        119,
+        100
+      ],
+      "pass": true
+    },
+    {
+      "name": "lock_driver_backing",
+      "box": [
+        27,
+        113,
+        10,
+        33,
+        119,
+        100
+      ],
+      "pass": true
+    },
+    {
+      "name": "lock_driver_drive",
+      "box": [
+        27,
+        113,
+        10,
+        33,
+        119,
+        100
+      ],
+      "pass": true
+    },
+    {
+      "name": "cover_driver_12_131",
+      "pass": true,
+      "box": [
+        10.2,
+        129.2,
+        71.01,
+        13.8,
+        132.8,
+        90.0
+      ]
+    },
+    {
+      "name": "cover_driver_106_131",
+      "pass": true,
+      "box": [
+        104.2,
+        129.2,
+        71.01,
+        107.8,
+        132.8,
+        90.0
+      ]
+    },
+    {
+      "name": "cover_driver_12_177",
+      "pass": true,
+      "box": [
+        10.2,
+        175.2,
+        71.01,
+        13.8,
+        178.8,
+        90.0
+      ]
+    },
+    {
+      "name": "cover_driver_106_177",
+      "pass": true,
+      "box": [
+        104.2,
+        175.2,
+        71.01,
+        107.8,
+        178.8,
+        90.0
+      ]
+    }
+  ],
+  "bounds": {
+    "backplate": [
+      0.0,
+      -11.0,
+      0.0,
+      118.0,
+      185.0,
+      62.70000076293945
+    ],
+    "cover": [
+      0.0,
+      -11.0,
+      3.3999996185302734,
+      118.0,
+      185.0,
+      77.0
+    ],
+    "drive": [
+      3.0,
+      125.30000305175781,
+      6.000999450683594,
+      102.0,
+      215.20677185058594,
+      53.5
+    ],
+    "motor_frame": [
+      83.19999694824219,
+      -6.5,
+      3.3999996185302734,
+      114.5999984741211,
+      110.80000305175781,
+      69.0999984741211
+    ],
+    "inline_body": [
+      93.44999694824219,
+      80.0,
+      64.8499984741211,
+      104.6500015258789,
+      105.5,
+      73.3499984741211
+    ],
+    "housing_tie": [
+      92.44999694824219,
+      89.2249984741211,
+      62.29999923706055,
+      109.25,
+      93.67500305175781,
+      74.3499984741211
+    ],
+    "tail_keeper": [
+      92.0999984741211,
+      65.0,
+      69.0999984741211,
+      106.0999984741211,
+      71.0,
+      71.5999984741211
+    ],
+    "guard_clamp": [
+      37.20000076293945,
+      101.80000305175781,
+      34.0,
+      94.0,
+      120.0,
+      65.9000015258789
+    ],
+    "backing": [
+      49.0,
+      98.4000015258789,
+      42.0,
+      84.0,
+      102.19999694824219,
+      65.9000015258789
+    ]
+  },
+  "nominal_clearances": {
+    "housing_bottom_above_arm_mm": 0.5499984741210966,
+    "remaining_after_0p3_housing_allowance_mm": 0.2499984741210966,
+    "housing_to_normal_roof_mm": 1.2500015258789006,
+    "remaining_to_roof_after_0p3_mm": 0.9500015258789005,
+    "tie_to_recessed_roof_mm": 0.7000015258789034,
+    "roof_section_above_tie_relief_mm": 1.9500000000000028,
+    "frame_face_remaining_mm": 2.4,
+    "tray_side_wing_pack_clearance_basis": "Complete current frame checked against all3 fan cases in current-tail-report.json"
+  },
+  "passed": true,
+  "findings": [],
+  "limits": [
+    "Conservative tool-shaft boxes only; hand, exact bit/tip and torque usability remain unqualified",
+    "Housing floor is intended seating; full-envelope sweep tested separately with0.3mm expansion",
+    "Arm/tray bonding area,2.4mm recessed rails and new comb web are geometry, not strength/creep certification",
+    "No inferred maximum allowable printed load or battery-clamp pull force"
+  ]
+}

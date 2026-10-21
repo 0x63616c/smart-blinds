@@ -1,0 +1,1304 @@
+{
+  "inputs": {
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "data/old-front-latch-failure.json": "b0e6be05440d645538d4268ba60a497bf19a0b1868184c2a166660c73121c5cc",
+    "verification/current-board-report.json": "2198eda5d0ad62430df5841adf24fc0f97ff1585345a469f7ec0ec4f19550783",
+    "exports/front.stl": "c82eff25e0130e75b2e9b663660e36afbb2f86964e454d9ad0efc7c8966b382a",
+    "exports/rear.stl": "71f9593b6a8778e4033d4aa9c8ea6a7fc278127c6ff30915871583acf35c44f5",
+    "exports/spacer.stl": "e71c64fad70731a9343a0c80fff5a1e269d8ddf07fb124d8499c5dbdfe43c500",
+    "exports/motor_frame.stl": "320f50c53cdb039b697155fe80124b93352cee0f1854c1913f81742948253d19",
+    "exports/tail_keeper.stl": "13f5b020d51e667885f2d00747e60321b980fbc1e15dc4a3949564d18d620433",
+    "data/pack-paths.json": "055e7ece95a4abb05fbf811853a4db91adb61de05641c50e4529e70afddc7e16",
+    "data/pack-path-audit.json": "dcbdbb58d69460641e44bff56898ef9b814b487f15b716c71c5a8a0cb26da630",
+    "data/routes.json": "74850743b91128b6705a6fd76d927acf3fa168514f5f985fa44b73e89a2ec763",
+    "verification/access_screen.py": "9520b219f41221d6152a3d0d86ee89394396afefc8d0c6b4aad7370fd04052ad"
+  },
+  "old_front_tool_failed": {
+    "bounds_xyz": [
+      97.0,
+      74.0,
+      52.0,
+      100.0,
+      80.0,
+      95.0
+    ],
+    "obstacle_findings": [
+      "frame"
+    ],
+    "status": "Access allocation only; actual latch datum, press stroke and holding force remain unqualified"
+  },
+  "new_tool_bounds_xyz": [
+    98.0,
+    -35.0,
+    52.0,
+    100.8,
+    80.0,
+    55.0
+  ],
+  "status": "Unobstructed longitudinal blade corridor only, not proof of latch press direction, force, disengagement stroke or hand usability",
+  "intended_sequence": "Cover and ancillary plugs already released; closed joint module on bench. A nonconductive narrow blade approaches along+Y in the right-side channel below the motor tray. Grip the protected plug shell; never pull its wires. Actual contact-tip geometry must follow the exact housing/sample before assembly acceptance.",
+  "checks": [
+    {
+      "kind": "actual_mesh",
+      "name": "front",
+      "collision": false
+    },
+    {
+      "kind": "actual_mesh",
+      "name": "rear",
+      "collision": false
+    },
+    {
+      "kind": "actual_mesh",
+      "name": "spacer",
+      "collision": false
+    },
+    {
+      "kind": "actual_mesh",
+      "name": "frame",
+      "collision": false
+    },
+    {
+      "kind": "actual_mesh",
+      "name": "keeper",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_drive_off",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_b_up",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.tvs_cc",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.c_up",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_input1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_pmid1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_strap8",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_ts_bottom",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_base_pull",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "encoder.c_gate",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.c_enc",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_raw_dis3",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_bat2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.ic",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_gate_off1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_batp",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.r_mode",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_up",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "encoder_port.header",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.q_permission",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_out_dis1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.c_fly",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_hot_base",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_pmid3",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_dump3b",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.c_detector",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.thermal_supply",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.c_input",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_sdrv",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.c_1v2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.c_vsys",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_uv_top1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.r_ref_lo",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.c_bulk",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.r_current",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "encoder.gate",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_charge_off",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.c_vdd",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_thermal_ok",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_sys3",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.c_cutoff_slew",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_cutoff_limit",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_cutoff_ov_bottom",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "r_thermal_sleep",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_feedback1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.r_in1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.q_cutoff",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "c_thermal_gate",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.c_gate",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_adc_lo",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_sys5",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_thermal_bottom",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.c_guarded",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_out_dis2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_guarded_bleed",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.inputs",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.connector",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_scl",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_a_series",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_down",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_bat1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "encoder.ic",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_home",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.c_thermal_input",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_input_fast",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_threshold_top1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_drive_base",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.c_2v7",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.r_wdi",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.r_enable",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.c_ref",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.ic",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_ov_bottom",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_feedback2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_cutoff_ov_top",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.r_reset",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.tvs_guarded",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_threshold_bottom",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.r_in2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.r_sleep",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.c_bypass",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.c_raw",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.tvs_vbus",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_batp",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.q_dump",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "pack_connector.header",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.c_output_fast",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "home_port.header",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_prog",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_ts_top",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.c_thermal_output",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.c_inputs",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_adc_hi",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.c_down",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_base1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.c_vm",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "home_esd",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.enc_esd",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_local_bleed",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.up",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_b_down",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "encoder.c_input",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.c_input_fast",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_cutoff_mode",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_pmid4",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.watchdog",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.c_home",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.c_pump",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.c_bulk",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_regn",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_sda",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_ov_top1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.r_request",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.c_thermostat",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_dump1a",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.c_sup",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_boot",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_sys2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_a_up",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.gate",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_addr0",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_raw_dis1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.efuse",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.detector",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.inductor",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.r_mode",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_b_series",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.q_charge",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_encoder",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_home_series",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.c_wd",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.c_timing",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.r_pg",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.q_drive",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_limit",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_boot1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_sys1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.enc",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_ilim_top",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.inductor",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.c_softstart",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_reset",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.c_output1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.q_enable",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_charge",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_dm",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_thermal_top",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.mcu",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.c_output2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_ce",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_dump3a",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "q_thermal_fault",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_cutoff_limit_tail",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_boot2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.d_vdd",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.usb_esd",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_pmid_fast",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.supervisor",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_raw_dis2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_addr1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.down",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_dump4a",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_gate_off2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.q_thermal",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.c_slew",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_out_dis3",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_input2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "encoder.r_enable",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_trip_off",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_pmid2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "r_power_irq",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_ilim_bottom",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_dump4b",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.q_hold",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.r_ref_hi",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_base2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.cutoff",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_dump1b",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_sys4",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_ov_top2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.thermostat",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.r_sleep",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_permission_base",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "logic_supply.c_input2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_a_down",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_uv_top2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.ic",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.r_uv_bottom",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_threshold_top2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.q_hot_drive",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "motor.r_fault",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.c_hot_filter",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.r_dp",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "encoder.c_output",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.pd",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_ts",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_dump2b",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.r_permission_off",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "controller.c_adc",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_hot_off",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "charger.c_sys_fast",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "thermal_gate",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "supervision.r_wdo",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "regen.r_dump2a",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.connector_tail_0",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.connector_tail_1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.connector_tail_2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.connector_tail_3",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.connector_tail_4",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "usb.connector_tail_5",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "pack_connector.header_tail_0",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "pack_connector.header_tail_1",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "pack_connector.header_tail_2",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "pack_connector.header_tail_3",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "pack_connector.header_tail_4",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "pack_connector.header_tail_5",
+      "collision": false
+    },
+    {
+      "kind": "component_box",
+      "name": "pack_connector.header_tail_6",
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 0,
+      "contact": 1,
+      "clearance_mm": 6.63384140011237,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 0,
+      "contact": 2,
+      "clearance_mm": 6.489325370914078,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 0,
+      "contact": 3,
+      "clearance_mm": 6.6338977662923355,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 0,
+      "contact": 4,
+      "clearance_mm": 3.7224442420000896,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 0,
+      "contact": 5,
+      "clearance_mm": 3.489638035934711,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 0,
+      "contact": 6,
+      "clearance_mm": 3.7223889939991803,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 1,
+      "contact": 1,
+      "clearance_mm": 6.1436481755593935,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 1,
+      "contact": 2,
+      "clearance_mm": 5.989328187085667,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 1,
+      "contact": 3,
+      "clearance_mm": 6.14370685034779,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 1,
+      "contact": 4,
+      "clearance_mm": 3.2485404711404984,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 1,
+      "contact": 5,
+      "clearance_mm": 2.989639387233249,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 1,
+      "contact": 6,
+      "clearance_mm": 3.248490835070037,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 2,
+      "contact": 1,
+      "clearance_mm": 5.65486663308831,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 2,
+      "contact": 2,
+      "clearance_mm": 5.489330977743152,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 2,
+      "contact": 3,
+      "clearance_mm": 5.654927607920702,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 2,
+      "contact": 4,
+      "clearance_mm": 2.780986015787753,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 2,
+      "contact": 5,
+      "clearance_mm": 2.489640674033046,
+      "collision": false
+    },
+    {
+      "kind": "pack_wire",
+      "case": 2,
+      "contact": 6,
+      "clearance_mm": 2.7809419951718635,
+      "collision": false
+    },
+    {
+      "kind": "ancillary_wire",
+      "name": "motor1",
+      "clearance_mm": 8.04216854791274,
+      "collision": false
+    },
+    {
+      "kind": "ancillary_wire",
+      "name": "motor2",
+      "clearance_mm": 8.594751593219108,
+      "collision": false
+    },
+    {
+      "kind": "ancillary_wire",
+      "name": "encoder",
+      "clearance_mm": 9.484491379306982,
+      "collision": false
+    },
+    {
+      "kind": "ancillary_wire",
+      "name": "home",
+      "clearance_mm": 9.484491379306982,
+      "collision": false
+    }
+  ],
+  "passed": true,
+  "findings": []
+}

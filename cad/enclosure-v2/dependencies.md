@@ -1,0 +1,11 @@
+# Maintained dependency boundary
+
+Normal parameter, export, check, inventory and detail-render stages read only this package. `source/` contains ordinary editable SCAD with stable public module wrappers; `parameters/enclosure-v2.json` is the versioned interface contract. `prepare.py` regenerates the eight active case/button/controller scalar/list bindings and nominal preview wire arrays. Other dimensions remain explicit source geometry and documentary contract fields: changing them is not automatic fit approval.
+
+Seven local visual/Boolean assets remain. In particular, front/rear cassette operands are exact imported meshes, so this is a maintainable bounded Boolean design, not a fully analytic, freely resizable cassette. Every material change in this successor is ordinary SCAD applied around those operands. Full wire polylines, the current saved PCB, rejected motor-frame regression and original front/rear failure meshes are local `data/` inputs.
+
+`build.py` exports 29 named roles sequentially; `build_auxiliary.py` exports the explicit multi-part service-hardware operand. Each export binds current source/parameter/asset/data hashes and checks them before publishing. `verify.py` requires fresh manifests for every required operand and runs 17 source-bound jobs. `inventory.py` accepts only current closed one-component print meshes. Optional plugs, one shared assembly nest, nonprinted silicone/ties/barrier/hardware, and the separate older holder-loading fixture are distinguished.
+
+`review/board_rebind_delta.py` and `review/compare_baseline.py` are one-time historical audit utilities; they explicitly read the frozen sibling package. They are not hidden imports or normal build dependencies. Their current results bind copied/local inputs and output hashes. The original baseline is never modified. Normal verification independently reparses the locally copied 03a6 PCB and all 120 rear vias.
+
+The standard render stage now produces four source-export close-ups of the changed internal material. `render.py` remains available for complete assembly/exterior/button views. The exact unchanged-role proof covers the visible cover/backplate/button geometry; previous full exterior images remain historical views of that identical geometry, not new body-fit evidence.

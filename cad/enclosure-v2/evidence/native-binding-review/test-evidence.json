@@ -1,0 +1,2272 @@
+{
+  "passed": true,
+  "tests": 58,
+  "controls": [
+    {
+      "control": "test_211_vias_coherent_hashes_still_fail_count",
+      "rejected": true,
+      "error": "actual_inventory"
+    },
+    {
+      "control": "test_accepted_native_fixture",
+      "accepted": true,
+      "mode": "native-artifact"
+    },
+    {
+      "control": "test_actual_drc_hash_required",
+      "rejected": true,
+      "error": "drc_hash"
+    },
+    {
+      "control": "test_actual_project_hash_required",
+      "rejected": true,
+      "error": "project_hash"
+    },
+    {
+      "control": "test_all_actual_footprints_counted",
+      "rejected": true,
+      "error": "actual_inventory"
+    },
+    {
+      "control": "test_artifact_pair_must_share_directory",
+      "rejected": true,
+      "error": "artifact_directory"
+    },
+    {
+      "control": "test_changed_active_contract",
+      "rejected": true,
+      "error": "contract_hash"
+    },
+    {
+      "control": "test_changed_builder",
+      "rejected": true,
+      "error": "live_input_hash"
+    },
+    {
+      "control": "test_changed_copied_board",
+      "rejected": true,
+      "error": "copied_board_hash"
+    },
+    {
+      "control": "test_changed_native_byte",
+      "rejected": true,
+      "error": "artifact_hash"
+    },
+    {
+      "control": "test_changed_route_same_count",
+      "rejected": true,
+      "error": "live_input_hash"
+    },
+    {
+      "control": "test_changed_runtime_model",
+      "rejected": true,
+      "error": "live_input_hash"
+    },
+    {
+      "control": "test_changed_source_binding",
+      "rejected": true,
+      "error": "source_binding_hash"
+    },
+    {
+      "control": "test_changed_source_library",
+      "rejected": true,
+      "error": "live_input_hash"
+    },
+    {
+      "control": "test_contract_path_traversal",
+      "rejected": true,
+      "error": "unsafe_path"
+    },
+    {
+      "control": "test_different_receipt_rejected",
+      "rejected": true,
+      "error": "receipt_fields"
+    },
+    {
+      "control": "test_direct_same_net_layer_chain_representative_allowed",
+      "accepted": true
+    },
+    {
+      "control": "test_duplicate_approval_keys_rejected",
+      "rejected": true,
+      "error": "invalid_json"
+    },
+    {
+      "control": "test_faked_connection_count_rejected",
+      "rejected": true,
+      "error": "receipt_fields"
+    },
+    {
+      "control": "test_false_reported_layer_rejected",
+      "rejected": true,
+      "error": "drc_track"
+    },
+    {
+      "control": "test_false_reported_length_rejected",
+      "rejected": true,
+      "error": "drc_track"
+    },
+    {
+      "control": "test_false_reported_net_rejected",
+      "rejected": true,
+      "error": "drc_track"
+    },
+    {
+      "control": "test_false_reported_position_rejected",
+      "rejected": true,
+      "error": "drc_track"
+    },
+    {
+      "control": "test_ignored_check_settings_rejected",
+      "rejected": true,
+      "error": "drc_semantics"
+    },
+    {
+      "control": "test_inputs_changed_native_receipt",
+      "rejected": true,
+      "error": "native_checks"
+    },
+    {
+      "control": "test_inventory_ignores_nested_and_quoted_tags",
+      "passed": true
+    },
+    {
+      "control": "test_inventory_rejects_incomplete_or_wrong_root",
+      "passed": true,
+      "rejected_variants": 5
+    },
+    {
+      "control": "test_missing_actual_drc_rejected",
+      "rejected": true,
+      "error": "missing_file"
+    },
+    {
+      "control": "test_missing_actual_project_rejected",
+      "rejected": true,
+      "error": "missing_file"
+    },
+    {
+      "control": "test_missing_approved_manifest",
+      "rejected": true,
+      "error": "missing_file"
+    },
+    {
+      "control": "test_missing_native_board_no_copy_fallback",
+      "rejected": true,
+      "error": "missing_file"
+    },
+    {
+      "control": "test_missing_native_receipt",
+      "rejected": true,
+      "error": "missing_file"
+    },
+    {
+      "control": "test_missing_wider_input_approval_rejected",
+      "rejected": true,
+      "error": "input_coverage"
+    },
+    {
+      "control": "test_native_artifact_cannot_be_package_copy",
+      "rejected": true,
+      "error": "artifact_is_copy"
+    },
+    {
+      "control": "test_native_checks_must_be_passed",
+      "rejected": true,
+      "error": "native_checks"
+    },
+    {
+      "control": "test_near_endpoint_is_not_connected",
+      "rejected": true,
+      "error": "drc_semantics"
+    },
+    {
+      "control": "test_new_capture_with_stale_receipt",
+      "rejected": true,
+      "error": "capture_receipt"
+    },
+    {
+      "control": "test_new_runtime_file",
+      "rejected": true,
+      "error": "input_coverage"
+    },
+    {
+      "control": "test_no_native_args_is_not_source_only",
+      "rejected": true,
+      "error": "mode"
+    },
+    {
+      "control": "test_only_one_native_arg",
+      "rejected": true,
+      "error": "mode"
+    },
+    {
+      "control": "test_receipt_field_types_remain_exact",
+      "rejected": true,
+      "error": "receipt_fields"
+    },
+    {
+      "control": "test_removed_missing_connection_rejected",
+      "rejected": true,
+      "error": "drc_semantics"
+    },
+    {
+      "control": "test_removed_runtime_file",
+      "rejected": true,
+      "error": "input_coverage"
+    },
+    {
+      "control": "test_report_date_and_endpoint_order_allowed",
+      "accepted": true
+    },
+    {
+      "control": "test_report_unknown_field_preserved_and_rejected",
+      "rejected": true,
+      "error": "drc_semantics"
+    },
+    {
+      "control": "test_runtime_symlink_cannot_hide_inputs",
+      "rejected": true,
+      "error": "unsafe_path"
+    },
+    {
+      "control": "test_same_count_native_pose_change",
+      "rejected": true,
+      "error": "artifact_hash"
+    },
+    {
+      "control": "test_same_endpoint_different_layer_not_equivalent",
+      "rejected": true,
+      "error": "drc_semantics"
+    },
+    {
+      "control": "test_same_endpoint_different_net_not_equivalent",
+      "rejected": true,
+      "error": "drc_semantics"
+    },
+    {
+      "control": "test_snapshot_changes_detected",
+      "rejected": true,
+      "error": "input_changed"
+    },
+    {
+      "control": "test_source_only_explicit_no_native_claim",
+      "accepted": true,
+      "mode": "source-only"
+    },
+    {
+      "control": "test_source_only_rejects_changed_route",
+      "rejected": true,
+      "error": "live_input_hash"
+    },
+    {
+      "control": "test_source_only_with_native_args_rejected",
+      "rejected": true,
+      "error": "mode"
+    },
+    {
+      "control": "test_source_path_symlink_escape",
+      "rejected": true,
+      "error": "unsafe_path"
+    },
+    {
+      "control": "test_successor_211_vias_not_rebound",
+      "rejected": true,
+      "error": "unreviewed_board"
+    },
+    {
+      "control": "test_track_unknown_field_rejected",
+      "rejected": true,
+      "error": "drc_track"
+    },
+    {
+      "control": "test_true_additional_violation_rejected",
+      "rejected": true,
+      "error": "drc_semantics"
+    },
+    {
+      "control": "test_unrelated_track_representative_rejected",
+      "rejected": true,
+      "error": "drc_semantics"
+    }
+  ],
+  "real_03a6_control": {
+    "passed": true,
+    "native_artifact": {
+      "passed": true,
+      "verification_mode": "native-artifact",
+      "native_verification": true,
+      "status": "Current native artifact matches independent approved inputs; not a fit or fabrication approval",
+      "native_board_sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+      "native_receipt_sha256": "cc224b517de06a3193ac0ca5c0328a12aa5f278373a297c43654d6e85e41e629",
+      "native_drc_sha256": "18489150af4274ef4b221b359f478e1e1c4d0eea1d7545f0aa7c5b52583dd386",
+      "native_drc_semantic_sha256": "32384247798430524280004074e9fff880595ae05e5017eea9b4bc3606e73b46",
+      "approved_manifest_sha256": "5d0d5db9aa604e98b155b63de5f7a7887f5edeed3a721dfdebad880aef3ca444",
+      "contract_sha256": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+      "source_capture_sha256": "8e9b62fa83b8f93db20f158db963ba7c1ec61f060fb912db3244ae97749c228a",
+      "source_binding_sha256": "acc69dc1597e436e67a5f6192c29c1a1f43611e3ab60ecbee89b2cb6dbfc213c",
+      "native_inventory": {
+        "footprints": 206,
+        "rear_vias": 120
+      },
+      "copied_inventory": {
+        "footprints": 206,
+        "rear_vias": 120
+      },
+      "repo_input_count": 119,
+      "inputs": {
+        "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/approved-native-inputs.json": {
+          "resolved": "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/approved-native-inputs.json",
+          "sha256": "5d0d5db9aa604e98b155b63de5f7a7887f5edeed3a721dfdebad880aef3ca444",
+          "bytes": 18798
+        },
+        "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/parameters/enclosure-v2.json": {
+          "resolved": "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/parameters/enclosure-v2.json",
+          "sha256": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+          "bytes": 35673
+        },
+        "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/data/physical-board.kicad_pcb": {
+          "resolved": "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/data/physical-board.kicad_pcb",
+          "sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+          "bytes": 1002931
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/work/clean-main-metadata-native/candidate.kicad_pcb": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/work/clean-main-metadata-native/candidate.kicad_pcb",
+          "sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+          "bytes": 1002931
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/work/clean-main-metadata-native/native.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/work/clean-main-metadata-native/native.json",
+          "sha256": "cc224b517de06a3193ac0ca5c0328a12aa5f278373a297c43654d6e85e41e629",
+          "bytes": 807
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/work/clean-main-metadata-native/candidate.kicad_pro": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/work/clean-main-metadata-native/candidate.kicad_pro",
+          "sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+          "bytes": 9736
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/work/clean-main-metadata-native/drc.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/work/clean-main-metadata-native/drc.json",
+          "sha256": "18489150af4274ef4b221b359f478e1e1c4d0eea1d7545f0aa7c5b52583dd386",
+          "bytes": 279461
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/source-binding.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/source-binding.json",
+          "sha256": "acc69dc1597e436e67a5f6192c29c1a1f43611e3ab60ecbee89b2cb6dbfc213c",
+          "bytes": 602048
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/fp-lib-table": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/fp-lib-table",
+          "sha256": "dd8c295782fd2a6f3c0905fd1c462e391a374e8da2df62490fcdb816ad6db82d",
+          "bytes": 3511
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pcb": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pcb",
+          "sha256": "8e9b62fa83b8f93db20f158db963ba7c1ec61f060fb912db3244ae97749c228a",
+          "bytes": 1019278
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pro": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pro",
+          "sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+          "bytes": 9736
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod",
+          "sha256": "60561548bc05514cd55938492ccae68aa630ea1742c8277c95415d483a80981c",
+          "bytes": 3724
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0402WGF3903TCE/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0402WGF3903TCE/R0402.kicad_mod",
+          "sha256": "a87d97a48b46a87c5607d720c523da3c75c4782763bbc8a8a75fd45f926fef15",
+          "bytes": 2830
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod",
+          "sha256": "ead9b5fee69560cdb7b45abfbef2d55d8795d9d3e18804759682db5e44347334",
+          "bytes": 2827
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod",
+          "sha256": "62b25625d068207260c5d5fdc56aaf8c23a773ce23d7a8348e9c859a5c858219",
+          "bytes": 5243
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-connectors/CONN-TH_43045-0600.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-connectors/CONN-TH_43045-0600.kicad_mod",
+          "sha256": "b558e3da5ea25cdccf28f71d8f534150719f582ff997358d61c8d99dddae76c9",
+          "bytes": 5109
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/R0402.kicad_mod",
+          "sha256": "a7946e433b1dafb272428e12acd0f7b25322827b1c4b7afc99803b398b20b02b",
+          "bytes": 3160
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod",
+          "sha256": "021a4c05b152b287bf521a9054ab47d8ecbc6425309ac5698471205da7358eea",
+          "bytes": 4432
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod",
+          "sha256": "6a3af19684f064fa23840df3f1e2123979febd70627379759a2b623125ac5695",
+          "bytes": 3585
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod",
+          "sha256": "9d8e15b394e9bd8d7532283fed898025f2a6d127e3b8860432bc6f4d2a997a54",
+          "bytes": 4107
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/C0402.kicad_mod",
+          "sha256": "e3fbb8607a96f386d49d4cf0fb93dce226fed7ec523e0b4078252606d57e86c1",
+          "bytes": 3723
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/R0402.kicad_mod",
+          "sha256": "fed20f4d92e024fe87887602af29c2227943d1676fb1c8804a1d4ddf1266de45",
+          "bytes": 2832
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/C0402.kicad_mod",
+          "sha256": "2a1fb4d37b39b2e8ff49006646f8b6ab83dd53e88de04e0a077a689f7fb0abf4",
+          "bytes": 4171
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod",
+          "sha256": "533210e8a8c8500ffb9876ae49d5420da016b94c5498321c62c80536f95b1ad7",
+          "bytes": 4663
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP.kicad_mod",
+          "sha256": "ac62f2206fb3d0b4178a577114d08baaca0c1b388e43c17869f7c3cf83c6bd4f",
+          "bytes": 7981
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/QFN-29_L4.0-W4.0-P0.40-TL-BQ25792RQMR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/QFN-29_L4.0-W4.0-P0.40-TL-BQ25792RQMR.kicad_mod",
+          "sha256": "dc233b92e5f3bdd07c4beef6b23b38bf1045fa5b13e7608d1ac7d63fcfe94e23",
+          "bytes": 13093
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/R0402.kicad_mod",
+          "sha256": "b236199ddd99509b1d349a5b43f939a840715be2af5c276e9c334f2f4462d8b6",
+          "bytes": 3344
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod",
+          "sha256": "aa2032cebebcad79a55b8ea668af4d67c819e38c5c8c83e2ac532ad8f4e0b2ce",
+          "bytes": 5450
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/WIRELM-SMD_ESP32-C6-WROOM-1.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/WIRELM-SMD_ESP32-C6-WROOM-1.kicad_mod",
+          "sha256": "e7c48df537193bcdffbab23e60cf19e017e91bdb2c388fe2927e7cfaadc6e747",
+          "bytes": 10437
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-encoder/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-encoder/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "17dbfdf49a2db51c6c1a902f8b19d76c668996ad1f8de5ae3438433edf083c1f",
+          "bytes": 4387
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-SMD_4P-P1.25_53261-0471.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-SMD_4P-P1.25_53261-0471.kicad_mod",
+          "sha256": "48b39aebd98b89764c3d29f055de29fa3c7991c5209c8f04cfc282f38f6ff949",
+          "bytes": 4159
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-TH_532610371.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-TH_532610371.kicad_mod",
+          "sha256": "e2553b4ef0e9180d9cf631f3e3fb2d9e32a87bf290a722062edfb89d1b74101d",
+          "bytes": 3970
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-pack-features/WirePad18.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-pack-features/WirePad18.kicad_mod",
+          "sha256": "6197d4165079dbc9327970025e7c6c744721154bf95adf6a69e3bf163116c815",
+          "bytes": 562
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0402.kicad_mod",
+          "sha256": "2fdecb51c5f486b0bcef444ea020adb0d102b4f36ac0c3432f82d8b97a95adea",
+          "bytes": 3979
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0805.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0805.kicad_mod",
+          "sha256": "00b1429cbf359e5dfc754554de8bb96d13148bb77302d752546dc5c3e31106a1",
+          "bytes": 3933
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C1206.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C1206.kicad_mod",
+          "sha256": "3cf29792a02f122d0c31419c56e8f4e9d62010cead8089ff3b2907d72be2bb72",
+          "bytes": 3721
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod",
+          "sha256": "6280137b3fd345866bc5cb4d1b30a7cc9b6c238e871554337d0b710fd5de29ff",
+          "bytes": 3169
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/R0402.kicad_mod",
+          "sha256": "446335f0841b439964ade9805cd9aae5f48babfeea24598507567b1fb72a0f1d",
+          "bytes": 3151
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod",
+          "sha256": "b57fa7e0c2e3626d8786b2c1bdbc050883cbf07b0d9b63dcb209ba10e215a6b4",
+          "bytes": 3399
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0402.kicad_mod",
+          "sha256": "9801136f7a155396d6c723169bb71083d48a3178a1682ce79e2c63b8369cd470",
+          "bytes": 3151
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0603.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0603.kicad_mod",
+          "sha256": "b53b38e21edfd76d5e8d6b17b708dcaa0a5f69a14f2cfd175e3af22234df1925",
+          "bytes": 3150
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R2512.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R2512.kicad_mod",
+          "sha256": "5bc8d25103671a2761a1a6ca7136962de11f2c5bf61d9ed691fe163060bcdcb9",
+          "bytes": 2917
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "68808ade8be3418ded30c39f9ec69fb730c8f8874ef54a0b617a1130f36e0250",
+          "bytes": 4630
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod",
+          "sha256": "75400b69268d239f3bcce698bd74af9e3e31f4e3fe1238ad0e6f4502d4b5873a",
+          "bytes": 3529
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "37caf6f741d1c4c17cd835c82ad1920f813b9cc9dd8753631b2517646e8b484d",
+          "bytes": 3527
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/IND-SMD_L4.4-W4.2.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/IND-SMD_L4.4-W4.2.kicad_mod",
+          "sha256": "0184befc1c784d1bb74066ad611c43a2956a1819e6f55686531e69cf99da5591",
+          "bytes": 2950
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/R0402.kicad_mod",
+          "sha256": "1bd9fc1ef9f57b08a91c9d1559696f8d836ae5c601d2daddb1d27a025d765b89",
+          "bytes": 3161
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/C0402.kicad_mod",
+          "sha256": "df0292e39585d7efb0c249a6b61ecd5fda52d0c89e3b5a955aa3b036e5a61b2a",
+          "bytes": 4152
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod",
+          "sha256": "f3058066abe6cf71742595086abb1ae616a8efd69802e1fa2db2c4e9fa120e57",
+          "bytes": 3750
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "ff3e4eb9e11d432090bb2ffa14aecf15bbc0aa15216833ed775a8b8a2be0e9e4",
+          "bytes": 3874
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod",
+          "sha256": "c934e9d7d78a3bcc060e52115cfddd885e9e2af5b36a2ead37562c393f72183a",
+          "bytes": 44959
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/R0402.kicad_mod",
+          "sha256": "79a6bbd64fff65e0cc2aec376ca8cc6853f5f5bee3dd44455d8205b5f6b68dd0",
+          "bytes": 2645
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TPS26600_PWP16.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TPS26600_PWP16.kicad_mod",
+          "sha256": "522abcf1579c4a4db6e5d20e39f24fdb4df5a0e542ffec77456a5bf1d764962c",
+          "bytes": 2611
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TVS1800_DRV6.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TVS1800_DRV6.kicad_mod",
+          "sha256": "10b694e3eb10f56b03a85a45da849bbf8e01bef2253621b9a80e2414874a64e9",
+          "bytes": 1415
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/C1206.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/C1206.kicad_mod",
+          "sha256": "83bba0a62fae2faa7b6cc065264dba1d87c21fa6cbc807d0d0bcc6876ca71805",
+          "bytes": 3953
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod",
+          "sha256": "b046422d829b06bd85c97da74a967b4f2ec2b02cc43d5782abb61c601c17d8df",
+          "bytes": 2987
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/HRO_TYPE_C_31_M_12.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/HRO_TYPE_C_31_M_12.kicad_mod",
+          "sha256": "d606f46be93e54339a6c835683e5b53174640cbe87805f6fff6feec794e7dc3b",
+          "bytes": 4183
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/QFN-24_L4.0-W4.0-P0.50-BL-EP2.8.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/QFN-24_L4.0-W4.0-P0.50-BL-EP2.8.kicad_mod",
+          "sha256": "2b8a4f8c6430bf6fa2717ddc137dc4a1735ead61964ac2d548369af090807f97",
+          "bytes": 7483
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/R0402.kicad_mod",
+          "sha256": "837c81c4d9e586b0f1747d61555e2ea988ce7ae7e46cb2b4441a547664379fc4",
+          "bytes": 3115
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod",
+          "sha256": "b0ea744aac564206a99733d75e12cc0554118c15535d80014b385df89f0a1971",
+          "bytes": 3177
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod",
+          "sha256": "f960dbee317f4710e5e8c8a179add66d3e58399d68b2e07106c3369897e61cd4",
+          "bytes": 4119
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod",
+          "sha256": "d66fa2300fc0f8222eafd3a22127b27379d4b2c3c6ec142b1c03e930a64aa741",
+          "bytes": 23698
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/README.md": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/README.md",
+          "sha256": "97a4124d3542f26f0957e14e4e897f86cb13b380ac5a1e4307cca059d9c04219",
+          "bytes": 3567
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/check.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/check.py",
+          "sha256": "619ea963bbe2020e7a825c4c66c571326ae25fe8241563b171c614f0d569237c",
+          "bytes": 4754
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/contracts.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/contracts.py",
+          "sha256": "3eaf296625598e2e345f88f16a91d73af0bc5ac50bbcbeb337598c4c7d79c657",
+          "bytes": 2722
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/emit.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/emit.py",
+          "sha256": "b0dd25b7511c4cf2218c9ecfc163e77c5463d0308caff8929b5baac219b81fd7",
+          "bytes": 7385
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/geometry.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/geometry.py",
+          "sha256": "ea6943a0967e40e45f2c87dff6d375948a46c512f79044951b105d29f0795f84",
+          "bytes": 7332
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/integration.md": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/integration.md",
+          "sha256": "a70ac264263b868dc9fffe51075224dadad985231a2470136c1adc3822460b58",
+          "bytes": 3372
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/library.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/library.py",
+          "sha256": "8f2c73c47299cabca13694ec812400545c23fa1b71b186e9a1650702a51fee40",
+          "bytes": 2106
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/08db93688a81bed96142aacc72c6db4bea82f031937f0f20a5b30dffd51b760c.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/08db93688a81bed96142aacc72c6db4bea82f031937f0f20a5b30dffd51b760c.wrl",
+          "sha256": "08db93688a81bed96142aacc72c6db4bea82f031937f0f20a5b30dffd51b760c",
+          "bytes": 30557
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8.step",
+          "sha256": "0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8",
+          "bytes": 1481973
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6.step",
+          "sha256": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+          "bytes": 1068243
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/13d1675e0cd24f8cea2f1d3be0bd5f50b35b42feddf2fea298460446a4a3159f.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/13d1675e0cd24f8cea2f1d3be0bd5f50b35b42feddf2fea298460446a4a3159f.wrl",
+          "sha256": "13d1675e0cd24f8cea2f1d3be0bd5f50b35b42feddf2fea298460446a4a3159f",
+          "bytes": 37468
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade.wrl",
+          "sha256": "14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade",
+          "bytes": 19722
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2a125409502d8eb68f2e196ab1c28b180e0918830445364f93a45d9461b4daad.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2a125409502d8eb68f2e196ab1c28b180e0918830445364f93a45d9461b4daad.wrl",
+          "sha256": "2a125409502d8eb68f2e196ab1c28b180e0918830445364f93a45d9461b4daad",
+          "bytes": 81041
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2ebe9116516a14db60063f4aac0f764324cc8eab3225ae8ddbffcf71a79b00e8.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2ebe9116516a14db60063f4aac0f764324cc8eab3225ae8ddbffcf71a79b00e8.wrl",
+          "sha256": "2ebe9116516a14db60063f4aac0f764324cc8eab3225ae8ddbffcf71a79b00e8",
+          "bytes": 32153
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a.wrl",
+          "sha256": "31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a",
+          "bytes": 59211
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/479aaa5046a89f7d43225d67cedaaffe63efd95c23e9971e17aace9b7d16e641.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/479aaa5046a89f7d43225d67cedaaffe63efd95c23e9971e17aace9b7d16e641.wrl",
+          "sha256": "479aaa5046a89f7d43225d67cedaaffe63efd95c23e9971e17aace9b7d16e641",
+          "bytes": 54809
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4811c21de544287b3785792a877722a7b00639ed5c237e814a6049eda3f82be1.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4811c21de544287b3785792a877722a7b00639ed5c237e814a6049eda3f82be1.wrl",
+          "sha256": "4811c21de544287b3785792a877722a7b00639ed5c237e814a6049eda3f82be1",
+          "bytes": 112664
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4ee6b7de3949b5ee54bb28ad929cbdd0b0be224e245553d69048071a3ca546b1.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4ee6b7de3949b5ee54bb28ad929cbdd0b0be224e245553d69048071a3ca546b1.wrl",
+          "sha256": "4ee6b7de3949b5ee54bb28ad929cbdd0b0be224e245553d69048071a3ca546b1",
+          "bytes": 22186
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/50e930f89d1bf7444db611765788fb7a86f1f1de06b69591148b59cfab8f586a.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/50e930f89d1bf7444db611765788fb7a86f1f1de06b69591148b59cfab8f586a.wrl",
+          "sha256": "50e930f89d1bf7444db611765788fb7a86f1f1de06b69591148b59cfab8f586a",
+          "bytes": 124877
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/55293e2e32da23224ef00e936ba154b5ef9accbd8e87f45636e31649d7b4b168.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/55293e2e32da23224ef00e936ba154b5ef9accbd8e87f45636e31649d7b4b168.wrl",
+          "sha256": "55293e2e32da23224ef00e936ba154b5ef9accbd8e87f45636e31649d7b4b168",
+          "bytes": 22084
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/609990b9a6d5b3f00eead495d0d38e6cec5c4b15da278930e5e69cb9d9e8b485.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/609990b9a6d5b3f00eead495d0d38e6cec5c4b15da278930e5e69cb9d9e8b485.wrl",
+          "sha256": "609990b9a6d5b3f00eead495d0d38e6cec5c4b15da278930e5e69cb9d9e8b485",
+          "bytes": 4613
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/654790babf9f068b83632cf535692d8c4240b6d332f09b0365a176152eac8e09.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/654790babf9f068b83632cf535692d8c4240b6d332f09b0365a176152eac8e09.wrl",
+          "sha256": "654790babf9f068b83632cf535692d8c4240b6d332f09b0365a176152eac8e09",
+          "bytes": 112191
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/69167ea321bd21daaf2124fb41df8b650fdf991e191851fbb44ec71c8ee1543e.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/69167ea321bd21daaf2124fb41df8b650fdf991e191851fbb44ec71c8ee1543e.wrl",
+          "sha256": "69167ea321bd21daaf2124fb41df8b650fdf991e191851fbb44ec71c8ee1543e",
+          "bytes": 379976
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/6d0af3fdee819c602d1b3906e3031015573ebcb85f3a357833e5def01e2ebe32.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/6d0af3fdee819c602d1b3906e3031015573ebcb85f3a357833e5def01e2ebe32.wrl",
+          "sha256": "6d0af3fdee819c602d1b3906e3031015573ebcb85f3a357833e5def01e2ebe32",
+          "bytes": 288994
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7023139da8e0528b1cd05db53344f9f563fe34c447e10fb4db9b06fdddb0aa4b.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7023139da8e0528b1cd05db53344f9f563fe34c447e10fb4db9b06fdddb0aa4b.wrl",
+          "sha256": "7023139da8e0528b1cd05db53344f9f563fe34c447e10fb4db9b06fdddb0aa4b",
+          "bytes": 450718
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/76c785dc766246dc49c8da7b4de30bfd945f84308f573cdf7a92c2aa045e002b.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/76c785dc766246dc49c8da7b4de30bfd945f84308f573cdf7a92c2aa045e002b.wrl",
+          "sha256": "76c785dc766246dc49c8da7b4de30bfd945f84308f573cdf7a92c2aa045e002b",
+          "bytes": 106829
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7754e045470277a21b98a9b6b27d70ab3ff37c2bb09a97cb05ea8f4b3518d4c1.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7754e045470277a21b98a9b6b27d70ab3ff37c2bb09a97cb05ea8f4b3518d4c1.wrl",
+          "sha256": "7754e045470277a21b98a9b6b27d70ab3ff37c2bb09a97cb05ea8f4b3518d4c1",
+          "bytes": 174089
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7beff80751f40bfe5e0800c15c62acf6f813c4c49164c30999b77d88628ca436.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7beff80751f40bfe5e0800c15c62acf6f813c4c49164c30999b77d88628ca436.wrl",
+          "sha256": "7beff80751f40bfe5e0800c15c62acf6f813c4c49164c30999b77d88628ca436",
+          "bytes": 474358
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/827b6058e132499b65bb401fe804bf9d7ec583da630a3b46092077ffc2e5801c.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/827b6058e132499b65bb401fe804bf9d7ec583da630a3b46092077ffc2e5801c.wrl",
+          "sha256": "827b6058e132499b65bb401fe804bf9d7ec583da630a3b46092077ffc2e5801c",
+          "bytes": 4648
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/87c78dad2551dbc5086dbd470fcadf7aa9c40233c0f5237b05da7e6c8987ec87.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/87c78dad2551dbc5086dbd470fcadf7aa9c40233c0f5237b05da7e6c8987ec87.wrl",
+          "sha256": "87c78dad2551dbc5086dbd470fcadf7aa9c40233c0f5237b05da7e6c8987ec87",
+          "bytes": 49471
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8b1c96c9845d2354f090dd2a58c7e1ed0bd4ddc2fa80f122e17e783ee7335583.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8b1c96c9845d2354f090dd2a58c7e1ed0bd4ddc2fa80f122e17e783ee7335583.wrl",
+          "sha256": "8b1c96c9845d2354f090dd2a58c7e1ed0bd4ddc2fa80f122e17e783ee7335583",
+          "bytes": 51071
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef.step",
+          "sha256": "8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef",
+          "bytes": 1169787
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9162d8ec7c41cb22d341230fae6d6ead90d17abc8bd225d54842ffda47e7525d.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9162d8ec7c41cb22d341230fae6d6ead90d17abc8bd225d54842ffda47e7525d.wrl",
+          "sha256": "9162d8ec7c41cb22d341230fae6d6ead90d17abc8bd225d54842ffda47e7525d",
+          "bytes": 107818
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9565ee695edb06a09ae9a7017485ac54391e0ba9f0cab58609fd185e6351f4ac.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9565ee695edb06a09ae9a7017485ac54391e0ba9f0cab58609fd185e6351f4ac.step",
+          "sha256": "9565ee695edb06a09ae9a7017485ac54391e0ba9f0cab58609fd185e6351f4ac",
+          "bytes": 7970179
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/a2a4155ad65e5b1a656de62659b9cfef22c1025bc0d6793fe4ceb0c425c19541.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/a2a4155ad65e5b1a656de62659b9cfef22c1025bc0d6793fe4ceb0c425c19541.wrl",
+          "sha256": "a2a4155ad65e5b1a656de62659b9cfef22c1025bc0d6793fe4ceb0c425c19541",
+          "bytes": 116466
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b083e67ce4d06850a2c3835a6366f4012b2def64f8f2781636381ebcaa33e9a0.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b083e67ce4d06850a2c3835a6366f4012b2def64f8f2781636381ebcaa33e9a0.step",
+          "sha256": "b083e67ce4d06850a2c3835a6366f4012b2def64f8f2781636381ebcaa33e9a0",
+          "bytes": 3046649
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b1289a7a16c778f0823cbea85cc6d545888b991a15d0a3cf377f7009c4403097.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b1289a7a16c778f0823cbea85cc6d545888b991a15d0a3cf377f7009c4403097.wrl",
+          "sha256": "b1289a7a16c778f0823cbea85cc6d545888b991a15d0a3cf377f7009c4403097",
+          "bytes": 104172
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b6568d2a2eafd483c7f6c14a0ea2e2b3f3a948912241c39a1409ed50cb01059d.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b6568d2a2eafd483c7f6c14a0ea2e2b3f3a948912241c39a1409ed50cb01059d.wrl",
+          "sha256": "b6568d2a2eafd483c7f6c14a0ea2e2b3f3a948912241c39a1409ed50cb01059d",
+          "bytes": 98244
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b768fd9bb8857026da8462a055a11176c0c3fc254645fe922ada70b90003f2e5.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b768fd9bb8857026da8462a055a11176c0c3fc254645fe922ada70b90003f2e5.wrl",
+          "sha256": "b768fd9bb8857026da8462a055a11176c0c3fc254645fe922ada70b90003f2e5",
+          "bytes": 381374
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b81c1b1857cc3cd43faee8d87eee9704462f4756b49b16d348129919866c2eb0.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b81c1b1857cc3cd43faee8d87eee9704462f4756b49b16d348129919866c2eb0.step",
+          "sha256": "b81c1b1857cc3cd43faee8d87eee9704462f4756b49b16d348129919866c2eb0",
+          "bytes": 554397
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c20fe21cf8899edf2ae6dbf00c69756b1e5f5bc4029d9c1ce67875d905c8a199.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c20fe21cf8899edf2ae6dbf00c69756b1e5f5bc4029d9c1ce67875d905c8a199.wrl",
+          "sha256": "c20fe21cf8899edf2ae6dbf00c69756b1e5f5bc4029d9c1ce67875d905c8a199",
+          "bytes": 58054
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c9fb297150271ae090c1736884ce91de2d9c9f0d781bd4aa5c249b95032283f2.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c9fb297150271ae090c1736884ce91de2d9c9f0d781bd4aa5c249b95032283f2.wrl",
+          "sha256": "c9fb297150271ae090c1736884ce91de2d9c9f0d781bd4aa5c249b95032283f2",
+          "bytes": 100059
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/ced0a40a718711c2ae16482a4f46a9eb6a0a33ecf9f9d8c2e18c160fa951a420.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/ced0a40a718711c2ae16482a4f46a9eb6a0a33ecf9f9d8c2e18c160fa951a420.wrl",
+          "sha256": "ced0a40a718711c2ae16482a4f46a9eb6a0a33ecf9f9d8c2e18c160fa951a420",
+          "bytes": 22033
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/d23f0ef02ea78cbff1a48f4ff1e76efb460a3e8d3f20c032ffdc430eed0dc3b0.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/d23f0ef02ea78cbff1a48f4ff1e76efb460a3e8d3f20c032ffdc430eed0dc3b0.wrl",
+          "sha256": "d23f0ef02ea78cbff1a48f4ff1e76efb460a3e8d3f20c032ffdc430eed0dc3b0",
+          "bytes": 110657
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e1fddae7a40bc29fd9c3c62303cfbb2aac09ea817177bfaa99ac6e5245ab6148.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e1fddae7a40bc29fd9c3c62303cfbb2aac09ea817177bfaa99ac6e5245ab6148.wrl",
+          "sha256": "e1fddae7a40bc29fd9c3c62303cfbb2aac09ea817177bfaa99ac6e5245ab6148",
+          "bytes": 49609
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e52f17888a8c6c2cb8d56dccf25e2ed131a12a241311657622543c405e42826c.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e52f17888a8c6c2cb8d56dccf25e2ed131a12a241311657622543c405e42826c.step",
+          "sha256": "e52f17888a8c6c2cb8d56dccf25e2ed131a12a241311657622543c405e42826c",
+          "bytes": 1046656
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f5a4de10d30f0c643214e246fb0073346e26923b02a53a9d83205a0a72959788.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f5a4de10d30f0c643214e246fb0073346e26923b02a53a9d83205a0a72959788.wrl",
+          "sha256": "f5a4de10d30f0c643214e246fb0073346e26923b02a53a9d83205a0a72959788",
+          "bytes": 5775
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f9918dd3888f5ca8b9c906b8cb10b9d8e335f6855513b3e235a18123ae353a78.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f9918dd3888f5ca8b9c906b8cb10b9d8e335f6855513b3e235a18123ae353a78.step",
+          "sha256": "f9918dd3888f5ca8b9c906b8cb10b9d8e335f6855513b3e235a18123ae353a78",
+          "bytes": 1468144
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087.wrl",
+          "sha256": "faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087",
+          "bytes": 5223
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/fca291e382f90494fd45a407b2ea553e27307fb6525b00d1b47fc4a249fb3b8b.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/fca291e382f90494fd45a407b2ea553e27307fb6525b00d1b47fc4a249fb3b8b.wrl",
+          "sha256": "fca291e382f90494fd45a407b2ea553e27307fb6525b00d1b47fc4a249fb3b8b",
+          "bytes": 75966
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/native-boundary.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/native-boundary.json",
+          "sha256": "d97dd2076a56e8e1d3eb4a402389e39664c07e5c673fba9982c650b681f758bd",
+          "bytes": 672
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/physical-contracts.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/physical-contracts.json",
+          "sha256": "0064e36b11bade834c7bfeed865fe626a1b06ba4988406470af5d19b2aef8901",
+          "bytes": 130789
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/requirements.txt": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/requirements.txt",
+          "sha256": "01f583b3846a6a3e15d3951a510415c34cc9085c2d3cbad30a4470dba02ad345",
+          "bytes": 16
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-board-contract.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-board-contract.json",
+          "sha256": "e2d438f89b0fee7ec2f01677d354cc3514bd3423ce1b44696d70b0a4143436f4",
+          "bytes": 16851
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-parts.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-parts.json",
+          "sha256": "91433bef9976bc9c83878710d9d8801cc0c6a298ecf40b5555d4095a8ae078d6",
+          "bytes": 1038772
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/routing-records.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/routing-records.json",
+          "sha256": "5f64750c6c88868deaf3e2d796bdb89fce62b1790c30230e0cac5ed586ae0a51",
+          "bytes": 392573
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/sexpr.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/sexpr.py",
+          "sha256": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+          "bytes": 2120
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/test_faults.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/test_faults.py",
+          "sha256": "29b85b659d0620b844fa3114bae6d3d0b417713639bc4fec12ae03cd95a07344",
+          "bytes": 10724
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/topology.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/topology.py",
+          "sha256": "86e837def3360034e0ea840579fbd4c374382449ce00aa1c6a00b4a297016056",
+          "bytes": 5057
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/validate.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/validate.py",
+          "sha256": "758659fe8f9ff847f13cf87cd84b7576c08678d62a3634eebe51c9ee5e238bb2",
+          "bytes": 8906
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/build_clean_main.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/build_clean_main.py",
+          "sha256": "ce90c88a8d76dc8ea443c0f0c7ad4c450527ccf186a542e736b2f8c0e6e4bdd6",
+          "bytes": 6129
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/generate_schematics.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/generate_schematics.py",
+          "sha256": "3501007d3a545c0af23c180abe87ad1579f58392b91ec6fb8b515ba624696acc",
+          "bytes": 18108
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/kicad_sexpr.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/kicad_sexpr.py",
+          "sha256": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+          "bytes": 2120
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/package_clean_main.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/package_clean_main.py",
+          "sha256": "756e0c67317ebbd668aa5dc9e2fdc1289002731908fdc0b86198183e7a4e711e",
+          "bytes": 12493
+        }
+      },
+      "limits": [
+        "Historical native receipt binds capture only; the separate reviewed manifest pins the wider input closure.",
+        "Only DRC timestamp, finding/item order and verified same-net/layer exact-endpoint straight-segment representatives are normalized. No native topology is inferred.",
+        "All board-level vias are counted conservatively; this does not itself inspect layer exposure or frame contact.",
+        "The full source-bound enclosure checks and physical qualification remain required."
+      ]
+    },
+    "ci_native_artifact": {
+      "passed": true,
+      "verification_mode": "native-artifact",
+      "native_verification": true,
+      "status": "Current native artifact matches independent approved inputs; not a fit or fabrication approval",
+      "native_board_sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+      "native_receipt_sha256": "513e37e608a8dfa1fff02a3d97f1d9cbb89c86434901cb50bc865e137e4c6fa4",
+      "native_drc_sha256": "7d7f3648d2d1c3680f6c1d6bec811f1285c0ea79734d4250689766e2a2c975a2",
+      "native_drc_semantic_sha256": "32384247798430524280004074e9fff880595ae05e5017eea9b4bc3606e73b46",
+      "approved_manifest_sha256": "5d0d5db9aa604e98b155b63de5f7a7887f5edeed3a721dfdebad880aef3ca444",
+      "contract_sha256": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+      "source_capture_sha256": "8e9b62fa83b8f93db20f158db963ba7c1ec61f060fb912db3244ae97749c228a",
+      "source_binding_sha256": "acc69dc1597e436e67a5f6192c29c1a1f43611e3ab60ecbee89b2cb6dbfc213c",
+      "native_inventory": {
+        "footprints": 206,
+        "rear_vias": 120
+      },
+      "copied_inventory": {
+        "footprints": 206,
+        "rear_vias": 120
+      },
+      "repo_input_count": 119,
+      "inputs": {
+        "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/approved-native-inputs.json": {
+          "resolved": "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/approved-native-inputs.json",
+          "sha256": "5d0d5db9aa604e98b155b63de5f7a7887f5edeed3a721dfdebad880aef3ca444",
+          "bytes": 18798
+        },
+        "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/parameters/enclosure-v2.json": {
+          "resolved": "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/parameters/enclosure-v2.json",
+          "sha256": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+          "bytes": 35673
+        },
+        "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/data/physical-board.kicad_pcb": {
+          "resolved": "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/data/physical-board.kicad_pcb",
+          "sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+          "bytes": 1002931
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/ci-39602067230-native/clean-main-native/candidate.kicad_pcb": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/ci-39602067230-native/clean-main-native/candidate.kicad_pcb",
+          "sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+          "bytes": 1002931
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/ci-39602067230-native/clean-main-native/native.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/ci-39602067230-native/clean-main-native/native.json",
+          "sha256": "513e37e608a8dfa1fff02a3d97f1d9cbb89c86434901cb50bc865e137e4c6fa4",
+          "bytes": 807
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/ci-39602067230-native/clean-main-native/candidate.kicad_pro": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/ci-39602067230-native/clean-main-native/candidate.kicad_pro",
+          "sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+          "bytes": 9736
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/ci-39602067230-native/clean-main-native/drc.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/ci-39602067230-native/clean-main-native/drc.json",
+          "sha256": "7d7f3648d2d1c3680f6c1d6bec811f1285c0ea79734d4250689766e2a2c975a2",
+          "bytes": 279461
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/source-binding.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/source-binding.json",
+          "sha256": "acc69dc1597e436e67a5f6192c29c1a1f43611e3ab60ecbee89b2cb6dbfc213c",
+          "bytes": 602048
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/fp-lib-table": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/fp-lib-table",
+          "sha256": "dd8c295782fd2a6f3c0905fd1c462e391a374e8da2df62490fcdb816ad6db82d",
+          "bytes": 3511
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pcb": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pcb",
+          "sha256": "8e9b62fa83b8f93db20f158db963ba7c1ec61f060fb912db3244ae97749c228a",
+          "bytes": 1019278
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pro": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pro",
+          "sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+          "bytes": 9736
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod",
+          "sha256": "60561548bc05514cd55938492ccae68aa630ea1742c8277c95415d483a80981c",
+          "bytes": 3724
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0402WGF3903TCE/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0402WGF3903TCE/R0402.kicad_mod",
+          "sha256": "a87d97a48b46a87c5607d720c523da3c75c4782763bbc8a8a75fd45f926fef15",
+          "bytes": 2830
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod",
+          "sha256": "ead9b5fee69560cdb7b45abfbef2d55d8795d9d3e18804759682db5e44347334",
+          "bytes": 2827
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod",
+          "sha256": "62b25625d068207260c5d5fdc56aaf8c23a773ce23d7a8348e9c859a5c858219",
+          "bytes": 5243
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-connectors/CONN-TH_43045-0600.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-connectors/CONN-TH_43045-0600.kicad_mod",
+          "sha256": "b558e3da5ea25cdccf28f71d8f534150719f582ff997358d61c8d99dddae76c9",
+          "bytes": 5109
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/R0402.kicad_mod",
+          "sha256": "a7946e433b1dafb272428e12acd0f7b25322827b1c4b7afc99803b398b20b02b",
+          "bytes": 3160
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod",
+          "sha256": "021a4c05b152b287bf521a9054ab47d8ecbc6425309ac5698471205da7358eea",
+          "bytes": 4432
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod",
+          "sha256": "6a3af19684f064fa23840df3f1e2123979febd70627379759a2b623125ac5695",
+          "bytes": 3585
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod",
+          "sha256": "9d8e15b394e9bd8d7532283fed898025f2a6d127e3b8860432bc6f4d2a997a54",
+          "bytes": 4107
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/C0402.kicad_mod",
+          "sha256": "e3fbb8607a96f386d49d4cf0fb93dce226fed7ec523e0b4078252606d57e86c1",
+          "bytes": 3723
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/R0402.kicad_mod",
+          "sha256": "fed20f4d92e024fe87887602af29c2227943d1676fb1c8804a1d4ddf1266de45",
+          "bytes": 2832
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/C0402.kicad_mod",
+          "sha256": "2a1fb4d37b39b2e8ff49006646f8b6ab83dd53e88de04e0a077a689f7fb0abf4",
+          "bytes": 4171
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod",
+          "sha256": "533210e8a8c8500ffb9876ae49d5420da016b94c5498321c62c80536f95b1ad7",
+          "bytes": 4663
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP.kicad_mod",
+          "sha256": "ac62f2206fb3d0b4178a577114d08baaca0c1b388e43c17869f7c3cf83c6bd4f",
+          "bytes": 7981
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/QFN-29_L4.0-W4.0-P0.40-TL-BQ25792RQMR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/QFN-29_L4.0-W4.0-P0.40-TL-BQ25792RQMR.kicad_mod",
+          "sha256": "dc233b92e5f3bdd07c4beef6b23b38bf1045fa5b13e7608d1ac7d63fcfe94e23",
+          "bytes": 13093
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/R0402.kicad_mod",
+          "sha256": "b236199ddd99509b1d349a5b43f939a840715be2af5c276e9c334f2f4462d8b6",
+          "bytes": 3344
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod",
+          "sha256": "aa2032cebebcad79a55b8ea668af4d67c819e38c5c8c83e2ac532ad8f4e0b2ce",
+          "bytes": 5450
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/WIRELM-SMD_ESP32-C6-WROOM-1.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/WIRELM-SMD_ESP32-C6-WROOM-1.kicad_mod",
+          "sha256": "e7c48df537193bcdffbab23e60cf19e017e91bdb2c388fe2927e7cfaadc6e747",
+          "bytes": 10437
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-encoder/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-encoder/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "17dbfdf49a2db51c6c1a902f8b19d76c668996ad1f8de5ae3438433edf083c1f",
+          "bytes": 4387
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-SMD_4P-P1.25_53261-0471.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-SMD_4P-P1.25_53261-0471.kicad_mod",
+          "sha256": "48b39aebd98b89764c3d29f055de29fa3c7991c5209c8f04cfc282f38f6ff949",
+          "bytes": 4159
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-TH_532610371.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-TH_532610371.kicad_mod",
+          "sha256": "e2553b4ef0e9180d9cf631f3e3fb2d9e32a87bf290a722062edfb89d1b74101d",
+          "bytes": 3970
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-pack-features/WirePad18.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-pack-features/WirePad18.kicad_mod",
+          "sha256": "6197d4165079dbc9327970025e7c6c744721154bf95adf6a69e3bf163116c815",
+          "bytes": 562
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0402.kicad_mod",
+          "sha256": "2fdecb51c5f486b0bcef444ea020adb0d102b4f36ac0c3432f82d8b97a95adea",
+          "bytes": 3979
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0805.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0805.kicad_mod",
+          "sha256": "00b1429cbf359e5dfc754554de8bb96d13148bb77302d752546dc5c3e31106a1",
+          "bytes": 3933
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C1206.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C1206.kicad_mod",
+          "sha256": "3cf29792a02f122d0c31419c56e8f4e9d62010cead8089ff3b2907d72be2bb72",
+          "bytes": 3721
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod",
+          "sha256": "6280137b3fd345866bc5cb4d1b30a7cc9b6c238e871554337d0b710fd5de29ff",
+          "bytes": 3169
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/R0402.kicad_mod",
+          "sha256": "446335f0841b439964ade9805cd9aae5f48babfeea24598507567b1fb72a0f1d",
+          "bytes": 3151
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod",
+          "sha256": "b57fa7e0c2e3626d8786b2c1bdbc050883cbf07b0d9b63dcb209ba10e215a6b4",
+          "bytes": 3399
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0402.kicad_mod",
+          "sha256": "9801136f7a155396d6c723169bb71083d48a3178a1682ce79e2c63b8369cd470",
+          "bytes": 3151
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0603.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0603.kicad_mod",
+          "sha256": "b53b38e21edfd76d5e8d6b17b708dcaa0a5f69a14f2cfd175e3af22234df1925",
+          "bytes": 3150
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R2512.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R2512.kicad_mod",
+          "sha256": "5bc8d25103671a2761a1a6ca7136962de11f2c5bf61d9ed691fe163060bcdcb9",
+          "bytes": 2917
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "68808ade8be3418ded30c39f9ec69fb730c8f8874ef54a0b617a1130f36e0250",
+          "bytes": 4630
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod",
+          "sha256": "75400b69268d239f3bcce698bd74af9e3e31f4e3fe1238ad0e6f4502d4b5873a",
+          "bytes": 3529
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "37caf6f741d1c4c17cd835c82ad1920f813b9cc9dd8753631b2517646e8b484d",
+          "bytes": 3527
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/IND-SMD_L4.4-W4.2.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/IND-SMD_L4.4-W4.2.kicad_mod",
+          "sha256": "0184befc1c784d1bb74066ad611c43a2956a1819e6f55686531e69cf99da5591",
+          "bytes": 2950
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/R0402.kicad_mod",
+          "sha256": "1bd9fc1ef9f57b08a91c9d1559696f8d836ae5c601d2daddb1d27a025d765b89",
+          "bytes": 3161
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/C0402.kicad_mod",
+          "sha256": "df0292e39585d7efb0c249a6b61ecd5fda52d0c89e3b5a955aa3b036e5a61b2a",
+          "bytes": 4152
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod",
+          "sha256": "f3058066abe6cf71742595086abb1ae616a8efd69802e1fa2db2c4e9fa120e57",
+          "bytes": 3750
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "ff3e4eb9e11d432090bb2ffa14aecf15bbc0aa15216833ed775a8b8a2be0e9e4",
+          "bytes": 3874
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod",
+          "sha256": "c934e9d7d78a3bcc060e52115cfddd885e9e2af5b36a2ead37562c393f72183a",
+          "bytes": 44959
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/R0402.kicad_mod",
+          "sha256": "79a6bbd64fff65e0cc2aec376ca8cc6853f5f5bee3dd44455d8205b5f6b68dd0",
+          "bytes": 2645
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TPS26600_PWP16.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TPS26600_PWP16.kicad_mod",
+          "sha256": "522abcf1579c4a4db6e5d20e39f24fdb4df5a0e542ffec77456a5bf1d764962c",
+          "bytes": 2611
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TVS1800_DRV6.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TVS1800_DRV6.kicad_mod",
+          "sha256": "10b694e3eb10f56b03a85a45da849bbf8e01bef2253621b9a80e2414874a64e9",
+          "bytes": 1415
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/C1206.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/C1206.kicad_mod",
+          "sha256": "83bba0a62fae2faa7b6cc065264dba1d87c21fa6cbc807d0d0bcc6876ca71805",
+          "bytes": 3953
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod",
+          "sha256": "b046422d829b06bd85c97da74a967b4f2ec2b02cc43d5782abb61c601c17d8df",
+          "bytes": 2987
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/HRO_TYPE_C_31_M_12.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/HRO_TYPE_C_31_M_12.kicad_mod",
+          "sha256": "d606f46be93e54339a6c835683e5b53174640cbe87805f6fff6feec794e7dc3b",
+          "bytes": 4183
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/QFN-24_L4.0-W4.0-P0.50-BL-EP2.8.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/QFN-24_L4.0-W4.0-P0.50-BL-EP2.8.kicad_mod",
+          "sha256": "2b8a4f8c6430bf6fa2717ddc137dc4a1735ead61964ac2d548369af090807f97",
+          "bytes": 7483
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/R0402.kicad_mod",
+          "sha256": "837c81c4d9e586b0f1747d61555e2ea988ce7ae7e46cb2b4441a547664379fc4",
+          "bytes": 3115
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod",
+          "sha256": "b0ea744aac564206a99733d75e12cc0554118c15535d80014b385df89f0a1971",
+          "bytes": 3177
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod",
+          "sha256": "f960dbee317f4710e5e8c8a179add66d3e58399d68b2e07106c3369897e61cd4",
+          "bytes": 4119
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod",
+          "sha256": "d66fa2300fc0f8222eafd3a22127b27379d4b2c3c6ec142b1c03e930a64aa741",
+          "bytes": 23698
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/README.md": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/README.md",
+          "sha256": "97a4124d3542f26f0957e14e4e897f86cb13b380ac5a1e4307cca059d9c04219",
+          "bytes": 3567
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/check.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/check.py",
+          "sha256": "619ea963bbe2020e7a825c4c66c571326ae25fe8241563b171c614f0d569237c",
+          "bytes": 4754
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/contracts.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/contracts.py",
+          "sha256": "3eaf296625598e2e345f88f16a91d73af0bc5ac50bbcbeb337598c4c7d79c657",
+          "bytes": 2722
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/emit.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/emit.py",
+          "sha256": "b0dd25b7511c4cf2218c9ecfc163e77c5463d0308caff8929b5baac219b81fd7",
+          "bytes": 7385
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/geometry.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/geometry.py",
+          "sha256": "ea6943a0967e40e45f2c87dff6d375948a46c512f79044951b105d29f0795f84",
+          "bytes": 7332
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/integration.md": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/integration.md",
+          "sha256": "a70ac264263b868dc9fffe51075224dadad985231a2470136c1adc3822460b58",
+          "bytes": 3372
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/library.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/library.py",
+          "sha256": "8f2c73c47299cabca13694ec812400545c23fa1b71b186e9a1650702a51fee40",
+          "bytes": 2106
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/08db93688a81bed96142aacc72c6db4bea82f031937f0f20a5b30dffd51b760c.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/08db93688a81bed96142aacc72c6db4bea82f031937f0f20a5b30dffd51b760c.wrl",
+          "sha256": "08db93688a81bed96142aacc72c6db4bea82f031937f0f20a5b30dffd51b760c",
+          "bytes": 30557
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8.step",
+          "sha256": "0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8",
+          "bytes": 1481973
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6.step",
+          "sha256": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+          "bytes": 1068243
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/13d1675e0cd24f8cea2f1d3be0bd5f50b35b42feddf2fea298460446a4a3159f.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/13d1675e0cd24f8cea2f1d3be0bd5f50b35b42feddf2fea298460446a4a3159f.wrl",
+          "sha256": "13d1675e0cd24f8cea2f1d3be0bd5f50b35b42feddf2fea298460446a4a3159f",
+          "bytes": 37468
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade.wrl",
+          "sha256": "14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade",
+          "bytes": 19722
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2a125409502d8eb68f2e196ab1c28b180e0918830445364f93a45d9461b4daad.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2a125409502d8eb68f2e196ab1c28b180e0918830445364f93a45d9461b4daad.wrl",
+          "sha256": "2a125409502d8eb68f2e196ab1c28b180e0918830445364f93a45d9461b4daad",
+          "bytes": 81041
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2ebe9116516a14db60063f4aac0f764324cc8eab3225ae8ddbffcf71a79b00e8.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2ebe9116516a14db60063f4aac0f764324cc8eab3225ae8ddbffcf71a79b00e8.wrl",
+          "sha256": "2ebe9116516a14db60063f4aac0f764324cc8eab3225ae8ddbffcf71a79b00e8",
+          "bytes": 32153
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a.wrl",
+          "sha256": "31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a",
+          "bytes": 59211
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/479aaa5046a89f7d43225d67cedaaffe63efd95c23e9971e17aace9b7d16e641.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/479aaa5046a89f7d43225d67cedaaffe63efd95c23e9971e17aace9b7d16e641.wrl",
+          "sha256": "479aaa5046a89f7d43225d67cedaaffe63efd95c23e9971e17aace9b7d16e641",
+          "bytes": 54809
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4811c21de544287b3785792a877722a7b00639ed5c237e814a6049eda3f82be1.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4811c21de544287b3785792a877722a7b00639ed5c237e814a6049eda3f82be1.wrl",
+          "sha256": "4811c21de544287b3785792a877722a7b00639ed5c237e814a6049eda3f82be1",
+          "bytes": 112664
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4ee6b7de3949b5ee54bb28ad929cbdd0b0be224e245553d69048071a3ca546b1.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4ee6b7de3949b5ee54bb28ad929cbdd0b0be224e245553d69048071a3ca546b1.wrl",
+          "sha256": "4ee6b7de3949b5ee54bb28ad929cbdd0b0be224e245553d69048071a3ca546b1",
+          "bytes": 22186
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/50e930f89d1bf7444db611765788fb7a86f1f1de06b69591148b59cfab8f586a.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/50e930f89d1bf7444db611765788fb7a86f1f1de06b69591148b59cfab8f586a.wrl",
+          "sha256": "50e930f89d1bf7444db611765788fb7a86f1f1de06b69591148b59cfab8f586a",
+          "bytes": 124877
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/55293e2e32da23224ef00e936ba154b5ef9accbd8e87f45636e31649d7b4b168.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/55293e2e32da23224ef00e936ba154b5ef9accbd8e87f45636e31649d7b4b168.wrl",
+          "sha256": "55293e2e32da23224ef00e936ba154b5ef9accbd8e87f45636e31649d7b4b168",
+          "bytes": 22084
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/609990b9a6d5b3f00eead495d0d38e6cec5c4b15da278930e5e69cb9d9e8b485.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/609990b9a6d5b3f00eead495d0d38e6cec5c4b15da278930e5e69cb9d9e8b485.wrl",
+          "sha256": "609990b9a6d5b3f00eead495d0d38e6cec5c4b15da278930e5e69cb9d9e8b485",
+          "bytes": 4613
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/654790babf9f068b83632cf535692d8c4240b6d332f09b0365a176152eac8e09.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/654790babf9f068b83632cf535692d8c4240b6d332f09b0365a176152eac8e09.wrl",
+          "sha256": "654790babf9f068b83632cf535692d8c4240b6d332f09b0365a176152eac8e09",
+          "bytes": 112191
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/69167ea321bd21daaf2124fb41df8b650fdf991e191851fbb44ec71c8ee1543e.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/69167ea321bd21daaf2124fb41df8b650fdf991e191851fbb44ec71c8ee1543e.wrl",
+          "sha256": "69167ea321bd21daaf2124fb41df8b650fdf991e191851fbb44ec71c8ee1543e",
+          "bytes": 379976
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/6d0af3fdee819c602d1b3906e3031015573ebcb85f3a357833e5def01e2ebe32.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/6d0af3fdee819c602d1b3906e3031015573ebcb85f3a357833e5def01e2ebe32.wrl",
+          "sha256": "6d0af3fdee819c602d1b3906e3031015573ebcb85f3a357833e5def01e2ebe32",
+          "bytes": 288994
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7023139da8e0528b1cd05db53344f9f563fe34c447e10fb4db9b06fdddb0aa4b.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7023139da8e0528b1cd05db53344f9f563fe34c447e10fb4db9b06fdddb0aa4b.wrl",
+          "sha256": "7023139da8e0528b1cd05db53344f9f563fe34c447e10fb4db9b06fdddb0aa4b",
+          "bytes": 450718
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/76c785dc766246dc49c8da7b4de30bfd945f84308f573cdf7a92c2aa045e002b.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/76c785dc766246dc49c8da7b4de30bfd945f84308f573cdf7a92c2aa045e002b.wrl",
+          "sha256": "76c785dc766246dc49c8da7b4de30bfd945f84308f573cdf7a92c2aa045e002b",
+          "bytes": 106829
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7754e045470277a21b98a9b6b27d70ab3ff37c2bb09a97cb05ea8f4b3518d4c1.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7754e045470277a21b98a9b6b27d70ab3ff37c2bb09a97cb05ea8f4b3518d4c1.wrl",
+          "sha256": "7754e045470277a21b98a9b6b27d70ab3ff37c2bb09a97cb05ea8f4b3518d4c1",
+          "bytes": 174089
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7beff80751f40bfe5e0800c15c62acf6f813c4c49164c30999b77d88628ca436.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7beff80751f40bfe5e0800c15c62acf6f813c4c49164c30999b77d88628ca436.wrl",
+          "sha256": "7beff80751f40bfe5e0800c15c62acf6f813c4c49164c30999b77d88628ca436",
+          "bytes": 474358
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/827b6058e132499b65bb401fe804bf9d7ec583da630a3b46092077ffc2e5801c.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/827b6058e132499b65bb401fe804bf9d7ec583da630a3b46092077ffc2e5801c.wrl",
+          "sha256": "827b6058e132499b65bb401fe804bf9d7ec583da630a3b46092077ffc2e5801c",
+          "bytes": 4648
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/87c78dad2551dbc5086dbd470fcadf7aa9c40233c0f5237b05da7e6c8987ec87.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/87c78dad2551dbc5086dbd470fcadf7aa9c40233c0f5237b05da7e6c8987ec87.wrl",
+          "sha256": "87c78dad2551dbc5086dbd470fcadf7aa9c40233c0f5237b05da7e6c8987ec87",
+          "bytes": 49471
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8b1c96c9845d2354f090dd2a58c7e1ed0bd4ddc2fa80f122e17e783ee7335583.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8b1c96c9845d2354f090dd2a58c7e1ed0bd4ddc2fa80f122e17e783ee7335583.wrl",
+          "sha256": "8b1c96c9845d2354f090dd2a58c7e1ed0bd4ddc2fa80f122e17e783ee7335583",
+          "bytes": 51071
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef.step",
+          "sha256": "8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef",
+          "bytes": 1169787
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9162d8ec7c41cb22d341230fae6d6ead90d17abc8bd225d54842ffda47e7525d.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9162d8ec7c41cb22d341230fae6d6ead90d17abc8bd225d54842ffda47e7525d.wrl",
+          "sha256": "9162d8ec7c41cb22d341230fae6d6ead90d17abc8bd225d54842ffda47e7525d",
+          "bytes": 107818
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9565ee695edb06a09ae9a7017485ac54391e0ba9f0cab58609fd185e6351f4ac.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9565ee695edb06a09ae9a7017485ac54391e0ba9f0cab58609fd185e6351f4ac.step",
+          "sha256": "9565ee695edb06a09ae9a7017485ac54391e0ba9f0cab58609fd185e6351f4ac",
+          "bytes": 7970179
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/a2a4155ad65e5b1a656de62659b9cfef22c1025bc0d6793fe4ceb0c425c19541.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/a2a4155ad65e5b1a656de62659b9cfef22c1025bc0d6793fe4ceb0c425c19541.wrl",
+          "sha256": "a2a4155ad65e5b1a656de62659b9cfef22c1025bc0d6793fe4ceb0c425c19541",
+          "bytes": 116466
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b083e67ce4d06850a2c3835a6366f4012b2def64f8f2781636381ebcaa33e9a0.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b083e67ce4d06850a2c3835a6366f4012b2def64f8f2781636381ebcaa33e9a0.step",
+          "sha256": "b083e67ce4d06850a2c3835a6366f4012b2def64f8f2781636381ebcaa33e9a0",
+          "bytes": 3046649
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b1289a7a16c778f0823cbea85cc6d545888b991a15d0a3cf377f7009c4403097.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b1289a7a16c778f0823cbea85cc6d545888b991a15d0a3cf377f7009c4403097.wrl",
+          "sha256": "b1289a7a16c778f0823cbea85cc6d545888b991a15d0a3cf377f7009c4403097",
+          "bytes": 104172
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b6568d2a2eafd483c7f6c14a0ea2e2b3f3a948912241c39a1409ed50cb01059d.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b6568d2a2eafd483c7f6c14a0ea2e2b3f3a948912241c39a1409ed50cb01059d.wrl",
+          "sha256": "b6568d2a2eafd483c7f6c14a0ea2e2b3f3a948912241c39a1409ed50cb01059d",
+          "bytes": 98244
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b768fd9bb8857026da8462a055a11176c0c3fc254645fe922ada70b90003f2e5.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b768fd9bb8857026da8462a055a11176c0c3fc254645fe922ada70b90003f2e5.wrl",
+          "sha256": "b768fd9bb8857026da8462a055a11176c0c3fc254645fe922ada70b90003f2e5",
+          "bytes": 381374
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b81c1b1857cc3cd43faee8d87eee9704462f4756b49b16d348129919866c2eb0.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b81c1b1857cc3cd43faee8d87eee9704462f4756b49b16d348129919866c2eb0.step",
+          "sha256": "b81c1b1857cc3cd43faee8d87eee9704462f4756b49b16d348129919866c2eb0",
+          "bytes": 554397
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c20fe21cf8899edf2ae6dbf00c69756b1e5f5bc4029d9c1ce67875d905c8a199.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c20fe21cf8899edf2ae6dbf00c69756b1e5f5bc4029d9c1ce67875d905c8a199.wrl",
+          "sha256": "c20fe21cf8899edf2ae6dbf00c69756b1e5f5bc4029d9c1ce67875d905c8a199",
+          "bytes": 58054
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c9fb297150271ae090c1736884ce91de2d9c9f0d781bd4aa5c249b95032283f2.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c9fb297150271ae090c1736884ce91de2d9c9f0d781bd4aa5c249b95032283f2.wrl",
+          "sha256": "c9fb297150271ae090c1736884ce91de2d9c9f0d781bd4aa5c249b95032283f2",
+          "bytes": 100059
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/ced0a40a718711c2ae16482a4f46a9eb6a0a33ecf9f9d8c2e18c160fa951a420.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/ced0a40a718711c2ae16482a4f46a9eb6a0a33ecf9f9d8c2e18c160fa951a420.wrl",
+          "sha256": "ced0a40a718711c2ae16482a4f46a9eb6a0a33ecf9f9d8c2e18c160fa951a420",
+          "bytes": 22033
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/d23f0ef02ea78cbff1a48f4ff1e76efb460a3e8d3f20c032ffdc430eed0dc3b0.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/d23f0ef02ea78cbff1a48f4ff1e76efb460a3e8d3f20c032ffdc430eed0dc3b0.wrl",
+          "sha256": "d23f0ef02ea78cbff1a48f4ff1e76efb460a3e8d3f20c032ffdc430eed0dc3b0",
+          "bytes": 110657
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e1fddae7a40bc29fd9c3c62303cfbb2aac09ea817177bfaa99ac6e5245ab6148.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e1fddae7a40bc29fd9c3c62303cfbb2aac09ea817177bfaa99ac6e5245ab6148.wrl",
+          "sha256": "e1fddae7a40bc29fd9c3c62303cfbb2aac09ea817177bfaa99ac6e5245ab6148",
+          "bytes": 49609
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e52f17888a8c6c2cb8d56dccf25e2ed131a12a241311657622543c405e42826c.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e52f17888a8c6c2cb8d56dccf25e2ed131a12a241311657622543c405e42826c.step",
+          "sha256": "e52f17888a8c6c2cb8d56dccf25e2ed131a12a241311657622543c405e42826c",
+          "bytes": 1046656
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f5a4de10d30f0c643214e246fb0073346e26923b02a53a9d83205a0a72959788.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f5a4de10d30f0c643214e246fb0073346e26923b02a53a9d83205a0a72959788.wrl",
+          "sha256": "f5a4de10d30f0c643214e246fb0073346e26923b02a53a9d83205a0a72959788",
+          "bytes": 5775
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f9918dd3888f5ca8b9c906b8cb10b9d8e335f6855513b3e235a18123ae353a78.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f9918dd3888f5ca8b9c906b8cb10b9d8e335f6855513b3e235a18123ae353a78.step",
+          "sha256": "f9918dd3888f5ca8b9c906b8cb10b9d8e335f6855513b3e235a18123ae353a78",
+          "bytes": 1468144
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087.wrl",
+          "sha256": "faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087",
+          "bytes": 5223
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/fca291e382f90494fd45a407b2ea553e27307fb6525b00d1b47fc4a249fb3b8b.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/fca291e382f90494fd45a407b2ea553e27307fb6525b00d1b47fc4a249fb3b8b.wrl",
+          "sha256": "fca291e382f90494fd45a407b2ea553e27307fb6525b00d1b47fc4a249fb3b8b",
+          "bytes": 75966
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/native-boundary.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/native-boundary.json",
+          "sha256": "d97dd2076a56e8e1d3eb4a402389e39664c07e5c673fba9982c650b681f758bd",
+          "bytes": 672
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/physical-contracts.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/physical-contracts.json",
+          "sha256": "0064e36b11bade834c7bfeed865fe626a1b06ba4988406470af5d19b2aef8901",
+          "bytes": 130789
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/requirements.txt": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/requirements.txt",
+          "sha256": "01f583b3846a6a3e15d3951a510415c34cc9085c2d3cbad30a4470dba02ad345",
+          "bytes": 16
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-board-contract.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-board-contract.json",
+          "sha256": "e2d438f89b0fee7ec2f01677d354cc3514bd3423ce1b44696d70b0a4143436f4",
+          "bytes": 16851
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-parts.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-parts.json",
+          "sha256": "91433bef9976bc9c83878710d9d8801cc0c6a298ecf40b5555d4095a8ae078d6",
+          "bytes": 1038772
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/routing-records.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/routing-records.json",
+          "sha256": "5f64750c6c88868deaf3e2d796bdb89fce62b1790c30230e0cac5ed586ae0a51",
+          "bytes": 392573
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/sexpr.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/sexpr.py",
+          "sha256": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+          "bytes": 2120
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/test_faults.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/test_faults.py",
+          "sha256": "29b85b659d0620b844fa3114bae6d3d0b417713639bc4fec12ae03cd95a07344",
+          "bytes": 10724
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/topology.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/topology.py",
+          "sha256": "86e837def3360034e0ea840579fbd4c374382449ce00aa1c6a00b4a297016056",
+          "bytes": 5057
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/validate.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/validate.py",
+          "sha256": "758659fe8f9ff847f13cf87cd84b7576c08678d62a3634eebe51c9ee5e238bb2",
+          "bytes": 8906
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/build_clean_main.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/build_clean_main.py",
+          "sha256": "ce90c88a8d76dc8ea443c0f0c7ad4c450527ccf186a542e736b2f8c0e6e4bdd6",
+          "bytes": 6129
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/generate_schematics.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/generate_schematics.py",
+          "sha256": "3501007d3a545c0af23c180abe87ad1579f58392b91ec6fb8b515ba624696acc",
+          "bytes": 18108
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/kicad_sexpr.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/kicad_sexpr.py",
+          "sha256": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+          "bytes": 2120
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/package_clean_main.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/package_clean_main.py",
+          "sha256": "756e0c67317ebbd668aa5dc9e2fdc1289002731908fdc0b86198183e7a4e711e",
+          "bytes": 12493
+        }
+      },
+      "limits": [
+        "Historical native receipt binds capture only; the separate reviewed manifest pins the wider input closure.",
+        "Only DRC timestamp, finding/item order and verified same-net/layer exact-endpoint straight-segment representatives are normalized. No native topology is inferred.",
+        "All board-level vias are counted conservatively; this does not itself inspect layer exposure or frame contact.",
+        "The full source-bound enclosure checks and physical qualification remain required."
+      ]
+    },
+    "preview_guard": {
+      "passed": true,
+      "verification_mode": "source-only",
+      "native_verification": false,
+      "status": "Approved current source and copied board agree; no current native verification performed",
+      "native_board_sha256": null,
+      "native_receipt_sha256": null,
+      "native_drc_sha256": null,
+      "native_drc_semantic_sha256": null,
+      "approved_manifest_sha256": "5d0d5db9aa604e98b155b63de5f7a7887f5edeed3a721dfdebad880aef3ca444",
+      "contract_sha256": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+      "source_capture_sha256": "8e9b62fa83b8f93db20f158db963ba7c1ec61f060fb912db3244ae97749c228a",
+      "source_binding_sha256": "acc69dc1597e436e67a5f6192c29c1a1f43611e3ab60ecbee89b2cb6dbfc213c",
+      "native_inventory": null,
+      "copied_inventory": {
+        "footprints": 206,
+        "rear_vias": 120
+      },
+      "repo_input_count": 119,
+      "inputs": {
+        "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/approved-native-inputs.json": {
+          "resolved": "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/approved-native-inputs.json",
+          "sha256": "5d0d5db9aa604e98b155b63de5f7a7887f5edeed3a721dfdebad880aef3ca444",
+          "bytes": 18798
+        },
+        "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/parameters/enclosure-v2.json": {
+          "resolved": "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/parameters/enclosure-v2.json",
+          "sha256": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+          "bytes": 35673
+        },
+        "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/data/physical-board.kicad_pcb": {
+          "resolved": "/private/var/folders/1d/vw9hk87s6h1b1d3z_mh2mj7c0000gn/T/enclosure-binding-real-ojt6mj0v/data/physical-board.kicad_pcb",
+          "sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+          "bytes": 1002931
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/source-binding.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/source-binding.json",
+          "sha256": "acc69dc1597e436e67a5f6192c29c1a1f43611e3ab60ecbee89b2cb6dbfc213c",
+          "bytes": 602048
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/fp-lib-table": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/fp-lib-table",
+          "sha256": "dd8c295782fd2a6f3c0905fd1c462e391a374e8da2df62490fcdb816ad6db82d",
+          "bytes": 3511
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pcb": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pcb",
+          "sha256": "8e9b62fa83b8f93db20f158db963ba7c1ec61f060fb912db3244ae97749c228a",
+          "bytes": 1019278
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pro": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/layouts/blind-main/main-test/main-test.kicad_pro",
+          "sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+          "bytes": 9736
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod",
+          "sha256": "60561548bc05514cd55938492ccae68aa630ea1742c8277c95415d483a80981c",
+          "bytes": 3724
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0402WGF3903TCE/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0402WGF3903TCE/R0402.kicad_mod",
+          "sha256": "a87d97a48b46a87c5607d720c523da3c75c4782763bbc8a8a75fd45f926fef15",
+          "bytes": 2830
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod",
+          "sha256": "ead9b5fee69560cdb7b45abfbef2d55d8795d9d3e18804759682db5e44347334",
+          "bytes": 2827
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-carrier/PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod",
+          "sha256": "62b25625d068207260c5d5fdc56aaf8c23a773ce23d7a8348e9c859a5c858219",
+          "bytes": 5243
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-connectors/CONN-TH_43045-0600.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-connectors/CONN-TH_43045-0600.kicad_mod",
+          "sha256": "b558e3da5ea25cdccf28f71d8f534150719f582ff997358d61c8d99dddae76c9",
+          "bytes": 5109
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/R0402.kicad_mod",
+          "sha256": "a7946e433b1dafb272428e12acd0f7b25322827b1c4b7afc99803b398b20b02b",
+          "bytes": 3160
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod",
+          "sha256": "021a4c05b152b287bf521a9054ab47d8ecbc6425309ac5698471205da7358eea",
+          "bytes": 4432
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod",
+          "sha256": "6a3af19684f064fa23840df3f1e2123979febd70627379759a2b623125ac5695",
+          "bytes": 3585
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-control-io/SW-SMD_4P-L3.5-W3.0-P1.6-LS4.6.kicad_mod",
+          "sha256": "9d8e15b394e9bd8d7532283fed898025f2a6d127e3b8860432bc6f4d2a997a54",
+          "bytes": 4107
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/C0402.kicad_mod",
+          "sha256": "e3fbb8607a96f386d49d4cf0fb93dce226fed7ec523e0b4078252606d57e86c1",
+          "bytes": 3723
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-controller-common/R0402.kicad_mod",
+          "sha256": "fed20f4d92e024fe87887602af29c2227943d1676fb1c8804a1d4ddf1266de45",
+          "bytes": 2832
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/C0402.kicad_mod",
+          "sha256": "2a1fb4d37b39b2e8ff49006646f8b6ab83dd53e88de04e0a077a689f7fb0abf4",
+          "bytes": 4171
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/CAP-SMD_BD6.3-L6.6-W6.6-LS7.3-FD.kicad_mod",
+          "sha256": "533210e8a8c8500ffb9876ae49d5420da016b94c5498321c62c80536f95b1ad7",
+          "bytes": 4663
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP.kicad_mod",
+          "sha256": "ac62f2206fb3d0b4178a577114d08baaca0c1b388e43c17869f7c3cf83c6bd4f",
+          "bytes": 7981
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/QFN-29_L4.0-W4.0-P0.40-TL-BQ25792RQMR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/QFN-29_L4.0-W4.0-P0.40-TL-BQ25792RQMR.kicad_mod",
+          "sha256": "dc233b92e5f3bdd07c4beef6b23b38bf1045fa5b13e7608d1ac7d63fcfe94e23",
+          "bytes": 13093
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/R0402.kicad_mod",
+          "sha256": "b236199ddd99509b1d349a5b43f939a840715be2af5c276e9c334f2f4462d8b6",
+          "bytes": 3344
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/VQFN-HR-9_L2.0-W1.5-P0.50-TL.kicad_mod",
+          "sha256": "aa2032cebebcad79a55b8ea668af4d67c819e38c5c8c83e2ac532ad8f4e0b2ce",
+          "bytes": 5450
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/WIRELM-SMD_ESP32-C6-WROOM-1.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-core/WIRELM-SMD_ESP32-C6-WROOM-1.kicad_mod",
+          "sha256": "e7c48df537193bcdffbab23e60cf19e017e91bdb2c388fe2927e7cfaadc6e747",
+          "bytes": 10437
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-encoder/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-encoder/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "17dbfdf49a2db51c6c1a902f8b19d76c668996ad1f8de5ae3438433edf083c1f",
+          "bytes": 4387
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-SMD_4P-P1.25_53261-0471.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-SMD_4P-P1.25_53261-0471.kicad_mod",
+          "sha256": "48b39aebd98b89764c3d29f055de29fa3c7991c5209c8f04cfc282f38f6ff949",
+          "bytes": 4159
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-TH_532610371.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-harness/CONN-TH_532610371.kicad_mod",
+          "sha256": "e2553b4ef0e9180d9cf631f3e3fb2d9e32a87bf290a722062edfb89d1b74101d",
+          "bytes": 3970
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-pack-features/WirePad18.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-pack-features/WirePad18.kicad_mod",
+          "sha256": "6197d4165079dbc9327970025e7c6c744721154bf95adf6a69e3bf163116c815",
+          "bytes": 562
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0402.kicad_mod",
+          "sha256": "2fdecb51c5f486b0bcef444ea020adb0d102b4f36ac0c3432f82d8b97a95adea",
+          "bytes": 3979
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0805.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C0805.kicad_mod",
+          "sha256": "00b1429cbf359e5dfc754554de8bb96d13148bb77302d752546dc5c3e31106a1",
+          "bytes": 3933
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C1206.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/C1206.kicad_mod",
+          "sha256": "3cf29792a02f122d0c31419c56e8f4e9d62010cead8089ff3b2907d72be2bb72",
+          "bytes": 3721
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/IND-SMD_L7.2-W6.6_GPSR07X0.kicad_mod",
+          "sha256": "6280137b3fd345866bc5cb4d1b30a7cc9b6c238e871554337d0b710fd5de29ff",
+          "bytes": 3169
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/R0402.kicad_mod",
+          "sha256": "446335f0841b439964ade9805cd9aae5f48babfeea24598507567b1fb72a0f1d",
+          "bytes": 3151
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod",
+          "sha256": "b57fa7e0c2e3626d8786b2c1bdbc050883cbf07b0d9b63dcb209ba10e215a6b4",
+          "bytes": 3399
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0402.kicad_mod",
+          "sha256": "9801136f7a155396d6c723169bb71083d48a3178a1682ce79e2c63b8369cd470",
+          "bytes": 3151
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0603.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R0603.kicad_mod",
+          "sha256": "b53b38e21edfd76d5e8d6b17b708dcaa0a5f69a14f2cfd175e3af22234df1925",
+          "bytes": 3150
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R2512.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/R2512.kicad_mod",
+          "sha256": "5bc8d25103671a2761a1a6ca7136962de11f2c5bf61d9ed691fe163060bcdcb9",
+          "bytes": 2917
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "68808ade8be3418ded30c39f9ec69fb730c8f8874ef54a0b617a1130f36e0250",
+          "bytes": 4630
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/SOT-5X3-6_W1.6-L1.2-P0.50-LS1.6-BL.kicad_mod",
+          "sha256": "75400b69268d239f3bcce698bd74af9e3e31f4e3fe1238ad0e6f4502d4b5873a",
+          "bytes": 3529
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regen/TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "37caf6f741d1c4c17cd835c82ad1920f813b9cc9dd8753631b2517646e8b484d",
+          "bytes": 3527
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/IND-SMD_L4.4-W4.2.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/IND-SMD_L4.4-W4.2.kicad_mod",
+          "sha256": "0184befc1c784d1bb74066ad611c43a2956a1819e6f55686531e69cf99da5591",
+          "bytes": 2950
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-regulator/R0402.kicad_mod",
+          "sha256": "1bd9fc1ef9f57b08a91c9d1559696f8d836ae5c601d2daddb1d27a025d765b89",
+          "bytes": 3161
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/C0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/C0402.kicad_mod",
+          "sha256": "df0292e39585d7efb0c249a6b61ecd5fda52d0c89e3b5a955aa3b036e5a61b2a",
+          "bytes": 4152
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod",
+          "sha256": "f3058066abe6cf71742595086abb1ae616a8efd69802e1fa2db2c4e9fa120e57",
+          "bytes": 3750
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod",
+          "sha256": "ff3e4eb9e11d432090bb2ffa14aecf15bbc0aa15216833ed775a8b8a2be0e9e4",
+          "bytes": 3874
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod",
+          "sha256": "c934e9d7d78a3bcc060e52115cfddd885e9e2af5b36a2ead37562c393f72183a",
+          "bytes": 44959
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/R0402.kicad_mod",
+          "sha256": "79a6bbd64fff65e0cc2aec376ca8cc6853f5f5bee3dd44455d8205b5f6b68dd0",
+          "bytes": 2645
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TPS26600_PWP16.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TPS26600_PWP16.kicad_mod",
+          "sha256": "522abcf1579c4a4db6e5d20e39f24fdb4df5a0e542ffec77456a5bf1d764962c",
+          "bytes": 2611
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TVS1800_DRV6.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb-protection/TVS1800_DRV6.kicad_mod",
+          "sha256": "10b694e3eb10f56b03a85a45da849bbf8e01bef2253621b9a80e2414874a64e9",
+          "bytes": 1415
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/C1206.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/C1206.kicad_mod",
+          "sha256": "83bba0a62fae2faa7b6cc065264dba1d87c21fa6cbc807d0d0bcc6876ca71805",
+          "bytes": 3953
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/DFN1610-2_L1.6-W1.0-P1.05-RD.kicad_mod",
+          "sha256": "b046422d829b06bd85c97da74a967b4f2ec2b02cc43d5782abb61c601c17d8df",
+          "bytes": 2987
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/HRO_TYPE_C_31_M_12.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/HRO_TYPE_C_31_M_12.kicad_mod",
+          "sha256": "d606f46be93e54339a6c835683e5b53174640cbe87805f6fff6feec794e7dc3b",
+          "bytes": 4183
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/QFN-24_L4.0-W4.0-P0.50-BL-EP2.8.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/QFN-24_L4.0-W4.0-P0.50-BL-EP2.8.kicad_mod",
+          "sha256": "2b8a4f8c6430bf6fa2717ddc137dc4a1735ead61964ac2d548369af090807f97",
+          "bytes": 7483
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/R0402.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/R0402.kicad_mod",
+          "sha256": "837c81c4d9e586b0f1747d61555e2ea988ce7ae7e46cb2b4441a547664379fc4",
+          "bytes": 3115
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod",
+          "sha256": "b0ea744aac564206a99733d75e12cc0554118c15535d80014b385df89f0a1971",
+          "bytes": 3177
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod",
+          "sha256": "f960dbee317f4710e5e8c8a179add66d3e58399d68b2e07106c3369897e61cd4",
+          "bytes": 4119
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod",
+          "sha256": "d66fa2300fc0f8222eafd3a22127b27379d4b2c3c6ec142b1c03e930a64aa741",
+          "bytes": 23698
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/README.md": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/README.md",
+          "sha256": "97a4124d3542f26f0957e14e4e897f86cb13b380ac5a1e4307cca059d9c04219",
+          "bytes": 3567
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/check.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/check.py",
+          "sha256": "619ea963bbe2020e7a825c4c66c571326ae25fe8241563b171c614f0d569237c",
+          "bytes": 4754
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/contracts.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/contracts.py",
+          "sha256": "3eaf296625598e2e345f88f16a91d73af0bc5ac50bbcbeb337598c4c7d79c657",
+          "bytes": 2722
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/emit.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/emit.py",
+          "sha256": "b0dd25b7511c4cf2218c9ecfc163e77c5463d0308caff8929b5baac219b81fd7",
+          "bytes": 7385
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/geometry.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/geometry.py",
+          "sha256": "ea6943a0967e40e45f2c87dff6d375948a46c512f79044951b105d29f0795f84",
+          "bytes": 7332
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/integration.md": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/integration.md",
+          "sha256": "a70ac264263b868dc9fffe51075224dadad985231a2470136c1adc3822460b58",
+          "bytes": 3372
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/library.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/library.py",
+          "sha256": "8f2c73c47299cabca13694ec812400545c23fa1b71b186e9a1650702a51fee40",
+          "bytes": 2106
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/08db93688a81bed96142aacc72c6db4bea82f031937f0f20a5b30dffd51b760c.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/08db93688a81bed96142aacc72c6db4bea82f031937f0f20a5b30dffd51b760c.wrl",
+          "sha256": "08db93688a81bed96142aacc72c6db4bea82f031937f0f20a5b30dffd51b760c",
+          "bytes": 30557
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8.step",
+          "sha256": "0ca13e031cb175d8dc5c0393959392c0e3213eb099cc9b61fe4118feffcebad8",
+          "bytes": 1481973
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6.step",
+          "sha256": "134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6",
+          "bytes": 1068243
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/13d1675e0cd24f8cea2f1d3be0bd5f50b35b42feddf2fea298460446a4a3159f.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/13d1675e0cd24f8cea2f1d3be0bd5f50b35b42feddf2fea298460446a4a3159f.wrl",
+          "sha256": "13d1675e0cd24f8cea2f1d3be0bd5f50b35b42feddf2fea298460446a4a3159f",
+          "bytes": 37468
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade.wrl",
+          "sha256": "14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade",
+          "bytes": 19722
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2a125409502d8eb68f2e196ab1c28b180e0918830445364f93a45d9461b4daad.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2a125409502d8eb68f2e196ab1c28b180e0918830445364f93a45d9461b4daad.wrl",
+          "sha256": "2a125409502d8eb68f2e196ab1c28b180e0918830445364f93a45d9461b4daad",
+          "bytes": 81041
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2ebe9116516a14db60063f4aac0f764324cc8eab3225ae8ddbffcf71a79b00e8.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/2ebe9116516a14db60063f4aac0f764324cc8eab3225ae8ddbffcf71a79b00e8.wrl",
+          "sha256": "2ebe9116516a14db60063f4aac0f764324cc8eab3225ae8ddbffcf71a79b00e8",
+          "bytes": 32153
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a.wrl",
+          "sha256": "31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a",
+          "bytes": 59211
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/479aaa5046a89f7d43225d67cedaaffe63efd95c23e9971e17aace9b7d16e641.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/479aaa5046a89f7d43225d67cedaaffe63efd95c23e9971e17aace9b7d16e641.wrl",
+          "sha256": "479aaa5046a89f7d43225d67cedaaffe63efd95c23e9971e17aace9b7d16e641",
+          "bytes": 54809
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4811c21de544287b3785792a877722a7b00639ed5c237e814a6049eda3f82be1.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4811c21de544287b3785792a877722a7b00639ed5c237e814a6049eda3f82be1.wrl",
+          "sha256": "4811c21de544287b3785792a877722a7b00639ed5c237e814a6049eda3f82be1",
+          "bytes": 112664
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4ee6b7de3949b5ee54bb28ad929cbdd0b0be224e245553d69048071a3ca546b1.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/4ee6b7de3949b5ee54bb28ad929cbdd0b0be224e245553d69048071a3ca546b1.wrl",
+          "sha256": "4ee6b7de3949b5ee54bb28ad929cbdd0b0be224e245553d69048071a3ca546b1",
+          "bytes": 22186
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/50e930f89d1bf7444db611765788fb7a86f1f1de06b69591148b59cfab8f586a.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/50e930f89d1bf7444db611765788fb7a86f1f1de06b69591148b59cfab8f586a.wrl",
+          "sha256": "50e930f89d1bf7444db611765788fb7a86f1f1de06b69591148b59cfab8f586a",
+          "bytes": 124877
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/55293e2e32da23224ef00e936ba154b5ef9accbd8e87f45636e31649d7b4b168.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/55293e2e32da23224ef00e936ba154b5ef9accbd8e87f45636e31649d7b4b168.wrl",
+          "sha256": "55293e2e32da23224ef00e936ba154b5ef9accbd8e87f45636e31649d7b4b168",
+          "bytes": 22084
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/609990b9a6d5b3f00eead495d0d38e6cec5c4b15da278930e5e69cb9d9e8b485.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/609990b9a6d5b3f00eead495d0d38e6cec5c4b15da278930e5e69cb9d9e8b485.wrl",
+          "sha256": "609990b9a6d5b3f00eead495d0d38e6cec5c4b15da278930e5e69cb9d9e8b485",
+          "bytes": 4613
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/654790babf9f068b83632cf535692d8c4240b6d332f09b0365a176152eac8e09.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/654790babf9f068b83632cf535692d8c4240b6d332f09b0365a176152eac8e09.wrl",
+          "sha256": "654790babf9f068b83632cf535692d8c4240b6d332f09b0365a176152eac8e09",
+          "bytes": 112191
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/69167ea321bd21daaf2124fb41df8b650fdf991e191851fbb44ec71c8ee1543e.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/69167ea321bd21daaf2124fb41df8b650fdf991e191851fbb44ec71c8ee1543e.wrl",
+          "sha256": "69167ea321bd21daaf2124fb41df8b650fdf991e191851fbb44ec71c8ee1543e",
+          "bytes": 379976
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/6d0af3fdee819c602d1b3906e3031015573ebcb85f3a357833e5def01e2ebe32.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/6d0af3fdee819c602d1b3906e3031015573ebcb85f3a357833e5def01e2ebe32.wrl",
+          "sha256": "6d0af3fdee819c602d1b3906e3031015573ebcb85f3a357833e5def01e2ebe32",
+          "bytes": 288994
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7023139da8e0528b1cd05db53344f9f563fe34c447e10fb4db9b06fdddb0aa4b.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7023139da8e0528b1cd05db53344f9f563fe34c447e10fb4db9b06fdddb0aa4b.wrl",
+          "sha256": "7023139da8e0528b1cd05db53344f9f563fe34c447e10fb4db9b06fdddb0aa4b",
+          "bytes": 450718
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/76c785dc766246dc49c8da7b4de30bfd945f84308f573cdf7a92c2aa045e002b.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/76c785dc766246dc49c8da7b4de30bfd945f84308f573cdf7a92c2aa045e002b.wrl",
+          "sha256": "76c785dc766246dc49c8da7b4de30bfd945f84308f573cdf7a92c2aa045e002b",
+          "bytes": 106829
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7754e045470277a21b98a9b6b27d70ab3ff37c2bb09a97cb05ea8f4b3518d4c1.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7754e045470277a21b98a9b6b27d70ab3ff37c2bb09a97cb05ea8f4b3518d4c1.wrl",
+          "sha256": "7754e045470277a21b98a9b6b27d70ab3ff37c2bb09a97cb05ea8f4b3518d4c1",
+          "bytes": 174089
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7beff80751f40bfe5e0800c15c62acf6f813c4c49164c30999b77d88628ca436.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/7beff80751f40bfe5e0800c15c62acf6f813c4c49164c30999b77d88628ca436.wrl",
+          "sha256": "7beff80751f40bfe5e0800c15c62acf6f813c4c49164c30999b77d88628ca436",
+          "bytes": 474358
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/827b6058e132499b65bb401fe804bf9d7ec583da630a3b46092077ffc2e5801c.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/827b6058e132499b65bb401fe804bf9d7ec583da630a3b46092077ffc2e5801c.wrl",
+          "sha256": "827b6058e132499b65bb401fe804bf9d7ec583da630a3b46092077ffc2e5801c",
+          "bytes": 4648
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/87c78dad2551dbc5086dbd470fcadf7aa9c40233c0f5237b05da7e6c8987ec87.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/87c78dad2551dbc5086dbd470fcadf7aa9c40233c0f5237b05da7e6c8987ec87.wrl",
+          "sha256": "87c78dad2551dbc5086dbd470fcadf7aa9c40233c0f5237b05da7e6c8987ec87",
+          "bytes": 49471
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8b1c96c9845d2354f090dd2a58c7e1ed0bd4ddc2fa80f122e17e783ee7335583.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8b1c96c9845d2354f090dd2a58c7e1ed0bd4ddc2fa80f122e17e783ee7335583.wrl",
+          "sha256": "8b1c96c9845d2354f090dd2a58c7e1ed0bd4ddc2fa80f122e17e783ee7335583",
+          "bytes": 51071
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef.step",
+          "sha256": "8c99630f2bb86b653b57c467d723383db2a61971d491692b1eb2a5768df02cef",
+          "bytes": 1169787
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9162d8ec7c41cb22d341230fae6d6ead90d17abc8bd225d54842ffda47e7525d.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9162d8ec7c41cb22d341230fae6d6ead90d17abc8bd225d54842ffda47e7525d.wrl",
+          "sha256": "9162d8ec7c41cb22d341230fae6d6ead90d17abc8bd225d54842ffda47e7525d",
+          "bytes": 107818
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9565ee695edb06a09ae9a7017485ac54391e0ba9f0cab58609fd185e6351f4ac.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/9565ee695edb06a09ae9a7017485ac54391e0ba9f0cab58609fd185e6351f4ac.step",
+          "sha256": "9565ee695edb06a09ae9a7017485ac54391e0ba9f0cab58609fd185e6351f4ac",
+          "bytes": 7970179
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/a2a4155ad65e5b1a656de62659b9cfef22c1025bc0d6793fe4ceb0c425c19541.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/a2a4155ad65e5b1a656de62659b9cfef22c1025bc0d6793fe4ceb0c425c19541.wrl",
+          "sha256": "a2a4155ad65e5b1a656de62659b9cfef22c1025bc0d6793fe4ceb0c425c19541",
+          "bytes": 116466
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b083e67ce4d06850a2c3835a6366f4012b2def64f8f2781636381ebcaa33e9a0.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b083e67ce4d06850a2c3835a6366f4012b2def64f8f2781636381ebcaa33e9a0.step",
+          "sha256": "b083e67ce4d06850a2c3835a6366f4012b2def64f8f2781636381ebcaa33e9a0",
+          "bytes": 3046649
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b1289a7a16c778f0823cbea85cc6d545888b991a15d0a3cf377f7009c4403097.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b1289a7a16c778f0823cbea85cc6d545888b991a15d0a3cf377f7009c4403097.wrl",
+          "sha256": "b1289a7a16c778f0823cbea85cc6d545888b991a15d0a3cf377f7009c4403097",
+          "bytes": 104172
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b6568d2a2eafd483c7f6c14a0ea2e2b3f3a948912241c39a1409ed50cb01059d.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b6568d2a2eafd483c7f6c14a0ea2e2b3f3a948912241c39a1409ed50cb01059d.wrl",
+          "sha256": "b6568d2a2eafd483c7f6c14a0ea2e2b3f3a948912241c39a1409ed50cb01059d",
+          "bytes": 98244
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b768fd9bb8857026da8462a055a11176c0c3fc254645fe922ada70b90003f2e5.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b768fd9bb8857026da8462a055a11176c0c3fc254645fe922ada70b90003f2e5.wrl",
+          "sha256": "b768fd9bb8857026da8462a055a11176c0c3fc254645fe922ada70b90003f2e5",
+          "bytes": 381374
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b81c1b1857cc3cd43faee8d87eee9704462f4756b49b16d348129919866c2eb0.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/b81c1b1857cc3cd43faee8d87eee9704462f4756b49b16d348129919866c2eb0.step",
+          "sha256": "b81c1b1857cc3cd43faee8d87eee9704462f4756b49b16d348129919866c2eb0",
+          "bytes": 554397
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c20fe21cf8899edf2ae6dbf00c69756b1e5f5bc4029d9c1ce67875d905c8a199.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c20fe21cf8899edf2ae6dbf00c69756b1e5f5bc4029d9c1ce67875d905c8a199.wrl",
+          "sha256": "c20fe21cf8899edf2ae6dbf00c69756b1e5f5bc4029d9c1ce67875d905c8a199",
+          "bytes": 58054
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c9fb297150271ae090c1736884ce91de2d9c9f0d781bd4aa5c249b95032283f2.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/c9fb297150271ae090c1736884ce91de2d9c9f0d781bd4aa5c249b95032283f2.wrl",
+          "sha256": "c9fb297150271ae090c1736884ce91de2d9c9f0d781bd4aa5c249b95032283f2",
+          "bytes": 100059
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/ced0a40a718711c2ae16482a4f46a9eb6a0a33ecf9f9d8c2e18c160fa951a420.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/ced0a40a718711c2ae16482a4f46a9eb6a0a33ecf9f9d8c2e18c160fa951a420.wrl",
+          "sha256": "ced0a40a718711c2ae16482a4f46a9eb6a0a33ecf9f9d8c2e18c160fa951a420",
+          "bytes": 22033
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/d23f0ef02ea78cbff1a48f4ff1e76efb460a3e8d3f20c032ffdc430eed0dc3b0.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/d23f0ef02ea78cbff1a48f4ff1e76efb460a3e8d3f20c032ffdc430eed0dc3b0.wrl",
+          "sha256": "d23f0ef02ea78cbff1a48f4ff1e76efb460a3e8d3f20c032ffdc430eed0dc3b0",
+          "bytes": 110657
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e1fddae7a40bc29fd9c3c62303cfbb2aac09ea817177bfaa99ac6e5245ab6148.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e1fddae7a40bc29fd9c3c62303cfbb2aac09ea817177bfaa99ac6e5245ab6148.wrl",
+          "sha256": "e1fddae7a40bc29fd9c3c62303cfbb2aac09ea817177bfaa99ac6e5245ab6148",
+          "bytes": 49609
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e52f17888a8c6c2cb8d56dccf25e2ed131a12a241311657622543c405e42826c.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/e52f17888a8c6c2cb8d56dccf25e2ed131a12a241311657622543c405e42826c.step",
+          "sha256": "e52f17888a8c6c2cb8d56dccf25e2ed131a12a241311657622543c405e42826c",
+          "bytes": 1046656
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f5a4de10d30f0c643214e246fb0073346e26923b02a53a9d83205a0a72959788.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f5a4de10d30f0c643214e246fb0073346e26923b02a53a9d83205a0a72959788.wrl",
+          "sha256": "f5a4de10d30f0c643214e246fb0073346e26923b02a53a9d83205a0a72959788",
+          "bytes": 5775
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f9918dd3888f5ca8b9c906b8cb10b9d8e335f6855513b3e235a18123ae353a78.step": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/f9918dd3888f5ca8b9c906b8cb10b9d8e335f6855513b3e235a18123ae353a78.step",
+          "sha256": "f9918dd3888f5ca8b9c906b8cb10b9d8e335f6855513b3e235a18123ae353a78",
+          "bytes": 1468144
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087.wrl",
+          "sha256": "faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087",
+          "bytes": 5223
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/fca291e382f90494fd45a407b2ea553e27307fb6525b00d1b47fc4a249fb3b8b.wrl": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/models/fca291e382f90494fd45a407b2ea553e27307fb6525b00d1b47fc4a249fb3b8b.wrl",
+          "sha256": "fca291e382f90494fd45a407b2ea553e27307fb6525b00d1b47fc4a249fb3b8b",
+          "bytes": 75966
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/native-boundary.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/native-boundary.json",
+          "sha256": "d97dd2076a56e8e1d3eb4a402389e39664c07e5c673fba9982c650b681f758bd",
+          "bytes": 672
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/physical-contracts.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/physical-contracts.json",
+          "sha256": "0064e36b11bade834c7bfeed865fe626a1b06ba4988406470af5d19b2aef8901",
+          "bytes": 130789
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/requirements.txt": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/requirements.txt",
+          "sha256": "01f583b3846a6a3e15d3951a510415c34cc9085c2d3cbad30a4470dba02ad345",
+          "bytes": 16
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-board-contract.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-board-contract.json",
+          "sha256": "e2d438f89b0fee7ec2f01677d354cc3514bd3423ce1b44696d70b0a4143436f4",
+          "bytes": 16851
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-parts.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/reviewed-parts.json",
+          "sha256": "91433bef9976bc9c83878710d9d8801cc0c6a298ecf40b5555d4095a8ae078d6",
+          "bytes": 1038772
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/routing-records.json": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/routing-records.json",
+          "sha256": "5f64750c6c88868deaf3e2d796bdb89fce62b1790c30230e0cac5ed586ae0a51",
+          "bytes": 392573
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/sexpr.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/sexpr.py",
+          "sha256": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+          "bytes": 2120
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/test_faults.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/test_faults.py",
+          "sha256": "29b85b659d0620b844fa3114bae6d3d0b417713639bc4fec12ae03cd95a07344",
+          "bytes": 10724
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/topology.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/topology.py",
+          "sha256": "86e837def3360034e0ea840579fbd4c374382449ce00aa1c6a00b4a297016056",
+          "bytes": 5057
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/validate.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/hw/routing/clean-main/validate.py",
+          "sha256": "758659fe8f9ff847f13cf87cd84b7576c08678d62a3634eebe51c9ee5e238bb2",
+          "bytes": 8906
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/build_clean_main.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/build_clean_main.py",
+          "sha256": "ce90c88a8d76dc8ea443c0f0c7ad4c450527ccf186a542e736b2f8c0e6e4bdd6",
+          "bytes": 6129
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/generate_schematics.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/generate_schematics.py",
+          "sha256": "3501007d3a545c0af23c180abe87ad1579f58392b91ec6fb8b515ba624696acc",
+          "bytes": 18108
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/kicad_sexpr.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/kicad_sexpr.py",
+          "sha256": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+          "bytes": 2120
+        },
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/package_clean_main.py": {
+          "resolved": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/tools/package_clean_main.py",
+          "sha256": "756e0c67317ebbd668aa5dc9e2fdc1289002731908fdc0b86198183e7a4e711e",
+          "bytes": 12493
+        }
+      },
+      "limits": [
+        "Historical native receipt binds capture only; the separate reviewed manifest pins the wider input closure.",
+        "Only DRC timestamp, finding/item order and verified same-net/layer exact-endpoint straight-segment representatives are normalized. No native topology is inferred.",
+        "All board-level vias are counted conservatively; this does not itself inspect layer exposure or frame contact.",
+        "The full source-bound enclosure checks and physical qualification remain required."
+      ]
+    },
+    "original_package_inputs": {
+      "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/parameters/enclosure-v2.json": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+      "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/data/physical-board.kicad_pcb": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+      "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-integration-tools-v2/approved-native-inputs.json": "5d0d5db9aa604e98b155b63de5f7a7887f5edeed3a721dfdebad880aef3ca444"
+    },
+    "note": "Frozen package was read only; checks ran against exact temporary copies. Input paths under the deleted temporary package are evidence identities, not required runtime dependencies."
+  },
+  "elapsed_seconds": 1.781,
+  "failures": [],
+  "code_sha256": {
+    "test_enclosure_board_binding.py": "1a0230b5366afac7385cd6c632e4d80e270bd177c839a3649f01b5b07429dbf5",
+    "check_enclosure_board_binding.py": "7a12af783332281faaa21f2a8f595a5a4875255c18e3c8c4d244e77a8ebba4c5"
+  },
+  "limits": [
+    "Pure file checks only; no native process, CAD export or fit verification ran.",
+    "Synthetic reapproval isolates validation branches; it never approves or edits real package inputs."
+  ]
+}

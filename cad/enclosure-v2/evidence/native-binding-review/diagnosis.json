@@ -1,0 +1,280 @@
+{
+  "passed": true,
+  "artifacts": {
+    "local": {
+      "directory": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/repo/work/clean-main-metadata-native",
+      "files": {
+        "candidate.kicad_pcb": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+        "candidate.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+        "native.json": "cc224b517de06a3193ac0ca5c0328a12aa5f278373a297c43654d6e85e41e629",
+        "drc.json": "18489150af4274ef4b221b359f478e1e1c4d0eea1d7545f0aa7c5b52583dd386",
+        "physical-check.json": "4445f9dfbda7ebae67e406552001f9fa8cca4fdc23fc5f40cc22114c53356f4f",
+        "faults.json": "3dead4cfbb27bc409adcafe7d1a18a2a620641c03e55b6837c7a806770cbd430"
+      },
+      "date": "2026-10-21T12:28:30",
+      "receipt": {
+        "status": "Checked partial route; not a fabrication release",
+        "kicad_version": "10.0.7-10.0.7~ubuntu24.04.1",
+        "source_sha256": "8e9b62fa83b8f93db20f158db963ba7c1ec61f060fb912db3244ae97749c228a",
+        "board_sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+        "project_sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+        "project_sha256_after_native_save": "18c6c2e5f57f90d3347aa9482c108112c838a48a37256845bb8fac14d8b1c825",
+        "drc_sha256": "18489150af4274ef4b221b359f478e1e1c4d0eea1d7545f0aa7c5b52583dd386",
+        "retained_violations": {
+          "footprint_type_mismatch": 3
+        },
+        "remaining_connections": 352,
+        "library_variants": 55,
+        "source_inputs_unchanged": true,
+        "physical_checks": "passed on saved filled board",
+        "fault_checks": "passed"
+      },
+      "drc_semantic_sha256": "32384247798430524280004074e9fff880595ae05e5017eea9b4bc3606e73b46"
+    },
+    "ci": {
+      "directory": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/source-reconciliation/ci-39602067230-native/clean-main-native",
+      "files": {
+        "candidate.kicad_pcb": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+        "candidate.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+        "native.json": "513e37e608a8dfa1fff02a3d97f1d9cbb89c86434901cb50bc865e137e4c6fa4",
+        "drc.json": "7d7f3648d2d1c3680f6c1d6bec811f1285c0ea79734d4250689766e2a2c975a2",
+        "physical-check.json": "4445f9dfbda7ebae67e406552001f9fa8cca4fdc23fc5f40cc22114c53356f4f",
+        "faults.json": "47741c665805cddef110911a4658921ed89dc097c180a52cbd6271cfab52165e"
+      },
+      "date": "2026-10-21T12:49:57",
+      "receipt": {
+        "status": "Checked partial route; not a fabrication release",
+        "kicad_version": "10.0.7-10.0.7~ubuntu24.04.1",
+        "source_sha256": "8e9b62fa83b8f93db20f158db963ba7c1ec61f060fb912db3244ae97749c228a",
+        "board_sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+        "project_sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+        "project_sha256_after_native_save": "18c6c2e5f57f90d3347aa9482c108112c838a48a37256845bb8fac14d8b1c825",
+        "drc_sha256": "7d7f3648d2d1c3680f6c1d6bec811f1285c0ea79734d4250689766e2a2c975a2",
+        "retained_violations": {
+          "footprint_type_mismatch": 3
+        },
+        "remaining_connections": 352,
+        "library_variants": 55,
+        "source_inputs_unchanged": true,
+        "physical_checks": "passed on saved filled board",
+        "fault_checks": "passed"
+      },
+      "drc_semantic_sha256": "32384247798430524280004074e9fff880595ae05e5017eea9b4bc3606e73b46"
+    }
+  },
+  "receipt_changed_fields": [
+    "drc_sha256"
+  ],
+  "drc_changed_top_fields": [
+    "date",
+    "unconnected_items"
+  ],
+  "reversed_unchanged_endpoint_pairs": 19,
+  "changed_representatives": {
+    "local": [
+      {
+        "finding": {
+          "description": "Missing connection between items",
+          "items": [
+            {
+              "description": "Pad 2 [usb_dp] of R23 on F.Cu",
+              "pos": {
+                "x": 103.07,
+                "y": 112.5
+              },
+              "uuid": "cf259e72-264b-5178-a3d9-910e3a297ba0"
+            },
+            {
+              "description": "Track [usb_dp] on In2.Cu, length 6.0000 mm",
+              "pos": {
+                "x": 130.25,
+                "y": 165.75
+              },
+              "uuid": "4e36a2bc-c75c-5c1b-99c2-207f718476bf"
+            }
+          ],
+          "severity": "error",
+          "type": "unconnected_items"
+        },
+        "track_chain_proofs": {
+          "4e36a2bc-c75c-5c1b-99c2-207f718476bf": {
+            "chain": [
+              "0c24ada7-abda-553a-8060-12595e4de97b",
+              "1de5c873-27f3-5f54-ab23-fc32e793edc5",
+              "4e36a2bc-c75c-5c1b-99c2-207f718476bf",
+              "a9217489-df0a-56dd-8e20-c4db904a00ec",
+              "c7e46206-8c2c-5c33-9f95-849b0363ba78",
+              "cae97a87-bbda-515b-a4e4-6ccd9a20a985",
+              "d19b5fc9-def6-5c12-803b-b51c7aef0abd"
+            ],
+            "net": "usb_dp",
+            "layer": "In2.Cu",
+            "start": [
+              "130.25",
+              "165.75"
+            ],
+            "end": [
+              "136.25",
+              "165.75"
+            ]
+          }
+        }
+      },
+      {
+        "finding": {
+          "description": "Missing connection between items",
+          "items": [
+            {
+              "description": "Pad 2 [usb_dm] of R21 on F.Cu",
+              "pos": {
+                "x": 103.07,
+                "y": 111.0
+              },
+              "uuid": "fb9a7fd4-eafe-54ae-a37e-8924d4c1d293"
+            },
+            {
+              "description": "Track [usb_dm] on In2.Cu, length 3.5000 mm",
+              "pos": {
+                "x": 130.75,
+                "y": 166.25
+              },
+              "uuid": "6960fd31-fed0-5d17-980b-10ce0d02b880"
+            }
+          ],
+          "severity": "error",
+          "type": "unconnected_items"
+        },
+        "track_chain_proofs": {
+          "6960fd31-fed0-5d17-980b-10ce0d02b880": {
+            "chain": [
+              "189744fa-1793-5cc0-bfd7-1dccf19c59ce",
+              "20486816-3993-5168-ba58-5f58a9d281f1",
+              "376cc8f5-22c6-5d89-afaf-0c2f3d3105c0",
+              "40c6222b-1311-5e9c-bfc1-e719f80e13df",
+              "56817b58-fe35-5e9c-9230-e730725a4107",
+              "6960fd31-fed0-5d17-980b-10ce0d02b880",
+              "6ad5da10-9340-585a-ba5c-fc1581a598d1",
+              "aa2bc91e-cb25-5f4a-9e72-3e40b3b12fca",
+              "b56b7875-f87a-528d-83f6-0bf4c32ad203",
+              "cef6c1f4-9a1e-5c90-bf31-b264746262a8"
+            ],
+            "net": "usb_dm",
+            "layer": "In2.Cu",
+            "start": [
+              "130.75",
+              "166.25"
+            ],
+            "end": [
+              "134.25",
+              "166.25"
+            ]
+          }
+        }
+      }
+    ],
+    "ci": [
+      {
+        "finding": {
+          "description": "Missing connection between items",
+          "items": [
+            {
+              "description": "Pad 2 [usb_dm] of R21 on F.Cu",
+              "pos": {
+                "x": 103.07,
+                "y": 111.0
+              },
+              "uuid": "fb9a7fd4-eafe-54ae-a37e-8924d4c1d293"
+            },
+            {
+              "description": "Track [usb_dm] on In2.Cu, length 1.5000 mm",
+              "pos": {
+                "x": 130.75,
+                "y": 167.75
+              },
+              "uuid": "189744fa-1793-5cc0-bfd7-1dccf19c59ce"
+            }
+          ],
+          "severity": "error",
+          "type": "unconnected_items"
+        },
+        "track_chain_proofs": {
+          "189744fa-1793-5cc0-bfd7-1dccf19c59ce": {
+            "chain": [
+              "189744fa-1793-5cc0-bfd7-1dccf19c59ce",
+              "20486816-3993-5168-ba58-5f58a9d281f1",
+              "376cc8f5-22c6-5d89-afaf-0c2f3d3105c0",
+              "40c6222b-1311-5e9c-bfc1-e719f80e13df",
+              "56817b58-fe35-5e9c-9230-e730725a4107",
+              "6960fd31-fed0-5d17-980b-10ce0d02b880",
+              "6ad5da10-9340-585a-ba5c-fc1581a598d1",
+              "aa2bc91e-cb25-5f4a-9e72-3e40b3b12fca",
+              "b56b7875-f87a-528d-83f6-0bf4c32ad203",
+              "cef6c1f4-9a1e-5c90-bf31-b264746262a8"
+            ],
+            "net": "usb_dm",
+            "layer": "In2.Cu",
+            "start": [
+              "130.75",
+              "167.75"
+            ],
+            "end": [
+              "130.75",
+              "166.25"
+            ]
+          }
+        }
+      },
+      {
+        "finding": {
+          "description": "Missing connection between items",
+          "items": [
+            {
+              "description": "Pad 2 [usb_dp] of R23 on F.Cu",
+              "pos": {
+                "x": 103.07,
+                "y": 112.5
+              },
+              "uuid": "cf259e72-264b-5178-a3d9-910e3a297ba0"
+            },
+            {
+              "description": "Track [usb_dp] on In2.Cu, length 0.7071 mm",
+              "pos": {
+                "x": 129.75,
+                "y": 166.25
+              },
+              "uuid": "cae97a87-bbda-515b-a4e4-6ccd9a20a985"
+            }
+          ],
+          "severity": "error",
+          "type": "unconnected_items"
+        },
+        "track_chain_proofs": {
+          "cae97a87-bbda-515b-a4e4-6ccd9a20a985": {
+            "chain": [
+              "0c24ada7-abda-553a-8060-12595e4de97b",
+              "1de5c873-27f3-5f54-ab23-fc32e793edc5",
+              "4e36a2bc-c75c-5c1b-99c2-207f718476bf",
+              "a9217489-df0a-56dd-8e20-c4db904a00ec",
+              "c7e46206-8c2c-5c33-9f95-849b0363ba78",
+              "cae97a87-bbda-515b-a4e4-6ccd9a20a985",
+              "d19b5fc9-def6-5c12-803b-b51c7aef0abd"
+            ],
+            "net": "usb_dp",
+            "layer": "In2.Cu",
+            "start": [
+              "129.75",
+              "166.25"
+            ],
+            "end": [
+              "130.25",
+              "165.75"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "policy": "Drop only valid date; sort finding/item order; replace validated track representatives only with exact same-net/layer shared-endpoint straight-segment chains. Preserve all other fields. Require actual DRC/project integrity and every non-DRC receipt field.",
+  "original_rejected_receipt_policy": "Entire receipt bytes pinned; rejected legitimate changed native DRC report serialization/representatives despite exact board/project identity.",
+  "tool_sha256": "7a12af783332281faaa21f2a8f595a5a4875255c18e3c8c4d244e77a8ebba4c5"
+}

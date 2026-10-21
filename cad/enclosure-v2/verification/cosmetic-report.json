@@ -1,0 +1,68 @@
+{
+  "inputs": {
+    "exports/cosmetic_plug.stl": "55327ab8b09ac534ec152dacb7cd6e12675d8d4a6c2d0c8afaef2ad5b13c17f9",
+    "exports/ring.stl": "35ba6dd7df3919b74cfd82547732d6e4feaa9568c04f0d40c7417732882c0f7f",
+    "exports/button.stl": "b586a159e3479e3fa882a8711fe8004bcfbc9bb249ac238b522d1c54f42ab804",
+    "verification/cosmetic_plug.py": "e9f5294a22059875b46a029ce39a045c01c0ec30af4e2540d6c33bfafe4399d6"
+  },
+  "checks": [
+    {
+      "name": "rigid_plug_removal_without_elastic_ring",
+      "extruded_surface_prisms": 571,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "uncompressed_ring_contact_witness",
+      "volume_mm3": 0.9963588596363414,
+      "pass": true
+    },
+    {
+      "name": "single_connected_print",
+      "components": 1,
+      "pass": true
+    },
+    {
+      "name": "nonconductive_blade_approach",
+      "extruded_surface_prisms": 2,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "screw_head_gap",
+      "clearance_mm": 2.049999999999997,
+      "pass": true
+    },
+    {
+      "name": "ring_sensitivity_4.0",
+      "assumed_bore_mm": 4.0,
+      "radial_squeeze_fraction": 0.25,
+      "gland_fill_nominal": 0.8726646259971649,
+      "pass": true,
+      "status": "Planning sensitivity, not qualified printer or ring tolerance"
+    },
+    {
+      "name": "ring_sensitivity_4.2",
+      "assumed_bore_mm": 4.2,
+      "radial_squeeze_fraction": 0.1499999999999999,
+      "gland_fill_nominal": 0.769998199409263,
+      "pass": true,
+      "status": "Planning sensitivity, not qualified printer or ring tolerance"
+    },
+    {
+      "name": "ring_sensitivity_4.4",
+      "assumed_bore_mm": 4.4,
+      "radial_squeeze_fraction": 0.04999999999999982,
+      "gland_fill_nominal": 0.6889457573661826,
+      "pass": true,
+      "status": "Planning sensitivity, not qualified printer or ring tolerance"
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "Optional nonstructural cosmetic part; underlying mechanism works without it.",
+    "70A silicone2.5IDx1CS catalog geometry. No pull, creep, tear, friction or repeated-removal acceptance.",
+    "Ring is deliberately shown undeformed for positive contact evidence; no rigid-fit claim.",
+    "Blade is a generic envelope, not a sourced tool or lever-force acceptance."
+  ]
+}

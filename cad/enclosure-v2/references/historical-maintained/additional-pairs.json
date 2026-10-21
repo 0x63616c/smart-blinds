@@ -1,0 +1,104 @@
+{
+  "inputs": {
+    "exports/front.stl": "2a8ab8784e57bb4e86eb8e0c86eddad4a353c5afcf275d621f9e9b6e88cd35c2",
+    "exports/contents.stl": "07e560dd3761ba8c197396f792ec56f656091d0bb7180590053a82376150748a",
+    "exports/pack_fasteners.stl": "8e0065e12a040b681a21a59f3aac51e1c7d5887453132e793614306d3f0fd904",
+    "exports/motor_frame.stl": "b94d0637a4b57fa4faa4546607d0c6039cb5b1a28e6fa77c5c869198b47e113a",
+    "exports/guard_clamp.stl": "9c0f713b7887925d536ea37ac1884fe7c17927eea0d72b59025606ca52a88785",
+    "exports/backing.stl": "00e8e0ba60a4230156ea0f1a03f3fb99004d2800098901e207a528dc43e6ad60",
+    "review/pack-outline-evidence.json": "25bec51ddba75fae7b3e9019a7e62a62d48b02a11f41d09e563872a7a6f8d27f",
+    "source/definitions.scad": "588fddfc2168ee1de25806ab8dfdc9aac039ec1153c1a7181d823df4bd9abd20",
+    "review/additional_pairs.py": "563443810a9793bae178965ceb98c970ea2f27b961c312c6d7ee2dbfae7d70a5",
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4"
+  },
+  "passed": false,
+  "status": "KNOWN GEOMETRIC CONFLICTS. Consolidation preserved geometry; complete assembly acceptance fails these new pairs.",
+  "checks": [
+    {
+      "pair": [
+        "front",
+        "contents"
+      ],
+      "volume_mm3": 1.7999954223632812,
+      "bounds": [
+        41.0,
+        109.5,
+        37.0,
+        44.0,
+        110.0,
+        38.19999694824219
+      ],
+      "pass": false
+    },
+    {
+      "pair": [
+        "front",
+        "pack_fasteners"
+      ],
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "pass": true
+    },
+    {
+      "pair": [
+        "front",
+        "motor_frame"
+      ],
+      "volume_mm3": 0.3523433267851168,
+      "bounds": [
+        92.0999984741211,
+        67.28828394374415,
+        63.29999923706055,
+        92.19999694824219,
+        68.71171605625585,
+        67.30000305175781
+      ],
+      "pass": false
+    },
+    {
+      "pair": [
+        "front",
+        "guard_clamp"
+      ],
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "pass": true
+    },
+    {
+      "pair": [
+        "front",
+        "backing"
+      ],
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "pass": true
+    },
+    {
+      "pair": [
+        "front",
+        "primary_board_straight_substrate_region"
+      ],
+      "volume_mm3": 1.7999999999999972,
+      "bounds": [
+        41.0,
+        109.5,
+        37.0,
+        44.0,
+        110.0,
+        38.2
+      ],
+      "pass": false,
+      "interpretation": "Overlap is in the PCB substrate envelope, not merely an oversized component allocation. Carrier outline top at globalY110 is a straight edge here."
+    }
+  ],
+  "distinct_unresolved_conflicts": 2,
+  "classification": {
+    "front_contents": "Cassette left-boss link at [41,109.5,37]+[3,5.7,6] intersects primary carrier substrate at Z36.6..38.2. The independent board-region check reproduces1.8mm3.",
+    "front_motor_frame": "Left motor-tail keeper boss extends toX92.1 while cassette front side reachesX92.2, producing a narrow material collision."
+  },
+  "limits": [
+    "These checks extend, rather than replace, the16 passing migrated jobs.",
+    "No envelope was reduced and no geometry changed. Resolve in a separate successor.",
+    "Renderer corner artifacts are not the metric used to accept or reject a pair."
+  ]
+}

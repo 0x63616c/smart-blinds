@@ -1,0 +1,32 @@
+{
+  "reviewed_checkpoint_sha256": "6719f24371b726ba77cfea5661de5820c10dd02240c8e9df91c17acdc186e231",
+  "reviewed_geometry_board_sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+  "changes": {
+    "README.md": {
+      "before": "81c76241921f230e82699a95d37e117319bf79936369f0b2407bb3596bb8fa9d",
+      "after": "c4206bcda848f9ffc18cbca8de00996db1f7ef865704c93a559d8a0fe6752add",
+      "reason": "Explain maintained rebuild and separate imported review from fresh CI evidence."
+    },
+    "geometry/operations.py": {
+      "before": "db4ec1ca59c2b5ca68445b94a4bb5b22917d41b1eb5bee3b65b4cdaf41711ea8",
+      "after": "f876fc079197cfd4cc8f77bfbba4590f3d263411382fb2b48406fbf87f97d2e5",
+      "reason": "Trailing whitespace and final blank line only; parsed Python AST unchanged."
+    },
+    "rebuild.py": {
+      "before": "0f8aba97f7c1064dbfbb9e9571d336cc7a16d1052bc5f054abfa631540ea7c42",
+      "after": "75bd80f52bb73e042e3f2214b62f37c13215fec688fdb0fa37794746811edf6c",
+      "reason": "Ordinary rebuild omits the explicit one-time human-review freeze stage."
+    },
+    "source/assembly_v2.scad": {
+      "before": "1e21dc761d33bd8006f003455d5ead71765624fd794d8de41b5a13fc989d2e6d",
+      "after": "ff27896caae0fcd67d81644f6310dded2b98411ea22070594bb11e769971b704",
+      "reason": "Only the board display color changes from green to requested black; print geometry is unchanged."
+    },
+    "source/definitions.scad": {
+      "before": "7e158ddde12b27f3b82b929e3472cd414397bed086db700f4fd10aee8450c952",
+      "after": "074bbda94a78a41140c220e635b2a29b27872ea0d904839514d4a900e654a085",
+      "reason": "Trailing whitespace only; non-whitespace byte sequence unchanged."
+    }
+  },
+  "policy": "Imported local evidence remains original. Fresh CI exports and verification bind the promoted sources; no historical receipt was restamped."
+}

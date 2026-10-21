@@ -1,0 +1,895 @@
+{
+  "status": "Exact migration geometry comparison; no physical qualification",
+  "checks": [
+    {
+      "part": "cover",
+      "baseline": {
+        "source": "work/v14-button-insertion/checks/cover.stl",
+        "sha256": "49bb6a72bfcdca96d5bbce7514d2b5d24a97f48e193673946da91a2a585c3e1e"
+      },
+      "export_sha256": "ae72cc930b40b6cf87696ecc1e0344135640149b54e140b5b9da36a5202fabfa",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 3376,
+        "vertices": 1676,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            0.0,
+            -11.0,
+            3.3999996185302734
+          ],
+          [
+            118.0,
+            185.0,
+            77.0
+          ]
+        ],
+        "volume_mm3": 158282.50807285807
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "guide_bar",
+      "baseline": {
+        "source": "work/v14-button-insertion/checks/bar.stl",
+        "sha256": "c76a9d5551094ec0e7570c8d90f23edbc3da1daed47013482fd6312f4717c428"
+      },
+      "export_sha256": "6edf0eea924e62659f65f26e6714d76581929d62d2d43eebd4e94566bcfe45de",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 1784,
+        "vertices": 882,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            96.5,
+            16.0,
+            63.099998474121094
+          ],
+          [
+            115.19999694824219,
+            47.0,
+            74.19999694824219
+          ]
+        ],
+        "volume_mm3": 1297.6028245790624
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "button",
+      "baseline": {
+        "source": "work/v14-button-insertion/checks/button.stl",
+        "sha256": "642ae6d9240e39e6e3f8b7d3bc20ee46f8eaeb8d73c440576297e6d58fc4d823"
+      },
+      "export_sha256": "4863e6acb225d650557aa08dad3f2934ee210538d7d2076769c45f41e6055670",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 1120,
+        "vertices": 558,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            -6.0,
+            -6.0,
+            65.5
+          ],
+          [
+            6.0,
+            6.0,
+            78.80000305175781
+          ]
+        ],
+        "volume_mm3": 588.8367483546908
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "nest",
+      "baseline": {
+        "source": "work/v14-button-insertion/checks/nest.stl",
+        "sha256": "19eb946304d54b118dc70e9ecbd0afb9530ab0182e501922a56942abc49e1798"
+      },
+      "export_sha256": "a15f1e72191bf46cffc95a8f2aea4cd59fd0a8f8a790b0b1880d080fabc74e2e",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 396,
+        "vertices": 200,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            97.4000015258789,
+            12.0,
+            77.0
+          ],
+          [
+            121.4000015258789,
+            52.0,
+            81.0
+          ]
+        ],
+        "volume_mm3": 3491.864297426302
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "motor_frame",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/motor_frame.stl",
+        "sha256": "d0dbdea9e8a13d4ea6fa297280f7a8ba67eecca222b636a449c656d262dcc218"
+      },
+      "export_sha256": "b94d0637a4b57fa4faa4546607d0c6039cb5b1a28e6fa77c5c869198b47e113a",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 1748,
+        "vertices": 866,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            83.19999694824219,
+            -6.5,
+            3.3999996185302734
+          ],
+          [
+            114.5999984741211,
+            110.80000305175781,
+            69.0999984741211
+          ]
+        ],
+        "volume_mm3": 5051.555798483435
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "backing",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/backing.stl",
+        "sha256": "4423c18affcb3e74394fe496c62135d40828a2a9bc101fd6e1dfd570c1d0d062"
+      },
+      "export_sha256": "00e8e0ba60a4230156ea0f1a03f3fb99004d2800098901e207a528dc43e6ad60",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 2050,
+        "vertices": 1019,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            49.0,
+            98.4000015258789,
+            42.0
+          ],
+          [
+            84.0,
+            102.19999694824219,
+            65.9000015258789
+          ]
+        ],
+        "volume_mm3": 2323.3246504881604
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "guard_clamp",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/guard_clamp.stl",
+        "sha256": "2d741cca2b22861ac8fa2cb80587dcdb410a0943dad20cc47445a93b8d34b5f5"
+      },
+      "export_sha256": "9c0f713b7887925d536ea37ac1884fe7c17927eea0d72b59025606ca52a88785",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 2354,
+        "vertices": 1173,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            37.20000076293945,
+            101.80000305175781,
+            34.0
+          ],
+          [
+            94.0,
+            120.0,
+            65.9000015258789
+          ]
+        ],
+        "volume_mm3": 2671.9825767909083
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "tail_keeper",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/tail_keeper.stl",
+        "sha256": "dcb55ec10771589b44aa9efc9a7549734ffa775e8a9245c85d68a709547915ba"
+      },
+      "export_sha256": "864bf6c8d0dc66c2cebde37e177f55662ec6e5ce43b1246c4da16a0ecac39805",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 360,
+        "vertices": 178,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            92.0999984741211,
+            65.0,
+            69.0999984741211
+          ],
+          [
+            106.0999984741211,
+            71.0,
+            71.5999984741211
+          ]
+        ],
+        "volume_mm3": 134.0719941079063
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "inline_body",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/inline_body.stl",
+        "sha256": "61c2f89cf01f579e7bc5e1b2734cd44f91fa240398dd6e4ca2bcacdd683ee777"
+      },
+      "export_sha256": "61c2f89cf01f579e7bc5e1b2734cd44f91fa240398dd6e4ca2bcacdd683ee777",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 12,
+        "vertices": 8,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            93.44999694824219,
+            80.0,
+            64.8499984741211
+          ],
+          [
+            104.6500015258789,
+            105.5,
+            73.3499984741211
+          ]
+        ],
+        "volume_mm3": 2427.600992202759
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "housing_tie",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/housing_tie.stl",
+        "sha256": "a2f039e8acce4013697cf421236b6438791dba73e782ce34c6f5000206d70f21"
+      },
+      "export_sha256": "a2f039e8acce4013697cf421236b6438791dba73e782ce34c6f5000206d70f21",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 64,
+        "vertices": 32,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            92.44999694824219,
+            89.2249984741211,
+            62.29999923706055
+          ],
+          [
+            109.25,
+            93.67500305175781,
+            74.3499984741211
+          ]
+        ],
+        "volume_mm3": 194.0821029815191
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "backplate",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/backplate.stl",
+        "sha256": "465298ac64cd3fafe7c03854ed94a7a7c6f64f34cf3b3ccb4fa26d80b41bd4f9"
+      },
+      "export_sha256": "0796c94c12684ab7c6cdca9428fd209054e6f06a7ff03e01521837511a0e30c1",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 3410,
+        "vertices": 1687,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            0.0,
+            -11.0,
+            0.0
+          ],
+          [
+            118.0,
+            185.0,
+            62.70000076293945
+          ]
+        ],
+        "volume_mm3": 96052.5402831916
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "drive",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/drive.stl",
+        "sha256": "4c55ac614bbbbd627b06bf8bae410b317096c86f59384a7e26b9dc0cb38023ae"
+      },
+      "export_sha256": "d31427c192788799b9e6aeb95022cae41542961b8eca873c59f7506680168772",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 35986,
+        "vertices": 17967,
+        "closed_edges": true,
+        "connected_components": 6,
+        "bounds": [
+          [
+            3.0,
+            125.30000305175781,
+            6.000999450683594
+          ],
+          [
+            102.0,
+            215.20677185058594,
+            53.5
+          ]
+        ],
+        "volume_mm3": 96010.85008328994
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "contents",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/contents.stl",
+        "sha256": "85a932cdbf31c23c4e067ae9b749c91c407b2c83a01f5b5205813bcc41aa32d6"
+      },
+      "export_sha256": "07e560dd3761ba8c197396f792ec56f656091d0bb7180590053a82376150748a",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 5644,
+        "vertices": 2824,
+        "closed_edges": true,
+        "connected_components": 12,
+        "bounds": [
+          [
+            4.799999237060547,
+            6.0,
+            6.65000057220459
+          ],
+          [
+            90.80000305175781,
+            110.0,
+            61.54999923706055
+          ]
+        ],
+        "volume_mm3": 232792.47603611462
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "pack_fasteners",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/pack_fasteners.stl",
+        "sha256": "d30a36242adba8d61dbdab7c626decc08ea16a0b00b22e1e6d6bafc1b3e816f2"
+      },
+      "export_sha256": "8e0065e12a040b681a21a59f3aac51e1c7d5887453132e793614306d3f0fd904",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 2000,
+        "vertices": 1008,
+        "closed_edges": true,
+        "connected_components": 4,
+        "bounds": [
+          [
+            5.625,
+            7.25,
+            4.299999237060547
+          ],
+          [
+            89.9749984741211,
+            108.75,
+            67.30000305175781
+          ]
+        ],
+        "volume_mm3": 2157.2674337629537
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "front",
+      "baseline": {
+        "source": "work/v5-guarded-outlet/checks/front.stl",
+        "sha256": "3e0b639a9d0ed58648c013a1856de6e418034a19d93f0469174647eb30e48185"
+      },
+      "export_sha256": "2a8ab8784e57bb4e86eb8e0c86eddad4a353c5afcf275d621f9e9b6e88cd35c2",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 4192,
+        "vertices": 2084,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            3.1999998092651367,
+            4.399999618530273,
+            34.29999923706055
+          ],
+          [
+            92.4000015258789,
+            120.0,
+            68.5
+          ]
+        ],
+        "volume_mm3": 34496.90349881104
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "rear",
+      "baseline": {
+        "source": "work/v5-guarded-outlet/checks/rear.stl",
+        "sha256": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271"
+      },
+      "export_sha256": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 5384,
+        "vertices": 2672,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            3.1999998092651367,
+            4.399999618530273,
+            3.0
+          ],
+          [
+            92.4000015258789,
+            120.0,
+            34.29999923706055
+          ]
+        ],
+        "volume_mm3": 32433.97123847844
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "spacer",
+      "baseline": {
+        "source": "work/v5-guarded-outlet/checks/spacer.stl",
+        "sha256": "129777ca9dcc1109a1f321c99af96f59150f4915a6227913bfb4b87d0ce23d1c"
+      },
+      "export_sha256": "2332a97cd704563e705773f18d09f73792fec12fd7ad125046f1e48b7aaff923",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 3092,
+        "vertices": 1504,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            3.3999996185302734,
+            4.59999942779541,
+            28.799999237060547
+          ],
+          [
+            92.19999694824219,
+            111.4000015258789,
+            39.400001525878906
+          ]
+        ],
+        "volume_mm3": 11571.163617154938
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "upper_clip",
+      "baseline": {
+        "source": "work/v5-enclosure-candidate/checks-revised/upper_clip.stl",
+        "sha256": "8e54d5aebbecd0d59045b4c450c29bedcaabda4a0761d0a802eed8a2a7955cfc"
+      },
+      "export_sha256": "e48d44e7162e0810ff9e51589f9877e3ae12da1781ff410e65b2f72a4181c312",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 192,
+        "vertices": 96,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            106.5999984741211,
+            -3.6000003814697266,
+            0.0
+          ],
+          [
+            111.80000305175781,
+            3.59999942779541,
+            7.199999809265137
+          ]
+        ],
+        "volume_mm3": 206.47468244644446
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "lower_clip",
+      "baseline": {
+        "source": "work/v5-enclosure-candidate/checks-revised/lower_clip.stl",
+        "sha256": "9d4f8cc1c1ddb1c7d12c84f9c67ab2cf735b01efe7c2c6b9f2dee4783801978d"
+      },
+      "export_sha256": "616c44ca284504593a0fd4804d0c08de5d82b6455f1a0e6e396b919aa0a0b08d",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 192,
+        "vertices": 96,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            106.5999984741211,
+            -3.59999942779541,
+            -3.814697322468419e-07
+          ],
+          [
+            111.80000305175781,
+            3.59999942779541,
+            5.499999523162842
+          ]
+        ],
+        "volume_mm3": 124.05802364089845
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "rear_lower",
+      "baseline": {
+        "source": "cad/exports/compact-direct-fit/rear_lower.stl",
+        "sha256": "536ddd01d08afe544b1f5527f2b8436404acbf3e1426d8ecc1652c8c047f7f62"
+      },
+      "export_sha256": "27e5c90984acf603fa1ebe2287ff00307cfd975dc92bb33ec594ad92e8732d74",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 1192,
+        "vertices": 590,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            0.0,
+            2.3000001907348633,
+            0.0
+          ],
+          [
+            10.0,
+            53.70000076293945,
+            22.0
+          ]
+        ],
+        "volume_mm3": 3754.9230765449156
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "rear_upper",
+      "baseline": {
+        "source": "cad/exports/compact-direct-fit/rear_upper.stl",
+        "sha256": "0fd88f320cc43d79364062366bcc20b01329e43b0dfcd73f13b717e24ca56dbc"
+      },
+      "export_sha256": "9ed7063ef20c0b4d9a26f47f5feab5edf9ecbd25f4a1782c79bb84b3c775b96b",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 684,
+        "vertices": 340,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            0.0,
+            2.3000001907348633,
+            -7.629394644936838e-07
+          ],
+          [
+            10.0,
+            53.70000076293945,
+            19.899999618530273
+          ]
+        ],
+        "volume_mm3": 2724.393035294283
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "front_lower",
+      "baseline": {
+        "source": "cad/exports/compact-direct-fit/front_lower.stl",
+        "sha256": "b9c2fed01bbeda74581efe1ad2d8f4fa1268c4eb57868397077ccb485b827e31"
+      },
+      "export_sha256": "cf06b0079a199b75db058858d70d8bdd6f5ce16f53fcc19f3621a5f426bfff91",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 1232,
+        "vertices": 610,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            0.0,
+            0.3000001907348633,
+            0.0
+          ],
+          [
+            10.0,
+            55.70000076293945,
+            22.0
+          ]
+        ],
+        "volume_mm3": 3493.121997858228
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "front_upper",
+      "baseline": {
+        "source": "cad/exports/compact-direct-fit/front_upper.stl",
+        "sha256": "42b22c2f2efb6bd1602d411cc135d10b00a305ad573c78e4c0faf4b1bb156222"
+      },
+      "export_sha256": "bb342070a3bd1ff78f5c673d47998325d2bccd5fb0a2449c4f968821defecdba",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 684,
+        "vertices": 340,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            0.0,
+            0.3000001907348633,
+            -7.629394644936838e-07
+          ],
+          [
+            10.0,
+            55.70000076293945,
+            21.899999618530273
+          ]
+        ],
+        "volume_mm3": 2972.4547711891337
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "bearing_block",
+      "baseline": {
+        "source": "cad/exports/compact-direct-fit/bearing_block.stl",
+        "sha256": "81702139ac5bd64744c107affb3812e743967697fd8d831294ef8129ee54cb25"
+      },
+      "export_sha256": "ec7d41858afced3663fac3ab8b317843a607c1c8c7178d4efe939b0d10e35b99",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 2320,
+        "vertices": 1148,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            8.0,
+            42.0,
+            38.0
+          ]
+        ],
+        "volume_mm3": 4868.831155538343
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "retainer",
+      "baseline": {
+        "source": "cad/exports/compact-direct-fit/retainer.stl",
+        "sha256": "4fe4ff85d781473fea0c416190b46b3bafd81a3c0d25c8e1ebcda593068e8700"
+      },
+      "export_sha256": "b6ac66a9409f7a38544e022aec6dabb79c2835033fcdb8e7accaf86a235c0bb6",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 1192,
+        "vertices": 592,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            -9.0,
+            -14.0,
+            0.0
+          ],
+          [
+            9.0,
+            14.0,
+            3.0
+          ]
+        ],
+        "volume_mm3": 731.1059269819843
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "wheel",
+      "baseline": {
+        "source": "cad/exports/compact-direct-fit/wheel.stl",
+        "sha256": "973cd23eb02e46131fa965800fa5ce0612673298f2d98cc915a25e71db4caca6"
+      },
+      "export_sha256": "9bcf963c18d13ef9eda7fadc8fc2e9a96f99f4e4307c385cd30c48a4d318ef03",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 8388,
+        "vertices": 4190,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            -15.0,
+            -15.0,
+            0.0
+          ],
+          [
+            15.0,
+            15.0,
+            8.0
+          ]
+        ],
+        "volume_mm3": 3534.3044216741873
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "guard",
+      "baseline": {
+        "source": "cad/exports/compact-direct-fit/guard.stl",
+        "sha256": "cdf76b25aa7b626ec38a2a7ec5b7322010d8ce898bf165d12a5667f97d7801cc"
+      },
+      "export_sha256": "0a0ca8a54f170cc54b64e81656645ec296a029da9915d5eb978a5d918d1605b5",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 1112,
+        "vertices": 554,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            -53.5,
+            116.0,
+            -1.9073486612342094e-07
+          ],
+          [
+            -15.0,
+            141.0,
+            10.300000190734863
+          ]
+        ],
+        "volume_mm3": 1350.3123615737422
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "cosmetic_plug",
+      "baseline": {
+        "source": "work/v14-button-insertion/cosmetic-plug/plug.stl",
+        "sha256": "6983c7645a6175cc5db8fb51d13febbc045dd3965a4d543fd7af2cb56ddedb03"
+      },
+      "export_sha256": "24d3fac297d60fbf20732f8882114097c806296f65d00af82590c899d0e79957",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 1164,
+        "vertices": 584,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            -2.8999996185302734,
+            -2.8999996185302734,
+            74.80000305175781
+          ],
+          [
+            2.8999996185302734,
+            2.8999996185302734,
+            79.5
+          ]
+        ],
+        "volume_mm3": 42.98523941843632
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "ring",
+      "baseline": {
+        "source": "work/v14-button-insertion/cosmetic-plug/ring.stl",
+        "sha256": "35ba6dd7df3919b74cfd82547732d6e4feaa9568c04f0d40c7417732882c0f7f"
+      },
+      "export_sha256": "35ba6dd7df3919b74cfd82547732d6e4feaa9568c04f0d40c7417732882c0f7f",
+      "exact_float32_triangle_equivalence": true,
+      "topology": {
+        "triangles": 4096,
+        "vertices": 2048,
+        "closed_edges": true,
+        "connected_components": 1,
+        "bounds": [
+          [
+            -2.25,
+            -2.25,
+            76.4000015258789
+          ],
+          [
+            2.25,
+            2.25,
+            77.4000015258789
+          ]
+        ],
+        "volume_mm3": 8.566754079976528
+      },
+      "exact_geometry_equivalence": true
+    },
+    {
+      "part": "service_hardware",
+      "baseline": {
+        "source": "work/v13-service-clearance/checks/service_hardware.stl",
+        "sha256": "c8944154a98500b7c9e7e2d62ca525980e0c6b52a1abd95f4e3db6d11c8301f9"
+      },
+      "export_sha256": "4bf2956d0a46836faa730f86c6cb6db0bbf9ebe3235bf94ea311d0be37add7a6",
+      "exact_float32_triangle_equivalence": false,
+      "topology": {
+        "triangles": 5028,
+        "vertices": 2400,
+        "closed_edges": false,
+        "connected_components": 10,
+        "bounds": [
+          [
+            5.625,
+            -3.3099992275238037,
+            4.299999237060547
+          ],
+          [
+            114.5999984741211,
+            108.75,
+            73.19999694824219
+          ]
+        ],
+        "volume_mm3": 2497.480968345282
+      },
+      "exact_geometry_equivalence": true,
+      "planar_proof": {
+        "same_exact_float32_vertices": true,
+        "binary_integer_scale": 4294967296,
+        "new_planes": 1202,
+        "old_planes": 1202,
+        "exact_boundaries_equal": true,
+        "method": "Exact integer plane equations and directed boundary-edge multiplicities; no tolerance. Internal coplanar diagonals may differ. Auxiliary touching hardware is not a single closed print."
+      }
+    }
+  ],
+  "complete": true,
+  "passed": true,
+  "exact_triangle_roles": 29,
+  "planar_proof_controls": {
+    "alternate_coplanar_diagonal": true,
+    "moved_surface_rejected": true
+  },
+  "inputs": {
+    "migration/compare.py": "d58e235b010ff980523024d15246374009503232d2b2304194179de6cdd6b221",
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "evidence/baselines.json": "822be63b592b3a2186854f97aeb85841e15ee754fcec5be58fc5aa084d463f07"
+  }
+}

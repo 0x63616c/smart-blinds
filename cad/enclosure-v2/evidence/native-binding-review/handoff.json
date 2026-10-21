@@ -1,0 +1,28 @@
+{
+  "status": "Frozen reviewed receipt-policy successor; original candidate and canonical files unchanged",
+  "files": {
+    "README.md": "b8e3dd75c395b3bff056d6c1603a8f815b98b2d9bf47dbcdbaba8714e502735f",
+    "approved-native-inputs.json": "5d0d5db9aa604e98b155b63de5f7a7887f5edeed3a721dfdebad880aef3ca444",
+    "check_enclosure_board_binding.py": "3dc2b28d9d503dfc6afc99e225298839163588902e9900eb129086d9dce4176d",
+    "cli-evidence.json": "f80b16c68d3f13ecd0508d5f37df0ba9bcf1a8126362054006429e79747d43bc",
+    "comment-only-delta.json": "2ae1d523f001dfa408e639dee4ecb7e78d600fd3f6f7f528a57109ef69757343",
+    "diagnosis.json": "a34b147ea8da24660c787852dce42f2dc445f3a0ca7a9255b341c1b7aa2de17f",
+    "test-before-type-guards.log": "ea36c2697d96e3fdbce3a80b1cdce865014a66dfc28b6f4fe1b737dd0f3f3754",
+    "test-evidence-before-type-guards.json": "1d0d465424863dfa38718e86bda0027faf127d970f06062967609670ad9f136b",
+    "test-evidence.json": "b7e016ff7d636763da6565ad2fb727f7349a0fe6af10df414eb40b0ae17fc130",
+    "test.log": "3dfb4dcc42274f7d35a0c13ad162e89b22d743dfedae8beea8aa222d394f3ae6",
+    "test_enclosure_board_binding.py": "1a0230b5366afac7385cd6c632e4d80e270bd177c839a3649f01b5b07429dbf5"
+  },
+  "promotion_files": [
+    "check_enclosure_board_binding.py",
+    "test_enclosure_board_binding.py",
+    "approved-native-inputs.json"
+  ],
+  "tests": 58,
+  "real_artifacts": [
+    "local03a6",
+    "CI39602067230-03a6"
+  ],
+  "drc_semantic_sha256": "32384247798430524280004074e9fff880595ae05e5017eea9b4bc3606e73b46",
+  "final_comment_only_delta": "comment-only-delta.json"
+}

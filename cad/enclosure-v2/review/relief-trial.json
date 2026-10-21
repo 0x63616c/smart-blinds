@@ -1,0 +1,96 @@
+{
+  "inputs": {
+    "exports/front.stl": "2a8ab8784e57bb4e86eb8e0c86eddad4a353c5afcf275d621f9e9b6e88cd35c2",
+    "exports/contents.stl": "07e560dd3761ba8c197396f792ec56f656091d0bb7180590053a82376150748a",
+    "exports/motor_frame.stl": "b94d0637a4b57fa4faa4546607d0c6039cb5b1a28e6fa77c5c869198b47e113a",
+    "exports/rear.stl": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271",
+    "exports/spacer.stl": "2332a97cd704563e705773f18d09f73792fec12fd7ad125046f1e48b7aaff923",
+    "exports/pack_fasteners.stl": "8e0065e12a040b681a21a59f3aac51e1c7d5887453132e793614306d3f0fd904",
+    "exports/backing.stl": "00e8e0ba60a4230156ea0f1a03f3fb99004d2800098901e207a528dc43e6ad60",
+    "exports/guard_clamp.stl": "9c0f713b7887925d536ea37ac1884fe7c17927eea0d72b59025606ca52a88785",
+    "exports/tail_keeper.stl": "864bf6c8d0dc66c2cebde37e177f55662ec6e5ce43b1246c4da16a0ecac39805"
+  },
+  "rows": [
+    {
+      "pair": [
+        "front_candidate",
+        "contents"
+      ],
+      "pass": true,
+      "volume": 0.0,
+      "bounds": null
+    },
+    {
+      "pair": [
+        "front_candidate",
+        "motor_frame"
+      ],
+      "pass": true,
+      "volume": 0.0,
+      "bounds": null
+    },
+    {
+      "pair": [
+        "front_candidate",
+        "rear"
+      ],
+      "pass": true,
+      "volume": 0.0,
+      "bounds": null
+    },
+    {
+      "pair": [
+        "front_candidate",
+        "spacer"
+      ],
+      "pass": false,
+      "volume": 28.31631643926489,
+      "bounds": [
+        42.0,
+        9.5,
+        34.29999923706055,
+        92.19999694824219,
+        111.4000015258789,
+        39.400001525878906
+      ]
+    },
+    {
+      "pair": [
+        "front_candidate",
+        "pack_fasteners"
+      ],
+      "pass": true,
+      "volume": 0.0,
+      "bounds": null
+    },
+    {
+      "pair": [
+        "front_candidate",
+        "backing"
+      ],
+      "pass": true,
+      "volume": 0.0,
+      "bounds": null
+    },
+    {
+      "pair": [
+        "front_candidate",
+        "guard_clamp"
+      ],
+      "pass": true,
+      "volume": 0.0,
+      "bounds": null
+    },
+    {
+      "pair": [
+        "front_candidate",
+        "tail_keeper"
+      ],
+      "pass": true,
+      "volume": 0.0,
+      "bounds": null
+    }
+  ],
+  "connected": 1,
+  "status": "Boolean design trial, not exported SCAD proof"
+}

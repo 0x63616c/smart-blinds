@@ -1,0 +1,392 @@
+{
+  "inputs": {
+    "verification/cassette_reliefs.py": "7857d2fc0475a7ca45f9d55fb5138db01e16570427e7d47933ba178f7e5c1dc2",
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "geometry/operations.py": "db4ec1ca59c2b5ca68445b94a4bb5b22917d41b1eb5bee3b65b4cdaf41711ea8",
+    "source/definitions.scad": "46c364fd27f1265e0571e057332608a8f8b28acc6a46cfb672866ade738f33e7",
+    "parameters/enclosure-v2.json": "1749cf08af051c3d75e2bdb3546908f0d0907e242d653252afabf79f2baf0a38",
+    "exports/front.stl": "754f4fc8eb765171dc9e58c6bcce9397bbe135d9c4324f1e8b426427c66b1dad",
+    "exports/rear.stl": "71f9593b6a8778e4033d4aa9c8ea6a7fc278127c6ff30915871583acf35c44f5",
+    "exports/spacer.stl": "2332a97cd704563e705773f18d09f73792fec12fd7ad125046f1e48b7aaff923",
+    "exports/contents.stl": "07e560dd3761ba8c197396f792ec56f656091d0bb7180590053a82376150748a",
+    "exports/pack_fasteners.stl": "8e0065e12a040b681a21a59f3aac51e1c7d5887453132e793614306d3f0fd904",
+    "exports/motor_frame.stl": "b94d0637a4b57fa4faa4546607d0c6039cb5b1a28e6fa77c5c869198b47e113a",
+    "exports/guard_clamp.stl": "9c0f713b7887925d536ea37ac1884fe7c17927eea0d72b59025606ca52a88785",
+    "exports/backing.stl": "00e8e0ba60a4230156ea0f1a03f3fb99004d2800098901e207a528dc43e6ad60",
+    "exports/tail_keeper.stl": "864bf6c8d0dc66c2cebde37e177f55662ec6e5ce43b1246c4da16a0ecac39805",
+    "exports/cover.stl": "ae72cc930b40b6cf87696ecc1e0344135640149b54e140b5b9da36a5202fabfa",
+    "exports/backplate.stl": "0796c94c12684ab7c6cdca9428fd209054e6f06a7ff03e01521837511a0e30c1",
+    "data/baseline-front.stl": "2a8ab8784e57bb4e86eb8e0c86eddad4a353c5afcf275d621f9e9b6e88cd35c2",
+    "data/baseline-rear.stl": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271"
+  },
+  "passed": false,
+  "checks": [
+    {
+      "name": "front_vs_spacer",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_vs_contents",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_vs_pack_fasteners",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_vs_motor_frame",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_vs_guard_clamp",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_vs_backing",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_vs_tail_keeper",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_vs_cover",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_vs_backplate",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "rear_vs_spacer",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "rear_vs_contents",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "rear_vs_pack_fasteners",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "rear_vs_motor_frame",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "rear_vs_guard_clamp",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "rear_vs_backing",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "rear_vs_tail_keeper",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "rear_vs_cover",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "rear_vs_backplate",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_vs_rear",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "primary_substrate_plus_0p5",
+      "volume_mm3": 0.5609945449763756,
+      "bounds": [
+        40.0,
+        110.0,
+        36.6,
+        41.70000076293945,
+        110.5,
+        38.7
+      ],
+      "expected_empty": true,
+      "pass": false
+    },
+    {
+      "name": "spacer_stop_plus_0p5",
+      "volume_mm3": 3.410536648643057,
+      "bounds": [
+        41.5,
+        110.0,
+        36.9,
+        47.5,
+        111.9,
+        39.0
+      ],
+      "expected_empty": true,
+      "pass": false
+    },
+    {
+      "name": "lower_capture_plus_0p3",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "motor_boss_plus_0p4",
+      "volume_mm3": 0.0,
+      "bounds": null,
+      "expected_empty": true,
+      "pass": true
+    },
+    {
+      "name": "front_shell_approach_spacer",
+      "extruded_surface_prisms": 730,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "front_shell_approach_contents",
+      "extruded_surface_prisms": 39,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "rear_shell_approach_spacer",
+      "extruded_surface_prisms": 670,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "rear_shell_approach_contents",
+      "extruded_surface_prisms": 633,
+      "findings": [],
+      "pass": true
+    }
+  ],
+  "material_witnesses": [
+    {
+      "name": "motor_recess_1p6_section",
+      "missing_volume_mm3": 0.0,
+      "pass": true
+    },
+    {
+      "name": "front_outer_band_1p0_section",
+      "missing_volume_mm3": 0.0,
+      "pass": true
+    },
+    {
+      "name": "rear_outer_band_1p0_section",
+      "missing_volume_mm3": 0.0,
+      "pass": true
+    }
+  ],
+  "topology": {
+    "front": {
+      "triangles": 4338,
+      "vertices": 2157,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          3.1999998092651367,
+          4.399999618530273,
+          34.29999923706055
+        ],
+        [
+          93.80000305175781,
+          120.0,
+          68.5
+        ]
+      ],
+      "volume_mm3": 34484.41348341412
+    },
+    "rear": {
+      "triangles": 5408,
+      "vertices": 2686,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          3.1999998092651367,
+          4.399999618530273,
+          3.0
+        ],
+        [
+          93.80000305175781,
+          120.0,
+          34.29999923706055
+        ]
+      ],
+      "volume_mm3": 32434.56039145906
+    }
+  },
+  "preserved_failure_regressions": [
+    {
+      "pair": [
+        "front",
+        "contents"
+      ],
+      "volume_mm3": 1.7999954223632812,
+      "regions": [
+        {
+          "volume_mm3": 1.7999954223632812,
+          "bounds": [
+            41.0,
+            109.5,
+            37.0,
+            44.0,
+            110.0,
+            38.19999694824219
+          ]
+        }
+      ]
+    },
+    {
+      "pair": [
+        "front",
+        "motor_frame"
+      ],
+      "volume_mm3": 0.3523433267851168,
+      "regions": [
+        {
+          "volume_mm3": 0.3523433267851168,
+          "bounds": [
+            92.0999984741211,
+            67.28828394374415,
+            63.29999923706055,
+            92.19999694824219,
+            68.71171605625585,
+            67.30000305175781
+          ]
+        }
+      ]
+    },
+    {
+      "pair": [
+        "front",
+        "spacer"
+      ],
+      "volume_mm3": 28.91632692139001,
+      "regions": [
+        {
+          "volume_mm3": 4.016323869655468,
+          "bounds": [
+            42.0,
+            110.19999694824219,
+            37.0,
+            44.931288848975434,
+            111.4000015258789,
+            38.5
+          ]
+        },
+        {
+          "volume_mm3": 2.1000087737920725,
+          "bounds": [
+            89.69999694824219,
+            9.5,
+            38.20000076293945,
+            92.0,
+            10.5,
+            39.400001525878906
+          ]
+        },
+        {
+          "volume_mm3": 22.7999942779425,
+          "bounds": [
+            89.69999694824219,
+            98.30000305175781,
+            34.29999923706055,
+            92.19999694824219,
+            106.5,
+            39.400001525878906
+          ]
+        }
+      ]
+    },
+    {
+      "pair": [
+        "rear",
+        "spacer"
+      ],
+      "volume_mm3": 23.839996871945893,
+      "regions": [
+        {
+          "volume_mm3": 23.839996871945893,
+          "bounds": [
+            91.19999694824219,
+            98.30000305175781,
+            29.899999618530273,
+            92.19999694824219,
+            106.5,
+            34.29999923706055
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "No raw/holder/PCB anchors moved; temporary captures remain unchanged.",
+    "The new side band is1.2mm nominal; witnesses are inset sections, not a strength calculation.",
+    "Motor recess has0.5mm nominal radial clearance and\u22651.8mm local nominal wall at its deepest point.",
+    "The boss-link remains3\u00d73.9mm nominal; force, creep, insulation and FDM fit require tests.",
+    "Shell approach covers rigid\u00b1Z20mm strokes. Loaded handling, catch release and flexible harness behavior remain separate gates."
+  ]
+}

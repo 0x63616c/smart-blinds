@@ -1,0 +1,1225 @@
+{
+  "inputs": {
+    "verification/pad_contact.py": "5f713055f487573a7f8d99054cc8b2abac3ad533e8ec644ee095479bcb85011b",
+    "geometry/operations.py": "db4ec1ca59c2b5ca68445b94a4bb5b22917d41b1eb5bee3b65b4cdaf41711ea8",
+    "data/pack-paths.json": "055e7ece95a4abb05fbf811853a4db91adb61de05641c50e4529e70afddc7e16",
+    "source/definitions.scad": "7e158ddde12b27f3b82b929e3472cd414397bed086db700f4fd10aee8450c952"
+  },
+  "contact": [
+    {
+      "row_case": 0,
+      "wire": 1,
+      "section_z_mm": 43,
+      "centre": [
+        52.07585780810434,
+        101.02601068796288,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.19301068796288234,
+        "0": 0.056989312037117656,
+        "0.1": 0.15698931203711197,
+        "0.15": 0.20698931203712334
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 0,
+      "wire": 2,
+      "section_z_mm": 43,
+      "centre": [
+        58.06572677560172,
+        101.04138500922573,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.20838500922573644,
+        "0": 0.04161499077426356,
+        "0.1": 0.14161499077425788,
+        "0.15": 0.19161499077426924
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 0,
+      "wire": 3,
+      "section_z_mm": 43,
+      "centre": [
+        63.93829108789515,
+        100.99931413016841,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.16631413016841634,
+        "0": 0.08368586983158366,
+        "0.1": 0.18368586983157797,
+        "0.15": 0.23368586983158934
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 0,
+      "wire": 4,
+      "section_z_mm": 43,
+      "centre": [
+        70.01974552569429,
+        101.09394646941172,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.2609464694117207,
+        "0": -0.010946469411720727,
+        "0.1": 0.08905353058827359,
+        "0.15": 0.13905353058828496
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 0,
+      "wire": 5,
+      "section_z_mm": 43,
+      "centre": [
+        75.86960051580316,
+        101.01886504077952,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.18586504077951815,
+        "0": 0.06413495922048185,
+        "0.1": 0.16413495922047616,
+        "0.15": 0.21413495922048753
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 0,
+      "wire": 6,
+      "section_z_mm": 43,
+      "centre": [
+        81.59175479763873,
+        101.09014285209035,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.2571428520903538,
+        "0": -0.007142852090353813,
+        "0.1": 0.0928571479096405,
+        "0.15": 0.14285714790965187
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 1,
+      "wire": 1,
+      "section_z_mm": 43,
+      "centre": [
+        52.07576507004583,
+        101.02601068796288,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.19301068796288234,
+        "0": 0.056989312037117656,
+        "0.1": 0.15698931203711197,
+        "0.15": 0.20698931203712334
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 1,
+      "wire": 2,
+      "section_z_mm": 43,
+      "centre": [
+        58.065383364182324,
+        101.04138500922573,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.20838500922573644,
+        "0": 0.04161499077426356,
+        "0.1": 0.14161499077425788,
+        "0.15": 0.19161499077426924
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 1,
+      "wire": 3,
+      "section_z_mm": 43,
+      "centre": [
+        63.93817655495048,
+        100.99931413016841,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.16631413016841634,
+        "0": 0.08368586983158366,
+        "0.1": 0.18368586983157797,
+        "0.15": 0.23368586983158934
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 1,
+      "wire": 4,
+      "section_z_mm": 43,
+      "centre": [
+        70.0192917640801,
+        101.09394646941172,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.2609464694117207,
+        "0": -0.010946469411720727,
+        "0.1": 0.08905353058827359,
+        "0.15": 0.13905353058828496
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 1,
+      "wire": 5,
+      "section_z_mm": 43,
+      "centre": [
+        75.86942583167611,
+        101.01886504077952,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.18586504077951815,
+        "0": 0.06413495922048185,
+        "0.1": 0.16413495922047616,
+        "0.15": 0.21413495922048753
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 1,
+      "wire": 6,
+      "section_z_mm": 43,
+      "centre": [
+        81.5912301972498,
+        101.09014285209035,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.2571428520903538,
+        "0": -0.007142852090353813,
+        "0.1": 0.0928571479096405,
+        "0.15": 0.14285714790965187
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 2,
+      "wire": 1,
+      "section_z_mm": 43,
+      "centre": [
+        52.07567233198733,
+        101.02601068796288,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.19301068796288234,
+        "0": 0.056989312037117656,
+        "0.1": 0.15698931203711197,
+        "0.15": 0.20698931203712334
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 2,
+      "wire": 2,
+      "section_z_mm": 43,
+      "centre": [
+        58.06503995276293,
+        101.04138500922573,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.20838500922573644,
+        "0": 0.04161499077426356,
+        "0.1": 0.14161499077425788,
+        "0.15": 0.19161499077426924
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 2,
+      "wire": 3,
+      "section_z_mm": 43,
+      "centre": [
+        63.93806202200581,
+        100.99931413016841,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.16631413016841634,
+        "0": 0.08368586983158366,
+        "0.1": 0.18368586983157797,
+        "0.15": 0.23368586983158934
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 2,
+      "wire": 4,
+      "section_z_mm": 43,
+      "centre": [
+        70.0188380024659,
+        101.09394646941172,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.2609464694117207,
+        "0": -0.010946469411720727,
+        "0.1": 0.08905353058827359,
+        "0.15": 0.13905353058828496
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 2,
+      "wire": 5,
+      "section_z_mm": 43,
+      "centre": [
+        75.86925114754905,
+        101.01886504077952,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.18586504077951815,
+        "0": 0.06413495922048185,
+        "0.1": 0.16413495922047616,
+        "0.15": 0.21413495922048753
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    },
+    {
+      "row_case": 2,
+      "wire": 6,
+      "section_z_mm": 43,
+      "centre": [
+        81.59070559686084,
+        101.09014285209035,
+        43.0
+      ],
+      "assumed_max_OD_mm": 1.85,
+      "nominal_compression_depth_along_Y_mm": {
+        "-0.25": -0.2571428520903538,
+        "0": -0.007142852090353813,
+        "0.1": 0.0928571479096405,
+        "0.15": 0.14285714790965187
+      },
+      "pad_contact_at_trial_plus0p1": true,
+      "limits": "Projected nominal contact, not physical squeeze/friction/axial capacity. Fan and body OD uncertain; smaller actualOD may need pad or setting revision."
+    }
+  ],
+  "hardware": [
+    {
+      "case": 0,
+      "wire": 1,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 6.447296972959062,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 1,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 5.490618090281588,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 1,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 7.531772772136634,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 1,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 3.702118757864542,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 1,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 1.871446183826527,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 1,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 7.297436539602483,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 2,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 10.955149597699398,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 2,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 10.060430759201507,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 2,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 10.652879183321666,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 2,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 7.232254505337506,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 2,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 6.095372088660467,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 2,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 8.553699176151861,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 3,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 14.144281563490473,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 3,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 13.313885827958696,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 3,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 13.339939121682795,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 3,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 9.666812287306067,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 3,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 8.761295350323397,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 3,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 9.766103432244414,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 4,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 19.045260822472887,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 4,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 18.23657058690696,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 4,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 18.030029452587613,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 4,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 13.855097548243213,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 4,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 12.972340311320142,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 4,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 13.228624983641389,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 5,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 21.312056568904133,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 5,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 20.428403166055936,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 5,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 20.44804216116639,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 5,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 14.498104669873076,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 5,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 13.597918667176893,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 5,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 14.085505726513123,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 6,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 25.076962538820247,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 6,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 24.16291882657104,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 6,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 24.456931683457867,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 6,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 18.502845312604,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 6,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 17.550109021519297,
+      "pass": true
+    },
+    {
+      "case": 0,
+      "wire": 6,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 18.22508895213368,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 1,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 6.436064035359726,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 1,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 5.478013711818939,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 1,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 7.528389247678236,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 1,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 3.698007066135258,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 1,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 1.861635901591319,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 1,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 7.301115223581986,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 2,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 10.936267812362294,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 2,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 10.04088870769639,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 2,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 10.64265677991639,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 2,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 7.213308396961693,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 2,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 6.069533213547964,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 2,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 8.550360561544714,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 3,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 14.134353242830247,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 3,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 13.302444705094961,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 3,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 13.333443607244922,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 3,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 9.652017186055444,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 3,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 8.74581107713786,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 3,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 9.760271679542209,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 4,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 19.02826990399879,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 4,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 18.21653911616085,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 4,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 18.017632113835234,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 4,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 13.832326456987479,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 4,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 12.947859251091751,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 4,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 13.215341003874144,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 5,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 21.29099474350841,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 5,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 20.406095584377756,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 5,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 20.433037490285493,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 5,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 14.469556191446285,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 5,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 13.569315909501265,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 5,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 14.068284252013653,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 6,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 25.024401714018513,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 6,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 24.107636509336587,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 6,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 24.419625161595505,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 6,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 18.447938750415343,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 6,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 17.48923755634162,
+      "pass": true
+    },
+    {
+      "case": 1,
+      "wire": 6,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 18.189659508017705,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 1,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 6.424788921364827,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 1,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 5.4653261402323885,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 1,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 7.525005452698766,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 1,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 3.6940165240892955,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 1,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 1.8519949396703308,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 1,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 7.304826489562506,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 2,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 10.917089701703356,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 2,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 10.021169942703235,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 2,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 10.63235726649989,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 2,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 7.1942689661595605,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 2,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 6.043520053388335,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 2,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 8.547063062132272,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 3,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 14.124251950243156,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 3,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 13.290997839055526,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 3,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 13.326952299028802,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 3,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 9.637060886595801,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 3,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 8.730066480969201,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 3,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 9.754463963143545,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 4,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 19.011099936307453,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 4,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 18.1963646132469,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 4,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 18.00522892894319,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 4,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 13.809260219617718,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 4,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 12.923111901943331,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 4,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 13.201937518289549,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 5,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 21.26954525761711,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 5,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 20.383348289814766,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 5,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 20.417970505396468,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 5,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 14.440863202190469,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 5,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 13.54020210912085,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 5,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 14.050879443505169,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 6,
+      "bolt_x": 56.5,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 24.97087415584904,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 6,
+      "bolt_x": 56.5,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 24.05109902179047,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 6,
+      "bolt_x": 56.5,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 24.381574111539116,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 6,
+      "bolt_x": 64,
+      "part": "shank",
+      "finite_cylinder_clearance_mm": 18.392136921364898,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 6,
+      "bolt_x": 64,
+      "part": "head",
+      "finite_cylinder_clearance_mm": 17.42706032237509,
+      "pass": true
+    },
+    {
+      "case": 2,
+      "wire": 6,
+      "bolt_x": 64,
+      "part": "nut",
+      "finite_cylinder_clearance_mm": 18.153783629133812,
+      "pass": true
+    }
+  ],
+  "passed": true,
+  "remaining": [
+    "No pull, torque, creep or insulation damage test",
+    "M2nut and screw geometry is nominal, not supplier-qualified",
+    "Adjustment trial0.1 and limit0.15 do not establish universal OD coverage",
+    "Pad material SG-30 GP .020inch planningcandidate, stock/laser-cut tolerance unqualified"
+  ]
+}

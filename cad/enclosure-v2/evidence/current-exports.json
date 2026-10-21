@@ -1,0 +1,581 @@
+{
+  "inputs": {
+    "source/assembly_v2.scad": "1e21dc761d33bd8006f003455d5ead71765624fd794d8de41b5a13fc989d2e6d",
+    "source/button_assembly_nest.scad": "c44b0477191aaaf92f695084a36b0634b246c834b44a6abd7d6ac597227d2f6c",
+    "source/controller_frame_v2.scad": "97373ee1f3d5c995fd0de0edb36559732e1eb39dc32b6faad0f7954c83b34460",
+    "source/cosmetic_plug_v2.scad": "04316478e513975c81ef23e62c5286936e7670a748420b0b0416172e3ec06440",
+    "source/definitions.scad": "7e158ddde12b27f3b82b929e3472cd414397bed086db700f4fd10aee8450c952",
+    "source/drive_v2.scad": "f97a130d9ba1dc208be443d4adcee292b519831b60623caeaef30c3e395b0e83",
+    "source/enclosure_case_v2.scad": "5b12a949162938717f27635255a5ae59ae896786001067d7f9831d81949e430b",
+    "source/front_buttons_v2.scad": "c1bca1a13c03631421e41486fccf3179f909431d74c6228b27a2592daeea53de",
+    "source/parameters.scad": "d6f76dc1c056e0200d3f50c2d76d0909d0d3fcddbaa0939f98a8fda8cdf0a6fa",
+    "source/prints_v2.scad": "5be5a0fb1de9846acdc7cecb4df6e9c3b5d8b1fc777940648c74e51fb606881d",
+    "source/protected_cassette_v2.scad": "e323c62fee2033c0a22ae6520caeedf716d0197f60ec26bf55e1e4c41e34c4bb",
+    "source/service_hardware_v2.scad": "57d2e1deb9a450eb1d4e7169b1aad43eba8c007f2b63cc68de5c98318ad23447",
+    "source/usb_preview_v2.scad": "55ee7996b9b79293b9c28a4d71912c43034bc763b91fcde64d595fd85dfe495e",
+    "source/wire_arrays.scad": "a6c2c655c9f137552127472611ebd663aa5e2040fb2908d88b941903ac72f042",
+    "source/wiring_v2.scad": "2cf63cd71cdc26c516883189d26cbdf197d5f7cd16f8932a78dabc1d97340622",
+    "parameters/enclosure-v2.json": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+    "assets/233c0d6fff147b19-part-1.stl": "233c0d6fff147b198939850ce0df9644ba2a11e2939236b338b93bb8dea2edd1",
+    "assets/3a3cef4e8b5c1f87-part-2.stl": "3a3cef4e8b5c1f877be69a90821294a1d525afb91b05264d0ce8c1bef3953822",
+    "assets/6f3d643cee760ccb-part-3.stl": "6f3d643cee760ccb843d36ed3e55b22b753d8206f7fcbe2e180d2389f5dcc8cc",
+    "assets/bd2675b0681790a5-rear.stl": "bd2675b0681790a5df09f7ebdf55dcf0f391057f3476b79303940883b4db70db",
+    "assets/c23bbf4c46e53aff-front.stl": "c23bbf4c46e53aff2754ed1380074998659383cb2147a6f74675e0e38c93dedc",
+    "assets/de7d96ed224f554b-part-4.stl": "de7d96ed224f554b7773790d7b6586a8803bdbbe00aada33586b00995267ae04",
+    "assets/e7f765b8494b8f8e-part-0.stl": "e7f765b8494b8f8e61e10f3814beffd2cfd98a4dafee7d46520dd8c7526254c1",
+    "data/baseline-front.stl": "2a8ab8784e57bb4e86eb8e0c86eddad4a353c5afcf275d621f9e9b6e88cd35c2",
+    "data/baseline-rear.stl": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271",
+    "data/current-board-baseline.json": "d11e744b725d844e99df7effc82d6e18c2e0f9fe83aacf190010cb10ad29d84e",
+    "data/encoder-parking.json": "6da8ce8f4c4c8a9145e605a2652e4eb2472a5a61e0f959536918eecc1794462b",
+    "data/motor-service.json": "142a7b3c3d7535e9d3f1ac6377208d07d988a1adae04e6c9ccc9f4622cbb3726",
+    "data/old-front-latch-failure.json": "b0e6be05440d645538d4268ba60a497bf19a0b1868184c2a166660c73121c5cc",
+    "data/pack-path-audit.json": "dcbdbb58d69460641e44bff56898ef9b814b487f15b716c71c5a8a0cb26da630",
+    "data/pack-paths.json": "055e7ece95a4abb05fbf811853a4db91adb61de05641c50e4529e70afddc7e16",
+    "data/physical-board.kicad_pcb": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+    "data/print-baseline.json": "d2b45493c0b8d034fd2f5fb620635eb61c47b3df6096bbd178753f450b31d7ef",
+    "data/rejected-motor-frame.stl": "eff0dead18c78407fea0dbd19989a33592c99f6469ca5f90cc62730dba539f6b",
+    "data/routes.json": "74850743b91128b6705a6fd76d927acf3fa168514f5f985fa44b73e89a2ec763",
+    "geometry/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "geometry/operations.py": "db4ec1ca59c2b5ca68445b94a4bb5b22917d41b1eb5bee3b65b4cdaf41711ea8",
+    "verification/cosmetic_plug.py": "e9f5294a22059875b46a029ce39a045c01c0ec30af4e2540d6c33bfafe4399d6",
+    "verification/assembly_motion.py": "7225bbb0c364fd0c3ae1593b0e8e025fa2683c4db6ae8ad343482214897b2495",
+    "verification/parking_screen.py": "6e3e301b6c2ca3e9d86a05ad1fcf4362f25c1baa436770181a11110c6cee0238",
+    "verification/solid_checks.py": "874a6cf6e5562687bb73c0868ddc9852a13832b9391ffa7ea99272cb022d84af",
+    "verification/drive_clearance.py": "d354fe41038fc0ed49e661176c1013b9a5bb0495b48f7e8469ae945bd293ec10",
+    "verification/complete_extraction.py": "f45baa2d799c036a86c438d5500984bacf1dc39851e1f9bd3a1692128c327d11",
+    "verification/fastener_headroom.py": "fe8858213c045dcefc04774137f1c3d52028a2074b0e9a790007af7699fdf338",
+    "verification/button_integration.py": "1865092ffdc23520ba7831256ae9af6bc995fa32ab763a310ca9e5d6ef43fbfa",
+    "verification/broadphase_controls.py": "65e89cc9dad2838546d8588ba97e283ea119721c4a6e711829dbde3e3b7d1fcc",
+    "verification/extraction.py": "6fd2ffd39347699f86e2a8b2eeebf63f2cdbfb8e54a62fe6cf92e29c1af64ceb",
+    "verification/pad_contact.py": "5f713055f487573a7f8d99054cc8b2abac3ad533e8ec644ee095479bcb85011b",
+    "verification/clamp_sweep.py": "a41d66501fddfed210b50e92a4224397578f869604ddc3c5c7d8f86c88185416",
+    "verification/cassette_reliefs.py": "7670ad5ba3f2751b93610d7bdd668bbe9e5ad725707d9fa7e22e5a8c9b246818",
+    "verification/service_screen.py": "c3c322be0954e7d4c2e50c8c5b7c7a99f23f5b1793dbffbc0341a7cdba32761e",
+    "verification/access_screen.py": "9520b219f41221d6152a3d0d86ee89394396afefc8d0c6b4aad7370fd04052ad",
+    "verification/current_tail_clearance.py": "faadef7db71a1e62eac84f8d4dd3db360e50467c6ff45acb18fffb04df1a0b23",
+    "verification/button_sequence.py": "3c183c7bfaf4bcb0b2f0ec1adf2aabc551b47aba4a29e45ec39e085d3b7a66d2",
+    "verification/current_board_screen.py": "c28748a7129c2872d2f32c01be129a65d92f9f3def59d5e613b018236b7ffd76",
+    "build.py": "8372004e1548ccf13c7bf71d7626f4f601ec811946d5ff5ddaad82788a4a46aa",
+    "build_auxiliary.py": "3e9d0a565b63d0ddc2b610c5dca2c13c7e5d3b4807e8ffa848138955439bdd11",
+    "prepare.py": "725580be04557b1ce455e341dc1144bd1cc448bf434385d6716de2ba1603c2c5",
+    "verify.py": "622db664fc6a654d2388beeac15bc4d171793b7c0c8e88161f8e6e87ea494ee2"
+  },
+  "outputs": [
+    {
+      "part": "front",
+      "file": "exports/front.stl",
+      "sha256": "c82eff25e0130e75b2e9b663660e36afbb2f86964e454d9ad0efc7c8966b382a",
+      "bytes": 217784,
+      "seconds": 15.938070125004742,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/front.stl",
+        "-D",
+        "part=\"front\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "cover",
+      "file": "exports/cover.stl",
+      "sha256": "2b95279f2921345e124c49aceef7eab1eb64589ccc228e9e8f37ace8d235f2af",
+      "bytes": 168884,
+      "seconds": 12.192686708993278,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/cover.stl",
+        "-D",
+        "part=\"cover\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "backplate",
+      "file": "exports/backplate.stl",
+      "sha256": "1bf0360fbc72b7980c403765f620cf57739888b59025bc0c707262d6f94a5703",
+      "bytes": 170584,
+      "seconds": 23.167491291998886,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/backplate.stl",
+        "-D",
+        "part=\"backplate\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "guide_bar",
+      "file": "exports/guide_bar.stl",
+      "sha256": "e21a8a57f49f801b280560e8a30461a1875964994505cfed3c5cd874fc3835dd",
+      "bytes": 89284,
+      "seconds": 4.862494249973679,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/guide_bar.stl",
+        "-D",
+        "part=\"guide_bar\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "button",
+      "file": "exports/button.stl",
+      "sha256": "b586a159e3479e3fa882a8711fe8004bcfbc9bb249ac238b522d1c54f42ab804",
+      "bytes": 56084,
+      "seconds": 8.270585249993019,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/button.stl",
+        "-D",
+        "part=\"button\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "nest",
+      "file": "exports/nest.stl",
+      "sha256": "19eb946304d54b118dc70e9ecbd0afb9530ab0182e501922a56942abc49e1798",
+      "bytes": 19884,
+      "seconds": 0.5779564580006991,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/nest.stl",
+        "-D",
+        "part=\"nest\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "motor_frame",
+      "file": "exports/motor_frame.stl",
+      "sha256": "320f50c53cdb039b697155fe80124b93352cee0f1854c1913f81742948253d19",
+      "bytes": 87484,
+      "seconds": 12.895096624997677,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/motor_frame.stl",
+        "-D",
+        "part=\"motor_frame\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "backing",
+      "file": "exports/backing.stl",
+      "sha256": "1401a85f27f25b8fa73b0a7c1e352b6443facbe5ef9767105239731cada108f6",
+      "bytes": 102584,
+      "seconds": 79.1882987919962,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/backing.stl",
+        "-D",
+        "part=\"backing\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "guard_clamp",
+      "file": "exports/guard_clamp.stl",
+      "sha256": "f7ed295cd5f8feaccebf5ad4f35b0288865526dd439c02ded031c94ce1b59da7",
+      "bytes": 117784,
+      "seconds": 72.45511791697936,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/guard_clamp.stl",
+        "-D",
+        "part=\"guard_clamp\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "tail_keeper",
+      "file": "exports/tail_keeper.stl",
+      "sha256": "13f5b020d51e667885f2d00747e60321b980fbc1e15dc4a3949564d18d620433",
+      "bytes": 18084,
+      "seconds": 2.0033569170045666,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/tail_keeper.stl",
+        "-D",
+        "part=\"tail_keeper\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "inline_body",
+      "file": "exports/inline_body.stl",
+      "sha256": "61c2f89cf01f579e7bc5e1b2734cd44f91fa240398dd6e4ca2bcacdd683ee777",
+      "bytes": 684,
+      "seconds": 0.22261891700327396,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/inline_body.stl",
+        "-D",
+        "part=\"inline_body\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "housing_tie",
+      "file": "exports/housing_tie.stl",
+      "sha256": "a2f039e8acce4013697cf421236b6438791dba73e782ce34c6f5000206d70f21",
+      "bytes": 3284,
+      "seconds": 0.28660437499638647,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/housing_tie.stl",
+        "-D",
+        "part=\"housing_tie\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "rear",
+      "file": "exports/rear.stl",
+      "sha256": "71f9593b6a8778e4033d4aa9c8ea6a7fc278127c6ff30915871583acf35c44f5",
+      "bytes": 270484,
+      "seconds": 5.295499542000471,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/rear.stl",
+        "-D",
+        "part=\"rear\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "spacer",
+      "file": "exports/spacer.stl",
+      "sha256": "e71c64fad70731a9343a0c80fff5a1e269d8ddf07fb124d8499c5dbdfe43c500",
+      "bytes": 154684,
+      "seconds": 21.699507833021926,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/spacer.stl",
+        "-D",
+        "part=\"spacer\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "upper_clip",
+      "file": "exports/upper_clip.stl",
+      "sha256": "282b726a582d471dddfe3e278b368774f46b56cbbe335cc2eae0f0fa31b68a21",
+      "bytes": 9684,
+      "seconds": 0.6022765419911593,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/upper_clip.stl",
+        "-D",
+        "part=\"upper_clip\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "lower_clip",
+      "file": "exports/lower_clip.stl",
+      "sha256": "3d36cf3fd7baf4bbe02cb9d178490ab096fa64fb9772f9662ae0e4b81154b903",
+      "bytes": 9684,
+      "seconds": 0.5880181660177186,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/lower_clip.stl",
+        "-D",
+        "part=\"lower_clip\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "rear_lower",
+      "file": "exports/rear_lower.stl",
+      "sha256": "06cb17db47eca7bec1aed66164280dd252ac92c824ec67b6cba091b15cc96d49",
+      "bytes": 59684,
+      "seconds": 4.43062645799364,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/rear_lower.stl",
+        "-D",
+        "part=\"rear_lower\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "rear_upper",
+      "file": "exports/rear_upper.stl",
+      "sha256": "2d7190a7627b1b5f15ef44e633952d01050f62ca4eb082d53ea6b73ee1cc1f05",
+      "bytes": 34284,
+      "seconds": 1.7996604590152856,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/rear_upper.stl",
+        "-D",
+        "part=\"rear_upper\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "front_lower",
+      "file": "exports/front_lower.stl",
+      "sha256": "4d0d675ad3b81d2db39b909b3d84b9a9c01f50cb9ab689b9257ced5dd0def23b",
+      "bytes": 61684,
+      "seconds": 4.237140000012005,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/front_lower.stl",
+        "-D",
+        "part=\"front_lower\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "front_upper",
+      "file": "exports/front_upper.stl",
+      "sha256": "b4628b8e80e4ec606227ca98ca7296ca52192b4efcf5fc487be231353789252e",
+      "bytes": 34284,
+      "seconds": 1.801249457988888,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/front_upper.stl",
+        "-D",
+        "part=\"front_upper\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "bearing_block",
+      "file": "exports/bearing_block.stl",
+      "sha256": "512c83e457ca36b7ef97ca8a1aa74ee58c0e59aeccb93751dba2337910839021",
+      "bytes": 116084,
+      "seconds": 8.48718524997821,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/bearing_block.stl",
+        "-D",
+        "part=\"bearing_block\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "retainer",
+      "file": "exports/retainer.stl",
+      "sha256": "bd851890db3dd6c09b4c9b320e127a40d52ec50edad486a92741d5f2e615b658",
+      "bytes": 59684,
+      "seconds": 3.128767875023186,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/retainer.stl",
+        "-D",
+        "part=\"retainer\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "wheel",
+      "file": "exports/wheel.stl",
+      "sha256": "3785bb3cf6d5daf88217eabfbeafe5528f1c39a8ff87667e1fb78af51e629009",
+      "bytes": 419484,
+      "seconds": 32.502001291984925,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/wheel.stl",
+        "-D",
+        "part=\"wheel\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "guard",
+      "file": "exports/guard.stl",
+      "sha256": "f40bd66fe20098fd57758b7b8b24903fd56448c8e15871e0e34f82e2c24f9f99",
+      "bytes": 55684,
+      "seconds": 2.7289439589949325,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/guard.stl",
+        "-D",
+        "part=\"guard\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "cosmetic_plug",
+      "file": "exports/cosmetic_plug.stl",
+      "sha256": "55327ab8b09ac534ec152dacb7cd6e12675d8d4a6c2d0c8afaef2ad5b13c17f9",
+      "bytes": 58284,
+      "seconds": 4.030535124999005,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/cosmetic_plug.stl",
+        "-D",
+        "part=\"cosmetic_plug\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "ring",
+      "file": "exports/ring.stl",
+      "sha256": "35ba6dd7df3919b74cfd82547732d6e4feaa9568c04f0d40c7417732882c0f7f",
+      "bytes": 204884,
+      "seconds": 0.23007474999758415,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/ring.stl",
+        "-D",
+        "part=\"ring\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "drive",
+      "file": "exports/drive.stl",
+      "sha256": "d7a4da95237e061cccaf515681374fde97f36b002f65d728fb84fb3136a32773",
+      "bytes": 1799384,
+      "seconds": 213.06152862499584,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/drive.stl",
+        "-D",
+        "part=\"drive\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "contents",
+      "file": "exports/contents.stl",
+      "sha256": "93defbddbee348c3a5dc35782a3a2952c03b09fb7d113e052a00760a3e590130",
+      "bytes": 282284,
+      "seconds": 26.2807474170113,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/contents.stl",
+        "-D",
+        "part=\"contents\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "pack_fasteners",
+      "file": "exports/pack_fasteners.stl",
+      "sha256": "bbd6ae4a92d7c0e8cc5e47e4f5d0990b75536d2556328a40de9bb44ed007f5b8",
+      "bytes": 100084,
+      "seconds": 4.366248208010802,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/pack_fasteners.stl",
+        "-D",
+        "part=\"pack_fasteners\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/prints_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090009.json"
+    },
+    {
+      "part": "service_hardware",
+      "file": "exports/service_hardware.stl",
+      "sha256": "5bee4b31c314bd60a54018f4257ea914255272fdcd0e3ad114655eec6e48cb3a",
+      "bytes": 251484,
+      "seconds": 14.752367125009187,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--export-format=binstl",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/exports/service_hardware.stl",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/source/service_hardware_v2.scad"
+      ],
+      "manifest": "evidence/export-20261021T090024.json"
+    }
+  ],
+  "superseded_same_source_rows": [
+    {
+      "part": "front",
+      "manifest": "evidence/export-20261021T084914.json",
+      "sha256": "19acf51ccff5e35de61d280d98987d8efa145461116068cf69e0eed5aa96fb14"
+    }
+  ]
+}

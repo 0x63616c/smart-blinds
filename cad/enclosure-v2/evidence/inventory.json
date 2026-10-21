@@ -1,0 +1,626 @@
+{
+  "status": "Dense geometric estimate; not sliced/printed/strength qualified",
+  "inputs": {
+    "inventory.py": "ed2a24bd362a86d11bf09d95056cade82282ab9d167e627693496dc2ba6abc46",
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "evidence/current-exports.json": "e4e272abd99a039daaa09d73557dc6d1fbb054511d7846f205f1c5a14162112d"
+  },
+  "installed_pieces_per_unit": 22,
+  "distinct_installed_shapes": 21,
+  "installed_pieces_for_eight": 176,
+  "optional_cap_pieces_per_unit": 2,
+  "optional_cap_shapes": 1,
+  "new_shared_workshop_pieces": 1,
+  "installed_volume_cm3": 369.2393486435662,
+  "optional_caps_volume_cm3": 0.08597047883687294,
+  "new_shared_nest_volume_cm3": 3.4918642974262935,
+  "density_assumption_g_cm3": 1.27,
+  "dense_mass_g_per_unit": 468.9339727773291,
+  "dense_mass_kg_eight": 3.7514717822186325,
+  "parts": [
+    {
+      "part": "cover",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/cover.stl",
+      "sha256": "2b95279f2921345e124c49aceef7eab1eb64589ccc228e9e8f37ace8d235f2af",
+      "bytes": 168884,
+      "triangles": 3376,
+      "vertices": 1676,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          0.0,
+          -11.0,
+          3.3999996185302734
+        ],
+        [
+          118.0,
+          185.0,
+          77.0
+        ]
+      ],
+      "volume_mm3": 158282.5080728585
+    },
+    {
+      "part": "backplate",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/backplate.stl",
+      "sha256": "1bf0360fbc72b7980c403765f620cf57739888b59025bc0c707262d6f94a5703",
+      "bytes": 170584,
+      "triangles": 3410,
+      "vertices": 1687,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          0.0,
+          -11.0,
+          0.0
+        ],
+        [
+          118.0,
+          185.0,
+          62.70000076293945
+        ]
+      ],
+      "volume_mm3": 96052.54028319159
+    },
+    {
+      "part": "guide_bar",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/guide_bar.stl",
+      "sha256": "e21a8a57f49f801b280560e8a30461a1875964994505cfed3c5cd874fc3835dd",
+      "bytes": 89284,
+      "triangles": 1784,
+      "vertices": 882,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          96.5,
+          16.0,
+          63.099998474121094
+        ],
+        [
+          115.19999694824219,
+          47.0,
+          74.19999694824219
+        ]
+      ],
+      "volume_mm3": 1297.602824579063
+    },
+    {
+      "part": "button",
+      "quantity_per_unit": 2,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/button.stl",
+      "sha256": "b586a159e3479e3fa882a8711fe8004bcfbc9bb249ac238b522d1c54f42ab804",
+      "bytes": 56084,
+      "triangles": 1120,
+      "vertices": 558,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          -6.0,
+          -6.0,
+          65.5
+        ],
+        [
+          6.0,
+          6.0,
+          78.80000305175781
+        ]
+      ],
+      "volume_mm3": 588.8367483546908
+    },
+    {
+      "part": "motor_frame",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/motor_frame.stl",
+      "sha256": "320f50c53cdb039b697155fe80124b93352cee0f1854c1913f81742948253d19",
+      "bytes": 87484,
+      "triangles": 1748,
+      "vertices": 866,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          83.19999694824219,
+          -6.5,
+          3.3999996185302734
+        ],
+        [
+          114.5999984741211,
+          110.80000305175781,
+          69.0999984741211
+        ]
+      ],
+      "volume_mm3": 5051.555798483434
+    },
+    {
+      "part": "backing",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/backing.stl",
+      "sha256": "1401a85f27f25b8fa73b0a7c1e352b6443facbe5ef9767105239731cada108f6",
+      "bytes": 102584,
+      "triangles": 2050,
+      "vertices": 1019,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          49.0,
+          98.4000015258789,
+          42.0
+        ],
+        [
+          84.0,
+          102.19999694824219,
+          65.9000015258789
+        ]
+      ],
+      "volume_mm3": 2323.3246504881613
+    },
+    {
+      "part": "guard_clamp",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/guard_clamp.stl",
+      "sha256": "f7ed295cd5f8feaccebf5ad4f35b0288865526dd439c02ded031c94ce1b59da7",
+      "bytes": 117784,
+      "triangles": 2354,
+      "vertices": 1173,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          37.20000076293945,
+          101.80000305175781,
+          34.0
+        ],
+        [
+          94.0,
+          120.0,
+          65.9000015258789
+        ]
+      ],
+      "volume_mm3": 2671.982576790906
+    },
+    {
+      "part": "tail_keeper",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/tail_keeper.stl",
+      "sha256": "13f5b020d51e667885f2d00747e60321b980fbc1e15dc4a3949564d18d620433",
+      "bytes": 18084,
+      "triangles": 360,
+      "vertices": 178,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          92.0999984741211,
+          65.0,
+          69.0999984741211
+        ],
+        [
+          106.0999984741211,
+          71.0,
+          71.5999984741211
+        ]
+      ],
+      "volume_mm3": 134.07199410790645
+    },
+    {
+      "part": "front",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/front.stl",
+      "sha256": "c82eff25e0130e75b2e9b663660e36afbb2f86964e454d9ad0efc7c8966b382a",
+      "bytes": 217784,
+      "triangles": 4354,
+      "vertices": 2165,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          3.1999998092651367,
+          4.399999618530273,
+          34.29999923706055
+        ],
+        [
+          93.80000305175781,
+          120.0,
+          68.5
+        ]
+      ],
+      "volume_mm3": 34482.38548500108
+    },
+    {
+      "part": "rear",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/rear.stl",
+      "sha256": "71f9593b6a8778e4033d4aa9c8ea6a7fc278127c6ff30915871583acf35c44f5",
+      "bytes": 270484,
+      "triangles": 5408,
+      "vertices": 2686,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          3.1999998092651367,
+          4.399999618530273,
+          3.0
+        ],
+        [
+          93.80000305175781,
+          120.0,
+          34.29999923706055
+        ]
+      ],
+      "volume_mm3": 32434.56039145906
+    },
+    {
+      "part": "spacer",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/spacer.stl",
+      "sha256": "e71c64fad70731a9343a0c80fff5a1e269d8ddf07fb124d8499c5dbdfe43c500",
+      "bytes": 154684,
+      "triangles": 3092,
+      "vertices": 1504,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          3.3999996185302734,
+          4.59999942779541,
+          28.799999237060547
+        ],
+        [
+          92.19999694824219,
+          111.4000015258789,
+          39.400001525878906
+        ]
+      ],
+      "volume_mm3": 11571.163617154927
+    },
+    {
+      "part": "upper_clip",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/upper_clip.stl",
+      "sha256": "282b726a582d471dddfe3e278b368774f46b56cbbe335cc2eae0f0fa31b68a21",
+      "bytes": 9684,
+      "triangles": 192,
+      "vertices": 96,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          106.5999984741211,
+          -3.6000003814697266,
+          0.0
+        ],
+        [
+          111.80000305175781,
+          3.59999942779541,
+          7.199999809265137
+        ]
+      ],
+      "volume_mm3": 206.47468244644446
+    },
+    {
+      "part": "lower_clip",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/lower_clip.stl",
+      "sha256": "3d36cf3fd7baf4bbe02cb9d178490ab096fa64fb9772f9662ae0e4b81154b903",
+      "bytes": 9684,
+      "triangles": 192,
+      "vertices": 96,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          106.5999984741211,
+          -3.59999942779541,
+          -3.814697322468419e-07
+        ],
+        [
+          111.80000305175781,
+          3.59999942779541,
+          5.499999523162842
+        ]
+      ],
+      "volume_mm3": 124.05802364089845
+    },
+    {
+      "part": "rear_lower",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/rear_lower.stl",
+      "sha256": "06cb17db47eca7bec1aed66164280dd252ac92c824ec67b6cba091b15cc96d49",
+      "bytes": 59684,
+      "triangles": 1192,
+      "vertices": 590,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          0.0,
+          2.3000001907348633,
+          0.0
+        ],
+        [
+          10.0,
+          53.70000076293945,
+          22.0
+        ]
+      ],
+      "volume_mm3": 3754.923076544916
+    },
+    {
+      "part": "rear_upper",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/rear_upper.stl",
+      "sha256": "2d7190a7627b1b5f15ef44e633952d01050f62ca4eb082d53ea6b73ee1cc1f05",
+      "bytes": 34284,
+      "triangles": 684,
+      "vertices": 340,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          0.0,
+          2.3000001907348633,
+          -7.629394644936838e-07
+        ],
+        [
+          10.0,
+          53.70000076293945,
+          19.899999618530273
+        ]
+      ],
+      "volume_mm3": 2724.3930352942825
+    },
+    {
+      "part": "front_lower",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/front_lower.stl",
+      "sha256": "4d0d675ad3b81d2db39b909b3d84b9a9c01f50cb9ab689b9257ced5dd0def23b",
+      "bytes": 61684,
+      "triangles": 1232,
+      "vertices": 610,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          0.0,
+          0.3000001907348633,
+          0.0
+        ],
+        [
+          10.0,
+          55.70000076293945,
+          22.0
+        ]
+      ],
+      "volume_mm3": 3493.121997858228
+    },
+    {
+      "part": "front_upper",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/front_upper.stl",
+      "sha256": "b4628b8e80e4ec606227ca98ca7296ca52192b4efcf5fc487be231353789252e",
+      "bytes": 34284,
+      "triangles": 684,
+      "vertices": 340,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          0.0,
+          0.3000001907348633,
+          -7.629394644936838e-07
+        ],
+        [
+          10.0,
+          55.70000076293945,
+          21.899999618530273
+        ]
+      ],
+      "volume_mm3": 2972.454771189134
+    },
+    {
+      "part": "bearing_block",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/bearing_block.stl",
+      "sha256": "512c83e457ca36b7ef97ca8a1aa74ee58c0e59aeccb93751dba2337910839021",
+      "bytes": 116084,
+      "triangles": 2320,
+      "vertices": 1148,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          8.0,
+          42.0,
+          38.0
+        ]
+      ],
+      "volume_mm3": 4868.831155538343
+    },
+    {
+      "part": "retainer",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/retainer.stl",
+      "sha256": "bd851890db3dd6c09b4c9b320e127a40d52ec50edad486a92741d5f2e615b658",
+      "bytes": 59684,
+      "triangles": 1192,
+      "vertices": 592,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          -9.0,
+          -14.0,
+          0.0
+        ],
+        [
+          9.0,
+          14.0,
+          3.0
+        ]
+      ],
+      "volume_mm3": 731.1059269819843
+    },
+    {
+      "part": "wheel",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/wheel.stl",
+      "sha256": "3785bb3cf6d5daf88217eabfbeafe5528f1c39a8ff87667e1fb78af51e629009",
+      "bytes": 419484,
+      "triangles": 8388,
+      "vertices": 4190,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          -15.0,
+          -15.0,
+          0.0
+        ],
+        [
+          15.0,
+          15.0,
+          8.0
+        ]
+      ],
+      "volume_mm3": 3534.304421674187
+    },
+    {
+      "part": "guard",
+      "quantity_per_unit": 1,
+      "shared_quantity": 0,
+      "category": "installed",
+      "file": "exports/guard.stl",
+      "sha256": "f40bd66fe20098fd57758b7b8b24903fd56448c8e15871e0e34f82e2c24f9f99",
+      "bytes": 55684,
+      "triangles": 1112,
+      "vertices": 554,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          -53.5,
+          116.0,
+          -1.9073486612342094e-07
+        ],
+        [
+          -15.0,
+          141.0,
+          10.300000190734863
+        ]
+      ],
+      "volume_mm3": 1350.312361573741
+    },
+    {
+      "part": "cosmetic_plug",
+      "quantity_per_unit": 2,
+      "shared_quantity": 0,
+      "category": "optional",
+      "file": "exports/cosmetic_plug.stl",
+      "sha256": "55327ab8b09ac534ec152dacb7cd6e12675d8d4a6c2d0c8afaef2ad5b13c17f9",
+      "bytes": 58284,
+      "triangles": 1164,
+      "vertices": 584,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          -2.8999996185302734,
+          -2.8999996185302734,
+          74.80000305175781
+        ],
+        [
+          2.8999996185302734,
+          2.8999996185302734,
+          79.5
+        ]
+      ],
+      "volume_mm3": 42.985239418436464
+    },
+    {
+      "part": "nest",
+      "quantity_per_unit": 0,
+      "shared_quantity": 1,
+      "category": "workshop",
+      "file": "exports/nest.stl",
+      "sha256": "19eb946304d54b118dc70e9ecbd0afb9530ab0182e501922a56942abc49e1798",
+      "bytes": 19884,
+      "triangles": 396,
+      "vertices": 200,
+      "closed_edges": true,
+      "connected_components": 1,
+      "bounds": [
+        [
+          97.4000015258789,
+          12.0,
+          77.0
+        ],
+        [
+          121.4000015258789,
+          52.0,
+          81.0
+        ]
+      ],
+      "volume_mm3": 3491.8642974262934
+    }
+  ],
+  "limits": [
+    "Print orientation, perimeters/infill, supports, brim and waste not resolved.",
+    "Existing eight-piece holder-loading fixture is separate and not newly qualified against the revised restraint.",
+    "Silicone pads, barrier, O-rings, ties, electrical parts and hardware are not printed pieces.",
+    "The housing tie/inline connector/ring/contents/whole-drive exports are verification operands, not extra printable parts."
+  ]
+}

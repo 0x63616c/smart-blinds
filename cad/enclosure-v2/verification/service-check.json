@@ -1,0 +1,1555 @@
+{
+  "inputs": {
+    "geometry/operations.py": "db4ec1ca59c2b5ca68445b94a4bb5b22917d41b1eb5bee3b65b4cdaf41711ea8",
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "verification/service_screen.py": "c3c322be0954e7d4c2e50c8c5b7c7a99f23f5b1793dbffbc0341a7cdba32761e",
+    "data/motor-service.json": "142a7b3c3d7535e9d3f1ac6377208d07d988a1adae04e6c9ccc9f4622cbb3726",
+    "data/routes.json": "74850743b91128b6705a6fd76d927acf3fa168514f5f985fa44b73e89a2ec763",
+    "exports/drive.stl": "d7a4da95237e061cccaf515681374fde97f36b002f65d728fb84fb3136a32773",
+    "exports/backplate.stl": "1bf0360fbc72b7980c403765f620cf57739888b59025bc0c707262d6f94a5703",
+    "exports/cover.stl": "2b95279f2921345e124c49aceef7eab1eb64589ccc228e9e8f37ace8d235f2af",
+    "exports/motor_frame.stl": "320f50c53cdb039b697155fe80124b93352cee0f1854c1913f81742948253d19"
+  },
+  "status": "Sampled explicit constant-length service states; no continuous sweep/physical flexibility qualification. Cover only checked installed. Only the separately declared rear cable allocation surface is excluded, not accepted as owned motor geometry. All original failures are retained under initial-service.",
+  "checks": [
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "motor1",
+      "fixed": "cover",
+      "clearance_or_3mm_lower_bound": 0.6738003814697167,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "motor2",
+      "fixed": "cover",
+      "clearance_or_3mm_lower_bound": 0.22380000000000289,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "encoder",
+      "fixed": "cover",
+      "clearance_or_3mm_lower_bound": 0.04880038146972643,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "shift_mm": 0.0,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 0,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 0,
+      "item": "motor1",
+      "fixed": "encoder",
+      "clearance_or_3mm_lower_bound": 5.137232436429901,
+      "pass": true
+    },
+    {
+      "state": 0,
+      "item": "motor2",
+      "fixed": "encoder",
+      "clearance_or_3mm_lower_bound": 2.53111374227454,
+      "pass": true
+    },
+    {
+      "state": 1,
+      "shift_mm": 0.5,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 1,
+      "shift_mm": 0.5,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 1,
+      "shift_mm": 0.5,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 1,
+      "shift_mm": 0.5,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 1,
+      "shift_mm": 0.5,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 1,
+      "shift_mm": 0.5,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 1,
+      "shift_mm": 0.5,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 1,
+      "shift_mm": 0.5,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 1,
+      "shift_mm": 0.5,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 1,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999717,
+      "pass": true
+    },
+    {
+      "state": 2,
+      "shift_mm": 1.0,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 2,
+      "shift_mm": 1.0,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 2,
+      "shift_mm": 1.0,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 2,
+      "shift_mm": 1.0,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 2,
+      "shift_mm": 1.0,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 2,
+      "shift_mm": 1.0,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 2,
+      "shift_mm": 1.0,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 2,
+      "shift_mm": 1.0,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 2,
+      "shift_mm": 1.0,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 2,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 3,
+      "shift_mm": 1.5,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 3,
+      "shift_mm": 1.5,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 3,
+      "shift_mm": 1.5,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 3,
+      "shift_mm": 1.5,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 3,
+      "shift_mm": 1.5,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 3,
+      "shift_mm": 1.5,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 3,
+      "shift_mm": 1.5,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 3,
+      "shift_mm": 1.5,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 3,
+      "shift_mm": 1.5,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 3,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 4,
+      "shift_mm": 2.0,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 4,
+      "shift_mm": 2.0,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 4,
+      "shift_mm": 2.0,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 4,
+      "shift_mm": 2.0,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 4,
+      "shift_mm": 2.0,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 4,
+      "shift_mm": 2.0,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 4,
+      "shift_mm": 2.0,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 4,
+      "shift_mm": 2.0,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 4,
+      "shift_mm": 2.0,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 4,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 5,
+      "shift_mm": 2.5,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 5,
+      "shift_mm": 2.5,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 5,
+      "shift_mm": 2.5,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 5,
+      "shift_mm": 2.5,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 5,
+      "shift_mm": 2.5,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 5,
+      "shift_mm": 2.5,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 5,
+      "shift_mm": 2.5,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 5,
+      "shift_mm": 2.5,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 5,
+      "shift_mm": 2.5,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 5,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 6,
+      "shift_mm": 3.0,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 6,
+      "shift_mm": 3.0,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 6,
+      "shift_mm": 3.0,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 6,
+      "shift_mm": 3.0,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 6,
+      "shift_mm": 3.0,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 6,
+      "shift_mm": 3.0,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 6,
+      "shift_mm": 3.0,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 6,
+      "shift_mm": 3.0,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 6,
+      "shift_mm": 3.0,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 6,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 7,
+      "shift_mm": 3.5,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 7,
+      "shift_mm": 3.5,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 7,
+      "shift_mm": 3.5,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 7,
+      "shift_mm": 3.5,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 7,
+      "shift_mm": 3.5,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 7,
+      "shift_mm": 3.5,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 7,
+      "shift_mm": 3.5,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 7,
+      "shift_mm": 3.5,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 7,
+      "shift_mm": 3.5,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 7,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 8,
+      "shift_mm": 4.0,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 8,
+      "shift_mm": 4.0,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 8,
+      "shift_mm": 4.0,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 8,
+      "shift_mm": 4.0,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 8,
+      "shift_mm": 4.0,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 8,
+      "shift_mm": 4.0,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 8,
+      "shift_mm": 4.0,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 8,
+      "shift_mm": 4.0,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 8,
+      "shift_mm": 4.0,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 8,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 9,
+      "shift_mm": 4.5,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 9,
+      "shift_mm": 4.5,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 9,
+      "shift_mm": 4.5,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 9,
+      "shift_mm": 4.5,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 9,
+      "shift_mm": 4.5,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 9,
+      "shift_mm": 4.5,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 9,
+      "shift_mm": 4.5,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 9,
+      "shift_mm": 4.5,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 9,
+      "shift_mm": 4.5,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 9,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999717,
+      "pass": true
+    },
+    {
+      "state": 10,
+      "shift_mm": 5.0,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 10,
+      "shift_mm": 5.0,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 10,
+      "shift_mm": 5.0,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 10,
+      "shift_mm": 5.0,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 10,
+      "shift_mm": 5.0,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 10,
+      "shift_mm": 5.0,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 10,
+      "shift_mm": 5.0,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 10,
+      "shift_mm": 5.0,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 10,
+      "shift_mm": 5.0,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 10,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 11,
+      "shift_mm": 5.5,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 11,
+      "shift_mm": 5.5,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 11,
+      "shift_mm": 5.5,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 11,
+      "shift_mm": 5.5,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 11,
+      "shift_mm": 5.5,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 11,
+      "shift_mm": 5.5,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 11,
+      "shift_mm": 5.5,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 11,
+      "shift_mm": 5.5,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 11,
+      "shift_mm": 5.5,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 11,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 12,
+      "shift_mm": 6.0,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 12,
+      "shift_mm": 6.0,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 12,
+      "shift_mm": 6.0,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 12,
+      "shift_mm": 6.0,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 12,
+      "shift_mm": 6.0,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 12,
+      "shift_mm": 6.0,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 12,
+      "shift_mm": 6.0,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 12,
+      "shift_mm": 6.0,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 12,
+      "shift_mm": 6.0,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 12,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 13,
+      "shift_mm": 6.5,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 13,
+      "shift_mm": 6.5,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 13,
+      "shift_mm": 6.5,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 13,
+      "shift_mm": 6.5,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 13,
+      "shift_mm": 6.5,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 13,
+      "shift_mm": 6.5,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 13,
+      "shift_mm": 6.5,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 13,
+      "shift_mm": 6.5,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 13,
+      "shift_mm": 6.5,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 13,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 14,
+      "shift_mm": 7.0,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 14,
+      "shift_mm": 7.0,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 14,
+      "shift_mm": 7.0,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 14,
+      "shift_mm": 7.0,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 14,
+      "shift_mm": 7.0,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 14,
+      "shift_mm": 7.0,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 14,
+      "shift_mm": 7.0,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 14,
+      "shift_mm": 7.0,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 14,
+      "shift_mm": 7.0,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 14,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 15,
+      "shift_mm": 7.5,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 15,
+      "shift_mm": 7.5,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 15,
+      "shift_mm": 7.5,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 15,
+      "shift_mm": 7.5,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 15,
+      "shift_mm": 7.5,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 15,
+      "shift_mm": 7.5,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 15,
+      "shift_mm": 7.5,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 15,
+      "shift_mm": 7.5,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 15,
+      "shift_mm": 7.5,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 15,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    },
+    {
+      "state": 16,
+      "shift_mm": 8.0,
+      "item": "motor1",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 16,
+      "shift_mm": 8.0,
+      "item": "motor1",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 16,
+      "shift_mm": 8.0,
+      "item": "motor1",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 16,
+      "shift_mm": 8.0,
+      "item": "motor2",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 16,
+      "shift_mm": 8.0,
+      "item": "motor2",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 16,
+      "shift_mm": 8.0,
+      "item": "motor2",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.4737999999999998,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 16,
+      "shift_mm": 8.0,
+      "item": "encoder",
+      "fixed": "backplate",
+      "clearance_or_3mm_lower_bound": 0.4488000000000001,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 16,
+      "shift_mm": 8.0,
+      "item": "encoder",
+      "fixed": "motor_frame",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 16,
+      "shift_mm": 8.0,
+      "item": "encoder",
+      "fixed": "drive_outside_provisional_rear_lead_allocation",
+      "clearance_or_3mm_lower_bound": 2.2094838062199136,
+      "pass": true,
+      "witness": null
+    },
+    {
+      "state": 16,
+      "item": "motor1",
+      "fixed": "motor2",
+      "clearance_or_3mm_lower_bound": 0.5475999999999965,
+      "pass": true
+    }
+  ],
+  "passed": true,
+  "findings": []
+}
