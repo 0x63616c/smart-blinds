@@ -2,6 +2,100 @@
 using namespace blinds;
 using namespace session_test;
 namespace {
+void receive_after_cycle_clock() {
+    Fixture f;f.reference();
+    const auto captured=f.io.now;
+    std::uint64_t received=0;
+    f.io.after_clock_sample=[&] {
+        f.io.now+=10;received=f.io.now;f.queue(f.prepare());
+    };
+    const auto first=f.cycle();
+    std::cout<<"receive interleave: captured="<<captured<<" received="<<received
+             <<" observed="<<first.observed_us<<" message="<<first.last_message
+             <<" phase="<<static_cast<unsigned>(first.phase)<<" result="<<static_cast<unsigned>(first.result)
+             <<" io="<<f.io.calls<<std::endl;
+    check(received==captured+10 && first.observed_us==captured,"producer seam did not cross clock observation");
+    check(first.last_message==0 && f.inbox.pending() && f.io.calls==0,
+          "post-clock command was consumed against an earlier cycle timestamp");
+    f.refresh();const auto second=f.cycle();
+    check(second.last_message==1 && second.phase==MotionSession::Phase::preparing &&
+          second.result==MotionSession::Result::accepted && !f.inbox.pending(),
+          "fresh post-clock arrival was not admitted on the next bounded cycle");
+}
+void inbox_clock_negative_controls() {
+    // A physically future receipt is still invalid after the completed copy.
+    Fixture future;future.reference();const auto future_request=future.prepare();future.queue(future_request,future.io.now+1);
+    auto s=future.cycle();
+    check(s.result==MotionSession::Result::invalid && s.last_message==1 && future.io.calls==0,
+          "truly future receipt authorized motion or lost replay floor");
+    check(!future.inbox.push({future_request,1,future.io.now,true}),"rejected future request replay floor reset");
+    for(const auto age:{40000U,40001U}) {
+        Fixture f;f.reference();auto r=f.prepare();r.sent_us-=age;f.queue(r,f.io.now-age);
+        s=f.cycle();
+        if(age==40000) check(s.result==MotionSession::Result::accepted && s.phase==MotionSession::Phase::preparing,
+                            "exact queue-age boundary was narrowed");
+        else check(s.result==MotionSession::Result::invalid && f.io.calls==0,
+                   "old queue receipt authorized motion");
+    }
+    for(bool ahead:{false,true}) {
+        Fixture f;f.reference();auto r=f.prepare();
+        r.sent_us=ahead ? r.sent_us+20000 : r.sent_us-100001;f.queue(r);
+        s=f.cycle();check(s.result==MotionSession::Result::stale && f.io.calls==0,
+                         "future or old source timestamp gained authority");
+    }
+    Fixture backwards;backwards.reference();backwards.queue(backwards.prepare());
+    backwards.io.reversed_read=backwards.io.clock_reads+1;s=backwards.cycle();
+    check(s.result==MotionSession::Result::clock && s.phase==MotionSession::Phase::fault && backwards.io.calls==0,
+          "reversed cycle clock authorized queued command");
+    backwards.io.reversed_read=0;backwards.cycle();
+    check(backwards.session.status().result==MotionSession::Result::clock,"later clock repaired first fault");
+}
+void snapshot_stop_and_queue_boundaries() {
+    Fixture stopped;stopped.reference();stopped.queue(stopped.prepare());
+    stopped.io.after_clock_sample=[&] {stopped.io.now+=10;stopped.queue(stopped.simple(wire::Kind::stop));};
+    const auto s=stopped.cycle();
+    check(s.result==MotionSession::Result::stopped && s.last_message==0 && stopped.io.calls==0 &&
+          !stopped.inbox.pending(),"STOP arriving during time capture lost priority over copied prepare");
+    // Physical STOP and explicit OFF holds cannot consume ordinary work early.
+    Fixture raw;raw.reference();raw.queue(raw.prepare());raw.input.fast.stop_pressed=true;
+    check(raw.cycle().result==MotionSession::Result::stopped && raw.io.calls==0 && !raw.inbox.pending(),
+          "raw STOP did not drain ordinary work before execution");
+    Fixture held;held.reference();held.queue(held.prepare());
+    const auto h=held.session.cycle(held.inbox,held.input,{},true);
+    check(h.last_message==0 && held.inbox.pending() && held.io.calls==0,"OFF hold consumed ordinary request");
+    // Several arrivals still use the fixed four-slot queue and one copy/cycle.
+    Fixture backlog;
+    for(unsigned i=0;i<4;++i) backlog.queue(backlog.prepare(i+1));
+    const auto overflow=backlog.prepare(5);
+    check(!backlog.inbox.push({overflow,1,backlog.io.now,true}),"queue bound expanded");
+    for(unsigned i=1;i<=4;++i) {
+        const auto b=backlog.cycle();
+        check(b.last_message==i && b.result==MotionSession::Result::reference && backlog.io.calls==0,
+              "cycle consumed more than one queued ordinary request");
+    }
+    check(!backlog.inbox.pending(),"bounded backlog did not drain");
+}
+void interleaved_lease_keeps_source_expiry_and_cadence() {
+    Fixture f;f.moving();
+    // Make the deliberately 80 ms old source newer than the preceding lease.
+    for(unsigned i=0;i<10;++i) f.tick();
+    f.io.now+=10000;f.refresh();
+    const auto prior=f.session.status().last_message;
+    std::uint64_t received=0;
+    f.io.after_clock_sample=[&] {
+        f.io.now+=10;received=f.io.now;auto r=f.simple(wire::Kind::lease);r.sent_us-=80000;f.queue(r);
+    };
+    auto s=f.cycle();
+    check(s.last_message==prior && f.inbox.pending() && s.phase==MotionSession::Phase::moving,
+          "interleaved lease consumed against old cycle time");
+    s=f.tick();check(s.last_message==f.message && s.result==MotionSession::Result::accepted,
+                    "fresh interleaved lease rejected on next cycle");
+    while(f.session.status().phase!=MotionSession::Phase::fault && f.io.now-received<300000) f.tick();
+    check(f.session.status().phase==MotionSession::Phase::fault && f.io.now-received<230000,
+          "snapshot order extended original source lease expiry");f.off();
+    Fixture gap;gap.moving();gap.io.now+=21000;gap.refresh();gap.queue(gap.simple(wire::Kind::lease));
+    check(gap.cycle().phase==MotionSession::Phase::fault,"queued lease hid missed control cadence");gap.off();
+}
 void qualification() {
     Fixture disabled({});
     check(!disabled.session.establish_reference({true,99,1,disabled.io.now,77,7,500}),"default profile accepted reference");
@@ -193,6 +287,9 @@ void setup_failure() {
 }
 }
 int main() {
+    receive_after_cycle_clock();
+    inbox_clock_negative_controls();snapshot_stop_and_queue_boundaries();interleaved_lease_keeps_source_expiry_and_cadence();
+    if(std::getenv("SB_TEST_INBOX_CLOCK_ONLY")) return 0;
     qualification(); complete_motion(); terminal_evidence(); stop_priority(); command_rejection(); fault_boundaries(); source_time_and_long_window(); setup_failure();
     std::cout<<"motion session qualification, scheduled lifecycle, source freshness, STOP/settle and fault boundaries passed\n";
 }

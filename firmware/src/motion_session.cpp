@@ -296,6 +296,13 @@ void MotionSession::advance(const SessionInput& in,std::uint64_t now) {
     if(output.state==State::moving) phase_=Phase::moving;
 }
 MotionSession::Status MotionSession::cycle(Inbox& inbox,const SessionInput& in,std::optional<LocalIntent> local,bool defer_ordinary) {
+    // Copy at most one eligible ordinary envelope before sampling cycle time.
+    // A producer publishing during the clock read belongs to the next cycle;
+    // never compare that new receipt with an older time or restamp the envelope.
+    // This copy grants no authority. The existing STOP/fault checks below still
+    // precede request handling, including a STOP arriving during the clock read.
+    const auto next=!defer_ordinary && !local && !in.fast.stop_pressed &&
+        !in.manual_intervention && !in.global_fault && phase_!=Phase::fault ? inbox.pop() : std::nullopt;
     const auto now=io_.now_us();
     const auto release_before=remote_after_us_;
     if(active() && !executor_.check_cadence(last_now_)) { fail(Result::io); return status(); }
@@ -340,7 +347,6 @@ MotionSession::Status MotionSession::cycle(Inbox& inbox,const SessionInput& in,s
         if(phase_==Phase::fault || (local_result_==Result::stopped && !already_settling)) return status();
     }
     if(!defer_ordinary && !local && !in.fast.stop_pressed && !remote_stop && phase_!=Phase::fault) {
-        const auto next=inbox.pop();
         if(next) {
             // A late ordinary message must still consume its replay sequence,
             // but cannot erase the settled endpoint/STOP outcome. In particular

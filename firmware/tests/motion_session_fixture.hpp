@@ -15,10 +15,19 @@ struct Io : MotionIo,CounterOrigin {
     unsigned calls=0,pulses=0,fail_at=0,slow_at=0,operation_us=1;
     mutable unsigned clock_reads=0;
     unsigned reversed_read=0;
+    mutable std::function<void()> after_clock_sample;
     bool request_high=true,encoder=false,counter=false,awake=false,parked_readback=true;
     double count=500,origin=500,duty=0;
     std::vector<std::string> log;
-    std::uint64_t now_us() const override { return ++clock_reads==reversed_read ? now-1 : now; }
+    std::uint64_t now_us() const override {
+        const auto sample=++clock_reads==reversed_read ? now-1 : now;
+        // Deterministic producer interleaving: publish after the clock value was
+        // captured, before its caller resumes. Normal fixtures leave this empty.
+        if(after_clock_sample) {
+            auto action=std::move(after_clock_sample);after_clock_sample={};action();
+        }
+        return sample;
+    }
     bool parked_off() override { return action("parked") && parked_readback && request_high && !encoder && !counter && !awake && duty==0; }
     bool action(const char* name) { log.emplace_back(name); ++calls; now+=calls==slow_at ? 101 : operation_us; return calls!=fail_at; }
     bool request_n(bool high) override { if(!action(high ? "off":"arm")) return false; request_high=high; return true; }

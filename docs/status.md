@@ -119,7 +119,18 @@ fixes ten calls whose receive/send clock reads had unspecified evaluation order.
 Both the candidate and a fresh owning-checkout runtime test pass once; a reversed
 capture control fails as expected. The actual radio handler and production
 timing limits are unchanged. Fresh CI and the separate transport rejection
-remain open.
+were still open at that checkpoint. The subsequent
+[CI run for `7b2264f`](https://github.com/0x63616c/smart-blinds/actions/runs/39546114350)
+passed all thirteen jobs, including transport and all four embedded builds.
+The historical rejection's exact guard remains unknown.
+
+A separate [inbox/cycle-clock regression](firmware/transport-timing-diagnostics.md#inbox-publication-and-cycle-time)
+reproduces a fresh command being consumed against a timestamp captured before
+it arrived. Copying one eligible command before sampling cycle time fixes that
+ordering while retaining STOP priority, queue bounds and every timing limit.
+The owning checkout passes all 24 host targets on its first run; candidate
+sanitizers and deliberate restored-bug controls also pass. Fresh CI for this
+production correction remains pending; no hardware timing is yet qualified.
 
 Native populated-PCB export exposed a [confirmed enclosure orientation error](mechanical/pcb-orientation-review.md):
 the old allocation reflected the component side. The current preview and the

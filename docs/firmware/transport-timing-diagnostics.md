@@ -25,6 +25,39 @@ That run's separate transport result was 61/62, with a peer returning `invalid`
 and zero executor/I/O diagnostic fields. Its exact rejecting guard remains
 unidentified; the fixture correction does not claim to resolve that failure.
 
+All thirteen jobs passed for the fixture correction in
+[CI run 39546114350](https://github.com/0x63616c/smart-blinds/actions/runs/39546114350).
+That successful run includes the real transport tests and all four embedded
+builds; it does not retrospectively identify the historical rejection.
+
+## Inbox publication and cycle time
+
+A separate deterministic regression reproduces a production ordering defect:
+the motion session captured cycle time at 2,000,000 microseconds, then consumed
+a command published at 2,000,010. Its future-receipt guard correctly refused
+the command relative to the older observation, even though the producer had
+published a fresh command before the dequeue.
+
+The session now copies at most one eligible ordinary command before observing
+cycle time. A command arriving during the clock read stays queued for the next
+cycle. The copy grants no authority: STOP, faults and the existing freshness,
+lease, connection and calibration checks still precede execution. Remote STOP
+is sampled after the clock, so a STOP arriving during that read still outranks
+an already copied command. No timestamp is rewritten and no deadline is relaxed.
+
+The focused controls retain the four-slot queue, one command per cycle, exact
+40 ms queue-age boundary, replay rejection, reversed/future/stale clock checks,
+OFF holds, STOP priority, source-based lease expiry and control-cadence faults.
+Both the original dequeue order and an incorrectly moved STOP sample are
+rejected by deliberate regression mutations. The candidate passed all 24 host
+targets and four focused sanitizer targets. The owning checkout independently
+passed all 24 host targets on its first run in 49.09 seconds.
+
+These are software scheduling results. The earlier CI peer rejection did not
+record its exact invalid guard, so this independently reproduced defect is not
+claimed as its established cause. CI for this production correction and
+physical-device qualification remain separate validation steps.
+
 ## First-failing I/O observations
 
 The localhost peer is a synthetic plant around the real motion session and
