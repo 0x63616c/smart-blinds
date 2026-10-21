@@ -9,12 +9,18 @@
 using namespace blinds;
 void expect(bool ok,const char* message) { if(!ok) { std::cerr<<message<<'\n'; std::exit(1); } }
 struct FakeIo final : MotionIo {
-    std::uint64_t time=1000000;
+    mutable std::uint64_t time=1000000;
+    mutable unsigned clock_reads=0;
+    unsigned delayed_read=0;
+    std::uint64_t clock_delay_us=0;
     unsigned calls=0, fail_at=0, slow_at=0, pulses=0;
     bool request_high=true, encoder=false, counter=false, awake=false;
     double duty=0;
     std::vector<std::string> log;
-    std::uint64_t now_us() const override { return time; }
+    std::uint64_t now_us() const override {
+        if(++clock_reads==delayed_read) time+=clock_delay_us;
+        return time;
+    }
     bool action(const char* name) {
         log.emplace_back(name); ++calls; time+=calls==slow_at ? 101 : 1;
         return calls!=fail_at;
@@ -127,6 +133,41 @@ void transfer_failures() {
         Fixture f; f.running(); f.io.calls=0; f.io.slow_at=slow; f.io.log.clear();
         expect(!f.executor.stop() && f.executor.fault()==MotionExecutor::Fault::io,"slow stop operation accepted");
         expect(f.io.log.size()==7,"slow cleanup skipped remaining OFF writes");
+    }
+}
+void heartbeat_fault_classification() {
+    // The ACK includes the gap before I/O; the operation budget does not.
+    // Inject that gap at an existing clock read, without adding executor calls.
+    enum class Case { failed_io, slow_io, ack_at_limit, ack_expired };
+    for(bool request:{true,false}) for(Case kind:{Case::failed_io,Case::slow_io,Case::ack_at_limit,Case::ack_expired}) {
+        Fixture f;
+        if(request) f.sensing(); else f.armed();
+        const auto calls=f.io.calls, reads=f.io.clock_reads;
+        const auto operation=calls+(request ? 3 : 2); // coast/WDI/request or coast/pulse.
+        if(kind==Case::failed_io) f.io.fail_at=operation;
+        if(kind==Case::slow_io) f.io.slow_at=operation;
+        if(kind==Case::ack_at_limit || kind==Case::ack_expired) {
+            // time(), then each preceding operation's before/after pair.
+            f.io.delayed_read=reads+(request ? 6 : 4); // Target operation's BEFORE read.
+            const auto operation_us=request ? 1 : 2; // pulse adds its high/low interval.
+            f.io.clock_delay_us=smart_blinds::Heartbeat::edge_ack_budget_us-operation_us+
+                (kind==Case::ack_expired ? 1 : 0);
+        }
+        ++f.io.time;
+        const bool ok=request ? f.executor.arm(f.evidence()) : f.tick();
+        const bool healthy=kind==Case::ack_at_limit;
+        expect(ok==healthy,"heartbeat classification case changed acceptance");
+        const auto expected=healthy ? MotionExecutor::Fault::none :
+            (kind==Case::ack_expired ? MotionExecutor::Fault::heartbeat : MotionExecutor::Fault::io);
+        expect(f.executor.fault()==expected,request ? "request operation/ACK fault misclassified" : "pulse operation/ACK fault misclassified");
+        expect(f.io.clock_reads-reads==(request ? 7u : 5u)+(healthy ? 0u : 14u),"classification path changed clock reads");
+        expect(f.io.calls-calls==(request ? 3u : 2u)+(healthy ? 0u : 7u),"classification path changed I/O count");
+        if(!healthy) {
+            const std::vector<std::string> off={"request-off","coast","wdi-high","charge-off","counter-stop","encoder-off","awake-off"};
+            expect(std::vector<std::string>(f.io.log.end()-7,f.io.log.end())==off,"classification failure changed cleanup order");
+            expect(f.executor.state()==MotionExecutor::State::fault && f.io.request_high && f.io.duty==0 &&
+                !f.io.encoder && !f.io.counter && !f.io.awake,"classification failure left active resources");
+        }
     }
 }
 void evidence_faults() {
@@ -311,4 +352,4 @@ void settling_failures() {
 }
 
 int main() {
-    controlled_settle(); settling_failures(); slope(); lifecycle(); transfer_failures(); evidence_faults(); output_faults(); reversal_and_stall(); controller_plant(); std::cout<<"motion lifecycle, ordered I/O, PI/reversal, closed-loop plant and fault tests passed\n"; }
+    controlled_settle(); settling_failures(); slope(); lifecycle(); transfer_failures(); heartbeat_fault_classification(); evidence_faults(); output_faults(); reversal_and_stall(); controller_plant(); std::cout<<"motion lifecycle, ordered I/O, PI/reversal, closed-loop plant and fault tests passed\n"; }

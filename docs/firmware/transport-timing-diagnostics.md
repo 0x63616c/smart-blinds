@@ -124,3 +124,29 @@ Fresh Linux/CI operation-level evidence is still required.
 
 An independent fresh build from the owning checkout also passed all four focused
 fault probes. That verification does not replace the retained full-run failures.
+
+## Separate I/O failures from heartbeat acknowledgment expiry
+
+A bounded, instrumented replay of the six retained strict-host failures executed
+each case once: four passed and two failed. One failure began with a 140 µs
+ordinary coast operation; the other began with a 486 µs heartbeat-pulse operation.
+Both exceeded the unchanged 100 µs I/O limit. In the latter case, the executor
+reported a heartbeat fault even though its combined condition had short-circuited
+before checking the heartbeat acknowledgment. A later heartbeat expiry occurred
+during cleanup and was not the initiating cause. The wall/CPU split is compatible
+with host scheduling delay; it does not prove that cause or characterize C6 timing.
+
+The executor now reports a failed or over-budget request/pulse operation as I/O,
+and an expired request/edge acknowledgment as heartbeat. The split preserves the
+same calls, clock reads, short-circuit behavior, deadlines and shutdown sequence.
+Cleanup I/O failure can still override the final fault label. No transport schema
+or motion permission changes, and this correction does not resolve the underlying
+host timing overruns.
+
+Eight cases in the existing executor test cover false and slow request/pulse I/O,
+acknowledgment at 100 µs, and expiry at 101 µs. They check exact clock/I/O counts,
+cleanup order and inactive outputs. The target and sanitizer build pass; restoring
+either combined condition independently fails with its classification diagnostic.
+A fresh owning-checkout build also passed all six relevant executor, session and
+runtime targets. The optional work-only first-fault instrumentation remains outside
+production; its old source pins intentionally reject the modified executor.
