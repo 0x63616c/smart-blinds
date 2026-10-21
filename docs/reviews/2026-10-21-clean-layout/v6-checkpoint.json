@@ -1,0 +1,31 @@
+{
+  "status": "Sparse-silkscreen review candidate; partial routing, not fabrication acceptance",
+  "sources": {
+    "work/clean-layout-study/native-54-v6-sparse/placement.kicad_pcb": "492833969c392051f61ed888c1c8639f4b5980a4bbfa984f5768a3846f402b28",
+    "work/clean-layout-study/native-54-v6-sparse/placement.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "work/clean-layout-study/native-54-v6-sparse/prepare.json": "f020ea56c59e41ab3c1712d29f8e328680150b5a6149320d13dd39e5a2c9baf8",
+    "work/clean-layout-study/native-54-v6-sparse/drc.json": "e85456674f22459764e78eb5bf8bca1df5fcd8f75d050e5b8912f2061a3be286",
+    "work/clean-layout-study/native-54-v6-sparse/renders.json": "6e5e6ad4f4a22cd620e7266d885d11f2c5a2f7399cc5b2ed50e92eb00a59f38a",
+    "work/sparse-silkscreen-v5/manifest.json": "0fb2b893d6a7f48f9b1acadfec75e6ced95181bd4fe8382b4cf31aa3424dadd3"
+  },
+  "images": {
+    "v6-top.png": "bd1b3204a6e3d4ba3669c077cff6e1d9075199cb25f2acdcbc4cdfb30e0d3519",
+    "v6-oblique.png": "d4a2d79307be28134715c581379de2fd8528603929332e806920e35e1ff39043"
+  },
+  "native_run": "20261021T051324Z-c0945e51",
+  "visual_review": "Native top and oblique inspected",
+  "removed_graphics": 1272,
+  "affected_nonpolar_parts": 160,
+  "other_AST_nodes_preserved": true,
+  "drc": {
+    "footprint_type_mismatch": 5,
+    "silk_over_copper": 8,
+    "lib_footprint_mismatch": 164,
+    "silk_edge_clearance": 14,
+    "via_dangling": 10
+  },
+  "unconnected_items": 482,
+  "library_delta": "160 additional library comparisons reflect intentional board-only silk removal; reconcile footprint sources before promotion",
+  "canonical_route_changed": false,
+  "source_storage": "Local work/ trial; frozen public review snapshots"
+}

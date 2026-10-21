@@ -30,6 +30,11 @@ adds ten straight USB pad-to-via escapes and corrects the battery connector and
 two inductor models. The saved-file audit finds no top-body transit in those ten
 routes; native DRC retains ten dangling vias and 482 unconnected items. Whole-board
 routing, reference continuity and current/thermal validation remain unfinished.
+A [sixth visual pass](reviews/2026-10-21-clean-layout/sparse-silkscreen.md)
+removes decorative silk from 160 nonpolar parts without changing other board
+data. Native silk-overlap findings fall from 136 to zero and mask-clipped silk
+from 57 to eight. The 160 resulting board/library style differences remain
+explicit and must be reconciled when the candidate is promoted.
 Revised enclosure fit, final routing and assembly cost will decide the outline.
 The PCB opened in KiCad is still the existing unfinished route, not this rework.
 
@@ -134,7 +139,8 @@ it arrived. Copying one eligible command before sampling cycle time fixes that
 ordering while retaining STOP priority, queue bounds and every timing limit.
 The owning checkout passes all 24 host targets on its first run; candidate
 sanitizers and deliberate restored-bug controls also pass. Fresh CI for this
-production correction remains pending; no hardware timing is yet qualified.
+production correction has now [passed all thirteen jobs at `33cc04a`](https://github.com/0x63616c/smart-blinds/actions/runs/39547483287),
+including transport and all four embedded builds. No hardware timing is yet qualified.
 
 Native populated-PCB export exposed a [confirmed enclosure orientation error](mechanical/pcb-orientation-review.md):
 the old allocation reflected the component side. The current preview and the

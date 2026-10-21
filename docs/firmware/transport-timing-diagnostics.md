@@ -55,8 +55,9 @@ passed all 24 host targets on its first run in 49.09 seconds.
 
 These are software scheduling results. The earlier CI peer rejection did not
 record its exact invalid guard, so this independently reproduced defect is not
-claimed as its established cause. CI for this production correction and
-physical-device qualification remain separate validation steps.
+claimed as its established cause. [CI for this production correction](https://github.com/0x63616c/smart-blinds/actions/runs/39547483287)
+passed all thirteen jobs at `33cc04a`, including transport and all four embedded
+builds. Physical-device qualification remains a separate validation step.
 
 ## First-failing I/O observations
 
