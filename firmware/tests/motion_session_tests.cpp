@@ -276,6 +276,72 @@ void source_time_and_long_window() {
     too_slow.queue(slow); check(too_slow.cycle().result==MotionSession::Result::deadline && !too_slow.io.calls,
         "remote trajectory bypassed four-minute hard session ceiling");
 }
+// These exchanges are arithmetic inputs to the existing deterministic fixture,
+// not measured network clocks. They leave all production age/lease bounds intact.
+void clock_horizon_boundaries() {
+    for(const auto displacement : {-1000,0,1000}) for(const auto excess : {0U,1U}) {
+        Fixture f; f.moving();
+        wire::Projection fixed;
+        check(f.input.clock && fixed.bind(*f.input.clock,f.io.now),"initial clock mapping invalid");
+        const auto pulses=f.io.pulses;
+        const auto command=f.session.status().command;
+        ++f.probe;
+        const auto result=f.tick([&](auto& in) {
+            const auto now=f.io.now;
+            const auto center=static_cast<std::int64_t>(f.offset)+displacement;
+            const auto host=now-static_cast<std::uint64_t>(center);
+            // At 10,000 ppm the full 400 ms horizon adds exactly 4,000 us.
+            // RTT 8,000 + guard 920 -> radius 5,000; RTT 6,000 + guard
+            // 940 -> radius 4,000, leaving 1,000 for either mapping shift.
+            const auto half_rtt=displacement ? 3000U : 4000U;
+            const auto guard=(displacement ? 940U : 920U)+excess;
+            in.clock=smart_blinds::ClockBounds::estimate(
+                {host-half_rtt,now,now,host+half_rtt},{10000,guard,true});
+            check(in.clock && in.clock->device_qualified(now),"replacement not currently qualified");
+            check(in.clock->lower_us()+(in.clock->upper_us()-in.clock->lower_us())/2==center,
+                  "replacement clock midpoint differs from intended fixture");
+            const auto radius=(displacement ? 4000U : 5000U)+excess;
+            check(in.clock->device_error(now)==radius &&
+                  in.clock->device_error(now+400000)==radius+4000,
+                  "independently specified clock-radius arithmetic changed");
+            const auto current=fixed.at(*in.clock,now),future=fixed.at(*in.clock,now+400000);
+            check(current && current->host_us==now-f.offset && current->error_us==5000+excess,
+                  "fresh probe changed the PREPARE mapping or lost displacement uncertainty");
+            check(future && future->host_us==now+400000-f.offset && future->error_us==9000+excess,
+                  "future projection omitted fixed-mapping displacement");
+        });
+        if(!excess) {
+            check(result.phase==MotionSession::Phase::moving && result.reference_valid && result.height_mm &&
+                  result.command==command && !f.io.request_high && f.io.duty>0,
+                  "exact 9000 us horizon boundary was refused");
+            // Finish this fixture through the ordinary STOP/settling path.
+            f.queue(f.simple(wire::Kind::stop)); f.tick();
+            for(unsigned i=0;i<20 && f.session.status().phase!=MotionSession::Phase::idle;++i) f.tick();
+            check(f.session.status().phase==MotionSession::Phase::idle,"boundary fixture did not settle");
+            f.off(); continue;
+        }
+        const auto faulted=[&] {
+            const auto s=f.session.status();
+            check(s.phase==MotionSession::Phase::fault && s.result==MotionSession::Result::clock &&
+                  !s.reference_valid && !s.height_mm && !s.ready && !s.awake_required && s.command==command,
+                  "clock horizon fault lost its cause, reference invalidation or command identity");
+            check(f.io.pulses==pulses,"clock horizon fault or later request fed a heartbeat");
+            f.off();
+        };
+        faulted();
+        // A later good probe cannot repair this session, even with fresh
+        // authenticated work or STOP. Recovery is not implicit re-referencing.
+        ++f.probe; f.tick(); faulted();
+        f.queue(f.simple(wire::Kind::lease)); f.tick(); faulted();
+        f.queue(f.simple(wire::Kind::stop)); f.tick(); faulted();
+        f.queue(f.prepare(2,80)); f.tick(); faulted();
+        check(f.inbox.connected(2),"new connection fixture failed");
+        f.tick(); faulted();
+        check(!f.session.establish_reference({true,99,2,f.io.now,77,7,500}),
+              "reference observation revived a faulted clock session");
+        faulted();
+    }
+}
 void setup_failure() {
     for(int kind=0;kind<2;++kind) {
         Fixture f; f.reference(); if(kind) f.io.slow_at=1; else f.io.fail_at=1;
@@ -290,6 +356,6 @@ int main() {
     receive_after_cycle_clock();
     inbox_clock_negative_controls();snapshot_stop_and_queue_boundaries();interleaved_lease_keeps_source_expiry_and_cadence();
     if(std::getenv("SB_TEST_INBOX_CLOCK_ONLY")) return 0;
-    qualification(); complete_motion(); terminal_evidence(); stop_priority(); command_rejection(); fault_boundaries(); source_time_and_long_window(); setup_failure();
+    qualification(); complete_motion(); terminal_evidence(); stop_priority(); command_rejection(); fault_boundaries(); source_time_and_long_window(); clock_horizon_boundaries(); setup_failure();
     std::cout<<"motion session qualification, scheduled lifecycle, source freshness, STOP/settle and fault boundaries passed\n";
 }
