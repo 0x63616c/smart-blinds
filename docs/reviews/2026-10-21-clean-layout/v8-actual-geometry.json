@@ -1,0 +1,101 @@
+{
+  "status": "PASS saved-file geometry; reference fills/impedance not accepted",
+  "board_sha256": "3ac65f7e2c94c9f0bec549af51eb1c050467029381c4150108a9c5edeb7ae34a",
+  "baseline_sha256": "7a7d63f24209472359550c2c8af17f396d98e677a76f4c4198e6b7ad3eca2b9b",
+  "components": 206,
+  "logical_pins": 649,
+  "actual_segments": 35,
+  "actual_vias": 14,
+  "new_segments": 25,
+  "new_vias": 4,
+  "preserved_copper_items": 20,
+  "minimum_mm": {
+    "foreign_copper": 0.14999999999999858,
+    "via_drill_to_SMD": 0.19999999999999574,
+    "drill_spacing": 0.4571067811865476,
+    "copper_to_NPTH": 0.61403940856444
+  },
+  "saved_planar_paths_mm": {
+    "A6": 11.85132034355964,
+    "B6": 11.85132034355964,
+    "A7": 11.85132034355964,
+    "B7": 11.85132034355964
+  },
+  "ground_branches": [
+    {
+      "pins": [
+        "4"
+      ],
+      "via_uv_mm": [
+        34.1,
+        7.85
+      ],
+      "via_uuid": "52e7be60-92b7-55de-801f-bd6d73fe705a",
+      "connected_saved_F_Cu": true
+    },
+    {
+      "pins": [
+        "1",
+        "2"
+      ],
+      "via_uv_mm": [
+        37.6,
+        6.5
+      ],
+      "via_uuid": "a6890009-5a98-54b0-93ba-aba4885e89ea",
+      "connected_saved_F_Cu": true
+    }
+  ],
+  "corrected_efuse_lands_paste_model": "PASS against reviewed footprint",
+  "reference_reservation": {
+    "rect_uv_mm": [
+      28.75,
+      6.25,
+      37.85,
+      9.75
+    ],
+    "In1.Cu": "continuous GND; no signal or RTN tracks/fills",
+    "B.Cu": "continuous GND immediately under In2; no RTN copper or foreign signal routes",
+    "In2.Cu": "USB routes plus surrounding GND; prohibit RTN tracks/fills/vias in the reserved region",
+    "drills": "Physical signal/ground via and connector-hole antipads are explicit exceptions, not proof of continuous reference. Plane necks must be checked after fills."
+  },
+  "actual_zone_count": 0,
+  "remaining": "No actual reference-plane fill, native full-route completion, matched electrical delay/impedance, CC routes, or transient acceptance is inferred.",
+  "negative_controls": [
+    {
+      "fault": "off-grid saved via",
+      "guard": "via grid",
+      "result": "REJECTED"
+    },
+    {
+      "fault": "wrong actual ESD pin net",
+      "guard": "pad geometry/net contract",
+      "result": "REJECTED"
+    },
+    {
+      "fault": "cut actual ESD IO entry",
+      "guard": "actual disconnected data",
+      "result": "REJECTED"
+    },
+    {
+      "fault": "arbitrary saved segment angle",
+      "guard": "routing angle",
+      "result": "REJECTED"
+    },
+    {
+      "fault": "same-net solder-land intrusion",
+      "guard": "same-or-foreign-net drill-to-land",
+      "result": "REJECTED"
+    },
+    {
+      "fault": "In2 path incorrectly on top",
+      "guard": "top-body transit",
+      "result": "REJECTED"
+    },
+    {
+      "fault": "cut actual ESD ground return",
+      "guard": "actual disconnected ESD ground",
+      "result": "REJECTED"
+    }
+  ]
+}

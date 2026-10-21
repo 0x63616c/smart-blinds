@@ -33,8 +33,13 @@ routing, reference continuity and current/thermal validation remain unfinished.
 A [sixth visual pass](reviews/2026-10-21-clean-layout/sparse-silkscreen.md)
 removes decorative silk from 160 nonpolar parts without changing other board
 data. Native silk-overlap findings fall from 136 to zero and mask-clipped silk
-from 57 to eight. The 160 resulting board/library style differences remain
-explicit and must be reconciled when the candidate is promoted.
+from 57 to eight. Those 160 style differences are now reconciled in the local
+trial libraries. The [eighth review pass](reviews/2026-10-21-clean-layout/usb-data-routing.md)
+also places the complete UP group above DOWN and implements the shorter
+socket-to-data-protection option. Its 35 segments and 14 vias preserve all 206
+components and the circuit graph. Native DRC finds no copper-clearance or
+courtyard overlap, with 477 unconnected items and eight dangling vias remaining.
+CC-protection placement, reference pours and whole-board routing remain open.
 Revised enclosure fit, final routing and assembly cost will decide the outline.
 The PCB opened in KiCad is still the existing unfinished route, not this rework.
 

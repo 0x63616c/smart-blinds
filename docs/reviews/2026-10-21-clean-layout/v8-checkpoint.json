@@ -1,0 +1,53 @@
+{
+  "status": "Frozen review of partial v8 USB routing; not fabrication acceptance",
+  "sources": {
+    "work/clean-layout-study/native-54-v8-usb/placement.kicad_pcb": "3ac65f7e2c94c9f0bec549af51eb1c050467029381c4150108a9c5edeb7ae34a",
+    "work/clean-layout-study/native-54-v8-usb/placement.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "work/clean-layout-study/native-54-v8-usb/prepare.json": "22db93d5022593942bb176cc000356ad8ebad7549766391db0091b88b7910f3f",
+    "work/clean-layout-study/native-54-v8-usb/native.json": "e071eec70585a13c9ad1f5c4f72198924c0e65bc215df3210948ea5880a53488",
+    "work/clean-layout-study/native-54-v8-usb/drc.json": "48c2322bb20b2455e64c1d12192bc62a385e82d259d8b91d8ebd9cee1bb61326",
+    "work/clean-layout-study/native-54-v8-usb/renders.json": "4066b2e706c1ec84a281c0cd1156debe6cb4bd6f3d62966d576f0d9398b57568",
+    "work/clean-layout-study/native-54-v8-usb/detail-provenance.json": "f89cfb3dd040426ff7924752d01f86cfbcc701bd6bbc8447abb7c3cda5c76020",
+    "work/clean-layout-study/native-54-v8-usb/first-check-diagnosis.md": "e524596677dc58ffcc000ddb7b10bd213c47329caf4e24c8167386167dc61908",
+    "work/clean-layout-study/native-54-v7-buttons/button-changes.json": "74e47a50aad1406ab33182cd020518bc05a2b06b8490c7b519ea674b8784457e",
+    "work/clean-layout-study/native-54-v7-buttons/drc.json": "767da4bdb8861aab34fcc19d8b525734f039e04c69d75174d36b679feecc5f17",
+    "work/clean-layout-study/native-54-v6-library-sync/library-sync.json": "4d9989dddefe32b95fa7c80f88cbea64f3eedb9b4c5a713f9c3764cd960fd384",
+    "work/clean-layout-study/native-54-v6-library-sync/drc.json": "597960c9ba40381bc5e983b0d70ede8dbd5a64f0a422d24c32df04f298db3ae8",
+    "work/usb54-esd-close/freeze.json": "7e8fbf0006d601f8f5ee5726119c839f8a27258b7eb20463068ebb4012cdc337"
+  },
+  "images": {
+    "v8-top.png": "085db694530760d834bf2889edd5b772e2b5af3e36fed206a247d9d959bcdfb1",
+    "v8-oblique.png": "38dff607e8d35206e511f0358ba45994d0772911e3c26916d6cd377ca70c7770",
+    "v8-top-copper-detail.png": "2ace2cae7885d609aa0a88e150bf4e07ce9d4a7587dab3513c85a898bf771f7e",
+    "v8-inner-data-detail.png": "cc1f9ad2dd80b6c9d60c4790ca8eea42b39326b875de563ee166f7266be62400"
+  },
+  "source_storage": "Local work-only board and libraries; immutable public review snapshots",
+  "native_runs": {
+    "first_saved_board_and_failed_comparison": "20261021T054208Z-efa36e62",
+    "same_board_corrected_comparison_DRC_exports": "20261021T054320Z-50a51886",
+    "renders": "20261021T054518Z-d9ce6df9"
+  },
+  "visual_review": "Actual native top, oblique, top copper and In2 copper inspected",
+  "components": 206,
+  "segments": 35,
+  "vias": 14,
+  "drc": {
+    "footprint_type_mismatch": 5,
+    "silk_over_copper": 8,
+    "lib_footprint_mismatch": 4,
+    "silk_edge_clearance": 14,
+    "via_dangling": 8
+  },
+  "unconnected_items": 477,
+  "canonical_route_changed": false,
+  "button_change": "Upper UP and lower DOWN; complete identical switch/filter groups exchanged, graph and physical-geometry multiset preserved",
+  "library_change": "160 nonpolar silk differences reconciled in local trial libraries; four reviewed footprint overrides remain",
+  "limits": [
+    "partial routing only",
+    "reference pours absent",
+    "USB impedance and protected onward route incomplete",
+    "CC clamp paths longer and unrouted",
+    "source/capture/route promotion and enclosure integration unfinished",
+    "no physical or manufacturing qualification"
+  ]
+}

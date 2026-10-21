@@ -38,11 +38,14 @@ the earlier checkpoint and does not meet the new routing-style requirements.
 The [next review pass](docs/reviews/2026-10-21-clean-layout/usb-and-models.md)
 shows the first parallel USB traces and corrected connector/inductor models,
 including an actual underside view.
-The [latest sparse-marking pass](docs/reviews/2026-10-21-clean-layout/sparse-silkscreen.md)
+The [sparse-marking pass](docs/reviews/2026-10-21-clean-layout/sparse-silkscreen.md)
 removes decorative outlines from nonpolar parts while retaining orientation
-marks. This image is a frozen review snapshot; only ten USB escapes are routed.
+marks. The [latest USB routing pass](docs/reviews/2026-10-21-clean-layout/usb-data-routing.md)
+adds the socket-to-protection data paths, reconciles those marking libraries and
+puts the UP button above DOWN. This image is a frozen review snapshot; only a
+small part of the board is routed, and the ground-reference copper is unfinished.
 
-![Cleaner 54 × 80 mm working candidate — partial routing](docs/reviews/2026-10-21-clean-layout/v6-top.png)
+![Cleaner 54 × 80 mm working candidate — partial routing](docs/reviews/2026-10-21-clean-layout/v8-top.png)
 
 These images are generated from the design sources. [Preview generation and provenance](docs/previews.md).
 A green preview badge means the images generated successfully, not that the hardware is validated.
