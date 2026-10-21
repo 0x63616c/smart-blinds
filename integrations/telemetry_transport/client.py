@@ -123,6 +123,40 @@ def decode(payload, *, boot, nonce, sent_host_us, received_us):
     return Observation(v, received_us, received_us-sent_host_us)
 
 
+class History:
+    """One owner's retained source/pack/fault history; never a new observation."""
+    def __init__(self):
+        self.previous = None
+
+    def accept(self, result):
+        old, new = self.previous, result._wire
+        if old is not None:
+            if _hex64(new["sent_us"]) < _hex64(old["sent_us"]):
+                raise ProtocolError("Device response clock regressed")
+            for name, identity, measured in (
+                ("battery", ("bus_epoch", "serial"), ("sample_us", "pack", "soc_pct")),
+                ("pd", ("bus_epoch", "epoch", "serial"), ("sample_us", "current_ma")),
+            ):
+                a, b = old[name], new[name]
+                if a["sample_us"] is None:
+                    continue
+                if b["sample_us"] is None:
+                    raise ProtocolError("Device discarded historical observation")
+                ka, kb = tuple(a[k] for k in identity), tuple(b[k] for k in identity)
+                if kb < ka or _hex64(b["sample_us"]) < _hex64(a["sample_us"]):
+                    raise ProtocolError("Source observation regressed")
+                if kb == ka and any(a[k] != b[k] for k in measured):
+                    raise ProtocolError("Conflicting source observation")
+            if (old["battery"]["pack"] is not None
+                    and old["battery"]["pack"] != new["battery"]["pack"]):
+                raise ProtocolError("Pack binding changed")
+            if old["fault"]["kind"] != "none" and old["fault"] != new["fault"]:
+                if old["fault"] != {"kind": "runtime", "code": 0} or new["fault"]["kind"] == "none":
+                    raise ProtocolError("First observed fault was cleared or replaced")
+        self.previous = deepcopy(new)
+        return result
+
+
 class _Handle(Session):
     _native_constructor = "sb_telemetry_client_new"
 
@@ -137,7 +171,7 @@ class TelemetrySession:
         self.boot = integer(expected_boot, 1, (1 << 64)-1)
         self._clock, self._nonce_source = clock, nonce_source
         self._handle = _Handle(*args, **kwargs)
-        self._previous = None
+        self._history = History()
         self._lock = threading.Lock()
 
     def close(self):
@@ -155,31 +189,7 @@ class TelemetrySession:
                 if code != 69:
                     raise Rejected(code)
                 result = decode(payload, boot=self.boot, nonce=nonce, sent_host_us=before, received_us=after)
-                old, new = self._previous, result._wire
-                if old is not None:
-                    if _hex64(new["sent_us"]) < _hex64(old["sent_us"]):
-                        raise ProtocolError("Device response clock regressed")
-                    for name, identity, measured in (
-                        ("battery", ("bus_epoch", "serial"), ("sample_us", "pack", "soc_pct")),
-                        ("pd", ("bus_epoch", "epoch", "serial"), ("sample_us", "current_ma")),
-                    ):
-                        a, b = old[name], new[name]
-                        if a["sample_us"] is None:
-                            continue
-                        if b["sample_us"] is None:
-                            raise ProtocolError("Device discarded historical observation")
-                        ka, kb = tuple(a[k] for k in identity), tuple(b[k] for k in identity)
-                        if kb < ka or _hex64(b["sample_us"]) < _hex64(a["sample_us"]):
-                            raise ProtocolError("Source observation regressed")
-                        if kb == ka and any(a[k] != b[k] for k in measured):
-                            raise ProtocolError("Conflicting source observation")
-                    if (old["battery"]["pack"] is not None
-                            and old["battery"]["pack"] != new["battery"]["pack"]):
-                        raise ProtocolError("Pack binding changed")
-                    if old["fault"]["kind"] != "none" and old["fault"] != new["fault"]:
-                        if old["fault"] != {"kind": "runtime", "code": 0} or new["fault"]["kind"] == "none":
-                            raise ProtocolError("First observed fault was cleared or replaced")
-                self._previous = deepcopy(new)
+                self._history.accept(result)
                 return result
             except Exception:
                 self._handle.close()

@@ -41,7 +41,7 @@ def normalize_url(value: str) -> str:
 def validate_state(value: object) -> dict:
     """Reject malformed state before any entity can present it as measured."""
     if not isinstance(value, dict) or value.get("schema_version") != 1 or value.get("mode") != "simulation":
-        raise BridgeError("Unsupported bridge schema or mode; this release supports simulation only")
+        raise BridgeError("Unsupported simulator schema or mode")
     if not isinstance(value.get("bridge_id"), str) or not value["bridge_id"]:
         raise BridgeError("Missing bridge identity")
     group, devices = value.get("group"), value.get("devices")
@@ -136,9 +136,53 @@ def validate_physical_state(value: object) -> dict:
     return value
 
 
+PHYSICAL_CONTROL_FIELDS = set("control_configured position height_mm position_age_ms position_sample_us referenced state".split())
+
+
+def validate_control_state(value):
+    """Pinned physical-control schema; diagnostics never become motion authority."""
+    if (type(value) is not dict or set(value)!={'schema_version','mode','bridge_id','devices','group'}
+        or type(value['schema_version']) is not int or value['schema_version']!=3
+        or value['mode']!='physical_control' or type(value['devices']) is not list):
+        raise BridgeError('Unsupported physical control schema')
+    devices=value['devices']
+    if any(type(d) is not dict or not PHYSICAL_CONTROL_FIELDS<=set(d) for d in devices):
+        raise BridgeError('Missing physical control fields')
+    # The unchanged informational validator still owns every battery/source rule.
+    validate_physical_state(dict(schema_version=2,mode='physical_read_only',bridge_id=value['bridge_id'],
+        devices=[{k:v for k,v in d.items() if k not in PHYSICAL_CONTROL_FIELDS} for d in devices]))
+    g=value['group']
+    if (type(g) is not dict or set(g)!=set('id name available control_configured position state aligned spread_mm phase reason low_mm high_mm intent'.split())
+        or type(g['control_configured']) is not bool or type(g['intent']) is not int or g['intent']<0
+        or g['phase'] not in ('idle','queued','preflight','preparing','committing','armed','moving','complete','aborted')
+        or type(g['reason']) is not str):
+        raise BridgeError('Invalid physical group state')
+    # Common cover shape/range semantics, without selecting simulator mode locally.
+    validate_state(dict(value,schema_version=1,mode='simulation'))
+    for d in devices:
+        age=d['position_age_ms'];stamp=d['position_sample_us'];height=d['height_mm']
+        if (type(d['control_configured']) is not bool or
+            (age is not None and (type(age) is not int or age<0)) or
+            (stamp is not None and (type(stamp) is not str or len(stamp)!=16 or any(c not in '0123456789abcdef' for c in stamp))) or
+            (height is not None and (type(height) not in (int,float) or not math.isfinite(height) or not -1e6<=height<=1e6))):
+            raise BridgeError('Invalid original position evidence')
+        if (d['referenced'] and (height is None or age is None or age>1800000 or stamp is None)) or (not d['referenced'] and d['position'] is not None):
+            raise BridgeError('Unobserved or stale position')
+        if not d['control_configured'] and d['position'] is not None:
+            raise BridgeError('Unconfigured physical coordinate')
+    for k in ('low_mm','high_mm','spread_mm'):
+        v=g[k]
+        if v is not None and (type(v) not in (int,float) or not math.isfinite(v)):
+            raise BridgeError('Invalid shared range')
+    if (g['available'] and not g['control_configured']) or (g['position'] is not None and
+        (not g['control_configured'] or g['low_mm'] is None or g['high_mm'] is None or g['low_mm']>=g['high_mm'])):
+        raise BridgeError('Unconfigured shared position')
+    return value
+
+
 class BridgeClient:
     def __init__(self, session: ClientSession, base_url: str, token: str, mode="simulation"):
-        if mode not in ("simulation", "physical_read_only"):
+        if mode not in ("simulation", "physical_read_only", "physical_control"):
             raise ValueError("invalid_mode")
         self.mode = mode
         self.session = session
@@ -171,18 +215,20 @@ class BridgeClient:
             raise BridgeError("Bridge response unavailable or invalid") from exc
 
     async def async_state(self):
+        if self.mode == "physical_control":
+            return validate_control_state(await self._request("GET", "/v3/state"))
         if self.mode == "physical_read_only":
             return validate_physical_state(await self._request("GET", "/v2/state"))
         return validate_state(await self._request("GET", "/v1/state"))
 
     async def async_move(self, target: str, position: float, *, align: bool = False):
-        if self.mode != "simulation":
+        if self.mode == "physical_read_only":
             raise BridgeError("Physical telemetry has no movement interface")
-        result = await self._request("POST", "/v1/move", {"target": target, "position": position, "align": align})
+        result = await self._request("POST", "/v3/move" if self.mode == "physical_control" else "/v1/move", {"target": target, "position": position, "align": align})
         if not isinstance(result, dict) or result.get("accepted") is not True:
             raise BridgeError("Bridge did not accept command")
 
     async def async_stop(self):
-        if self.mode != "simulation":
+        if self.mode == "physical_read_only":
             raise BridgeError("Physical telemetry has no movement interface")
-        await self._request("POST", "/v1/stop", {})
+        await self._request("POST", "/v3/stop" if self.mode == "physical_control" else "/v1/stop", {})

@@ -10,7 +10,7 @@ from .const import CONF_BASE_URL, CONF_TOKEN, DOMAIN
 
 _SCHEMA = vol.Schema({
     vol.Required(CONF_BASE_URL, default="http://127.0.0.1:8765"): str,
-    vol.Required("mode", default="simulation"): vol.In({"simulation": "Simulator", "physical_read_only": "Physical telemetry (read only)"}),
+    vol.Required("mode", default="simulation"): vol.In({"simulation": "Simulator", "physical_read_only": "Physical telemetry (read only)", "physical_control": "Physical blinds (existing commissioned bridge)"}),
     vol.Required(CONF_TOKEN): TextSelector(TextSelectorConfig(type=TextSelectorType.PASSWORD)),
 })
 
@@ -27,7 +27,7 @@ class SmartBlindsConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 state = await client.async_state()
                 await self.async_set_unique_id(state["bridge_id"])
                 self._abort_if_unique_id_configured()
-                return self.async_create_entry(title="Smart Blinds simulator" if client.mode == "simulation" else "Smart Blinds telemetry", data={
+                return self.async_create_entry(title="Smart Blinds simulator" if client.mode == "simulation" else "Smart Blinds" if client.mode == "physical_control" else "Smart Blinds telemetry", data={
                     CONF_BASE_URL: client.base_url, CONF_TOKEN: user_input[CONF_TOKEN], "mode": client.mode})
             except BridgeAuthError:
                 errors["base"] = "invalid_auth"

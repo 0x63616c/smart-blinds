@@ -4,6 +4,7 @@ import time
 from integrations.home_assistant.coordinator import Phase, begin_group
 from .mapping import device, source_stamp, normalize_plan
 from .worker import Worker, now_us
+from integrations.home_assistant.freshness import SourceStamp, earliest_sample
 
 
 class Group:
@@ -30,10 +31,13 @@ class Group:
             for w in self.workers.values(): w.start()
             until = self.clock()+int(timeout_s*1000000)
             while self.clock()<until:
-                now = self.clock()//1000
+                snapshots = {name:w.snapshot() for name,w in self.workers.items()}
+                observed_us = self.clock()  # after every consumed owner copy
+                if observed_us >= until: break
+                now = observed_us//1000
                 values = []
                 for name, w in self.workers.items():
-                    report, failure, ready, _, _ = w.snapshot()
+                    report, failure, ready, _, _ = snapshots[name]
                     if failure: raise RuntimeError(name+': '+failure)
                     if w.thread is not None and not w.thread.is_alive():
                         raise RuntimeError(name+': worker exited during preflight')
@@ -65,23 +69,50 @@ class Group:
 
     def step(self):
         if self.job is None or self.closed: raise RuntimeError('No open group job')
-        now=self.clock()//1000
         if self.job.phase in (Phase.COMPLETE,Phase.ABORTED): return self.job.phase
-        # A failure is checked before dispatching any further ordinary work.
+        # Copy all consumed publications before sampling their validation time.
+        # In particular, terminal OFF may be published after the ordinary report.
         snapshots={name:w.snapshot() for name,w in self.workers.items()}
+        completions={name:getattr(w, 'completion', lambda: None)() for name,w in self.workers.items()}
+        receipts=[]
+        for _ in range(self.events.maxsize):
+            try: receipts.append(self.events.get_nowait())
+            except queue.Empty: break
+        observed_us=self.clock()
+        now=observed_us//1000
+        # A failure is checked before dispatching any further ordinary work.
         for name,w in self.workers.items():
             failure=snapshots[name][1]
             if failure or (w.thread is not None and not w.thread.is_alive()):
                 self.abort(name+': '+(failure or 'worker exited'))
                 return self.job.phase
-        while True:
-            try: event=self.events.get_nowait()
-            except queue.Empty: break
+        for event in receipts:
             if event.kind!='queued' or event.device_id not in self.workers:
                 self.abort('Invalid worker receipt'); return self.job.phase
             r=self.reservations[event.device_id]
             self._send(self.job.prepare_queued(event.device_id,r.boot,r.command,now))
         for name,(report,_,_,commit_message,_) in snapshots.items():
+            if name in self.job.completed: continue
+            completion=completions[name]
+            if completion is not None:
+                r=self.reservations[name]
+                try:
+                    if (completion.boot!=r.boot or completion.command!=r.command or
+                        completion.result!='finished' or not completion.reference_valid or
+                        completion.height_mm is None or not completion.current(observed_us)):
+                        raise ValueError('Invalid terminal OFF observation')
+                    # Outward-rounded one-exchange source interval. This is only
+                    # completion evidence; it creates no qualified motion clock.
+                    lo=completion.earliest_host_us//1000
+                    hi=(completion.latest_host_us+999)//1000
+                    centre=(lo+hi)//2
+                    stamp=SourceStamp(centre,completion.sampled_us,max(centre-lo,hi-centre))
+                    earliest_sample(stamp,now,30)
+                    self._send(self.job.report(name,r.boot,r.command,now,stamp=stamp,
+                        height_mm=completion.height_mm,state='idle'))
+                except ValueError:
+                    self.abort(name+': invalid terminal OFF source')
+                continue
             if report is None or name not in self.job.queued or report.sampled_us<=self.last_sample.get(name,0): continue
             r=self.reservations[name]
             if report.boot!=r.boot:

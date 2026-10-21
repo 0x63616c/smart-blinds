@@ -1,0 +1,216 @@
+{
+  "status": "integration_candidate_not_release_qualified",
+  "base_commit": "ef9f7ea8e0ca26f1ace3306aff78bbc605445f67",
+  "physical_device_access": false,
+  "physical_qualification": false,
+  "firmware_changed": false,
+  "timing_limits_changed": false,
+  "current_application_checks": {
+    "deterministic_tests": 63,
+    "strict_schema_cases": 7,
+    "cli_admission_cases": 11,
+    "selected_ha_tests": 10,
+    "immutable_copy_restored_bug": "rejected",
+    "actual_successor_builds": 1,
+    "seven_peer_campaigns": 0
+  },
+  "scripted_authenticated_evidence": {
+    "classification": "synthetic_application_contract",
+    "one_peer_parent_review": "8 transport cases and 2 HA lifecycle cases passed independently in frozen predecessor",
+    "original_seven_run": {
+      "passed": 2,
+      "failed": 2,
+      "positive_fault": {
+        "boot": 103,
+        "command": 31,
+        "device_time_us": 254211635537,
+        "last_message": 12305,
+        "deduction": "Active clock guard; exact predicate and cause unresolved",
+        "minimum_lease_remaining_us": 83803,
+        "minimum_time_to_start_us": 1272792
+      }
+    },
+    "later_instrumented_run": {
+      "passed": 4,
+      "failed": 0,
+      "limitation": "Not a fault fix or reliable seven-peer timing qualification"
+    }
+  },
+  "strict_host_timing": {
+    "status": "unresolved_host_qualification_limit",
+    "instrumented_actor": {
+      "passed": 6,
+      "failed": 3
+    },
+    "instrumented_ha": {
+      "passed": 0,
+      "failed": 1
+    },
+    "recorded_pwm_wall_us": [
+      894,
+      1031
+    ],
+    "recorded_heartbeat_ack_us": [
+      188,
+      4331
+    ],
+    "unchanged_io_and_ack_bound_us": 100,
+    "unchanged_control_gap_bound_us": 20000,
+    "limitation": "Instrumented host evidence; historical precondition failures and precise scheduling cause remain unresolved. No target qualification."
+  },
+  "ci": {
+    "existing_required_tests_preserved": true,
+    "additive_workflow_proposed": true,
+    "executed": false,
+    "strict_failures_remain_blocking": true
+  },
+  "source_evidence": [
+    {
+      "label": "original-seven-failure",
+      "sha256": "283f1c10b9a1dc657f23993c83d95935fec783c65208b1fe411da80009969ad9"
+    },
+    {
+      "label": "later-instrumented-seven",
+      "sha256": "2a1ce5f90456844884fd1f4ec37ff5ec939f6e4c610661343847c54728412306"
+    },
+    {
+      "label": "strict-host-diagnostics",
+      "sha256": "2bcc795ea9c39142d4bf3151c04dfa0dcb7ac4c717801e78c6b3bf0a23cbd0f0"
+    },
+    {
+      "label": "read-only-clock-analysis",
+      "sha256": "01f6cd0c657e2a2b280395323d19a00c6bfbca8173bea3148a3b4d8138440440"
+    },
+    {
+      "label": "immutable-copy-positive",
+      "sha256": "8b49af95a85f7e099f7999f0fa707b49a534894b4f514025309797cc6c495e79"
+    },
+    {
+      "label": "immutable-copy-restored-bug",
+      "sha256": "df4b05b6308f4ee98202bb027b9ffe4ad6a85a6f38539a3b2c75c058a9901577"
+    }
+  ],
+  "owning_checkout_review": {
+    "date": "2026-10-21",
+    "source_base_commit": "ef9f7ea8e0ca26f1ace3306aff78bbc605445f67",
+    "review_patch_sha256": "3b760b7c2b2ee067bdd2c508a534388ed29779d4b3b13dee2bf05c4e5fa01ee7",
+    "independent_native_builds": [
+      "strict motion",
+      "client and separate scripted contract",
+      "telemetry"
+    ],
+    "tests": {
+      "application": {
+        "passed": 63,
+        "failed": 0,
+        "errors": 0,
+        "total": 63,
+        "failures": [],
+        "error_names": []
+      },
+      "transport-regressions": {
+        "passed": 46,
+        "failed": 3,
+        "errors": 0,
+        "total": 49,
+        "failures": [
+          "test_one_failed_power_report_aborts_all_peers (integrations.thread_bridge.test_group_dtls.GroupDTLSTests.test_one_failed_power_report_aborts_all_peers)",
+          "test_seven_real_dtls_peers_reach_same_physical_height (integrations.thread_bridge.test_group_dtls.GroupDTLSTests.test_seven_real_dtls_peers_reach_same_physical_height)",
+          "test_worker_loss_aborts_peers_and_never_resumes (integrations.thread_bridge.test_group_dtls.GroupDTLSTests.test_worker_loss_aborts_peers_and_never_resumes)"
+        ],
+        "error_names": []
+      },
+      "strict-actor": {
+        "passed": 7,
+        "failed": 3,
+        "errors": 0,
+        "total": 10,
+        "failures": [
+          "test_fault_propagates_and_no_reconnect (integrations.physical_control.test_actor.ActorTests.test_fault_propagates_and_no_reconnect)",
+          "test_seven_persistent_peers_same_physical_height (integrations.physical_control.test_actor.ActorTests.test_seven_persistent_peers_same_physical_height)",
+          "test_stop_during_motion_and_next_explicit_job (integrations.physical_control.test_actor.ActorTests.test_stop_during_motion_and_next_explicit_job)"
+        ],
+        "error_names": []
+      },
+      "scripted-contract": {
+        "passed": 10,
+        "failed": 0,
+        "errors": 0,
+        "total": 10,
+        "failures": [],
+        "error_names": []
+      },
+      "readonly-telemetry": {
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "total": 12,
+        "failures": [],
+        "error_names": []
+      },
+      "ha-full": {
+        "passed": 18,
+        "failed": 1,
+        "total": 19,
+        "failures": [
+          "integrations/home_assistant/ha_tests/test_contract_control.py::test_scripted_one_owner_ha_http_dtls_lifecycle[True] - AssertionError: assert 'fault' == 'moving'"
+        ]
+      }
+    },
+    "fixture_isolation_verified": true,
+    "retries": 0,
+    "limits_changed": false,
+    "release_gate_passed": false,
+    "interpretation": "Three strict transport and three strict actor failures remain. The HA failure is the qualified SCRIPTED ONE-PEER test; both strict HA cases and all four seven-peer scripted cases passed this run. This does not resolve previous failures or qualify hardware.",
+    "logs": [
+      {
+        "name": "strict-configure",
+        "sha256": "b4739ff6120349cba27531e40d01bb97ee436531ffab8e66bcd3552751853c12"
+      },
+      {
+        "name": "strict-build",
+        "sha256": "8abbdd7fc01dfccd9fe8617cc1b669623b8994ab0968aca781af446c743b1f05"
+      },
+      {
+        "name": "contract-configure",
+        "sha256": "1465626259c9e0a37d774d70e153a44550a4485d6af65237538ac347624f066d"
+      },
+      {
+        "name": "contract-build",
+        "sha256": "a0de8c73f92274460f550bb5c9d28b27f8e37ec235dc9b2829774cfb580ad352"
+      },
+      {
+        "name": "telemetry-configure",
+        "sha256": "b1c5491234971521a2b7ccf92a3ef2c0b8d05586975b9493cc6cd5c1b2c8ecc2"
+      },
+      {
+        "name": "telemetry-build",
+        "sha256": "c727cadd7f3e859594a37fc4f0609ea9424f98887a5388e84b769a4efc502c2c"
+      },
+      {
+        "name": "application",
+        "sha256": "8f5f9da4b8a3f57a02b8febbac33453225fb9fd35b3998853fbe30fef6dc97d0"
+      },
+      {
+        "name": "transport-regressions",
+        "sha256": "70288836d3c39dd00bbd410ad019177b6bba3934594559320af5a245176cce64"
+      },
+      {
+        "name": "strict-actor",
+        "sha256": "0521afd500e655b9c02cee822edba6cc034d9e48df8ae2ae9e87c6f9275166f1"
+      },
+      {
+        "name": "scripted-contract",
+        "sha256": "e66866ec9fdb05ebed9be3af51db983ccc62c01a7a4605396ce3cd81f474f83b"
+      },
+      {
+        "name": "readonly-telemetry",
+        "sha256": "27f996b5d176a55f93a76653caf2043067e0564dc981fe8e204b34b92b10b6f0"
+      },
+      {
+        "name": "ha-full",
+        "sha256": "3c8975494a6f50c2ee4979468a1f184269869d629bab5dde945854f540eefd32"
+      }
+    ]
+  }
+}

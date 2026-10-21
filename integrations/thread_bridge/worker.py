@@ -31,7 +31,10 @@ class Mailbox:
 
     def put(self, envelope):
         with self.lock:
-            if self.stopped: return False
+            if self.stopped:
+                # Coalesce duplicate local STOP intent, preserving the original
+                # source stamp; no additional wire attempt is authorized.
+                return envelope.kind == 'stop'
             if envelope.kind == 'stop':
                 self.stopped = True
                 self.stop_source_ms = envelope.payload.get('sent_ms')
@@ -123,6 +126,9 @@ class Worker:
 
     def _poll(self):
         report = self._call('motion_status')
+        return self._observe(report)
+
+    def _observe(self, report):
         self.last_poll = self.clock()
         if report.new_sample:
             with self.lock: self.latest = report
@@ -172,6 +178,7 @@ class Worker:
         self.session = self.factory(self.library, s.host, s.port, s.identity, s.key,
             expected_boot=s.boot, calibration_revision=s.calibration,
             message_floor=self.reservation.floor, timeout_ms=1000)
+        if self.mailbox.stopped or self.shutdown.is_set(): raise ProtocolError('Preflight superseded by STOP')
         status = self._call('status')
         if not status.io_qualified: raise ProtocolError('Device has no qualified I/O')
         if not status.awake: self._call('wake', boot=s.boot, sequence=status.last_wake+1)
@@ -180,6 +187,7 @@ class Worker:
         self._qualify()
         deadline = self.clock()+5000000
         while self.clock()<deadline and not self.shutdown.is_set():
+            if self.mailbox.stopped: raise ProtocolError('Preflight superseded by STOP')
             if self.clock()-self.last_clock>=200000: self._qualify()
             report = self._poll()
             if report.command >= self.reservation.command:
@@ -237,7 +245,7 @@ class Worker:
                     until=self.clock()+600000
                     while self.clock()<until and not self.shutdown.is_set():
                         report=self._poll()
-                        if report.phase=='idle' and report.result in ('finished','stopped'): break
+                        if report is not None and report.phase=='idle' and report.result in ('finished','stopped'): break
                         self.changed.wait(.01); self.changed.clear()
                     break
                 if intent is not None: self._dispatch(intent)
@@ -253,7 +261,10 @@ class Worker:
             if self.active and not self.terminal and not self.stop_sent:
                 try: self._stop()
                 except Exception: pass
-            if self.session is not None: self.session.close()
+            self._dispose_session()
+
+    def _dispose_session(self):
+        if self.session is not None: self.session.close()
 
     def close(self):
         self.shutdown.set(); self.changed.set()
