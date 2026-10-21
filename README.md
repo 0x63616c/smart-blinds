@@ -31,24 +31,17 @@ blinds are needed to test synchronization before committing to the eight-unit ba
 
 ## Design gallery
 
-**Layout rework:** the [54 × 80 mm comparison and native placement views](docs/trades/2026-10-21-cleaner-main-board.md)
-show the proposed cleaner board. All 206 components are on-grid; routing and
-revised enclosure fit are still unfinished. The canonical route shown below is
-the earlier checkpoint and does not meet the new routing-style requirements.
-The [next review pass](docs/reviews/2026-10-21-clean-layout/usb-and-models.md)
-shows the first parallel USB traces and corrected connector/inductor models,
-including an actual underside view.
-The [sparse-marking pass](docs/reviews/2026-10-21-clean-layout/sparse-silkscreen.md)
-removes decorative outlines from nonpolar parts while retaining orientation
-marks. The [USB routing pass](docs/reviews/2026-10-21-clean-layout/usb-data-routing.md)
-adds the socket-to-protection data paths, reconciles those marking libraries and
-puts the UP button above DOWN. The [latest controller-supply pass](docs/reviews/2026-10-21-clean-layout/controller-supply.md)
-brings two capacitors beside the controller, adds its dedicated supply/return and
-clears the remaining printed-outline clashes. This image is a frozen review
-snapshot; **470 unconnected items remain**, and the ground-reference pours are
-unfinished.
+**Cleaner layout in progress:** the [54 × 80 mm working candidate](docs/trades/2026-10-21-cleaner-main-board.md)
+has 206 components on-grid, outward-facing edge connectors, rounded corners and
+sparse markings. The [latest regulator review](docs/reviews/2026-10-21-clean-layout/regulator-routing.md)
+shows the actual copper layers and checks, alongside a
+[corrected supervisor package and model](docs/reviews/2026-10-21-clean-layout/supervisor-package.md).
+This frozen v12 snapshot is partially routed: **449 unconnected items remain**,
+and ground planes, enclosure fit and hardware qualification are unfinished.
+The canonical route farther below is the earlier checkpoint and does not meet
+the new routing-style requirements.
 
-![Cleaner 54 × 80 mm working candidate — partial routing](docs/reviews/2026-10-21-clean-layout/v10-top.png)
+![Cleaner 54 × 80 mm working candidate — partial v12 routing](docs/reviews/2026-10-21-clean-layout/v12-top.png)
 
 These images are generated from the design sources. [Preview generation and provenance](docs/previews.md).
 A green preview badge means the images generated successfully, not that the hardware is validated.

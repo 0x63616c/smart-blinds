@@ -1,0 +1,1630 @@
+{
+  "status": "PASS pure saved local regulator candidate; native/fills/physical transient qualification pending",
+  "base_sha256": "3b0eef0bb8ad9ffcd1ff096fd2b210f1448bf7bb43ddef8575c3ecd72b1315d6",
+  "components": 206,
+  "actual_tracks": 151,
+  "actual_vias": 42,
+  "added_tracks": 86,
+  "added_vias": 14,
+  "preserved_copper_items": 93,
+  "minimum_mm": {
+    "new_foreign_copper": 0.17499999999999716,
+    "new_via_drill_to_SMD": 0.2199999999999971,
+    "new_drill_spacing": 0.45,
+    "new_copper_to_NPTH": 31.30996735704548,
+    "new_copper_to_rectangle_edge": 3.1
+  },
+  "physical_connections": {
+    "source-hv": [
+      [
+        "logic_supply.ic",
+        "6"
+      ],
+      [
+        "logic_supply.r_enable",
+        "1"
+      ],
+      [
+        "logic_supply.c_input",
+        "1"
+      ],
+      [
+        "logic_supply.c_input2",
+        "1"
+      ],
+      [
+        "logic_supply.c_input_fast",
+        "1"
+      ]
+    ],
+    "host_logic-hv": [
+      [
+        "logic_supply.ic",
+        "3"
+      ],
+      [
+        "logic_supply.inductor",
+        "2"
+      ],
+      [
+        "logic_supply.c_output1",
+        "1"
+      ],
+      [
+        "logic_supply.c_output2",
+        "1"
+      ],
+      [
+        "logic_supply.c_output_fast",
+        "1"
+      ],
+      [
+        "logic_supply.r_pg",
+        "1"
+      ],
+      [
+        "controller.mcu",
+        "2"
+      ],
+      [
+        "controller.c_bulk",
+        "1"
+      ],
+      [
+        "controller.c_bypass",
+        "1"
+      ]
+    ],
+    "lv": [
+      [
+        "logic_supply.ic",
+        "4"
+      ],
+      [
+        "logic_supply.r_mode",
+        "2"
+      ],
+      [
+        "logic_supply.c_softstart",
+        "2"
+      ],
+      [
+        "logic_supply.c_input",
+        "2"
+      ],
+      [
+        "logic_supply.c_input2",
+        "2"
+      ],
+      [
+        "logic_supply.c_input_fast",
+        "2"
+      ],
+      [
+        "logic_supply.c_output1",
+        "2"
+      ],
+      [
+        "logic_supply.c_output2",
+        "2"
+      ],
+      [
+        "logic_supply.c_output_fast",
+        "2"
+      ],
+      [
+        "controller.mcu",
+        "1"
+      ],
+      [
+        "controller.c_bulk",
+        "2"
+      ],
+      [
+        "controller.c_bypass",
+        "2"
+      ]
+    ],
+    "SW": [
+      [
+        "logic_supply.ic",
+        "2"
+      ],
+      [
+        "logic_supply.inductor",
+        "1"
+      ]
+    ],
+    "logic_supply-EN": [
+      [
+        "logic_supply.ic",
+        "5"
+      ],
+      [
+        "logic_supply.r_enable",
+        "2"
+      ]
+    ],
+    "MODE_S_CONF": [
+      [
+        "logic_supply.ic",
+        "7"
+      ],
+      [
+        "logic_supply.r_mode",
+        "1"
+      ]
+    ],
+    "SS_TR": [
+      [
+        "logic_supply.ic",
+        "8"
+      ],
+      [
+        "logic_supply.c_softstart",
+        "1"
+      ]
+    ],
+    "PG": [
+      [
+        "logic_supply.ic",
+        "1"
+      ],
+      [
+        "logic_supply.r_pg",
+        "2"
+      ]
+    ]
+  },
+  "intentional_open_VSET": true,
+  "layout_metrics": {
+    "VOS_centreline_mm": 4.709188309203677,
+    "VOS_to_SW_copper_min_mm": 0.22499999999999432,
+    "SW_centreline_mm": 2.644974746830581,
+    "one_local_cap_move": {
+      "logic_supply.c_output_fast": [
+        13.75,
+        50.75,
+        0
+      ]
+    },
+    "minimum_new_via_to_maximum_body_mm": 0.1750000000000025
+  },
+  "source_pin_contract": {
+    "ic": {
+      "1": "PG",
+      "2": "SW",
+      "3": "host_logic-hv",
+      "4": "lv",
+      "5": "logic_supply-EN",
+      "6": "source-hv",
+      "7": "MODE_S_CONF",
+      "8": "SS_TR",
+      "9": "FB_VSET"
+    },
+    "r_enable": {
+      "1": "source-hv",
+      "2": "logic_supply-EN"
+    },
+    "r_mode": {
+      "1": "MODE_S_CONF",
+      "2": "lv"
+    },
+    "r_pg": {
+      "1": "host_logic-hv",
+      "2": "PG"
+    },
+    "c_softstart": {
+      "1": "SS_TR",
+      "2": "lv"
+    },
+    "inductor": {
+      "1": "SW",
+      "2": "host_logic-hv"
+    },
+    "c_input": {
+      "1": "source-hv",
+      "2": "lv"
+    },
+    "c_input2": {
+      "1": "source-hv",
+      "2": "lv"
+    },
+    "c_input_fast": {
+      "1": "source-hv",
+      "2": "lv"
+    },
+    "c_output1": {
+      "1": "host_logic-hv",
+      "2": "lv"
+    },
+    "c_output2": {
+      "1": "host_logic-hv",
+      "2": "lv"
+    },
+    "c_output_fast": {
+      "1": "host_logic-hv",
+      "2": "lv"
+    }
+  },
+  "actual_rule_area_count": 8,
+  "no_actual_fills": true,
+  "routes": [
+    {
+      "a": [
+        15.0,
+        50.45
+      ],
+      "b": [
+        15.0,
+        49.75
+      ],
+      "width": 0.2,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "159db52a-f030-5430-be84-53615ec36203",
+      "name": "GND output fast terminal",
+      "length_mm": 0.7000000000000028
+    },
+    {
+      "a": [
+        14.700000000000003,
+        50.75
+      ],
+      "b": [
+        15.0,
+        50.45
+      ],
+      "width": 0.2,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "1b0f4c54-caea-5989-941e-4f4c7af1414d",
+      "name": "GND output fast terminal",
+      "length_mm": 0.4242640687119245
+    },
+    {
+      "a": [
+        16.25,
+        50.099999999999994
+      ],
+      "b": [
+        17.0,
+        50.099999999999994
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "3342f89e-c718-525a-b1f6-d12c5017d1fd",
+      "name": "GND input bulk transition",
+      "length_mm": 0.75
+    },
+    {
+      "a": [
+        13.650000000000006,
+        52.150000000000006
+      ],
+      "b": [
+        13.650000000000006,
+        51.849999999999994
+      ],
+      "width": 0.15,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "33f64ee0-1f45-58de-8c90-3efaf782f1f7",
+      "name": "GND fast return neck",
+      "length_mm": 0.30000000000001137
+    },
+    {
+      "a": [
+        16.25,
+        51.400000000000006
+      ],
+      "b": [
+        16.25,
+        50.099999999999994
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "4078d47e-8714-594c-aa72-fa2da47b9d12",
+      "name": "GND input bulk transition",
+      "length_mm": 1.3000000000000114
+    },
+    {
+      "a": [
+        13.25,
+        52.150000000000006
+      ],
+      "b": [
+        13.25,
+        51.900000000000006
+      ],
+      "width": 0.15,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "4af8d4cd-f5f3-52b5-8388-56d7251822e2",
+      "name": "GND IC thermal escape neck",
+      "length_mm": 0.25
+    },
+    {
+      "a": [
+        14.0,
+        51.849999999999994
+      ],
+      "b": [
+        14.0,
+        52.3
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "5d505018-0d39-5ac4-a441-4c97a3e7eac9",
+      "name": "GND fast bypass return",
+      "length_mm": 0.45000000000000284
+    },
+    {
+      "a": [
+        14.200000000000003,
+        50.75
+      ],
+      "b": [
+        14.700000000000003,
+        50.75
+      ],
+      "width": 0.2,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "656ca48b-3c92-5d39-8f85-88bcf9596fdb",
+      "name": "GND output fast terminal",
+      "length_mm": 0.5
+    },
+    {
+      "a": [
+        12.0,
+        49.0
+      ],
+      "b": [
+        14.150000000000006,
+        49.0
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "70c0a004-f3bc-524a-8512-893daa52b8a8",
+      "name": "GND second cap terminal",
+      "length_mm": 2.1500000000000057
+    },
+    {
+      "a": [
+        12.450000000000003,
+        52.150000000000006
+      ],
+      "b": [
+        13.650000000000006,
+        52.150000000000006
+      ],
+      "width": 0.15,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "763a1100-f0f9-5d76-baf2-1cba3d75fcd3",
+      "name": "GND IC own-pad neck",
+      "length_mm": 1.2000000000000028
+    },
+    {
+      "a": [
+        19.0,
+        50.8
+      ],
+      "b": [
+        19.0,
+        51.400000000000006
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "765fed4e-dc18-5ae2-ae73-dc5620bfda18",
+      "name": "GND input bulk bank",
+      "length_mm": 0.6000000000000085
+    },
+    {
+      "a": [
+        14.0,
+        55.95
+      ],
+      "b": [
+        14.0,
+        56.900000000000006
+      ],
+      "width": 0.2,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "7ad47deb-48c7-5303-93a4-17a9de04298b",
+      "name": "MODE ground own-pad escape",
+      "length_mm": 0.9500000000000028
+    },
+    {
+      "a": [
+        14.0,
+        52.3
+      ],
+      "b": [
+        14.0,
+        51.5
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "7d6dd825-61d8-5209-bbe6-21767e71ccb9",
+      "name": "GND input fast to bulk",
+      "length_mm": 0.7999999999999972
+    },
+    {
+      "a": [
+        16.25,
+        51.400000000000006
+      ],
+      "b": [
+        16.25,
+        50.8
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "9ff5f1f1-2c7a-5c91-b3a5-f01dc65801c9",
+      "name": "GND input bulk bank",
+      "length_mm": 0.6000000000000085
+    },
+    {
+      "a": [
+        14.799999999999997,
+        51.5
+      ],
+      "b": [
+        15.299999999999997,
+        51.0
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "a580ff47-8483-5b67-9e41-bef6e02502c6",
+      "name": "GND input fast to bulk",
+      "length_mm": 0.7071067811865476
+    },
+    {
+      "a": [
+        16.25,
+        50.8
+      ],
+      "b": [
+        19.0,
+        50.8
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "a6562479-c433-5b72-8865-4659fbb098a6",
+      "name": "GND input bulk bank",
+      "length_mm": 2.75
+    },
+    {
+      "a": [
+        13.25,
+        51.900000000000006
+      ],
+      "b": [
+        13.25,
+        51.599999999999994
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "abf04728-5cd8-5456-9de6-c53e703cb283",
+      "name": "GND IC thermal transition",
+      "length_mm": 0.30000000000001137
+    },
+    {
+      "a": [
+        13.650000000000006,
+        51.849999999999994
+      ],
+      "b": [
+        14.0,
+        51.849999999999994
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "ac200817-35c5-585c-b8e6-ad3372ae7641",
+      "name": "GND fast bypass return",
+      "length_mm": 0.3499999999999943
+    },
+    {
+      "a": [
+        12.0,
+        55.900000000000006
+      ],
+      "b": [
+        12.0,
+        56.900000000000006
+      ],
+      "width": 0.2,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "bd6bbb9c-d276-573b-a441-bf98d6ac4090",
+      "name": "SS ground own-pad escape",
+      "length_mm": 1.0
+    },
+    {
+      "a": [
+        14.0,
+        51.5
+      ],
+      "b": [
+        14.799999999999997,
+        51.5
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "c4208e8b-4bd2-5fa8-9491-019185c96df3",
+      "name": "GND input fast to bulk",
+      "length_mm": 0.7999999999999972
+    },
+    {
+      "a": [
+        15.299999999999997,
+        51.0
+      ],
+      "b": [
+        16.25,
+        51.0
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "f0d47083-85f9-5c76-a811-40b05e64e8ea",
+      "name": "GND input fast to bulk",
+      "length_mm": 0.9500000000000028
+    },
+    {
+      "a": [
+        16.25,
+        51.0
+      ],
+      "b": [
+        16.25,
+        51.400000000000006
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "F.Cu",
+      "uuid": "f9e6dd4e-a6f9-5a00-aa8c-ea23a92bceaa",
+      "name": "GND input fast to bulk",
+      "length_mm": 0.4000000000000057
+    },
+    {
+      "a": [
+        17.0,
+        50.099999999999994
+      ],
+      "b": [
+        13.25,
+        50.099999999999994
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "009a32ac-9e4c-55a7-bbc1-1bf07a02be0a",
+      "name": "GND input bank return",
+      "length_mm": 3.75
+    },
+    {
+      "a": [
+        14.0,
+        56.900000000000006
+      ],
+      "b": [
+        12.0,
+        56.900000000000006
+      ],
+      "width": 0.3,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "2dbcf2aa-33d2-5b83-93ab-71619dfc77c3",
+      "name": "Quiet config ground return",
+      "length_mm": 2.0
+    },
+    {
+      "a": [
+        13.25,
+        49.0
+      ],
+      "b": [
+        8.200000000000003,
+        49.0
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "38469632-6631-5a8b-b8f8-cfb8bdc0b28f",
+      "name": "GND local common return",
+      "length_mm": 5.049999999999997
+    },
+    {
+      "a": [
+        12.900000000000006,
+        51.099999999999994
+      ],
+      "b": [
+        13.25,
+        51.099999999999994
+      ],
+      "width": 0.3,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "46cce963-190c-5bce-878e-546cf75d202f",
+      "name": "Quiet config ground return",
+      "length_mm": 0.3499999999999943
+    },
+    {
+      "a": [
+        12.0,
+        56.900000000000006
+      ],
+      "b": [
+        12.0,
+        52.0
+      ],
+      "width": 0.3,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "49d8e500-e02f-5a3a-ae58-7d934f6081c6",
+      "name": "Quiet config ground return",
+      "length_mm": 4.900000000000006
+    },
+    {
+      "a": [
+        13.25,
+        50.099999999999994
+      ],
+      "b": [
+        13.25,
+        49.0
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "5f9254ae-7fa4-5740-a65b-2ec103506398",
+      "name": "GND local common return",
+      "length_mm": 1.0999999999999943
+    },
+    {
+      "a": [
+        12.0,
+        52.0
+      ],
+      "b": [
+        12.900000000000006,
+        51.099999999999994
+      ],
+      "width": 0.3,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "87b5aa31-0ef3-57e5-b9df-88a5e35efbab",
+      "name": "Quiet config ground return",
+      "length_mm": 1.2727922061357937
+    },
+    {
+      "a": [
+        13.25,
+        49.0
+      ],
+      "b": [
+        14.150000000000006,
+        49.0
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "8fd911f4-c420-503f-b97e-f9b892278b34",
+      "name": "GND second cap via bank link",
+      "length_mm": 0.9000000000000057
+    },
+    {
+      "a": [
+        15.0,
+        49.75
+      ],
+      "b": [
+        14.25,
+        49.0
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "933f4b6a-796f-59b5-9030-a0b4e4b283a0",
+      "name": "GND output fast return",
+      "length_mm": 1.0606601717798212
+    },
+    {
+      "a": [
+        14.25,
+        49.0
+      ],
+      "b": [
+        14.150000000000006,
+        49.0
+      ],
+      "width": 0.4,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "950cbff3-76ee-599b-971b-30e8802d7f7f",
+      "name": "GND output fast return",
+      "length_mm": 0.09999999999999432
+    },
+    {
+      "a": [
+        13.25,
+        51.099999999999994
+      ],
+      "b": [
+        13.25,
+        51.599999999999994
+      ],
+      "width": 0.3,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "ba8548dc-b64b-5251-b0db-b7961d26ff06",
+      "name": "Quiet config ground return",
+      "length_mm": 0.5
+    },
+    {
+      "a": [
+        13.25,
+        50.099999999999994
+      ],
+      "b": [
+        13.25,
+        51.599999999999994
+      ],
+      "width": 0.8,
+      "net": "lv",
+      "layer": "B.Cu",
+      "uuid": "ec890e66-9ef7-53e4-8599-7dfc3cf8187b",
+      "name": "GND input bank return",
+      "length_mm": 1.5
+    },
+    {
+      "a": [
+        9.549999999999997,
+        56.5
+      ],
+      "b": [
+        8.75,
+        56.5
+      ],
+      "width": 0.2,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "13ede6ca-e198-58b6-a73f-b625c4d35c0a",
+      "name": "PG pull-up supply terminal",
+      "length_mm": 0.7999999999999972
+    },
+    {
+      "a": [
+        4.0,
+        53.0
+      ],
+      "b": [
+        4.0,
+        49.0
+      ],
+      "width": 0.8,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "15a94f23-5cae-52e3-b208-b9a828f797ea",
+      "name": "VO inductor to first local cap",
+      "length_mm": 4.0
+    },
+    {
+      "a": [
+        10.0,
+        49.0
+      ],
+      "b": [
+        9.0,
+        49.0
+      ],
+      "width": 0.6,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "20117d3c-a3fa-5958-9248-6c7445cef9f6",
+      "name": "VO second cap terminal",
+      "length_mm": 1.0
+    },
+    {
+      "a": [
+        9.0,
+        48.0
+      ],
+      "b": [
+        9.5,
+        47.5
+      ],
+      "width": 0.6,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "591b02f7-168a-51a2-b1b1-aaedaf798f70",
+      "name": "VO second cap terminal",
+      "length_mm": 0.7071067811865476
+    },
+    {
+      "a": [
+        10.849999999999994,
+        52.150000000000006
+      ],
+      "b": [
+        9.5,
+        50.8
+      ],
+      "width": 0.15,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "7ff63342-16f9-56ba-ba22-7acecb9ec2c7",
+      "name": "VO quiet VOS terminal",
+      "length_mm": 1.9091883092036803
+    },
+    {
+      "a": [
+        11.349999999999994,
+        52.150000000000006
+      ],
+      "b": [
+        10.849999999999994,
+        52.150000000000006
+      ],
+      "width": 0.15,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "98684ad5-b0ea-5444-bc9b-3b0c33add1d3",
+      "name": "VO quiet VOS terminal",
+      "length_mm": 0.5
+    },
+    {
+      "a": [
+        9.5,
+        47.5
+      ],
+      "b": [
+        10.25,
+        47.5
+      ],
+      "width": 0.6,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "9f6ebba3-073b-5a82-80d5-e9268a8c550a",
+      "name": "VO second cap terminal",
+      "length_mm": 0.75
+    },
+    {
+      "a": [
+        12.599999999999994,
+        50.75
+      ],
+      "b": [
+        12.25,
+        50.400000000000006
+      ],
+      "width": 0.2,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "c5ed6d40-4e47-541b-817c-84b35ab7816f",
+      "name": "VO output fast terminal",
+      "length_mm": 0.49497474683057524
+    },
+    {
+      "a": [
+        9.5,
+        49.0
+      ],
+      "b": [
+        10.0,
+        49.0
+      ],
+      "width": 0.15,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "d08a5561-9989-5c16-97c5-a8c5111d5745",
+      "name": "VO quiet VOS terminal",
+      "length_mm": 0.5
+    },
+    {
+      "a": [
+        9.5,
+        50.8
+      ],
+      "b": [
+        9.5,
+        49.0
+      ],
+      "width": 0.15,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "e691a177-eef8-5af8-82d9-f592fd465052",
+      "name": "VO quiet VOS terminal",
+      "length_mm": 1.7999999999999972
+    },
+    {
+      "a": [
+        9.0,
+        49.0
+      ],
+      "b": [
+        9.0,
+        48.0
+      ],
+      "width": 0.6,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "ed7fe4a5-07af-5ce1-861a-fefffc51421a",
+      "name": "VO second cap terminal",
+      "length_mm": 1.0
+    },
+    {
+      "a": [
+        13.299999999999997,
+        50.75
+      ],
+      "b": [
+        12.599999999999994,
+        50.75
+      ],
+      "width": 0.2,
+      "net": "host_logic-hv",
+      "layer": "F.Cu",
+      "uuid": "fc4b76bb-27ff-5d5e-bbea-f13410d2ba3d",
+      "name": "VO output fast terminal",
+      "length_mm": 0.7000000000000028
+    },
+    {
+      "a": [
+        9.5,
+        47.5
+      ],
+      "b": [
+        10.25,
+        47.5
+      ],
+      "width": 0.8,
+      "net": "host_logic-hv",
+      "layer": "In2.Cu",
+      "uuid": "1125d8a6-198b-5454-a1ba-4d8b19bc09fb",
+      "name": "VO second cap via bank feed",
+      "length_mm": 0.75
+    },
+    {
+      "a": [
+        10.25,
+        47.5
+      ],
+      "b": [
+        12.25,
+        47.5
+      ],
+      "width": 0.4,
+      "net": "host_logic-hv",
+      "layer": "In2.Cu",
+      "uuid": "1e763a16-34fb-54ee-8686-a2ed73c0b271",
+      "name": "VO output fast feed",
+      "length_mm": 2.0
+    },
+    {
+      "a": [
+        9.5,
+        48.5
+      ],
+      "b": [
+        9.5,
+        47.5
+      ],
+      "width": 0.8,
+      "net": "host_logic-hv",
+      "layer": "In2.Cu",
+      "uuid": "4e15d80b-8365-5291-b9ff-0922b1c0d6f9",
+      "name": "VO second cap via bank feed",
+      "length_mm": 1.0
+    },
+    {
+      "a": [
+        8.75,
+        56.5
+      ],
+      "b": [
+        3.5,
+        56.5
+      ],
+      "width": 0.2,
+      "net": "host_logic-hv",
+      "layer": "In2.Cu",
+      "uuid": "7553216a-a319-5a89-abb2-c656a1edb6f6",
+      "name": "PG pull-up inner supply",
+      "length_mm": 5.25
+    },
+    {
+      "a": [
+        3.5,
+        48.5
+      ],
+      "b": [
+        9.5,
+        48.5
+      ],
+      "width": 0.8,
+      "net": "host_logic-hv",
+      "layer": "In2.Cu",
+      "uuid": "ce8dd800-c464-57f1-965e-5374787149be",
+      "name": "VO second cap via bank feed",
+      "length_mm": 6.0
+    },
+    {
+      "a": [
+        12.25,
+        47.5
+      ],
+      "b": [
+        12.25,
+        50.400000000000006
+      ],
+      "width": 0.4,
+      "net": "host_logic-hv",
+      "layer": "In2.Cu",
+      "uuid": "e73effea-ece1-51ea-b143-010ca23f1524",
+      "name": "VO output fast feed",
+      "length_mm": 2.9000000000000057
+    },
+    {
+      "a": [
+        11.349999999999994,
+        53.150000000000006
+      ],
+      "b": [
+        11.0,
+        53.150000000000006
+      ],
+      "width": 0.15,
+      "net": "PG",
+      "layer": "F.Cu",
+      "uuid": "0975bc77-1c10-5db6-b0fd-c3893abd0186",
+      "name": "PG local pull-up terminal",
+      "length_mm": 0.3499999999999943
+    },
+    {
+      "a": [
+        11.0,
+        53.150000000000006
+      ],
+      "b": [
+        11.0,
+        53.45
+      ],
+      "width": 0.15,
+      "net": "PG",
+      "layer": "F.Cu",
+      "uuid": "30cbf28a-d853-5d7e-a01c-b4205da9e0de",
+      "name": "PG local pull-up terminal",
+      "length_mm": 0.29999999999999716
+    },
+    {
+      "a": [
+        10.299999999999997,
+        54.3
+      ],
+      "b": [
+        10.799999999999997,
+        54.8
+      ],
+      "width": 0.15,
+      "net": "PG",
+      "layer": "F.Cu",
+      "uuid": "34459ced-ea8c-5d25-aa85-8888ee16af9c",
+      "name": "PG local pull-up terminal",
+      "length_mm": 0.7071067811865476
+    },
+    {
+      "a": [
+        10.299999999999997,
+        54.150000000000006
+      ],
+      "b": [
+        10.299999999999997,
+        54.3
+      ],
+      "width": 0.15,
+      "net": "PG",
+      "layer": "F.Cu",
+      "uuid": "627c07a8-93f2-5556-99da-655d08376920",
+      "name": "PG local pull-up terminal",
+      "length_mm": 0.14999999999999147
+    },
+    {
+      "a": [
+        10.799999999999997,
+        54.8
+      ],
+      "b": [
+        10.799999999999997,
+        56.5
+      ],
+      "width": 0.15,
+      "net": "PG",
+      "layer": "F.Cu",
+      "uuid": "81828749-dfac-530f-b9b4-8c49d9004f30",
+      "name": "PG local pull-up terminal",
+      "length_mm": 1.7000000000000028
+    },
+    {
+      "a": [
+        11.0,
+        53.45
+      ],
+      "b": [
+        10.299999999999997,
+        54.150000000000006
+      ],
+      "width": 0.15,
+      "net": "PG",
+      "layer": "F.Cu",
+      "uuid": "cf4dfe62-cf47-589a-bcdc-86bc686c2e0c",
+      "name": "PG local pull-up terminal",
+      "length_mm": 0.9899494936611706
+    },
+    {
+      "a": [
+        10.799999999999997,
+        56.5
+      ],
+      "b": [
+        10.450000000000003,
+        56.5
+      ],
+      "width": 0.15,
+      "net": "PG",
+      "layer": "F.Cu",
+      "uuid": "e6cbbefd-7503-570a-a33f-9e8881b8c022",
+      "name": "PG local pull-up terminal",
+      "length_mm": 0.3499999999999943
+    },
+    {
+      "a": [
+        11.349999999999994,
+        52.650000000000006
+      ],
+      "b": [
+        10.849999999999994,
+        52.650000000000006
+      ],
+      "width": 0.15,
+      "net": "SW",
+      "layer": "F.Cu",
+      "uuid": "4d81cb17-24cb-517a-89aa-bc861763c074",
+      "name": "SW own-pad neck",
+      "length_mm": 0.5
+    },
+    {
+      "a": [
+        10.849999999999994,
+        52.650000000000006
+      ],
+      "b": [
+        10.5,
+        53.0
+      ],
+      "width": 0.4,
+      "net": "SW",
+      "layer": "F.Cu",
+      "uuid": "7664df51-6fa6-53b2-a150-8ed23d00e293",
+      "name": "SW short inductor path",
+      "length_mm": 0.49497474683057524
+    },
+    {
+      "a": [
+        10.5,
+        53.0
+      ],
+      "b": [
+        8.849999999999994,
+        53.0
+      ],
+      "width": 0.4,
+      "net": "SW",
+      "layer": "F.Cu",
+      "uuid": "b8e21820-9098-535d-947c-51554d97b8c9",
+      "name": "SW short inductor path",
+      "length_mm": 1.6500000000000057
+    },
+    {
+      "a": [
+        12.650000000000006,
+        52.650000000000006
+      ],
+      "b": [
+        13.299999999999997,
+        52.650000000000006
+      ],
+      "width": 0.15,
+      "net": "logic_supply-EN",
+      "layer": "F.Cu",
+      "uuid": "8b42fec0-3aa3-5bc0-bbb9-35ff703f3d91",
+      "name": "EN IC own-pad escape",
+      "length_mm": 0.6499999999999915
+    },
+    {
+      "a": [
+        17.450000000000003,
+        56.25
+      ],
+      "b": [
+        18.200000000000003,
+        56.25
+      ],
+      "width": 0.15,
+      "net": "logic_supply-EN",
+      "layer": "F.Cu",
+      "uuid": "c2829cd5-0920-5f86-8dc8-ad59289a050f",
+      "name": "EN resistor own-pad escape",
+      "length_mm": 0.75
+    },
+    {
+      "a": [
+        13.299999999999997,
+        52.650000000000006
+      ],
+      "b": [
+        15.0,
+        54.349999999999994
+      ],
+      "width": 0.15,
+      "net": "logic_supply-EN",
+      "layer": "In2.Cu",
+      "uuid": "002aba4e-085b-5da2-94d1-1fcb92cabe99",
+      "name": "EN inner-layer connection",
+      "length_mm": 2.4041630560342555
+    },
+    {
+      "a": [
+        18.200000000000003,
+        54.349999999999994
+      ],
+      "b": [
+        18.200000000000003,
+        56.25
+      ],
+      "width": 0.15,
+      "net": "logic_supply-EN",
+      "layer": "In2.Cu",
+      "uuid": "b2790c07-5661-5899-aee4-4d32997433b0",
+      "name": "EN inner-layer connection",
+      "length_mm": 1.9000000000000057
+    },
+    {
+      "a": [
+        15.0,
+        54.349999999999994
+      ],
+      "b": [
+        18.200000000000003,
+        54.349999999999994
+      ],
+      "width": 0.15,
+      "net": "logic_supply-EN",
+      "layer": "In2.Cu",
+      "uuid": "b75e3a7f-662a-5749-b614-a4d9ae5d8d7e",
+      "name": "EN inner-layer connection",
+      "length_mm": 3.200000000000003
+    },
+    {
+      "a": [
+        13.25,
+        53.150000000000006
+      ],
+      "b": [
+        13.25,
+        53.45
+      ],
+      "width": 0.15,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "064a70e1-4c1b-553c-b07b-0ccc4a1cdfdd",
+      "name": "VIN own-pad neck",
+      "length_mm": 0.29999999999999716
+    },
+    {
+      "a": [
+        14.799999999999997,
+        55.2
+      ],
+      "b": [
+        16.25,
+        55.2
+      ],
+      "width": 0.4,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "2913c0be-2afb-572b-9617-671dbae909c2",
+      "name": "VIN local ceramic feed",
+      "length_mm": 1.4500000000000028
+    },
+    {
+      "a": [
+        14.0,
+        53.650000000000006
+      ],
+      "b": [
+        14.0,
+        53.150000000000006
+      ],
+      "width": 0.4,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "45ecd811-dc47-50a1-9ddb-cfa8647fc738",
+      "name": "VIN fast bypass feed",
+      "length_mm": 0.5
+    },
+    {
+      "a": [
+        14.0,
+        53.75
+      ],
+      "b": [
+        14.799999999999997,
+        54.55
+      ],
+      "width": 0.4,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "4f4cfc40-2294-5f0b-a5bf-6535ec76b537",
+      "name": "VIN local ceramic feed",
+      "length_mm": 1.131370849898472
+    },
+    {
+      "a": [
+        16.25,
+        55.95
+      ],
+      "b": [
+        16.25,
+        54.599999999999994
+      ],
+      "width": 0.2,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "50c55004-d9c7-5cd6-a176-fdd9a9a39af3",
+      "name": "EN source from input capacitor",
+      "length_mm": 1.3500000000000085
+    },
+    {
+      "a": [
+        13.25,
+        53.45
+      ],
+      "b": [
+        13.25,
+        53.650000000000006
+      ],
+      "width": 0.4,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "547f4874-a08f-5d51-8519-bc95a8f95ec7",
+      "name": "VIN fast bypass feed",
+      "length_mm": 0.20000000000000284
+    },
+    {
+      "a": [
+        16.25,
+        55.2
+      ],
+      "b": [
+        16.25,
+        54.599999999999994
+      ],
+      "width": 0.4,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "7d6f460a-378b-55f4-a1d6-8698567f659c",
+      "name": "VIN local ceramic feed",
+      "length_mm": 0.6000000000000085
+    },
+    {
+      "a": [
+        12.450000000000003,
+        53.150000000000006
+      ],
+      "b": [
+        13.25,
+        53.150000000000006
+      ],
+      "width": 0.15,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "97575acf-52fb-5268-9e83-03bc22343dc8",
+      "name": "VIN own-pad neck",
+      "length_mm": 0.7999999999999972
+    },
+    {
+      "a": [
+        14.0,
+        53.150000000000006
+      ],
+      "b": [
+        14.0,
+        53.75
+      ],
+      "width": 0.4,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "9d0b2a4c-a61a-5d62-8c85-bfdd266a4e3b",
+      "name": "VIN local ceramic feed",
+      "length_mm": 0.5999999999999943
+    },
+    {
+      "a": [
+        14.799999999999997,
+        54.55
+      ],
+      "b": [
+        14.799999999999997,
+        55.2
+      ],
+      "width": 0.4,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "c09575e0-2c7d-5a9f-8a46-84103eda7d10",
+      "name": "VIN local ceramic feed",
+      "length_mm": 0.6500000000000057
+    },
+    {
+      "a": [
+        19.0,
+        55.2
+      ],
+      "b": [
+        19.0,
+        54.599999999999994
+      ],
+      "width": 0.8,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "cca3979e-7da2-5ce8-8a49-64c1e6beb8f6",
+      "name": "VIN input bank",
+      "length_mm": 0.6000000000000085
+    },
+    {
+      "a": [
+        16.549999999999997,
+        56.25
+      ],
+      "b": [
+        16.25,
+        55.95
+      ],
+      "width": 0.2,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "cf600dc4-1b4a-5270-8665-9b40d7601216",
+      "name": "EN source from input capacitor",
+      "length_mm": 0.4242640687119245
+    },
+    {
+      "a": [
+        16.25,
+        55.2
+      ],
+      "b": [
+        19.0,
+        55.2
+      ],
+      "width": 0.8,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "e6a4997a-b881-5637-bcb2-92ce93b25c1a",
+      "name": "VIN input bank",
+      "length_mm": 2.75
+    },
+    {
+      "a": [
+        13.25,
+        53.650000000000006
+      ],
+      "b": [
+        14.0,
+        53.650000000000006
+      ],
+      "width": 0.4,
+      "net": "source-hv",
+      "layer": "F.Cu",
+      "uuid": "edeea5e4-26bc-5458-a792-f1be14dde553",
+      "name": "VIN fast bypass feed",
+      "length_mm": 0.75
+    },
+    {
+      "a": [
+        12.5,
+        54.3
+      ],
+      "b": [
+        12.799999999999997,
+        54.599999999999994
+      ],
+      "width": 0.15,
+      "net": "MODE_S_CONF",
+      "layer": "F.Cu",
+      "uuid": "31371a4f-16df-5cc5-9bc3-d006b3c9133a",
+      "name": "MODE direct resistor connection",
+      "length_mm": 0.4242640687119245
+    },
+    {
+      "a": [
+        14.0,
+        54.599999999999994
+      ],
+      "b": [
+        14.0,
+        55.05
+      ],
+      "width": 0.15,
+      "net": "MODE_S_CONF",
+      "layer": "F.Cu",
+      "uuid": "36ed6fec-fe8c-5cbe-b768-35f7de227619",
+      "name": "MODE direct resistor connection",
+      "length_mm": 0.45000000000000284
+    },
+    {
+      "a": [
+        12.5,
+        53.849999999999994
+      ],
+      "b": [
+        12.5,
+        54.3
+      ],
+      "width": 0.15,
+      "net": "MODE_S_CONF",
+      "layer": "F.Cu",
+      "uuid": "6b93d442-e0c9-5b0e-9f03-12cf9dcfc338",
+      "name": "MODE direct resistor connection",
+      "length_mm": 0.45000000000000284
+    },
+    {
+      "a": [
+        12.799999999999997,
+        54.599999999999994
+      ],
+      "b": [
+        14.0,
+        54.599999999999994
+      ],
+      "width": 0.15,
+      "net": "MODE_S_CONF",
+      "layer": "F.Cu",
+      "uuid": "fc3c5e47-28d2-55cb-8dd6-0e33116d0269",
+      "name": "MODE direct resistor connection",
+      "length_mm": 1.2000000000000028
+    },
+    {
+      "a": [
+        12.0,
+        53.849999999999994
+      ],
+      "b": [
+        12.0,
+        55.099999999999994
+      ],
+      "width": 0.15,
+      "net": "SS_TR",
+      "layer": "F.Cu",
+      "uuid": "22d586d3-523b-59b7-b849-8074548546fb",
+      "name": "SS direct capacitor connection",
+      "length_mm": 1.25
+    }
+  ]
+}

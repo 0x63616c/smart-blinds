@@ -1,0 +1,143 @@
+{
+  "base_sha256": "3b0eef0bb8ad9ffcd1ff096fd2b210f1448bf7bb43ddef8575c3ecd72b1315d6",
+  "candidate_sha256": "cdf9c0a8a0df7a3972b62b34bbd8299a195ec8eb83012a041eb05f15337acdf2",
+  "source": {
+    "url": "https://www.ti.com/lit/ds/symlink/tps62902.pdf",
+    "local": "work/datasheets/tps62902-courtyard.pdf",
+    "sha256": "bdec8bf302759542b46ff0a3bf13078a6d60fe07164075318b0f8beedd09c477",
+    "revision": "SLVSFM1A, March 2021 revised November 2023",
+    "pages": {
+      "pin_table": 3,
+      "layout": 41,
+      "thermal": 42,
+      "land_example": 45
+    }
+  },
+  "fast_input_loop": {
+    "uv_centreline_polygon": [
+      [
+        12.45,
+        53.15
+      ],
+      [
+        13.25,
+        53.15
+      ],
+      [
+        13.25,
+        53.45
+      ],
+      [
+        13.25,
+        53.65
+      ],
+      [
+        14,
+        53.65
+      ],
+      [
+        14,
+        53.15
+      ],
+      [
+        14,
+        52.3
+      ],
+      [
+        14,
+        51.85
+      ],
+      [
+        13.65,
+        51.85
+      ],
+      [
+        13.65,
+        52.15
+      ],
+      [
+        12.45,
+        52.15
+      ]
+    ],
+    "projected_area_mm2": 2.03,
+    "pcb_VIN_trace_length_mm": 2.5500000000000007,
+    "pcb_GND_trace_length_mm": 2.2999999999999936,
+    "closed_polygon_perimeter_mm": 6.699999999999996,
+    "limits": "Includes straight idealized IC internal VIN-to-GND and capacitor internal bridges solely to close a geometric polygon. Not loop inductance, actual package/current distribution, EMI or transient simulation."
+  },
+  "narrow_necks": [
+    {
+      "path": "VIN own-pad neck",
+      "centreline_length_mm": 1.100000000000005,
+      "width_mm": 0.15,
+      "resistance_mohm_at_20C": {
+        "18": 7.023703703703736,
+        "35": 3.6121904761904937
+      },
+      "conditional_I2R_mW_at_1A_and_35um": 3.6121904761904937
+    },
+    {
+      "path": "GND IC own-pad neck",
+      "centreline_length_mm": 1.200000000000001,
+      "width_mm": 0.15,
+      "resistance_mohm_at_20C": {
+        "18": 7.662222222222229,
+        "35": 3.940571428571432
+      },
+      "conditional_I2R_mW_at_1A_and_35um": 3.940571428571432
+    },
+    {
+      "path": "GND fast return neck",
+      "centreline_length_mm": 0.29999999999999716,
+      "width_mm": 0.15,
+      "resistance_mohm_at_20C": {
+        "18": 1.9155555555555375,
+        "35": 0.9851428571428481
+      },
+      "conditional_I2R_mW_at_1A_and_35um": 0.9851428571428481
+    },
+    {
+      "path": "GND IC thermal escape neck",
+      "centreline_length_mm": 0.25,
+      "width_mm": 0.15,
+      "resistance_mohm_at_20C": {
+        "18": 1.5962962962962963,
+        "35": 0.8209523809523811
+      },
+      "conditional_I2R_mW_at_1A_and_35um": 0.8209523809523811
+    },
+    {
+      "path": "SW own-pad neck",
+      "centreline_length_mm": 0.5,
+      "width_mm": 0.15,
+      "resistance_mohm_at_20C": {
+        "18": 3.1925925925925926,
+        "35": 1.6419047619047622
+      },
+      "conditional_I2R_mW_at_1A_and_35um": 1.6419047619047622
+    }
+  ],
+  "bulk_input_bypass": {
+    "chip_VIN_to_C42_centreline_via_C41_mm": 6.981370849898483,
+    "chip_GND_to_C42_centreline_via_C41_mm": 5.957106781186537,
+    "limitation": "The 100 nF C41 fast loop does not substitute for the required effective input bank. C42/C40 and their longer current loop need extracted/transient review; neither this length nor nominal capacitance establishes stable operation."
+  },
+  "source_contract": {
+    "source": "charger SYS, 8.8\u201313.2 V",
+    "input_terminal": "C40 / logic_supply.c_input2 pins 1 (VIN), 2 (GND)",
+    "upstream_physically_routed": false,
+    "load_design_envelope_A": 1,
+    "input_rating": "3\u201317 V recommended, 18 V abs. max; not raw USB",
+    "configuration": "26.1k MODE: 2.5MHz auto PFM/PWM, AEE, discharge; FB/VSET open selects 3.3V",
+    "softstart": "47nF, about15.1ms nominal; no measured startup",
+    "PG_terminal": "R46 pin2 / IC pin1; pull-up complete, downstream consumer not claimed"
+  },
+  "thermal_and_current_limits": [
+    "Resistance uses bulk copper resistivity at20C and uniform18/35um thickness; excludes etch, plating, pads, via, skin/proximity and temperature rise. It is not a current rating.",
+    "At1A output the buck input pin carries pulsed inductor current, not simply DC input average. Prior component model gives2.03125A planning peak with minimum-inductance assumptions, not a guaranteed measured bound.",
+    "IC GND has only a0.15mm terminal neck, one nearby ordinary via and explicit B.Cu return in this trial. No actual GND plane/fill or validated package spreading exists. TI calls for wide thick metal and VIN/GND thermal vias; full plane/thermal design remains unfinished.",
+    "The 0.5/0.25mm EN via is an ordinary signal via;13 others are0.6/0.3mm. Drill-to-land minimum is checked across allSMDlands including same-net."
+  ],
+  "moved_C45_old_copper_body_check": "PASS: no baseline F.Cu enters moved maximum body"
+}

@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "candidate_sha256": "cdf9c0a8a0df7a3972b62b34bbd8299a195ec8eb83012a041eb05f15337acdf2",
+  "tests": [
+    {
+      "name": "cut VIN terminal",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'source-hv')"
+    },
+    {
+      "name": "cut SW inductor bridge",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'SW')"
+    },
+    {
+      "name": "cut IC ground terminal",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'lv')"
+    },
+    {
+      "name": "cut explicit shared return",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'lv')"
+    },
+    {
+      "name": "cut output-sense terminal",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'host_logic-hv')"
+    },
+    {
+      "name": "cut soft-start capacitor feed",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'SS_TR')"
+    },
+    {
+      "name": "cut SmartConfig resistor feed",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'MODE_S_CONF')"
+    },
+    {
+      "name": "cut enable inner connection",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'logic_supply-EN')"
+    },
+    {
+      "name": "cut PG pull-up branch",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'PG')"
+    },
+    {
+      "name": "cut fast output bypass feed",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'host_logic-hv')"
+    },
+    {
+      "name": "same-net drill enters input-cap solder margin",
+      "status": "PASS rejected",
+      "guard": "('same-or-foreign-net drill-to-SMD', '08579f5a-ad5a-5756-8f2e-9c10e7597d4f', 'logic_supply.c_input', '2', 0.11499999999999347)"
+    },
+    {
+      "name": "output feed routed through top component body",
+      "status": "PASS rejected",
+      "guard": "('top body transit', 'VO second cap via bank feed', 'logic_supply.c_output1', 1.3749999999999996)"
+    },
+    {
+      "name": "load branch joins VOS before capacitor terminal",
+      "status": "PASS rejected",
+      "guard": "('VOS load tap outside output-cap land', '6ff2aa42-4e76-58c1-9376-8cccfe6d4a9d')"
+    },
+    {
+      "name": "VSET open land acquires copper",
+      "status": "PASS rejected",
+      "guard": "VSET intentionally open land touched"
+    },
+    {
+      "name": "prior routed copper removed",
+      "status": "PASS rejected",
+      "guard": "old copper removed"
+    },
+    {
+      "name": "restored connector-foot rule removed",
+      "status": "PASS rejected",
+      "guard": "source setup/outline/zone changes"
+    },
+    {
+      "name": "via off routing grid",
+      "status": "PASS rejected",
+      "guard": "via grid"
+    },
+    {
+      "name": "VSET net silently grounded",
+      "status": "PASS rejected",
+      "guard": "('pin/net/physical land', 'logic_supply.ic', '9')"
+    }
+  ],
+  "method": "Actual saved AST copies; route-inventory equality disabled to require real geometry/topology rejection."
+}

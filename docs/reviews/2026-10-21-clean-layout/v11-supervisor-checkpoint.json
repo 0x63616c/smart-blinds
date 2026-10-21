@@ -1,0 +1,59 @@
+{
+  "status": "Frozen partial-board supervisor land/model review; no assembly or hardware qualification",
+  "sources": {
+    "work/clean-layout-study/native-54-v11-watchdog/placement.kicad_pcb": "3b0eef0bb8ad9ffcd1ff096fd2b210f1448bf7bb43ddef8575c3ecd72b1315d6",
+    "work/clean-layout-study/native-54-v11-watchdog/placement.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "work/clean-layout-study/native-54-v11-watchdog/prepare.json": "3221a6fb21e230852ae881024e32f2b6798cd6d463455b82b401de6863bddcaf",
+    "work/clean-layout-study/native-54-v11-watchdog/native.json": "7e9eaebaef028f3ce1898d99843588509f34b0ec5401c953fcf282118214b512",
+    "work/clean-layout-study/native-54-v11-watchdog/drc.json": "59a0fbcab2ff21ab68b7a93b6e76ec7b3f6ecd06dbab120396930f5207f5fece",
+    "work/watchdog-native-review/native.json": "791fc8df363436b6114800eef0d1ab5311c1eb1710b5728b369444c9022477d4",
+    "work/watchdog-native-review/saved-geometry.json": "0a88e0159554a06651b5690e4a246bdd7fd2dbb28a2a989fb0b80f89fee1e7ce",
+    "work/watchdog-native-review/detail-provenance.json": "a4cf1a7ea057058ff4509c0afc602ec1f6a016e976a4d528d8796ba36ffd206b",
+    "work/watchdog-native-height/prepared.json": "add40f721f91154429ee4a9a23234357bedc94f2245fce95c10c5d7ce4424666",
+    "work/watchdog-native-height/render.json": "f5eee0d76e88dc6abd68c8d09711c0e0c99709f13df691a5f32002123dd8185a",
+    "work/watchdog-native-height/visual-review.json": "64d417ad65cc9f87297cc97a7efc93fb9e85621218340f7835eaa89894f8ae21",
+    "work/watchdog-land-correction/freeze.json": "c58ab3365b3e4bba6338c72ed7911c8d779f7741defcde2cee8311e5f3d0ccf4",
+    "work/watchdog-land-correction/checks.json": "43971575650065a7fa292ebb957fc272489d7b85f9b34ad430e9c853c5ea3801",
+    "work/watchdog-land-correction/fault-results.json": "739a5f8ecccd29461dae97f803354bacdd9968ea4ce91055f525585eaea38d15",
+    "work/datasheets/tps3430.pdf": "f9887a28788bac6ae6743e211ae50dddd809e3ff7bf0d6a3447c8d71f62c6b4d"
+  },
+  "images": {
+    "v11-supervisor-copper.png": "dc1316516e54c0cd05e0b79052741f63cb4b83e8e79a264f74a0c2698397b557",
+    "v11-supervisor-mask.png": "f57f9108242a0c0b2f7aef87a270f381139f5ff7a30123568f435685e0f0b4b6",
+    "v11-supervisor-paste.png": "b9aa60657c7e11ff6b4b2de49dde59e63e65adb6cfd641f1aabcbcb6a14c5794",
+    "v11-supervisor-oblique.png": "95dfcfc1876f2b42ccf74260914848bb09c07c6873dfb7389b401145f74323be"
+  },
+  "components": 206,
+  "preserved_segments": 65,
+  "preserved_vias": 28,
+  "preserved_rule_areas": 8,
+  "copper_fills": 0,
+  "native_drc": {
+    "footprint_type_mismatch": 3,
+    "lib_footprint_mismatch": 2,
+    "via_dangling": 8
+  },
+  "unconnected_items": 470,
+  "negative_geometry_controls": 5,
+  "visual_review": "Copper, mask, paste, original top/oblique and corrected-height oblique inspected",
+  "native_runs": {
+    "coupon": "20261021T064429Z-f0019d47",
+    "top": "20261021T064926Z-3cb2abb7",
+    "whole_board": "20261021T065605Z-507c0de7",
+    "corrected_height": "20261021T070324Z-ed7dea30"
+  },
+  "model_nominal_height_mm": 0.9,
+  "model_clearance_max_mm": [
+    3.1,
+    3.1,
+    1.0
+  ],
+  "canonical_route_changed": false,
+  "limits": [
+    "partial board; no power-up acceptance",
+    "no ground planes or thermal vias for supervisor",
+    "stencil release/process not qualified",
+    "imported illustrative model, not manufacturer CAD",
+    "no physical tests"
+  ]
+}

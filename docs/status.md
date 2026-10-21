@@ -48,8 +48,20 @@ keepouts. Native DRC has no copper, courtyard, silkscreen or keepout findings;
 470 unconnected items, eight dangling vias, three library comparisons and three
 hybrid footprint-type findings remain. The saved-board geometry audit and eleven
 fault controls cover the new routes; physical/RF/transient qualification is absent.
-The supervisor's remaining library difference exposed a package-drawing mismatch
-that is being corrected separately. No additional parts were introduced.
+The [supervisor package review](reviews/2026-10-21-clean-layout/supervisor-package.md)
+corrects that package-drawing mismatch and its undersized illustrative model in
+the v11 working board. Native checks preserve all other components and copper,
+with the same 470 unconnected items and two remaining connector-library
+comparisons. Stencil-process review and ground/thermal connections remain open.
+No additional parts were introduced.
+The [local regulator routing pass](reviews/2026-10-21-clean-layout/regulator-routing.md)
+adds its input/output banks, switch, feedback and control connections while
+preserving the v11 correction. The actual saved v12 board has 151 segments,
+42 vias and 449 unconnected items. Native DRC has no new copper, courtyard,
+silkscreen or keepout findings; the same eight dangling vias, two connector-library
+comparisons and three hybrid types remain. Eighteen deliberate geometry/connection
+faults reject, and the parent repeated the analysis on the native saved board.
+Ground/thermal copper, the upstream feed and bulk-input-loop refinement remain open.
 Revised enclosure fit, final routing and assembly cost will decide the outline.
 The PCB opened in KiCad is still the existing unfinished route, not this rework.
 

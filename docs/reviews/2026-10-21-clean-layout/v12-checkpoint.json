@@ -1,0 +1,49 @@
+{
+  "status": "Frozen partial-board local regulator review; no power-up, thermal or fabrication acceptance",
+  "sources": {
+    "work/clean-layout-study/native-54-v12-regulator/placement.kicad_pcb": "14f2ea1fb8b9044702f90ca1c26d97bcc2c9bd3231e1ec3c5460ca8ff66e9e98",
+    "work/clean-layout-study/native-54-v12-regulator/placement.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "work/clean-layout-study/native-54-v12-regulator/native.json": "5c71431b2e4aac5a06266997114e08a8e8b4c131517e33b7658aa467d57d0a29",
+    "work/clean-layout-study/native-54-v12-regulator/drc.json": "8c0f5ecf3d3a7d9be3d05d43cf50e90710849f32f1edac73c9327da5a2dd5ad2",
+    "work/clean-layout-study/native-54-v12-regulator/actual-geometry.json": "4530127be7ae25704e1905c20157c9e54e2e2db04db443694d01d34a1b1fadc3",
+    "work/clean-layout-study/native-54-v12-regulator/renders.json": "945c40053db7016b5cf44e2d35b0631964079395a43943d2b22e10616f93913c",
+    "work/parent-v12-review/preflight.json": "6dcbf6da4626bcf33e60a351dc46d7cc585ed92e20a5b143f79b9cbb9e4af1bf",
+    "work/parent-v12-review/independent-pure-analysis.json": "1064e46facc7ba52b8ff9664b242a058780b9bc1c52fd1e1b376df366b3b8f7f",
+    "work/parent-v12-review/detail-provenance.json": "fd88f1110bdada2387b4dc620a3f0588d5fc9be2ac0cb262cbc6ecf47cc420d0",
+    "work/regulator54-local/freeze.json": "8ac644c07c9996fcf15e055e3c3a4327634e65fb681f91a9104260bd5992fb38",
+    "work/regulator54-local/README.md": "3b2dfe36aec4a2e4f0606c319d4202709d1eb26e0ef4aba10c523d2dcf24873e",
+    "work/regulator54-local/layout-evidence.json": "e571f4d1624c8ae6ae080901dc031abf71b9810dd749bda62637ccf7026fed27"
+  },
+  "images": {
+    "v12-top.png": "6e5471929ad207e2d5b81189fcdfaacb8075b78d9bccb96195a9bf1319e017bb",
+    "v12-oblique.png": "6329cd98d64bb0d9bfd6fa4ca487b2ce6353173c54f31c2bb993f59c5054b4a0",
+    "v12-regulator-top-copper.png": "e491a7a6930f33e0a0cf77e3b5c54e9f6b6037cb17773e563b78871b1faa06b8",
+    "v12-regulator-inner.png": "8b907f01add7fb635373302afc10522d723d7040bb2b5376e1567a733970776d",
+    "v12-regulator-bottom.png": "6177d807aba7dd9e7cf7a04e14b204370451eb889e844392e4aea14bcd72f5c5"
+  },
+  "components": 206,
+  "segments": 151,
+  "vias": 42,
+  "rule_areas": 8,
+  "copper_fills": 0,
+  "verified_frozen_files": 260,
+  "negative_controls": 18,
+  "native_runs": {
+    "save_audit_DRC": "20261021T071454Z-9dfe1db3",
+    "renders": "20261021T071639Z-dec59ab2"
+  },
+  "native_drc": {
+    "footprint_type_mismatch": 3,
+    "lib_footprint_mismatch": 2,
+    "via_dangling": 8
+  },
+  "unconnected_items": 449,
+  "visual_review": "Actual native top, oblique, top copper, In2 copper and bottom return inspected",
+  "canonical_route_changed": false,
+  "limits": [
+    "449 unconnected items; upstream stage feed missing",
+    "zero actual ground/reference fills",
+    "pin neck thermal/current and bulk input loop review incomplete",
+    "enclosure harness service and physical tests remain"
+  ]
+}
