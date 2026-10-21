@@ -47,56 +47,68 @@ The inward-facing board placement and its frame, ports and cable paths are being
 these images must not be used as physical PCB-fit evidence.
 
 <!-- previews:start -->
-### Earlier published controller preview
+### Cleaner controller — current routing draft
 
-Earlier 54 × 80 mm controller checkpoint with 417 open connections. This image predates the current source-driven route described above; the preview workflow replaces it with the matching new render. It is retained here as historical visual evidence, not the current routing result.
+Current 54 × 80 mm black four-layer controller draft, regenerated from the 206-part circuit capture. Grid placement, outward-facing connectors and the implemented USB-C, local supply and protection routes are checked on the saved filled board. 352 connections and three documented hybrid-footprint type findings remain; current, thermal, surge, RF and physical qualification are unfinished. Not a fabrication release.
 
 ![Cleaner controller — current routing draft](docs/generated/clean-controller-route/assembly.png)
 
-[Source](hw/studies/clean-main/placement.kicad_pcb) · [Generated files](docs/generated/clean-controller-route/)
+[Source](hw/routing/clean-main/emit.py) · [Generated files](docs/generated/clean-controller-route/)
 
-### Historical enclosure — current exterior
+<details>
+<summary>Historical enclosure — current exterior</summary>
 
-115 × 174 × 71 mm white enclosure candidate, with front buttons and underside USB-C. Buttons project to 72.2 mm. This compact version requires holder tails and solder joints trimmed to the documented limit; motor-family fit and printed tolerances remain provisional.
+Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. 115 × 174 × 71 mm white enclosure candidate, with front buttons and underside USB-C. Buttons project to 72.2 mm. This compact version requires holder tails and solder joints trimmed to the documented limit; motor-family fit and printed tolerances remain provisional.
 
 ![Historical enclosure — current exterior](docs/generated/compact-holder-closed/assembly.png)
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-closed/)
 
-### Historical removable battery cassette and compact drive
+</details>
 
-Two opposing three-cell carrier boards fit in a removable cassette. Separate controller supports, cable routes and adjustable front buttons are modeled. The controller is shown as a reserved volume; exact holder fastening and physical load tests remain open.
+<details>
+<summary>Historical removable battery cassette and compact drive</summary>
+
+Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. Two opposing three-cell carrier boards fit in a removable cassette. Separate controller supports, cable routes and adjustable front buttons are modeled. The controller is shown as a reserved volume; exact holder fastening and physical load tests remain open.
 
 ![Historical removable battery cassette and compact drive](docs/generated/compact-holder-assembly/assembly.png)
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-assembly/)
 
-### Historical enclosure — service view
+</details>
 
-The cover and cassette lid are separated to show access. Two integral cleats and one mounting screw retain the cassette; its modeled release and removal paths clear the controller and drive. These are prototype-fit files, pending tolerance and load qualification.
+<details>
+<summary>Historical enclosure — service view</summary>
+
+Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. The cover and cassette lid are separated to show access. Two integral cleats and one mounting screw retain the cassette; its modeled release and removal paths clear the controller and drive. These are prototype-fit files, pending tolerance and load qualification.
 
 ![Historical enclosure — service view](docs/generated/compact-holder-exploded/assembly.png)
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-exploded/)
 
+</details>
+
 <details>
-<summary>Integrated controller — first component placement</summary>
+<summary>Current controller — source placement</summary>
 
-54 × 68.5 mm black-board study, with USB-C, protected battery connection, motor tails and encoder/home ports. All 196 footprints are placed; no copper is routed. Thermal design, manufacturing rules and physical qualification remain open.
+Current 54 × 80 mm unrouted source capture: 206 components and 649 physical pin identities. The routing emitter applies three reviewed protection-part moves and the per-part model/silkscreen refinements. The larger routed draft appears above.
 
-![Integrated controller — first component placement](docs/generated/main-controller-placement/assembly.png)
+![Current controller — source placement](docs/generated/main-controller-placement/assembly.png)
 
 [Source](hw/layouts/blind-main/main-test/main-test.kicad_pcb) · [Generated files](docs/generated/main-controller-placement/)
 
 </details>
 
-### Integrated controller — partial power routing
+<details>
+<summary>Historical smaller controller — partial power routing</summary>
 
-Experimental four-layer route with 1013 segments and 255 vias. The monitored-PD revision removes obsolete ground and bus pull-down branches while preserving surviving copper and existing placements. All 47 routing fault controls pass; 122 unconnected items remain. New PD supply/bus/interrupt connections, factory access, pack feed, onward signals, transient/thermal review and manufacturing checks are unfinished.
+Historical 196-part, 54 × 68.5 mm route retained for comparison. Its 1013 segments, 255 vias and 122 open connections belong to the earlier circuit and placement. It is not the current controller or a fabrication release.
 
-![Integrated controller — partial power routing](docs/generated/main-power-route/assembly.png)
+![Historical smaller controller — partial power routing](docs/generated/main-power-route/assembly.png)
 
 [Source](hw/routing/blind-main/main-routed.kicad_pcb) · [Generated files](docs/generated/main-power-route/)
+
+</details>
 
 <details>
 <summary>Companion battery carrier — experimental copper</summary>
@@ -156,7 +168,7 @@ A broad captive pad spreads the temporary clamp load; the screw tip remains clea
 <details>
 <summary>Complete controller schematic</summary>
 
-Eleven native KiCad sheets cover all 196 circuit features and 609 pin identities. The exported net partition matches the PCB; seven documented ERC findings remain. Unrouted and unpowered.
+Eleven native KiCad sheets cover all 206 circuit features and 649 physical pin identities. The exported net partition matches the current capture; seven documented ERC findings remain. No physical hardware has been powered.
 
 ![Complete controller schematic](docs/generated/main-controller-schematic/smart-blinds-main.svg)
 
@@ -165,9 +177,9 @@ Eleven native KiCad sheets cover all 196 circuit features and 609 pin identities
 </details>
 
 <details>
-<summary>Adjustable front buttons — mechanism section</summary>
+<summary>Historical enclosure — mechanism section</summary>
 
-Two captive M2 adjusters set the plungers to first electrical closure at the 0.4 mm positive stop. Jam nuts lock the setting. Switch return, printed friction, adjustment and repeated operation still require physical tests.
+Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. Two captive M2 adjusters set the plungers to first electrical closure at the 0.4 mm positive stop. Jam nuts lock the setting. Switch return, printed friction, adjustment and repeated operation still require physical tests.
 
 ![Historical enclosure — mechanism section](docs/generated/compact-holder-buttons/assembly.png)
 
@@ -176,9 +188,9 @@ Two captive M2 adjusters set the plungers to first electrical closure at the 0.4
 </details>
 
 <details>
-<summary>Battery cassette — removable assembly</summary>
+<summary>Historical enclosure — removable assembly</summary>
 
-Six holders on opposing carrier boards, a separate insulating barrier and a removable printed shell. The assembled cassette releases with a 2.5 mm lift and then moves forward; disconnect and handle the cables separately.
+Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. Six holders on opposing carrier boards, a separate insulating barrier and a removable printed shell. The assembled cassette releases with a 2.5 mm lift and then moves forward; disconnect and handle the cables separately.
 
 ![Historical enclosure — removable assembly](docs/generated/retained-cassette/assembly.png)
 
@@ -187,9 +199,9 @@ Six holders on opposing carrier boards, a separate insulating barrier and a remo
 </details>
 
 <details>
-<summary>Cassette retention — cutaway</summary>
+<summary>Historical enclosure — cutaway</summary>
 
-The cassette pocket captures the integral backplate cleat. Nominal interference confirms capture before the release slide; printed strength, creep and fit remain prototype tests.
+Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. The cassette pocket captures the integral backplate cleat. Nominal interference confirms capture before the release slide; printed strength, creep and fit remain prototype tests.
 
 ![Historical enclosure — cutaway](docs/generated/retained-cleat-section/assembly.png)
 

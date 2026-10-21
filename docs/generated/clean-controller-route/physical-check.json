@@ -1,0 +1,122 @@
+{
+  "topology": {
+    "local_TVS_branches": [
+      "RAW",
+      "GND"
+    ],
+    "quiet_star": true,
+    "RTN_areas": [
+      {
+        "layer": "B.Cu",
+        "area": 89.097300344249
+      },
+      {
+        "layer": "In2.Cu",
+        "area": 74.43521410173048
+      }
+    ],
+    "direct_return": {
+      "centerline_mm": 4.716990566028301,
+      "interior_inscribed_width_mm": 0.31592211271890847,
+      "drill_voids_removed": true,
+      "end_trim_mm": 0.35,
+      "thermal_or_current_rating": false
+    },
+    "reference_reserved_not_impedance_qualified": true
+  },
+  "status": "PASS physical filled",
+  "parts": 206,
+  "tracks": 516,
+  "vias": 120,
+  "groups": 47,
+  "minimum": {
+    "foreign": 0.14999999999999858,
+    "drill_land": 0.19999999999999574,
+    "drill_drill": 0.24999999999998296
+  },
+  "finite_terminal_entries": [
+    "Cutoff EP wing 0",
+    "Cutoff EP wing 1",
+    "Cutoff EP wing 2",
+    "Cutoff EP wing 3",
+    "Cutoff EP wing 4",
+    "Cutoff EP wing 5",
+    "Cutoff EP wing 6",
+    "Cutoff RTN8 own EP entry",
+    "EP25 GND10 exact own terminal entry",
+    "GUARDED TVS own EP entry",
+    "OVP sense from cutoff revised",
+    "RAW source into cutoff bus",
+    "Short RAW TVS entry",
+    "Short RAW TVS return"
+  ],
+  "zones": [
+    {
+      "name": "REGULATOR_GND_FINITE_SPREADING",
+      "net": "lv",
+      "layer": "B.Cu",
+      "area": 12.14127484344549,
+      "fragments": 1
+    },
+    {
+      "name": "USB_CUTOFF_RTN_BOTTOM",
+      "net": "usb-2",
+      "layer": "B.Cu",
+      "area": 89.097300344249,
+      "fragments": 1
+    },
+    {
+      "name": "REGULATOR_VIN_FINITE_SPREADING",
+      "net": "source-hv",
+      "layer": "B.Cu",
+      "area": 4.730414673416488,
+      "fragments": 1
+    },
+    {
+      "name": "PD_LOCAL_GND_RETURN",
+      "net": "lv",
+      "layer": "In1.Cu",
+      "area": 82.33247143168897,
+      "fragments": 1
+    },
+    {
+      "name": "USB_INPUT_GND_RETURN",
+      "net": "lv",
+      "layer": "In1.Cu",
+      "area": 454.07701035283776,
+      "fragments": 1
+    },
+    {
+      "name": "USB_CUTOFF_RTN_INNER",
+      "net": "usb-2",
+      "layer": "In2.Cu",
+      "area": 74.43521410173045,
+      "fragments": 2
+    }
+  ],
+  "source_driven": true,
+  "board_sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+  "source_sha256": "8e9b62fa83b8f93db20f158db963ba7c1ec61f060fb912db3244ae97749c228a",
+  "model_contents_verified": true,
+  "library_variant_count": 55,
+  "attribute_overlays": {
+    "charger.inductor": {
+      "before": [
+        "through_hole"
+      ],
+      "after": [
+        "smd"
+      ]
+    },
+    "regen.thermostat": {
+      "before": [
+        "through_hole"
+      ],
+      "after": [
+        "smd"
+      ]
+    }
+  },
+  "source_graph_verified": true,
+  "remaining_opens": "352 historical checkpoint; native DRC required for this output"
+}
