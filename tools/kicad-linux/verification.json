@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "verified_utc": "2026-10-21T03:39:31.059994+00:00",
+  "status": "Linux load/save-copy, CLI DRC, render/GLB and failure isolation demonstrated; board/model acceptance remains separate",
+  "image": {
+    "schema": 1,
+    "image_id": "sha256:9226364011ed6db288ac41bc07d9ab52e11a3d03389d893aca119e3feac89902",
+    "tag_for_humans": "smart-blinds-kicad:10.0.7-arm64",
+    "architecture": "arm64",
+    "kicad_package_version": "10.0.7~ubuntu24.04.1",
+    "ubuntu_manifest": "sha256:18b33ff3829707f31ada654a963b9ee35f2e6f0241b964bd17a22a9b330cb63d",
+    "ppa": "https://ppa.launchpadcontent.net/kicad/kicad-10.0-releases/ubuntu",
+    "ppa_key_fingerprint": "FDA854F61C4D0D9572BB95E5245D5502FAD7A805",
+    "image_size_bytes": 1720147109,
+    "built_utc": "2026-10-20T21:57:44.036268+00:00",
+    "recipe_sha256": {
+      "Dockerfile": "b55385fec3cef1f3aeef8274844e82fd49e1c65d679a13db0c5dc09bbfc6ccad",
+      "entrypoint.sh": "ffe7a0c6663d5909164395bc69addfdb63059a5c43b1dcbb9483276b8748a76d",
+      "kicad-ppa.asc": "427647b82357bf86e9d7176639c6cabbb3ca6bfe23218b0436e61cc1a47ad532"
+    }
+  },
+  "source_files_sha256": {
+    "tools/kicad-run": "5b4702800710c12e4aa662b9d50c6171a06da3bce26bc38a8c1daaffceb91ef9",
+    "tools/kicad-linux/Dockerfile": "b55385fec3cef1f3aeef8274844e82fd49e1c65d679a13db0c5dc09bbfc6ccad",
+    "tools/kicad-linux/README.md": "e6de130e8e9094b6646a8ea5cd82b0ab52ab7e4d843910d5f81bab3e90cd9252",
+    "tools/kicad-linux/build.py": "f70a4f5c977fed3e627c193535004963da7256ac9c3e388ca9afdfae0e0198df",
+    "tools/kicad-linux/entrypoint.sh": "ffe7a0c6663d5909164395bc69addfdb63059a5c43b1dcbb9483276b8748a76d",
+    "tools/kicad-linux/image.lock.json": "54fcde0113ff8ff5e9a15f7aa68e24b95e9e6e145081e48cd99a3c44c0b7edd3",
+    "tools/kicad-linux/kicad-ppa.asc": "427647b82357bf86e9d7176639c6cabbb3ca6bfe23218b0436e61cc1a47ad532",
+    "tools/kicad-linux/smoke.py": "01cd6c5fee702c158f908bf8a70bb4fb9c978f182cf383868a20dccd1aef4eec",
+    "tools/kicad-linux/verify_runner.py": "b28907ddb0c312793e6de18de7f239ef2c866fc3471245e84f2151251fed5d79",
+    "tools/kicad-linux/test_runner.py": "960c80c45b637ebeca67f00b6b2aec478603f5f4a450d87f122ae8e5828263a9"
+  },
+  "outputs_sha256": {
+    "work/kicad-linux-runner/smoke/load-save.json": "2c78f64e3bd04abcb810d5bc399980d25f4dde665bedeedc6bf4466395254f57",
+    "work/kicad-linux-runner/smoke/drc.json": "470f6ae4eaba864fe5c6b6225ff960eef54b3bbd01926247646bf5a31025642e",
+    "work/kicad-linux-runner/probes/results.json": "188c22e321eea0723babd3a3cedda32a717ecf76e00024a1fd4dbab0729c5ce0",
+    "work/kicad-linux-runner/render/inputs.json": "9f4e5950c7dbeeb7dbc4e36447e88125dd4230ea87e77bcbb3c0d660b1623c40",
+    "work/kicad-linux-runner/render/corrected-top.png": "a04521d4c4eb889a7039ce90f6f8ec6f0afa81c728b2651a7e06db667b45ca5b",
+    "work/kicad-linux-runner/render/corrected.glb": "a8cea95bb2037f8c05cd974d3b2034a94187fa68d92f4f90a2d0c58965cdd6bb",
+    "work/kicad-linux-runner/render/native-model-check.json": "436531be91930a231763f1ad5026028a9260b0ca6eb5ad004d499819861b9b22"
+  },
+  "canonical_pcb_sha256": "e060e662511fec93ad6645bf139d5e40db871254198c89bc9dc0241b402c2577",
+  "load_save": {
+    "status": "PASS load/iteration/save-copy/reload; DRC separate",
+    "platform": "Linux-7.2.9-orbstack-00391-g2b298d05fbd4-aarch64-with-glibc2.39",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "pcbnew_version": "10.0.7-10.0.7~ubuntu24.04.1",
+    "source": "hw/routing/blind-main/main-routed.kicad_pcb",
+    "source_sha256": "e060e662511fec93ad6645bf139d5e40db871254198c89bc9dc0241b402c2577",
+    "source_unchanged": true,
+    "copy_sha256": "46fe941e6acde82da7e2d9a943bf07d04348b4f9113cf464e8614afc2c006866",
+    "graph_equal": true,
+    "counts": {
+      "footprints": 196,
+      "tracks": 1013,
+      "vias": 255,
+      "zones": 15,
+      "drawings": 21,
+      "pads": 656
+    },
+    "no_object_deletion": true
+  },
+  "drc": {
+    "exit_code": 5,
+    "prior_report": "hw/routing/blind-main/drc.json",
+    "prior_sha256": "31abe1a899763d3200965a54ee1f0f3afda6a503478c02b92694854926beb181",
+    "linux_report": "work/kicad-linux-runner/smoke/drc.json",
+    "categories_before": {
+      "footprint_type_mismatch": 5,
+      "silk_edge_clearance": 4,
+      "lib_footprint_mismatch": 4,
+      "text_thickness": 1,
+      "text_height": 1,
+      "silk_overlap": 199,
+      "silk_over_copper": 53
+    },
+    "categories_after": {
+      "footprint_type_mismatch": 5,
+      "silk_overlap": 199,
+      "silk_over_copper": 53,
+      "text_thickness": 1,
+      "text_height": 1,
+      "lib_footprint_mismatch": 4,
+      "silk_edge_clearance": 4
+    },
+    "same_category_counts": true,
+    "item_comparison": {
+      "violations": {
+        "before_count": 267,
+        "after_count": 267,
+        "same_item_identity_multiset": false,
+        "only_before": 77,
+        "only_after": 77
+      },
+      "unconnected_items": {
+        "before_count": 122,
+        "after_count": 122,
+        "same_item_identity_multiset": false,
+        "only_before": 17,
+        "only_after": 17
+      }
+    },
+    "limitation": "Same category totals and open count; different selected item pairs. Not an identity-equivalent report or board acceptance."
+  },
+  "live_guard_probes": {
+    "status": "PASS",
+    "tests": [
+      {
+        "name": "child-exit-seven",
+        "expected_exit": 7,
+        "actual_exit": 7,
+        "run_record": "work/kicad-linux-runner/probes/repo/work/kicad-runs/20261021T034054Z-0390f302/run.json",
+        "container": "smart-blinds-kicad-4053ebe40c9540bf8271636f59787792"
+      },
+      {
+        "name": "readonly-and-work",
+        "expected_exit": 0,
+        "actual_exit": 0,
+        "run_record": "work/kicad-linux-runner/probes/repo/work/kicad-runs/20261021T034054Z-db95b1ae/run.json",
+        "container": "smart-blinds-kicad-5b8c8c9977bc4ec9ba7191aea8f06744"
+      },
+      {
+        "name": "bounded-timeout",
+        "expected_exit": 124,
+        "actual_exit": 124,
+        "run_record": "work/kicad-linux-runner/probes/repo/work/kicad-runs/20261021T034055Z-8d2e03c8/run.json",
+        "container": "smart-blinds-kicad-3c9c4e7051124c0bbd221d9f9e765c7c"
+      },
+      {
+        "name": "reject-canonical-write",
+        "expected_exit": 2,
+        "actual_exit": 2
+      },
+      {
+        "name": "reject-host-native-path",
+        "expected_exit": 2,
+        "actual_exit": 2
+      },
+      {
+        "name": "reject-outside-mount",
+        "expected_exit": 2,
+        "actual_exit": 2
+      }
+    ]
+  },
+  "host_fault_tests": {
+    "command": "python3 tools/kicad-linux/test_runner.py",
+    "count": 6,
+    "result": "PASS",
+    "scope": "cleanup timeout/OSError, launch failure, SIGTERM cleanup, preflight timeout record, non-scratch writable-mount rejection"
+  },
+  "native_run_records": [
+    "work/kicad-runs/20261020T215752Z-00a0afa4/run.json",
+    "work/kicad-runs/20261020T215814Z-0dae3e01/run.json",
+    "work/kicad-runs/20261020T215932Z-892118b2/run.json",
+    "work/kicad-runs/20261020T220019Z-0642efa2/run.json"
+  ],
+  "initial_failures": {
+    "pid1_wait": "work/kicad-runs/20261020T215218Z-49f993f5/run.json",
+    "wx_startup": [
+      "work/kicad-runs/20261020T215613Z-9158ab3f/run.json",
+      "work/kicad-runs/20261020T215627Z-0dff9584/run.json"
+    ],
+    "resolution": "Docker --init and private Xvfb -noreset; final tested operations succeeded. Known native lifetime bug was not reproduced or claimed fixed."
+  },
+  "service_availability": "Docker later timed out before container launch; OrbStack logged sleep/API timeouts. No restart or unrelated-container action. Parent observed independent recovery via docker info29.8.2; coordinate one native batch at a time. Independent firmware-agent batch subsequently passed canonical plus eight mutation exports through this same image, run20261021T033845Z-d950d9c1.",
+  "model_candidate": {
+    "manifest_sha256": "bff109b63c27ab0cb9037237d0a2eba63762ed88726414c07f16e331c1ec2d30",
+    "accepted": false,
+    "reason": "Top native WRL render shows connector-tail misalignment. STEP-substituted GLB verifies67 intended translations only; it does not validate WRL origin alignment or physical fit."
+  },
+  "disk": {
+    "package_download_bytes": 248281902,
+    "image_size_bytes": 1720147109,
+    "host_free_last_observed": "12GiB",
+    "unrelated_images_or_containers_modified": false
+  },
+  "canonical_hardware_modified": false,
+  "independent_agent_reuse": {
+    "record": "work/kicad-runs/20261021T033845Z-d950d9c1/run.json",
+    "sha256": "903b379e7a55e9bf24b2d2cae2533878018be6000614b4ee70876e2bf17f5f4a",
+    "result": "PASS canonical plus eight work-only mutation exports",
+    "exit_code": 0
+  },
+  "independent_parent_review": "Parent independently reran six host fault tests and six live guards; both PASS. Output hash/probe records refreshed only, source unchanged."
+}

@@ -30,6 +30,7 @@ record. Do not buy parts or release fabrication without an explicit instruction 
 | Coordination | Shared physical bottom-edge height, coordinated starts and movement across different-height blinds |
 | Alignment | Proposed prototype target: final bottom edges within 5 mm in the common reachable range; prove physically |
 | Delivery | Source-generated previews in README/CI; clear source revision and validation status; buildable/printable outputs |
+| Visual review | Repeated actual PCB/render reviews with fixes between passes; check component groups, routing, connector access and every 3D model's alignment and seating |
 
 ## Group movement semantics
 
@@ -62,6 +63,13 @@ placement and routing rework. These requirements supersede the previous connecto
 anchor freeze and inward cable-routing studies. Follow the
 [routing and placement rules](electrical/routing-style.md); update the enclosure
 and service geometry when connectors move. Preserve manufacturer pad geometry.
+
+The owner subsequently accepted a modest size increase for cleaner placement
+and routing. Compare the current 54 × 68.5 mm body with 54 × 80 mm first, and
+58 × 80 mm if the narrow width still compromises circuit grouping. These are
+study sizes, not frozen manufacturing dimensions. Prefer added height over
+wall projection where the complete enclosure permits it. Reserve routing lanes
+between functional groups without lengthening critical local power loops.
 
 Compare whole-unit packaging before freezing a PCB outline. Evaluate wall footprint and projection,
 chain wrap/tension, mounting loads, acoustics, wiring bend radii, battery insulation, USB cable access,

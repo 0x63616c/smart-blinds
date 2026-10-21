@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+"""Run Linux KiCad only, with bounded resources, explicit mounts and retained logs."""
+from __future__ import annotations
+import argparse,datetime,json,os,re,shutil,signal,subprocess,sys,time,uuid
+from pathlib import Path
+PROJECT=Path(__file__).resolve().parents[1]
+ALLOWED={'python3':'/usr/bin/python3','/usr/bin/python3':'/usr/bin/python3','kicad-cli':'/usr/bin/kicad-cli','/usr/bin/kicad-cli':'/usr/bin/kicad-cli'}
+class RunnerInterrupted(KeyboardInterrupt):
+ def __init__(self,signum):self.signum=signum
+def interrupted(signum,_frame):raise RunnerInterrupted(signum)
+def main():
+ p=argparse.ArgumentParser(description=__doc__)
+ p.add_argument('--repo',type=Path,default=PROJECT,help='repository/scratch clone to mount at /work; must be inside this project')
+ p.add_argument('--write-repo',action='store_true',help='explicitly allow writes beyond repo/work; use an isolated scratch clone for layout builds')
+ p.add_argument('--timeout',type=int,default=300,help='single-attempt wall-clock timeout, 1–1800 seconds')
+ p.add_argument('command',nargs=argparse.REMAINDER)
+ a=p.parse_args();cmd=a.command
+ if cmd[:1]==['--']:cmd=cmd[1:]
+ if not cmd or cmd[0]not in ALLOWED:p.error('command must be Linux python3 or kicad-cli; no host fallback or arbitrary launcher')
+ if not 1<=a.timeout<=1800:p.error('timeout must be 1–1800 seconds')
+ repo=a.repo.resolve()
+ if repo!=PROJECT and PROJECT not in repo.parents:p.error('repo must be this project or a scratch clone within it')
+ if not repo.is_dir():p.error('repo does not exist')
+ if a.write_repo and repo==PROJECT:p.error('--write-repo is restricted to an isolated scratch clone, never the owning checkout')
+ if a.write_repo and (repo==PROJECT/'work' or PROJECT/'work' not in repo.parents):p.error('--write-repo requires a scratch clone below this project/work directory')
+ scratch=repo/'work';scratch.mkdir(exist_ok=True)
+ if scratch.resolve()!=scratch:p.error('work directory must not be a symlink')
+ if any('/Applications/'in x for x in cmd):p.error('macOS application paths are forbidden')
+ docker=shutil.which('docker')
+ if not docker:p.error('Docker is unavailable; native KiCad fallback is deliberately disabled')
+ lock_path=PROJECT/'tools/kicad-linux/image.lock.json'
+ if not lock_path.is_file():p.error('Linux image lock missing; build tools/kicad-linux first')
+ lock=json.loads(lock_path.read_text());image=lock['image_id']
+ if not re.fullmatch(r'sha256:[0-9a-f]{64}',image):p.error('image lock must name an immutable local image ID')
+ run_id=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-'+uuid.uuid4().hex[:8]
+ folder=scratch/'kicad-runs'/run_id;folder.mkdir(parents=True)
+ name='smart-blinds-kicad-'+uuid.uuid4().hex
+ command=[ALLOWED[cmd[0]],*cmd[1:]]
+ record={'schema':1,'image_id':image,'architecture':lock['architecture'],'kicad_package_version':lock['kicad_package_version'],'repo':str(repo),'cwd':'/work','repo_writable':a.write_repo,'scratch_writable':str(scratch),'network':'none','command':command,'attempts':1,'timeout_seconds':a.timeout,'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'log':str(folder/'stdout.log'),'status':'preflight','container':name}
+ (folder/'run.json').write_text(json.dumps(record,indent=2)+'\n')
+ def preflight_failure(message,code=2):
+  (folder/'stdout.log').write_text(message+'\n')
+  record.update(status='preflight_failed',exit_code=code,container_started=False,error=message)
+  (folder/'run.json').write_text(json.dumps(record,indent=2)+'\n')
+  print(message+'; record: '+str(folder/'run.json'),file=sys.stderr)
+  raise SystemExit(code)
+ try:
+  info=json.loads(subprocess.check_output([docker,'image','inspect',image],stderr=subprocess.STDOUT,timeout=15))[0]
+ except(subprocess.CalledProcessError,subprocess.TimeoutExpired,OSError,ValueError,IndexError)as e:preflight_failure('pinned Linux image unavailable; no automatic pull/build/retry: '+str(e))
+ except KeyboardInterrupt as e:preflight_failure('Interrupted during image validation; no container started',128+getattr(e,'signum',signal.SIGINT))
+ if info['Id']!=image or info['Os']!='linux' or info['Architecture']!=lock['architecture']:preflight_failure('image identity/platform does not match lock')
+ if info.get('Config',{}).get('Labels',{}).get('org.opencontainers.image.title')!='Smart Blinds isolated KiCad runner':preflight_failure('image is not the project runner')
+ args=[docker,'run','--init','--rm','--pull=never','--name',name,'--network=none','--read-only','--cap-drop=ALL','--security-opt=no-new-privileges','--pids-limit=256','--memory=4g','--cpus=2','--user',f'{os.getuid()}:{os.getgid()}','--tmpfs','/tmp:rw,nosuid,nodev,size=512m','--tmpfs','/run:rw,nosuid,nodev,size=32m','--mount',f'type=bind,src={repo},dst=/work'+(''if a.write_repo else ',readonly')]
+ if not a.write_repo:args+=['--mount',f'type=bind,src={scratch},dst=/work/work']
+ args+=['--env','XDG_DATA_HOME=/tmp/kicad-data','--env','XDG_STATE_HOME=/tmp/kicad-state','--workdir','/work',image,*command]
+ print(f'Linux KiCad run: {folder}',flush=True);start=time.monotonic();timed_out=False;cleanup=[];code=125
+ record.update(status='running',container=name)
+ (folder/'run.json').write_text(json.dumps(record,indent=2)+'\n')
+ with(folder/'stdout.log').open('wb')as out:
+  try:proc=subprocess.Popen(args,stdout=out,stderr=subprocess.STDOUT)
+  except OSError as launch_error:
+   cleanup.append({'action':'launch','error':str(launch_error)})
+   proc=None
+  try:
+   if proc is not None:code=proc.wait(timeout=a.timeout)
+  except(subprocess.TimeoutExpired,KeyboardInterrupt)as exc:
+   timed_out=isinstance(exc,subprocess.TimeoutExpired)
+   # Only this invocation's unique container is stopped; unrelated containers are never touched.
+   try:
+    stopped=subprocess.run([docker,'stop','--timeout','2',name],stdout=out,stderr=subprocess.STDOUT,timeout=15,check=False)
+    cleanup.append({'action':'stop-own-container','exit_code':stopped.returncode})
+   except (subprocess.TimeoutExpired,OSError) as stop_error:
+    cleanup.append({'action':'stop-own-container','error':str(stop_error)})
+   try:proc.wait(timeout=10)
+   except subprocess.TimeoutExpired:
+    proc.kill()
+    try:proc.wait(timeout=5)
+    except subprocess.TimeoutExpired:cleanup.append({'action':'stop-docker-client','error':'client did not exit within 5 seconds'})
+    # A failed stop is visible and never escalates into broad Docker cleanup.
+    cleanup.append({'action':'stop-docker-client','container_may_remain':True})
+   code=124 if timed_out else 128+getattr(exc,'signum',signal.SIGINT)
+  except OSError as launch_error:
+   cleanup.append({'action':'launch','error':str(launch_error)})
+ record.update(status='complete',exit_code=code,timed_out=timed_out,cleanup=cleanup,elapsed_seconds=round(time.monotonic()-start,3))
+ (folder/'run.json').write_text(json.dumps(record,indent=2)+'\n')
+ sys.stdout.write((folder/'stdout.log').read_text(errors='replace'))
+ print(f'Linux KiCad exit {code}; record: {folder/"run.json"}',flush=True)
+ return code if code>=0 else 128-code
+if __name__=='__main__':
+ signal.signal(signal.SIGTERM,interrupted)
+ raise SystemExit(main())

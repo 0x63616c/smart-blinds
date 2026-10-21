@@ -17,6 +17,21 @@ physically tested results. No purchasing/fabrication without owner authorization
 Update source-generated previews and progress as sources change. Keep secrets out of the repository.
 The owner permits subagents for alternative designs, comparisons, implementation and review.
 
+## Native CAD automation
+
+After a confirmed macOS KiCad embedded-Python crash on 20 October 2026, run
+local automated KiCad Python, DRC, export and rendering through `tools/kicad-run`
+in the isolated Linux environment. Existing isolated Linux CI jobs may run their
+installed Linux KiCad directly. Do not launch the macOS embedded Python or
+silently fall back to host KiCad when the runner is unavailable. Pure file
+parsing is fine. The owner's interactive KiCad editor remains available.
+Keep trial changes under `work/`; the runner must not overwrite canonical
+designs during a study. Preserve a failed job's log and investigate before
+rerunning it. Never change macOS crash-reporting settings to hide failures.
+
+Visual PCB reviews must follow `docs/electrical/routing-style.md`, including
+repeated inspection of actual rendered geometry and model alignment.
+
 ## Skills
 
 Skills live in `.agents/skills/<name>/SKILL.md` (vendor-neutral Agent Skills format). `.claude/skills` and `.cursor/skills` are symlinks to that folder, so edit the originals in `.agents/skills` only. Load the relevant skill before starting work:

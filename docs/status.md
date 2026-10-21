@@ -18,6 +18,20 @@ angles. Connector positions, enclosure access and cable service paths are being
 reconsidered before routing continues. Earlier fixed-anchor and inward-harness
 studies are historical proposals, not final placement authority.
 
+The owner now permits a modest board-size increase to improve the layout.
+54 × 80 mm and 58 × 80 mm bodies are being compared with the current
+54 × 68.5 mm outline; enclosure fit and circuit grouping will decide the size.
+The PCB opened in KiCad is still the existing unfinished route, not this rework.
+
+Local native KiCad automation now runs through the
+[isolated Linux runner](../tools/kicad-linux/README.md), following a macOS
+embedded-Python crash. Load/save-copy, DRC and rendering succeeded while the
+canonical board stayed unchanged; six live isolation probes and six host fault
+tests pass. This avoids the crashing host automation path without claiming the
+underlying KiCad defect is repaired. Model review also found that paired WRL and
+STEP files have different origins. The first offset candidate was rejected;
+corrections must be verified against the exact model used by the viewer.
+
 ## Current design
 
 | Area | Implemented and checked | Still required |
@@ -77,9 +91,12 @@ twelve jobs passed, but the control job reached its ten-minute limit while runni
 addresses a deterministically reproduced lost wake request and a test-assertion
 shutdown deadlock. All 24 host targets pass in Linux and an independent fresh
 macOS build; focused sanitizers and both pinned C6 builds also pass. Actual OFF
-age and motion timing limits are unchanged. A fresh CI run is pending, and the
-original job log does not reveal its first assertion. The last published
-thirteen-job result above is unchanged.
+age and motion timing limits are unchanged. In the
+[fresh CI run for `313c35d`](https://github.com/0x63616c/smart-blinds/actions/runs/39502050091),
+the control job passed and twelve of thirteen jobs succeeded. The transport job
+failed in a seven-peer test with an I/O timing fault; diagnosis is isolated from
+production timing limits. The original timeout log does not reveal its first
+assertion. The last thirteen-job success above remains the earlier checkpoint.
 Physical movement controls in Home Assistant and hardware qualification remain
 unfinished.
 

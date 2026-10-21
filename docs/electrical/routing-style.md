@@ -79,6 +79,27 @@ fit. Inspect native KiCad views and rendered boards. Automated routing or a
 visually tidy preview alone does not establish electrical or manufacturing
 readiness.
 
+### Repeated visual review
+
+The owner explicitly requires several review-and-fix passes. Capture the
+actual board at each pass: a top view, a low oblique view showing model seating
+and connector mouths, and bottom/individual copper-layer views where needed.
+Record the source hash, specific findings, changes, and unresolved items.
+Reinspect the changed result rather than treating a first attractive render
+as acceptance.
+
+Review aligned component groups, consistent spacing, orderly connector
+escapes, unnecessary trace bends, usable mounting areas, rounded outline and
+cable access. Keep labels sparse. Placement changes must still preserve short
+decoupling and switching loops and the other electrical requirements above.
+
+Audit every populated model for a resolvable source, units, scale, rotation,
+pin-one orientation where applicable, pad/terminal alignment and seating
+height. Distinguish physical geometry from imported decorative annotations.
+Use manufacturer drawings and conservative tolerance envelopes for fit;
+an imported model's bounding box is not a dimensional specification.
+Model-only repairs must preserve the complete non-model board data.
+
 ## Baseline audit
 
 The main board with SHA-256
