@@ -1,0 +1,32 @@
+{
+  "status": "FROZEN PASS read-only actual native v10 audit",
+  "actual_board_sha256": "7ee4307652aea44e717f871ebe84b3a66bae90b5eb386b2ee548da0a981cf436",
+  "inputs": {
+    "work/clean-layout-study/native-54-v10-mcu/placement.kicad_pcb": "7ee4307652aea44e717f871ebe84b3a66bae90b5eb386b2ee548da0a981cf436",
+    "work/clean-layout-study/native-54-v10-mcu/placement.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "work/clean-layout-study/native-54-v10-mcu/native.json": "3cc9fb45d1eef99801538e118bdddd7a4607cbea67953f8ca980e70031f598d4",
+    "work/clean-layout-study/native-54-v10-mcu/drc.json": "73acf166d9528fd306e42b46058c0e6b07ddf39e1af68fb3279ee3d243e65133",
+    "work/clean-layout-study/native-54-v9-foot-keepouts/placement.kicad_pcb": "73236ebe9f2f60a35e687273f11e08f30751859f8aab1687dc5598a2fee6e37d",
+    "work/mcu54-local-supply/propose.py": "1d0d7a5ff0d5fac611411c6f82fa0da5b5ca5d56bae7a30cd6914a18e440d8a8",
+    "work/mcu54-local-supply/proposal.json": "61f3fd075469cae905c36ac7b043ff6eba6c7dc08d2e6850961bcb9f3eb2f851",
+    "work/mcu54-local-supply/freeze.json": "a510034c9ac2e4b191f381d0d8dd82e4b79635a391ef5456610e0c120225eaa0",
+    "work/usb54-actual-audit/audit.py": "7508dfdbf13aa075e562b05a9b8b932ada9ad9ce1ea1625ced7c41643cc00074",
+    "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+    "tools/generate_schematics.py": "cda24e8995e1fff8431022d10cd4ae228bf70035c5206ae970e09aa4ffcedee3",
+    "hw/placement/footprint-clearances.json": "f5fffb4b6e49529e8dbec5e3b98c78563ebc29c7626633817ec1581193539fe0",
+    "work/visual-audit/exact-courts.json": "ab1f24b7608cb218a5d2076436f37350caad2ffe459438671c66b4cf45cd1118"
+  },
+  "outputs": {
+    "work/mcu54-v10-actual-audit/check.py": "e4a658f005b2c53723d4352dc4d539542beb81a0d841c544778544e38996a305",
+    "work/mcu54-v10-actual-audit/test_faults.py": "211862724211fc49fade6105e9d6c43f5b789a81aba4cf75fb34a589fa80af40",
+    "work/mcu54-v10-actual-audit/checks.json": "a8a64e0f2ec5d395b12ae02b09275f16886b71917e5835f3fafe21df8cf84313",
+    "work/mcu54-v10-actual-audit/fault-results.json": "6a174be6e1f465589aaa2103501bd75df348e74ca82a7bf6242f5b413c10b19d",
+    "work/mcu54-v10-actual-audit/README.md": "9a556bf9c758bbc699ffa3a9cfff7687900baf4c73282b50ec753a8b65829348"
+  },
+  "actual_rule_areas": 8,
+  "actual_copper_fills": 0,
+  "negative_controls": 11,
+  "native_runs_by_this_audit": 0,
+  "board_writes": 0,
+  "scope": "Actual saved geometry/net/copper/keepout/continuity checks; no physical/RF/transient qualification."
+}

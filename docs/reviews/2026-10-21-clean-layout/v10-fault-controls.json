@@ -1,0 +1,62 @@
+{
+  "candidate_sha256": "7ee4307652aea44e717f871ebe84b3a66bae90b5eb386b2ee548da0a981cf436",
+  "status": "PASS",
+  "tests": [
+    {
+      "test": "cut dedicated supply trunk",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'host_logic-hv')"
+    },
+    {
+      "test": "cut explicit ground return",
+      "status": "PASS rejected",
+      "guard": "('physical supply/return disconnect', 'lv')"
+    },
+    {
+      "test": "same-net via drill enters bulk solder land",
+      "status": "PASS rejected",
+      "guard": "('same-or-foreign-net drill-to-SMD', 'd8e5a239-a6de-5a33-a2b5-a4f5cf351417', 'controller.c_bulk', '1', -0.15)"
+    },
+    {
+      "test": "via moved off routing grid",
+      "status": "PASS rejected",
+      "guard": "via grid"
+    },
+    {
+      "test": "one member of paired power transition removed",
+      "status": "PASS rejected",
+      "guard": "missing paired power via"
+    },
+    {
+      "test": "inner supply trunk changed into top body transit",
+      "status": "PASS rejected",
+      "guard": "('top body transit', 'Dedicated MCU supply trunk', 'controller.r_a_series', 0.5774999999999969)"
+    },
+    {
+      "test": "foreign trace splits proposed In1 reference",
+      "status": "PASS rejected",
+      "guard": "('foreign trace in In1 reference reservation', '4262328f-59a5-5d54-9c14-f8dc374716cf')"
+    },
+    {
+      "test": "copper enters antenna-only exclusion",
+      "status": "PASS rejected",
+      "guard": "antenna-only intrusion"
+    },
+    {
+      "test": "MCU supply land net silently changed",
+      "status": "PASS rejected",
+      "guard": "('pin/net/physical land', 'controller.mcu', '2')"
+    },
+    {
+      "test": "one restored plastic-foot rule area removed",
+      "status": "PASS rejected",
+      "guard": "source setup/outline/zone changes"
+    },
+    {
+      "test": "plastic-foot rule permits traces",
+      "status": "PASS rejected",
+      "guard": "source setup/outline/zone changes"
+    }
+  ],
+  "scope": "In-memory actual PCB AST faults; exact route-inventory equality disabled so geometry/topology guards must reject."
+}

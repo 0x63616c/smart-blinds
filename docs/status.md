@@ -40,6 +40,16 @@ socket-to-data-protection option. Its 35 segments and 14 vias preserve all 206
 components and the circuit graph. Native DRC finds no copper-clearance or
 courtyard overlap, with 477 unconnected items and eight dangling vias remaining.
 CC-protection placement, reference pours and whole-board routing remain open.
+The [latest controller-supply pass](reviews/2026-10-21-clean-layout/controller-supply.md)
+moves the two existing supply capacitors beside the controller and adds a
+dedicated inner-layer feed with an explicit bottom-layer return. It retains
+206 parts, now with 65 segments, 28 vias and eight restored connector-foot
+keepouts. Native DRC has no copper, courtyard, silkscreen or keepout findings;
+470 unconnected items, eight dangling vias, three library comparisons and three
+hybrid footprint-type findings remain. The saved-board geometry audit and eleven
+fault controls cover the new routes; physical/RF/transient qualification is absent.
+The supervisor's remaining library difference exposed a package-drawing mismatch
+that is being corrected separately. No additional parts were introduced.
 Revised enclosure fit, final routing and assembly cost will decide the outline.
 The PCB opened in KiCad is still the existing unfinished route, not this rework.
 

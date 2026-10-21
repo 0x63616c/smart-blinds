@@ -40,12 +40,15 @@ shows the first parallel USB traces and corrected connector/inductor models,
 including an actual underside view.
 The [sparse-marking pass](docs/reviews/2026-10-21-clean-layout/sparse-silkscreen.md)
 removes decorative outlines from nonpolar parts while retaining orientation
-marks. The [latest USB routing pass](docs/reviews/2026-10-21-clean-layout/usb-data-routing.md)
+marks. The [USB routing pass](docs/reviews/2026-10-21-clean-layout/usb-data-routing.md)
 adds the socket-to-protection data paths, reconciles those marking libraries and
-puts the UP button above DOWN. This image is a frozen review snapshot; only a
-small part of the board is routed, and the ground-reference copper is unfinished.
+puts the UP button above DOWN. The [latest controller-supply pass](docs/reviews/2026-10-21-clean-layout/controller-supply.md)
+brings two capacitors beside the controller, adds its dedicated supply/return and
+clears the remaining printed-outline clashes. This image is a frozen review
+snapshot; **470 unconnected items remain**, and the ground-reference pours are
+unfinished.
 
-![Cleaner 54 × 80 mm working candidate — partial routing](docs/reviews/2026-10-21-clean-layout/v8-top.png)
+![Cleaner 54 × 80 mm working candidate — partial routing](docs/reviews/2026-10-21-clean-layout/v10-top.png)
 
 These images are generated from the design sources. [Preview generation and provenance](docs/previews.md).
 A green preview badge means the images generated successfully, not that the hardware is validated.

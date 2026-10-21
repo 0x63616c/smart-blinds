@@ -1,0 +1,51 @@
+{
+  "status": "Frozen review of partial v10 controller supply; not power-up or fabrication acceptance",
+  "sources": {
+    "work/clean-layout-study/native-54-v10-mcu/placement.kicad_pcb": "7ee4307652aea44e717f871ebe84b3a66bae90b5eb386b2ee548da0a981cf436",
+    "work/clean-layout-study/native-54-v10-mcu/placement.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "work/clean-layout-study/native-54-v10-mcu/native.json": "3cc9fb45d1eef99801538e118bdddd7a4607cbea67953f8ca980e70031f598d4",
+    "work/clean-layout-study/native-54-v10-mcu/drc.json": "73acf166d9528fd306e42b46058c0e6b07ddf39e1af68fb3279ee3d243e65133",
+    "work/clean-layout-study/native-54-v10-mcu/renders.json": "b744c7f11c56c10f6fdf000976bdb3b24c25c5bbd6e32f20cc596d02f383a2cf",
+    "work/parent-v10-review/detail-provenance.json": "488daca1b818905a542134742138772d7425626aa03cf87ed17017efc1434204",
+    "work/parent-v10-review/verified-hashes.json": "281f9a28246c8cfd22cc9c58227df865b97130b45d3a0ef2dcf51269bb9de1ee",
+    "work/parent-v10-review/independent-geometry.json": "c6825ccb8e22b338a1aca5a69a3078422540933c14aacd9021d8540b88f102ea",
+    "work/mcu54-v10-actual-audit/freeze.json": "3fbfe3c339ed221e68816be53bbdd54b5b61e1397f67af33c5c96af4d4a9964c",
+    "work/mcu54-local-supply/freeze.json": "a510034c9ac2e4b191f381d0d8dd82e4b79635a391ef5456610e0c120225eaa0",
+    "work/clean-layout-study/mcu-support-decision.md": "e09942de1f6b65c6ec59d662aafe0aa2bb38f92a357172482ed9f9a4dee96ef6"
+  },
+  "images": {
+    "v10-top.png": "179a0b29a6988cf8362aa8e79103a2a7f0ff56a07837ed0365e9bd8c96f22241",
+    "v10-oblique.png": "107aab7d60f47fbc39826ce4038a8d3b05ab1f87910fea0e2b711d6e1bed5f84",
+    "v10-top-copper-detail.png": "d0fae2418454b456cb0805367fccac38a692f9a6dde34ebdbf72f1e285818aa7",
+    "v10-inner-supply-detail.png": "e4b67ebcd570f414ee1382d3850eb4c16f1a0d8491e19769fea09d206752e6ac",
+    "v10-bottom-return-detail.png": "334ae335b91b04daeabe829b5b919f2d4a259bebb562bba6d908605c70454475"
+  },
+  "components": 206,
+  "segments": 65,
+  "vias": 28,
+  "rule_areas": 8,
+  "copper_fills": 0,
+  "native_runs": {
+    "first_save_and_stopped_comparison": "20261021T062325Z-c976249f",
+    "same_saved_board_verification_DRC": "20261021T062517Z-f0a9edae",
+    "renders": "20261021T062745Z-00e59590"
+  },
+  "drc": {
+    "footprint_type_mismatch": 3,
+    "lib_footprint_mismatch": 3,
+    "via_dangling": 8
+  },
+  "unconnected_items": 470,
+  "visual_review": "Actual native top, oblique, top copper, In2 feed and B return inspected",
+  "parent_verified_files": 74,
+  "negative_controls": 11,
+  "canonical_route_changed": false,
+  "source_storage": "Local work-only board and libraries; immutable public review snapshots",
+  "limits": [
+    "partial routing; no complete power-up path",
+    "no ground pours",
+    "antenna-surround exception needs loaded-enclosure RF validation",
+    "supervisor footprint correction and hybrid assembly findings remain",
+    "no physical or manufacturing qualification"
+  ]
+}
