@@ -9,61 +9,23 @@ unrouted. No unit has been fabricated,
 powered, charged or installed. The next physical milestone is two prototypes,
 followed by an eight-unit build only after their tests pass.
 
-**Layout rework requested after KiCad inspection.** The owner requires all
-components on a strict placement grid, outward-facing cable connectors at board
-edges, 45°/90° gridded routing with parallel connector escapes, and no top-layer
-transit under component bodies. The current main board does not meet these
-[requirements](electrical/routing-style.md): 387 of its 1,013 segments use other
-angles. Connector positions, enclosure access and cable service paths are being
-reconsidered before routing continues. Earlier fixed-anchor and inward-harness
-studies are historical proposals, not final placement authority.
+**Current layout: [54 × 80 mm editable controller study](../hw/studies/clean-main/).**
+The larger draft has 206 gridded footprints, outward-facing connectors, rounded
+corners, black mask and sparse markings. Its 297 segments and 70 vias include
+local regulator and USB-C PD routing. The latest revision routes both CC lines
+through their protection lands and adds actual local ground copper; it retains
+417 open connections, six dangling vias, two library comparisons and three
+hybrid-footprint findings. Saved-file geometry and native DRC add no copper,
+courtyard, silkscreen or keepout violations for that refinement.
 
-The owner now permits a modest board-size increase to improve the layout.
-The [new comparison and actual placement views](trades/2026-10-21-cleaner-main-board.md)
-recommend 54 × 80 mm as the working candidate over 58 × 80 mm. Three placement
-passes put all 206 components on-grid, preserve the circuit graph and round the
-outline; four missing physical models and the bulk-capacitor height are corrected.
-Final native placement DRC has no copper-clearance or courtyard findings, but
-482 unconnected items and silkscreen/library findings remain. This candidate
-was unrouted at that checkpoint. The [next native review pass](reviews/2026-10-21-clean-layout/usb-and-models.md)
-adds ten straight USB pad-to-via escapes and corrects the battery connector and
-two inductor models. The saved-file audit finds no top-body transit in those ten
-routes; native DRC retains ten dangling vias and 482 unconnected items. Whole-board
-routing, reference continuity and current/thermal validation remain unfinished.
-A [sixth visual pass](reviews/2026-10-21-clean-layout/sparse-silkscreen.md)
-removes decorative silk from 160 nonpolar parts without changing other board
-data. Native silk-overlap findings fall from 136 to zero and mask-clipped silk
-from 57 to eight. Those 160 style differences are now reconciled in the local
-trial libraries. The [eighth review pass](reviews/2026-10-21-clean-layout/usb-data-routing.md)
-also places the complete UP group above DOWN and implements the shorter
-socket-to-data-protection option. Its 35 segments and 14 vias preserve all 206
-components and the circuit graph. Native DRC finds no copper-clearance or
-courtyard overlap, with 477 unconnected items and eight dangling vias remaining.
-CC-protection placement, reference pours and whole-board routing remain open.
-The [latest controller-supply pass](reviews/2026-10-21-clean-layout/controller-supply.md)
-moves the two existing supply capacitors beside the controller and adds a
-dedicated inner-layer feed with an explicit bottom-layer return. It retains
-206 parts, now with 65 segments, 28 vias and eight restored connector-foot
-keepouts. Native DRC has no copper, courtyard, silkscreen or keepout findings;
-470 unconnected items, eight dangling vias, three library comparisons and three
-hybrid footprint-type findings remain. The saved-board geometry audit and eleven
-fault controls cover the new routes; physical/RF/transient qualification is absent.
-The [supervisor package review](reviews/2026-10-21-clean-layout/supervisor-package.md)
-corrects that package-drawing mismatch and its undersized illustrative model in
-the v11 working board. Native checks preserve all other components and copper,
-with the same 470 unconnected items and two remaining connector-library
-comparisons. Stencil-process review and ground/thermal connections remain open.
-No additional parts were introduced.
-The [local regulator routing pass](reviews/2026-10-21-clean-layout/regulator-routing.md)
-adds its input/output banks, switch, feedback and control connections while
-preserving the v11 correction. The actual saved v12 board has 151 segments,
-42 vias and 449 unconnected items. Native DRC has no new copper, courtyard,
-silkscreen or keepout findings; the same eight dangling vias, two connector-library
-comparisons and three hybrid types remain. Eighteen deliberate geometry/connection
-faults reject, and the parent repeated the analysis on the native saved board.
-Ground/thermal copper, the upstream feed and bulk-input-loop refinement remain open.
-Revised enclosure fit, final routing and assembly cost will decide the outline.
-The PCB opened in KiCad is still the existing unfinished route, not this rework.
+The [routing review](reviews/2026-10-21-clean-layout/pd-routing.md) records the
+scope and limitations. This working source is now registered in the automatic
+preview gallery. The older 54 × 68.5 mm canonical route is a historical checkpoint;
+it fails the new [placement/routing style](electrical/routing-style.md), and its
+196-part schematic still needs reconciliation with the 206-part study. Remaining
+routing, continuous reference, electrical/thermal review and revised enclosure
+fit are unfinished. [Earlier size and layout comparisons](trades/2026-10-21-cleaner-main-board.md)
+remain available as history.
 
 Local native KiCad automation now runs through the
 [isolated Linux runner](../tools/kicad-linux/README.md), following a macOS
@@ -80,7 +42,7 @@ corrections must be verified against the exact model used by the viewer.
 |---|---|---|
 | Enclosure | Provisional 115 × 174 × 71 mm case and 118 × 182 × 71 mm joint-service study; removable six-cell cassette and replaceable motor-fit parts | Correct confirmed PCB handedness error, refit frame/ports/harness, then physical retention, strength, creep and assembly tests |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | Native eleven-sheet schematic and partial four-layer power route; 1013 segments, 255 vias, 70 checked groups plus USB, local clamp and 59 supervision branches, preserved circuit and mechanical anchors | Revise input surge protection and resolve the motor energy path; 122 unconnected items; finish local loops and current/signal routing, thermal/process review and ERC/DRC |
+| Main controller | Editable 54 × 80 mm four-layer study: 206 footprints, 297 segments, 70 vias; local regulator and PD routing checked | 417 open connections; finish reference/power/signal routing, reconcile schematic, resolve motor energy path and qualify electrical/thermal/process behavior |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Nine HA 2026.10.2 framework tests pass locally and in CI, including authenticated HTTP/DTLS diagnostics; simulator retains shared physical height across different calibration maps | Sole physical movement owner, periodic idle gauge policy and hardware qualification |
@@ -411,10 +373,13 @@ measurements remain required before deployment or a battery-life claim.
   standby current. With 1.5 A motor-branch current, an assumed 150 mA awake MCU/radio at 3.3 V
   and 0.5 mA whole-pack standby, the updated energy scenario estimates about
   55.6 days. It is a planning calculation, not a measured runtime.
-- Current component demand is **$363.19 for eight units** (about $45.40 each), excluding
-  boards, assembly, cells, motors, cables, mechanics, shipping and tax. This is not a quote.
-- USB input protection needs a design correction: the current suppressor clamp
-  exceeds both28 V input limits. A replacement front end is under review.
+- Current study component demand is **$379.94 for eight units** ($47.49 each), or
+  **$99.27 for two**, using catalog observations from 19–20 October. The [dated ledger](../hw/studies/clean-main/dated-components.json) includes both carriers. It excludes
+  boards, assembly/setup/feeder fees, minimums, cells, motors, cables, mechanics, shipping
+  and tax; stock and assembly eligibility need refreshing. This is not a quote.
+- The earlier canonical USB input suppressor exceeds both 28 V input limits.
+  The 206-part working study contains a replacement front end; its remaining
+  routing and transient/current qualification are unfinished.
 - A stuck dump switch dissipates about32 W, and thermal cutoff removes the
   absorber while coasting. Sustained back-drive needs a complete holding/braking
   solution; these are design gaps, not passed simulation or prototype checks.

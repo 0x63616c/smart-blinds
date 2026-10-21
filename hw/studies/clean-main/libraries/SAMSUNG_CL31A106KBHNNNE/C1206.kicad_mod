@@ -1,0 +1,72 @@
+(footprint
+  "SAMSUNG_CL31A106KBHNNNE:C1206"
+  (version 20241229)
+  (generator "faebryk_convert")
+  (generator_version "v5")
+  (layer "F.Cu")
+  (tedit "5DC5F6A4")
+  (uuid "b4893196-0419-487d-b786-2ab85e051a0a")
+  (property
+    "Reference"
+    "REF**"
+    (at 0 -4)
+    (layer "F.SilkS")
+    (uuid "9e382b91-8efd-4b1b-97bf-840a2b5d1624")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Value"
+    "C1206"
+    (at 0 4)
+    (layer "F.Fab")
+    (uuid "2e7c9d5b-6e63-4322-b751-69148b6f74ee")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (attr smd)
+  (fp_circle
+    (center -1.6 0.8)
+    (end -1.57 0.8)
+    (stroke
+      (width 0.06)
+      (type solid))
+    (layer "F.Fab")
+    (locked no)
+    (uuid "a99d0e94-720e-40ef-9a7c-fb4704cbf53e"))
+  (pad
+    "2"
+    smd
+    rect
+    (at 1.59 0 0)
+    (size 1.49 1.73)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "14742c7e-de55-4892-a934-7a83b3a65f77"))
+  (pad
+    "1"
+    smd
+    rect
+    (at -1.59 0 0)
+    (size 1.49 1.73)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "1e0bc39f-2486-42c4-90c5-442d52076d6d"))
+  (model
+    "${KIPRJMOD}/../../../parts/blind-power/C1206_L3.2-W1.6-H1.3.step"
+    (offset
+      (xyz 0 0 -0))
+    (scale
+      (xyz 1 1 1))
+    (rotate
+      (xyz 0 0 0)))
+  (embedded_fonts no)
+  (fp_rect
+    (start -2.6 -1.15)
+    (end 2.6 1.15)
+    (stroke
+      (width 0.05)
+      (type default))
+    (fill none)
+    (layer "F.CrtYd")
+    (uuid "be2d07ec-fe06-51d9-b939-4ad6863ed97c")))

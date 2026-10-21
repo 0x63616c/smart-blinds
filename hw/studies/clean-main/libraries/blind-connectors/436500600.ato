@@ -1,0 +1,22 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_436500600:
+    """UNVERIFIED manufacturing; geometry audited against SD-43650-001 D4 and current D8 text."""
+    trait is_atomic_part<manufacturer="Molex", partnumber="436500600", footprint="CONN-TH_436500600.kicad_mod", symbol="436500600.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C492352", manufacturer="Molex", partno="436500600">
+    trait has_designator_prefix<prefix="J">
+
+    signal contact1
+    contact1 ~ pin 1
+    signal contact2
+    contact2 ~ pin 2
+    signal contact3
+    contact3 ~ pin 3
+    signal contact4
+    contact4 ~ pin 4
+    signal contact5
+    contact5 ~ pin 5
+    signal contact6
+    contact6 ~ pin 6

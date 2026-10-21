@@ -31,17 +31,14 @@ blinds are needed to test synchronization before committing to the eight-unit ba
 
 ## Design gallery
 
-**Cleaner layout in progress:** the [54 × 80 mm working candidate](docs/trades/2026-10-21-cleaner-main-board.md)
-has 206 components on-grid, outward-facing edge connectors, rounded corners and
-sparse markings. The [latest regulator review](docs/reviews/2026-10-21-clean-layout/regulator-routing.md)
-shows the actual copper layers and checks, alongside a
-[corrected supervisor package and model](docs/reviews/2026-10-21-clean-layout/supervisor-package.md).
-This frozen v12 snapshot is partially routed: **449 unconnected items remain**,
-and ground planes, enclosure fit and hardware qualification are unfinished.
-The canonical route farther below is the earlier checkpoint and does not meet
-the new routing-style requirements.
-
-![Cleaner 54 × 80 mm working candidate — partial v12 routing](docs/reviews/2026-10-21-clean-layout/v12-top.png)
+**Cleaner layout in progress:** the editable [54 × 80 mm controller study](hw/studies/clean-main/)
+now includes its KiCad project, local footprints and all referenced models.
+It has 206 gridded components, outward-facing edge connectors and rounded corners.
+The [USB-C routing review](docs/reviews/2026-10-21-clean-layout/pd-routing.md)
+records the actual local protection and ground-copper checks.
+**417 connections remain open**; this is a partial design, not a fabrication release.
+The automatic gallery below now includes this working source. The older canonical
+route remains a historical checkpoint that does not meet the new style rules.
 
 These images are generated from the design sources. [Preview generation and provenance](docs/previews.md).
 A green preview badge means the images generated successfully, not that the hardware is validated.
@@ -50,6 +47,15 @@ The inward-facing board placement and its frame, ports and cable paths are being
 these images must not be used as physical PCB-fit evidence.
 
 <!-- previews:start -->
+### Cleaner controller — current routing draft
+
+54 × 80 mm black four-layer controller with gridded parts and outward connectors.
+417 connections remain open; electrical, thermal and enclosure qualification is unfinished.
+
+![Cleaner controller — current routing draft](docs/generated/clean-controller-route/assembly.png)
+
+[Editable source](hw/studies/clean-main/placement.kicad_pcb) · [Review](docs/reviews/2026-10-21-clean-layout/pd-routing.md)
+
 ### Retained enclosure — current exterior
 
 115 × 174 × 71 mm white enclosure candidate, with front buttons and underside USB-C. Buttons project to 72.2 mm. This compact version requires holder tails and solder joints trimmed to the documented limit; motor-family fit and printed tolerances remain provisional.

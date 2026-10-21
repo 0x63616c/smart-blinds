@@ -13,14 +13,20 @@ provisional purchased-part envelopes and distinguish a study from a released pri
 
 ## Local generation
 
-Install KiCad 10 and its 3D libraries, Python 3.11+ with Matplotlib, and OpenSCAD for mechanical sources.
-The renderer locates the usual macOS/Linux KiCad library; set `KICAD10_3DMODEL_DIR` for other paths.
+Automated KiCad rendering runs in the isolated Linux environment or Linux CI.
+The renderer refuses macOS host execution before launching any tools. The
+interactive KiCad editor remains available. The Linux environment needs KiCad 10,
+its 3D libraries, Python 3.11+ with Matplotlib, and OpenSCAD for mechanical sources.
+Set `KICAD10_3DMODEL_DIR` for a nonstandard Linux library path.
 
 ```sh
 python3 tools/render_previews.py
 ```
 
-On a headless Linux machine, run under `xvfb-run -a`. Generated metadata records the source commit,
+The command above is for the prepared Linux environment; on headless Linux, run
+under `xvfb-run -a`. Use `tools/kicad-run` for local automated KiCad work, and do not
+fall back to host KiCad if its isolated image lacks another gallery dependency.
+Generated metadata records the source commit,
 source hashes, local source dirty state, model hashes and tool versions. A local modified design
 is identified as dirty; its source hash still identifies exactly what was rendered. A generated
 commit may follow unrelated edits, so image metadata identifies the actual render source commit.
@@ -48,6 +54,11 @@ verified KiCad 10 build, omitting this flag renders the green preset despite the
 help text describing a true default. Passing an explicit `true` value throws a
 CLI type error; use the bare flag. This changes rendering, not fabrication orders.
 The fresh integrated controller is under development.
+
+The current cleaner draft is registered as `clean-controller-route`, sourced from
+`hw/studies/clean-main/placement.kicad_pcb`. Its project rules, local footprints,
+models and review record are registered dependencies, so changing them refreshes
+the preview. The older canonical controller remains separately labelled.
 
 The first native motor schematic is generated separately with
 `python3 tools/generate_schematics.py hw/schematics/blind-controller/motor-test.layout.json`.

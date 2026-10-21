@@ -1,6 +1,31 @@
 {
   "designs": [
     {
+      "kind": "pcb",
+      "id": "clean-controller-route",
+      "title": "Cleaner controller \u2014 current routing draft",
+      "source": "hw/studies/clean-main/placement.kicad_pcb",
+      "dependencies": [
+        "hw/studies/clean-main/placement.kicad_pro",
+        "hw/studies/clean-main/fp-lib-table",
+        "hw/studies/clean-main/models/**/*",
+        "hw/studies/clean-main/libraries/**/*",
+        "hw/studies/clean-main/review.json"
+      ],
+      "image_size": [
+        1400,
+        1800
+      ],
+      "rotate": [
+        45,
+        0,
+        -25
+      ],
+      "zoom": 0.6,
+      "collapsed": false,
+      "role": "54 \u00d7 80 mm black four-layer controller draft with outward-facing connectors and gridded parts. The local regulator and USB-C PD routes are implemented; 417 connections remain open. Ground reference, remaining power/signal routing, enclosure fit and electrical/thermal qualification are unfinished. Not a fabrication release."
+    },
+    {
       "kind": "openscad",
       "source": "cad/source/compact_retained.scad",
       "dependencies": [

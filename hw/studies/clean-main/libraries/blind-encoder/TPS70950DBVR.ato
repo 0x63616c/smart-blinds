@@ -1,0 +1,20 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TPS70950DBVR:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS70950DBVR", footprint="SOT-23-5_L3.0-W1.7-P0.95-LS2.8-BR.kicad_mod", symbol="TPS70950DBVR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C96028", manufacturer="Texas Instruments", partno="TPS70950DBVR">
+    trait has_designator_prefix<prefix="U">
+
+    signal IN
+    IN ~ pin 1
+    signal GND
+    GND ~ pin 2
+    signal EN
+    EN ~ pin 3
+    signal NC
+    NC ~ pin 4
+    signal OUT
+    OUT ~ pin 5

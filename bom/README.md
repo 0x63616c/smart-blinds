@@ -1,5 +1,7 @@
 # Parts and cost tracking
 
+The newer [206-part controller study ledger](../hw/studies/clean-main/dated-components.json) supersedes the older controller component demand below for that study: **$99.27 for two sets or $379.94 for eight**, including both battery carriers, from 19–20 October 2026 catalog observations. These are component-demand totals, excluding boards, assembly/setup/feeder fees, procurement minimums, cells, motors, mechanics, cables, shipping and tax. Stock, assembly eligibility and the completed manufacturing package still need verification.
+
 Budget for eight complete units: seven installations plus one spare. The first prototype gate uses two.
 
 | Item | Per unit | Two prototypes | Eight total | Current status |

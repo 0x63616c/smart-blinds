@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_removed
+import is_atomic_part
+
+component WirePad18:
+    """UNVERIFIED solder landing, no purchased component. Retain wire separately.
+    Finished-hole fit, hand-solder process and fillet clearance need qualification.
+    """
+    trait is_atomic_part<manufacturer="Smart Blinds", partnumber="WirePad18", footprint="WirePad18.kicad_mod", symbol="WirePad18.kicad_sym">
+    trait has_designator_prefix<prefix="TP">
+    trait has_part_removed
+    signal contact ~ pin 1

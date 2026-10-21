@@ -1,0 +1,72 @@
+(footprint
+  "SAMSUNG_CL05B104KB54PNC:C0402"
+  (version 20241229)
+  (generator "faebryk_convert")
+  (generator_version "v5")
+  (layer "F.Cu")
+  (tedit "5DC5F6A4")
+  (uuid "f09e4c25-f9de-4534-86ed-9d573aa34798")
+  (property
+    "Reference"
+    "REF**"
+    (at 0 -4)
+    (layer "F.SilkS")
+    (uuid "1bb38ec0-f991-483b-a361-61113c1eae30")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Value"
+    "C0402"
+    (at 0 4)
+    (layer "F.Fab")
+    (uuid "31138421-27c3-4f76-951e-bdc9d263878e")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (attr smd)
+  (fp_circle
+    (center -0.5 0.25)
+    (end -0.47 0.25)
+    (stroke
+      (width 0.06)
+      (type solid))
+    (layer "F.Fab")
+    (locked no)
+    (uuid "884ad58e-8298-46b1-ab1b-3e01ed9b2140"))
+  (pad
+    "2"
+    smd
+    rect
+    (at 0.42 0 0)
+    (size 0.5 0.54)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "58eeb06c-d614-4036-a911-666c5f5ad222"))
+  (pad
+    "1"
+    smd
+    rect
+    (at -0.42 0 0)
+    (size 0.5 0.54)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "3a40e121-3c1a-4c20-886a-836ae1b9a20a"))
+  (model
+    "${KIPRJMOD}/../../../parts/blind-controller-common/C0402_L1.0-W0.5-H0.5.step"
+    (offset
+      (xyz 0 0 -0))
+    (scale
+      (xyz 1 1 1))
+    (rotate
+      (xyz 0 0 0)))
+  (embedded_fonts no)
+  (fp_rect
+    (start -0.95 -0.55)
+    (end 0.95 0.55)
+    (stroke
+      (width 0.05)
+      (type default))
+    (fill none)
+    (layer "F.CrtYd")
+    (uuid "88cd6ac6-3f30-5e35-b4ea-6795899db4d6")))

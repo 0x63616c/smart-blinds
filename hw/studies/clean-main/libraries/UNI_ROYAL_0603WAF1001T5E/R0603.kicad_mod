@@ -1,0 +1,72 @@
+(footprint
+  "UNI_ROYAL_0603WAF1001T5E:R0603"
+  (version 20241229)
+  (generator "faebryk_convert")
+  (generator_version "v5")
+  (layer "F.Cu")
+  (tedit "5DC5F6A4")
+  (uuid "9e5722cc-5b41-4f34-a0fb-659e013ccf45")
+  (property
+    "Reference"
+    "REF**"
+    (at 0 -4)
+    (layer "F.SilkS")
+    (uuid "0b387ac1-7b67-4fef-8999-2ea9589b7136")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Value"
+    "R0603"
+    (at 0 4)
+    (layer "F.Fab")
+    (uuid "f1975925-e2bd-480c-9b48-25e144ba1e4e")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (attr smd)
+  (fp_circle
+    (center -0.8 0.4)
+    (end -0.77 0.4)
+    (stroke
+      (width 0.06)
+      (type solid))
+    (layer "F.Fab")
+    (locked no)
+    (uuid "c483f7bf-0abd-44c1-b56b-7d08fee4cd24"))
+  (pad
+    "2"
+    smd
+    rect
+    (at 0.75 0 0)
+    (size 0.81 0.86)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "7460357f-6834-4760-a688-693307b31458"))
+  (pad
+    "1"
+    smd
+    rect
+    (at -0.75 0 0)
+    (size 0.81 0.86)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "2923e4d8-648e-4588-9fd3-1b5ebce6631b"))
+  (model
+    "${KIPRJMOD}/../../parts/UNI_ROYAL_0603WAF1001T5E/R0603.STEP"
+    (offset
+      (xyz 0 0 -0))
+    (scale
+      (xyz 1 1 1))
+    (rotate
+      (xyz 0 0 270)))
+  (embedded_fonts no)
+  (fp_rect
+    (start -1.45 -0.7)
+    (end 1.45 0.7)
+    (stroke
+      (width 0.05)
+      (type default))
+    (fill none)
+    (layer "F.CrtYd")
+    (uuid "8c9fdf64-8467-5c72-9dcf-670e79435d12")))

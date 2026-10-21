@@ -1,0 +1,22 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_AON7400A:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="Alpha & Omega Semiconductor", partnumber="AON7400A", footprint="PDFN-8_L3.3-W3.3-P0.65-BL.kicad_mod", symbol="AON7400A.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C85734", manufacturer="Alpha & Omega Semiconductor", partno="AON7400A">
+    trait has_designator_prefix<prefix="Q">
+
+    signal D
+    D ~ pin 8
+    D ~ pin 7
+    D ~ pin 6
+    D ~ pin 5
+    signal G
+    G ~ pin 4
+    signal S
+    S ~ pin 3
+    S ~ pin 2
+    S ~ pin 1
+    D ~ pin 9
