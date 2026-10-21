@@ -16,7 +16,11 @@ class BlindCover(SmartBlindsEntity, CoverEntity):
 
     def __init__(self, coordinator, device_id):
         super().__init__(coordinator, device_id, "cover")
-        self._attr_name = "Room blinds (simulation)" if device_id == "room" else None
+        self._attr_name = ("Room blinds (simulation)" if coordinator.data["mode"] == "simulation" else "Room blinds") if device_id == "room" else None
+
+    @property
+    def available(self):
+        return super().available and (self.coordinator.data["mode"] != "physical_control" or self.state_data.get("control_configured", False))
 
     @property
     def current_cover_position(self):

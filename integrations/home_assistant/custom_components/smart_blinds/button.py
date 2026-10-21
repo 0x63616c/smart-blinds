@@ -13,6 +13,7 @@ class Align(SmartBlindsEntity, ButtonEntity):
 
     def __init__(self, coordinator):
         super().__init__(coordinator, "room", "align")
+        self._attr_name = "Align at 50% (simulation)" if coordinator.data["mode"] == "simulation" else "Align at 50%"
 
     async def async_press(self):
         await self.coordinator.move("room", 50, align=True)

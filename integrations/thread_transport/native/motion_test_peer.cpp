@@ -146,6 +146,10 @@ public:
     std::uint64_t boot;
     std::atomic<bool> stop{false};
     std::atomic<std::uint64_t> body_bytes{0};
+    std::atomic<unsigned> connections{0};
+    bool parked=false;
+    std::uint64_t parked_activity=0;
+    std::uint64_t handoff_nonce=0;
     std::atomic<unsigned> mode{0},requests{0}; // bit0 pause control, bit1 failed power, bit2 freeze report.
     std::atomic<bool> off{true},paused{false};
     std::atomic<unsigned> executor_fault{0};
@@ -197,7 +201,7 @@ public:
         if(event==COAP_EVENT_DTLS_CONNECTED && cipher_matches(session)) {
             // Match C6 single-peer semantics: a new connection invalidates the
             // old generation; requests from the superseded session are rejected.
-            self->peer=session; self->ingress.connected();
+            self->peer=session; self->ingress.connected(); ++self->connections; self->handoff_nonce=0;
         } else if((event==COAP_EVENT_DTLS_CLOSED || event==COAP_EVENT_DTLS_ERROR) && self->peer==session) {
             self->peer=nullptr; self->ingress.disconnected();
         }
@@ -224,11 +228,11 @@ public:
         coap_pdu_set_code(response,COAP_RESPONSE_CODE_CONTENT);
         if(name=="v1/status") {
             if(size) { bad(); return; }
-            std::snprintf(reply,sizeof(reply),"{\"boot\":\"%016llx\",\"last_wake\":\"%016llx\",\"awake\":%s,\"io_qualified\":true,\"clock_qualified\":%s}",
+            std::snprintf(reply,sizeof(reply),"{\"boot\":\"%016llx\",\"last_wake\":\"%016llx\",\"awake\":%s,\"io_qualified\":%s,\"clock_qualified\":%s}",
                 static_cast<unsigned long long>(self.boot),static_cast<unsigned long long>(self.window.last_sequence()),
-                awake?"true":"false",self.ingress.snapshot(received).clock?"true":"false");
+                (awake && !(self.mode.load()&16U))?"true":"false",(self.mode.load()&8U)?"false":"true",self.ingress.snapshot(received).clock?"true":"false");
         } else if(name=="v1/wake") {
-            if(size!=16 || !self.window.wake(read64(body),read64(body+8),received/1000)) { bad(); return; }
+            if((self.mode.load()&16U) || size!=16 || !self.window.wake(read64(body),read64(body+8),received/1000)) { bad(); return; }
             self.radio();
             std::snprintf(reply,sizeof(reply),"{\"awake_ms\":10000,\"io_qualified\":true}");
             coap_pdu_set_code(response,COAP_RESPONSE_CODE_CHANGED);
@@ -258,6 +262,34 @@ public:
             }
             std::snprintf(reply,sizeof(reply),"{\"queued\":true}");
             coap_pdu_set_code(response,COAP_RESPONSE_CODE_CHANGED);
+        } else if(name=="v1/telemetry") {
+            if(size!=16 || read64(body)!=self.boot || !read64(body+8)) { bad(); return; }
+            // Informational test fixture: retained synthetic observations. No
+            // runtime sensor/charger hardware or physical qualification claim.
+            const auto sample=self.snapshot.status.observed_us;
+            std::snprintf(reply,sizeof(reply),
+                "{\"schema\":1,\"boot\":\"%016llx\",\"nonce\":\"%016llx\",\"sent_us\":\"%016llx\","
+                "\"battery\":{\"sample_us\":null,\"bus_epoch\":0,\"serial\":0,\"pack\":null,\"soc_pct\":null,\"state\":\"absent\"},"
+                "\"charger\":{\"sample_us\":null,\"bus_epoch\":0,\"state\":\"unknown\",\"input_present\":null},"
+                "\"pd\":{\"sample_us\":null,\"bus_epoch\":0,\"epoch\":0,\"serial\":0,\"state\":\"unavailable\",\"current_ma\":0,\"attached\":null},"
+                "\"pending\":false,\"fault\":{\"kind\":\"none\",\"code\":0},\"charge_authorized\":false}",
+                static_cast<unsigned long long>(self.boot),static_cast<unsigned long long>(read64(body+8)),
+                static_cast<unsigned long long>(std::max(sample,mono_us())));
+        } else if(name=="v1/handoff") {
+            if(size!=16 || read64(body)!=self.boot || !read64(body+8) || read64(body+8)<=self.handoff_nonce) { bad(); return; }
+            self.handoff_nonce=read64(body+8);
+            const auto& s=self.snapshot.status;
+            char height[48]="null";
+            if(s.reference_valid) std::snprintf(height,sizeof(height),"%.6f",*s.height_mm);
+            std::snprintf(reply,sizeof(reply),
+                "{\"version\":1,\"boot\":\"%016llx\",\"nonce\":\"%016llx\",\"sampled_us\":\"%016llx\",\"responded_us\":\"%016llx\","
+                "\"command\":\"%016llx\",\"received_message\":\"%016llx\",\"phase\":\"%s\",\"result\":\"%s\",\"reference_valid\":%s,\"height_mm\":%s,\"settled_off\":%s}",
+                static_cast<unsigned long long>(self.boot),static_cast<unsigned long long>(self.handoff_nonce),
+                static_cast<unsigned long long>(s.observed_us),static_cast<unsigned long long>(mono_us()),
+                static_cast<unsigned long long>(s.command),static_cast<unsigned long long>(self.ingress.received_message()),
+                blinds::runtime::name(s.phase),blinds::runtime::name(s.result),s.reference_valid?"true":"false",height,
+                self.parked && !self.ingress.pending() && self.parked_activity==self.ingress.activity() &&
+                mono_us()>=s.observed_us && mono_us()-s.observed_us<=30000?"true":"false");
         } else {
             if(size) { bad(); return; }
             if((self.mode.load()&4U) && self.frozen[0]) std::strcpy(reply,self.frozen);
@@ -284,7 +316,7 @@ public:
         if(!coap_context_set_psk2(context,&setup)) return false;
         coap_address_t local; address(local,"::1",port);
         if(!coap_new_endpoint(context,&local,COAP_PROTO_DTLS)) return false;
-        for(const char* name:{"v1/status","v1/wake","v1/clock","v1/qualify","v1/readiness","v1/motion","v1/motion-status"}) {
+        for(const char* name:{"v1/status","v1/wake","v1/clock","v1/qualify","v1/readiness","v1/motion","v1/motion-status","v1/telemetry","v1/handoff"}) {
             auto* resource=coap_resource_init(coap_make_str_const(name),0);
             if(!resource) return false;
             coap_resource_set_userdata(resource,this);
@@ -303,8 +335,8 @@ public:
                     // Test-only wall-clock stall; no virtual time or catch-up samples.
                     if(const auto stall=stall_next_us.exchange(0))
                         std::this_thread::sleep_for(std::chrono::microseconds(stall));
-                    blinds::runtime::Network net;
-                    { std::lock_guard<std::mutex> lock(publication); radio(); net=ingress.snapshot(mono_us()); }
+                    blinds::runtime::Network net; std::uint64_t cycle_activity=0;
+                    { std::lock_guard<std::mutex> lock(publication); radio(); net=ingress.snapshot(mono_us()); cycle_activity=ingress.activity(); }
                     plant.begin_cycle();
                     plant.advance();
                     const auto now=mono_us();
@@ -329,7 +361,11 @@ public:
                     previous_cycle_start=before;previous_cycle_end=after;
                     off=plant.off;
                     executor_fault=static_cast<unsigned>(motion.executor_fault());
-                    { std::lock_guard<std::mutex> lock(publication); snapshot={status,net.connection,net.probe}; observed=p; }
+                    { std::lock_guard<std::mutex> lock(publication); snapshot={status,net.connection,net.probe}; observed=p;
+                        parked_activity=cycle_activity;
+                        parked=plant.off && !plant.counter && !plant.rail && !plant.awake && plant.duty==0 &&
+                            status.phase==blinds::MotionSession::Phase::idle &&
+                            (status.result==blinds::MotionSession::Result::finished || status.result==blinds::MotionSession::Result::stopped); }
                 }
                 std::this_thread::sleep_until(deadline);
                 // Do not replay missed periods as fresh samples.
@@ -370,6 +406,7 @@ bool sb_motion_peer_mode(void* p,unsigned value) {
     }
     return true;
 }
+unsigned sb_motion_peer_connections(void* p) { return static_cast<sbthread::MotionPeer*>(p)->connections; }
 unsigned sb_motion_peer_requests(void* p) { return static_cast<sbthread::MotionPeer*>(p)->requests; }
 unsigned sb_motion_peer_executor_fault(void* p) { return static_cast<sbthread::MotionPeer*>(p)->executor_fault; }
 std::uint64_t sb_motion_peer_timing(void* p,unsigned metric) {

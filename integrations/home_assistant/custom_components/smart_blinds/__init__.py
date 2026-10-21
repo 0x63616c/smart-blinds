@@ -17,8 +17,8 @@ async def async_setup_entry(hass, entry):
     bridge_device = dr.async_get(hass).async_get_or_create(
         config_entry_id=entry.entry_id,
         identifiers={(DOMAIN, entry.unique_id)},
-        name="Smart Blinds telemetry" if physical else "Smart Blinds simulator", manufacturer="Smart Blinds",
-        model="Physical read-only bridge" if physical else "Seven-blind software simulator",
+        name="Smart Blinds simulator" if coordinator.data["mode"] == "simulation" else "Smart Blinds", manufacturer="Smart Blinds",
+        model="Physical read-only bridge" if physical else "Physical control bridge" if coordinator.data["mode"] == "physical_control" else "Seven-blind software simulator",
     )
     coordinator.bridge_device_id = bridge_device.id
     await hass.config_entries.async_forward_entry_setups(entry, [Platform.SENSOR, Platform.BINARY_SENSOR] if physical else PLATFORMS)

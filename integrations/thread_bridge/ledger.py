@@ -113,6 +113,16 @@ class Ledger:
             if self.db.in_transaction: self.db.execute('ROLLBACK')
             raise LedgerError('Enrolment failed; existing floors cannot be overwritten') from error
 
+    def floor(self, selected: Selection):
+        """Read existing trusted enrollment; never infer a floor from telemetry."""
+        if self.db is None: raise LedgerError('Ledger is closed')
+        selected.validate()
+        row = self.db.execute('SELECT binding, command, message FROM counters WHERE device=? AND boot=?',
+            (selected.device_id, f'{selected.boot:016x}')).fetchone()
+        if not row or row[0] != selected.binding():
+            raise LedgerError('Unknown boot or changed commissioning selection')
+        return parse_hex(row[1]), parse_hex(row[2])
+
     def reserve(self, selections: list[Selection], *, count=4096) -> dict[str, Reservation]:
         if self.db is None: raise LedgerError('Ledger is closed')
         integer(count, 4, 65536, 'reservation size')

@@ -7,7 +7,7 @@ from .entity import SmartBlindsEntity
 async def async_setup_entry(hass, entry, async_add_entities):
     coordinator = entry.runtime_data
     entities = [Charging(coordinator, item["id"]) for item in coordinator.data["devices"]]
-    if coordinator.data["mode"] == "physical_read_only":
+    if coordinator.data["mode"] != "simulation":
         entities += [UsbConnected(coordinator, item["id"]) for item in coordinator.data["devices"]]
     async_add_entities(entities)
 
@@ -21,7 +21,7 @@ class Charging(SmartBlindsEntity, BinarySensorEntity):
 
     @property
     def is_on(self):
-        physical = self.coordinator.data["mode"] == "physical_read_only"
+        physical = self.coordinator.data["mode"] != "simulation"
         age = self.state_data.get("charger_age_ms" if physical else "battery_age_ms")
         return self.state_data.get("charging") if age is not None and age <= (60000 if physical else BATTERY_MAX_AGE_MS) else None
 

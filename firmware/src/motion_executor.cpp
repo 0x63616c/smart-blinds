@@ -112,7 +112,8 @@ bool MotionExecutor::arm(const MotionEvidence& e) {
     if(!evidence_valid(e)) return fail(Fault::evidence);
     if(!operation([&]{return io_.coast();}) || !operation([&]{return io_.wdi_high();})) return fail(Fault::io);
     if(!heartbeat_.arm(boot_,command_,{e.sequence,e.sampled_us,true,true},last_now_)) return fail(Fault::heartbeat);
-    if(!operation([&]{return io_.request_n(false);}) || !heartbeat_.request_applied(last_now_)) return fail(Fault::io);
+    if(!operation([&]{return io_.request_n(false);})) return fail(Fault::io);
+    if(!heartbeat_.request_applied(last_now_)) return fail(Fault::heartbeat);
     last_cycle_us_=last_now_; last_sequence_=e.sequence; last_sample_us_=e.sampled_us; last_count_=e.count;
     last_progress_us_=last_now_; state_=State::arming;
     return true;
@@ -120,7 +121,10 @@ bool MotionExecutor::arm(const MotionEvidence& e) {
 bool MotionExecutor::feed(const MotionEvidence& e,bool coasting) {
     const bool pulse=heartbeat_.cycle({e.sequence,e.sampled_us,true,coasting},last_now_);
     if(heartbeat_.state()==smart_blinds::Heartbeat::State::fault) return fail(Fault::heartbeat);
-    if(pulse && (!operation([&]{return io_.heartbeat_pulse();}) || !heartbeat_.edge_applied(last_now_))) return fail(Fault::heartbeat);
+    if(pulse) {
+        if(!operation([&]{return io_.heartbeat_pulse();})) return fail(Fault::io);
+        if(!heartbeat_.edge_applied(last_now_)) return fail(Fault::heartbeat);
+    }
     return true;
 }
 bool MotionExecutor::update(const Output& output,const MotionEvidence& e) {

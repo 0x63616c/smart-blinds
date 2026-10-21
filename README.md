@@ -12,7 +12,7 @@ No complete unit has been built or physically validated.
 
 [Enclosure comparison](docs/mechanical/2026-10-19-holder-and-drive-trade-study.md) · [Electronics comparison](docs/electrical/2026-10-19-power-control-trade.md) ·
 [Design brief](docs/brief.md) · [Progress](docs/status.md) · [Measurements](docs/measurements.json) ·
-[Validation plan](docs/verification-plan.md) · [Shopping list](bom/README.md) · [Wi-Fi motion checkpoint](docs/firmware/wifi-motion.md) · [Local ownership](docs/firmware/local-ownership.md)
+[Validation plan](docs/verification-plan.md) · [Shopping list](bom/README.md) · [Wi-Fi motion checkpoint](docs/firmware/wifi-motion.md) · [Local ownership](docs/firmware/local-ownership.md) · [Physical control review](docs/firmware/physical-control.md)
 
 ## The product
 

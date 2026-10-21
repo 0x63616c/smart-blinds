@@ -157,6 +157,11 @@ jobs:
           SB_THREAD_LIBRARY="$PWD/work/thread-transport-build/libsb_thread.so" \
             python3 -m unittest integrations.thread_transport.test_transport integrations.thread_transport.test_clock integrations.thread_transport.test_motion integrations.thread_bridge.test_bridge integrations.thread_bridge.test_group_dtls -v
 
+      - name: Exercise persistent physical ownership and unchanged strict motion timing
+        run: |
+          SB_THREAD_LIBRARY="$PWD/work/thread-transport-build/libsb_thread.so" \
+            python3 -m unittest integrations.physical_control.test_actor integrations.physical_control.test_boundaries integrations.physical_control.test_handoff integrations.physical_control.test_publication_boundaries -v
+
   home-assistant:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -189,6 +194,35 @@ jobs:
           assert "sb_telemetry_client_new" in symbols
           assert "sb_telemetry_peer_" not in symbols, "Synthetic peer entered the client library"
           PY
+      - name: Build isolated strict-motion and scripted-contract fixture libraries
+        run: |
+          git clone --depth 1 --branch v4.3.5b https://github.com/obgm/libcoap.git work/physical-libcoap-src
+          cmake -S integrations/thread_transport -B work/physical-strict-build \
+            -DLIBCOAP_SOURCE_DIR="$PWD/work/physical-libcoap-src" \
+            -DSB_ALLOW_CCM8_POLICY=ON -DSB_BUILD_TEST_PEER=ON -DSB_BUILD_CONTRACT_PEER=OFF \
+            -DCMAKE_BUILD_TYPE=Release
+          cmake --build work/physical-strict-build -j4
+          cmake -S integrations/thread_transport -B work/physical-contract-build \
+            -DLIBCOAP_SOURCE_DIR="$PWD/work/physical-libcoap-src" \
+            -DSB_ALLOW_CCM8_POLICY=ON -DSB_BUILD_TEST_PEER=OFF -DSB_BUILD_CONTRACT_PEER=ON \
+            -DCMAKE_BUILD_TYPE=Release
+          cmake --build work/physical-contract-build -j4
+          python - <<'PY_SYMBOLS'
+          import subprocess
+          def exported(path):
+              return subprocess.check_output(["nm", "-D", "--defined-only", path], text=True)
+          client = exported("work/physical-contract-build/libsb_thread.so")
+          peer = exported("work/physical-contract-build/libsb_contract_peer.so")
+          assert "sb_actor_client_new" in client
+          assert "sb_contract_peer_" not in client and "sb_motion_peer_" not in client and "sb_test_peer_" not in client
+          assert "sb_contract_peer_new" in peer and "sb_contract_peer_decoded" in peer
+          assert "MotionExecutor" not in peer and "MotionSession5cycle" not in peer
+          PY_SYMBOLS
+      - name: Exercise scripted contract boundaries without substituting strict timing checks
+        run: |
+          SB_THREAD_LIBRARY="$PWD/work/physical-contract-build/libsb_thread.so" \
+          SB_CONTRACT_LIBRARY="$PWD/work/physical-contract-build/libsb_contract_peer.so" \
+            python -m unittest integrations.thread_transport.test_contract_peer integrations.thread_transport.test_contract_limits -v
       - name: Exercise read-only telemetry ownership over real DTLS and HTTP
         run: |
           SB_TELEMETRY_LIBRARY="$PWD/work/telemetry-build/libsb_telemetry.so" \
@@ -196,7 +230,17 @@ jobs:
       - name: Exercise actual integration and loopback bridge
         run: |
           SB_TELEMETRY_LIBRARY="$PWD/work/telemetry-build/libsb_telemetry.so" \
+          SB_THREAD_LIBRARY="$PWD/work/physical-strict-build/libsb_thread.so" \
+          SB_CONTRACT_LIBRARY="$PWD/work/physical-contract-build/libsb_contract_peer.so" \
+          SB_CONTRACT_EVIDENCE="$PWD/work/physical-contract-evidence.jsonl" \
             python -m pytest -q integrations/home_assistant/ha_tests
+      - name: Retain scripted application evidence, including failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: physical-contract-application-evidence
+          path: work/physical-contract-evidence.jsonl
+          if-no-files-found: warn
 
   native-schematic:
     runs-on: ubuntu-24.04

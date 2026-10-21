@@ -73,10 +73,10 @@ No owner's HA configuration was changed.
 ## Remaining boundaries
 
 Do not run this service alongside the per-job group transport for the same device.
-Physical covers require a sole actor spanning telemetry, preflight, movement,
-settling and verified OFF handoff; it must preserve the existing durable message
-ledger and suppress diagnostics while motion is supervised. That integration is
-not provided by this read-only checkpoint.
+The separate [physical-control bridge](physical-control.md) now supplies a sole
+actor spanning telemetry, preflight, movement, settling and verified OFF handoff.
+It preserves the existing durable ledger and suppresses diagnostics during a job.
+This read-only mode remains unchanged; it cannot upgrade itself to control mode.
 
 Actual gauge/pack/calibration/reference/factory records, commissioning, secure
 updates, charge-enable control and local endpoint gestures remain absent. USB-only

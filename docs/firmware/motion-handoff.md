@@ -1,8 +1,8 @@
 # Physical motion-to-idle handoff
 
-This isolated checkpoint connects the actual Wi-Fi motion policy and the existing
-C6 control/sensor workers at completion. It does not implement the persistent HA
-motion actor yet, commission a device, or enable any default qualification record.
+The device handoff connects the actual Wi-Fi motion policy and the existing
+C6 control/sensor workers at completion. The separate [physical-control actor](physical-control.md)
+now consumes it without commissioning a device or enabling any default qualification record.
 The existing fifteen-field motion-status contract is unchanged.
 
 ## Resolved completion dependency
@@ -63,7 +63,7 @@ uncertain sends and reserved unused IDs remain burned even if never accepted by
 the device. Terminal `command`/`result` remain the actual core history; a rejected
 prepare can leave the preceding command (including zero), not a fictional job.
 
-## Persistent actor remains the next integration
+## Persistent actor consumer
 
 The host must correlate nonce, boot, its existing sole DTLS handle, its observed
 terminal command and accepted-message history. It must bound observation age at
@@ -73,8 +73,9 @@ handoff closes the job/owner; it must not trigger reconnect or replay. Handoff i
 only an OFF/ownership observation. Every subsequent job still needs the existing
 fresh clock, power, physical reference, local selection and durable reservation.
 
-No combined host handle, HA physical cover or next-reservation operation is added
-by this checkpoint. Telemetry-only handles remain telemetry-only.
+The separate physical-control implementation adds an explicit combined host
+handle, HA covers and increasing next-reservation adoption. Telemetry-only handles
+remain telemetry-only. The source and physical OFF contract above is unchanged.
 
 ## Verification scope
 

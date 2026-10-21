@@ -47,7 +47,7 @@ corrections must be verified against the exact model used by the viewer.
 | Main controller | Source-driven 54 × 80 mm four-layer partial route: 206 parts, 649 pins, 516 segments, 120 vias; native schematic and corrected lands reconciled | 352 open connections and three retained hybrid type findings; finish remaining power/signal routing and qualify current, thermal, transient and manufacturing behavior |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
-| Home Assistant | Nine HA 2026.10.2 framework tests pass locally and in CI, including authenticated HTTP/DTLS diagnostics; simulator retains shared physical height across different calibration maps | Sole physical movement owner, periodic idle gauge policy and hardware qualification |
+| Home Assistant | Review candidate adds an explicitly selected physical-control mode with one persistent connection per blind, durable commands and confirmed OFF handoff; simulator and read-only modes remain | Full validation is not passing: strict transport/actor and one scripted HA case fail; commissioning, periodic idle gauge policy and hardware qualification remain |
 | Radio transport | C6 Wi-Fi automatic-light-sleep evaluation and separate default-unqualified motion target; six real localhost DTLS tests; Thread target and seven-peer group adapter remain | Actual RF/power tests, physical qualification, temperature continuity, commissioned configuration and unattended recovery |
 | Costs | Dated parts inventory and component demand for two/eight units, sourced harness candidates and a source-bound print-volume estimate | Final board/assembly quote, slicer-based filament use, hardware totals, shipping, tax and stock refresh |
 
@@ -56,6 +56,21 @@ family dimensions; an exact motor measurement is **not required to continue the
 CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisional.
 
 ## Earlier published checkpoints
+
+The [physical-control integration candidate](firmware/physical-control.md) now
+exists in source on its review branch. Fresh owning-checkout builds pass, along
+with 63 application checks, 10 scripted transport checks and 12 read-only checks.
+Strict transport is 46/49, persistent actor tests 7/10 and actual HA tests 18/19.
+The HA failure is the scripted one-peer lifecycle; this run's strict HA and four
+scripted seven-peer cases pass. These results do not resolve the previous clock
+fault or establish reliable timing. The change remains under review, with all
+required checks and motor-disable defaults preserved. Its first review-branch CI
+run passed 12/13 jobs; the failed job exposed a missing HA dependency in the final
+schema-validation import. A focused correction preserves that validation and
+passes a no-framework regression plus two HA client checks. Fresh CI is pending.
+One subsequent scripted one-peer diagnostic passed with improved evidence capture;
+it does not resolve the original clock fault. Earlier CI results below belong to
+their named historical revisions.
 
 [All thirteen Design checks jobs passed for `0a148d2`](https://github.com/0x63616c/smart-blinds/actions/runs/39429106462),
 including the battery/source telemetry path through Home Assistant, monitored-PD
