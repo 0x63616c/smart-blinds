@@ -100,8 +100,13 @@ Strict transport is 46/49, persistent actor tests 7/10 and actual HA tests 18/19
 The HA failure is the scripted one-peer lifecycle; this run's strict HA and four
 scripted seven-peer cases pass. These results do not resolve the previous clock
 fault or establish reliable timing. The change remains under review, with all
-required checks and motor-disable defaults preserved. Earlier CI results below
-belong to their named historical revisions.
+required checks and motor-disable defaults preserved. Its first review-branch CI
+run passed 12/13 jobs; the failed job exposed a missing HA dependency in the final
+schema-validation import. A focused correction preserves that validation and
+passes a no-framework regression plus two HA client checks. Fresh CI is pending.
+One subsequent scripted one-peer diagnostic passed with improved evidence capture;
+it does not resolve the original clock fault. Earlier CI results below belong to
+their named historical revisions.
 
 [All thirteen Design checks jobs passed for `0a148d2`](https://github.com/0x63616c/smart-blinds/actions/runs/39429106462),
 including the battery/source telemetry path through Home Assistant, monitored-PD

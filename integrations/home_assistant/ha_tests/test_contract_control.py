@@ -93,8 +93,9 @@ async def test_scripted_one_owner_ha_http_dtls_lifecycle(hass,socket_enabled,qua
     finally:
         evidence=dict(evidence_kind='synthetic_application_contract',hardware_qualified=False,
             qualified_fixture=qualified,passed=passed,stage=stage,peer_phase=peer.phase,trace=peer.trace,
+            first_fault=peer.diagnostic,decoded_requests=peer.decoded_requests,
             application=service.state(),workers=[] if service.last_operation is None else
-            [dict(name=name,failure=w.failure,calls=w.calls,reusable=w.reusable) for name,w in service.last_operation.workers.items()])
+            [dict(name=name,failure=w.failure,calls=list(w.calls),reusable=w.reusable) for name,w in service.last_operation.workers.items()])
         if dest:=os.environ.get('SB_CONTRACT_EVIDENCE'):
             with open(dest,'a') as f:f.write(json.dumps(evidence,sort_keys=True)+'\n')
         def close():

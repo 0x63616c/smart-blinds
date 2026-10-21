@@ -1,5 +1,8 @@
 import ctypes as C
 import json
+import importlib.util
+import subprocess
+import sys
 import threading
 import urllib.request
 from .server import ControlServer
@@ -20,6 +23,15 @@ from integrations.physical_bridge.service import Pairing
 from .service import PhysicalControl
 
 
+
+def control_schema():
+    # Load the actual HA validator without running its HA package entrypoint.
+    path=Path(__file__).resolve().parents[1]/'home_assistant/custom_components/smart_blinds/api.py'
+    spec=importlib.util.spec_from_file_location('smart_blinds_schema_check',path)
+    api=importlib.util.module_from_spec(spec);spec.loader.exec_module(api)
+    return api
+
+
 def selection(peer,name='blind'):
     return Selection(name,'::1',peer.port,'disposable',peer.key,peer.boot,7,0,100000,30000,60000,'fixture-only',True)
 
@@ -35,6 +47,36 @@ def wait(predicate,timeout=8):
     raise AssertionError('Bounded fixture wait expired')
 
 class ActorTests(unittest.TestCase):
+    def test_control_schema_without_home_assistant_or_aiohttp(self):
+        # A clean child cannot accidentally rely on the HA test job's packages.
+        # No library/peer is instantiated; the state is the existing pure fixture.
+        code="""
+import importlib.abc, sys
+class NoHA(importlib.abc.MetaPathFinder):
+    def find_spec(self, fullname, path=None, target=None):
+        if fullname.split('.')[0] in ('homeassistant','aiohttp'):
+            raise ModuleNotFoundError('Unexpected framework dependency: '+fullname)
+sys.meta_path.insert(0,NoHA())
+from copy import deepcopy
+from integrations.physical_control.test_actor import control_schema
+from integrations.physical_control.test_publication_boundaries import service,PresentationTests
+api=control_schema()
+s,_=service();state=PresentationTests().state(s)
+assert api.validate_control_state(state) is state
+for edit in (lambda v:v.update(mode='simulation'),
+             lambda v:v['devices'][0].update(charging=True),
+             lambda v:v['devices'][0].update(position_age_ms=1800001)):
+    bad=deepcopy(state);edit(bad)
+    try:api.validate_control_state(bad)
+    except api.BridgeError:pass
+    else:raise AssertionError('Malformed control state was accepted')
+assert not any(n.split('.')[0] in ('homeassistant','aiohttp') for n in sys.modules)
+print('actual schema: valid accepted; mode, charge and source-age violations rejected')
+"""
+        result=subprocess.run([sys.executable,'-S','-c',code],cwd=Path(__file__).resolve().parents[2],
+                              capture_output=True,text=True,timeout=10)
+        self.assertEqual(result.returncode,0,result.stdout+result.stderr)
+
     def test_two_jobs_one_owner(self):
         with tempfile.TemporaryDirectory() as tmp, MotionPeer() as peer:
             s=selection(peer);path=Path(tmp)/'ledger'
@@ -94,8 +136,7 @@ class ActorTests(unittest.TestCase):
             self.assertLess(max(heights)-min(heights),1)
             self.assertTrue(all(p.off for p in peers))
             wait(lambda:all(a.observation.received_us>old for a,old in zip(service.actors.values(),initial)))
-            from integrations.home_assistant.custom_components.smart_blinds.api import validate_control_state
-            state=validate_control_state(request('/v3/state'))
+            state=control_schema().validate_control_state(request('/v3/state'))
             self.assertTrue(state['group']['aligned'])
             self.assertAlmostEqual(state['group']['position'],50,places=1)
             for a in service.actors.values():self.assertEqual(a.session.handshakes,1)

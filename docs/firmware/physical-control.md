@@ -39,3 +39,19 @@ actor suite 7/10, and Home Assistant 18/19. The HA failure was the qualified
 scenarios passed that run. The first one-peer fault occurred before movement and
 still needs diagnosis. No test was retried or deadline relaxed. This change
 remains under review and does not establish a passing release gate.
+
+The first [review-branch CI run](https://github.com/0x63616c/smart-blinds/actions/runs/39564511324)
+passed 12 of 13 jobs. Its failure was a separate test dependency error: the strict
+seven-peer lifecycle reached its final schema check, which imported Home Assistant
+in the lightweight transport job. The successor loads the actual validator without
+the HA entrypoint and defers HTTP-library imports until a request. All schema
+functions and the seven-peer assertion remain intact. A clean no-framework check
+and two actual HA mocked-client regressions pass; fresh CI is pending.
+
+The one-peer failure capture now retains the fixture's existing first-fault fields,
+decoded requests and copied worker history. One targeted diagnostic execution with
+that capture passed, preserving one connection through synthetic READY, movement,
+terminal/OFF and resumed telemetry. It had no fault predicate to inspect and does
+not resolve the original failure. Source review narrows the old failure to the
+active clock guard: a currently qualified clock can still fail the stricter future
+projection used during a move. No clock policy or timing bound was changed.

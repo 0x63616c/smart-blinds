@@ -60,9 +60,20 @@
   },
   "ci": {
     "existing_required_tests_preserved": true,
-    "additive_workflow_proposed": true,
-    "executed": false,
-    "strict_failures_remain_blocking": true
+    "additive_workflow_proposed": false,
+    "executed": true,
+    "strict_failures_remain_blocking": true,
+    "additive_workflow_implemented": true,
+    "last_completed": {
+      "head": "80acb3c62278e04bf30ad056ae780e2cde838f65",
+      "run": 39564511324,
+      "passed_jobs": 12,
+      "failed_jobs": 1,
+      "failed_job": "thread-transport",
+      "failure": "Final strict seven-peer schema check imported Home Assistant package entrypoint in a deliberately dependency-free job.",
+      "failed_log_sha256": "5fa682d0d6b4903858878d9ee0b806949b49d05e59ff48d1bdccdcbcc88a0300"
+    },
+    "successor": "Import-boundary correction prepared; fresh CI result pending"
   },
   "source_evidence": [
     {
@@ -212,5 +223,40 @@
         "sha256": "3c8975494a6f50c2ee4979468a1f184269869d629bab5dde945854f540eefd32"
       }
     ]
+  },
+  "observation_repair": {
+    "scope": "One-peer finally capture now retains existing native first-fault/decoded-request observations and copies worker call history.",
+    "patch_sha256": "b284103ed667f5051f2735a9fb5755c5515410ba0b1f0215dcb8c060faf42d1a",
+    "timing_changed": false,
+    "pure_regression_and_restored_defects": "pass"
+  },
+  "single_targeted_diagnostic": {
+    "runs": 1,
+    "passed": 1,
+    "failed": 0,
+    "test": "test_scripted_one_owner_ha_http_dtls_lifecycle[True]",
+    "first_fault": null,
+    "connections": 1,
+    "decoded_requests": 31,
+    "result_sha256": "c93245fde1d898957b6e63290b4e86e66c5281648578b43035c040214db3847f",
+    "evidence_sha256": "2d95ff3fd762b764592b3ab679fc47228ff70427a57670c75c72d83c4d6ff896",
+    "manifest_sha256": "c710582f8283ec7b842385421e1fa9ddf1b795e0c36f5a1700cbec47be6297d1",
+    "original_failure_resolved": false,
+    "physical_observations": false,
+    "interpretation": "Successful scripted application lifecycle; original clock predicate cannot be recovered from this new execution."
+  },
+  "ci_import_boundary_fix": {
+    "files": 2,
+    "patch_sha256": "fca271c672e5339447b1c3fce292ad9df7cd4d68b17be8e83895cda886770325",
+    "schema_bodies_unchanged": true,
+    "seven_peer_assertion_preserved": true,
+    "new_dependencies": false,
+    "no_framework_regression_passed": 1,
+    "mocked_ha_client_regressions_passed": 2,
+    "restored_dependency_edges_rejected": [
+      "homeassistant",
+      "aiohttp"
+    ],
+    "timing_campaigns_rerun": 0
   }
 }

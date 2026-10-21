@@ -5,7 +5,11 @@ import json
 import math
 from urllib.parse import urlsplit
 
-from aiohttp import ClientError, ClientSession, ClientTimeout
+from typing import TYPE_CHECKING
+
+# The schema validators are also used by dependency-free transport checks.
+if TYPE_CHECKING:
+    from aiohttp import ClientSession
 
 
 class BridgeError(Exception):
@@ -181,7 +185,7 @@ def validate_control_state(value):
 
 
 class BridgeClient:
-    def __init__(self, session: ClientSession, base_url: str, token: str, mode="simulation"):
+    def __init__(self, session: "ClientSession", base_url: str, token: str, mode="simulation"):
         if mode not in ("simulation", "physical_read_only", "physical_control"):
             raise ValueError("invalid_mode")
         self.mode = mode
@@ -192,6 +196,8 @@ class BridgeClient:
         self._token = token
 
     async def _request(self, method: str, path: str, payload=None):
+        from aiohttp import ClientError, ClientTimeout
+
         try:
             async with self.session.request(
                 method, self.base_url + path, json=payload,
