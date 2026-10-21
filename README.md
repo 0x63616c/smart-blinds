@@ -31,6 +31,11 @@ blinds are needed to test synchronization before committing to the eight-unit ba
 
 ## Design gallery
 
+**Layout rework:** the [54 × 80 mm comparison and native placement views](docs/trades/2026-10-21-cleaner-main-board.md)
+show the proposed cleaner board. All 206 components are on-grid; routing and
+revised enclosure fit are still unfinished. The canonical route shown below is
+the earlier checkpoint and does not meet the new routing-style requirements.
+
 These images are generated from the design sources. [Preview generation and provenance](docs/previews.md).
 A green preview badge means the images generated successfully, not that the hardware is validated.
 The enclosure previews below still contain a [known PCB orientation error](docs/mechanical/pcb-orientation-review.md).

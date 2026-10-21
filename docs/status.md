@@ -1,6 +1,6 @@
 # Progress
 
-Updated 20 October 2026. [Public repository](https://github.com/0x63616c/smart-blinds).
+Updated 21 October 2026. [Public repository](https://github.com/0x63616c/smart-blinds).
 
 **Prototype design in progress.** The enclosure, circuit captures and control software
 are reviewable. Both experimental battery-carrier routes are fully connected;
@@ -19,8 +19,14 @@ reconsidered before routing continues. Earlier fixed-anchor and inward-harness
 studies are historical proposals, not final placement authority.
 
 The owner now permits a modest board-size increase to improve the layout.
-54 × 80 mm and 58 × 80 mm bodies are being compared with the current
-54 × 68.5 mm outline; enclosure fit and circuit grouping will decide the size.
+The [new comparison and actual placement views](trades/2026-10-21-cleaner-main-board.md)
+recommend 54 × 80 mm as the working candidate over 58 × 80 mm. Three placement
+passes put all 206 components on-grid, preserve the circuit graph and round the
+outline; four missing physical models and the bulk-capacitor height are corrected.
+Final native placement DRC has no copper-clearance or courtyard findings, but
+482 unconnected items and silkscreen/library findings remain. This candidate
+is still unrouted; the top-body routing requirement is not yet satisfied or proven.
+Revised enclosure fit, final routing and assembly cost will decide the outline.
 The PCB opened in KiCad is still the existing unfinished route, not this rework.
 
 Local native KiCad automation now runs through the
@@ -99,6 +105,14 @@ production timing limits. The original timeout log does not reveal its first
 assertion. The last thirteen-job success above remains the earlier checkpoint.
 Physical movement controls in Home Assistant and hardware qualification remain
 unfinished.
+
+The following [diagnostic-only fixture checkpoint, `3ae5c76`](https://github.com/0x63616c/smart-blinds/actions/runs/39542952966),
+retains production timing limits and adds first-failing-operation evidence.
+Eleven of thirteen jobs pass. The control job fails at the handoff-request test;
+the transport job passes 61 of 62 tests but a group peer rejects an operation as
+invalid. Its executor/I/O diagnostic fields are zero, so this failure is not
+evidence of the earlier I/O overrun. Both failures remain under investigation;
+the earlier all-green run is not presented as current-head validation.
 
 Native populated-PCB export exposed a [confirmed enclosure orientation error](mechanical/pcb-orientation-review.md):
 the old allocation reflected the component side. The current preview and the

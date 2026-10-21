@@ -1,0 +1,35 @@
+{
+  "status": "Frozen unrouted placement study, not manufacturing acceptance",
+  "size_mm": [
+    54,
+    80
+  ],
+  "parts": 206,
+  "physical_pad_records": 696,
+  "model_attachments": 204,
+  "source_sha256": {
+    "work/clean-layout-study/native-54-v3/placement.kicad_pcb": "f1ca3ba750b7758be82cc0548de0ce21bf498560ecdca01ec3b675e8b67aecea",
+    "work/clean-layout-study/native-54-v3/placement.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "work/clean-layout-study/native-54-v3/plan.json": "c40a72200903be16f4500171ff729cda7f52e0cd22649ce38ecc0388a7f1efed",
+    "work/clean-layout-study/native-54-v3/renders.json": "2b15de3849fdb18fc98c62fd3fe4fd8e23601a6b46492e06a990e8ef7b9a193b",
+    "work/clean-layout-study/native-54-v3/final-rules-check.json": "e6648c9f642540713b5509f0c8a7156ad0a904348a76c4c9394f4e1395e9f3fb",
+    "work/placement-audit-54-v3/checkpoint.json": "685a445e49d72f846b77df1a5a31bc80f4664b67fe9af97ecee2b3089f58317f"
+  },
+  "image_sha256": {
+    "top.png": "f5493c38e4dda1e4b9977c683798a839243fe2a0ad3935c362f6f3ae973c8215",
+    "oblique.png": "6b1757a2ec42153a82f0c4cd668b426b6d135ff46d0be346180b0cb5139ade65"
+  },
+  "native_placement_run": "20261021T043259Z-c6bfc454",
+  "native_render_run": "20261021T043335Z-9f195803",
+  "final_drc_run": "20261021T043640Z-f0366ebe",
+  "drc": {
+    "footprint_type_mismatch": 5,
+    "silk_overlap": 136,
+    "silk_over_copper": 57,
+    "lib_footprint_mismatch": 4,
+    "silk_edge_clearance": 14
+  },
+  "unconnected_items": 482,
+  "canonical_route_changed": false,
+  "source_storage": "Trial sources remain under local work/; these review snapshots are not registered automatic-gallery outputs."
+}
