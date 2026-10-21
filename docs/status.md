@@ -114,6 +114,13 @@ invalid. Its executor/I/O diagnostic fields are zero, so this failure is not
 evidence of the earlier I/O overrun. Both failures remain under investigation;
 the earlier all-green run is not presented as current-head validation.
 
+The subsequent [ordered timestamp fixture correction](firmware/transport-timing-diagnostics.md#ordered-request-observations-in-the-host-fixture)
+fixes ten calls whose receive/send clock reads had unspecified evaluation order.
+Both the candidate and a fresh owning-checkout runtime test pass once; a reversed
+capture control fails as expected. The actual radio handler and production
+timing limits are unchanged. Fresh CI and the separate transport rejection
+remain open.
+
 Native populated-PCB export exposed a [confirmed enclosure orientation error](mechanical/pcb-orientation-review.md):
 the old allocation reflected the component side. The current preview and the
 joint-service study therefore do not establish physical PCB fit, despite their

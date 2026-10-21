@@ -591,6 +591,26 @@ void pd_adapter_owner_epoch() {
     }
     current=nullptr;
 }
+struct RequestTimes { std::uint64_t received,sent; };
+template<class Clock> RequestTimes request_times(Clock clock) {
+    // Function arguments have unspecified evaluation order. Capture the receive
+    // observation before the send observation, as the real radio handler does.
+    const auto received=clock();
+    const auto sent=clock();
+    return {received,sent};
+}
+template<class Clock> smart_blinds::wifi::MotionBinding::Reply fixture_request(
+    smart_blinds::wifi::MotionBinding& app,std::uint64_t owner,std::string_view path,
+    std::uint8_t method,const std::uint8_t* body,std::size_t size,Clock clock) {
+    const auto times=request_times(clock);
+    return app.request(owner,path,method,body,size,times.received,times.sent);
+}
+void ordered_request_timestamps() {
+    std::uint64_t clock=100;
+    const auto stamps=request_times([&] {return clock++;});
+    check(stamps.received==100 && stamps.sent==101 && clock==102,
+          "fixture request clock reads inverted, reused or omitted");
+}
 void actual_wifi_operation_sensor_closure_reproduction(bool early_race=false,bool mid_race=false) {
     Fixture f(true);
     struct Port final:smart_blinds::wifi::MotionPort {
@@ -613,8 +633,16 @@ void actual_wifi_operation_sensor_closure_reproduction(bool early_race=false,boo
     check(app.policy.configure(c,now()/1000) && app.policy.begin_association(now()/1000) &&
           app.policy.network_ready(1,now()/1000),"composed policy configuration failed");
     const auto owner=app.connected(now());check(owner,"composed owner missing");
+    // The production guard remains strict. Deliberately inverted observations
+    // must be rejected before the informational handoff nonce can be consumed.
+    const auto received=now();
+    std::array<std::uint8_t,16> ordering_query{};ordering_query[7]=99;ordering_query[15]=1;
+    check(app.request(owner,"v1/handoff",2,ordering_query.data(),ordering_query.size(),received+1,received).code==129,
+          "binding accepted inverted receive/send timestamps");
+    check(fixture_request(app,owner,"v1/handoff",2,ordering_query.data(),ordering_query.size(),now).code==69,
+          "rejected inverted request consumed handoff nonce");
     std::array<std::uint8_t,16> wake{};wake[7]=99;wake[15]=1;
-    check(app.request(owner,"v1/wake",2,wake.data(),wake.size(),now(),now()).code==68,"composed wake failed");
+    check(fixture_request(app,owner,"v1/wake",2,wake.data(),wake.size(),now).code==68,"composed wake failed");
     await([&] {return f.power_ready();},"composed warmup failed");
     check(f.runtime->reference({true,99,1,now(),7,7,0}),"synthetic reference was not queued");
     const auto report=[&] {
@@ -625,29 +653,30 @@ void actual_wifi_operation_sensor_closure_reproduction(bool early_race=false,boo
     prepare.message=1;prepare.command=1;prepare.calibration=7;prepare.probe=1;prepare.sent_us=now();prepare.start_us=now()+1000000;
     prepare.origin_um=0;prepare.target_um=1000;prepare.speed_um_s=1000;prepare.acceleration_um_s2=1000;
     const auto bytes=blinds::wire::encode(prepare);
-    check(app.request(owner,"v1/motion",2,bytes.data(),bytes.size(),now(),now()).code==68,"prepare not queued");
+    check(fixture_request(app,owner,"v1/motion",2,bytes.data(),bytes.size(),now).code==68,"prepare not queued");
     // Deliberately absent clock qualification rejects prepare before any motor
     // action. This is a real bounded rejection/STOP recovery path, not a forged
     // successful motion measurement or a direct mutation of the policy state.
     await([&] {return report().find("\"result\":\"clock\"")!=std::string::npos;},"clockless prepare did not reject");
     blinds::wire::Request stop{};stop.kind=blinds::wire::Kind::stop;stop.boot=99;stop.message=2;stop.command=1;stop.sent_us=now();
     const auto stopped=blinds::wire::encode(stop);
-    check(app.request(owner,"v1/motion",2,stopped.data(),stopped.size(),now(),now()).code==68,"STOP not queued");
+    check(fixture_request(app,owner,"v1/motion",2,stopped.data(),stopped.size(),now).code==68,"STOP not queued");
     await([&] {return report().find("\"result\":\"stopped\"")!=std::string::npos;},"STOP terminal outcome missing");
     await([&] {app.tick(now());return app.policy.state()==smart_blinds::wifi::Policy::State::idle && held_locks==0;},
           "terminal sensor handoff did not release operation after actual OFF ACK",1000);
     check(!app.policy.awake() && !f.power_ready() && f.reg(0x10)==0x90 && !runtime_fake::actuations,
           "terminal handoff retained sensing or bypassed OFF inhibition");
     std::array<std::uint8_t,16> query{};query[7]=99;
-    unsigned nonce=0;
+    unsigned nonce=1;
     const auto handoff=[&] {
         query[15]=static_cast<std::uint8_t>(++nonce);
-        const auto reply=app.request(owner,"v1/handoff",2,query.data(),query.size(),now(),now());
+        const auto reply=fixture_request(app,owner,"v1/handoff",2,query.data(),query.size(),now);
+        if(reply.code!=69) std::cerr<<"actual handoff reply code="<<static_cast<unsigned>(reply.code)<<" nonce="<<nonce<<std::endl;
         check(reply.code==69,"actual handoff request failed");return std::string(reply.body.data());
     };
     const auto settled=[&](const std::string& value) {return value.find("\"settled_off\":true")!=std::string::npos;};
     await([&] {return settled(handoff());},"fresh physical OFF ACK did not publish handoff",1000);
-    check(app.request(owner,"v1/handoff",2,query.data(),query.size(),now(),now()).code==128,
+    check(fixture_request(app,owner,"v1/handoff",2,query.data(),query.size(),now).code==128,
           "replayed handoff nonce accepted");
     if(mid_race) {
         const auto submit_late=[&](unsigned number) {
@@ -770,7 +799,7 @@ void actual_wifi_same_owner_next_wake() {
           app.policy.network_ready(1,now()/1000),"next-wake policy configuration failed");
     const auto owner=app.connected(now());
     std::array<std::uint8_t,16> wake{};wake[7]=99;wake[15]=1;
-    check(app.request(owner,"v1/wake",2,wake.data(),wake.size(),now(),now()).code==68,"next-wake first wake failed");
+    check(fixture_request(app,owner,"v1/wake",2,wake.data(),wake.size(),now).code==68,"next-wake first wake failed");
     await([&] {return f.power_ready();},"next-wake warmup failed");
     check(f.runtime->reference({true,99,1,now(),7,7,0}),"next-wake reference rejected");
     await([&] {char out[1500]{};f.runtime->status(out,sizeof(out),now());return std::strstr(out,"\"phase\":\"idle\"");},
@@ -778,21 +807,21 @@ void actual_wifi_same_owner_next_wake() {
     blinds::wire::Request req{};req.kind=blinds::wire::Kind::lease;req.boot=99;req.message=1;req.command=1;
     req.calibration=7;req.probe=1;req.sent_us=now();
     auto b=blinds::wire::encode(req);
-    check(app.request(owner,"v1/motion",2,b.data(),b.size(),now(),now()).code==68,"next-wake intent rejected");
+    check(fixture_request(app,owner,"v1/motion",2,b.data(),b.size(),now).code==68,"next-wake intent rejected");
     req.kind=blinds::wire::Kind::stop;req.message=2;b=blinds::wire::encode(req);
-    check(app.request(owner,"v1/motion",2,b.data(),b.size(),now(),now()).code==68,"next-wake STOP rejected");
+    check(fixture_request(app,owner,"v1/motion",2,b.data(),b.size(),now).code==68,"next-wake STOP rejected");
     await([&] {app.tick(now());return app.policy.state()==smart_blinds::wifi::Policy::State::idle && held_locks==0;},
           "next-wake terminal never parked",1000);
     // A new explicit wake/preflight must restore active sensing without needing
     // another connection or clearing a definitive prior outcome in software.
     wake[15]=2;
-    check(app.request(owner,"v1/wake",2,wake.data(),wake.size(),now(),now()).code==128,
+    check(fixture_request(app,owner,"v1/wake",2,wake.data(),wake.size(),now).code==128,
           "terminal handoff bypassed the existing radio cooldown");
     check(!app.policy.awake() && held_locks==0,"rejected cooldown wake resumed sensing");
     // Advance the shared test monotonic clock only while fully parked. The
     // existing window lasts 10 s plus 5 s cooldown; no deadline is relaxed.
     offset.fetch_add(15000000);app.tick(now());
-    check(app.request(owner,"v1/wake",2,wake.data(),wake.size(),now(),now()).code==68,"second same-owner wake failed");
+    check(fixture_request(app,owner,"v1/wake",2,wake.data(),wake.size(),now).code==68,"second same-owner wake failed");
     await([&] {return f.power_ready();},"new preflight did not resume qualified sensing",600);
     check(app.policy.awake() && f.reg(0x10)==0x93 && held_locks==2,"second preflight bypassed active guards");
     std::cout<<"RESOLVED: actual terminal sensor OFF ACK precedes policy idle/PM release; same-owner next wake resumes guarded sensing; zero motor actuations\n";
@@ -836,6 +865,8 @@ void run_case(const char* name,const std::function<void()>& test) {
     std::cerr<<"BEGIN "<<name<<std::endl;test();std::cerr<<"PASS "<<name<<std::endl;
 }
 int main() {
+    ordered_request_timestamps();
+    if(std::getenv("SB_TEST_ORDERED_REQUEST_CLOCK")) return 0;
     if(std::getenv("SB_TEST_COPIED_PARK_WAKE")) {run_case("copied park wake",[]{wake_during_copied_park_request();});return 0;}
     if(std::getenv("SB_TEST_FAILED_BLOCKED_EXIT")) {failed_blocked_call_exit_probe();return 0;}
     if(std::getenv("SB_TEST_OFF_TRANSACTIONS")) {stationary_transaction_events();return 0;}

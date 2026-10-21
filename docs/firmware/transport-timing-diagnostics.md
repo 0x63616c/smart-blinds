@@ -1,5 +1,32 @@
 # Host transport timing diagnostics
 
+## Ordered request observations in the host fixture
+
+The next CI run, [39542952966](https://github.com/0x63616c/smart-blinds/actions/runs/39542952966),
+failed separately at `actual handoff request failed`. The fixture passed
+`now(), now()` as receive/send arguments in ten places. C++ does not specify
+their evaluation order, while the binding correctly rejects a send observation
+older than receipt. The actual radio handler already captures receipt first.
+
+The fixture now captures those observations in two sequenced statements. An
+increasing-clock control detects inverted, reused or omitted captures; the real
+binding still rejects explicitly reversed timestamps without consuming the
+handoff nonce. A handoff assertion now prints the returned code and nonce.
+No production source, deadline, wire schema or timing guard changed.
+
+The candidate and an independent fresh build from the owning checkout both
+passed `c6_runtime_owner_tests` on their first run (43.232 s and 43.37 s).
+A deliberately reversed capture order fails the focused control. These are
+host-software results, not physical-device timing evidence. The original CI log
+did not include its return code, so it cannot prove retrospectively that this
+specific guard caused that historical failure.
+
+That run's separate transport result was 61/62, with a peer returning `invalid`
+and zero executor/I/O diagnostic fields. Its exact rejecting guard remains
+unidentified; the fixture correction does not claim to resolve that failure.
+
+## First-failing I/O observations
+
 The localhost peer is a synthetic plant around the real motion session and
 executor. It is not a real-time host, MCU timing qualification, or a physical
 motor. The executor still enforces a 100 µs I/O envelope, 20 ms control cadence,
