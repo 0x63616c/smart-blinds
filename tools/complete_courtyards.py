@@ -65,7 +65,17 @@ def bounds(fp,entry):
     margin=entry['clearance_margin_mm'];grid=.05
     if margin!=.25:raise ValueError('Expected explicitly reviewed 0.25mm clearance')
     union=[min(pads[i],body[i])-margin for i in (0,1)]+[max(pads[i],body[i])+margin for i in (2,3)]
-    return [round(math.floor((v+1e-8)/grid)*grid,4) if i<2 else round(math.ceil((v-1e-8)/grid)*grid,4) for i,v in enumerate(union)]
+    minimum=[round(math.floor((v+1e-8)/grid)*grid,4) if i<2 else round(math.ceil((v-1e-8)/grid)*grid,4) for i,v in enumerate(union)]
+    retained=entry.get('retained_courtyard_bounds_mm')
+    if retained is None:return minimum
+    # A corrected land pattern may become smaller without forcing a reviewed
+    # assembly envelope to shrink. Never let an override reduce the minimum.
+    if (len(retained)!=4 or not all(type(v) in (int,float) and math.isfinite(v) for v in retained)
+        or any(retained[i]>minimum[i]+1e-8 for i in (0,1))
+        or any(retained[i]<minimum[i]-1e-8 for i in (2,3))
+        or any(abs(v/grid-round(v/grid))>1e-6 for v in retained)):
+        raise ValueError('Retained courtyard must enclose the full minimum on the 0.05mm grid')
+    return retained
 
 def drawing(box,key):
     return node('fp_rect',node('start',*box[:2]),node('end',*box[2:]),

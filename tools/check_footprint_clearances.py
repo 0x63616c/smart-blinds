@@ -16,6 +16,7 @@ import subprocess
 import tempfile
 from kicad_sexpr import children, one, parse, Atom, node
 from complete_courtyards import courtyard_items, bounds, pad_bounds
+from generate_schematics import native_cli
 ROOT=Path(__file__).resolve().parents[1]
 BOARDS={
     'main':'hw/layouts/blind-main/main-test/main-test.kicad_pcb',
@@ -45,7 +46,7 @@ def check_drc_report(report):
             'unconnected_items':len(report['unconnected_items'])}
 
 def run_drc(path):
-    cli=shutil.which('kicad-cli') or '/Applications/KiCad.app/Contents/MacOS/kicad-cli'
+    cli=native_cli()
     version=subprocess.run([cli,'version'],check=True,text=True,capture_output=True).stdout.strip()
     if not version.startswith('10.'):raise ValueError('KiCad 10 required for clearance DRC')
     before=path.read_bytes()
@@ -183,18 +184,22 @@ def check_board(which,path,expected):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--drc',action='store_true',help='Also run actual KiCad 10 assembly clearance checks on all three boards')
+    parser.add_argument('--boards',nargs='+',choices=tuple(BOARDS),default=list(BOARDS),
+                        help='Explicit board selection; the 54x80 controller uses the clean-main validator')
     args=parser.parse_args()
     plan=json.loads((ROOT/'hw/placement/footprint-clearances.json').read_text())
     expected={e['compiled_alias']:bounds(parse((ROOT/e['source']).read_text()),e) for e in plan['footprints']}
-    result={which:check_board(which,ROOT/path,expected) for which,path in BOARDS.items()}
-    if result['main']['new_envelopes_checked']!=sum(e['main_instances'] for e in plan['footprints']):
+    selected={which:BOARDS[which] for which in args.boards}
+    result={which:check_board(which,ROOT/path,expected) for which,path in selected.items()}
+    if 'main' in result and result['main']['new_envelopes_checked']!=sum(e['main_instances'] for e in plan['footprints']):
         raise ValueError('Main-board repaired instance count changed')
-    mechanical=json.loads((ROOT/'cad/parameters/retained-interfaces.json').read_text())['controller']
-    check_wire_source((ROOT/'cad/source/compact_retained.scad').read_text(),mechanical)
-    result['main']['encoder_wire_height']=check_overboard_wire(ROOT/BOARDS['main'],
-        mechanical['encoder_connector']['over_board_wire_constraint'])
+    if 'main' in result:
+        mechanical=json.loads((ROOT/'cad/parameters/retained-interfaces.json').read_text())['controller']
+        check_wire_source((ROOT/'cad/source/compact_retained.scad').read_text(),mechanical)
+        result['main']['encoder_wire_height']=check_overboard_wire(ROOT/BOARDS['main'],
+            mechanical['encoder_connector']['over_board_wire_constraint'])
     if args.drc:
-        for which,path in BOARDS.items():result[which]['drc']=run_drc(ROOT/path)
+        for which,path in selected.items():result[which]['drc']=run_drc(ROOT/path)
     print(json.dumps({'status':'Reviewed source outlines and all compiled pad extents checked; conditional package allowances remain; no physical or fabrication acceptance',
                       'boards':result},indent=2))
 if __name__=='__main__':main()

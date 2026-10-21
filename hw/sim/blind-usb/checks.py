@@ -54,6 +54,8 @@ def calculate():
             selected[name] = mpn
     assert set(selected) == {n for n, c in instances.items() if c in imports}, 'Unrated part'
     assert 'raw.voltage = 4.75V to 21V' in source
+    assert 'guarded.voltage = 0V to 17.6V' in source
+    assert 'output.voltage = 0V to 17.6V' in source
     assert 'host_bus.address = 40' in source
     assert 'pd.VSYS ~ host_logic.hv' in source
     assert 'pd.ALERT ~ alert_n.line' in source
@@ -120,7 +122,9 @@ def calculate():
     assert effective['vreg_1v2'] >= pd['internal_reg_cap_min_uf']
     # Deliberately charge both low-voltage regulator caps as though directly
     # on VBUS. This is a conservative nominal-capacitance planning sum only.
-    uncontrolled_uf = (4.7 + 3) * 1.1 * 1.15
+    # Only raw cap is directly across the connector; ST/regulator caps now sit
+    # behind the autonomous slew-controlled cutoff.
+    uncontrolled_uf = 4.7 * 1.1 * 1.15
     assert uncontrolled_uf < lim['uncontrolled_cap_planning_ceiling_uf']
     # Each series resistor can be high while the other two are low.
     rhi, rlo = 1000*(1+error), 1000*(1-error)
@@ -130,6 +134,8 @@ def calculate():
     assert discharge_current < pd['monitor_discharge_max_a']
     sink_base_current = lim['raw_max_v'] / (2*10000*(1-error))
     assert sink_base_current < .003
+    from protection_checks import calculate_protection
+    protection = calculate_protection(manifest, actual, verify, expected)
     canonical = {}
     for pin, net in sorted(expected.items()):
         canonical.setdefault(net, []).append(pin)
@@ -146,7 +152,8 @@ def calculate():
         'discharge_resistor_max_initial_power_w': discharge_power,
         'discharge_current_upper_a': discharge_current,
         'pd_enable_sink_current_upper_a': sink_base_current,
-        'vdd_start_margin_using_25c_diode_spec_v': 4.75 - parts['RB521S30T1G']['vf_max_at_200ma_25c_v'] - pd['vdd_op_min_v'],
+        'vdd_reference_margin_excluding_cutoff_drop_using_25c_diode_spec_v': 4.75 - parts['RB521S30T1G']['vf_max_at_200ma_25c_v'] - pd['vdd_op_min_v'],
+        'upstream_cutoff': protection,
         'surge_qualified': False, 'pd_nvm_programmed': False, 'hardware_tested': False,
         'limits': 'Typical capacitor curves and conditional resistor/PNP/current allowances do not establish worst-case silicon behavior, USB timing, startup or immunity.',
         'release_gates': manifest['unresolved'],

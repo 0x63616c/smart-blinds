@@ -55,6 +55,10 @@ def entry_inputs(entry: dict) -> set[Path]:
         if not matches:
             raise ValueError(f'No dependencies match {pattern}')
         paths.update(matches)
+    if entry['kind'] == 'clean-pcb':
+        binding = local_source('hw/routing/clean-main/source-binding.json')
+        paths.add(binding)
+        paths.update(local_source(name) for name in json.loads(binding.read_text())['files'])
     return paths
 
 
@@ -86,7 +90,7 @@ def render() -> None:
     ids = [entry['id'] for entry in entries]
     if len(set(ids)) != len(ids) or any(not re.fullmatch(r'[a-z0-9-]+', i) for i in ids):
         raise ValueError('Preview IDs must be unique lowercase names')
-    if any(e['kind'] in ('pcb', 'schematic') for e in entries) and platform.system() != 'Linux':
+    if any(e['kind'] in ('pcb', 'clean-pcb', 'schematic') for e in entries) and platform.system() != 'Linux':
         raise RuntimeError('Automated KiCad previews require isolated Linux tools/kicad-run or Linux CI; host KiCad fallback is disabled.')
     env = os.environ.copy()
     if not env.get('KICAD10_3DMODEL_DIR'):
@@ -98,7 +102,7 @@ def render() -> None:
     if any(e['kind'] == 'energy' for e in entries):
         versions['matplotlib'] = run([sys.executable, '-c', 'import matplotlib; print(matplotlib.__version__)'])
     kicad = None
-    if any(e['kind'] in ('pcb', 'schematic') for e in entries):
+    if any(e['kind'] in ('pcb', 'clean-pcb', 'schematic') for e in entries):
         kicad = executable('kicad-cli')
         versions['kicad'] = run([kicad, 'version'])
         if not versions['kicad'].startswith('10.'):
@@ -132,7 +136,15 @@ def render() -> None:
             if entry['kind'] == 'energy':
                 run([sys.executable, str(source), '--output-dir', str(folder)])
                 image = folder / 'energy.png'
-            elif entry['kind'] == 'pcb':
+            elif entry['kind'] in ('pcb', 'clean-pcb'):
+                if entry['kind'] == 'clean-pcb':
+                    # Build actual filled geometry from live, freshly compiled
+                    # source; never render the historical completed-board copy.
+                    native = destination / ('native-' + entry['id'])
+                    run([sys.executable, str(ROOT / 'tools/build_clean_main.py'),
+                         '--output', str(native)], env=env)
+                    source = native / 'candidate.kicad_pcb'
+                    item['native'] = json.loads((native / 'native.json').read_text())
                 item['models_sha256'] = model_files(source, env)
                 image = folder / 'assembly.png'
                 size=entry.get('image_size',[1600,1000]);rotate=entry.get('rotate',[335,0,15]);zoom=entry.get('zoom',1)
@@ -150,6 +162,14 @@ def render() -> None:
                 run([kicad, 'pcb', 'export', 'svg', '--output', str(layout), '--mode-single',
                      '--layers', 'F.Cu,F.SilkS,Edge.Cuts', '--page-size-mode', '2',
                      '--exclude-drawing-sheet', str(source)], env=env)
+                if entry['kind'] == 'clean-pcb':
+                    for name in ('native.json', 'physical-check.json', 'drc.json'):
+                        shutil.copyfile(native / name, folder / name)
+                    # Content hashes remain in metadata; temporary libraries and
+                    # boards do not become generated documentation duplicates.
+                    if model_files(source, env) != item['models_sha256']:
+                        raise RuntimeError('Generated PCB models changed while rendering')
+                    shutil.rmtree(native)
             elif entry['kind'] == 'schematic':
                 run([kicad, 'sch', 'export', 'svg', '--output', str(folder), str(source)], env=env)
                 pages = sorted(folder.glob('*.svg'))

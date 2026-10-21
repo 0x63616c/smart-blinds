@@ -1,7 +1,7 @@
 {
   "status": "PASS of source, selected parts, physical pins and conditional arithmetic only",
-  "components": 32,
-  "physical_pins": 111,
+  "components": 42,
+  "physical_pins": 151,
   "negative_controls_detected": [
     "auxoff_output_grounded",
     "cc_protection_shorts_channels",
@@ -9,7 +9,7 @@
     "load_switch_bypassed",
     "vdd_diode_reversed"
   ],
-  "semantic_graph_sha256": "7b0054d8f559b61f310022e1f736a765a4857422732d3944b747d18ec8948388",
+  "semantic_graph_sha256": "8dbf9a808808ba42e120850a60e6713b16ba43ba19e5aec8c0be4458ab8177c1",
   "local_bom_policy": "Validate ignored local BOM if present; absence is not a build claim",
   "ilim_planning_a": [
     1.769041769041769,
@@ -30,11 +30,63 @@
     "vreg_1v2": 0.6777244941698488,
     "vdd_21v": 0.09938280104826018
   },
-  "uncontrolled_capacitance_planning_upper_uf": 9.7405,
+  "uncontrolled_capacitance_planning_upper_uf": 5.945500000000001,
   "discharge_resistor_max_initial_power_w": 0.05044430032973851,
   "discharge_current_upper_a": 0.0071246819338422395,
   "pd_enable_sink_current_upper_a": 0.001068702290076336,
-  "vdd_start_margin_using_25c_diode_spec_v": 0.15000000000000036,
+  "vdd_reference_margin_excluding_cutoff_drop_using_25c_diode_spec_v": 0.15000000000000036,
+  "upstream_cutoff": {
+    "added_components": 10,
+    "ovp_rising_v": [
+      15.936243447700488,
+      17.511177274180564
+    ],
+    "ovp_falling_v": [
+      14.775705504918829,
+      16.084940762002557
+    ],
+    "normal_15v5percent_margin_v": 0.1862434477004875,
+    "ovp_pin_at_41v_upper_v": 3.0059382954024785,
+    "conditional_current_limit_a": [
+      1.879295446992356,
+      2.1784849533033555
+    ],
+    "current_limit_evidence": "scaled 5.36k specified bounds; 5.9k series network not independently specified",
+    "slew_planning_v_per_s": [
+      1597.8471112606173,
+      4334.121355397951
+    ],
+    "guarded_cap_planning_upper_f": 9.740500000000001e-06,
+    "guarded_startup_inrush_estimate_a": 0.04221650906225375,
+    "additional_tps26600_power_fulltemp_w": {
+      "1.0": 0.2561425,
+      "1.5": 0.5686425,
+      "1.65": 0.6867675
+    },
+    "datasheet_testboard_deltaT_estimate_c_at_1p5a": 21.949600500000003,
+    "bleed_17p6_to_0p8_nominal_s_without_leakage": 2.380102689085904,
+    "ovp_response_max_s": null,
+    "physical_negative_controls_detected": [
+      "OVP_divider_ground_reference_wrong",
+      "RTN_incorrectly_shorted_to_system_ground",
+      "ST_VDD_returns_to_unguarded_raw",
+      "UVLO_wrongly_selects_14V9_preset",
+      "charger_PD_gate_bypassed",
+      "cutoff_bypassed",
+      "guarded_TVS_input_disconnected",
+      "monitor_returns_to_unguarded_raw",
+      "sink_gate_pullup_returns_to_unguarded_raw",
+      "thermal_pad_wrong_reference"
+    ],
+    "qualification_limits": [
+      "No bound on assembly pulse overshoot or OVP maximum delay",
+      "No complete switch-fault coverage",
+      "Thermal resistance depends on actual RTN copper, vias and enclosure",
+      "No guaranteed OVP off-leakage/bleed discharge-time bound",
+      "Startup includes unknown active ST draw and downstream BQ dynamic load; estimated capacitor inrush only",
+      "No stated product USB/ESD/surge compliance"
+    ]
+  },
   "surge_qualified": false,
   "pd_nvm_programmed": false,
   "hardware_tested": false,
@@ -42,7 +94,6 @@
   "release_gates": [
     "NVM image, programming fixture, readback and power-cycle enforcement are unfinished; defaults do not satisfy the specified profile.",
     "Source entitlement, attach/detach, hard reset, undervoltage, overvoltage, short circuit and reverse blocking need actual PD/eFuse bench tests.",
-    "ESD/surge coordination is not accepted: selected reference TVS clamps above the connected IC DC absolute maximum at specified pulses.",
     "VDD capacitor loses substantial capacity under DC bias; cold diode drop, active PD current, reset/hold-up and depleted-pack startup require qualification.",
     "Discharge timing depends on charger reverse paths and total effective capacitance; final timer profile and USB timing compliance remain open.",
     "PNP saturation, eFuse slew/overshoot, resistor pulse/temperature and input inductance require physical validation.",
@@ -50,6 +101,10 @@
     "Connector and IC land patterns, 3D envelope, factory test pads, placement/routing, thermal/EMI and integrated-board tests remain open.",
     "Direct VSYS reverse current, USB-only/dead-pack/brownout handover and shared unpowered bus behavior require physical qualification.",
     "ST specifies no ALERT leakage maximum; shared interrupt high margin is conditional on total measured leakage. I2C VIL0.35V versus other devices VOL0.4V requires actual low-level and rise-time validation.",
-    "Physical shared service pads and fixture CE inhibit/downstream isolation remain to be placed; exposed source interfaces are not manufactured test access."
+    "Physical shared service pads and fixture CE inhibit/downstream isolation remain to be placed; exposed source interfaces are not manufactured test access.",
+    "Upstream OVP has typical-only delay; prove raw/guarded transients, TVS pulse energy, negative edges and maximum per-pin voltage before prototype operation outside a current-limited test setup.",
+    "The 5.9k series network current estimate scales specified 5.36k limits and is conditional, not a separately guaranteed TI test point; qualify current, startup and selectivity of cascaded limits.",
+    "TPS26600 requires close IN/GND bypass, separate RTN thermal island and no coupling to ILIM/OVP/slew; extra junction rise, nearby cell heating and enclosure temperature remain unqualified.",
+    "At sustained21V the upstream switch is specified to turn off. This is not a guarantee under a shorted switch, open divider, or arbitrary pulses; no single-fault or IEC compliance claim."
   ]
 }

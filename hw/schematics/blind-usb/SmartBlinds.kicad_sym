@@ -2528,4 +2528,1024 @@
     (pin_names
       (offset 0)
       hide)
+    (pin_numbers hide))
+  (symbol
+    "P_TPS26600PWPR"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "U"
+      (at 0 15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "TPS26600PWPR"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-usb-protection:TPS26600_PWP16"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Pre-ordered-Products_Texas-Instruments_TPS26600PWPR_Texas-Instruments-Texas-Instruments-TPS26600PWPR_C544399.html"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C544399"
+      (at 0 -22.86 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_TPS26600PWPR_0_1"
+      (rectangle
+        (start -8.89 12.70)
+        (end 8.89 -12.70)
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type background)))
+      (circle
+        (center -7.62 11.43)
+        (radius 0.38)
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none)))
+      (pin
+        power_in
+        line
+        (at -11.43 7.62 0)
+        (length 2.54)
+        (name
+          "IN"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at -11.43 5.08 0)
+        (length 2.54)
+        (name
+          "IN"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at -11.43 2.54 0)
+        (length 2.54)
+        (name
+          "UVLO"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "3"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -11.43 -0.00 0)
+        (length 2.54)
+        (name
+          "NC"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "4"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at -11.43 -2.54 0)
+        (length 2.54)
+        (name
+          "OVP"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "5"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at -11.43 -5.08 0)
+        (length 2.54)
+        (name
+          "MODE"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "6"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        input
+        line
+        (at -11.43 -7.62 0)
+        (length 2.54)
+        (name
+          "~{SHDN}"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "7"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -11.43 -10.16 0)
+        (length 2.54)
+        (name
+          "RTN"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "8"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_in
+        line
+        (at 11.43 -10.16 180)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "9"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        output
+        line
+        (at 11.43 -7.62 180)
+        (length 2.54)
+        (name
+          "IMON"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "10"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 11.43 -5.08 180)
+        (length 2.54)
+        (name
+          "ILIM"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "11"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 11.43 -2.54 180)
+        (length 2.54)
+        (name
+          "dVdT"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "12"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 11.43 -0.00 180)
+        (length 2.54)
+        (name
+          "NC"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "13"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        open_collector
+        line
+        (at 11.43 2.54 180)
+        (length 2.54)
+        (name
+          "~{FLT}"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "14"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        power_out
+        line
+        (at 11.43 5.08 180)
+        (length 2.54)
+        (name
+          "OUT"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "15"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 11.43 7.62 180)
+        (length 2.54)
+        (name
+          "OUT"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "16"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 11.43 10.16 180)
+        (length 2.54)
+        (name
+          "EP"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "17"
+          (effects
+            (font
+              (size 1.27 1.27)))))))
+  (symbol
+    "P_TVS1800DRVR"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "U"
+      (at 0 8.89 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "TVS1800DRVR"
+      (at 0 -8.89 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-usb-protection:TVS1800_DRV6"
+      (at 0 -11.43 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C2649846"
+      (at 0 -13.97 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_TVS1800DRVR_0_1"
+      (rectangle
+        (start -6.35 6.35)
+        (end 6.35 -6.35)
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type background)))
+      (circle
+        (center -5.08 5.08)
+        (radius 0.38)
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type none)))
+      (pin
+        passive
+        line
+        (at -8.89 1.27 0)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -8.89 -1.27 0)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -8.89 -3.81 0)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "3"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 8.89 -3.81 180)
+        (length 2.54)
+        (name
+          "IN"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "4"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 8.89 -1.27 180)
+        (length 2.54)
+        (name
+          "IN"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "5"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 8.89 1.27 180)
+        (length 2.54)
+        (name
+          "IN"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "6"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 8.89 3.81 180)
+        (length 2.54)
+        (name
+          "GND"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "7"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_RT0402BRD0730K1L"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "R"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "RT0402BRD0730K1L"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-usb-protection:R0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C852714"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_RT0402BRD0730K1L_0_1"
+      (rectangle
+        (start -2.54 1.27)
+        (end 2.54 -1.27)
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type background)))
+      (pin
+        passive
+        line
+        (at 5.08 -0.00 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -5.08 -0.00 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_0402WGF4023TCE"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "R"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "0402WGF4023TCE"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-usb-protection:R0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_402KR-4023-1_C25785.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C25785"
+      (at 0 -12.70 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_0402WGF4023TCE_0_1"
+      (rectangle
+        (start -2.54 1.02)
+        (end 2.54 -1.02)
+        (stroke
+          (width 0)
+          (type default)
+          (color 0 0 0 0))
+        (fill
+          (type background)))
+      (pin
+        passive
+        line
+        (at 5.08 -0.00 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -5.08 -0.00 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_0402B473K500NT"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "C"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "0402B473K500NT"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-power:C0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Multilayer-Ceramic-Capacitors-MLCC-SMD-SMT_47nF-473-10-50V_C82219.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "FH(风华)"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "0402B473K500NT"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C82219"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Multilayer Ceramic Capacitors MLCC - SMD/SMT"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_0402B473K500NT_0_1"
+      (polyline
+        (pts
+          (xy -0.51 2.03)
+          (xy -0.51 -2.03))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy 0.51 2.03)
+          (xy 0.51 -2.03))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy -1.27 -0.0)
+          (xy -0.51 -0.0))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (polyline
+        (pts
+          (xy 0.51 -0.0)
+          (xy 1.27 -0.0))
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type none)))
+      (pin
+        passive
+        line
+        (at -3.81 -0.0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at 3.81 -0.0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_0402WGF1201TCE"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "R"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "0402WGF1201TCE"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-core:R0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_1-2KR-1201-1_C25862.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "UNI-ROYAL(厚声)"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "0402WGF1201TCE"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C25862"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Resistors"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_description"
+      "1.2KΩ (1201) ±1%"
+      (at 0 -22.86 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_0402WGF1201TCE_0_1"
+      (rectangle
+        (start -2.54 1.02)
+        (end 2.54 -1.02)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type background)))
+      (pin
+        passive
+        line
+        (at 5.08 -0.0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -5.08 -0.0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
+    (pin_numbers hide))
+  (symbol
+    "P_0402WGF4701TCE"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "R"
+      (at 0 5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Value"
+      "0402WGF4701TCE"
+      (at 0 -5.08 0)
+      (effects
+        (font
+          (size 1.27 1.27))))
+    (property
+      "Footprint"
+      "blind-control-io:R0402"
+      (at 0 -7.62 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/Chip-Resistor-Surface-Mount-UniOhm_4-7KR-4701-1_C25900.html"
+      (at 0 -10.16 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "Manufacturer"
+      "UNI-ROYAL(厚声)"
+      (at 0 -12.7 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "MPN"
+      "0402WGF4701TCE"
+      (at 0 -15.24 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "LCSC Part"
+      "C25900"
+      (at 0 -17.78 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_keywords"
+      "Resistors"
+      (at 0 -20.32 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (property
+      "ki_description"
+      "4.7KΩ (4701) ±1%"
+      (at 0 -22.86 0)
+      (effects
+        (font
+          (size 1.27 1.27))
+        hide))
+    (symbol
+      "P_0402WGF4701TCE_0_1"
+      (rectangle
+        (start -2.54 1.02)
+        (end 2.54 -1.02)
+        (stroke
+          (width 0)
+          (type default))
+        (fill
+          (type background)))
+      (pin
+        passive
+        line
+        (at 5.08 -0.0 180)
+        (length 2.54)
+        (name
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "2"
+          (effects
+            (font
+              (size 1.27 1.27)))))
+      (pin
+        passive
+        line
+        (at -5.08 -0.0 0)
+        (length 2.54)
+        (name
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))
+        (number
+          "1"
+          (effects
+            (font
+              (size 1.27 1.27))))))
+    (pin_names
+      (offset 0)
+      hide)
     (pin_numbers hide)))

@@ -1,7 +1,15 @@
-# Main-controller partial power routing
+# Historical 196-part main-controller routing
 
-This is a **partial four-layer routing study**, not a manufacturing release.
-The canonical circuit and first placement remain under `hw/layouts/blind-main/`.
+This directory is the **historical 196-part routing checkpoint**, not the current
+54 × 80 mm controller. Its source, geometry, manifests and validation results
+belong together at [commit ea7bab1566812b4611e3c1e800e67b5ede44651c](https://github.com/0x63616c/smart-blinds/tree/ea7bab1566812b4611e3c1e800e67b5ede44651c).
+That commit contains the exact source capture SHA
+`2ef8c8d6168420d0de25bb6a4c4b3d778d73c1fd55e97ca068adafe70fbeadd7`
+recorded in `route-record.json`. Reproduce its checks from that revision through
+the isolated Linux runner. Do not point those checks at the newer 206-part
+capture or present the historical findings as current-board validation.
+
+This was a partial four-layer routing study, not a manufacturing release.
 The derivative retains the 54 × 68.5 mm outline with its USB tab, all 196
 footprints, 609 physical pin identities, 139 net partitions, 17 mechanical/thermal
 anchors and 13 RF, connector-foot and clamp reservations.

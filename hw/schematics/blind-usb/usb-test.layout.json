@@ -1,6 +1,6 @@
 {
   "title": "Smart Blinds / USB-C PD input",
-  "paper": "A3",
+  "paper": "A2",
   "pcb": "hw/layouts/blind-usb/usb-test/usb-test.kicad_pcb",
   "output": "hw/schematics/blind-usb/usb-test.kicad_sch",
   "symbols": {
@@ -229,6 +229,110 @@
     "P_0603WAF1001T5E": {
       "source": "hw/parts/UNI_ROYAL_0603WAF1001T5E/0603WAF1001T5E.kicad_sym",
       "name": "0603WAF1001T5E",
+      "type": "passive"
+    },
+    "P_TPS26600PWPR": {
+      "source": "hw/parts/blind-usb-protection/TPS26600PWPR.kicad_sym",
+      "name": "TPS26600PWPR",
+      "pins": {
+        "1": {
+          "name": "IN",
+          "type": "power_in"
+        },
+        "2": {
+          "name": "IN",
+          "type": "power_in"
+        },
+        "3": {
+          "name": "UVLO",
+          "type": "input"
+        },
+        "4": {
+          "name": "NC",
+          "type": "passive"
+        },
+        "5": {
+          "name": "OVP",
+          "type": "input"
+        },
+        "6": {
+          "name": "MODE",
+          "type": "input"
+        },
+        "7": {
+          "name": "~{SHDN}",
+          "type": "input"
+        },
+        "8": {
+          "name": "RTN",
+          "type": "passive"
+        },
+        "9": {
+          "name": "GND",
+          "type": "power_in"
+        },
+        "10": {
+          "name": "IMON",
+          "type": "output"
+        },
+        "11": {
+          "name": "ILIM",
+          "type": "passive"
+        },
+        "12": {
+          "name": "dVdT",
+          "type": "passive"
+        },
+        "13": {
+          "name": "NC",
+          "type": "passive"
+        },
+        "14": {
+          "name": "~{FLT}",
+          "type": "open_collector"
+        },
+        "15": {
+          "name": "OUT",
+          "type": "power_out"
+        },
+        "16": {
+          "name": "OUT",
+          "type": "passive"
+        },
+        "17": {
+          "name": "EP",
+          "type": "passive"
+        }
+      }
+    },
+    "P_TVS1800DRVR": {
+      "source": "hw/parts/blind-usb-protection/TVS1800DRVR.kicad_sym",
+      "name": "TVS1800DRVR",
+      "type": "passive"
+    },
+    "P_RT0402BRD0730K1L": {
+      "source": "hw/parts/blind-usb-protection/RT0402BRD0730K1L.kicad_sym",
+      "name": "RT0402BRD0730K1L",
+      "type": "passive"
+    },
+    "P_0402WGF4023TCE": {
+      "source": "hw/parts/blind-usb-protection/0402WGF4023TCE.kicad_sym",
+      "name": "0402WGF4023TCE",
+      "type": "passive"
+    },
+    "P_0402B473K500NT": {
+      "source": "hw/parts/blind-power/0402B473K500NT.kicad_sym",
+      "name": "0402B473K500NT",
+      "type": "passive"
+    },
+    "P_0402WGF1201TCE": {
+      "source": "hw/parts/blind-core/0402WGF1201TCE.kicad_sym",
+      "name": "0402WGF1201TCE",
+      "type": "passive"
+    },
+    "P_0402WGF4701TCE": {
+      "source": "hw/parts/blind-control-io/0402WGF4701TCE.kicad_sym",
+      "name": "0402WGF4701TCE",
       "type": "passive"
     }
   },
@@ -697,6 +801,153 @@
         7.62,
         -1.27
       ]
+    },
+    "U3": {
+      "symbol": "P_TPS26600PWPR",
+      "mpn": "TPS26600PWPR",
+      "value": "TPS26600PWPR",
+      "no_connect": [
+        "4",
+        "7",
+        "10",
+        "13",
+        "14"
+      ],
+      "at": [
+        457.2,
+        76.2,
+        0
+      ],
+      "text_offset": [
+        0,
+        -25.4
+      ]
+    },
+    "R23": {
+      "symbol": "P_0402WGF3903TCE",
+      "mpn": "0402WGF3903TCE",
+      "value": "390k",
+      "at": [
+        457.2,
+        127.0,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R22": {
+      "symbol": "P_RT0402BRD0730K1L",
+      "mpn": "RT0402BRD0730K1L",
+      "value": "30.1k / 0.1%",
+      "at": [
+        546.1,
+        127.0,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R17": {
+      "symbol": "P_0402WGF1201TCE",
+      "mpn": "0402WGF1201TCE",
+      "value": "1.2k",
+      "at": [
+        457.2,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R18": {
+      "symbol": "P_0402WGF4023TCE",
+      "mpn": "0402WGF4023TCE",
+      "value": "402k",
+      "at": [
+        546.1,
+        160.02,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C7": {
+      "symbol": "P_0402B473K500NT",
+      "mpn": "0402B473K500NT",
+      "value": "47n / 50V",
+      "at": [
+        457.2,
+        193.04000000000002,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "C8": {
+      "symbol": "P_CL31A475KBHNNNE",
+      "mpn": "CL31A475KBHNNNE",
+      "value": "4.7u / 50V",
+      "at": [
+        546.1,
+        193.04000000000002,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "R24": {
+      "symbol": "P_0402WGF1003TCE",
+      "mpn": "0402WGF1003TCE",
+      "value": "100k",
+      "at": [
+        457.2,
+        226.06,
+        270
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
+    },
+    "U4": {
+      "symbol": "P_TVS1800DRVR",
+      "mpn": "TVS1800DRVR",
+      "value": "TVS1800DRVR",
+      "at": [
+        546.1,
+        76.2,
+        0
+      ],
+      "text_offset": [
+        0,
+        -12.7
+      ]
+    },
+    "R25": {
+      "symbol": "P_0402WGF4701TCE",
+      "mpn": "0402WGF4701TCE",
+      "value": "4.7k",
+      "at": [
+        520.7,
+        241.3,
+        0
+      ],
+      "text_offset": [
+        7.62,
+        -1.27
+      ]
     }
   },
   "net_names": {
@@ -727,23 +978,35 @@
     "hv": "HOST_3V3",
     "usb-1": "VREG2V7",
     "usb-1-1": "VDD",
+    "guarded-hv": "GUARDED",
     "usb-1-6": "PNP_BASE",
     "C": "UV_SOURCE",
     "usb-1-7": "BASE_MID",
-    "usb-1-13": "UV_MID",
+    "usb-1-14": "UV_MID",
     "usb-1-3": "UVLO",
-    "2": "OVLO",
+    "usb-2": "OVLO",
     "AUXOFF": "NC_AUXOFF",
     "FLT_N": "NC_FLT",
     "output-hv": "OUTPUT",
-    "DVDT": "SLEW",
+    "usb-DVDT": "SLEW",
     "ILM": "ILM",
     "ITIMER": "NC_ITIMER",
-    "usb-1-10": "OV_MID",
-    "usb-1-11": "RAW_DIS1",
-    "usb-1-12": "RAW_DIS2",
-    "usb-1-8": "OUT_DIS1",
-    "usb-1-9": "OUT_DIS2"
+    "usb-1-11": "OV_MID",
+    "usb-1-12": "RAW_DIS1",
+    "usb-1-13": "RAW_DIS2",
+    "usb-1-9": "OUT_DIS1",
+    "usb-1-10": "OUT_DIS2",
+    "FLT": "NC_CUTOFF_FLT",
+    "4": "NC_CUTOFF4",
+    "13": "NC_CUTOFF13",
+    "OVP": "CUT_OVP",
+    "DVDT": "CUT_SLEW",
+    "MODE": "CUT_MODE",
+    "ILIM": "CUT_ILIM",
+    "SHDN": "NC_SHDN",
+    "IMON": "NC_IMON",
+    "2": "CUT_RTN",
+    "usb-1-8": "CUT_ILIM_MID"
   },
   "notes": [
     {
@@ -767,7 +1030,7 @@
         15,
         33
       ],
-      "text": "Source/load protection, discharge timing and startup remain unqualified. Charger input capacitor bank is external.",
+      "text": "Raw cutoff + guarded PD + contract-gated charger. 21 V cutoff response and pulse coordination require measurement.",
       "size": 1.27
     },
     {
@@ -775,24 +1038,24 @@
         15,
         281
       ],
-      "text": "32-part unrouted capture. External host logic/pullups and factory access remain open; no physical qualification.",
+      "text": "42-part UNVERIFIED capture. Thermal stitching, IC placement, routing, fixture and physical tests remain open.",
       "size": 1.27
     }
   ],
   "expected_erc_types": {
-    "power_pin_not_driven": 4,
     "pin_not_driven": 1,
+    "power_pin_not_driven": 4,
     "isolated_pin_label": 3
   },
   "expected_erc_items": {
-    "power_pin_not_driven": [
-      "Symbol U2 Pin 24 [VDD, Power input, Line]",
-      "Symbol U1 Pin 5 [IN, Power input, Line]",
-      "Symbol U1 Pin 8 [GND, Power input, Line]",
-      "Symbol U2 Pin 22 [VSYS, Power input, Line]"
-    ],
     "pin_not_driven": [
       "Symbol U2 Pin 7 [SCL, Input, Line]"
+    ],
+    "power_pin_not_driven": [
+      "Symbol U2 Pin 24 [VDD, Power input, Line]",
+      "Symbol U2 Pin 22 [VSYS, Power input, Line]",
+      "Symbol U1 Pin 8 [GND, Power input, Line]",
+      "Symbol U3 Pin 1 [IN, Power input, Line]"
     ],
     "isolated_pin_label": [
       "Label 'HOST_SCL'",
@@ -800,5 +1063,5 @@
       "Label 'POWER_ALERT_N'"
     ]
   },
-  "erc_scope": "External USB source, powered host supply/bus and shared interrupt pull-up are outside this block; no artificial drivers or hidden exclusions."
+  "erc_scope": "Eight explicit standalone boundary findings: external raw/GND/VSYS/VDD after passive diode, external host SCL and three singleton host labels. TPS26600 OUT15/16 are one internal output;15 is power_out,16 passive. No external power flags or findings suppressed."
 }

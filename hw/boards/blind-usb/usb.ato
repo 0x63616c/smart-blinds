@@ -20,6 +20,14 @@ from "../../parts/blind-power/0402B102K500NT.ato" import Part_0402B102K500NT
 from "../../parts/blind-power/MMBT3906LT1G.ato" import Part_MMBT3906LT1G
 from "../../parts/blind-regulator/0402WGF2612TCE.ato" import Part_0402WGF2612TCE
 
+from "../../parts/blind-usb-protection/TPS26600PWPR.ato" import Part_TPS26600PWPR
+from "../../parts/blind-usb-protection/TVS1800DRVR.ato" import Part_TVS1800DRVR
+from "../../parts/blind-usb-protection/RT0402BRD0730K1L.ato" import Part_RT0402BRD0730K1L
+from "../../parts/blind-usb-protection/0402WGF4023TCE.ato" import Part_0402WGF4023TCE
+from "../../parts/blind-core/0402WGF1201TCE.ato" import Part_0402WGF1201TCE
+from "../../parts/blind-control-io/0402WGF4701TCE.ato" import Part_0402WGF4701TCE
+from "../../parts/blind-power/0402B473K500NT.ato" import Part_0402B473K500NT
+
 module UsbPdInput:
     """UNVERIFIED autonomous PD sink and latched, reverse-blocking eFuse.
 
@@ -35,13 +43,18 @@ module UsbPdInput:
     requires MCU held reset, CE physically inhibited and downstream input
     isolated during unknown NVM programming. Never back-power a dead rail.
     service_reset is active HIGH; the local 10k normally holds it LOW.
-    Retain raw-USB VDD and CC dead-battery paths for absent-pack startup.
+    Retain guarded-USB VDD and raw CC dead-battery paths for absent-pack startup.
 
-    Graph/rating checks cannot prove PD behavior or surge immunity. TVS
-    clamping exceeds the IC DC absolute rating under some specified pulses;
-    input transients, startup, discharge and ESD are qualification gates.
-    Sources: ST DS12499 Rev8 / UM2650; TI SLVSFC9C. See README and ratings.
+    Raw suppressor remains at connector; TPS26600 cuts sustained 21 V.
+    TVS1800 protects the guarded rail for its specified pulse conditions.
+    Its 24.7 V clamp is below downstream 28 V absolute limits, but maximum
+    cutoff delay and the assembled fast transient are not proven. No IEC
+    compliance, single-fault safety, thermal or startup qualification claim.
+    ST observes guarded VBUS after cutoff. Keep charge inhibited on loss.
+    Sources: ST DS12499 Rev8; TI SLVSFC9C, SLVSDG2G, SLVSED4A.
     """
+    guarded = new ElectricPower
+    guarded.voltage = 0V to 17.6V
     raw = new ElectricPower
     output = new ElectricPower
     host_logic = new ElectricPower
@@ -51,10 +64,13 @@ module UsbPdInput:
     usb_dp = new Electrical
     usb_dn = new Electrical
     raw.voltage = 4.75V to 21V
-    output.voltage = 8.1V to 18.8V
+    # Off/ramp included; 9/15 V operation is subject to both switch drops.
+    # These DC annotations do not bound transient peaks or reverse backfeed.
+    output.voltage = 0V to 17.6V
     host_logic.voltage = 3.3V +/- 2%
     host_bus.frequency = 100kHz
     host_bus.address = 40
+    raw.lv ~ guarded.lv
     raw.lv ~ output.lv
     raw.lv ~ host_logic.lv
     host_bus.scl.reference ~ host_logic
@@ -112,7 +128,7 @@ module UsbPdInput:
     c_raw.1 ~ raw.hv
     c_raw.2 ~ raw.lv
     d_vdd = new Part_RB521S30T1G
-    d_vdd.A ~ raw.hv
+    d_vdd.A ~ guarded.hv
     d_vdd.C ~ pd.VDD
     c_vdd = new SAMSUNG_CL10A105KB8NNNC_package
     c_1v2 = new SAMSUNG_CL10A105KB8NNNC_package
@@ -124,10 +140,48 @@ module UsbPdInput:
     c_1v2.2 ~ raw.lv
     c_2v7.2 ~ raw.lv
 
+    # Autonomous upstream cutoff: permits initial 5 V dead-pack negotiation,
+    # but cuts sustained excess voltage before any 28 V-rated downstream pin.
+    # UVLO connects to IN (not RTN, which selects the unsuitable 14.9 V preset).
+    # RTN is a separate local reference/thermal island, never system GND.
+    # FLT/IMON/NC unused. SHDN left open for its specified internal bias.
+    cutoff = new Part_TPS26600PWPR
+    cutoff.IN ~ raw.hv
+    cutoff.UVLO ~ raw.hv
+    cutoff.OUT ~ guarded.hv
+    cutoff.GND ~ raw.lv
+    cutoff.EP ~ cutoff.RTN
+    r_cutoff_ov_top = new UNI_ROYAL_0402WGF3903TCE_package
+    r_cutoff_ov_bottom = new Part_RT0402BRD0730K1L
+    r_cutoff_ov_top.1 ~ raw.hv
+    r_cutoff_ov_top.2 ~ cutoff.OVP
+    r_cutoff_ov_bottom.1 ~ cutoff.OVP
+    r_cutoff_ov_bottom.2 ~ cutoff.RTN
+    r_cutoff_limit = new Part_0402WGF1201TCE
+    r_cutoff_limit_tail = new Part_0402WGF4701TCE
+    r_cutoff_limit.1 ~ cutoff.ILIM
+    r_cutoff_limit.2 ~ r_cutoff_limit_tail.1
+    r_cutoff_limit_tail.2 ~ cutoff.RTN
+    r_cutoff_mode = new Part_0402WGF4023TCE
+    r_cutoff_mode.1 ~ cutoff.MODE
+    r_cutoff_mode.2 ~ cutoff.RTN
+    c_cutoff_slew = new Part_0402B473K500NT
+    c_cutoff_slew.1 ~ cutoff.DVDT
+    c_cutoff_slew.2 ~ cutoff.RTN
+    c_guarded = new Part_CL31A475KBHNNNE
+    c_guarded.1 ~ guarded.hv
+    c_guarded.2 ~ raw.lv
+    r_guarded_bleed = new Part_0402WGF1003TCE
+    r_guarded_bleed.1 ~ guarded.hv
+    r_guarded_bleed.2 ~ raw.lv
+    tvs_guarded = new Part_TVS1800DRVR
+    tvs_guarded.IN ~ guarded.hv
+    tvs_guarded.GND ~ raw.lv
+
     # VBUS_EN_SNK is active-low only for an attached explicit PDO2/3 contract
     # with POWER_ONLY_ABOVE_5V programmed. Invert into positive eFuse enable.
     q_enable = new Part_MMBT3906LT1G
-    q_enable.E ~ raw.hv
+    q_enable.E ~ guarded.hv
     r_base_pull = new Part_0402WGF1003TCE
     r_base_pull.1 ~ q_enable.E
     r_base_pull.2 ~ q_enable.B
@@ -144,14 +198,14 @@ module UsbPdInput:
     r_uv_top2.2 ~ r_uv_bottom.1
     r_uv_bottom.2 ~ raw.lv
     efuse = new Part_TPS259470LRPWR
-    efuse.IN ~ raw.hv
+    efuse.IN ~ guarded.hv
     efuse.OUT ~ output.hv
     efuse.GND ~ raw.lv
     efuse.EN_UVLO ~ r_uv_bottom.1
     r_ov_top1 = new UNI_ROYAL_0402WGF3903TCE_package
     r_ov_top2 = new Part_0402WGF2612TCE
     r_ov_bottom = new Part_0402WGF3012TCE
-    r_ov_top1.1 ~ raw.hv
+    r_ov_top1.1 ~ guarded.hv
     r_ov_top1.2 ~ r_ov_top2.1
     r_ov_top2.2 ~ r_ov_bottom.1
     r_ov_bottom.1 ~ efuse.OVLO
@@ -170,7 +224,7 @@ module UsbPdInput:
     r_raw_dis1 = new UNI_ROYAL_0603WAF1001T5E_package
     r_raw_dis2 = new UNI_ROYAL_0603WAF1001T5E_package
     r_raw_dis3 = new UNI_ROYAL_0603WAF1001T5E_package
-    r_raw_dis1.1 ~ raw.hv
+    r_raw_dis1.1 ~ guarded.hv
     r_raw_dis1.2 ~ r_raw_dis2.1
     r_raw_dis2.2 ~ r_raw_dis3.1
     r_raw_dis3.2 ~ pd.VBUS_VS_DISCH

@@ -28,7 +28,10 @@
     "power_only_above_5v": true,
     "req_src_current": false,
     "host_rail_min_v": 3.234,
-    "host_rail_max_v": 3.366
+    "host_rail_max_v": 3.366,
+    "cutoff_temperature_excursion_c": 100,
+    "guarded_dc_max_v": 17.6,
+    "input_current_thermal_limit_a": 1.65
   },
   "parts": {
     "TYPE-C-31-M-12": {
@@ -72,7 +75,8 @@
         "r_addr1",
         "r_base_pull",
         "r_uv_top2",
-        "r_uv_bottom"
+        "r_uv_bottom",
+        "r_guarded_bleed"
       ],
       "resistance_ohm": 100000,
       "tolerance": 0.01,
@@ -102,7 +106,7 @@
       "standoff_v": 22,
       "clamp_8kv_30ns_max_v": 31,
       "clamp_35a_8_20_max_v": 41,
-      "evidence_limit": "Pulse clamp exceeds connected IC DC absolute limits; no demonstrated transient immunity"
+      "evidence_limit": "Raw suppressor now feeds 60V cutoff, not 28V parts; specified clamp does not establish system ESD/surge performance."
     },
     "ESDA25W": {
       "wrapper": "../../parts/blind-usb/ESDA25W.ato",
@@ -118,7 +122,8 @@
       "wrapper": "../../parts/blind-usb/CL31A475KBHNNNE.ato",
       "lcsc": "C12881",
       "instances": [
-        "c_raw"
+        "c_raw",
+        "c_guarded"
       ],
       "capacitance_f": 4.7e-06,
       "rated_voltage_v": 50,
@@ -165,7 +170,8 @@
       "lcsc": "C25782",
       "instances": [
         "r_uv_top1",
-        "r_ov_top1"
+        "r_ov_top1",
+        "r_cutoff_ov_top"
       ],
       "resistance_ohm": 390000,
       "tolerance": 0.01,
@@ -252,12 +258,128 @@
       "tolerance": 0.01,
       "tempco_planning_ppm_c": 100,
       "rated_power_w": 0.1
+    },
+    "TPS26600PWPR": {
+      "wrapper": "../../parts/blind-usb-protection/TPS26600PWPR.ato",
+      "lcsc": "C544399",
+      "instances": [
+        "cutoff"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/tps2660.pdf",
+      "revision": "SLVSDG2G Dec2019; PWP0016A 4214868/A",
+      "input_op_min_v": 4.2,
+      "input_op_max_v": 60,
+      "input_abs_max_v": 62,
+      "ovp_rising_v": [
+        1.17,
+        1.225
+      ],
+      "ovp_falling_v": [
+        1.085,
+        1.125
+      ],
+      "ovp_leakage_a": 1e-07,
+      "ovp_response_typ_s": 6e-06,
+      "ovp_response_max_s": null,
+      "ilim_resistor_min_ohm": 5360,
+      "ilim_at_5360_a": [
+        2.11,
+        2.35
+      ],
+      "ron_fulltemp_max_ohm": 0.25,
+      "ron_85c_max_ohm": 0.21,
+      "iq_on_max_a": 0.00039,
+      "dvdt_charge_a": [
+        4e-06,
+        5.5e-06
+      ],
+      "dvdt_gain": [
+        23.75,
+        25.5
+      ],
+      "shdn_open_v": [
+        2,
+        3.4
+      ],
+      "thermal_rja_ti_test_board_c_w": 38.6
+    },
+    "TVS1800DRVR": {
+      "wrapper": "../../parts/blind-usb-protection/TVS1800DRVR.ato",
+      "lcsc": "C2649846",
+      "instances": [
+        "tvs_guarded"
+      ],
+      "source": "https://www.ti.com/lit/ds/symlink/tvs1800.pdf",
+      "revision": "SLVSED4A; DRV0006A 4222173/C",
+      "standoff_v": 18,
+      "clamp_35a_8_20_at_125c_max_v": 24.7,
+      "dc_breakdown_current_abs_a": 0.018,
+      "leak_at_105c_max_a": 1.15e-06
+    },
+    "RT0402BRD0730K1L": {
+      "wrapper": "../../parts/blind-usb-protection/RT0402BRD0730K1L.ato",
+      "lcsc": "C852714",
+      "instances": [
+        "r_cutoff_ov_bottom"
+      ],
+      "resistance_ohm": 30100,
+      "tolerance": 0.001,
+      "tempco_planning_ppm_c": 25,
+      "rated_power_w": 0.0625,
+      "rated_voltage_v": 50,
+      "source": "https://yageogroup.com/content/datasheet/asset/file/pyu-rt_1-to-0-01_rohs_l"
+    },
+    "0402WGF4023TCE": {
+      "wrapper": "../../parts/blind-usb-protection/0402WGF4023TCE.ato",
+      "lcsc": "C25785",
+      "instances": [
+        "r_cutoff_mode"
+      ],
+      "resistance_ohm": 402000,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.0625,
+      "rated_voltage_v": 50
+    },
+    "0402B473K500NT": {
+      "wrapper": "../../parts/blind-power/0402B473K500NT.ato",
+      "lcsc": "C82219",
+      "instances": [
+        "c_cutoff_slew"
+      ],
+      "capacitance_f": 4.7e-08,
+      "rated_voltage_v": 50,
+      "tolerance": 0.1,
+      "source": "https://fhcomp.com/en/product_info/?prod_code=0402B473K500NT"
+    },
+    "0402WGF1201TCE": {
+      "wrapper": "../../parts/blind-core/0402WGF1201TCE.ato",
+      "lcsc": "C25862",
+      "instances": [
+        "r_cutoff_limit"
+      ],
+      "resistance_ohm": 1200,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.0625,
+      "rated_voltage_v": 50
+    },
+    "0402WGF4701TCE": {
+      "wrapper": "../../parts/blind-control-io/0402WGF4701TCE.ato",
+      "lcsc": "C25900",
+      "instances": [
+        "r_cutoff_limit_tail"
+      ],
+      "resistance_ohm": 4700,
+      "tolerance": 0.01,
+      "tempco_planning_ppm_c": 100,
+      "rated_power_w": 0.0625,
+      "rated_voltage_v": 50
     }
   },
   "unresolved": [
     "NVM image, programming fixture, readback and power-cycle enforcement are unfinished; defaults do not satisfy the specified profile.",
     "Source entitlement, attach/detach, hard reset, undervoltage, overvoltage, short circuit and reverse blocking need actual PD/eFuse bench tests.",
-    "ESD/surge coordination is not accepted: selected reference TVS clamps above the connected IC DC absolute maximum at specified pulses.",
     "VDD capacitor loses substantial capacity under DC bias; cold diode drop, active PD current, reset/hold-up and depleted-pack startup require qualification.",
     "Discharge timing depends on charger reverse paths and total effective capacitance; final timer profile and USB timing compliance remain open.",
     "PNP saturation, eFuse slew/overshoot, resistor pulse/temperature and input inductance require physical validation.",
@@ -265,6 +387,10 @@
     "Connector and IC land patterns, 3D envelope, factory test pads, placement/routing, thermal/EMI and integrated-board tests remain open.",
     "Direct VSYS reverse current, USB-only/dead-pack/brownout handover and shared unpowered bus behavior require physical qualification.",
     "ST specifies no ALERT leakage maximum; shared interrupt high margin is conditional on total measured leakage. I2C VIL0.35V versus other devices VOL0.4V requires actual low-level and rise-time validation.",
-    "Physical shared service pads and fixture CE inhibit/downstream isolation remain to be placed; exposed source interfaces are not manufactured test access."
+    "Physical shared service pads and fixture CE inhibit/downstream isolation remain to be placed; exposed source interfaces are not manufactured test access.",
+    "Upstream OVP has typical-only delay; prove raw/guarded transients, TVS pulse energy, negative edges and maximum per-pin voltage before prototype operation outside a current-limited test setup.",
+    "The 5.9k series network current estimate scales specified 5.36k limits and is conditional, not a separately guaranteed TI test point; qualify current, startup and selectivity of cascaded limits.",
+    "TPS26600 requires close IN/GND bypass, separate RTN thermal island and no coupling to ILIM/OVP/slew; extra junction rise, nearby cell heating and enclosure temperature remain unqualified.",
+    "At sustained21V the upstream switch is specified to turn off. This is not a guarantee under a shorted switch, open divider, or arbitrary pulses; no single-fault or IEC compliance claim."
   ]
 }

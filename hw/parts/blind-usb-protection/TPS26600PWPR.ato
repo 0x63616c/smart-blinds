@@ -1,0 +1,42 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TPS26600PWPR:
+    """UNVERIFIED fixed part; primary pin/land review in README."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TPS26600PWPR", footprint="TPS26600_PWP16.kicad_mod", symbol="TPS26600PWPR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C544399", manufacturer="Texas Instruments", partno="TPS26600PWPR">
+    trait has_designator_prefix<prefix="U">
+
+    signal IN
+    IN ~ pin 1
+    IN ~ pin 2
+    signal UVLO
+    UVLO ~ pin 3
+    signal NC1
+    NC1 ~ pin 4
+    signal OVP
+    OVP ~ pin 5
+    signal MODE
+    MODE ~ pin 6
+    signal SHDN
+    SHDN ~ pin 7
+    signal RTN
+    RTN ~ pin 8
+    signal GND
+    GND ~ pin 9
+    signal IMON
+    IMON ~ pin 10
+    signal ILIM
+    ILIM ~ pin 11
+    signal DVDT
+    DVDT ~ pin 12
+    signal NC2
+    NC2 ~ pin 13
+    signal FLT
+    FLT ~ pin 14
+    signal OUT
+    OUT ~ pin 15
+    OUT ~ pin 16
+    signal EP
+    EP ~ pin 17

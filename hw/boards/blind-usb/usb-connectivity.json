@@ -6,7 +6,9 @@
     "https://www.onsemi.com/pdf/datasheet/mmbt3906lt1-d.pdf",
     "https://www.onsemi.com/pdf/datasheet/rb521s30t1-d.pdf",
     "https://www.st.com/resource/en/datasheet/esda25w.pdf",
-    "https://www.st.com/resource/en/datasheet/esda25p35-1u1m.pdf"
+    "https://www.st.com/resource/en/datasheet/esda25p35-1u1m.pdf",
+    "https://www.ti.com/lit/ds/symlink/tps2660.pdf",
+    "https://www.ti.com/lit/ds/symlink/tvs1800.pdf"
   ],
   "components": {
     "pd": {
@@ -41,7 +43,7 @@
       "2": "OVLO",
       "3": "NC_AUXOFF",
       "4": "NC_FLT",
-      "5": "RAW",
+      "5": "GUARDED",
       "6": "OUTPUT",
       "7": "SLEW",
       "8": "GND",
@@ -68,7 +70,7 @@
     },
     "d_vdd": {
       "1": "VDD",
-      "2": "RAW"
+      "2": "GUARDED"
     },
     "tvs_vbus": {
       "1": "RAW",
@@ -81,7 +83,7 @@
     },
     "q_enable": {
       "1": "PNP_BASE",
-      "2": "RAW",
+      "2": "GUARDED",
       "3": "UV_SOURCE"
     },
     "r_addr0": {
@@ -113,7 +115,7 @@
       "2": "GND"
     },
     "r_base_pull": {
-      "1": "RAW",
+      "1": "GUARDED",
       "2": "PNP_BASE"
     },
     "r_base1": {
@@ -137,7 +139,7 @@
       "2": "GND"
     },
     "r_ov_top1": {
-      "1": "RAW",
+      "1": "GUARDED",
       "2": "OV_MID"
     },
     "r_ov_top2": {
@@ -157,7 +159,7 @@
       "2": "GND"
     },
     "r_raw_dis1": {
-      "1": "RAW",
+      "1": "GUARDED",
       "2": "RAW_DIS1"
     },
     "r_raw_dis2": {
@@ -183,6 +185,66 @@
     "c_vsys": {
       "1": "HOST_3V3",
       "2": "GND"
+    },
+    "cutoff": {
+      "1": "RAW",
+      "2": "RAW",
+      "3": "RAW",
+      "4": "NC_CUTOFF4",
+      "5": "CUT_OVP",
+      "6": "CUT_MODE",
+      "7": "NC_SHDN",
+      "8": "CUT_RTN",
+      "9": "GND",
+      "10": "NC_IMON",
+      "11": "CUT_ILIM",
+      "12": "CUT_SLEW",
+      "13": "NC_CUTOFF13",
+      "14": "NC_CUTOFF_FLT",
+      "15": "GUARDED",
+      "16": "GUARDED",
+      "17": "CUT_RTN"
+    },
+    "r_cutoff_ov_top": {
+      "1": "RAW",
+      "2": "CUT_OVP"
+    },
+    "r_cutoff_ov_bottom": {
+      "1": "CUT_OVP",
+      "2": "CUT_RTN"
+    },
+    "r_cutoff_limit": {
+      "1": "CUT_ILIM",
+      "2": "CUT_ILIM_MID"
+    },
+    "r_cutoff_mode": {
+      "1": "CUT_MODE",
+      "2": "CUT_RTN"
+    },
+    "c_cutoff_slew": {
+      "1": "CUT_SLEW",
+      "2": "CUT_RTN"
+    },
+    "c_guarded": {
+      "1": "GUARDED",
+      "2": "GND"
+    },
+    "r_guarded_bleed": {
+      "1": "GUARDED",
+      "2": "GND"
+    },
+    "tvs_guarded": {
+      "1": "GND",
+      "2": "GND",
+      "3": "GND",
+      "4": "GUARDED",
+      "5": "GUARDED",
+      "6": "GUARDED",
+      "7": "GND"
+    },
+    "r_cutoff_limit_tail": {
+      "1": "CUT_ILIM_MID",
+      "2": "CUT_RTN"
     }
   }
 }

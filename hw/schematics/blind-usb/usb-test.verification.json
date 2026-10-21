@@ -1,7 +1,7 @@
 {
   "status": "block_graph_verified_not_complete_controller",
-  "pin_connections_checked": 111,
-  "physical_components": 32,
+  "pin_connections_checked": 151,
+  "physical_components": 42,
   "erc_clean": false,
   "erc_findings": {
     "pin_not_driven": 1,
@@ -15,8 +15,8 @@
     "power_pin_not_driven": [
       "Symbol U2 Pin 24 [VDD, Power input, Line]",
       "Symbol U2 Pin 22 [VSYS, Power input, Line]",
-      "Symbol U1 Pin 5 [IN, Power input, Line]",
-      "Symbol U1 Pin 8 [GND, Power input, Line]"
+      "Symbol U1 Pin 8 [GND, Power input, Line]",
+      "Symbol U3 Pin 1 [IN, Power input, Line]"
     ],
     "isolated_pin_label": [
       "Label 'HOST_SCL'",
@@ -24,10 +24,10 @@
       "Label 'POWER_ALERT_N'"
     ]
   },
-  "erc_scope": "External USB source, powered host supply/bus and shared interrupt pull-up are outside this block; no artificial drivers or hidden exclusions.",
+  "erc_scope": "Eight explicit standalone boundary findings: external raw/GND/VSYS/VDD after passive diode, external host SCL and three singleton host labels. TPS26600 OUT15/16 are one internal output;15 is power_out,16 passive. No external power flags or findings suppressed.",
   "source_sha256": {
-    "hw/layouts/blind-usb/usb-test/fp-lib-table": "a9fabe712b578c67d39f6e70ec81a0e31fad0b65310c4bb8f816ad6c49fdd6cd",
-    "hw/layouts/blind-usb/usb-test/usb-test.kicad_pcb": "952e8ff980474fc6c70251c388ccfb6f919b1816f60d699c4c069aebe5aaa9fc",
+    "hw/layouts/blind-usb/usb-test/fp-lib-table": "c0a8961f3b95235e26bb4dd3a97e426d9a8d4ed31d6aecd4c59a4eab46bf38d9",
+    "hw/layouts/blind-usb/usb-test/usb-test.kicad_pcb": "ea90eac917a0412347ecf048241c1b40ab6af7e57773d56bd9802265902fee54",
     "hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod": "60561548bc05514cd55938492ccae68aa630ea1742c8277c95415d483a80981c",
     "hw/parts/SAMSUNG_CL10A105KB8NNNC/CL10A105KB8NNNC.kicad_sym": "0f9c31587bdbbac3fcb3161be32872394822fff5598d040a2617171b64be3521",
     "hw/parts/UNI_ROYAL_0402WGF3903TCE/0402WGF3903TCE.kicad_sym": "957f46e8df73fce9ff0bd6f61a6c50bff0f94e7d8805d9efeb5f9739760e445c",
@@ -35,10 +35,14 @@
     "hw/parts/UNI_ROYAL_0603WAF1001T5E/0603WAF1001T5E.kicad_sym": "b9619e2853e8666c33fcb113374690a1d8352a7b55fb360d32e4c824ec25824b",
     "hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod": "ead9b5fee69560cdb7b45abfbef2d55d8795d9d3e18804759682db5e44347334",
     "hw/parts/blind-control-io/0402WGF1003TCE.kicad_sym": "3bbae4360bde7e5395961949fc18d2a37e3d901bda0dff4cc6f970750942d5dd",
-    "hw/parts/blind-control-io/R0402.kicad_mod": "2740e34dbd19e0701c54f21e15b58421837cd61adb3b719f811f01cd4537fda7",
+    "hw/parts/blind-control-io/0402WGF4701TCE.kicad_sym": "85c6db77ab5264fe5d9b2e8ca25ad6c6e5b4d73e822707afc6f7bb2b39c5a843",
+    "hw/parts/blind-control-io/R0402.kicad_mod": "a7946e433b1dafb272428e12acd0f7b25322827b1c4b7afc99803b398b20b02b",
     "hw/parts/blind-controller-common/0402WGF1002TCE.kicad_sym": "81c087f94ceab9f615ba1aa036628532fbae2ff8c6cfc259e8361c72c016ccde",
     "hw/parts/blind-controller-common/R0402.kicad_mod": "fed20f4d92e024fe87887602af29c2227943d1676fb1c8804a1d4ddf1266de45",
+    "hw/parts/blind-core/0402WGF1201TCE.kicad_sym": "5d4a0ef19515edff3a68490409f144435f69dc334db11e8b0a332e0d3e471f19",
+    "hw/parts/blind-core/R0402.kicad_mod": "b236199ddd99509b1d349a5b43f939a840715be2af5c276e9c334f2f4462d8b6",
     "hw/parts/blind-power/0402B102K500NT.kicad_sym": "004346f1956ebabcf243d83e758b86c5be10526b7547fdb8b35d68f251f8d73a",
+    "hw/parts/blind-power/0402B473K500NT.kicad_sym": "ec7732f4df2503a65a69cb52726d36dbc35f2942379a50f3ccc5806de7b40d85",
     "hw/parts/blind-power/0402WGF3012TCE.kicad_sym": "e400e4e5b5c8a231f5cbec96f3c531973d3ef566391cf3b2a5fcd54278d04be9",
     "hw/parts/blind-power/C0402.kicad_mod": "2fdecb51c5f486b0bcef444ea020adb0d102b4f36ac0c3432f82d8b97a95adea",
     "hw/parts/blind-power/MMBT3906LT1G.kicad_sym": "0acb43bf82bb5e79513e311ef948d900c49725389f5729ca09fb352f298714e9",
@@ -46,6 +50,13 @@
     "hw/parts/blind-power/SOT-23-3_L2.9-W1.3-P1.90-LS2.4-BR.kicad_mod": "b57fa7e0c2e3626d8786b2c1bdbc050883cbf07b0d9b63dcb209ba10e215a6b4",
     "hw/parts/blind-regulator/0402WGF2612TCE.kicad_sym": "5dec0503702e8470524fb0efb88f257a4a76f992009e2af19f4a0cc1ce2d2da4",
     "hw/parts/blind-regulator/R0402.kicad_mod": "1bd9fc1ef9f57b08a91c9d1559696f8d836ae5c601d2daddb1d27a025d765b89",
+    "hw/parts/blind-usb-protection/0402WGF4023TCE.kicad_sym": "494610970a9f45fc4493efaa1c36e7a2fdfa5f34e4c2ec4967b4b51600f1c220",
+    "hw/parts/blind-usb-protection/R0402.kicad_mod": "79a6bbd64fff65e0cc2aec376ca8cc6853f5f5bee3dd44455d8205b5f6b68dd0",
+    "hw/parts/blind-usb-protection/RT0402BRD0730K1L.kicad_sym": "390d191f4989a59d00a7cfadcffdb017eeb5bcdef5cde99503bb4755c1d1a397",
+    "hw/parts/blind-usb-protection/TPS26600PWPR.kicad_sym": "1de0092359db1d1d848110e316ccf374818986fabf932794bc06b76feae07e69",
+    "hw/parts/blind-usb-protection/TPS26600_PWP16.kicad_mod": "522abcf1579c4a4db6e5d20e39f24fdb4df5a0e542ffec77456a5bf1d764962c",
+    "hw/parts/blind-usb-protection/TVS1800DRVR.kicad_sym": "81d46a6d2300d6ade02366489e92f1642cf8a277281cfc242dcc7ac669969bfb",
+    "hw/parts/blind-usb-protection/TVS1800_DRV6.kicad_mod": "10b694e3eb10f56b03a85a45da849bbf8e01bef2253621b9a80e2414874a64e9",
     "hw/parts/blind-usb/0402WGF1651TCE.kicad_sym": "4e542733c2757c1847528bc2e491ea2dbc94d3183dcde3ebf7b6f25d64489a9f",
     "hw/parts/blind-usb/C1206.kicad_mod": "83bba0a62fae2faa7b6cc065264dba1d87c21fa6cbc807d0d0bcc6876ca71805",
     "hw/parts/blind-usb/CL31A475KBHNNNE.kicad_sym": "3bd5d17bc5b30b05f0b7ba34298fe12fb6b351cac6e8acdc92ce25421935a3bb",
@@ -61,9 +72,9 @@
     "hw/parts/blind-usb/STUSB4500QTR.kicad_sym": "5fbf4234abe0f46dcba19f1605b5bc8530f70c3b17a57750ae6938d1bb8428f6",
     "hw/parts/blind-usb/TPS259470LRPWR.kicad_sym": "c323b5d211ce258bc2dbc2c5fd35df089e33e447e290dabe3250d7edece8fa4f",
     "hw/parts/blind-usb/TYPE_C_31_M_12.kicad_sym": "a4dce2c121a3deca97b65f4d3ab66bcfa64781bf156f1f329d3cfd9c1629b0ed",
-    "hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": "664d94e61dc8889492739d700cc4ca5fd73979572489afc2c2092269f4765973",
-    "hw/schematics/blind-usb/usb-test.layout.json": "6aa49f314090ce18e71be3b9053c89857f26c4945057a9edf1b338a695ec0c6c",
-    "tools/generate_schematics.py": "cda24e8995e1fff8431022d10cd4ae228bf70035c5206ae970e09aa4ffcedee3",
+    "hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": "d66fa2300fc0f8222eafd3a22127b27379d4b2c3c6ec142b1c03e930a64aa741",
+    "hw/schematics/blind-usb/usb-test.layout.json": "a03ed73180b915c55653ce49367af03b5447f86d935c392a136831dafdf2f7e9",
+    "tools/generate_schematics.py": "3501007d3a545c0af23c180abe87ad1579f58392b91ec6fb8b515ba624696acc",
     "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583"
   }
 }

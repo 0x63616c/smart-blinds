@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "reviewed_board_sha256": "231ee322d723ae79868db16d75308cd9593023d95bad23baf86fe5e0b28a1ec7",
+  "root_sexpr": "(kicad_pcb\n  (version 20260206)\n  (generator \"pcbnew\")\n  (generator_version \"10.0\")\n  (general\n    (thickness 1.6)\n    (legacy_teardrops no))\n  (paper \"A4\")\n  (layers\n    (0 \"F.Cu\" signal)\n    (4 \"In1.Cu\" signal)\n    (6 \"In2.Cu\" signal)\n    (2 \"B.Cu\" signal)\n    (9 \"F.Adhes\" user \"F.Adhesive\")\n    (11 \"B.Adhes\" user \"B.Adhesive\")\n    (13 \"F.Paste\" user)\n    (15 \"B.Paste\" user)\n    (5 \"F.SilkS\" user \"F.Silkscreen\")\n    (7 \"B.SilkS\" user \"B.Silkscreen\")\n    (1 \"F.Mask\" user)\n    (3 \"B.Mask\" user)\n    (17 \"Dwgs.User\" user \"User.Drawings\")\n    (19 \"Cmts.User\" user \"User.Comments\")\n    (21 \"Eco1.User\" user \"User.Eco1\")\n    (23 \"Eco2.User\" user \"User.Eco2\")\n    (25 \"Edge.Cuts\" user)\n    (27 \"Margin\" user)\n    (31 \"F.CrtYd\" user \"F.Courtyard\")\n    (29 \"B.CrtYd\" user \"B.Courtyard\")\n    (35 \"F.Fab\" user)\n    (33 \"B.Fab\" user)\n    (39 \"User.1\" user)\n    (41 \"User.2\" user)\n    (43 \"User.3\" user)\n    (45 \"User.4\" user)\n    (47 \"User.5\" user)\n    (49 \"User.6\" user)\n    (51 \"User.7\" user)\n    (53 \"User.8\" user)\n    (55 \"User.9\" user))\n  (setup\n    (stackup\n      (layer\n        \"F.SilkS\"\n        (type \"Top Silk Screen\")\n        (color \"White\"))\n      (layer\n        \"F.Paste\"\n        (type \"Top Solder Paste\"))\n      (layer\n        \"F.Mask\"\n        (type \"Top Solder Mask\")\n        (color \"Black\")\n        (thickness 0.01))\n      (layer\n        \"F.Cu\"\n        (type \"copper\")\n        (thickness 0.035))\n      (layer\n        \"dielectric 1\"\n        (type \"prepreg\")\n        (thickness 0.0994)\n        (material \"FR4 3313\")\n        (epsilon_r 4.05)\n        (loss_tangent 0.02))\n      (layer\n        \"In1.Cu\"\n        (type \"copper\")\n        (thickness 0.0152))\n      (layer\n        \"dielectric 2\"\n        (type \"core\")\n        (thickness 1.265)\n        (material \"FR4\")\n        (epsilon_r 4.6)\n        (loss_tangent 0.02))\n      (layer\n        \"In2.Cu\"\n        (type \"copper\")\n        (thickness 0.0152))\n      (layer\n        \"dielectric 3\"\n        (type \"prepreg\")\n        (thickness 0.0994)\n        (material \"FR4 3313\")\n        (epsilon_r 4.05)\n        (loss_tangent 0.02))\n      (layer\n        \"B.Cu\"\n        (type \"copper\")\n        (thickness 0.035))\n      (layer\n        \"B.Mask\"\n        (type \"Bottom Solder Mask\")\n        (color \"Black\")\n        (thickness 0.01))\n      (layer\n        \"B.Paste\"\n        (type \"Bottom Solder Paste\"))\n      (layer\n        \"B.SilkS\"\n        (type \"Bottom Silk Screen\")\n        (color \"White\"))\n      (copper_finish \"ENIG\")\n      (dielectric_constraints no))\n    (pad_to_mask_clearance 0)\n    (allow_soldermask_bridges_in_footprints no)\n    (tenting\n      (front yes)\n      (back yes))\n    (covering\n      (front no)\n      (back no))\n    (plugging\n      (front no)\n      (back no))\n    (capping no)\n    (filling no)\n    (pcbplotparams\n      (layerselection 0x00000000_00000000_000010fc_ffffffff)\n      (plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)\n      (disableapertmacros no)\n      (usegerberextensions no)\n      (usegerberattributes yes)\n      (usegerberadvancedattributes yes)\n      (creategerberjobfile yes)\n      (dashed_line_dash_ratio 12)\n      (dashed_line_gap_ratio 3)\n      (svgprecision 4)\n      (plotframeref no)\n      (mode 1)\n      (useauxorigin no)\n      (pdf_front_fp_property_popups yes)\n      (pdf_back_fp_property_popups yes)\n      (pdf_metadata yes)\n      (pdf_single_document no)\n      (dxfpolygonmode yes)\n      (dxfimperialunits yes)\n      (dxfusepcbnewfont yes)\n      (psnegative no)\n      (psa4output no)\n      (plot_black_and_white yes)\n      (sketchpadsonfab no)\n      (plotpadnumbers no)\n      (hidednponfab no)\n      (sketchdnponfab yes)\n      (crossoutdnponfab yes)\n      (subtractmaskfromsilk no)\n      (outputformat 1)\n      (mirror no)\n      (drillshape 1)\n      (scaleselection 1)\n      (outputdirectory \"\")))\n  (gr_line\n    (start 100 96)\n    (end 100 166.2)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"9b8baafe-ef80-4413-aabf-052b87652021\"))\n  (gr_arc\n    (start 100 96)\n    (mid 100.292893 95.292893)\n    (end 101 95)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"4a86fce7-cc5b-4bde-ba8a-ef67fd7ce9d4\"))\n  (gr_line\n    (start 100 169.8)\n    (end 100 174)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"e5266223-110a-4c38-abfa-6945f947ab9c\"))\n  (gr_arc\n    (start 100 169.8)\n    (mid 100.087868 169.587868)\n    (end 100.3 169.5)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"1ecb33f6-f679-46d5-b978-97ba3f5a7825\"))\n  (gr_arc\n    (start 100.3 166.5)\n    (mid 100.087868 166.412132)\n    (end 100 166.2)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"1f9d20fd-875b-4de2-a5fa-4de4fbabc1cc\"))\n  (gr_line\n    (start 100.3 166.5)\n    (end 100.6 166.5)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"3b486bb8-b1ff-4d2d-bc2b-7cf663474695\"))\n  (gr_arc\n    (start 100.6 166.5)\n    (mid 101.024264 166.675735)\n    (end 101.2 167.1)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"e9a1e27f-ea56-43b9-b5d7-bb35c4f1219a\"))\n  (gr_line\n    (start 100.6 169.5)\n    (end 100.3 169.5)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"dd5de795-b548-41cc-831a-17a06a4a4fa4\"))\n  (gr_arc\n    (start 101 175)\n    (mid 100.292893 174.707107)\n    (end 100 174)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"40dd3825-069c-4a87-9dfd-e34a53bf4775\"))\n  (gr_line\n    (start 101 175)\n    (end 153 175)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"6d1f0359-53b7-47d0-a58a-0be271cde08d\"))\n  (gr_line\n    (start 101.2 167.1)\n    (end 101.2 168.9)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"9c91434e-0b7f-4989-a092-f1d3f1c2a556\"))\n  (gr_arc\n    (start 101.2 168.9)\n    (mid 101.024264 169.324264)\n    (end 100.6 169.5)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"ca100c4f-551d-4a25-b732-bd38609c4c67\"))\n  (gr_arc\n    (start 152.8 98.4)\n    (mid 152.975735 97.975735)\n    (end 153.4 97.8)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"d4a016f9-d70d-4e38-bb2b-ce8359f30b31\"))\n  (gr_line\n    (start 152.8 99.6)\n    (end 152.8 98.4)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"9262b91d-cf2b-4458-9b06-30447414ca8d\"))\n  (gr_line\n    (start 153 95)\n    (end 101 95)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"908765d9-221d-4549-a198-18fe7b10628c\"))\n  (gr_arc\n    (start 153 95)\n    (mid 153.707107 95.292893)\n    (end 154 96)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"2e3892c8-aebd-4583-9fd0-b2da9ef99a90\"))\n  (gr_line\n    (start 153.4 97.8)\n    (end 153.7 97.8)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"52bdb585-d35b-4f4c-9cf7-1a0b3fa6d55c\"))\n  (gr_arc\n    (start 153.4 100.2)\n    (mid 152.975735 100.024264)\n    (end 152.8 99.6)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"025e6431-6c20-4c08-852a-675875902f02\"))\n  (gr_line\n    (start 153.7 100.2)\n    (end 153.4 100.2)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"4de82e7a-da8a-42c1-8bd8-fbb9545e2b34\"))\n  (gr_arc\n    (start 153.7 100.2)\n    (mid 153.912132 100.287868)\n    (end 154 100.5)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"2278e950-ec89-472a-a1ae-ee1ddec83630\"))\n  (gr_arc\n    (start 154 97.5)\n    (mid 153.912132 97.712132)\n    (end 153.7 97.8)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"c0d05b2c-e2b6-400b-89f1-aab13ed80b61\"))\n  (gr_line\n    (start 154 97.5)\n    (end 154 96)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"5d88e21e-7d92-468b-ac8a-33944f4dd160\"))\n  (gr_arc\n    (start 154 174)\n    (mid 153.707107 174.707107)\n    (end 153 175)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"ede577d2-ddd0-4bf4-b153-826313f8826b\"))\n  (gr_line\n    (start 154 174)\n    (end 154 100.5)\n    (stroke\n      (width 0.05)\n      (type default))\n    (layer \"Edge.Cuts\")\n    (uuid \"a6904927-351b-458f-8a04-d6b54b960e96\"))\n  (embedded_fonts no))",
+  "rule_areas_sexpr": [
+    "(zone\n  (layer \"F.Cu\")\n  (uuid \"3be321cc-0694-50bc-b34f-f86f2df3dc7f\")\n  (name \"PICOBLADE_FOOT_encoder_port.header_1\")\n  (hatch edge 0.5)\n  (connect_pads\n    (clearance 0))\n  (min_thickness 0.25)\n  (keepout\n    (tracks not_allowed)\n    (vias not_allowed)\n    (pads not_allowed)\n    (copperpour not_allowed)\n    (footprints allowed))\n  (placement\n    (enabled no)\n    (sheetname \"\"))\n  (fill\n    (thermal_gap 0.3)\n    (thermal_bridge_width 0.3)\n    (island_removal_mode 0))\n  (polygon\n    (pts\n      (xy 152.6 138.375)\n      (xy 152.6 137.375)\n      (xy 154.4 137.375)\n      (xy 154.4 138.375))))",
+    "(zone\n  (layer \"F.Cu\")\n  (uuid \"4d00f445-5926-5dfc-8788-afa911e3fddf\")\n  (name \"PICOBLADE_FOOT_encoder_port.header_2\")\n  (hatch edge 0.5)\n  (connect_pads\n    (clearance 0))\n  (min_thickness 0.25)\n  (keepout\n    (tracks not_allowed)\n    (vias not_allowed)\n    (pads not_allowed)\n    (copperpour not_allowed)\n    (footprints allowed))\n  (placement\n    (enabled no)\n    (sheetname \"\"))\n  (fill\n    (thermal_gap 0.3)\n    (thermal_bridge_width 0.3)\n    (island_removal_mode 0))\n  (polygon\n    (pts\n      (xy 149.4 132.625)\n      (xy 149.4 131.625)\n      (xy 151.2 131.625)\n      (xy 151.2 132.625))))",
+    "(zone\n  (layer \"F.Cu\")\n  (uuid \"5f668aca-c984-56f9-9bf6-b1344d6af3e4\")\n  (name \"PICOBLADE_FOOT_home_port.header_1\")\n  (hatch edge 0.5)\n  (connect_pads\n    (clearance 0))\n  (min_thickness 0.25)\n  (keepout\n    (tracks not_allowed)\n    (vias not_allowed)\n    (pads not_allowed)\n    (copperpour not_allowed)\n    (footprints allowed))\n  (placement\n    (enabled no)\n    (sheetname \"\"))\n  (fill\n    (thermal_gap 0.3)\n    (thermal_bridge_width 0.3)\n    (island_removal_mode 0))\n  (polygon\n    (pts\n      (xy 152.6 157.25)\n      (xy 152.6 156.25)\n      (xy 154.4 156.25)\n      (xy 154.4 157.25))))",
+    "(zone\n  (layer \"F.Cu\")\n  (uuid \"981ff09a-d07d-5f9d-8372-1b8508c900fc\")\n  (name \"PICOBLADE_FOOT_home_port.header_2\")\n  (hatch edge 0.5)\n  (connect_pads\n    (clearance 0))\n  (min_thickness 0.25)\n  (keepout\n    (tracks not_allowed)\n    (vias not_allowed)\n    (pads not_allowed)\n    (copperpour not_allowed)\n    (footprints allowed))\n  (placement\n    (enabled no)\n    (sheetname \"\"))\n  (fill\n    (thermal_gap 0.3)\n    (thermal_bridge_width 0.3)\n    (island_removal_mode 0))\n  (polygon\n    (pts\n      (xy 149.4 152.75)\n      (xy 149.4 151.75)\n      (xy 151.2 151.75)\n      (xy 151.2 152.75))))",
+    "(zone\n  (layer \"F.Cu\")\n  (uuid \"b4f3dd2f-238f-537d-8fe4-ed84cc3da111\")\n  (name \"PICOBLADE_FOOT_home_port.header_3\")\n  (hatch edge 0.5)\n  (connect_pads\n    (clearance 0))\n  (min_thickness 0.25)\n  (keepout\n    (tracks not_allowed)\n    (vias not_allowed)\n    (pads not_allowed)\n    (copperpour not_allowed)\n    (footprints allowed))\n  (placement\n    (enabled no)\n    (sheetname \"\"))\n  (fill\n    (thermal_gap 0.3)\n    (thermal_bridge_width 0.3)\n    (island_removal_mode 0))\n  (polygon\n    (pts\n      (xy 152.6 152.75)\n      (xy 152.6 151.75)\n      (xy 154.4 151.75)\n      (xy 154.4 152.75))))",
+    "(zone\n  (layer \"F.Cu\")\n  (uuid \"cffebf56-1080-5bbf-b7c4-bd6ceb979d09\")\n  (name \"PICOBLADE_FOOT_home_port.header_0\")\n  (hatch edge 0.5)\n  (connect_pads\n    (clearance 0))\n  (min_thickness 0.25)\n  (keepout\n    (tracks not_allowed)\n    (vias not_allowed)\n    (pads not_allowed)\n    (copperpour not_allowed)\n    (footprints allowed))\n  (placement\n    (enabled no)\n    (sheetname \"\"))\n  (fill\n    (thermal_gap 0.3)\n    (thermal_bridge_width 0.3)\n    (island_removal_mode 0))\n  (polygon\n    (pts\n      (xy 149.4 157.25)\n      (xy 149.4 156.25)\n      (xy 151.2 156.25)\n      (xy 151.2 157.25))))",
+    "(zone\n  (layer \"F.Cu\")\n  (uuid \"e7251087-e33e-5a65-af12-bdab895780cb\")\n  (name \"PICOBLADE_FOOT_encoder_port.header_0\")\n  (hatch edge 0.5)\n  (connect_pads\n    (clearance 0))\n  (min_thickness 0.25)\n  (keepout\n    (tracks not_allowed)\n    (vias not_allowed)\n    (pads not_allowed)\n    (copperpour not_allowed)\n    (footprints allowed))\n  (placement\n    (enabled no)\n    (sheetname \"\"))\n  (fill\n    (thermal_gap 0.3)\n    (thermal_bridge_width 0.3)\n    (island_removal_mode 0))\n  (polygon\n    (pts\n      (xy 149.4 138.375)\n      (xy 149.4 137.375)\n      (xy 151.2 137.375)\n      (xy 151.2 138.375))))",
+    "(zone\n  (layer \"F.Cu\")\n  (uuid \"e8713a9b-8920-59f7-82f1-bc3d333587ad\")\n  (name \"PICOBLADE_FOOT_encoder_port.header_3\")\n  (hatch edge 0.5)\n  (connect_pads\n    (clearance 0))\n  (min_thickness 0.25)\n  (keepout\n    (tracks not_allowed)\n    (vias not_allowed)\n    (pads not_allowed)\n    (copperpour not_allowed)\n    (footprints allowed))\n  (placement\n    (enabled no)\n    (sheetname \"\"))\n  (fill\n    (thermal_gap 0.3)\n    (thermal_bridge_width 0.3)\n    (island_removal_mode 0))\n  (polygon\n    (pts\n      (xy 152.6 132.625)\n      (xy 152.6 131.625)\n      (xy 154.4 131.625)\n      (xy 154.4 132.625))))"
+  ],
+  "project_sha256": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+  "new_pose_delta": {
+    "usb.tvs_vbus": [
+      32.5,
+      8.75,
+      0
+    ],
+    "usb.r_cutoff_ov_top": [
+      32.5,
+      11,
+      90
+    ],
+    "usb.r_cutoff_ov_bottom": [
+      32.5,
+      12.75,
+      0
+    ]
+  },
+  "sparse_silk_delta": [
+    {
+      "uuid": "2bc432cc-fe6b-4ec1-bec7-513c2b1d66f8",
+      "before": [
+        "fp_line",
+        [
+          "start",
+          -1.4,
+          -0.7
+        ],
+        [
+          "end",
+          -1.4,
+          0.7
+        ],
+        [
+          "stroke",
+          [
+            "width",
+            0.18
+          ],
+          [
+            "type",
+            "solid"
+          ]
+        ],
+        [
+          "layer",
+          "F.SilkS"
+        ],
+        [
+          "uuid",
+          "2bc432cc-fe6b-4ec1-bec7-513c2b1d66f8"
+        ]
+      ],
+      "after": [
+        "fp_line",
+        [
+          "start",
+          -1.4,
+          0.2
+        ],
+        [
+          "end",
+          -1.4,
+          0.7
+        ],
+        [
+          "stroke",
+          [
+            "width",
+            0.18
+          ],
+          [
+            "type",
+            "solid"
+          ]
+        ],
+        [
+          "layer",
+          "F.SilkS"
+        ],
+        [
+          "uuid",
+          "2bc432cc-fe6b-4ec1-bec7-513c2b1d66f8"
+        ]
+      ]
+    },
+    {
+      "uuid": "24f9448d-cd5c-4335-99ec-768563d33841",
+      "before": [
+        "fp_line",
+        [
+          "start",
+          -1.4,
+          -0.7
+        ],
+        [
+          "end",
+          1.15,
+          -0.7
+        ],
+        [
+          "stroke",
+          [
+            "width",
+            0.18
+          ],
+          [
+            "type",
+            "solid"
+          ]
+        ],
+        [
+          "layer",
+          "F.SilkS"
+        ],
+        [
+          "uuid",
+          "24f9448d-cd5c-4335-99ec-768563d33841"
+        ]
+      ],
+      "after": [
+        "fp_line",
+        [
+          "start",
+          -0.9,
+          -0.7
+        ],
+        [
+          "end",
+          1.15,
+          -0.7
+        ],
+        [
+          "stroke",
+          [
+            "width",
+            0.18
+          ],
+          [
+            "type",
+            "solid"
+          ]
+        ],
+        [
+          "layer",
+          "F.SilkS"
+        ],
+        [
+          "uuid",
+          "24f9448d-cd5c-4335-99ec-768563d33841"
+        ]
+      ]
+    }
+  ]
+}

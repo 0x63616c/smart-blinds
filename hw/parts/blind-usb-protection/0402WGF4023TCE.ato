@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_0402WGF4023TCE:
+    """UNVERIFIED fixed part; primary pin/land review in README."""
+    trait is_atomic_part<manufacturer="UNI-ROYAL", partnumber="0402WGF4023TCE", footprint="R0402.kicad_mod", symbol="0402WGF4023TCE.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C25785", manufacturer="UNI-ROYAL", partno="0402WGF4023TCE">
+    trait has_designator_prefix<prefix="R">
+
+    pin 1
+    pin 2

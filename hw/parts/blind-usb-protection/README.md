@@ -1,0 +1,10 @@
+# USB protection parts — UNVERIFIED physical assembly
+
+These fixed parts are for the isolated upstream-cutoff candidate. Primary pin and land checks do not establish thermal, soldering, transient or production acceptance. No 3D model is supplied: automatic imported models were not trusted as dimensional evidence.
+
+- TPS26600PWPR / C544399: TI SLVSDG2G, PWP0016A outline4214868/A. Primary land drawing pp52–54 transcribed at −90°: pin1 lower-left, pin8 lower-right, pin16 upper-left, pitch0.65mm. Sixteen lands0.45×1.5mm at y±2.9; EP17 copper5.0×3.4mm. Separate3.3×3.3 mask and paste openings follow the drawing. RTN8/EP17 stay isolated from system GND9. Thermal stitching and the RTN heat spreader must be routed explicitly. The courtyard±2.95×±3.9 encloses body/lead projections and pads with planning clearance. [TI source](https://www.ti.com/lit/ds/symlink/tps2660.pdf).
+- TVS1800DRVR / C2649846: TI DRV0006A4222173/C (Nov2025) land drawing. Six0.45×0.3mm lands at x±0.975,y−0.65/0/+0.65; EP7=1.0×1.6mm. Pins1/2/3/7 GND;4/5/6 IN. Courtyard±1.45×±1.3. [TI source](https://www.ti.com/lit/ds/symlink/tvs1800.pdf).
+- RT0402BRD0730K1L / C852714:30.1k,0.1%,25ppm/°C. Yageo RT Feb12,2026V17:0402 maximum body1.1×0.55mm. Reuses reviewed common0402 copper/courtyard, with exact terminal numbers. [Yageo source](https://yageogroup.com/content/datasheet/asset/file/pyu-rt_1-to-0-01_rohs_l).
+- 0402WGF4023TCE / C25785:402k1%; same reviewed common0402 lands. Datasheet nominal value and temperature allowance are recorded in the circuit ratings manifest. Do not infer arbitrary nearby resistance is equivalent to TI's specified402k MODE selection.
+
+`check_protection_lands.py` independently checks numeric source geometry, identical pretty-library mirrors, both compiled instances and five deliberate land/metadata faults. The different primitive forms for the thermal F.Mask polygon and F.Paste rectangle intentionally avoid atopile deduplicating identical geometry across those two layers. SMD metadata is explicit; there are no invented no-net thermal barrels or plated holes. Check actual stencil/thermal-via construction with the assembler.

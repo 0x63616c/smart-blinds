@@ -25,6 +25,17 @@ BOARDS = {
 }
 
 
+def component_catalog(props, where):
+    """Exact picked-part fields own procurement; reject contradictory aliases."""
+    code = props['LCSC']
+    mpn = props['Partnumber']
+    for name in ('lcsc_id', 'LCSC Part'):
+        alias = props.get(name, '').strip()
+        if alias and alias != code:
+            raise ValueError(f'Conflicting supplier alias at {where}: {name}={alias}, LCSC={code}')
+    return code, mpn
+
+
 def build():
     evidence = {}
     for path in sorted((ROOT / 'bom').glob('*sourcing*.json')):
@@ -55,7 +66,7 @@ def build():
                 bare_features[board].append(dict(reference=ref, address=props['atopile_address'],
                                                   footprint=component['footprint']))
                 continue
-            code = props['LCSC']; mpn = props['Partnumber']
+            code, mpn = component_catalog(props, f'{board}/{ref}')
             if code in mpns and mpns[code] != mpn:
                 raise ValueError(f'Conflicting manufacturer part for {code}')
             mpns[code] = mpn; counts[code][board] += 1

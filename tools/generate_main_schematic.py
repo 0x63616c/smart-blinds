@@ -12,7 +12,7 @@ import subprocess
 import sys
 import tempfile
 
-from generate_schematics import ROOT, board_graph, fx, uid, xy
+from generate_schematics import ROOT, board_graph, fx, uid, xy, native_cli
 from kicad_sexpr import Atom, children, dumps, node as n, one, parse
 from main_schematic_page import draw_page
 
@@ -111,6 +111,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check', action='store_true')
     args = parser.parse_args()
+    cli = native_cli()
     hashes = {}
     def read_source(path):
         path = path.resolve(); data = path.read_bytes()
@@ -196,7 +197,6 @@ def main():
             n('uri', '${KIPRJMOD}/' + os.path.relpath(directory, base)), n('options', ''), n('descr', 'Project footprint'))
             for name, directory in sorted(dirs.items())])) + '\n'
     generated['fp-lib-table'] = fp_table(OUTPUT)
-    cli = shutil.which('kicad-cli') or '/Applications/KiCad.app/Contents/MacOS/kicad-cli'
     with tempfile.TemporaryDirectory(prefix='smart-blinds-main-sch-') as temp:
         tmp = Path(temp)
         for name, content in generated.items(): (tmp / name).write_text(content)
