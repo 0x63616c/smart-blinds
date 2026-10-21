@@ -12,7 +12,11 @@ four copper layers and requires outward-facing edge connectors, quarter-millimet
 component origins, 90-degree component rotations, orderly connector escapes,
 45/90-degree routing and no top-layer transit beneath component bodies.
 
-These are **unrouted placement studies**, not manufacturing releases. They use
+The option comparison below records the initial **unrouted placement studies**.
+The [current 54 × 80 mm source](../../hw/studies/clean-main/) is now partially routed,
+with 417 open connections; [its latest review](../reviews/2026-10-21-clean-layout/pd-routing.md)
+and automatic preview supersede the early snapshots for current progress.
+None is a manufacturing release. They use
 the 206-part input-protection circuit candidate, versus 196 parts in the old
 canonical route. All 696 physical pad records and their connection identities
 are preserved. The canonical partial route remains unchanged.

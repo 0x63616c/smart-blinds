@@ -1,0 +1,93 @@
+(footprint
+  "R0603"
+  (version 20260206)
+  (generator "pcbnew")
+  (generator_version "10.0")
+  (layer "F.Cu")
+  (descr "10MΩ (1005) ±1%")
+  (property
+    "Reference"
+    "REF**"
+    (at 0 -4 0)
+    (layer "F.SilkS")
+    (uuid "82832b67-4b2c-4a66-a2da-7d9af3ecb071")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Value"
+    "R0603"
+    (at 0 4 0)
+    (layer "F.Fab")
+    (uuid "1a07a76e-a68b-45d8-b51d-cfd5f6bfbf84")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Datasheet"
+    ""
+    (at 0 0 0)
+    (layer "F.Fab")
+    (hide yes)
+    (uuid "932bd591-5ce2-493d-9281-dc7bc437fcb1")
+    (effects
+      (font
+        (size 1.27 1.27))))
+  (property
+    "Description"
+    ""
+    (at 0 0 0)
+    (layer "F.Fab")
+    (hide yes)
+    (uuid "ea8eb7d9-78ad-4b0d-adb2-fccb0622a0e8")
+    (effects
+      (font
+        (size 1.27 1.27))))
+  (attr smd)
+  (duplicate_pad_numbers_are_jumpers no)
+  (fp_text
+    user
+    "${REFERENCE}"
+    (at 0 0 0)
+    (layer "F.Fab")
+    (uuid "c175dc9b-6e9e-441d-8e24-8f8b009bc4db")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (pad
+    "1"
+    smd
+    rect
+    (at -0.75 0)
+    (size 0.806 0.864)
+    (layers "F.Cu" "F.Mask" "F.Paste")
+    (uuid "e0363383-e648-4fe8-beb0-1fe0fa91c5f5"))
+  (pad
+    "2"
+    smd
+    rect
+    (at 0.75 0)
+    (size 0.806 0.864)
+    (layers "F.Cu" "F.Mask" "F.Paste")
+    (uuid "96f2c176-6acb-4f02-863e-9881b7c626f1"))
+  (embedded_fonts no)
+  (model
+    "${KIPRJMOD}/../../../parts/blind-regen/blind-regen.3dshapes/R0603.wrl"
+    (offset
+      (xyz 0 0 0))
+    (scale
+      (xyz 1 1 1))
+    (rotate
+      (xyz 0 0 270)))
+  (fp_rect
+    (start -1.45 -0.7)
+    (end 1.45 0.7)
+    (stroke
+      (width 0.05)
+      (type default))
+    (fill none)
+    (layer "F.CrtYd")
+    (uuid "fd963c14-b521-5094-b44f-009e6df04be0")))

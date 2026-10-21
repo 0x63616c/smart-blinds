@@ -1,0 +1,101 @@
+(footprint
+  "R0402"
+  (version 20260206)
+  (generator "pcbnew")
+  (generator_version "10.0")
+  (layer "F.Cu")
+  (property
+    "Reference"
+    "REF**"
+    (at 0 -4 0)
+    (layer "F.SilkS")
+    (uuid "2992b650-f099-4ee7-a54d-65c4b69afe95")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Value"
+    "R0402"
+    (at 0 4 0)
+    (layer "F.Fab")
+    (uuid "5861d3d1-b6bb-499d-bc87-f0cb5ef8f9b5")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Datasheet"
+    ""
+    (at 0 0 0)
+    (layer "F.Fab")
+    (hide yes)
+    (uuid "3f905a0e-e6d3-49b0-985f-7bde9bb808eb")
+    (effects
+      (font
+        (size 1.27 1.27))))
+  (property
+    "Description"
+    ""
+    (at 0 0 0)
+    (layer "F.Fab")
+    (hide yes)
+    (uuid "0483a72b-9be2-4663-af32-02a130ed3236")
+    (effects
+      (font
+        (size 1.27 1.27))))
+  (attr smd)
+  (duplicate_pad_numbers_are_jumpers no)
+  (fp_circle
+    (center -0.5 0.25)
+    (end -0.47 0.25)
+    (stroke
+      (width 0.06)
+      (type solid))
+    (fill no)
+    (layer "F.Fab")
+    (uuid "dd1e7932-9005-4108-8721-0e889dd8d05d"))
+  (fp_text
+    user
+    "${REFERENCE}"
+    (at 0 0 0)
+    (layer "F.Fab")
+    (uuid "fb43ed6e-42e8-4c98-8d44-c4350198e351")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (pad
+    "1"
+    smd
+    rect
+    (at -0.43 0)
+    (size 0.57 0.54)
+    (layers "F.Cu" "F.Mask" "F.Paste")
+    (uuid "a1541fbf-5d61-45e0-a6ac-f822dc44d1af"))
+  (pad
+    "2"
+    smd
+    rect
+    (at 0.43 0)
+    (size 0.57 0.54)
+    (layers "F.Cu" "F.Mask" "F.Paste")
+    (uuid "04b607a1-7180-4964-ba6d-6f8e298d80c8"))
+  (embedded_fonts no)
+  (model
+    "${KIPRJMOD}/../../../parts/blind-usb/blind-usb.3dshapes/R0402_L1.0-W0.5-H0.4.wrl"
+    (offset
+      (xyz 0 -0 -0))
+    (scale
+      (xyz 1 1 1))
+    (rotate
+      (xyz 0 0 0)))
+  (fp_rect
+    (start -1.0 -0.55)
+    (end 1.0 0.55)
+    (stroke
+      (width 0.05)
+      (type default))
+    (fill none)
+    (layer "F.CrtYd")
+    (uuid "f93306fb-c9d6-5741-a2d5-73c27dc6ea8f")))

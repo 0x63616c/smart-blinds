@@ -1,0 +1,72 @@
+(footprint
+  "SAMSUNG_CL10A105KB8NNNC:C0603"
+  (version 20241229)
+  (generator "faebryk_convert")
+  (generator_version "v5")
+  (layer "F.Cu")
+  (tedit "5DC5F6A4")
+  (uuid "1d04c64e-4a03-44ac-981f-02a33fcc3fbd")
+  (property
+    "Reference"
+    "REF**"
+    (at 0 -4)
+    (layer "F.SilkS")
+    (uuid "15783916-3f77-4000-a305-ef30f59dc02b")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Value"
+    "C0603"
+    (at 0 4)
+    (layer "F.Fab")
+    (uuid "19cac24e-fb61-4c08-af6a-7a84c2c41660")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (attr smd)
+  (fp_circle
+    (center -0.8 0.4)
+    (end -0.77 0.4)
+    (stroke
+      (width 0.06)
+      (type solid))
+    (layer "F.Fab")
+    (locked no)
+    (uuid "b19c76b2-cc9a-453e-9cd7-4484d3805663"))
+  (pad
+    "2"
+    smd
+    rect
+    (at 0.7 0 0)
+    (size 0.8 0.9)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "cb45627c-bedc-40bc-96f0-e6145449e6e6"))
+  (pad
+    "1"
+    smd
+    rect
+    (at -0.7 0 0)
+    (size 0.8 0.9)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "60de43d1-9681-421c-ba79-cb15264053d7"))
+  (model
+    "${KIPRJMOD}/../../parts/SAMSUNG_CL10A105KB8NNNC/C0603_L1.6-W0.8-H0.8.step"
+    (offset
+      (xyz 0 0 -0))
+    (scale
+      (xyz 1 1 1))
+    (rotate
+      (xyz 0 0 0)))
+  (embedded_fonts no)
+  (fp_rect
+    (start -1.35 -0.7)
+    (end 1.35 0.7)
+    (stroke
+      (width 0.05)
+      (type default))
+    (fill none)
+    (layer "F.CrtYd")
+    (uuid "f4d53ba0-508c-5881-bd74-28953153feda")))

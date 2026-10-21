@@ -21,8 +21,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-      - name: Test source-aware preview publication
-        run: python3 -m unittest discover -s tools -p test_publish_previews.py -v
+      - name: Test preview host boundary and source-aware publication
+        run: python3 -m unittest discover -s tools -p 'test_*previews.py' -v
       - name: Install rendering tools
         run: |
           sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases

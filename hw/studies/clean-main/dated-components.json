@@ -1,0 +1,2250 @@
+{
+  "status": "Partial v16 design study; catalog observations 19\u201320 October 2026; component demand only, NOT order ready",
+  "board_source_sha256": {
+    "main": "c6339b0acb416b0564a970979d25451778566237b74b2088c15d9f8838643f5b",
+    "pack_primary": "a93f5b45b81767ffaaa44e7ff29bcc5edda26651cc63edd8132b4aa51cbd1197",
+    "pack_companion": "629badeee425db788ad6c0246485f998eafa8df5b7ab3ce49790716f5382a712"
+  },
+  "counts_by_board": {
+    "main": 204,
+    "pack_primary": 33,
+    "pack_companion": 6
+  },
+  "bare_board_features": {
+    "main": [
+      "TP1",
+      "TP2"
+    ],
+    "pack_primary": [
+      "TP1",
+      "TP3",
+      "TP16",
+      "TP5",
+      "TP14",
+      "TP13",
+      "TP8",
+      "TP17",
+      "TP10",
+      "TP4",
+      "TP12",
+      "TP7",
+      "TP15",
+      "TP11",
+      "TP6",
+      "TP9",
+      "TP2"
+    ],
+    "pack_companion": [
+      "TP1",
+      "TP4",
+      "TP2",
+      "TP3"
+    ]
+  },
+  "unique_part_numbers": 71,
+  "added_main_references": [
+    "C62",
+    "C63",
+    "R64",
+    "R94",
+    "R95",
+    "R96",
+    "R97",
+    "R98",
+    "U18",
+    "U19"
+  ],
+  "inherited_metadata_conflicts": [],
+  "batch_totals_usd": {
+    "2": "99.2730",
+    "8": "379.9432"
+  },
+  "increase_vs_published_usd": {
+    "2": "4.1894",
+    "8": "16.7576"
+  },
+  "private_stock_scenario": {
+    "2": {
+      "parts": [
+        {
+          "lcsc": "C544399",
+          "quantity": 6,
+          "cost_usd": "9.2652"
+        },
+        {
+          "lcsc": "C2649846",
+          "quantity": 29,
+          "cost_usd": "9.338"
+        },
+        {
+          "lcsc": "C852714",
+          "quantity": 319,
+          "cost_usd": "9.0277"
+        },
+        {
+          "lcsc": "C25785",
+          "quantity": 5640,
+          "cost_usd": "9.0240"
+        }
+      ],
+      "four_new_skus_only_usd": "36.6549",
+      "caution": "Historical private-stock scenario only; not a PCBA quote, availability promise, or complete procurement bill."
+    },
+    "8": {
+      "parts": [
+        {
+          "lcsc": "C544399",
+          "quantity": 8,
+          "cost_usd": "12.3536"
+        },
+        {
+          "lcsc": "C2649846",
+          "quantity": 29,
+          "cost_usd": "9.338"
+        },
+        {
+          "lcsc": "C852714",
+          "quantity": 319,
+          "cost_usd": "9.0277"
+        },
+        {
+          "lcsc": "C25785",
+          "quantity": 5640,
+          "cost_usd": "9.0240"
+        }
+      ],
+      "four_new_skus_only_usd": "39.7433",
+      "caution": "Historical private-stock scenario only; not a PCBA quote, availability promise, or complete procurement bill."
+    }
+  },
+  "lines": [
+    {
+      "lcsc": "C11702",
+      "mpn": "0402WGF1001TCE",
+      "counts": {
+        "main": 6,
+        "pack_primary": 2
+      },
+      "references": {
+        "main": [
+          "R12",
+          "R17",
+          "R25",
+          "R39",
+          "R68",
+          "R91"
+        ],
+        "pack_primary": [
+          "R8",
+          "R9"
+        ]
+      },
+      "observed_utc": "2026-10-20T00:54:44+00:00",
+      "source": "bom/electronics-controller-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF1001TCE/C11702",
+      "batches": {
+        "2": {
+          "quantity": 16,
+          "unit_price_usd": "0.0013",
+          "extension_usd": "0.0208"
+        },
+        "8": {
+          "quantity": 64,
+          "unit_price_usd": "0.0013",
+          "extension_usd": "0.0832"
+        }
+      }
+    },
+    {
+      "lcsc": "C127367",
+      "mpn": "430450600",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "J1"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:47:32+00:00",
+      "source": "bom/electronics-connectors-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/430450600/C127367",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.5556",
+          "extension_usd": "1.1112"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.5556",
+          "extension_usd": "4.4448"
+        }
+      }
+    },
+    {
+      "lcsc": "C12881",
+      "mpn": "CL31A475KBHNNNE",
+      "counts": {
+        "main": 3
+      },
+      "references": {
+        "main": [
+          "C49",
+          "C54",
+          "C63"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:25+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CL31A475KBHNNNE/C12881",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.1012",
+          "extension_usd": "0.6072"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.1012",
+          "extension_usd": "2.4288"
+        }
+      }
+    },
+    {
+      "lcsc": "C13585",
+      "mpn": "CL31A106KBHNNNE",
+      "counts": {
+        "main": 15
+      },
+      "references": {
+        "main": [
+          "C1",
+          "C10",
+          "C11",
+          "C12",
+          "C16",
+          "C17",
+          "C18",
+          "C19",
+          "C2",
+          "C20",
+          "C40",
+          "C42",
+          "C6",
+          "C7",
+          "C9"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:17:53+00:00",
+      "source": "bom/electronics-regulator-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CL31A106KBHNNNE/C13585",
+      "batches": {
+        "2": {
+          "quantity": 30,
+          "unit_price_usd": "0.2556",
+          "extension_usd": "7.6680"
+        },
+        "8": {
+          "quantity": 120,
+          "unit_price_usd": "0.2028",
+          "extension_usd": "24.3360"
+        }
+      }
+    },
+    {
+      "lcsc": "C13967",
+      "mpn": "CL21B474KBFNNNE",
+      "counts": {
+        "pack_primary": 3
+      },
+      "references": {
+        "pack_primary": [
+          "C5",
+          "C6",
+          "C7"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:34:17+00:00",
+      "source": "bom/electronics-carrier-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CL21B474KBFNNNE/C13967",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.0203",
+          "extension_usd": "0.1218"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.0203",
+          "extension_usd": "0.4872"
+        }
+      }
+    },
+    {
+      "lcsc": "C13982",
+      "mpn": "0451003.MRL",
+      "counts": {
+        "pack_primary": 3,
+        "pack_companion": 3
+      },
+      "references": {
+        "pack_primary": [
+          "F1",
+          "F2",
+          "F3"
+        ],
+        "pack_companion": [
+          "F1",
+          "F2",
+          "F3"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:25:22+00:00",
+      "source": "bom/electronics-carrier-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0451003.MRL/C13982",
+      "batches": {
+        "2": {
+          "quantity": 12,
+          "unit_price_usd": "0.2566",
+          "extension_usd": "3.0792"
+        },
+        "8": {
+          "quantity": 48,
+          "unit_price_usd": "0.2566",
+          "extension_usd": "12.3168"
+        }
+      }
+    },
+    {
+      "lcsc": "C145179",
+      "mpn": "RB521S30T1G",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "D3"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:22+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/RB521S30T1G/C145179",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0639",
+          "extension_usd": "0.1278"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0639",
+          "extension_usd": "0.5112"
+        }
+      }
+    },
+    {
+      "lcsc": "C1523",
+      "mpn": "0402B102K500NT",
+      "counts": {
+        "main": 2
+      },
+      "references": {
+        "main": [
+          "C15",
+          "C50"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:51:20+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402B102K500NT/C1523",
+      "batches": {
+        "2": {
+          "quantity": 4,
+          "unit_price_usd": "0.0038",
+          "extension_usd": "0.0152"
+        },
+        "8": {
+          "quantity": 16,
+          "unit_price_usd": "0.0038",
+          "extension_usd": "0.0608"
+        }
+      }
+    },
+    {
+      "lcsc": "C1532",
+      "mpn": "0402B223K500NT",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "C32"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:28+00:00",
+      "source": "bom/electronics-common-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402B223K500NT/C1532",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0049",
+          "extension_usd": "0.0098"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0049",
+          "extension_usd": "0.0392"
+        }
+      }
+    },
+    {
+      "lcsc": "C15849",
+      "mpn": "CL10A105KB8NNNC",
+      "counts": {
+        "main": 5
+      },
+      "references": {
+        "main": [
+          "C47",
+          "C48",
+          "C51",
+          "C53",
+          "C61"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:34:36+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CL10A105KB8NNNC/C15849",
+      "batches": {
+        "2": {
+          "quantity": 10,
+          "unit_price_usd": "0.0153",
+          "extension_usd": "0.1530"
+        },
+        "8": {
+          "quantity": 40,
+          "unit_price_usd": "0.0153",
+          "extension_usd": "0.6120"
+        }
+      }
+    },
+    {
+      "lcsc": "C165948",
+      "mpn": "TYPE-C-31-M-12",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "USBC1"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:24+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TYPE-C-31-M-12/C165948",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1867",
+          "extension_usd": "0.3734"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1867",
+          "extension_usd": "1.4936"
+        }
+      }
+    },
+    {
+      "lcsc": "C1779",
+      "mpn": "CL21A475KAQNNNE",
+      "counts": {
+        "main": 2
+      },
+      "references": {
+        "main": [
+          "C14",
+          "C39"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:01:20+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CL21A475KAQNNNE/C1779",
+      "batches": {
+        "2": {
+          "quantity": 4,
+          "unit_price_usd": "0.0384",
+          "extension_usd": "0.1536"
+        },
+        "8": {
+          "quantity": 16,
+          "unit_price_usd": "0.0384",
+          "extension_usd": "0.6144"
+        }
+      }
+    },
+    {
+      "lcsc": "C17901",
+      "mpn": "1206W4F1000T5E",
+      "counts": {
+        "pack_primary": 3
+      },
+      "references": {
+        "pack_primary": [
+          "R3",
+          "R4",
+          "R5"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:34:17+00:00",
+      "source": "bom/electronics-carrier-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/1206W4F1000T5E/C17901",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.0059",
+          "extension_usd": "0.0354"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.0059",
+          "extension_usd": "0.1416"
+        }
+      }
+    },
+    {
+      "lcsc": "C1855818",
+      "mpn": "DRV8874PWPR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U4"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:07:28+00:00",
+      "source": "bom/electronics-sourcing-snapshot.json",
+      "url": "https://jlcpcb.com/partdetail/DRV8874PWPR/C1855818",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "1.0124",
+          "extension_usd": "2.0248"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "1.0124",
+          "extension_usd": "8.0992"
+        }
+      }
+    },
+    {
+      "lcsc": "C1972959",
+      "mpn": "TPD2E2U06DRLR",
+      "counts": {
+        "main": 3
+      },
+      "references": {
+        "main": [
+          "D1",
+          "D2",
+          "D6"
+        ]
+      },
+      "observed_utc": "2026-10-20T00:52:36+00:00",
+      "source": "bom/electronics-controller-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TPD2E2U06DRLR/C1972959",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.3238",
+          "extension_usd": "1.9428"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.3238",
+          "extension_usd": "7.7712"
+        }
+      }
+    },
+    {
+      "lcsc": "C1974707",
+      "mpn": "ESDA25P35-1U1M",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "D5"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:22+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/ESDA25P35-1U1M/C1974707",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1916",
+          "extension_usd": "0.3832"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1916",
+          "extension_usd": "1.5328"
+        }
+      }
+    },
+    {
+      "lcsc": "C20606809",
+      "mpn": "BH-21700-A5BJ001",
+      "counts": {
+        "pack_primary": 3,
+        "pack_companion": 3
+      },
+      "references": {
+        "pack_primary": [
+          "BT1",
+          "BT2",
+          "BT3"
+        ],
+        "pack_companion": [
+          "BT1",
+          "BT2",
+          "BT3"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:25:27+00:00",
+      "source": "bom/electronics-sourcing-snapshot.json",
+      "url": "https://jlcpcb.com/partdetail/BH-21700-A5BJ001/C20606809",
+      "batches": {
+        "2": {
+          "quantity": 12,
+          "unit_price_usd": "1.3732",
+          "extension_usd": "16.4784"
+        },
+        "8": {
+          "quantity": 48,
+          "unit_price_usd": "1.2246",
+          "extension_usd": "58.7808"
+        }
+      }
+    },
+    {
+      "lcsc": "C20917",
+      "mpn": "AO3400A",
+      "counts": {
+        "main": 4
+      },
+      "references": {
+        "main": [
+          "Q1",
+          "Q10",
+          "Q4",
+          "Q7"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:51:20+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/AO3400A/C20917",
+      "batches": {
+        "2": {
+          "quantity": 8,
+          "unit_price_usd": "0.0972",
+          "extension_usd": "0.7776"
+        },
+        "8": {
+          "quantity": 32,
+          "unit_price_usd": "0.0972",
+          "extension_usd": "3.1104"
+        }
+      }
+    },
+    {
+      "lcsc": "C2116",
+      "mpn": "BZT52C4V7",
+      "counts": {
+        "pack_primary": 3
+      },
+      "references": {
+        "pack_primary": [
+          "D1",
+          "D2",
+          "D3"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:37:24+00:00",
+      "source": "bom/electronics-carrier-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/BZT52C4V7/C2116",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.02",
+          "extension_usd": "0.12"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.02",
+          "extension_usd": "0.48"
+        }
+      }
+    },
+    {
+      "lcsc": "C21190",
+      "mpn": "0603WAF1001T5E",
+      "counts": {
+        "main": 6
+      },
+      "references": {
+        "main": [
+          "R53",
+          "R54",
+          "R55",
+          "R59",
+          "R60",
+          "R61"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:25+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0603WAF1001T5E/C21190",
+      "batches": {
+        "2": {
+          "quantity": 12,
+          "unit_price_usd": "0.003",
+          "extension_usd": "0.036"
+        },
+        "8": {
+          "quantity": 48,
+          "unit_price_usd": "0.003",
+          "extension_usd": "0.144"
+        }
+      }
+    },
+    {
+      "lcsc": "C25076",
+      "mpn": "0402WGF1000TCE",
+      "counts": {
+        "main": 1,
+        "pack_primary": 2
+      },
+      "references": {
+        "main": [
+          "R1"
+        ],
+        "pack_primary": [
+          "R6",
+          "R7"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:51:20+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF1000TCE/C25076",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.0012",
+          "extension_usd": "0.0072"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.0012",
+          "extension_usd": "0.0288"
+        }
+      }
+    },
+    {
+      "lcsc": "C25077",
+      "mpn": "0402WGF100JTCE",
+      "counts": {
+        "pack_primary": 1
+      },
+      "references": {
+        "pack_primary": [
+          "R12"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:34:17+00:00",
+      "source": "bom/electronics-carrier-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF100JTCE/C25077",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0013",
+          "extension_usd": "0.0026"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0013",
+          "extension_usd": "0.0104"
+        }
+      }
+    },
+    {
+      "lcsc": "C25082",
+      "mpn": "0402WGF1500TCE",
+      "counts": {
+        "pack_primary": 3
+      },
+      "references": {
+        "pack_primary": [
+          "R1",
+          "R10",
+          "R11"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:37:24+00:00",
+      "source": "bom/electronics-carrier-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF1500TCE/C25082",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.0017",
+          "extension_usd": "0.0102"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.0017",
+          "extension_usd": "0.0408"
+        }
+      }
+    },
+    {
+      "lcsc": "C25092",
+      "mpn": "0402WGF220JTCE",
+      "counts": {
+        "main": 2
+      },
+      "references": {
+        "main": [
+          "R21",
+          "R23"
+        ]
+      },
+      "observed_utc": "2026-10-20T00:52:36+00:00",
+      "source": "bom/electronics-controller-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF220JTCE/C25092",
+      "batches": {
+        "2": {
+          "quantity": 4,
+          "unit_price_usd": "0.0014",
+          "extension_usd": "0.0056"
+        },
+        "8": {
+          "quantity": 16,
+          "unit_price_usd": "0.0014",
+          "extension_usd": "0.0224"
+        }
+      }
+    },
+    {
+      "lcsc": "C25741",
+      "mpn": "0402WGF1003TCE",
+      "counts": {
+        "main": 17
+      },
+      "references": {
+        "main": [
+          "R11",
+          "R14",
+          "R15",
+          "R16",
+          "R40",
+          "R41",
+          "R47",
+          "R48",
+          "R51",
+          "R65",
+          "R67",
+          "R77",
+          "R78",
+          "R81",
+          "R82",
+          "R88",
+          "R97"
+        ]
+      },
+      "observed_utc": "2026-10-20T00:54:44+00:00",
+      "source": "bom/electronics-controller-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF1003TCE/C25741",
+      "batches": {
+        "2": {
+          "quantity": 34,
+          "unit_price_usd": "0.0015",
+          "extension_usd": "0.0510"
+        },
+        "8": {
+          "quantity": 136,
+          "unit_price_usd": "0.0015",
+          "extension_usd": "0.2040"
+        }
+      }
+    },
+    {
+      "lcsc": "C25744",
+      "mpn": "0402WGF1002TCE",
+      "counts": {
+        "main": 36,
+        "pack_primary": 1
+      },
+      "references": {
+        "main": [
+          "R13",
+          "R18",
+          "R19",
+          "R2",
+          "R20",
+          "R22",
+          "R24",
+          "R26",
+          "R29",
+          "R3",
+          "R30",
+          "R32",
+          "R33",
+          "R34",
+          "R35",
+          "R36",
+          "R37",
+          "R38",
+          "R4",
+          "R44",
+          "R46",
+          "R49",
+          "R50",
+          "R6",
+          "R62",
+          "R63",
+          "R7",
+          "R79",
+          "R80",
+          "R83",
+          "R85",
+          "R87",
+          "R89",
+          "R90",
+          "R92",
+          "R93"
+        ],
+        "pack_primary": [
+          "R2"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:27+00:00",
+      "source": "bom/electronics-common-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF1002TCE/C25744",
+      "batches": {
+        "2": {
+          "quantity": 74,
+          "unit_price_usd": "0.0015",
+          "extension_usd": "0.1110"
+        },
+        "8": {
+          "quantity": 296,
+          "unit_price_usd": "0.0015",
+          "extension_usd": "0.4440"
+        }
+      }
+    },
+    {
+      "lcsc": "C25778",
+      "mpn": "0402WGF3303TCE",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "R86"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:07:09+00:00",
+      "source": "bom/electronics-regen-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF3303TCE/C25778",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0029",
+          "extension_usd": "0.0058"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0029",
+          "extension_usd": "0.0232"
+        }
+      }
+    },
+    {
+      "lcsc": "C25779",
+      "mpn": "0402WGF3302TCE",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "R5"
+        ]
+      },
+      "observed_utc": "2026-10-20T01:57:48+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF3302TCE/C25779",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0058",
+          "extension_usd": "0.0116"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0058",
+          "extension_usd": "0.0464"
+        }
+      }
+    },
+    {
+      "lcsc": "C25782",
+      "mpn": "0402WGF3903TCE",
+      "counts": {
+        "main": 3
+      },
+      "references": {
+        "main": [
+          "R57",
+          "R66",
+          "R96"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:34:36+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF3903TCE/C25782",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.0011",
+          "extension_usd": "0.0066"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.0011",
+          "extension_usd": "0.0264"
+        }
+      }
+    },
+    {
+      "lcsc": "C25785",
+      "mpn": "0402WGF4023TCE",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "R94"
+        ]
+      },
+      "observed_utc": "2026-10-20",
+      "source": "hw/studies/clean-main/usb-protection-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF4023TCE/C25785",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0024",
+          "extension_usd": "0.0048"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0024",
+          "extension_usd": "0.0192"
+        }
+      }
+    },
+    {
+      "lcsc": "C25862",
+      "mpn": "0402WGF1201TCE",
+      "counts": {
+        "main": 2
+      },
+      "references": {
+        "main": [
+          "R31",
+          "R64"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:29+00:00",
+      "source": "bom/electronics-common-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF1201TCE/C25862",
+      "batches": {
+        "2": {
+          "quantity": 4,
+          "unit_price_usd": "0.0012",
+          "extension_usd": "0.0048"
+        },
+        "8": {
+          "quantity": 16,
+          "unit_price_usd": "0.0012",
+          "extension_usd": "0.0192"
+        }
+      }
+    },
+    {
+      "lcsc": "C25869",
+      "mpn": "0402WGF1651TCE",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "R52"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:34:36+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF1651TCE/C25869",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0012",
+          "extension_usd": "0.0024"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0012",
+          "extension_usd": "0.0096"
+        }
+      }
+    },
+    {
+      "lcsc": "C25875",
+      "mpn": "0402WGF2612TCE",
+      "counts": {
+        "main": 2
+      },
+      "references": {
+        "main": [
+          "R45",
+          "R58"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:01:51+00:00",
+      "source": "bom/electronics-regulator-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF2612TCE/C25875",
+      "batches": {
+        "2": {
+          "quantity": 4,
+          "unit_price_usd": "0.002",
+          "extension_usd": "0.008"
+        },
+        "8": {
+          "quantity": 16,
+          "unit_price_usd": "0.002",
+          "extension_usd": "0.032"
+        }
+      }
+    },
+    {
+      "lcsc": "C25900",
+      "mpn": "0402WGF4701TCE",
+      "counts": {
+        "main": 3
+      },
+      "references": {
+        "main": [
+          "R27",
+          "R28",
+          "R98"
+        ]
+      },
+      "observed_utc": "2026-10-20T00:54:44+00:00",
+      "source": "bom/electronics-controller-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF4701TCE/C25900",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.0021",
+          "extension_usd": "0.0126"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.0021",
+          "extension_usd": "0.0504"
+        }
+      }
+    },
+    {
+      "lcsc": "C25907",
+      "mpn": "0402WGF5231TCE",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "R10"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:51:19+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF5231TCE/C25907",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0035",
+          "extension_usd": "0.0070"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0035",
+          "extension_usd": "0.0280"
+        }
+      }
+    },
+    {
+      "lcsc": "C2649846",
+      "mpn": "TVS1800DRVR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U19"
+        ]
+      },
+      "observed_utc": "2026-10-20",
+      "source": "hw/studies/clean-main/usb-protection-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TVS1800DRVR/C2649846",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.402",
+          "extension_usd": "0.804"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.402",
+          "extension_usd": "3.216"
+        }
+      }
+    },
+    {
+      "lcsc": "C2678061",
+      "mpn": "STUSB4500QTR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U11"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:21:17+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/STUSB4500QTR/C2678061",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "2.8204",
+          "extension_usd": "5.6408"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "2.8204",
+          "extension_usd": "22.5632"
+        }
+      }
+    },
+    {
+      "lcsc": "C2682139",
+      "mpn": "SN74AUP1G97DCKR",
+      "counts": {
+        "main": 3
+      },
+      "references": {
+        "main": [
+          "U12",
+          "U17",
+          "U8"
+        ]
+      },
+      "observed_utc": "2026-10-20T01:59:14+00:00",
+      "source": "bom/electronics-supervisor-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/SN74AUP1G97DCKR/C2682139",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.2205",
+          "extension_usd": "1.3230"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.2205",
+          "extension_usd": "5.2920"
+        }
+      }
+    },
+    {
+      "lcsc": "C274888",
+      "mpn": "RC0402FR-0713K7L",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "R8"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:51:19+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/RC0402FR-0713K7L/C274888",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0014",
+          "extension_usd": "0.0028"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0014",
+          "extension_usd": "0.0112"
+        }
+      }
+    },
+    {
+      "lcsc": "C2863066",
+      "mpn": "TLV6710DDCR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U5"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:30+00:00",
+      "source": "bom/electronics-common-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TLV6710DDCR/C2863066",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "2.3596",
+          "extension_usd": "4.7192"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "2.3596",
+          "extension_usd": "18.8768"
+        }
+      }
+    },
+    {
+      "lcsc": "C2870154",
+      "mpn": "TPS62902RPJR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U9"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:07:30+00:00",
+      "source": "bom/electronics-sourcing-snapshot.json",
+      "url": "https://jlcpcb.com/partdetail/TPS62902RPJR/C2870154",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "1.2279",
+          "extension_usd": "2.4558"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "1.2279",
+          "extension_usd": "9.8232"
+        }
+      }
+    },
+    {
+      "lcsc": "C2870545",
+      "mpn": "TPS3430WDRCR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U16"
+        ]
+      },
+      "observed_utc": "2026-10-20T01:36:50+00:00",
+      "source": "bom/electronics-supervisor-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TPS3430WDRCR/C2870545",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "1.5932",
+          "extension_usd": "3.1864"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "1.5932",
+          "extension_usd": "12.7456"
+        }
+      }
+    },
+    {
+      "lcsc": "C2876593",
+      "mpn": "BQ25798RQMR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U1"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:09:20+00:00",
+      "source": "bom/electronics-sourcing-snapshot.json",
+      "url": "https://jlcpcb.com/partdetail/BQ25798RQMR/C2876593",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "2.8378",
+          "extension_usd": "5.6756"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "2.8378",
+          "extension_usd": "22.7024"
+        }
+      }
+    },
+    {
+      "lcsc": "C2877557",
+      "mpn": "TMP302ADRLR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U7"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:07:09+00:00",
+      "source": "bom/electronics-regen-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TMP302ADRLR/C2877557",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1898",
+          "extension_usd": "0.3796"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1898",
+          "extension_usd": "1.5184"
+        }
+      }
+    },
+    {
+      "lcsc": "C2914309",
+      "mpn": "MAX17320G22+",
+      "counts": {
+        "pack_primary": 1
+      },
+      "references": {
+        "pack_primary": [
+          "U1"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:17:00+00:00",
+      "source": "bom/electronics-sourcing-snapshot.json",
+      "url": "https://jlcpcb.com/partdetail/MAX17320G22+/C2914309",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "5.8404",
+          "extension_usd": "11.6808"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "5.8404",
+          "extension_usd": "46.7232"
+        }
+      }
+    },
+    {
+      "lcsc": "C2935152",
+      "mpn": "ESDA25W",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "D4"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:23+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/ESDA25W/C2935152",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1448",
+          "extension_usd": "0.2896"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1448",
+          "extension_usd": "1.1584"
+        }
+      }
+    },
+    {
+      "lcsc": "C293630",
+      "mpn": "532610371",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "J3"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:57:24+00:00",
+      "source": "bom/electronics-harness-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/532610371/C293630",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1476",
+          "extension_usd": "0.2952"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1476",
+          "extension_usd": "1.1808"
+        }
+      }
+    },
+    {
+      "lcsc": "C29402",
+      "mpn": "0402WGF3012TCE",
+      "counts": {
+        "main": 2
+      },
+      "references": {
+        "main": [
+          "R56",
+          "R9"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:51:19+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF3012TCE/C29402",
+      "batches": {
+        "2": {
+          "quantity": 4,
+          "unit_price_usd": "0.0015",
+          "extension_usd": "0.0060"
+        },
+        "8": {
+          "quantity": 16,
+          "unit_price_usd": "0.0015",
+          "extension_usd": "0.0240"
+        }
+      }
+    },
+    {
+      "lcsc": "C307331",
+      "mpn": "CL05B104KB54PNC",
+      "counts": {
+        "main": 25,
+        "pack_primary": 5
+      },
+      "references": {
+        "main": [
+          "C13",
+          "C21",
+          "C22",
+          "C23",
+          "C24",
+          "C26",
+          "C27",
+          "C28",
+          "C29",
+          "C30",
+          "C33",
+          "C34",
+          "C35",
+          "C36",
+          "C37",
+          "C38",
+          "C41",
+          "C45",
+          "C52",
+          "C55",
+          "C56",
+          "C57",
+          "C58",
+          "C60",
+          "C8"
+        ],
+        "pack_primary": [
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "C8"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:26+00:00",
+      "source": "bom/electronics-common-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CL05B104KB54PNC/C307331",
+      "batches": {
+        "2": {
+          "quantity": 60,
+          "unit_price_usd": "0.0095",
+          "extension_usd": "0.5700"
+        },
+        "8": {
+          "quantity": 240,
+          "unit_price_usd": "0.0095",
+          "extension_usd": "2.2800"
+        }
+      }
+    },
+    {
+      "lcsc": "C307442",
+      "mpn": "CL05C121JB5NNNC",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "C59"
+        ]
+      },
+      "observed_utc": "2026-10-20T01:36:50+00:00",
+      "source": "bom/electronics-supervisor-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CL05C121JB5NNNC/C307442",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0141",
+          "extension_usd": "0.0282"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0141",
+          "extension_usd": "0.1128"
+        }
+      }
+    },
+    {
+      "lcsc": "C340768",
+      "mpn": "UCM1E221MCL1GS",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "C31"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:29+00:00",
+      "source": "bom/electronics-common-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/UCM1E221MCL1GS/C340768",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.255",
+          "extension_usd": "0.510"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.255",
+          "extension_usd": "2.040"
+        }
+      }
+    },
+    {
+      "lcsc": "C3662793",
+      "mpn": "TPS259470LRPWR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U10"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:22:16+00:00",
+      "source": "bom/electronics-pd-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TPS259470LRPWR/C3662793",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "1.4118",
+          "extension_usd": "2.8236"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "1.4118",
+          "extension_usd": "11.2944"
+        }
+      }
+    },
+    {
+      "lcsc": "C408332",
+      "mpn": "MWSA0402S-1R0MT",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "L2"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:08:34+00:00",
+      "source": "bom/electronics-regulator-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/MWSA0402S-1R0MT/C408332",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1535",
+          "extension_usd": "0.3070"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1535",
+          "extension_usd": "1.2280"
+        }
+      }
+    },
+    {
+      "lcsc": "C4142",
+      "mpn": "0402WGF8202TCE",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "R84"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:07:10+00:00",
+      "source": "bom/electronics-regen-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402WGF8202TCE/C4142",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0017",
+          "extension_usd": "0.0034"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0017",
+          "extension_usd": "0.0136"
+        }
+      }
+    },
+    {
+      "lcsc": "C43698",
+      "mpn": "TPS3808G33DBVR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U15"
+        ]
+      },
+      "observed_utc": "2026-10-20T01:36:50+00:00",
+      "source": "bom/electronics-supervisor-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TPS3808G33DBVR/C43698",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.3968",
+          "extension_usd": "0.7936"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.3968",
+          "extension_usd": "3.1744"
+        }
+      }
+    },
+    {
+      "lcsc": "C50714",
+      "mpn": "SN74LVC2G17DCKR",
+      "counts": {
+        "main": 2
+      },
+      "references": {
+        "main": [
+          "U14",
+          "U2"
+        ]
+      },
+      "observed_utc": "2026-10-20T00:52:36+00:00",
+      "source": "bom/electronics-controller-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/SN74LVC2G17DCKR/C50714",
+      "batches": {
+        "2": {
+          "quantity": 4,
+          "unit_price_usd": "0.1828",
+          "extension_usd": "0.7312"
+        },
+        "8": {
+          "quantity": 16,
+          "unit_price_usd": "0.1828",
+          "extension_usd": "2.9248"
+        }
+      }
+    },
+    {
+      "lcsc": "C5189746",
+      "mpn": "CYA0630-2.2UH",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "L1"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:51:21+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CYA0630-2.2UH/C5189746",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1715",
+          "extension_usd": "0.3430"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1715",
+          "extension_usd": "1.3720"
+        }
+      }
+    },
+    {
+      "lcsc": "C53444",
+      "mpn": "MMBT3906LT1G",
+      "counts": {
+        "main": 4
+      },
+      "references": {
+        "main": [
+          "Q2",
+          "Q3",
+          "Q5",
+          "Q8"
+        ]
+      },
+      "observed_utc": "2026-10-20T01:57:48+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/MMBT3906LT1G/C53444",
+      "batches": {
+        "2": {
+          "quantity": 8,
+          "unit_price_usd": "0.019",
+          "extension_usd": "0.152"
+        },
+        "8": {
+          "quantity": 32,
+          "unit_price_usd": "0.019",
+          "extension_usd": "0.608"
+        }
+      }
+    },
+    {
+      "lcsc": "C544399",
+      "mpn": "TPS26600PWPR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U18"
+        ]
+      },
+      "observed_utc": "2026-10-20",
+      "source": "hw/studies/clean-main/usb-protection-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TPS26600PWPR/C544399",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "1.5442",
+          "extension_usd": "3.0884"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "1.5442",
+          "extension_usd": "12.3536"
+        }
+      }
+    },
+    {
+      "lcsc": "C602037",
+      "mpn": "CL21A226MAYNNNE",
+      "counts": {
+        "main": 3
+      },
+      "references": {
+        "main": [
+          "C25",
+          "C43",
+          "C44"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:03:02+00:00",
+      "source": "bom/electronics-regulator-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CL21A226MAYNNNE/C602037",
+      "batches": {
+        "2": {
+          "quantity": 6,
+          "unit_price_usd": "0.1566",
+          "extension_usd": "0.9396"
+        },
+        "8": {
+          "quantity": 24,
+          "unit_price_usd": "0.1566",
+          "extension_usd": "3.7584"
+        }
+      }
+    },
+    {
+      "lcsc": "C6034714",
+      "mpn": "ESP32-C6-WROOM-1-N4",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U3"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:07:30+00:00",
+      "source": "bom/electronics-sourcing-snapshot.json",
+      "url": "https://jlcpcb.com/partdetail/ESP32-C6-WROOM-1-N4/C6034714",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "3.935",
+          "extension_usd": "7.870"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "3.935",
+          "extension_usd": "31.480"
+        }
+      }
+    },
+    {
+      "lcsc": "C696092",
+      "mpn": "532610471",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "J2"
+        ]
+      },
+      "observed_utc": "2026-10-20T04:04:47+00:00",
+      "source": "bom/electronics-harness-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/532610471/C696092",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.1497",
+          "extension_usd": "0.2994"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.1497",
+          "extension_usd": "1.1976"
+        }
+      }
+    },
+    {
+      "lcsc": "C720493",
+      "mpn": "TS-1081S-AC01326",
+      "counts": {
+        "main": 2
+      },
+      "references": {
+        "main": [
+          "SW1",
+          "SW2"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:05:58+00:00",
+      "source": "bom/electronics-controller-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TS-1081S-AC01326/C720493",
+      "batches": {
+        "2": {
+          "quantity": 4,
+          "unit_price_usd": "0.1649",
+          "extension_usd": "0.6596"
+        },
+        "8": {
+          "quantity": 16,
+          "unit_price_usd": "0.1649",
+          "extension_usd": "2.6384"
+        }
+      }
+    },
+    {
+      "lcsc": "C7250",
+      "mpn": "0603WAF1005T5E",
+      "counts": {
+        "main": 2
+      },
+      "references": {
+        "main": [
+          "R75",
+          "R76"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:07:10+00:00",
+      "source": "bom/electronics-regen-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0603WAF1005T5E/C7250",
+      "batches": {
+        "2": {
+          "quantity": 4,
+          "unit_price_usd": "0.0032",
+          "extension_usd": "0.0128"
+        },
+        "8": {
+          "quantity": 16,
+          "unit_price_usd": "0.0032",
+          "extension_usd": "0.0512"
+        }
+      }
+    },
+    {
+      "lcsc": "C82219",
+      "mpn": "0402B473K500NT",
+      "counts": {
+        "main": 5
+      },
+      "references": {
+        "main": [
+          "C3",
+          "C4",
+          "C46",
+          "C5",
+          "C62"
+        ]
+      },
+      "observed_utc": "2026-10-19T23:51:19+00:00",
+      "source": "bom/electronics-charger-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/0402B473K500NT/C82219",
+      "batches": {
+        "2": {
+          "quantity": 10,
+          "unit_price_usd": "0.0059",
+          "extension_usd": "0.0590"
+        },
+        "8": {
+          "quantity": 40,
+          "unit_price_usd": "0.0059",
+          "extension_usd": "0.2360"
+        }
+      }
+    },
+    {
+      "lcsc": "C840605",
+      "mpn": "CRM2512-FX-10R0ELF",
+      "counts": {
+        "main": 8
+      },
+      "references": {
+        "main": [
+          "R42",
+          "R43",
+          "R69",
+          "R70",
+          "R71",
+          "R72",
+          "R73",
+          "R74"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:07:09+00:00",
+      "source": "bom/electronics-regen-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/CRM2512-FX-10R0ELF/C840605",
+      "batches": {
+        "2": {
+          "quantity": 16,
+          "unit_price_usd": "0.2558",
+          "extension_usd": "4.0928"
+        },
+        "8": {
+          "quantity": 64,
+          "unit_price_usd": "0.1983",
+          "extension_usd": "12.6912"
+        }
+      }
+    },
+    {
+      "lcsc": "C844901",
+      "mpn": "WSL2512R0100FEA",
+      "counts": {
+        "pack_primary": 1
+      },
+      "references": {
+        "pack_primary": [
+          "R13"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:34:17+00:00",
+      "source": "bom/electronics-carrier-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/WSL2512R0100FEA/C844901",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.3621",
+          "extension_usd": "0.7242"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.3621",
+          "extension_usd": "2.8968"
+        }
+      }
+    },
+    {
+      "lcsc": "C852714",
+      "mpn": "RT0402BRD0730K1L",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "R95"
+        ]
+      },
+      "observed_utc": "2026-10-20",
+      "source": "hw/studies/clean-main/usb-protection-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/RT0402BRD0730K1L/C852714",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.0331",
+          "extension_usd": "0.0662"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.0331",
+          "extension_usd": "0.2648"
+        }
+      }
+    },
+    {
+      "lcsc": "C85734",
+      "mpn": "AON7400A",
+      "counts": {
+        "main": 2,
+        "pack_primary": 2
+      },
+      "references": {
+        "main": [
+          "Q6",
+          "Q9"
+        ],
+        "pack_primary": [
+          "Q1",
+          "Q2"
+        ]
+      },
+      "observed_utc": "2026-10-20T02:28:50+00:00",
+      "source": "bom/electronics-carrier-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/AON7400A/C85734",
+      "batches": {
+        "2": {
+          "quantity": 8,
+          "unit_price_usd": "0.1787",
+          "extension_usd": "1.4296"
+        },
+        "8": {
+          "quantity": 32,
+          "unit_price_usd": "0.1787",
+          "extension_usd": "5.7184"
+        }
+      }
+    },
+    {
+      "lcsc": "C89347",
+      "mpn": "TPS70933DBVR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U6"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:07:09+00:00",
+      "source": "bom/electronics-regen-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TPS70933DBVR/C89347",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.3381",
+          "extension_usd": "0.6762"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.3381",
+          "extension_usd": "2.7048"
+        }
+      }
+    },
+    {
+      "lcsc": "C96028",
+      "mpn": "TPS70950DBVR",
+      "counts": {
+        "main": 1
+      },
+      "references": {
+        "main": [
+          "U13"
+        ]
+      },
+      "observed_utc": "2026-10-20T03:34:26+00:00",
+      "source": "bom/electronics-encoder-sourcing.json",
+      "url": "https://jlcpcb.com/partdetail/TPS70950DBVR/C96028",
+      "batches": {
+        "2": {
+          "quantity": 2,
+          "unit_price_usd": "0.572",
+          "extension_usd": "1.144"
+        },
+        "8": {
+          "quantity": 8,
+          "unit_price_usd": "0.572",
+          "extension_usd": "4.576"
+        }
+      }
+    }
+  ],
+  "exclusions": [
+    "PCB fabrication, setup, feeders, stencil, X-ray and assembly",
+    "Procurement rounding, attrition, minimum quantities and per-job price differences",
+    "Cell/motor inventory, cable harnesses and any remaining uncaptured circuitry",
+    "Enclosure, fasteners, transmission, insulation, charger/cable, tools, shipping and tax"
+  ],
+  "limitations": [
+    "Price observations are 19-20 October 2026; no live price refresh.",
+    "Four new SKUs remain unverified for in-house Economic PCBA. Overseas stock is not reserved assembly stock.",
+    "Catalog demand cost excludes procurement minimums, attrition and per-assembly-job price tiers.",
+    "Main board remains partially routed; no fabrication release."
+  ],
+  "prior_board_source_sha256": {
+    "main": "fb068d5ea8f348c7b08cf66f7b6fe964777e481e22ad9d70c2020770c546fc5a",
+    "pack_primary": "a93f5b45b81767ffaaa44e7ff29bcc5edda26651cc63edd8132b4aa51cbd1197",
+    "pack_companion": "629badeee425db788ad6c0246485f998eafa8df5b7ab3ce49790716f5382a712"
+  },
+  "metadata_repair": "28 generic resistor supplier fields/descriptions corrected; selected parts and prices unchanged"
+}

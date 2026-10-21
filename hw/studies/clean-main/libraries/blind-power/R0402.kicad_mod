@@ -1,0 +1,93 @@
+(footprint
+  "R0402"
+  (version 20260206)
+  (generator "pcbnew")
+  (generator_version "10.0")
+  (layer "F.Cu")
+  (descr "33KΩ (3302) ±1%")
+  (property
+    "Reference"
+    "REF**"
+    (at 0 -4 0)
+    (layer "F.SilkS")
+    (uuid "bee68b1b-0c6a-4b94-8704-941913a2a59d")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Value"
+    "R0402"
+    (at 0 4 0)
+    (layer "F.Fab")
+    (uuid "4c1213d4-0832-4d91-975b-569aa3332edc")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (property
+    "Datasheet"
+    ""
+    (at 0 0 0)
+    (layer "F.Fab")
+    (hide yes)
+    (uuid "ec68de65-9f91-429a-842f-b88a3dc34ba6")
+    (effects
+      (font
+        (size 1.27 1.27))))
+  (property
+    "Description"
+    ""
+    (at 0 0 0)
+    (layer "F.Fab")
+    (hide yes)
+    (uuid "f404419e-28ea-4525-a41f-f6dbc94cbe58")
+    (effects
+      (font
+        (size 1.27 1.27))))
+  (attr smd)
+  (duplicate_pad_numbers_are_jumpers no)
+  (fp_text
+    user
+    "${REFERENCE}"
+    (at 0 0 0)
+    (layer "F.Fab")
+    (uuid "d5b5b9e6-4bdb-425f-934f-7ff5f9f973ba")
+    (effects
+      (font
+        (size 1 1)
+        (thickness 0.15))))
+  (pad
+    "1"
+    smd
+    rect
+    (at -0.43 0)
+    (size 0.566 0.54)
+    (layers "F.Cu" "F.Mask" "F.Paste")
+    (uuid "715eba9c-914c-4ff7-908f-2da8d5ac90d2"))
+  (pad
+    "2"
+    smd
+    rect
+    (at 0.43 0)
+    (size 0.566 0.54)
+    (layers "F.Cu" "F.Mask" "F.Paste")
+    (uuid "e0658a3f-2a64-442e-9ed3-8ad49ae31886"))
+  (embedded_fonts no)
+  (model
+    "${KIPRJMOD}/../../../parts/blind-power/blind-power.3dshapes/R0402_L1.0-W0.5-H0.4.wrl"
+    (offset
+      (xyz 0 0 0))
+    (scale
+      (xyz 1 1 1))
+    (rotate
+      (xyz 0 0 0)))
+  (fp_rect
+    (start -1.0 -0.55)
+    (end 1.0 0.55)
+    (stroke
+      (width 0.05)
+      (type default))
+    (fill none)
+    (layer "F.CrtYd")
+    (uuid "9e62dae1-52d3-569b-834c-46f444dc96b2")))

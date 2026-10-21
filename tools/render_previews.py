@@ -8,6 +8,7 @@ from html import escape
 import importlib.util
 import json
 import os
+import platform
 from pathlib import Path
 import re
 import shutil
@@ -85,9 +86,11 @@ def render() -> None:
     ids = [entry['id'] for entry in entries]
     if len(set(ids)) != len(ids) or any(not re.fullmatch(r'[a-z0-9-]+', i) for i in ids):
         raise ValueError('Preview IDs must be unique lowercase names')
+    if any(e['kind'] in ('pcb', 'schematic') for e in entries) and platform.system() != 'Linux':
+        raise RuntimeError('Automated KiCad previews require isolated Linux tools/kicad-run or Linux CI; host KiCad fallback is disabled.')
     env = os.environ.copy()
     if not env.get('KICAD10_3DMODEL_DIR'):
-        for candidate in ('/Applications/KiCad.app/Contents/SharedSupport/3dmodels', '/usr/share/kicad/3dmodels'):
+        for candidate in ('/usr/share/kicad/3dmodels',):
             if Path(candidate).is_dir():
                 env['KICAD10_3DMODEL_DIR'] = candidate
                 break
@@ -96,7 +99,7 @@ def render() -> None:
         versions['matplotlib'] = run([sys.executable, '-c', 'import matplotlib; print(matplotlib.__version__)'])
     kicad = None
     if any(e['kind'] in ('pcb', 'schematic') for e in entries):
-        kicad = executable('kicad-cli', '/Applications/KiCad.app/Contents/MacOS/kicad-cli')
+        kicad = executable('kicad-cli')
         versions['kicad'] = run([kicad, 'version'])
         if not versions['kicad'].startswith('10.'):
             raise RuntimeError('This preview workflow requires KiCad 10')

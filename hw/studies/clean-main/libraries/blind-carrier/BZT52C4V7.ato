@@ -1,0 +1,14 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_BZT52C4V7:
+    """Atomic imported geometry; see README for pin-review status."""
+    trait is_atomic_part<manufacturer="JSCJ", partnumber="BZT52C4V7", footprint="SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod", symbol="BZT52C4V7.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2116", manufacturer="JSCJ", partno="BZT52C4V7">
+    trait has_designator_prefix<prefix="D">
+
+    signal K
+    K ~ pin 1
+    signal A
+    A ~ pin 2
