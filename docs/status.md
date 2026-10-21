@@ -25,7 +25,11 @@ passes put all 206 components on-grid, preserve the circuit graph and round the
 outline; four missing physical models and the bulk-capacitor height are corrected.
 Final native placement DRC has no copper-clearance or courtyard findings, but
 482 unconnected items and silkscreen/library findings remain. This candidate
-is still unrouted; the top-body routing requirement is not yet satisfied or proven.
+was unrouted at that checkpoint. The [next native review pass](reviews/2026-10-21-clean-layout/usb-and-models.md)
+adds ten straight USB pad-to-via escapes and corrects the battery connector and
+two inductor models. The saved-file audit finds no top-body transit in those ten
+routes; native DRC retains ten dangling vias and 482 unconnected items. Whole-board
+routing, reference continuity and current/thermal validation remain unfinished.
 Revised enclosure fit, final routing and assembly cost will decide the outline.
 The PCB opened in KiCad is still the existing unfinished route, not this rework.
 

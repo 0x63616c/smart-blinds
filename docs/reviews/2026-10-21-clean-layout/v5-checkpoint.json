@@ -1,0 +1,47 @@
+{
+  "status": "Frozen partial routing and model review; not fabrication acceptance",
+  "size_mm": [
+    54,
+    80
+  ],
+  "parts": 206,
+  "physical_pad_records": 696,
+  "tracks": 10,
+  "vias": 10,
+  "source_sha256": {
+    "work/clean-layout-study/native-54-v5-models/placement.kicad_pcb": "ac639d22b0409d5586db98fd422d0c87da73b0e0a15f458be4d4bb1b71c7974b",
+    "work/clean-layout-study/native-54-v5-models/placement.kicad_pro": "4e8a6295c922cd7296881782f4b63a7342a038c499d4a7a734a322b49edbac65",
+    "work/clean-layout-study/native-54-v5-models/model-changes.json": "c5af1fd0d7e5622b3012095d7854ced1c59859c09ebc4927629b0f5402217446",
+    "work/clean-layout-study/native-54-v5-models/renders.json": "96b6037a0ec97fc083de0727b007d3694f98d2acae7bf6ac9dc1da458a302fb9",
+    "work/clean-layout-study/native-54-v5-models/bottom-render.json": "9b9d42059ac15b0d93a271ff8754dd372f7ced0cf21dec08f0067b3f1168df02",
+    "work/clean-layout-study/native-54-v5-models/drc.json": "c259153bd6e20a7a07b7bb7b7f7461e3f63026a8acc666ee4892d1730db26702",
+    "work/clean-layout-study/native-54-v4-usb/native.json": "fd82878153e3e63a8ac4b8185c49132f9e23412347a3c18e01c2f0be273ae61c",
+    "work/clean-layout-study/native-54-v4-usb/detail-provenance.json": "143819cec76ba436565af716dd195cd975e971898c90dfcb8e0cfae791c5153b",
+    "work/usb54-actual-audit/freeze.json": "17d80bbd609629b06a73fb339518da1849c70a8ec3f5050d8c828a7a597103ba",
+    "work/model-v3-review/connector-inductor-checkpoint.json": "d8c40a8ee5c0deefa0dbb052ed025895acd22285d32c926b9a514e82c8564ca1"
+  },
+  "image_sha256": {
+    "v5-top.png": "aab4b6a665978a3ce0ff46e8cb3c83fffd58987f8c7cc9d3712a644b9cff0bb7",
+    "v5-oblique.png": "b2705ef2a08ea72a41a4b0f72aa459b1fa56bbd1a2d695bfff9de01bd142ebe1",
+    "v5-bottom.png": "6fa128a6f74b4a4a016df94b4ac5d502437f5a70d2806c81fba776b3a282ed9e",
+    "v4-usb-copper.png": "a710138e4520415bd98047dfa8447b0d36de9fe19bfd74bf606cfd4a97a2020e"
+  },
+  "native_runs": {
+    "save_and_usb_drc": "20261021T045314Z-c37bc5ed",
+    "top_oblique_drc": "20261021T045555Z-b06d8763",
+    "bottom_render": "20261021T050334Z-fceb49b1"
+  },
+  "drc": {
+    "footprint_type_mismatch": 5,
+    "silk_overlap": 136,
+    "silk_over_copper": 57,
+    "lib_footprint_mismatch": 4,
+    "silk_edge_clearance": 14,
+    "via_dangling": 10
+  },
+  "unconnected_items": 482,
+  "v4_to_v5": "Only three model attachments/assets changed; full non-model AST identity checked",
+  "visual_review": "Native top, oblique and underside viewed; six connector tails sit in their holes; selected model corrections visibly seated",
+  "source_storage": "Trial source under local work/; snapshots are not registered automatic-gallery output",
+  "canonical_route_changed": false
+}

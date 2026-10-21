@@ -45,6 +45,11 @@ study is open. These two review images are snapshots; the automatic gallery
 continues to render its registered canonical sources. Register the replacement
 source with that pipeline when it is promoted.
 
+The [subsequent USB and model review](../reviews/2026-10-21-clean-layout/usb-and-models.md)
+adds ten parallel pad-to-via escapes, the corrected eFuse lands and three drawing-
+checked model replacements. Its top, oblique and underside images are separate
+snapshots; most routing and the coordinated enclosure fit are still unfinished.
+
 ### C: Extend to 58 × 80 mm
 
 Add 4 mm width and 11.5 mm height. A 206-part placement fits with no screened

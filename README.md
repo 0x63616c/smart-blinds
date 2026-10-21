@@ -35,6 +35,9 @@ blinds are needed to test synchronization before committing to the eight-unit ba
 show the proposed cleaner board. All 206 components are on-grid; routing and
 revised enclosure fit are still unfinished. The canonical route shown below is
 the earlier checkpoint and does not meet the new routing-style requirements.
+The [next review pass](docs/reviews/2026-10-21-clean-layout/usb-and-models.md)
+shows the first parallel USB traces and corrected connector/inductor models,
+including an actual underside view.
 
 These images are generated from the design sources. [Preview generation and provenance](docs/previews.md).
 A green preview badge means the images generated successfully, not that the hardware is validated.
