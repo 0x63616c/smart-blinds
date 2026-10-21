@@ -21,7 +21,7 @@ No complete unit has been built or physically validated.
 - Existing Recfountik JGB37-520 12 V / 111 RPM encoder motors.
 - A small white enclosure mounted low on the wall, with accessible USB-C and up/down buttons.
 - Group commands align the **physical bottom edges** of different-height blinds.
-- A short remote-command preparation delay is acceptable; local controls respond immediately.
+- A short remote-command preparation delay is acceptable; immediate local response is the target. Raw button STOP/wake is implemented; calibrated up/down gestures are still being completed.
 - 60 days between charges is the design target; 90 days is a stretch, pending measured power use.
 - Compare at least three enclosure layouts before choosing the packaging and PCB outline.
 - Optimize the total cost for eight units, including JLCPCB assembly fees, packs, fixings and wiring.
@@ -31,14 +31,14 @@ blinds are needed to test synchronization before committing to the eight-unit ba
 
 ## Design gallery
 
-**Cleaner layout in progress:** the editable [54 × 80 mm controller study](hw/studies/clean-main/)
-now includes its KiCad project, local footprints and all referenced models.
-It has 206 gridded components, outward-facing edge connectors and rounded corners.
-The [USB-C routing review](docs/reviews/2026-10-21-clean-layout/pd-routing.md)
-records the actual local protection and ground-copper checks.
-**417 connections remain open**; this is a partial design, not a fabrication release.
-The automatic gallery below now includes this working source. The older canonical
-route remains a historical checkpoint that does not meet the new style rules.
+**Cleaner layout in progress:** the [54 × 80 mm controller](hw/routing/clean-main/)
+is rebuilt from the current circuit source, with local footprints and all referenced models.
+It has 206 gridded components, outward-facing connectors, rounded corners and sparse markings.
+The [current review](docs/reviews/2026-10-21-clean-layout/source-driven-route.md)
+records the geometry, library, ground-return and source checks.
+**352 connections remain open**; this is a partial design, not a fabrication release.
+The automatic gallery rebuilds the current route before rendering it. The smaller
+196-part route is retained as a collapsed historical comparison.
 
 These images are generated from the design sources. [Preview generation and provenance](docs/previews.md).
 A green preview badge means the images generated successfully, not that the hardware is validated.
@@ -47,35 +47,35 @@ The inward-facing board placement and its frame, ports and cable paths are being
 these images must not be used as physical PCB-fit evidence.
 
 <!-- previews:start -->
-### Cleaner controller — current routing draft
+### Earlier published controller preview
 
-54 × 80 mm black four-layer controller draft with outward-facing connectors and gridded parts. The local regulator and USB-C PD routes are implemented; 417 connections remain open. Ground reference, remaining power/signal routing, enclosure fit and electrical/thermal qualification are unfinished. Not a fabrication release.
+Earlier 54 × 80 mm controller checkpoint with 417 open connections. This image predates the current source-driven route described above; the preview workflow replaces it with the matching new render. It is retained here as historical visual evidence, not the current routing result.
 
 ![Cleaner controller — current routing draft](docs/generated/clean-controller-route/assembly.png)
 
 [Source](hw/studies/clean-main/placement.kicad_pcb) · [Generated files](docs/generated/clean-controller-route/)
 
-### Retained enclosure — current exterior
+### Historical enclosure — current exterior
 
 115 × 174 × 71 mm white enclosure candidate, with front buttons and underside USB-C. Buttons project to 72.2 mm. This compact version requires holder tails and solder joints trimmed to the documented limit; motor-family fit and printed tolerances remain provisional.
 
-![Retained enclosure — current exterior](docs/generated/compact-holder-closed/assembly.png)
+![Historical enclosure — current exterior](docs/generated/compact-holder-closed/assembly.png)
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-closed/)
 
-### Removable battery cassette and compact drive
+### Historical removable battery cassette and compact drive
 
 Two opposing three-cell carrier boards fit in a removable cassette. Separate controller supports, cable routes and adjustable front buttons are modeled. The controller is shown as a reserved volume; exact holder fastening and physical load tests remain open.
 
-![Removable battery cassette and compact drive](docs/generated/compact-holder-assembly/assembly.png)
+![Historical removable battery cassette and compact drive](docs/generated/compact-holder-assembly/assembly.png)
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-assembly/)
 
-### Retained enclosure — service view
+### Historical enclosure — service view
 
 The cover and cassette lid are separated to show access. Two integral cleats and one mounting screw retain the cassette; its modeled release and removal paths clear the controller and drive. These are prototype-fit files, pending tolerance and load qualification.
 
-![Retained enclosure — service view](docs/generated/compact-holder-exploded/assembly.png)
+![Historical enclosure — service view](docs/generated/compact-holder-exploded/assembly.png)
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-exploded/)
 
@@ -169,7 +169,7 @@ Eleven native KiCad sheets cover all 196 circuit features and 609 pin identities
 
 Two captive M2 adjusters set the plungers to first electrical closure at the 0.4 mm positive stop. Jam nuts lock the setting. Switch return, printed friction, adjustment and repeated operation still require physical tests.
 
-![Adjustable front buttons — mechanism section](docs/generated/compact-holder-buttons/assembly.png)
+![Historical enclosure — mechanism section](docs/generated/compact-holder-buttons/assembly.png)
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/compact-holder-buttons/)
 
@@ -180,7 +180,7 @@ Two captive M2 adjusters set the plungers to first electrical closure at the 0.4
 
 Six holders on opposing carrier boards, a separate insulating barrier and a removable printed shell. The assembled cassette releases with a 2.5 mm lift and then moves forward; disconnect and handle the cables separately.
 
-![Battery cassette — removable assembly](docs/generated/retained-cassette/assembly.png)
+![Historical enclosure — removable assembly](docs/generated/retained-cassette/assembly.png)
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/retained-cassette/)
 
@@ -191,7 +191,7 @@ Six holders on opposing carrier boards, a separate insulating barrier and a remo
 
 The cassette pocket captures the integral backplate cleat. Nominal interference confirms capture before the release slide; printed strength, creep and fit remain prototype tests.
 
-![Cassette retention — cutaway](docs/generated/retained-cleat-section/assembly.png)
+![Historical enclosure — cutaway](docs/generated/retained-cleat-section/assembly.png)
 
 [Source](cad/source/compact_retained.scad) · [Generated files](docs/generated/retained-cleat-section/)
 

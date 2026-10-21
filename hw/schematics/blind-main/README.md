@@ -5,7 +5,7 @@ USB-C input, charger, logic supply, motor bridge, supervision, regenerative clam
 radio/USB data, encoder input, buttons/home input, and final power/permission interfaces.
 The preview workflow publishes all sheets as SVG and one eleven-page PDF.
 
-This is the **complete captured main-controller circuit**, including 194 purchased parts
+This is the **complete captured main-controller circuit**, including 204 purchased parts
 and two motor-wire solder landings. Its circuit capture is unrouted and unpowered; the separate partial routed
 derivative requires explicit migration for this revision. The battery
 carriers are separate boards and are not implicitly included in this schematic.
@@ -18,8 +18,8 @@ The layout file owns drawing positions, readable net names and reviewed symbol p
 the compiled PCB owns connectivity. Six existing block layouts are reused as drawing inputs,
 not as a second wiring source. Only cross-sheet nets use global labels.
 
-KiCad independently exports the full hierarchy. Verification compares all 196 circuit
-features, **609 unique physical pin identities**, and all 139 net partitions with the PCB.
+KiCad independently exports the full hierarchy. Verification compares all 206 circuit
+features, **649 unique physical pin identities**, and all 151 net partitions with the PCB.
 Repeated thermal-pad numbers represent a single logical pin identity. It rejects missing,
 duplicate, split or merged nets, even if split nets retain the same visible label.
 The separate main-board integration contract is also rerun against eight preserved blocks
@@ -64,3 +64,5 @@ The monitored-PD revision powers ST VSYS from 3.3 V, joins its SDA/SCL to the ow
 bus, and shares GPIO17 ALERT/INT with one explicit 10 kΩ pull-up. Factory access
 requires reset/inhibit; actual shared service pads and physical qualification
 remain pending. No schematic-only test authorizes charge enable.
+
+The input-protection revision adds ten parts ahead of the guarded PD/charger path. TPS26600 OUT15 is typed power-out and OUT16 passive because both leads are one internal output; its RTN reference remains separate from GND. The exact external USB power ERC finding moves to the upstream cutoff. The new USB sheet uses A2 to preserve readable spacing. Placement/routing and transient/thermal qualification remain pending.

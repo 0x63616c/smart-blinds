@@ -1,0 +1,19 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_TVS1800DRVR:
+    """UNVERIFIED fixed part; primary pin/land review in README."""
+    trait is_atomic_part<manufacturer="Texas Instruments", partnumber="TVS1800DRVR", footprint="TVS1800_DRV6.kicad_mod", symbol="TVS1800DRVR.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C2649846", manufacturer="Texas Instruments", partno="TVS1800DRVR">
+    trait has_designator_prefix<prefix="U">
+
+    signal GND
+    GND ~ pin 1
+    GND ~ pin 2
+    GND ~ pin 3
+    GND ~ pin 7
+    signal IN
+    IN ~ pin 4
+    IN ~ pin 5
+    IN ~ pin 6

@@ -7,7 +7,7 @@ import subprocess
 import tempfile
 import unittest
 
-from generate_schematics import ROOT, board_graph, verify_netlist
+from generate_schematics import ROOT, board_graph, verify_netlist, native_cli
 from kicad_sexpr import children, dumps, parse
 
 
@@ -98,7 +98,7 @@ class NativeSchematicTests(unittest.TestCase):
         cls.spec = json.loads((ROOT / "hw/schematics/blind-controller/motor-test.layout.json").read_text())
         cls.graph = board_graph(ROOT / cls.spec["pcb"])
         cls.source = parse((ROOT / cls.spec["output"]).read_text())
-        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+        cls.cli = native_cli()
 
     def check(self, schematic, graph=None):
         with tempfile.TemporaryDirectory() as folder:
@@ -145,7 +145,7 @@ class SupervisorSchematicTests(unittest.TestCase):
         cls.spec = json.loads((ROOT / "hw/schematics/blind-supervisor/supervisor-test.layout.json").read_text())
         cls.graph = board_graph(ROOT / cls.spec["pcb"])
         cls.source = parse((ROOT / cls.spec["output"]).read_text())
-        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+        cls.cli = native_cli()
 
     def test_real_graph_roundtrip(self):
         # Includes vertical capacitor and exposed-pad pins; inward-facing wire
@@ -186,7 +186,7 @@ class ChargerSchematicTests(unittest.TestCase):
         cls.spec = json.loads((ROOT / "hw/schematics/blind-charger/charger-test.layout.json").read_text())
         cls.graph = board_graph(ROOT / cls.spec["pcb"])
         cls.source = parse((ROOT / cls.spec["output"]).read_text())
-        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+        cls.cli = native_cli()
 
     def test_real_graph_roundtrip(self):
         self.assertEqual(self.check(self.source), 101)
@@ -209,7 +209,7 @@ class RegulatorSchematicTests(unittest.TestCase):
         cls.spec = json.loads((ROOT / "hw/schematics/blind-regulator/regulator-test.layout.json").read_text())
         cls.graph = board_graph(ROOT / cls.spec["pcb"])
         cls.source = parse((ROOT / cls.spec["output"]).read_text())
-        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+        cls.cli = native_cli()
 
     def test_real_graph_roundtrip(self):
         self.assertEqual(self.check(self.source), 31)
@@ -229,10 +229,32 @@ class UsbSchematicTests(unittest.TestCase):
         cls.spec = json.loads((ROOT / "hw/schematics/blind-usb/usb-test.layout.json").read_text())
         cls.graph = board_graph(ROOT / cls.spec["pcb"])
         cls.source = parse((ROOT / cls.spec["output"]).read_text())
-        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+        cls.cli = native_cli()
 
     def test_real_graph_roundtrip(self):
-        self.assertEqual(self.check(self.source), 111)
+        self.assertEqual(self.check(self.source), 151)
+
+    def test_reject_bypassed_upstream_cutoff(self):
+        changed = copy.deepcopy(self.source)
+        affected = 0
+        for label in children(changed, "label"):
+            if label[1] == "GUARDED":
+                label[1] = "RAW"
+                affected += 1
+        self.assertGreater(affected, 0)
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
+
+    def test_reject_grounded_cutoff_reference(self):
+        changed = copy.deepcopy(self.source)
+        affected = 0
+        for label in children(changed, "label"):
+            if label[1] == "CUT_RTN":
+                label[1] = "GND"
+                affected += 1
+        self.assertGreater(affected, 0)
+        with self.assertRaisesRegex(ValueError, "graph mismatch"):
+            self.check(changed)
 
     def test_reject_bypassed_efuse(self):
         changed = copy.deepcopy(self.source)
@@ -260,7 +282,7 @@ class CarrierSchematicTests(unittest.TestCase):
         cls.spec = json.loads((ROOT / "hw/schematics/blind-carrier/carrier-test.layout.json").read_text())
         cls.graph = board_graph(ROOT / cls.spec["pcb"])
         cls.source = parse((ROOT / cls.spec["output"]).read_text())
-        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+        cls.cli = native_cli()
 
     def test_real_graph_roundtrip(self):
         self.assertEqual(self.check(self.source), 103)
@@ -300,7 +322,7 @@ class RegenSchematicTests(unittest.TestCase):
         cls.spec = json.loads((ROOT / "hw/schematics/blind-regen/regen-test.layout.json").read_text())
         cls.graph = board_graph(ROOT / cls.spec["pcb"])
         cls.source = parse((ROOT / cls.spec["output"]).read_text())
-        cls.cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
+        cls.cli = native_cli()
 
     def test_real_graph_roundtrip(self):
         self.assertEqual(self.check(self.source), 105)

@@ -1,0 +1,12 @@
+import has_designator_prefix
+import has_part_picked
+import is_atomic_part
+
+component Part_RT0402BRD0730K1L:
+    """UNVERIFIED fixed part; primary pin/land review in README."""
+    trait is_atomic_part<manufacturer="YAGEO", partnumber="RT0402BRD0730K1L", footprint="R0402.kicad_mod", symbol="RT0402BRD0730K1L.kicad_sym">
+    trait has_part_picked::by_supplier<supplier_id="lcsc", supplier_partno="C852714", manufacturer="YAGEO", partno="RT0402BRD0730K1L">
+    trait has_designator_prefix<prefix="R">
+
+    pin 1
+    pin 2

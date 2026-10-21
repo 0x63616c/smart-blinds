@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "status": "Normalized dated catalog evidence, not an assembly quote or order-ready BOM",
+  "source_file": "bom/electronics-usb-protection-candidate.json",
+  "source_sha256": "7e5e729ea80b309153b2f2cf09b1194159bc79ac92aed27887b24fd5a4835e3c",
+  "normalization": "The catalog initialPrice fallback is bounded below its first explicit tier to avoid overlapping prices; explicit higher-quantity tiers are unchanged. Observation precision remains the source day.",
+  "parts": [
+    {
+      "mpn": "TPS26600PWPR",
+      "lcsc": "C544399",
+      "url": "https://jlcpcb.com/partdetail/TPS26600PWPR/C544399",
+      "source_sha256": "3f814956fa419c3c6dca4db69ca00eb7ec1907d72391706abfe31ac3e9ee8413",
+      "library_type": "Extended",
+      "metadata": {
+        "overseasStockCount": 5934,
+        "canPresaleNumber": 5690,
+        "preMinPurchaseNum": 6,
+        "leastPatchNumber": 0,
+        "lossNumber": 0,
+        "initialPrice": 1.5442,
+        "noBuyReason": null
+      },
+      "in_house_economic_eligibility_verified": false,
+      "observed_utc": "2026-10-20",
+      "currency": "USD",
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 9,
+          "productPrice": 1.5442
+        },
+        {
+          "startNumber": 10,
+          "endNumber": 29,
+          "productPrice": 1.2958
+        },
+        {
+          "startNumber": 30,
+          "endNumber": 99,
+          "productPrice": 1.1406
+        },
+        {
+          "startNumber": 100,
+          "endNumber": 499,
+          "productPrice": 0.9821
+        },
+        {
+          "startNumber": 500,
+          "endNumber": 999,
+          "productPrice": 0.9118
+        },
+        {
+          "startNumber": 1000,
+          "endNumber": -1,
+          "productPrice": 0.8808
+        }
+      ],
+      "stock_note": "Stored catalog evidence only; overseas stock and private-minimum scenario are not a confirmed PCBA quote. Initial price applies only below the first explicit quantity tier."
+    },
+    {
+      "mpn": "TVS1800DRVR",
+      "lcsc": "C2649846",
+      "url": "https://jlcpcb.com/partdetail/TVS1800DRVR/C2649846",
+      "source_sha256": "697d6c96ea8e8363fbe60796aa8e3208ad331f377199be6ecbd770869d305ef3",
+      "library_type": "Extended",
+      "metadata": {
+        "overseasStockCount": 1977,
+        "canPresaleNumber": 1876,
+        "preMinPurchaseNum": 29,
+        "leastPatchNumber": 5,
+        "lossNumber": 0,
+        "initialPrice": 0.402,
+        "noBuyReason": null
+      },
+      "in_house_economic_eligibility_verified": false,
+      "observed_utc": "2026-10-20",
+      "currency": "USD",
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 9,
+          "productPrice": 0.402
+        },
+        {
+          "startNumber": 10,
+          "endNumber": 29,
+          "productPrice": 0.322
+        },
+        {
+          "startNumber": 30,
+          "endNumber": 99,
+          "productPrice": 0.2827
+        },
+        {
+          "startNumber": 100,
+          "endNumber": 499,
+          "productPrice": 0.2468
+        },
+        {
+          "startNumber": 500,
+          "endNumber": 999,
+          "productPrice": 0.237
+        },
+        {
+          "startNumber": 1000,
+          "endNumber": -1,
+          "productPrice": 0.2321
+        }
+      ],
+      "stock_note": "Stored catalog evidence only; overseas stock and private-minimum scenario are not a confirmed PCBA quote. Initial price applies only below the first explicit quantity tier."
+    },
+    {
+      "mpn": "RT0402BRD0730K1L",
+      "lcsc": "C852714",
+      "url": "https://jlcpcb.com/partdetail/RT0402BRD0730K1L/C852714",
+      "source_sha256": "18feb9ddfc0d3a4772c3dee1573a14a53c3ecc39a06197de6d57407bd7923065",
+      "library_type": "Extended",
+      "metadata": {
+        "overseasStockCount": 11764,
+        "canPresaleNumber": 9815,
+        "preMinPurchaseNum": 319,
+        "leastPatchNumber": 20,
+        "lossNumber": 8,
+        "initialPrice": 0.0331,
+        "noBuyReason": null
+      },
+      "in_house_economic_eligibility_verified": false,
+      "observed_utc": "2026-10-20",
+      "currency": "USD",
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 199,
+          "productPrice": 0.0331
+        },
+        {
+          "startNumber": 200,
+          "endNumber": 599,
+          "productPrice": 0.0283
+        },
+        {
+          "startNumber": 600,
+          "endNumber": 1999,
+          "productPrice": 0.0257
+        },
+        {
+          "startNumber": 2000,
+          "endNumber": 9999,
+          "productPrice": 0.0241
+        },
+        {
+          "startNumber": 10000,
+          "endNumber": 19999,
+          "productPrice": 0.0228
+        },
+        {
+          "startNumber": 20000,
+          "endNumber": -1,
+          "productPrice": 0.0221
+        }
+      ],
+      "stock_note": "Stored catalog evidence only; overseas stock and private-minimum scenario are not a confirmed PCBA quote. Initial price applies only below the first explicit quantity tier."
+    },
+    {
+      "mpn": "0402WGF4023TCE",
+      "lcsc": "C25785",
+      "url": "https://jlcpcb.com/partdetail/0402WGF4023TCE/C25785",
+      "source_sha256": "86a1e59fbc3b494cfea4291f480dcf7ad17bfa5a007eeca6be560c6619b4c09c",
+      "library_type": "Extended",
+      "metadata": {
+        "overseasStockCount": 66615,
+        "canPresaleNumber": 59869,
+        "preMinPurchaseNum": 5640,
+        "leastPatchNumber": 20,
+        "lossNumber": 10,
+        "initialPrice": 0.0024,
+        "noBuyReason": null
+      },
+      "in_house_economic_eligibility_verified": false,
+      "observed_utc": "2026-10-20",
+      "currency": "USD",
+      "price_breaks": [
+        {
+          "startNumber": 1,
+          "endNumber": 999,
+          "productPrice": 0.0024
+        },
+        {
+          "startNumber": 1000,
+          "endNumber": 2999,
+          "productPrice": 0.0019
+        },
+        {
+          "startNumber": 3000,
+          "endNumber": 9999,
+          "productPrice": 0.0016
+        },
+        {
+          "startNumber": 10000,
+          "endNumber": 49999,
+          "productPrice": 0.0015
+        },
+        {
+          "startNumber": 50000,
+          "endNumber": 50199,
+          "productPrice": 0.0013
+        },
+        {
+          "startNumber": 50200,
+          "endNumber": -1,
+          "productPrice": 0.0013
+        }
+      ],
+      "stock_note": "Stored catalog evidence only; overseas stock and private-minimum scenario are not a confirmed PCBA quote. Initial price applies only below the first explicit quantity tier."
+    }
+  ]
+}

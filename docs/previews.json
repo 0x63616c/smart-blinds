@@ -1,16 +1,18 @@
 {
   "designs": [
     {
-      "kind": "pcb",
+      "kind": "clean-pcb",
       "id": "clean-controller-route",
       "title": "Cleaner controller \u2014 current routing draft",
-      "source": "hw/studies/clean-main/placement.kicad_pcb",
+      "source": "hw/routing/clean-main/emit.py",
       "dependencies": [
-        "hw/studies/clean-main/placement.kicad_pro",
-        "hw/studies/clean-main/fp-lib-table",
-        "hw/studies/clean-main/models/**/*",
-        "hw/studies/clean-main/libraries/**/*",
-        "hw/studies/clean-main/review.json"
+        "hw/routing/clean-main/*.py",
+        "hw/routing/clean-main/*.json",
+        "hw/routing/clean-main/models/*",
+        "tools/build_clean_main.py",
+        "hw/boards/**/*.ato",
+        "hw/boards/**/ato.yaml",
+        "hw/parts/**/*.ato"
       ],
       "image_size": [
         1400,
@@ -23,7 +25,7 @@
       ],
       "zoom": 0.6,
       "collapsed": false,
-      "role": "54 \u00d7 80 mm black four-layer controller draft with outward-facing connectors and gridded parts. The local regulator and USB-C PD routes are implemented; 417 connections remain open. Ground reference, remaining power/signal routing, enclosure fit and electrical/thermal qualification are unfinished. Not a fabrication release."
+      "role": "Current 54 \u00d7 80 mm black four-layer controller draft, regenerated from the 206-part circuit capture. Grid placement, outward-facing connectors and the implemented USB-C, local supply and protection routes are checked on the saved filled board. 352 connections and three documented hybrid-footprint type findings remain; current, thermal, surge, RF and physical qualification are unfinished. Not a fabrication release."
     },
     {
       "kind": "openscad",
@@ -47,12 +49,12 @@
         620
       ],
       "id": "compact-holder-closed",
-      "title": "Retained enclosure \u2014 current exterior",
+      "title": "Historical enclosure \u2014 current exterior",
       "defines": {
         "part": "closed"
       },
-      "collapsed": false,
-      "role": "115 \u00d7 174 \u00d7 71 mm white enclosure candidate, with front buttons and underside USB-C. Buttons project to 72.2 mm. This compact version requires holder tails and solder joints trimmed to the documented limit; motor-family fit and printed tolerances remain provisional.",
+      "collapsed": true,
+      "role": "Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. 115 \u00d7 174 \u00d7 71 mm white enclosure candidate, with front buttons and underside USB-C. Buttons project to 72.2 mm. This compact version requires holder tails and solder joints trimmed to the documented limit; motor-family fit and printed tolerances remain provisional.",
       "auto_frame": false
     },
     {
@@ -77,12 +79,12 @@
         620
       ],
       "id": "compact-holder-assembly",
-      "title": "Removable battery cassette and compact drive",
+      "title": "Historical removable battery cassette and compact drive",
       "defines": {
         "part": "assembly"
       },
-      "collapsed": false,
-      "role": "Two opposing three-cell carrier boards fit in a removable cassette. Separate controller supports, cable routes and adjustable front buttons are modeled. The controller is shown as a reserved volume; exact holder fastening and physical load tests remain open.",
+      "collapsed": true,
+      "role": "Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. Two opposing three-cell carrier boards fit in a removable cassette. Separate controller supports, cable routes and adjustable front buttons are modeled. The controller is shown as a reserved volume; exact holder fastening and physical load tests remain open.",
       "auto_frame": false
     },
     {
@@ -107,23 +109,21 @@
         760
       ],
       "id": "compact-holder-exploded",
-      "title": "Retained enclosure \u2014 service view",
+      "title": "Historical enclosure \u2014 service view",
       "defines": {
         "part": "exploded"
       },
-      "collapsed": false,
-      "role": "The cover and cassette lid are separated to show access. Two integral cleats and one mounting screw retain the cassette; its modeled release and removal paths clear the controller and drive. These are prototype-fit files, pending tolerance and load qualification.",
+      "collapsed": true,
+      "role": "Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. The cover and cassette lid are separated to show access. Two integral cleats and one mounting screw retain the cassette; its modeled release and removal paths clear the controller and drive. These are prototype-fit files, pending tolerance and load qualification.",
       "auto_frame": false
     },
     {
       "id": "main-controller-placement",
       "kind": "pcb",
-      "title": "Integrated controller \u2014 first component placement",
+      "title": "Current controller \u2014 source placement",
       "source": "hw/layouts/blind-main/main-test/main-test.kicad_pcb",
       "dependencies": [
-        "hw/placement/blind-main/placement.json",
-        "cad/parameters/retained-interfaces.json",
-        "tools/check_main_placement.py"
+        "hw/routing/clean-main/source-binding.json"
       ],
       "image_size": [
         1500,
@@ -136,12 +136,12 @@
       ],
       "zoom": 0.83,
       "collapsed": true,
-      "role": "54 \u00d7 68.5 mm black-board study, with USB-C, protected battery connection, motor tails and encoder/home ports. All 196 footprints are placed; no copper is routed. Thermal design, manufacturing rules and physical qualification remain open."
+      "role": "Current 54 \u00d7 80 mm unrouted source capture: 206 components and 649 physical pin identities. The routing emitter applies three reviewed protection-part moves and the per-part model/silkscreen refinements. The larger routed draft appears above."
     },
     {
       "id": "main-power-route",
       "kind": "pcb",
-      "title": "Integrated controller \u2014 partial power routing",
+      "title": "Historical smaller controller \u2014 partial power routing",
       "source": "hw/routing/blind-main/main-routed.kicad_pcb",
       "dependencies": [
         "hw/routing/blind-main/route.py",
@@ -188,8 +188,8 @@
         0
       ],
       "zoom": 0.83,
-      "collapsed": false,
-      "role": "Experimental four-layer route with 1013 segments and 255 vias. The monitored-PD revision removes obsolete ground and bus pull-down branches while preserving surviving copper and existing placements. All 47 routing fault controls pass; 122 unconnected items remain. New PD supply/bus/interrupt connections, factory access, pack feed, onward signals, transient/thermal review and manufacturing checks are unfinished."
+      "collapsed": true,
+      "role": "Historical 196-part, 54 \u00d7 68.5 mm route retained for comparison. Its 1013 segments, 255 vias and 122 open connections belong to the earlier circuit and placement. It is not the current controller or a fabrication release."
     },
     {
       "id": "companion-routed",
@@ -369,7 +369,7 @@
       "preview_page": "smart-blinds-main.svg",
       "export_pdf": true,
       "collapsed": true,
-      "role": "Eleven native KiCad sheets cover all 196 circuit features and 609 pin identities. The exported net partition matches the PCB; seven documented ERC findings remain. Unrouted and unpowered."
+      "role": "Eleven native KiCad sheets cover all 206 circuit features and 649 physical pin identities. The exported net partition matches the current capture; seven documented ERC findings remain. No physical hardware has been powered."
     },
     {
       "kind": "openscad",
@@ -393,12 +393,12 @@
         110
       ],
       "id": "compact-holder-buttons",
-      "title": "Adjustable front buttons \u2014 mechanism section",
+      "title": "Historical enclosure \u2014 mechanism section",
       "defines": {
         "part": "buttons"
       },
       "collapsed": true,
-      "role": "Two captive M2 adjusters set the plungers to first electrical closure at the 0.4 mm positive stop. Jam nuts lock the setting. Switch return, printed friction, adjustment and repeated operation still require physical tests.",
+      "role": "Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. Two captive M2 adjusters set the plungers to first electrical closure at the 0.4 mm positive stop. Jam nuts lock the setting. Switch return, printed friction, adjustment and repeated operation still require physical tests.",
       "render_mode": "render",
       "auto_frame": false
     },
@@ -415,7 +415,7 @@
         "cad/parameters/retained-interfaces.json",
         "cad/source/holder_pair_handling.scad"
       ],
-      "title": "Battery cassette \u2014 removable assembly",
+      "title": "Historical enclosure \u2014 removable assembly",
       "defines": {
         "part": "cassette"
       },
@@ -430,7 +430,7 @@
       ],
       "auto_frame": false,
       "collapsed": true,
-      "role": "Six holders on opposing carrier boards, a separate insulating barrier and a removable printed shell. The assembled cassette releases with a 2.5 mm lift and then moves forward; disconnect and handle the cables separately."
+      "role": "Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. Six holders on opposing carrier boards, a separate insulating barrier and a removable printed shell. The assembled cassette releases with a 2.5 mm lift and then moves forward; disconnect and handle the cables separately."
     },
     {
       "id": "retained-cleat-section",
@@ -445,7 +445,7 @@
         "cad/parameters/retained-interfaces.json",
         "cad/source/holder_pair_handling.scad"
       ],
-      "title": "Cassette retention \u2014 cutaway",
+      "title": "Historical enclosure \u2014 cutaway",
       "defines": {
         "part": "cleat_section"
       },
@@ -460,7 +460,7 @@
       ],
       "auto_frame": false,
       "collapsed": true,
-      "role": "The cassette pocket captures the integral backplate cleat. Nominal interference confirms capture before the release slide; printed strength, creep and fit remain prototype tests."
+      "role": "Historical assembly checkpoint. Its PCB orientation and service geometry are superseded by the ongoing enclosure rework. The cassette pocket captures the integral backplate cleat. Nominal interference confirms capture before the release slide; printed strength, creep and fit remain prototype tests."
     },
     {
       "id": "holder-closed",

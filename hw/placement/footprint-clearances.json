@@ -305,7 +305,15 @@
       "clearance_margin_mm": 0.25,
       "envelope_status": "manufacturer_dimensional_table",
       "source_url": "https://www.ti.com/lit/ds/symlink/tps25947.pdf",
-      "source_location": "RPW0010A 4225183/A 08/2019 pp72-73; current custom polygon strokes included"
+      "source_location": "RPW0010A 4225183/A 08/2019 pp72-73; current custom polygon strokes included",
+      "retained_courtyard_bounds_mm": [
+        -1.55,
+        -1.5,
+        1.55,
+        1.5
+      ],
+      "reviewed_pad_sha256": "77a12c0ff50c2c55226c731e217d497cae868696713525de4a19c057f6f6427b",
+      "notes": "Reviewed corrected lands and paste imported from physical checkpoint 4102c895. Retain the existing larger courtyard, including at least 0.25 mm clearance from the corrected pads and maximum body. No placement or assembly envelope shrink."
     },
     {
       "compiled_alias": "blind-carrier:C0805",
@@ -1212,16 +1220,22 @@
       "envelope_status": "sourced dimensional maximum",
       "source_url": "https://www.ti.com/lit/ds/symlink/tps3430.pdf",
       "source_location": "PDF p34 DRC0010J4218878/B07/2018; square body max3.1.",
-      "notes": "Full 0.10 mm custom polygon stroke is included; source copper is unchanged.",
+      "notes": "Reviewed corrected lands and paste imported from physical checkpoint 4102c895. Retain the existing larger courtyard, including at least 0.25 mm clearance from the corrected pads and maximum body. No placement or assembly envelope shrink.",
       "main_instances": 1,
       "instances_by_board": {
         "main": 1
       },
-      "reviewed_pad_sha256": "3e5579cbb8acfc1b499c09ac943c004adb79317346a2693b6b3755e6d30993cc",
+      "reviewed_pad_sha256": "eaa7a70b98eda4bf855b096f1dd28d4fdae5d7f118e35b652338614c20d468cb",
       "replace_courtyard_sha256": {
         "hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": "b506d298086354eb8d61dcf6a413d558d3613a026b6472e75c68c994e03afb69",
         "hw/parts/blind-supervisor/blind-supervisor.pretty/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": "b506d298086354eb8d61dcf6a413d558d3613a026b6472e75c68c994e03afb69"
-      }
+      },
+      "retained_courtyard_bounds_mm": [
+        -2.15,
+        -2.05,
+        2.15,
+        2.05
+      ]
     }
   ]
 }

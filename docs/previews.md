@@ -5,7 +5,9 @@ reads those sources and refreshes the README gallery and `docs/generated/`. It d
 legacy layout generators or silently modify the PCB. Missing models cause a failure, rather than
 an apparently complete board image with absent components.
 
-Supported entries are `pcb` (KiCad 3D PNG and top-layer SVG), `schematic` (all KiCad SVG sheets),
+Supported entries are `pcb` (KiCad 3D PNG and top-layer SVG), `clean-pcb`
+(rebuild the maintained partial controller, check its saved copper, then render),
+`schematic` (all KiCad SVG sheets),
 `footprints` / `holder-footprints` (the CAD comparisons at a common scale), `energy`
 (fresh planning arithmetic as PNG/SVG/JSON), and `openscad` (colored source-preview PNG, with optional `defines`, seven-value OpenSCAD `camera`, and dependency globs). Register new
 schematics and CAD only when their real source files exist. Enclosure previews must identify
@@ -16,7 +18,9 @@ provisional purchased-part envelopes and distinguish a study from a released pri
 Automated KiCad rendering runs in the isolated Linux environment or Linux CI.
 The renderer refuses macOS host execution before launching any tools. The
 interactive KiCad editor remains available. The Linux environment needs KiCad 10,
-its 3D libraries, Python 3.11+ with Matplotlib, and OpenSCAD for mechanical sources.
+its 3D libraries, Python 3.11+ with Matplotlib, wxPython and Shapely, and OpenSCAD
+for mechanical sources. The current controller source must first pass normal
+and frozen compilation with atopile 0.15.9; CI performs both before rendering.
 Set `KICAD10_3DMODEL_DIR` for a nonstandard Linux library path.
 
 ```sh
@@ -56,9 +60,14 @@ CLI type error; use the bare flag. This changes rendering, not fabrication order
 The fresh integrated controller is under development.
 
 The current cleaner draft is registered as `clean-controller-route`, sourced from
-`hw/studies/clean-main/placement.kicad_pcb`. Its project rules, local footprints,
-models and review record are registered dependencies, so changing them refreshes
-the preview. The older canonical controller remains separately labelled.
+`hw/routing/clean-main/emit.py`. Generation consumes the explicitly bound live
+circuit capture and its 54 input files, emits owned routing into a temporary
+project, then fills, saves, reloads and checks the actual board before rendering.
+Source bindings, route records, physical contracts, model contents and native
+helper code are registered inputs. Native and physical receipts accompany the
+image. A stale binding or failed check stops publication. The temporary KiCad
+project is not copied into the gallery; the historical smaller route stays
+separately labelled.
 
 The first native motor schematic is generated separately with
 `python3 tools/generate_schematics.py hw/schematics/blind-controller/motor-test.layout.json`.

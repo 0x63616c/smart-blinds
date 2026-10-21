@@ -9,7 +9,7 @@ import unittest
 import xml.etree.ElementTree as ET
 
 from generate_main_schematic import ROOT, LAYOUT, OUTPUT, PROJECT, compile_pages, verify_export
-from generate_schematics import board_graph
+from generate_schematics import board_graph, native_cli
 
 
 class MainSchematicTest(unittest.TestCase):
@@ -20,7 +20,7 @@ class MainSchematicTest(unittest.TestCase):
         cls.pages = compile_pages(cls.spec, cls.graph, lambda p: p.read_text())
         cls.temp = tempfile.TemporaryDirectory()
         path = Path(cls.temp.name) / 'actual.xml'
-        cli = shutil.which('kicad-cli') or '/Applications/KiCad.app/Contents/MacOS/kicad-cli'
+        cli = native_cli()
         subprocess.run([cli, 'sch', 'export', 'netlist', '--format', 'kicadxml', '-o', str(path),
                         str(OUTPUT / (PROJECT + '.kicad_sch'))], check=True, capture_output=True)
         cls.actual = ET.parse(path)
@@ -39,7 +39,7 @@ class MainSchematicTest(unittest.TestCase):
     def named(self, name):
         return next(net for net in self.nets() if net.attrib['name'].rsplit('/', 1)[-1] == name)
 
-    def test_actual_export(self): self.assertEqual(self.check(), 609)
+    def test_actual_export(self): self.assertEqual(self.check(), 649)
 
     def test_missing_pin(self):
         net = self.named('PACK_SDA'); net.remove(net.find('node'))

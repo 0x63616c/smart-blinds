@@ -16,7 +16,7 @@ class IntegrationTests(unittest.TestCase):
 
     def test_captured_boundaries(self):
         result=verify(self.graph)
-        self.assertEqual((result['components'],result['physical_pins']),(196,609))
+        self.assertEqual((result['components'],result['physical_pins']),(206,649))
 
     def test_motor_tail_grounded(self):
         self.change('motor_output.landing1','1','motor.ic','9')
@@ -72,6 +72,12 @@ class IntegrationTests(unittest.TestCase):
 
     def test_motor_on_charger_sys(self):
         self.change('motor.ic','11','charger.ic','25')
+
+    def test_upstream_cutoff_bypassed(self):
+        self.change('usb.cutoff','15','usb.cutoff','1')
+
+    def test_upstream_reference_grounded(self):
+        self.change('usb.cutoff','8','usb.cutoff','9')
 
     def test_usb_switch_bypassed(self):
         self.change('charger.ic','8','usb.efuse','5')

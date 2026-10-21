@@ -12,8 +12,8 @@ from kicad_sexpr import Atom, children, node as n, one, parse, walk
 def draw_page(spec, graph, read_source, project, root_id, instance_path, global_names):
     lib = n("lib_symbols")
     paper = spec.get("paper", "A4")
-    if paper not in ("A4", "A3"):
-        raise ValueError("Use a reviewed A4 or A3 sheet layout")
+    if paper not in ("A4", "A3", "A2"):
+        raise ValueError("Use a reviewed A4, A3 or A2 sheet layout")
     result = n("kicad_sch", n("version", 20250114), n("generator", "smart_blinds_schematic"),
                n("uuid", root_id), n("paper", paper),
                n("title_block", n("title", spec["title"]), n("rev", "STUDY"),

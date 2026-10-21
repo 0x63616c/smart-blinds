@@ -7,7 +7,7 @@
       "with_courtyards": 50,
       "new_envelopes_checked": 30
     },
-    "unique_uuids": 1561,
+    "unique_uuids": 1559,
     "mechanical_tail_rows": 12
   },
   "current_and_kelvin": {
@@ -200,7 +200,7 @@
     "raw_top": 42
   },
   "drc": {
-    "kicad": "10.0.4",
+    "kicad": "10.0.7",
     "unconnected": 0,
     "violations": {
       "missing_courtyard": 4
@@ -238,12 +238,12 @@
     "hw/routing/blind-pack-primary/signals.py": "d81a9adfb20de8c5ed685a58fc9353ce253277567568d048e34066cecad190af",
     "hw/routing/blind-pack-primary/gates.py": "f566f347a78dec9c8e8371a9e02797b0c2411fb4ba3547a40ea93d3dffb02d65",
     "hw/routing/blind-pack-primary/checks.py": "78c1161d783b0a962d9471da72bd8e8fbdfdadbfb37cbc4bc69ca1b8368f7c00",
-    "hw/routing/blind-pack-primary/primary-routed.kicad_pcb": "0f0fc7c37d16f1f2e84f3550887fb583ac037396732e465a0d2fce7a4604280f",
+    "hw/routing/blind-pack-primary/primary-routed.kicad_pcb": "0ee0df45dc0aace191f76b26a230d23927c69cca28bc75df296abfeb708efad7",
     "hw/routing/blind-pack-primary/primary-routed.kicad_pro": "79ab62430a1f6aa6ce9d8a377a64d1285227f69e5f8618d022adc6f6d5eb6d45",
     "hw/routing/blind-pack-primary/primary-routed.kicad_dru": "1e08bd3635bb89b4943ad1e766505c31177e5e150424d10fd72709511661ab19",
-    "hw/routing/blind-pack-primary/route-record.json": "71f2322a0a8cc41270f35ca16d78ad9ad3a33aa14248d2f2364deb1294fe6d8c",
+    "hw/routing/blind-pack-primary/route-record.json": "0d83ce296d088d25adb0abd033f2de00cb9e199035f62dc20cb806e316d0a6f2",
     "hw/routing/blind-pack-primary/fp-lib-table": "4f726306a5b0b2606b9e601039516231213a59d15b1c73d317da2c90e2a7fd26",
-    "hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb": "a93f5b45b81767ffaaa44e7ff29bcc5edda26651cc63edd8132b4aa51cbd1197",
+    "hw/layouts/blind-pack-primary/primary-test/primary-test.kicad_pcb": "14a2c0ae5a8c04bbf7693df413311a38523fc6cc1e1e9031a6667699f06014ab",
     "hw/layouts/blind-pack-primary/primary-test/fp-lib-table": "1f341bf44f582097cc52ed50021a04bf0481fd6937572c8a0c764022e2933ceb",
     "cad/parameters/retained-interfaces.json": "708a984371e0ef23413e81dcaf52b8a666a6eca4b5b30db0d703c6a3708bd422",
     "hw/routing/blind-pack-primary/route_geometry.py": "bfed33d3252359e40b8d60401b47e4f1579af74e296564aeb5193a26fe3400fa",
@@ -263,16 +263,16 @@
     "hw/routing/carrier-finish/footprints/blind-carrier/R2512.kicad_mod": "89bdbdfd763f43490bd7122f57f00de8810a8126fb16f407ff2857e8f3a79c06",
     "hw/parts/blind-carrier/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod": "55d2ca4bb160d8433e33eb7917721a254cb53b9d3d825163aea40f2e29e2c61e",
     "hw/routing/carrier-finish/footprints/blind-carrier/SOD-123_L2.8-W1.8-LS3.7-RD.kicad_mod": "069be795f79f060327fdef0de9f00852fc6084d51bf33fb153d0cd282e9d4702",
-    "hw/parts/blind-control-io/R0402.kicad_mod": "2740e34dbd19e0701c54f21e15b58421837cd61adb3b719f811f01cd4537fda7",
-    "hw/routing/carrier-finish/footprints/blind-control-io/R0402.kicad_mod": "bee8bc67da317220c399fd739cbaaf59c286901ee861df93fda48d923c2593f4",
+    "hw/parts/blind-control-io/R0402.kicad_mod": "a7946e433b1dafb272428e12acd0f7b25322827b1c4b7afc99803b398b20b02b",
+    "hw/routing/carrier-finish/footprints/blind-control-io/R0402.kicad_mod": "e44f2857fe6bb4362d6924c488afecee79445c6fe9d6919b8cb13bccb903631a",
     "hw/parts/blind-power/R0402.kicad_mod": "446335f0841b439964ade9805cd9aae5f48babfeea24598507567b1fb72a0f1d",
     "hw/routing/carrier-finish/footprints/blind-power/R0402.kicad_mod": "e7aad23929dc30c234f5e6cfa18142e54af9e8db25356a673c13c3e2f8fdb7ff",
     "hw/parts/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod": "e5af29e62bdfd0218d06bf79d2cdd8c8a112e91f8dbb0caf41441d0ae474b01b",
     "hw/routing/carrier-finish/footprints/blind-holders/BAT-TH_BH-21700-A5BJ001.kicad_mod": "0f7554979ffee029f031c55ff7f197ea99d5a4818ad7965e58326c25262648fb",
-    "tools/generate_schematics.py": "cda24e8995e1fff8431022d10cd4ae228bf70035c5206ae970e09aa4ffcedee3",
-    "tools/check_footprint_clearances.py": "45ac9559578af2da2b2074eaaaba6200296e0ca2c0b49a6dea2c951f1e63bf8a",
-    "tools/complete_courtyards.py": "f68a33e3d64e880d1593ce1e4a779a05faaf2c0b7e8df28ae945aeaabb4b4b00",
-    "hw/placement/footprint-clearances.json": "f5fffb4b6e49529e8dbec5e3b98c78563ebc29c7626633817ec1581193539fe0",
+    "tools/generate_schematics.py": "3501007d3a545c0af23c180abe87ad1579f58392b91ec6fb8b515ba624696acc",
+    "tools/check_footprint_clearances.py": "cef61fb5c7200bd80f7602dee24327642c5482cc8b25b7cab0e471b3ae2b1383",
+    "tools/complete_courtyards.py": "0bcfc51737da6fe7e6ccafcdec3045d94a93f42ca4d831df829489ab155189d9",
+    "hw/placement/footprint-clearances.json": "64a14d667c1c9f7ac63881be5fb1a731784ed55c8e85e3dd0496033edf3a6966",
     "hw/parts/SAMSUNG_CL10A105KB8NNNC/C0603.kicad_mod": "60561548bc05514cd55938492ccae68aa630ea1742c8277c95415d483a80981c",
     "hw/parts/UNI_ROYAL_0402WGF3903TCE/R0402.kicad_mod": "a87d97a48b46a87c5607d720c523da3c75c4782763bbc8a8a75fd45f926fef15",
     "hw/parts/UNI_ROYAL_0603WAF1001T5E/R0603.kicad_mod": "ead9b5fee69560cdb7b45abfbef2d55d8795d9d3e18804759682db5e44347334",
@@ -287,7 +287,7 @@
     "hw/parts/blind-usb/R0402.kicad_mod": "837c81c4d9e586b0f1747d61555e2ea988ce7ae7e46cb2b4441a547664379fc4",
     "hw/parts/blind-usb/SOD-523_L1.2-W0.8-LS1.6-RD.kicad_mod": "b0ea744aac564206a99733d75e12cc0554118c15535d80014b385df89f0a1971",
     "hw/parts/blind-usb/SOT-323-3_L2.1-W1.3-P1.32-LS2.1-BR.kicad_mod": "f960dbee317f4710e5e8c8a179add66d3e58399d68b2e07106c3369897e61cd4",
-    "hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": "664d94e61dc8889492739d700cc4ca5fd73979572489afc2c2092269f4765973",
+    "hw/parts/blind-usb/VQFN-10_L2.0-W2.0-P0.45-TL.kicad_mod": "d66fa2300fc0f8222eafd3a22127b27379d4b2c3c6ec142b1c03e930a64aa741",
     "hw/parts/blind-control-io/SOT-363_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "021a4c05b152b287bf521a9054ab47d8ecbc6425309ac5698471205da7358eea",
     "hw/parts/blind-control-io/SOT-553-5_L1.6-W1.2-P0.50-LS1.6-TL-1.kicad_mod": "6a3af19684f064fa23840df3f1e2123979febd70627379759a2b623125ac5695",
     "hw/parts/blind-core/C0402.kicad_mod": "2a1fb4d37b39b2e8ff49006646f8b6ab83dd53e88de04e0a077a689f7fb0abf4",
@@ -308,7 +308,7 @@
     "hw/parts/blind-supervisor/C0402.kicad_mod": "df0292e39585d7efb0c249a6b61ecd5fda52d0c89e3b5a955aa3b036e5a61b2a",
     "hw/parts/blind-supervisor/SC-70-6_L2.0-W1.3-P0.65-LS2.1-BR.kicad_mod": "f3058066abe6cf71742595086abb1ae616a8efd69802e1fa2db2c4e9fa120e57",
     "hw/parts/blind-supervisor/SOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR.kicad_mod": "ff3e4eb9e11d432090bb2ffa14aecf15bbc0aa15216833ed775a8b8a2be0e9e4",
-    "hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": "48bec89ba9d01f14ffc3b3c1f2c759d53a3b0991a5abcd5472651b0be1227f01"
+    "hw/parts/blind-supervisor/VSON-10_L3.0-W3.0-P0.50-TL-EP.kicad_mod": "c934e9d7d78a3bcc060e52115cfddd885e9e2af5b36a2ead37562c393f72183a"
   },
   "status": "EXPERIMENTAL CONNECTED ROUTE; retained manufacturing findings and physical qualification remain"
 }

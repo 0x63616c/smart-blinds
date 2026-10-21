@@ -9,23 +9,25 @@ unrouted. No unit has been fabricated,
 powered, charged or installed. The next physical milestone is two prototypes,
 followed by an eight-unit build only after their tests pass.
 
-**Current layout: [54 × 80 mm editable controller study](../hw/studies/clean-main/).**
+**Current layout: [54 × 80 mm source-driven controller](../hw/routing/clean-main/).**
 The larger draft has 206 gridded footprints, outward-facing connectors, rounded
-corners, black mask and sparse markings. Its 297 segments and 70 vias include
-local regulator and USB-C PD routing. The latest revision routes both CC lines
-through their protection lands and adds actual local ground copper; it retains
-417 open connections, six dangling vias, two library comparisons and three
-hybrid-footprint findings. Saved-file geometry and native DRC add no copper,
-courtyard, silkscreen or keepout violations for that refinement.
+corners, black mask and sparse markings. The current capture and eleven-sheet
+schematic agree on 649 physical pin identities. Normal and frozen builds preserve
+the reviewed placements and corrected watchdog/eFuse lands.
 
-The [routing review](reviews/2026-10-21-clean-layout/pd-routing.md) records the
-scope and limitations. This working source is now registered in the automatic
-preview gallery. The older 54 × 68.5 mm canonical route is a historical checkpoint;
-it fails the new [placement/routing style](electrical/routing-style.md), and its
-196-part schematic still needs reconciliation with the 206-part study. Remaining
-routing, continuous reference, electrical/thermal review and revised enclosure
-fit are unfinished. [Earlier size and layout comparisons](trades/2026-10-21-cleaner-main-board.md)
-remain available as history.
+The partial route contains 516 segments and 120 vias. Its native saved board has
+352 open connections and three explicitly retained hybrid-footprint type findings;
+no library, copper-clearance, courtyard, silkscreen or keepout findings were added.
+The reviewed USB-C input protection, local power/PD routes, finite return copper,
+model contents/transforms and mechanical/RF reservations are checked on actual
+saved geometry. See the [source and routing review](reviews/2026-10-21-clean-layout/source-driven-route.md).
+These checks are not current, thermal, surge, RF or physical qualification.
+
+The maintained emitter starts from the current unrouted capture and explicit
+per-part/routing records. The old 196-part 54 × 68.5 mm route remains historical;
+its passing checks are not reused as acceptance of this layout. Current CI and
+preview commands are being updated around the new source. Fresh whole-project CI
+and the consolidated enclosure package remain pending at this checkpoint.
 
 Local native KiCad automation now runs through the
 [isolated Linux runner](../tools/kicad-linux/README.md), following a macOS
@@ -40,9 +42,9 @@ corrections must be verified against the exact model used by the viewer.
 
 | Area | Implemented and checked | Still required |
 |---|---|---|
-| Enclosure | Provisional 115 × 174 × 71 mm case and 118 × 182 × 71 mm joint-service study; removable six-cell cassette and replaceable motor-fit parts | Correct confirmed PCB handedness error, refit frame/ports/harness, then physical retention, strength, creep and assembly tests |
+| Enclosure | Published historical case and service studies; a separate 118 × 196 × 77 mm candidate corrects PCB handedness and front-button insertion | Resolve two newly found internal collisions, replay checks against the current routed board, integrate maintained sources, then test physical fit, retention, strength and creep |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
-| Main controller | Editable 54 × 80 mm four-layer study: 206 footprints, 297 segments, 70 vias; local regulator and PD routing checked | 417 open connections; finish reference/power/signal routing, reconcile schematic, resolve motor energy path and qualify electrical/thermal/process behavior |
+| Main controller | Source-driven 54 × 80 mm four-layer partial route: 206 parts, 649 pins, 516 segments, 120 vias; native schematic and corrected lands reconciled | 352 open connections and three retained hybrid type findings; finish remaining power/signal routing and qualify current, thermal, transient and manufacturing behavior |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
 | Control software | Physical-height calibration and coordinated preparation/commit/leases; bounded device motion session, settling and portable local ownership; Wi-Fi binding with raw button STOP/wake and physical OFF checks | Physical reference/commissioning, local endpoint gestures, final hardware qualification and installed radio tests |
 | Home Assistant | Nine HA 2026.10.2 framework tests pass locally and in CI, including authenticated HTTP/DTLS diagnostics; simulator retains shared physical height across different calibration maps | Sole physical movement owner, periodic idle gauge policy and hardware qualification |
@@ -53,7 +55,7 @@ The owner is away for several weeks. Design continues with the documented motor
 family dimensions; an exact motor measurement is **not required to continue the
 CAD study**. Fit-critical cradle/coupler parts remain replaceable and provisional.
 
-## Latest verified checkpoint
+## Earlier published checkpoints
 
 [All thirteen Design checks jobs passed for `0a148d2`](https://github.com/0x63616c/smart-blinds/actions/runs/39429106462),
 including the battery/source telemetry path through Home Assistant, monitored-PD

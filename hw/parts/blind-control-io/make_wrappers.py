@@ -30,6 +30,19 @@ PIN_NAMES = {
 def children(node, key):
     return [v for v in node if isinstance(v, list) and v and str(v[0]) == key]
 
+def strip_shared_catalog_property(text):
+    """Shared R0402 geometry must not override its exact atomic supplier part.
+
+    Parse the AST rather than matching whitespace: native/supplier serializers
+    may put the property name/value on different lines. Every other node remains.
+    """
+    footprint = sx.loads(text)
+    footprint[:] = [node for node in footprint
+                    if not (isinstance(node, list) and len(node) >= 2
+                            and str(node[0]) == "property"
+                            and node[1] == "LCSC Part")]
+    return sx.dumps(footprint) + "\n"
+
 if __name__ == "__main__":
     lib = sx.loads((ROOT / "blind-control-io.kicad_sym").read_text())
     for sym in children(lib, "symbol"):
@@ -42,6 +55,8 @@ if __name__ == "__main__":
         # atopile0.15 expects atomic footprint files beside their .ato source.
         footprint_source = ROOT / "blind-control-io.pretty" / (footprint + ".kicad_mod")
         footprint_text = footprint_source.read_text().replace('${KIPRJMOD}/hw/parts/', '${KIPRJMOD}/../../../parts/').replace('${KIPRJMOD}hw/parts/', '${KIPRJMOD}/../../../parts/')
+        if footprint == "R0402":
+            footprint_text = strip_shared_catalog_property(footprint_text)
         if name == "TS-1081S-AC01326":
             # Plastic locating posts: imported blank plated pads must be NPTH.
             footprint_text = footprint_text.replace('(pad "" thru_hole', '(pad "" np_thru_hole')

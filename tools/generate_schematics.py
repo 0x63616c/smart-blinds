@@ -13,6 +13,7 @@ import hashlib
 import json
 import math
 import os
+import platform
 from pathlib import Path
 import shutil
 import subprocess
@@ -21,6 +22,16 @@ import uuid
 import xml.etree.ElementTree as ET
 
 from kicad_sexpr import Atom, children, dumps, node as n, one, parse, walk
+
+
+def native_cli():
+    """Native automated CAD runs only in the project's isolated Linux lane."""
+    if platform.system() != "Linux":
+        raise RuntimeError("Run native schematic generation through tools/kicad-run; host KiCad is disabled")
+    executable = shutil.which("kicad-cli")
+    if not executable:
+        raise RuntimeError("Linux kicad-cli is unavailable; no host fallback")
+    return executable
 
 ROOT = Path(__file__).resolve().parents[1]
 NAMESPACE = uuid.UUID("c325696b-b4f0-4d7d-bc27-ff0d1fa9d1bc")
@@ -134,6 +145,7 @@ def main():
     parser.add_argument("layout", type=Path)
     parser.add_argument("--check", action="store_true", help="Require committed schematic to match generation")
     args = parser.parse_args()
+    cli = native_cli()
     layout_path = args.layout.resolve()
     hashes = {}
     def read_source(path):
@@ -157,8 +169,8 @@ def main():
     project = output.stem
     lib = n("lib_symbols")
     paper = spec.get("paper", "A4")
-    if paper not in ("A4", "A3"):
-        raise ValueError("Use a reviewed A4 or A3 sheet layout")
+    if paper not in ("A4", "A3", "A2"):
+        raise ValueError("Use a reviewed A4, A3 or A2 sheet layout")
     result = n("kicad_sch", n("version", 20250114), n("generator", "smart_blinds_schematic"),
                n("uuid", root_id), n("paper", paper),
                n("title_block", n("title", spec["title"]), n("rev", "BLOCK STUDY"),
@@ -278,7 +290,6 @@ def main():
         return dumps(table) + "\n"
     generated = {output: contents, output.with_suffix(".kicad_pro"): "{}\n", output.parent / "SmartBlinds.kicad_sym": external_lib_text,
                  output.parent / "sym-lib-table": sym_table, output.parent / "fp-lib-table": footprint_table(output.parent)}
-    cli = shutil.which("kicad-cli") or "/Applications/KiCad.app/Contents/MacOS/kicad-cli"
     if args.check:
         for path, content in generated.items():
             if not path.exists() or path.read_text() != content:

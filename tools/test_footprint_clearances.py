@@ -44,6 +44,15 @@ def without_courtyard(fp):
 
 
 class ClearanceBoardTests(unittest.TestCase):
+    def test_retained_envelope_cannot_shrink_body_or_land_clearance(self):
+        entry={'body_lead_bounds_mm':[-1,-1,1,1], 'clearance_margin_mm':.25,
+               'retained_courtyard_bounds_mm':[-1.5,-1.5,1.5,1.5]}
+        self.assertEqual(generator.bounds(footprint(),entry),[-1.5,-1.5,1.5,1.5])
+        for bad in ([-1,-1.5,1.5,1.5],[-1.5,-1.5,1.2,1.5],
+                    [-1.51,-1.5,1.5,1.5],[float('nan'),-1.5,1.5,1.5]):
+            with self.subTest(bounds=bad), self.assertRaisesRegex(ValueError,'Retained courtyard'):
+                generator.bounds(footprint(),dict(entry,retained_courtyard_bounds_mm=bad))
+
     def test_compiled_pad_rotation_is_relative_to_parent_before_containment(self):
         fp=footprint(angle=90)
         for pad in children(fp,'pad'):

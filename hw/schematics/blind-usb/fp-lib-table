@@ -31,6 +31,12 @@
     (options "")
     (descr "Project footprint"))
   (lib
+    (name "blind-core")
+    (type "KiCad")
+    (uri "${KIPRJMOD}/../../parts/blind-core")
+    (options "")
+    (descr "Project footprint"))
+  (lib
     (name "blind-power")
     (type "KiCad")
     (uri "${KIPRJMOD}/../../parts/blind-power")
@@ -46,5 +52,11 @@
     (name "blind-usb")
     (type "KiCad")
     (uri "${KIPRJMOD}/../../parts/blind-usb")
+    (options "")
+    (descr "Project footprint"))
+  (lib
+    (name "blind-usb-protection")
+    (type "KiCad")
+    (uri "${KIPRJMOD}/../../parts/blind-usb-protection")
     (options "")
     (descr "Project footprint")))
