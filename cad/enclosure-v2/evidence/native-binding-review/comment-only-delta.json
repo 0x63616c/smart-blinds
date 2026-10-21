@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "file": "check_enclosure_board_binding.py",
+  "before_sha256": "7a12af783332281faaa21f2a8f595a5a4875255c18e3c8c4d244e77a8ebba4c5",
+  "after_sha256": "3dc2b28d9d503dfc6afc99e225298839163588902e9900eb129086d9dce4176d",
+  "same_python_ast_sha256": "4c0c167bb7a79d90db732f5d8292be06f9c75c487b516a8a93ccb08bc6d5e39f",
+  "change": "Parent-requested inline explanation of replacing whole receipt-byte pin with paired integrity and strict semantics. Comments only; no runtime/test logic changed.",
+  "prior_evidence": "test-evidence.json and cli-evidence.json bind before_sha256; AST equivalence binds that tested logic to final source without restamping tests."
+}

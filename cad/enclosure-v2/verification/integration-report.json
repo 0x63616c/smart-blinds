@@ -1,0 +1,5310 @@
+{
+  "inputs": {
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "verification/button_sequence.py": "3c183c7bfaf4bcb0b2f0ec1adf2aabc551b47aba4a29e45ec39e085d3b7a66d2",
+    "evidence/current-exports.json": "e4e272abd99a039daaa09d73557dc6d1fbb054511d7846f205f1c5a14162112d",
+    "source/assembly_v2.scad": "1e21dc761d33bd8006f003455d5ead71765624fd794d8de41b5a13fc989d2e6d",
+    "source/button_assembly_nest.scad": "c44b0477191aaaf92f695084a36b0634b246c834b44a6abd7d6ac597227d2f6c",
+    "source/controller_frame_v2.scad": "97373ee1f3d5c995fd0de0edb36559732e1eb39dc32b6faad0f7954c83b34460",
+    "source/cosmetic_plug_v2.scad": "04316478e513975c81ef23e62c5286936e7670a748420b0b0416172e3ec06440",
+    "source/definitions.scad": "7e158ddde12b27f3b82b929e3472cd414397bed086db700f4fd10aee8450c952",
+    "source/drive_v2.scad": "f97a130d9ba1dc208be443d4adcee292b519831b60623caeaef30c3e395b0e83",
+    "source/enclosure_case_v2.scad": "5b12a949162938717f27635255a5ae59ae896786001067d7f9831d81949e430b",
+    "source/front_buttons_v2.scad": "c1bca1a13c03631421e41486fccf3179f909431d74c6228b27a2592daeea53de",
+    "source/parameters.scad": "d6f76dc1c056e0200d3f50c2d76d0909d0d3fcddbaa0939f98a8fda8cdf0a6fa",
+    "source/prints_v2.scad": "5be5a0fb1de9846acdc7cecb4df6e9c3b5d8b1fc777940648c74e51fb606881d",
+    "source/protected_cassette_v2.scad": "e323c62fee2033c0a22ae6520caeedf716d0197f60ec26bf55e1e4c41e34c4bb",
+    "source/service_hardware_v2.scad": "57d2e1deb9a450eb1d4e7169b1aad43eba8c007f2b63cc68de5c98318ad23447",
+    "source/usb_preview_v2.scad": "55ee7996b9b79293b9c28a4d71912c43034bc763b91fcde64d595fd85dfe495e",
+    "source/wire_arrays.scad": "a6c2c655c9f137552127472611ebd663aa5e2040fb2908d88b941903ac72f042",
+    "source/wiring_v2.scad": "2cf63cd71cdc26c516883189d26cbdf197d5f7cd16f8932a78dabc1d97340622",
+    "parameters/enclosure-v2.json": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+    "assets/233c0d6fff147b19-part-1.stl": "233c0d6fff147b198939850ce0df9644ba2a11e2939236b338b93bb8dea2edd1",
+    "assets/3a3cef4e8b5c1f87-part-2.stl": "3a3cef4e8b5c1f877be69a90821294a1d525afb91b05264d0ce8c1bef3953822",
+    "assets/6f3d643cee760ccb-part-3.stl": "6f3d643cee760ccb843d36ed3e55b22b753d8206f7fcbe2e180d2389f5dcc8cc",
+    "assets/bd2675b0681790a5-rear.stl": "bd2675b0681790a5df09f7ebdf55dcf0f391057f3476b79303940883b4db70db",
+    "assets/c23bbf4c46e53aff-front.stl": "c23bbf4c46e53aff2754ed1380074998659383cb2147a6f74675e0e38c93dedc",
+    "assets/de7d96ed224f554b-part-4.stl": "de7d96ed224f554b7773790d7b6586a8803bdbbe00aada33586b00995267ae04",
+    "assets/e7f765b8494b8f8e-part-0.stl": "e7f765b8494b8f8e61e10f3814beffd2cfd98a4dafee7d46520dd8c7526254c1",
+    "data/baseline-front.stl": "2a8ab8784e57bb4e86eb8e0c86eddad4a353c5afcf275d621f9e9b6e88cd35c2",
+    "data/baseline-rear.stl": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271",
+    "data/current-board-baseline.json": "d11e744b725d844e99df7effc82d6e18c2e0f9fe83aacf190010cb10ad29d84e",
+    "data/encoder-parking.json": "6da8ce8f4c4c8a9145e605a2652e4eb2472a5a61e0f959536918eecc1794462b",
+    "data/motor-service.json": "142a7b3c3d7535e9d3f1ac6377208d07d988a1adae04e6c9ccc9f4622cbb3726",
+    "data/old-front-latch-failure.json": "b0e6be05440d645538d4268ba60a497bf19a0b1868184c2a166660c73121c5cc",
+    "data/pack-path-audit.json": "dcbdbb58d69460641e44bff56898ef9b814b487f15b716c71c5a8a0cb26da630",
+    "data/pack-paths.json": "055e7ece95a4abb05fbf811853a4db91adb61de05641c50e4529e70afddc7e16",
+    "data/physical-board.kicad_pcb": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+    "data/print-baseline.json": "d2b45493c0b8d034fd2f5fb620635eb61c47b3df6096bbd178753f450b31d7ef",
+    "data/rejected-motor-frame.stl": "eff0dead18c78407fea0dbd19989a33592c99f6469ca5f90cc62730dba539f6b",
+    "data/routes.json": "74850743b91128b6705a6fd76d927acf3fa168514f5f985fa44b73e89a2ec763",
+    "geometry/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+    "geometry/operations.py": "db4ec1ca59c2b5ca68445b94a4bb5b22917d41b1eb5bee3b65b4cdaf41711ea8",
+    "verification/cosmetic_plug.py": "e9f5294a22059875b46a029ce39a045c01c0ec30af4e2540d6c33bfafe4399d6",
+    "verification/assembly_motion.py": "7225bbb0c364fd0c3ae1593b0e8e025fa2683c4db6ae8ad343482214897b2495",
+    "verification/parking_screen.py": "6e3e301b6c2ca3e9d86a05ad1fcf4362f25c1baa436770181a11110c6cee0238",
+    "verification/solid_checks.py": "874a6cf6e5562687bb73c0868ddc9852a13832b9391ffa7ea99272cb022d84af",
+    "verification/drive_clearance.py": "d354fe41038fc0ed49e661176c1013b9a5bb0495b48f7e8469ae945bd293ec10",
+    "verification/complete_extraction.py": "f45baa2d799c036a86c438d5500984bacf1dc39851e1f9bd3a1692128c327d11",
+    "verification/fastener_headroom.py": "fe8858213c045dcefc04774137f1c3d52028a2074b0e9a790007af7699fdf338",
+    "verification/button_integration.py": "1865092ffdc23520ba7831256ae9af6bc995fa32ab763a310ca9e5d6ef43fbfa",
+    "verification/broadphase_controls.py": "65e89cc9dad2838546d8588ba97e283ea119721c4a6e711829dbde3e3b7d1fcc",
+    "verification/extraction.py": "6fd2ffd39347699f86e2a8b2eeebf63f2cdbfb8e54a62fe6cf92e29c1af64ceb",
+    "verification/pad_contact.py": "5f713055f487573a7f8d99054cc8b2abac3ad533e8ec644ee095479bcb85011b",
+    "verification/clamp_sweep.py": "a41d66501fddfed210b50e92a4224397578f869604ddc3c5c7d8f86c88185416",
+    "verification/cassette_reliefs.py": "7670ad5ba3f2751b93610d7bdd668bbe9e5ad725707d9fa7e22e5a8c9b246818",
+    "verification/service_screen.py": "c3c322be0954e7d4c2e50c8c5b7c7a99f23f5b1793dbffbc0341a7cdba32761e",
+    "verification/access_screen.py": "9520b219f41221d6152a3d0d86ee89394396afefc8d0c6b4aad7370fd04052ad",
+    "verification/current_tail_clearance.py": "faadef7db71a1e62eac84f8d4dd3db360e50467c6ff45acb18fffb04df1a0b23",
+    "verification/current_board_screen.py": "c28748a7129c2872d2f32c01be129a65d92f9f3def59d5e613b018236b7ffd76",
+    "build.py": "8372004e1548ccf13c7bf71d7626f4f601ec811946d5ff5ddaad82788a4a46aa",
+    "build_auxiliary.py": "3e9d0a565b63d0ddc2b610c5dca2c13c7e5d3b4807e8ffa848138955439bdd11",
+    "prepare.py": "725580be04557b1ce455e341dc1144bd1cc448bf434385d6716de2ba1603c2c5",
+    "verify.py": "622db664fc6a654d2388beeac15bc4d171793b7c0c8e88161f8e6e87ea494ee2",
+    "exports/cover.stl": "2b95279f2921345e124c49aceef7eab1eb64589ccc228e9e8f37ace8d235f2af",
+    "exports/guide_bar.stl": "e21a8a57f49f801b280560e8a30461a1875964994505cfed3c5cd874fc3835dd",
+    "exports/button.stl": "b586a159e3479e3fa882a8711fe8004bcfbc9bb249ac238b522d1c54f42ab804",
+    "exports/motor_frame.stl": "320f50c53cdb039b697155fe80124b93352cee0f1854c1913f81742948253d19",
+    "exports/backing.stl": "1401a85f27f25b8fa73b0a7c1e352b6443facbe5ef9767105239731cada108f6",
+    "exports/guard_clamp.stl": "f7ed295cd5f8feaccebf5ad4f35b0288865526dd439c02ded031c94ce1b59da7",
+    "exports/tail_keeper.stl": "13f5b020d51e667885f2d00747e60321b980fbc1e15dc4a3949564d18d620433",
+    "exports/inline_body.stl": "61c2f89cf01f579e7bc5e1b2734cd44f91fa240398dd6e4ca2bcacdd683ee777",
+    "exports/housing_tie.stl": "a2f039e8acce4013697cf421236b6438791dba73e782ce34c6f5000206d70f21",
+    "exports/front.stl": "c82eff25e0130e75b2e9b663660e36afbb2f86964e454d9ad0efc7c8966b382a",
+    "exports/rear.stl": "71f9593b6a8778e4033d4aa9c8ea6a7fc278127c6ff30915871583acf35c44f5",
+    "exports/spacer.stl": "e71c64fad70731a9343a0c80fff5a1e269d8ddf07fb124d8499c5dbdfe43c500",
+    "verification/current-board-report.json": "2198eda5d0ad62430df5841adf24fc0f97ff1585345a469f7ec0ec4f19550783",
+    "verification/current-tail-report.json": "fa16440f1d6ecfad3ccc900b61608efad7cd9b3f2d7b777c4b1cd22e59bce359",
+    "exports/nest.stl": "19eb946304d54b118dc70e9ecbd0afb9530ab0182e501922a56942abc49e1798"
+  },
+  "checks": [
+    {
+      "name": "front_insert_22",
+      "extruded_surface_prisms": 368,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "front_insert_42",
+      "extruded_surface_prisms": 368,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "bar_rear_approach",
+      "extruded_surface_prisms": 1074,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "bar_slide",
+      "extruded_surface_prisms": 946,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "bar_seat",
+      "extruded_surface_prisms": 1074,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "release_22",
+      "extruded_surface_prisms": 368,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "release_42",
+      "extruded_surface_prisms": 368,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "cover_single_piece",
+      "connected_components": 1,
+      "volume_mm3": 158282.5080728581,
+      "pass": true
+    },
+    {
+      "name": "bar_single_piece",
+      "connected_components": 1,
+      "volume_mm3": 1297.6028245790721,
+      "pass": true
+    },
+    {
+      "name": "button_single_piece",
+      "connected_components": 1,
+      "volume_mm3": 588.8367483546906,
+      "pass": true
+    },
+    {
+      "name": "driver_22",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "driver_42",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_motor_frame",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_motor_frame",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_motor_frame",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_backing",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_backing",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_backing",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_guard_clamp",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_guard_clamp",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_guard_clamp",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_tail_keeper",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_tail_keeper",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_tail_keeper",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_inline_body",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_inline_body",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_inline_body",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_housing_tie",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_housing_tie",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_housing_tie",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_front",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_front",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_front",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_rear",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_rear",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_rear",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_spacer",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_spacer",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_spacer",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_board_allocations",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_22_board_allocations",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "button_42_board_allocations",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "bar_cover_remove",
+      "extruded_surface_prisms": 1064,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "button22_cover_remove",
+      "extruded_surface_prisms": 272,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "button42_cover_remove",
+      "extruded_surface_prisms": 272,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "nut_side_insert",
+      "extruded_surface_prisms": 8,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "nut_rotation_witness_20",
+      "volume_mm3": 0.12138400025430748,
+      "pass": true
+    },
+    {
+      "name": "nut_rotation_witness_30",
+      "volume_mm3": 0.23159692404460747,
+      "pass": true
+    },
+    {
+      "name": "bar_released_rear",
+      "extruded_surface_prisms": 1074,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "bar_released_slide",
+      "extruded_surface_prisms": 946,
+      "findings": [
+        {
+          "endpoint": [
+            0.0,
+            -8.5,
+            0.0
+          ],
+          "volume_mm3": 0.8960478589799967,
+          "bounds": [
+            105.20000019073487,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "endpoint": [
+            0.0,
+            -8.5,
+            0.0
+          ],
+          "volume_mm3": 0.8960474443071665,
+          "bounds": [
+            105.20000019073487,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 744,
+          "volume_mm3": 0.032852391015798024,
+          "bounds": [
+            113.4568862915039,
+            22.54821014404297,
+            66.60000305175781,
+            113.56407165527344,
+            24.45990763618876,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 745,
+          "volume_mm3": 0.0004987274374029065,
+          "bounds": [
+            113.56117475116056,
+            22.54821014404297,
+            66.60000305175781,
+            113.56407165527344,
+            24.2785683481575,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 746,
+          "volume_mm3": 0.013885665945151726,
+          "bounds": [
+            113.56407165527344,
+            22.0,
+            66.60000305175781,
+            113.5999984741211,
+            24.27269402239838,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 747,
+          "volume_mm3": 0.00021318791037409392,
+          "bounds": [
+            113.59902747821623,
+            22.0,
+            66.60000305175781,
+            113.5999984741211,
+            24.20181080253892,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 748,
+          "volume_mm3": 0.0005342005159838202,
+          "bounds": [
+            105.51493381415874,
+            23.593209023090868,
+            66.60000305175781,
+            105.51970672607422,
+            24.72419755812836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 749,
+          "volume_mm3": 0.043434876404385925,
+          "bounds": [
+            105.34310913085938,
+            23.087039947509766,
+            66.60000305175781,
+            105.51970672607422,
+            24.72419755812836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 750,
+          "volume_mm3": 0.0004472735059472682,
+          "bounds": [
+            107.79273223876953,
+            25.880294799804688,
+            66.60000305175781,
+            107.80679239968804,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 751,
+          "volume_mm3": 0.023629608549722875,
+          "bounds": [
+            107.79273223876953,
+            25.880294799804688,
+            66.60000305175781,
+            108.31295776367188,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 752,
+          "volume_mm3": 0.0007154967220920939,
+          "bounds": [
+            106.42036272220906,
+            24.958685066706835,
+            66.60000305175781,
+            106.4301528930664,
+            25.699821054856674,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 753,
+          "volume_mm3": 0.05562396778657486,
+          "bounds": [
+            106.06791687011719,
+            24.55679702758789,
+            66.60000305175781,
+            106.4301528930664,
+            25.699821054856674,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 754,
+          "volume_mm3": 0.0008149122355988088,
+          "bounds": [
+            106.84320068359375,
+            25.33208465576172,
+            66.60000305175781,
+            106.85554670372711,
+            26.00039464351438,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 755,
+          "volume_mm3": 0.05767343088705726,
+          "bounds": [
+            106.84320068359375,
+            25.33208465576172,
+            66.60000305175781,
+            107.30000305175781,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 756,
+          "volume_mm3": 0.0006980858289151442,
+          "bounds": [
+            111.5,
+            25.629056975287988,
+            66.60000305175781,
+            111.51234581393335,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 757,
+          "volume_mm3": 0.05778935612098107,
+          "bounds": [
+            111.5,
+            25.33208465576172,
+            66.60000305175781,
+            111.95679473876953,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 758,
+          "volume_mm3": 0.0007464247518767127,
+          "bounds": [
+            107.30000305175781,
+            25.637306213378906,
+            66.60000305175781,
+            107.31332006779606,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 759,
+          "volume_mm3": 0.04273192999139869,
+          "bounds": [
+            107.30000305175781,
+            25.637306213378906,
+            66.60000305175781,
+            107.79273223876953,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 760,
+          "volume_mm3": 0.00042866688607580243,
+          "bounds": [
+            111.00727081298828,
+            25.873727535295423,
+            66.60000305175781,
+            111.02058782902652,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 761,
+          "volume_mm3": 0.04304968785720048,
+          "bounds": [
+            111.00727081298828,
+            25.637306213378906,
+            66.60000305175781,
+            111.5,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 762,
+          "volume_mm3": 0.0003986638708367296,
+          "bounds": [
+            105.34021243294653,
+            23.072476967836963,
+            66.60000305175781,
+            105.34310913085938,
+            24.459900785276584,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 763,
+          "volume_mm3": 0.03295006292536917,
+          "bounds": [
+            105.23593139648438,
+            22.54821014404297,
+            66.60000305175781,
+            105.34310913085938,
+            24.459900785276584,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 764,
+          "volume_mm3": 0.053336878596156156,
+          "bounds": [
+            112.73208618164062,
+            24.099998474121094,
+            66.60000305175781,
+            113.03730773925781,
+            25.382146660601958,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 765,
+          "volume_mm3": 0.0007755535722162657,
+          "bounds": [
+            113.02905850116689,
+            24.099998474121094,
+            66.60000305175781,
+            113.03730773925781,
+            25.050536524891346,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 766,
+          "volume_mm3": 0.00020345655657611102,
+          "bounds": [
+            110.4870376586914,
+            26.052115771506802,
+            66.60000305175781,
+            110.50109802580992,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 767,
+          "volume_mm3": 0.023873778599861284,
+          "bounds": [
+            110.4870376586914,
+            25.880294799804688,
+            66.60000305175781,
+            111.00727081298828,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 768,
+          "volume_mm3": 0.00020700788054134204,
+          "bounds": [
+            108.31295776367188,
+            26.056888580322266,
+            66.60000305175781,
+            108.32752084644468,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 769,
+          "volume_mm3": 0.00944042096335003,
+          "bounds": [
+            108.31295776367188,
+            26.056888580322266,
+            66.60000305175781,
+            108.85179138183594,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 770,
+          "volume_mm3": 0.0001678987427593528,
+          "bounds": [
+            105.23496019437948,
+            22.533393641442785,
+            66.60000305175781,
+            105.23593139648438,
+            24.27270021073557,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 771,
+          "volume_mm3": 0.013932511442673823,
+          "bounds": [
+            105.20000019073487,
+            22.000049466945143,
+            66.60000305175781,
+            105.23593139648438,
+            24.27270021073557,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 772,
+          "volume_mm3": 0.0006193441878071387,
+          "bounds": [
+            105.75612804799073,
+            24.086681458082857,
+            66.60000305175781,
+            105.7626953125,
+            25.041133529367652,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 773,
+          "volume_mm3": 0.049911901775452905,
+          "bounds": [
+            105.51970672607422,
+            23.607269287109375,
+            66.60000305175781,
+            105.7626953125,
+            25.041133529367652,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 774,
+          "volume_mm3": 5.3732893803473854e-05,
+          "bounds": [
+            109.94821166992188,
+            26.16117147258305,
+            66.60000305175781,
+            109.96277454649467,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 775,
+          "volume_mm3": 0.009593559351259634,
+          "bounds": [
+            109.94821166992188,
+            26.056888580322266,
+            66.60000305175781,
+            110.4870376586914,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 776,
+          "volume_mm3": 0.0008149019757961382,
+          "bounds": [
+            106.4301528930664,
+            24.9698486328125,
+            66.60000305175781,
+            106.44131635607206,
+            25.709611126098917,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 777,
+          "volume_mm3": 0.05714700604195086,
+          "bounds": [
+            106.4301528930664,
+            24.9698486328125,
+            66.60000305175781,
+            106.84320068359375,
+            25.99214529017381,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 778,
+          "volume_mm3": 5.2758410388867825e-05,
+          "bounds": [
+            108.85179138183594,
+            26.1640682220459,
+            66.60000305175781,
+            108.86660788443612,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 779,
+          "volume_mm3": 0.001916995370120314,
+          "bounds": [
+            108.85179138183594,
+            26.1640682220459,
+            66.60000305175781,
+            109.39998697600514,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 780,
+          "volume_mm3": 0.04979830282605818,
+          "bounds": [
+            113.03730773925781,
+            23.607269287109375,
+            66.60000305175781,
+            113.2802963256836,
+            25.04113004949662,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 781,
+          "volume_mm3": 0.0007327496945045281,
+          "bounds": [
+            113.27372906117434,
+            23.607269287109375,
+            66.60000305175781,
+            113.2802963256836,
+            24.734021589109155,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 782,
+          "volume_mm3": 0.04331308883452678,
+          "bounds": [
+            113.2802963256836,
+            23.087039947509766,
+            66.60000305175781,
+            113.4568862915039,
+            24.724192990853606,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 783,
+          "volume_mm3": 0.0006541288542463268,
+          "bounds": [
+            113.45211358578845,
+            23.087039947509766,
+            66.60000305175781,
+            113.4568862915039,
+            24.467050489503556,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 784,
+          "volume_mm3": 0.0007377406299067107,
+          "bounds": [
+            111.95679473876953,
+            25.32229448490438,
+            66.60000305175781,
+            111.9679584079752,
+            25.992148348855267,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 785,
+          "volume_mm3": 0.057225272504621505,
+          "bounds": [
+            111.95679473876953,
+            24.9698486328125,
+            66.60000305175781,
+            112.3698501586914,
+            25.992148348855267,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 786,
+          "volume_mm3": 4.782235327185848e-07,
+          "bounds": [
+            109.40001607575267,
+            26.199029612384567,
+            66.60019945267868,
+            109.41481802847909,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 787,
+          "volume_mm3": 0.001969275556976746,
+          "bounds": [
+            109.40001607575267,
+            26.1640682220459,
+            66.60000305175781,
+            109.94821166992188,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 788,
+          "volume_mm3": 0.0006822583163037382,
+          "bounds": [
+            106.05966763202626,
+            24.544451110554533,
+            66.60000305175781,
+            106.06791687011719,
+            25.38214933691542,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 789,
+          "volume_mm3": 0.053430381991843634,
+          "bounds": [
+            105.7626953125,
+            24.099998474121094,
+            66.60000305175781,
+            106.06791687011719,
+            25.38214933691542,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 790,
+          "volume_mm3": 0.05553208047360769,
+          "bounds": [
+            112.3698501586914,
+            24.55679702758789,
+            66.60000305175781,
+            112.73208618164062,
+            25.699818378543213,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 791,
+          "volume_mm3": 0.000807190143629101,
+          "bounds": [
+            112.72229601078328,
+            24.55679702758789,
+            66.60000305175781,
+            112.73208618164062,
+            25.39073238978998,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 805,
+          "volume_mm3": 5.874201319448866e-07,
+          "bounds": [
+            113.5999984741211,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            24.199841822540364,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 806,
+          "volume_mm3": 4.3570608072537355e-13,
+          "bounds": [
+            113.5999984741211,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            24.199839115142822,
+            66.60000349679451
+          ]
+        },
+        {
+          "triangle": 984,
+          "volume_mm3": 0.03285239101579819,
+          "bounds": [
+            113.4568862915039,
+            42.54821014404297,
+            66.60000305175781,
+            113.56407165527344,
+            44.45990763618876,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 985,
+          "volume_mm3": 0.0004987274374035101,
+          "bounds": [
+            113.56117475116056,
+            42.54821014404297,
+            66.60000305175781,
+            113.56407165527344,
+            44.2785683481575,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 986,
+          "volume_mm3": 0.049798302826059605,
+          "bounds": [
+            113.03730773925781,
+            43.607269287109375,
+            66.60000305175781,
+            113.2802963256836,
+            45.04113004949662,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 987,
+          "volume_mm3": 0.0007327496945055967,
+          "bounds": [
+            113.27372906117434,
+            43.607269287109375,
+            66.60000305175781,
+            113.2802963256836,
+            44.734021589109155,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 988,
+          "volume_mm3": 5.2755609824952504e-05,
+          "bounds": [
+            108.85179138183594,
+            46.16407012939453,
+            66.60000305175781,
+            108.86660788443612,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 989,
+          "volume_mm3": 0.0019168936078974852,
+          "bounds": [
+            108.85179138183594,
+            46.16407012939453,
+            66.60000305175781,
+            109.39998697523276,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 990,
+          "volume_mm3": 0.013885665945152836,
+          "bounds": [
+            113.56407165527344,
+            42.0,
+            66.60000305175781,
+            113.5999984741211,
+            44.27269402239838,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 991,
+          "volume_mm3": 0.00021318791037481903,
+          "bounds": [
+            113.59902747821623,
+            42.0,
+            66.60000305175781,
+            113.5999984741211,
+            44.201810802538915,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 992,
+          "volume_mm3": 0.00020345655657620296,
+          "bounds": [
+            110.4870376586914,
+            46.052115771506806,
+            66.60000305175781,
+            110.50109802580992,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 993,
+          "volume_mm3": 0.023873778599861395,
+          "bounds": [
+            110.4870376586914,
+            45.88029479980469,
+            66.60000305175781,
+            111.00727081298828,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 994,
+          "volume_mm3": 0.0006980858289151216,
+          "bounds": [
+            111.5,
+            45.62905697528799,
+            66.60000305175781,
+            111.51234581393335,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 995,
+          "volume_mm3": 0.05778935612098139,
+          "bounds": [
+            111.5,
+            45.33208465576172,
+            66.60000305175781,
+            111.95679473876953,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 996,
+          "volume_mm3": 0.0007464247518767764,
+          "bounds": [
+            107.30000305175781,
+            45.637306213378906,
+            66.60000305175781,
+            107.31332006779606,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 997,
+          "volume_mm3": 0.04273192999139819,
+          "bounds": [
+            107.30000305175781,
+            45.637306213378906,
+            66.60000305175781,
+            107.79273223876953,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 998,
+          "volume_mm3": 0.0007377406299060793,
+          "bounds": [
+            111.95679473876953,
+            45.32229448490438,
+            66.60000305175781,
+            111.9679584079752,
+            45.99214834885527,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 999,
+          "volume_mm3": 0.05722527250462328,
+          "bounds": [
+            111.95679473876953,
+            44.9698486328125,
+            66.60000305175781,
+            112.3698501586914,
+            45.99214834885527,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1000,
+          "volume_mm3": 0.00042866688607577294,
+          "bounds": [
+            111.00727081298828,
+            45.87372753529542,
+            66.60000305175781,
+            111.02058782902652,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1001,
+          "volume_mm3": 0.043049687857200536,
+          "bounds": [
+            111.00727081298828,
+            45.637306213378906,
+            66.60000305175781,
+            111.5,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1002,
+          "volume_mm3": 0.0007154967220917557,
+          "bounds": [
+            106.42036272220906,
+            44.958685066706835,
+            66.60000305175781,
+            106.4301528930664,
+            45.69982105485667,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1003,
+          "volume_mm3": 0.05562396778657608,
+          "bounds": [
+            106.06791687011719,
+            44.55679702758789,
+            66.60000305175781,
+            106.4301528930664,
+            45.69982105485667,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1004,
+          "volume_mm3": 5.373014117913185e-05,
+          "bounds": [
+            109.94821166992188,
+            46.16117332838168,
+            66.60000305175781,
+            109.96277454649467,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1005,
+          "volume_mm3": 0.009593459330982518,
+          "bounds": [
+            109.94821166992188,
+            46.056888580322266,
+            66.60000305175781,
+            110.4870376586914,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1006,
+          "volume_mm3": 0.00044727350594748593,
+          "bounds": [
+            107.79273223876953,
+            45.88029479980469,
+            66.60000305175781,
+            107.80679239968804,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1007,
+          "volume_mm3": 0.023629608549723263,
+          "bounds": [
+            107.79273223876953,
+            45.88029479980469,
+            66.60000305175781,
+            108.31295776367188,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1008,
+          "volume_mm3": 0.05333687859615509,
+          "bounds": [
+            112.73208618164062,
+            44.099998474121094,
+            66.60000305175781,
+            113.03730773925781,
+            45.38214666060196,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1009,
+          "volume_mm3": 0.0007755535722174592,
+          "bounds": [
+            113.02905850116689,
+            44.099998474121094,
+            66.60000305175781,
+            113.03730773925781,
+            45.05053652489135,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1010,
+          "volume_mm3": 4.781980731015313e-07,
+          "bounds": [
+            109.40001607652505,
+            46.199029663934574,
+            66.60019946310446,
+            109.41481802847909,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1011,
+          "volume_mm3": 0.0019691710196493846,
+          "bounds": [
+            109.40001607652505,
+            46.16407012939453,
+            66.60000305175781,
+            109.94821166992188,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1012,
+          "volume_mm3": 0.0008149122355984532,
+          "bounds": [
+            106.84320068359375,
+            45.33208465576172,
+            66.60000305175781,
+            106.85554670372711,
+            46.00039464351438,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1013,
+          "volume_mm3": 0.0576734308870573,
+          "bounds": [
+            106.84320068359375,
+            45.33208465576172,
+            66.60000305175781,
+            107.30000305175781,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1014,
+          "volume_mm3": 0.05553208047360769,
+          "bounds": [
+            112.3698501586914,
+            44.55679702758789,
+            66.60000305175781,
+            112.73208618164062,
+            45.69981837854321,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1015,
+          "volume_mm3": 0.000807190143630003,
+          "bounds": [
+            112.72229601078328,
+            44.55679702758789,
+            66.60000305175781,
+            112.73208618164062,
+            45.39073238978998,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1016,
+          "volume_mm3": 0.0005342005159833137,
+          "bounds": [
+            105.51493381415874,
+            43.593209023090864,
+            66.60000305175781,
+            105.51970672607422,
+            44.72419755812836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1017,
+          "volume_mm3": 0.04343487640438726,
+          "bounds": [
+            105.34310913085938,
+            43.087039947509766,
+            66.60000305175781,
+            105.51970672607422,
+            44.72419755812836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1018,
+          "volume_mm3": 0.04331308883452656,
+          "bounds": [
+            113.2802963256836,
+            43.087039947509766,
+            66.60000305175781,
+            113.4568862915039,
+            44.7241929908536,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1019,
+          "volume_mm3": 0.0006541288542467952,
+          "bounds": [
+            113.45211358578845,
+            43.087039947509766,
+            66.60000305175781,
+            113.4568862915039,
+            44.467050489503556,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1020,
+          "volume_mm3": 0.0006822583163027338,
+          "bounds": [
+            106.05966763202628,
+            44.54445111055453,
+            66.60000305175781,
+            106.06791687011719,
+            45.38214933691542,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1021,
+          "volume_mm3": 0.05343038199184414,
+          "bounds": [
+            105.7626953125,
+            44.099998474121094,
+            66.60000305175781,
+            106.06791687011719,
+            45.38214933691542,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1022,
+          "volume_mm3": 0.0002070078555171228,
+          "bounds": [
+            108.31295776367188,
+            46.056888580322266,
+            66.60000305175781,
+            108.32752084644468,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1023,
+          "volume_mm3": 0.009440318214017557,
+          "bounds": [
+            108.31295776367188,
+            46.056888580322266,
+            66.60000305175781,
+            108.85179138183594,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1024,
+          "volume_mm3": 0.0006193441878073191,
+          "bounds": [
+            105.75612804799073,
+            44.08668145808286,
+            66.60000305175781,
+            105.7626953125,
+            45.04113352936765,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1025,
+          "volume_mm3": 0.04991190177545274,
+          "bounds": [
+            105.51970672607422,
+            43.607269287109375,
+            66.60000305175781,
+            105.7626953125,
+            45.04113352936765,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1026,
+          "volume_mm3": 0.0008149019757965441,
+          "bounds": [
+            106.4301528930664,
+            44.9698486328125,
+            66.60000305175781,
+            106.44131635607206,
+            45.70961112609891,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1027,
+          "volume_mm3": 0.057147006041951096,
+          "bounds": [
+            106.4301528930664,
+            44.9698486328125,
+            66.60000305175781,
+            106.84320068359375,
+            45.99214529017381,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1028,
+          "volume_mm3": 0.0003986638708365336,
+          "bounds": [
+            105.34021243294653,
+            43.07247696783696,
+            66.60000305175781,
+            105.34310913085938,
+            44.45990078527659,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1029,
+          "volume_mm3": 0.03295006292536809,
+          "bounds": [
+            105.23593139648438,
+            42.54821014404297,
+            66.60000305175781,
+            105.34310913085938,
+            44.45990078527659,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1030,
+          "volume_mm3": 0.00016789874276018375,
+          "bounds": [
+            105.23496019437948,
+            42.533393641442785,
+            66.60000305175781,
+            105.23593139648438,
+            44.27270021073557,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1031,
+          "volume_mm3": 0.013932511442674905,
+          "bounds": [
+            105.20000019073487,
+            42.00004946694514,
+            66.60000305175781,
+            105.23593139648438,
+            44.27270021073557,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1045,
+          "volume_mm3": 5.874201319448982e-07,
+          "bounds": [
+            113.5999984741211,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            44.199841822540364,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1046,
+          "volume_mm3": 4.3570607733724176e-13,
+          "bounds": [
+            113.5999984741211,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            44.19983911514282,
+            66.60000349679451
+          ]
+        }
+      ],
+      "pass": false
+    },
+    {
+      "name": "bar_released_seat",
+      "extruded_surface_prisms": 1074,
+      "findings": [
+        {
+          "endpoint": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "volume_mm3": 0.8960478589799967,
+          "bounds": [
+            105.20000019073487,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "endpoint": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "volume_mm3": 0.8960474443071665,
+          "bounds": [
+            105.20000019073487,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 679,
+          "volume_mm3": 0.001759037748837512,
+          "bounds": [
+            113.56407165527344,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            22.54821014404297,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 692,
+          "volume_mm3": 0.014249622479120705,
+          "bounds": [
+            113.2802963256836,
+            23.29398144234099,
+            66.60000305175781,
+            113.59999980926514,
+            23.739695149288643,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 693,
+          "volume_mm3": 0.007329835460830159,
+          "bounds": [
+            113.2802963256836,
+            23.607269287109375,
+            66.60000305175781,
+            113.59999980926514,
+            23.96896495200445,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 694,
+          "volume_mm3": 0.00038425646606692065,
+          "bounds": [
+            113.56407165527344,
+            22.489578327707342,
+            66.60000305175781,
+            113.59999980926514,
+            22.596529680163584,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 695,
+          "volume_mm3": 0.009071383460317495,
+          "bounds": [
+            113.4568862915039,
+            22.54821014404297,
+            66.60000305175781,
+            113.59999980926514,
+            23.087039947509766,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 696,
+          "volume_mm3": 0.014463489009309882,
+          "bounds": [
+            113.2802963256836,
+            23.058928539669218,
+            66.60000305175781,
+            113.59999980926514,
+            23.607269287109375,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 697,
+          "volume_mm3": 0.048251152694581245,
+          "bounds": [
+            113.03730773925781,
+            23.607269287109375,
+            66.60000305175781,
+            113.59999980926514,
+            24.374999075635866,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 698,
+          "volume_mm3": 0.014312921471337682,
+          "bounds": [
+            113.03730773925781,
+            24.099998474121094,
+            66.60000305175781,
+            113.51362026022942,
+            24.591841103531603,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 699,
+          "volume_mm3": 0.049938348390723086,
+          "bounds": [
+            112.73208618164062,
+            24.099998474121094,
+            66.60000305175781,
+            113.36873109834849,
+            24.891614772926015,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 700,
+          "volume_mm3": 0.014312920059237906,
+          "bounds": [
+            112.73208618164062,
+            24.55679702758789,
+            66.60000305175781,
+            113.16842858026412,
+            25.087690543877407,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 701,
+          "volume_mm3": 0.04993848194513184,
+          "bounds": [
+            112.3698501586914,
+            24.55679702758789,
+            66.60000305175781,
+            112.99647537775573,
+            25.35875620609693,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 702,
+          "volume_mm3": 0.014312942713477748,
+          "bounds": [
+            112.3698501586914,
+            24.9698486328125,
+            66.60000305175781,
+            112.75875773197583,
+            25.530709793012146,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 703,
+          "volume_mm3": 0.049938890697291745,
+          "bounds": [
+            111.95679473876953,
+            24.9698486328125,
+            66.60000305175781,
+            112.56268199737801,
+            25.768428494866715,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 704,
+          "volume_mm3": 0.014312981369042688,
+          "bounds": [
+            111.95679473876953,
+            25.33208465576172,
+            66.60000305175781,
+            112.29161490073216,
+            25.913318085726207,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 705,
+          "volume_mm3": 0.049938204416283494,
+          "bounds": [
+            111.5,
+            25.33208465576172,
+            66.60000305175781,
+            112.07477247296642,
+            26.113619447901506,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 706,
+          "volume_mm3": 0.014137137775939265,
+          "bounds": [
+            111.5,
+            25.637306213378906,
+            66.60000305175781,
+            111.77500053351083,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 707,
+          "volume_mm3": 0.04144403233846983,
+          "bounds": [
+            111.00727081298828,
+            25.637306213378906,
+            66.60000305175781,
+            111.5390866657704,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 708,
+          "volume_mm3": 0.004863547952904446,
+          "bounds": [
+            110.98757003013823,
+            25.880294799804688,
+            66.60000305175781,
+            111.13969614042698,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 709,
+          "volume_mm3": 0.022898601827076037,
+          "bounds": [
+            110.4870376586914,
+            25.880294799804688,
+            66.60000305175781,
+            111.00727081298828,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 710,
+          "volume_mm3": 0.0009478702031008035,
+          "bounds": [
+            110.45915160296866,
+            26.056888580322266,
+            66.60000305175781,
+            110.52538471480081,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 711,
+          "volume_mm3": 0.009231214295661289,
+          "bounds": [
+            109.94821166992188,
+            26.056888580322266,
+            66.60000305175781,
+            110.4870376586914,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 712,
+          "volume_mm3": 0.0019867509594256594,
+          "bounds": [
+            109.40001607575267,
+            26.1640682220459,
+            66.60000305175781,
+            109.95294209800251,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 714,
+          "volume_mm3": 0.001926488962116099,
+          "bounds": [
+            108.85179138183594,
+            26.1640682220459,
+            66.60000305175781,
+            109.39998697600514,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 715,
+          "volume_mm3": 6.0262618256366404e-05,
+          "bounds": [
+            108.84706078094166,
+            26.1640682220459,
+            66.60000305175781,
+            108.86383226890536,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 716,
+          "volume_mm3": 0.009231350273542854,
+          "bounds": [
+            108.31295776367188,
+            26.056888580322266,
+            66.60000305175781,
+            108.85179138183594,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 717,
+          "volume_mm3": 0.0009478600925712927,
+          "bounds": [
+            108.274611414043,
+            26.056888580322266,
+            66.60000305175781,
+            108.34084381939462,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 718,
+          "volume_mm3": 0.02289825883683877,
+          "bounds": [
+            107.79273223876953,
+            25.880294799804688,
+            66.60000305175781,
+            108.31295776367188,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 719,
+          "volume_mm3": 0.041444119931906664,
+          "bounds": [
+            107.26091389178374,
+            25.637306213378906,
+            66.60000305175781,
+            107.79273223876953,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 720,
+          "volume_mm3": 0.004863600706711935,
+          "bounds": [
+            107.66030526125324,
+            25.880294799804688,
+            66.60000305175781,
+            107.81243302161958,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 721,
+          "volume_mm3": 0.04993882826259283,
+          "bounds": [
+            106.72522580548036,
+            25.33208465576172,
+            66.60000305175781,
+            107.30000305175781,
+            26.113620692022174,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 722,
+          "volume_mm3": 0.01413705015068617,
+          "bounds": [
+            107.02500179995107,
+            25.637306213378906,
+            66.60000305175781,
+            107.30000305175781,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 723,
+          "volume_mm3": 0.04993820805257232,
+          "bounds": [
+            106.23732034739373,
+            24.9698486328125,
+            66.60000305175781,
+            106.84320068359375,
+            25.768427590682425,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 724,
+          "volume_mm3": 0.049938647390285626,
+          "bounds": [
+            105.80352656867905,
+            24.55679702758789,
+            66.60000305175781,
+            106.4301528930664,
+            25.35875773197583,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 725,
+          "volume_mm3": 0.014312886717317343,
+          "bounds": [
+            106.50838383803973,
+            25.33208465576172,
+            66.60000305175781,
+            106.84320068359375,
+            25.913316935420227,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 726,
+          "volume_mm3": 0.04993853135782349,
+          "bounds": [
+            105.43127042109376,
+            24.099998474121094,
+            66.60000305175781,
+            106.06791687011719,
+            24.891616277524932,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 727,
+          "volume_mm3": 0.048251405605368225,
+          "bounds": [
+            105.20000019073487,
+            23.607269287109375,
+            66.60000305175781,
+            105.7626953125,
+            24.374999268495763,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 728,
+          "volume_mm3": 0.014463199602162986,
+          "bounds": [
+            105.20000019073487,
+            23.058928954837537,
+            66.60000305175781,
+            105.51970672607422,
+            23.607269287109375,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 729,
+          "volume_mm3": 0.014313047665765355,
+          "bounds": [
+            106.04124379390308,
+            24.9698486328125,
+            66.60000305175781,
+            106.4301528930664,
+            25.53071184931692,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 730,
+          "volume_mm3": 0.009071290558067362,
+          "bounds": [
+            105.20000019073487,
+            22.54821014404297,
+            66.60000305175781,
+            105.34310913085938,
+            23.087039947509766,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 731,
+          "volume_mm3": 0.0017589183271067288,
+          "bounds": [
+            105.20000019073487,
+            22.000049466945143,
+            66.60000305175781,
+            105.23593139648438,
+            22.54821014404297,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 732,
+          "volume_mm3": 0.00038432174676425457,
+          "bounds": [
+            105.20000019073487,
+            22.48957334748757,
+            66.60000305175781,
+            105.23593139648438,
+            22.59653378445242,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 733,
+          "volume_mm3": 0.014249872670924368,
+          "bounds": [
+            105.20000019073487,
+            23.293978451824234,
+            66.60000305175781,
+            105.51970672607422,
+            23.7396957298836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 734,
+          "volume_mm3": 0.014313039734599409,
+          "bounds": [
+            105.63157251066482,
+            24.55679702758789,
+            66.60000305175781,
+            106.06791687011719,
+            25.087692763366107,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 735,
+          "volume_mm3": 0.014313125943725642,
+          "bounds": [
+            105.28637983487882,
+            24.099998474121094,
+            66.60000305175781,
+            105.7626953125,
+            24.59184337753583,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 736,
+          "volume_mm3": 0.007329920038127602,
+          "bounds": [
+            105.20000019073487,
+            23.607269287109375,
+            66.60000305175781,
+            105.51970672607422,
+            23.968965989571824,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 924,
+          "volume_mm3": 0.001759037748837623,
+          "bounds": [
+            113.56407165527344,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            42.54821014404297,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 937,
+          "volume_mm3": 0.014249622479121676,
+          "bounds": [
+            113.2802963256836,
+            43.293981442340986,
+            66.60000305175781,
+            113.59999980926514,
+            43.73969514928864,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 938,
+          "volume_mm3": 0.007329852522157516,
+          "bounds": [
+            113.2802963256836,
+            43.607269287109375,
+            66.60000305175781,
+            113.59999980926514,
+            43.96896548566543,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 939,
+          "volume_mm3": 0.00038425646606697617,
+          "bounds": [
+            113.56407165527344,
+            42.48957832770734,
+            66.60000305175781,
+            113.59999980926514,
+            42.596529680163584,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 940,
+          "volume_mm3": 0.009071383460316884,
+          "bounds": [
+            113.4568862915039,
+            42.54821014404297,
+            66.60000305175781,
+            113.59999980926514,
+            43.087039947509766,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 941,
+          "volume_mm3": 0.014463489009310881,
+          "bounds": [
+            113.2802963256836,
+            43.05892853966922,
+            66.60000305175781,
+            113.59999980926514,
+            43.607269287109375,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 942,
+          "volume_mm3": 0.04825116686274278,
+          "bounds": [
+            113.03730773925781,
+            43.607269287109375,
+            66.60000305175781,
+            113.59999980926514,
+            44.374999585981556,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 943,
+          "volume_mm3": 0.014312890241848985,
+          "bounds": [
+            113.03730773925781,
+            44.099998474121094,
+            66.60000305175781,
+            113.51362000855414,
+            44.59184110353161,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 944,
+          "volume_mm3": 0.0499383483907232,
+          "bounds": [
+            112.73208618164062,
+            44.099998474121094,
+            66.60000305175781,
+            113.36873109834849,
+            44.89161477292602,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 945,
+          "volume_mm3": 0.014312920059236836,
+          "bounds": [
+            112.73208618164062,
+            44.55679702758789,
+            66.60000305175781,
+            113.16842858026412,
+            45.08769054387741,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 946,
+          "volume_mm3": 0.04993848194513095,
+          "bounds": [
+            112.3698501586914,
+            44.55679702758789,
+            66.60000305175781,
+            112.99647537775573,
+            45.35875620609693,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 947,
+          "volume_mm3": 0.014312942713478452,
+          "bounds": [
+            112.3698501586914,
+            44.9698486328125,
+            66.60000305175781,
+            112.75875773197583,
+            45.53070979301214,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 948,
+          "volume_mm3": 0.049938890697291245,
+          "bounds": [
+            111.95679473876953,
+            44.9698486328125,
+            66.60000305175781,
+            112.56268199737801,
+            45.76842849486672,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 949,
+          "volume_mm3": 0.013533811027835463,
+          "bounds": [
+            111.95679473876953,
+            45.33208465576172,
+            66.60000305175781,
+            112.29161490073216,
+            45.90543058353246,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 950,
+          "volume_mm3": 0.0499381946961992,
+          "bounds": [
+            111.5,
+            45.33208465576172,
+            66.60000305175781,
+            112.08657694500995,
+            46.10573183735089,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 951,
+          "volume_mm3": 0.048479994230022874,
+          "bounds": [
+            111.00727081298828,
+            45.637306213378906,
+            66.60000305175781,
+            111.78680516772177,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 952,
+          "volume_mm3": 0.03217964461389354,
+          "bounds": [
+            110.4870376586914,
+            45.88029479980469,
+            66.60000305175781,
+            111.38618448788756,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 953,
+          "volume_mm3": 0.013290345367095523,
+          "bounds": [
+            109.94821166992188,
+            46.056888580322266,
+            66.60000305175781,
+            110.76735462431414,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 954,
+          "volume_mm3": 0.0023381438671696494,
+          "bounds": [
+            109.40001607652505,
+            46.16407012939453,
+            66.60000305175781,
+            110.0507716289235,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 955,
+          "volume_mm3": 0.0023381438671694066,
+          "bounds": [
+            108.74923142283431,
+            46.16407012939453,
+            66.60000305175781,
+            109.39998697523276,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 956,
+          "volume_mm3": 0.013290465396300077,
+          "bounds": [
+            108.0326419557618,
+            46.056888580322266,
+            66.60000305175781,
+            108.85179138183594,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 958,
+          "volume_mm3": 0.0321793080812956,
+          "bounds": [
+            107.41381856387024,
+            45.88029479980469,
+            66.60000305175781,
+            108.31295776367188,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 959,
+          "volume_mm3": 0.04848005176618361,
+          "bounds": [
+            107.01319699801373,
+            45.637306213378906,
+            66.60000305175781,
+            107.79273223876953,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 960,
+          "volume_mm3": 0.04993880857553046,
+          "bounds": [
+            106.71342135680129,
+            45.33208465576172,
+            66.60000305175781,
+            107.30000305175781,
+            46.105733284450196,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 961,
+          "volume_mm3": 0.04993820805257182,
+          "bounds": [
+            106.23732034739373,
+            44.9698486328125,
+            66.60000305175781,
+            106.84320068359375,
+            45.76842759068243,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 962,
+          "volume_mm3": 0.04993864739028651,
+          "bounds": [
+            105.80352656867905,
+            44.55679702758789,
+            66.60000305175781,
+            106.4301528930664,
+            45.35875773197583,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 963,
+          "volume_mm3": 0.013533721528917195,
+          "bounds": [
+            106.50838383803973,
+            45.33208465576172,
+            66.60000305175781,
+            106.84320068359375,
+            45.90542944883812,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 964,
+          "volume_mm3": 0.049938531357823786,
+          "bounds": [
+            105.43127042109376,
+            44.099998474121094,
+            66.60000305175781,
+            106.06791687011719,
+            44.89161627752493,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 965,
+          "volume_mm3": 0.048251419773533755,
+          "bounds": [
+            105.20000019073487,
+            43.607269287109375,
+            66.60000305175781,
+            105.7626953125,
+            44.37499977884244,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 966,
+          "volume_mm3": 0.014463199602162663,
+          "bounds": [
+            105.20000019073487,
+            43.05892895483753,
+            66.60000305175781,
+            105.51970672607422,
+            43.607269287109375,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 967,
+          "volume_mm3": 0.0143130476657648,
+          "bounds": [
+            106.04124379390308,
+            44.9698486328125,
+            66.60000305175781,
+            106.4301528930664,
+            45.530711849316916,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 968,
+          "volume_mm3": 0.00907129055806738,
+          "bounds": [
+            105.20000019073487,
+            42.54821014404297,
+            66.60000305175781,
+            105.34310913085938,
+            43.087039947509766,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 969,
+          "volume_mm3": 0.0017589183271068953,
+          "bounds": [
+            105.20000019073487,
+            42.00004946694514,
+            66.60000305175781,
+            105.23593139648438,
+            42.54821014404297,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 970,
+          "volume_mm3": 0.0003843217467642823,
+          "bounds": [
+            105.20000019073487,
+            42.48957334748757,
+            66.60000305175781,
+            105.23593139648438,
+            42.59653378445242,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 971,
+          "volume_mm3": 0.014249872670924923,
+          "bounds": [
+            105.20000019073487,
+            43.29397845182423,
+            66.60000305175781,
+            105.51970672607422,
+            43.7396957298836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 972,
+          "volume_mm3": 0.014313039734599575,
+          "bounds": [
+            105.63157251066482,
+            44.55679702758789,
+            66.60000305175781,
+            106.06791687011719,
+            45.08769276336611,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 973,
+          "volume_mm3": 0.0143130947140195,
+          "bounds": [
+            105.28638008655457,
+            44.099998474121094,
+            66.60000305175781,
+            105.7626953125,
+            44.59184337753583,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 974,
+          "volume_mm3": 0.007329937099666339,
+          "bounds": [
+            105.20000019073487,
+            43.607269287109375,
+            66.60000305175781,
+            105.51970672607422,
+            43.96896652323433,
+            66.80000305175781
+          ]
+        }
+      ],
+      "pass": false
+    },
+    {
+      "name": "nest_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "nest_pressed_22",
+      "raw_nominal_contact_volume_mm3": 0.00015100055088270998,
+      "contact_plane_z": 78.4,
+      "float32_contact_slab_half_thickness": 0.0001,
+      "masked_volume_mm3": 0.0,
+      "pass": true
+    },
+    {
+      "name": "nest_0_1mm_interference_control_22",
+      "volume_mm3": 9.886378165050058,
+      "pass": true
+    },
+    {
+      "name": "nest_pressed_42",
+      "raw_nominal_contact_volume_mm3": 0.0001510005508789933,
+      "contact_plane_z": 78.4,
+      "float32_contact_slab_half_thickness": 0.0001,
+      "masked_volume_mm3": 0.0,
+      "pass": true
+    },
+    {
+      "name": "nest_0_1mm_interference_control_42",
+      "volume_mm3": 9.886378165050056,
+      "pass": true
+    },
+    {
+      "name": "nest_positive_press_22",
+      "volume_mm3": 39.584039544887226,
+      "pass": true
+    },
+    {
+      "name": "nest_positive_press_42",
+      "volume_mm3": 39.584039544887226,
+      "pass": true
+    },
+    {
+      "name": "motor1_bar_wire",
+      "clearance_or_3mm_lower_bound": 0.7913748380262164,
+      "pass": true
+    },
+    {
+      "name": "motor1_cover_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "motor1_button22_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "motor1_button42_wire",
+      "clearance_or_3mm_lower_bound": 2.860983426453309,
+      "pass": true
+    },
+    {
+      "name": "motor2_bar_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "motor2_cover_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "motor2_button22_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "motor2_button42_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "encoder_bar_wire",
+      "clearance_or_3mm_lower_bound": 2.4488,
+      "pass": true
+    },
+    {
+      "name": "encoder_cover_wire",
+      "clearance_or_3mm_lower_bound": 2.5487984741210927,
+      "pass": true
+    },
+    {
+      "name": "encoder_button22_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "encoder_button42_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "home_bar_wire",
+      "clearance_or_3mm_lower_bound": 1.9487999999999999,
+      "pass": true
+    },
+    {
+      "name": "home_cover_wire",
+      "clearance_or_3mm_lower_bound": 2.5487984741210936,
+      "pass": true
+    },
+    {
+      "name": "home_button22_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "home_button42_wire",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true
+    },
+    {
+      "name": "full_adjustment_head_range",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "pass": true
+    },
+    {
+      "name": "head_to_loaded_nut_gap",
+      "minimum_mm": 0.3499999999999943,
+      "pass": true
+    }
+  ],
+  "passed": true,
+  "rejected_alternative_checks": [
+    {
+      "name": "bar_released_rear",
+      "extruded_surface_prisms": 1074,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "bar_released_slide",
+      "extruded_surface_prisms": 946,
+      "findings": [
+        {
+          "endpoint": [
+            0.0,
+            -8.5,
+            0.0
+          ],
+          "volume_mm3": 0.8960478589799967,
+          "bounds": [
+            105.20000019073487,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "endpoint": [
+            0.0,
+            -8.5,
+            0.0
+          ],
+          "volume_mm3": 0.8960474443071665,
+          "bounds": [
+            105.20000019073487,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 744,
+          "volume_mm3": 0.032852391015798024,
+          "bounds": [
+            113.4568862915039,
+            22.54821014404297,
+            66.60000305175781,
+            113.56407165527344,
+            24.45990763618876,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 745,
+          "volume_mm3": 0.0004987274374029065,
+          "bounds": [
+            113.56117475116056,
+            22.54821014404297,
+            66.60000305175781,
+            113.56407165527344,
+            24.2785683481575,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 746,
+          "volume_mm3": 0.013885665945151726,
+          "bounds": [
+            113.56407165527344,
+            22.0,
+            66.60000305175781,
+            113.5999984741211,
+            24.27269402239838,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 747,
+          "volume_mm3": 0.00021318791037409392,
+          "bounds": [
+            113.59902747821623,
+            22.0,
+            66.60000305175781,
+            113.5999984741211,
+            24.20181080253892,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 748,
+          "volume_mm3": 0.0005342005159838202,
+          "bounds": [
+            105.51493381415874,
+            23.593209023090868,
+            66.60000305175781,
+            105.51970672607422,
+            24.72419755812836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 749,
+          "volume_mm3": 0.043434876404385925,
+          "bounds": [
+            105.34310913085938,
+            23.087039947509766,
+            66.60000305175781,
+            105.51970672607422,
+            24.72419755812836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 750,
+          "volume_mm3": 0.0004472735059472682,
+          "bounds": [
+            107.79273223876953,
+            25.880294799804688,
+            66.60000305175781,
+            107.80679239968804,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 751,
+          "volume_mm3": 0.023629608549722875,
+          "bounds": [
+            107.79273223876953,
+            25.880294799804688,
+            66.60000305175781,
+            108.31295776367188,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 752,
+          "volume_mm3": 0.0007154967220920939,
+          "bounds": [
+            106.42036272220906,
+            24.958685066706835,
+            66.60000305175781,
+            106.4301528930664,
+            25.699821054856674,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 753,
+          "volume_mm3": 0.05562396778657486,
+          "bounds": [
+            106.06791687011719,
+            24.55679702758789,
+            66.60000305175781,
+            106.4301528930664,
+            25.699821054856674,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 754,
+          "volume_mm3": 0.0008149122355988088,
+          "bounds": [
+            106.84320068359375,
+            25.33208465576172,
+            66.60000305175781,
+            106.85554670372711,
+            26.00039464351438,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 755,
+          "volume_mm3": 0.05767343088705726,
+          "bounds": [
+            106.84320068359375,
+            25.33208465576172,
+            66.60000305175781,
+            107.30000305175781,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 756,
+          "volume_mm3": 0.0006980858289151442,
+          "bounds": [
+            111.5,
+            25.629056975287988,
+            66.60000305175781,
+            111.51234581393335,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 757,
+          "volume_mm3": 0.05778935612098107,
+          "bounds": [
+            111.5,
+            25.33208465576172,
+            66.60000305175781,
+            111.95679473876953,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 758,
+          "volume_mm3": 0.0007464247518767127,
+          "bounds": [
+            107.30000305175781,
+            25.637306213378906,
+            66.60000305175781,
+            107.31332006779606,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 759,
+          "volume_mm3": 0.04273192999139869,
+          "bounds": [
+            107.30000305175781,
+            25.637306213378906,
+            66.60000305175781,
+            107.79273223876953,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 760,
+          "volume_mm3": 0.00042866688607580243,
+          "bounds": [
+            111.00727081298828,
+            25.873727535295423,
+            66.60000305175781,
+            111.02058782902652,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 761,
+          "volume_mm3": 0.04304968785720048,
+          "bounds": [
+            111.00727081298828,
+            25.637306213378906,
+            66.60000305175781,
+            111.5,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 762,
+          "volume_mm3": 0.0003986638708367296,
+          "bounds": [
+            105.34021243294653,
+            23.072476967836963,
+            66.60000305175781,
+            105.34310913085938,
+            24.459900785276584,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 763,
+          "volume_mm3": 0.03295006292536917,
+          "bounds": [
+            105.23593139648438,
+            22.54821014404297,
+            66.60000305175781,
+            105.34310913085938,
+            24.459900785276584,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 764,
+          "volume_mm3": 0.053336878596156156,
+          "bounds": [
+            112.73208618164062,
+            24.099998474121094,
+            66.60000305175781,
+            113.03730773925781,
+            25.382146660601958,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 765,
+          "volume_mm3": 0.0007755535722162657,
+          "bounds": [
+            113.02905850116689,
+            24.099998474121094,
+            66.60000305175781,
+            113.03730773925781,
+            25.050536524891346,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 766,
+          "volume_mm3": 0.00020345655657611102,
+          "bounds": [
+            110.4870376586914,
+            26.052115771506802,
+            66.60000305175781,
+            110.50109802580992,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 767,
+          "volume_mm3": 0.023873778599861284,
+          "bounds": [
+            110.4870376586914,
+            25.880294799804688,
+            66.60000305175781,
+            111.00727081298828,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 768,
+          "volume_mm3": 0.00020700788054134204,
+          "bounds": [
+            108.31295776367188,
+            26.056888580322266,
+            66.60000305175781,
+            108.32752084644468,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 769,
+          "volume_mm3": 0.00944042096335003,
+          "bounds": [
+            108.31295776367188,
+            26.056888580322266,
+            66.60000305175781,
+            108.85179138183594,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 770,
+          "volume_mm3": 0.0001678987427593528,
+          "bounds": [
+            105.23496019437948,
+            22.533393641442785,
+            66.60000305175781,
+            105.23593139648438,
+            24.27270021073557,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 771,
+          "volume_mm3": 0.013932511442673823,
+          "bounds": [
+            105.20000019073487,
+            22.000049466945143,
+            66.60000305175781,
+            105.23593139648438,
+            24.27270021073557,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 772,
+          "volume_mm3": 0.0006193441878071387,
+          "bounds": [
+            105.75612804799073,
+            24.086681458082857,
+            66.60000305175781,
+            105.7626953125,
+            25.041133529367652,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 773,
+          "volume_mm3": 0.049911901775452905,
+          "bounds": [
+            105.51970672607422,
+            23.607269287109375,
+            66.60000305175781,
+            105.7626953125,
+            25.041133529367652,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 774,
+          "volume_mm3": 5.3732893803473854e-05,
+          "bounds": [
+            109.94821166992188,
+            26.16117147258305,
+            66.60000305175781,
+            109.96277454649467,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 775,
+          "volume_mm3": 0.009593559351259634,
+          "bounds": [
+            109.94821166992188,
+            26.056888580322266,
+            66.60000305175781,
+            110.4870376586914,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 776,
+          "volume_mm3": 0.0008149019757961382,
+          "bounds": [
+            106.4301528930664,
+            24.9698486328125,
+            66.60000305175781,
+            106.44131635607206,
+            25.709611126098917,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 777,
+          "volume_mm3": 0.05714700604195086,
+          "bounds": [
+            106.4301528930664,
+            24.9698486328125,
+            66.60000305175781,
+            106.84320068359375,
+            25.99214529017381,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 778,
+          "volume_mm3": 5.2758410388867825e-05,
+          "bounds": [
+            108.85179138183594,
+            26.1640682220459,
+            66.60000305175781,
+            108.86660788443612,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 779,
+          "volume_mm3": 0.001916995370120314,
+          "bounds": [
+            108.85179138183594,
+            26.1640682220459,
+            66.60000305175781,
+            109.39998697600514,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 780,
+          "volume_mm3": 0.04979830282605818,
+          "bounds": [
+            113.03730773925781,
+            23.607269287109375,
+            66.60000305175781,
+            113.2802963256836,
+            25.04113004949662,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 781,
+          "volume_mm3": 0.0007327496945045281,
+          "bounds": [
+            113.27372906117434,
+            23.607269287109375,
+            66.60000305175781,
+            113.2802963256836,
+            24.734021589109155,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 782,
+          "volume_mm3": 0.04331308883452678,
+          "bounds": [
+            113.2802963256836,
+            23.087039947509766,
+            66.60000305175781,
+            113.4568862915039,
+            24.724192990853606,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 783,
+          "volume_mm3": 0.0006541288542463268,
+          "bounds": [
+            113.45211358578845,
+            23.087039947509766,
+            66.60000305175781,
+            113.4568862915039,
+            24.467050489503556,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 784,
+          "volume_mm3": 0.0007377406299067107,
+          "bounds": [
+            111.95679473876953,
+            25.32229448490438,
+            66.60000305175781,
+            111.9679584079752,
+            25.992148348855267,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 785,
+          "volume_mm3": 0.057225272504621505,
+          "bounds": [
+            111.95679473876953,
+            24.9698486328125,
+            66.60000305175781,
+            112.3698501586914,
+            25.992148348855267,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 786,
+          "volume_mm3": 4.782235327185848e-07,
+          "bounds": [
+            109.40001607575267,
+            26.199029612384567,
+            66.60019945267868,
+            109.41481802847909,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 787,
+          "volume_mm3": 0.001969275556976746,
+          "bounds": [
+            109.40001607575267,
+            26.1640682220459,
+            66.60000305175781,
+            109.94821166992188,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 788,
+          "volume_mm3": 0.0006822583163037382,
+          "bounds": [
+            106.05966763202626,
+            24.544451110554533,
+            66.60000305175781,
+            106.06791687011719,
+            25.38214933691542,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 789,
+          "volume_mm3": 0.053430381991843634,
+          "bounds": [
+            105.7626953125,
+            24.099998474121094,
+            66.60000305175781,
+            106.06791687011719,
+            25.38214933691542,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 790,
+          "volume_mm3": 0.05553208047360769,
+          "bounds": [
+            112.3698501586914,
+            24.55679702758789,
+            66.60000305175781,
+            112.73208618164062,
+            25.699818378543213,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 791,
+          "volume_mm3": 0.000807190143629101,
+          "bounds": [
+            112.72229601078328,
+            24.55679702758789,
+            66.60000305175781,
+            112.73208618164062,
+            25.39073238978998,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 805,
+          "volume_mm3": 5.874201319448866e-07,
+          "bounds": [
+            113.5999984741211,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            24.199841822540364,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 806,
+          "volume_mm3": 4.3570608072537355e-13,
+          "bounds": [
+            113.5999984741211,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            24.199839115142822,
+            66.60000349679451
+          ]
+        },
+        {
+          "triangle": 984,
+          "volume_mm3": 0.03285239101579819,
+          "bounds": [
+            113.4568862915039,
+            42.54821014404297,
+            66.60000305175781,
+            113.56407165527344,
+            44.45990763618876,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 985,
+          "volume_mm3": 0.0004987274374035101,
+          "bounds": [
+            113.56117475116056,
+            42.54821014404297,
+            66.60000305175781,
+            113.56407165527344,
+            44.2785683481575,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 986,
+          "volume_mm3": 0.049798302826059605,
+          "bounds": [
+            113.03730773925781,
+            43.607269287109375,
+            66.60000305175781,
+            113.2802963256836,
+            45.04113004949662,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 987,
+          "volume_mm3": 0.0007327496945055967,
+          "bounds": [
+            113.27372906117434,
+            43.607269287109375,
+            66.60000305175781,
+            113.2802963256836,
+            44.734021589109155,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 988,
+          "volume_mm3": 5.2755609824952504e-05,
+          "bounds": [
+            108.85179138183594,
+            46.16407012939453,
+            66.60000305175781,
+            108.86660788443612,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 989,
+          "volume_mm3": 0.0019168936078974852,
+          "bounds": [
+            108.85179138183594,
+            46.16407012939453,
+            66.60000305175781,
+            109.39998697523276,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 990,
+          "volume_mm3": 0.013885665945152836,
+          "bounds": [
+            113.56407165527344,
+            42.0,
+            66.60000305175781,
+            113.5999984741211,
+            44.27269402239838,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 991,
+          "volume_mm3": 0.00021318791037481903,
+          "bounds": [
+            113.59902747821623,
+            42.0,
+            66.60000305175781,
+            113.5999984741211,
+            44.201810802538915,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 992,
+          "volume_mm3": 0.00020345655657620296,
+          "bounds": [
+            110.4870376586914,
+            46.052115771506806,
+            66.60000305175781,
+            110.50109802580992,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 993,
+          "volume_mm3": 0.023873778599861395,
+          "bounds": [
+            110.4870376586914,
+            45.88029479980469,
+            66.60000305175781,
+            111.00727081298828,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 994,
+          "volume_mm3": 0.0006980858289151216,
+          "bounds": [
+            111.5,
+            45.62905697528799,
+            66.60000305175781,
+            111.51234581393335,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 995,
+          "volume_mm3": 0.05778935612098139,
+          "bounds": [
+            111.5,
+            45.33208465576172,
+            66.60000305175781,
+            111.95679473876953,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 996,
+          "volume_mm3": 0.0007464247518767764,
+          "bounds": [
+            107.30000305175781,
+            45.637306213378906,
+            66.60000305175781,
+            107.31332006779606,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 997,
+          "volume_mm3": 0.04273192999139819,
+          "bounds": [
+            107.30000305175781,
+            45.637306213378906,
+            66.60000305175781,
+            107.79273223876953,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 998,
+          "volume_mm3": 0.0007377406299060793,
+          "bounds": [
+            111.95679473876953,
+            45.32229448490438,
+            66.60000305175781,
+            111.9679584079752,
+            45.99214834885527,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 999,
+          "volume_mm3": 0.05722527250462328,
+          "bounds": [
+            111.95679473876953,
+            44.9698486328125,
+            66.60000305175781,
+            112.3698501586914,
+            45.99214834885527,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1000,
+          "volume_mm3": 0.00042866688607577294,
+          "bounds": [
+            111.00727081298828,
+            45.87372753529542,
+            66.60000305175781,
+            111.02058782902652,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1001,
+          "volume_mm3": 0.043049687857200536,
+          "bounds": [
+            111.00727081298828,
+            45.637306213378906,
+            66.60000305175781,
+            111.5,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1002,
+          "volume_mm3": 0.0007154967220917557,
+          "bounds": [
+            106.42036272220906,
+            44.958685066706835,
+            66.60000305175781,
+            106.4301528930664,
+            45.69982105485667,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1003,
+          "volume_mm3": 0.05562396778657608,
+          "bounds": [
+            106.06791687011719,
+            44.55679702758789,
+            66.60000305175781,
+            106.4301528930664,
+            45.69982105485667,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1004,
+          "volume_mm3": 5.373014117913185e-05,
+          "bounds": [
+            109.94821166992188,
+            46.16117332838168,
+            66.60000305175781,
+            109.96277454649467,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1005,
+          "volume_mm3": 0.009593459330982518,
+          "bounds": [
+            109.94821166992188,
+            46.056888580322266,
+            66.60000305175781,
+            110.4870376586914,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1006,
+          "volume_mm3": 0.00044727350594748593,
+          "bounds": [
+            107.79273223876953,
+            45.88029479980469,
+            66.60000305175781,
+            107.80679239968804,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1007,
+          "volume_mm3": 0.023629608549723263,
+          "bounds": [
+            107.79273223876953,
+            45.88029479980469,
+            66.60000305175781,
+            108.31295776367188,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1008,
+          "volume_mm3": 0.05333687859615509,
+          "bounds": [
+            112.73208618164062,
+            44.099998474121094,
+            66.60000305175781,
+            113.03730773925781,
+            45.38214666060196,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1009,
+          "volume_mm3": 0.0007755535722174592,
+          "bounds": [
+            113.02905850116689,
+            44.099998474121094,
+            66.60000305175781,
+            113.03730773925781,
+            45.05053652489135,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1010,
+          "volume_mm3": 4.781980731015313e-07,
+          "bounds": [
+            109.40001607652505,
+            46.199029663934574,
+            66.60019946310446,
+            109.41481802847909,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1011,
+          "volume_mm3": 0.0019691710196493846,
+          "bounds": [
+            109.40001607652505,
+            46.16407012939453,
+            66.60000305175781,
+            109.94821166992188,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1012,
+          "volume_mm3": 0.0008149122355984532,
+          "bounds": [
+            106.84320068359375,
+            45.33208465576172,
+            66.60000305175781,
+            106.85554670372711,
+            46.00039464351438,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1013,
+          "volume_mm3": 0.0576734308870573,
+          "bounds": [
+            106.84320068359375,
+            45.33208465576172,
+            66.60000305175781,
+            107.30000305175781,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1014,
+          "volume_mm3": 0.05553208047360769,
+          "bounds": [
+            112.3698501586914,
+            44.55679702758789,
+            66.60000305175781,
+            112.73208618164062,
+            45.69981837854321,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1015,
+          "volume_mm3": 0.000807190143630003,
+          "bounds": [
+            112.72229601078328,
+            44.55679702758789,
+            66.60000305175781,
+            112.73208618164062,
+            45.39073238978998,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1016,
+          "volume_mm3": 0.0005342005159833137,
+          "bounds": [
+            105.51493381415874,
+            43.593209023090864,
+            66.60000305175781,
+            105.51970672607422,
+            44.72419755812836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1017,
+          "volume_mm3": 0.04343487640438726,
+          "bounds": [
+            105.34310913085938,
+            43.087039947509766,
+            66.60000305175781,
+            105.51970672607422,
+            44.72419755812836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1018,
+          "volume_mm3": 0.04331308883452656,
+          "bounds": [
+            113.2802963256836,
+            43.087039947509766,
+            66.60000305175781,
+            113.4568862915039,
+            44.7241929908536,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1019,
+          "volume_mm3": 0.0006541288542467952,
+          "bounds": [
+            113.45211358578845,
+            43.087039947509766,
+            66.60000305175781,
+            113.4568862915039,
+            44.467050489503556,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1020,
+          "volume_mm3": 0.0006822583163027338,
+          "bounds": [
+            106.05966763202628,
+            44.54445111055453,
+            66.60000305175781,
+            106.06791687011719,
+            45.38214933691542,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1021,
+          "volume_mm3": 0.05343038199184414,
+          "bounds": [
+            105.7626953125,
+            44.099998474121094,
+            66.60000305175781,
+            106.06791687011719,
+            45.38214933691542,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1022,
+          "volume_mm3": 0.0002070078555171228,
+          "bounds": [
+            108.31295776367188,
+            46.056888580322266,
+            66.60000305175781,
+            108.32752084644468,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1023,
+          "volume_mm3": 0.009440318214017557,
+          "bounds": [
+            108.31295776367188,
+            46.056888580322266,
+            66.60000305175781,
+            108.85179138183594,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1024,
+          "volume_mm3": 0.0006193441878073191,
+          "bounds": [
+            105.75612804799073,
+            44.08668145808286,
+            66.60000305175781,
+            105.7626953125,
+            45.04113352936765,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1025,
+          "volume_mm3": 0.04991190177545274,
+          "bounds": [
+            105.51970672607422,
+            43.607269287109375,
+            66.60000305175781,
+            105.7626953125,
+            45.04113352936765,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1026,
+          "volume_mm3": 0.0008149019757965441,
+          "bounds": [
+            106.4301528930664,
+            44.9698486328125,
+            66.60000305175781,
+            106.44131635607206,
+            45.70961112609891,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1027,
+          "volume_mm3": 0.057147006041951096,
+          "bounds": [
+            106.4301528930664,
+            44.9698486328125,
+            66.60000305175781,
+            106.84320068359375,
+            45.99214529017381,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1028,
+          "volume_mm3": 0.0003986638708365336,
+          "bounds": [
+            105.34021243294653,
+            43.07247696783696,
+            66.60000305175781,
+            105.34310913085938,
+            44.45990078527659,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1029,
+          "volume_mm3": 0.03295006292536809,
+          "bounds": [
+            105.23593139648438,
+            42.54821014404297,
+            66.60000305175781,
+            105.34310913085938,
+            44.45990078527659,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1030,
+          "volume_mm3": 0.00016789874276018375,
+          "bounds": [
+            105.23496019437948,
+            42.533393641442785,
+            66.60000305175781,
+            105.23593139648438,
+            44.27270021073557,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1031,
+          "volume_mm3": 0.013932511442674905,
+          "bounds": [
+            105.20000019073487,
+            42.00004946694514,
+            66.60000305175781,
+            105.23593139648438,
+            44.27270021073557,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1045,
+          "volume_mm3": 5.874201319448982e-07,
+          "bounds": [
+            113.5999984741211,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            44.199841822540364,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 1046,
+          "volume_mm3": 4.3570607733724176e-13,
+          "bounds": [
+            113.5999984741211,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            44.19983911514282,
+            66.60000349679451
+          ]
+        }
+      ],
+      "pass": false
+    },
+    {
+      "name": "bar_released_seat",
+      "extruded_surface_prisms": 1074,
+      "findings": [
+        {
+          "endpoint": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "volume_mm3": 0.8960478589799967,
+          "bounds": [
+            105.20000019073487,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "endpoint": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "volume_mm3": 0.8960474443071665,
+          "bounds": [
+            105.20000019073487,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 679,
+          "volume_mm3": 0.001759037748837512,
+          "bounds": [
+            113.56407165527344,
+            22.0,
+            66.60000305175781,
+            113.59999980926514,
+            22.54821014404297,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 692,
+          "volume_mm3": 0.014249622479120705,
+          "bounds": [
+            113.2802963256836,
+            23.29398144234099,
+            66.60000305175781,
+            113.59999980926514,
+            23.739695149288643,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 693,
+          "volume_mm3": 0.007329835460830159,
+          "bounds": [
+            113.2802963256836,
+            23.607269287109375,
+            66.60000305175781,
+            113.59999980926514,
+            23.96896495200445,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 694,
+          "volume_mm3": 0.00038425646606692065,
+          "bounds": [
+            113.56407165527344,
+            22.489578327707342,
+            66.60000305175781,
+            113.59999980926514,
+            22.596529680163584,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 695,
+          "volume_mm3": 0.009071383460317495,
+          "bounds": [
+            113.4568862915039,
+            22.54821014404297,
+            66.60000305175781,
+            113.59999980926514,
+            23.087039947509766,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 696,
+          "volume_mm3": 0.014463489009309882,
+          "bounds": [
+            113.2802963256836,
+            23.058928539669218,
+            66.60000305175781,
+            113.59999980926514,
+            23.607269287109375,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 697,
+          "volume_mm3": 0.048251152694581245,
+          "bounds": [
+            113.03730773925781,
+            23.607269287109375,
+            66.60000305175781,
+            113.59999980926514,
+            24.374999075635866,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 698,
+          "volume_mm3": 0.014312921471337682,
+          "bounds": [
+            113.03730773925781,
+            24.099998474121094,
+            66.60000305175781,
+            113.51362026022942,
+            24.591841103531603,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 699,
+          "volume_mm3": 0.049938348390723086,
+          "bounds": [
+            112.73208618164062,
+            24.099998474121094,
+            66.60000305175781,
+            113.36873109834849,
+            24.891614772926015,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 700,
+          "volume_mm3": 0.014312920059237906,
+          "bounds": [
+            112.73208618164062,
+            24.55679702758789,
+            66.60000305175781,
+            113.16842858026412,
+            25.087690543877407,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 701,
+          "volume_mm3": 0.04993848194513184,
+          "bounds": [
+            112.3698501586914,
+            24.55679702758789,
+            66.60000305175781,
+            112.99647537775573,
+            25.35875620609693,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 702,
+          "volume_mm3": 0.014312942713477748,
+          "bounds": [
+            112.3698501586914,
+            24.9698486328125,
+            66.60000305175781,
+            112.75875773197583,
+            25.530709793012146,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 703,
+          "volume_mm3": 0.049938890697291745,
+          "bounds": [
+            111.95679473876953,
+            24.9698486328125,
+            66.60000305175781,
+            112.56268199737801,
+            25.768428494866715,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 704,
+          "volume_mm3": 0.014312981369042688,
+          "bounds": [
+            111.95679473876953,
+            25.33208465576172,
+            66.60000305175781,
+            112.29161490073216,
+            25.913318085726207,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 705,
+          "volume_mm3": 0.049938204416283494,
+          "bounds": [
+            111.5,
+            25.33208465576172,
+            66.60000305175781,
+            112.07477247296642,
+            26.113619447901506,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 706,
+          "volume_mm3": 0.014137137775939265,
+          "bounds": [
+            111.5,
+            25.637306213378906,
+            66.60000305175781,
+            111.77500053351083,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 707,
+          "volume_mm3": 0.04144403233846983,
+          "bounds": [
+            111.00727081298828,
+            25.637306213378906,
+            66.60000305175781,
+            111.5390866657704,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 708,
+          "volume_mm3": 0.004863547952904446,
+          "bounds": [
+            110.98757003013823,
+            25.880294799804688,
+            66.60000305175781,
+            111.13969614042698,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 709,
+          "volume_mm3": 0.022898601827076037,
+          "bounds": [
+            110.4870376586914,
+            25.880294799804688,
+            66.60000305175781,
+            111.00727081298828,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 710,
+          "volume_mm3": 0.0009478702031008035,
+          "bounds": [
+            110.45915160296866,
+            26.056888580322266,
+            66.60000305175781,
+            110.52538471480081,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 711,
+          "volume_mm3": 0.009231214295661289,
+          "bounds": [
+            109.94821166992188,
+            26.056888580322266,
+            66.60000305175781,
+            110.4870376586914,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 712,
+          "volume_mm3": 0.0019867509594256594,
+          "bounds": [
+            109.40001607575267,
+            26.1640682220459,
+            66.60000305175781,
+            109.95294209800251,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 714,
+          "volume_mm3": 0.001926488962116099,
+          "bounds": [
+            108.85179138183594,
+            26.1640682220459,
+            66.60000305175781,
+            109.39998697600514,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 715,
+          "volume_mm3": 6.0262618256366404e-05,
+          "bounds": [
+            108.84706078094166,
+            26.1640682220459,
+            66.60000305175781,
+            108.86383226890536,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 716,
+          "volume_mm3": 0.009231350273542854,
+          "bounds": [
+            108.31295776367188,
+            26.056888580322266,
+            66.60000305175781,
+            108.85179138183594,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 717,
+          "volume_mm3": 0.0009478600925712927,
+          "bounds": [
+            108.274611414043,
+            26.056888580322266,
+            66.60000305175781,
+            108.34084381939462,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 718,
+          "volume_mm3": 0.02289825883683877,
+          "bounds": [
+            107.79273223876953,
+            25.880294799804688,
+            66.60000305175781,
+            108.31295776367188,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 719,
+          "volume_mm3": 0.041444119931906664,
+          "bounds": [
+            107.26091389178374,
+            25.637306213378906,
+            66.60000305175781,
+            107.79273223876953,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 720,
+          "volume_mm3": 0.004863600706711935,
+          "bounds": [
+            107.66030526125324,
+            25.880294799804688,
+            66.60000305175781,
+            107.81243302161958,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 721,
+          "volume_mm3": 0.04993882826259283,
+          "bounds": [
+            106.72522580548036,
+            25.33208465576172,
+            66.60000305175781,
+            107.30000305175781,
+            26.113620692022174,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 722,
+          "volume_mm3": 0.01413705015068617,
+          "bounds": [
+            107.02500179995107,
+            25.637306213378906,
+            66.60000305175781,
+            107.30000305175781,
+            26.199999809265137,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 723,
+          "volume_mm3": 0.04993820805257232,
+          "bounds": [
+            106.23732034739373,
+            24.9698486328125,
+            66.60000305175781,
+            106.84320068359375,
+            25.768427590682425,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 724,
+          "volume_mm3": 0.049938647390285626,
+          "bounds": [
+            105.80352656867905,
+            24.55679702758789,
+            66.60000305175781,
+            106.4301528930664,
+            25.35875773197583,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 725,
+          "volume_mm3": 0.014312886717317343,
+          "bounds": [
+            106.50838383803973,
+            25.33208465576172,
+            66.60000305175781,
+            106.84320068359375,
+            25.913316935420227,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 726,
+          "volume_mm3": 0.04993853135782349,
+          "bounds": [
+            105.43127042109376,
+            24.099998474121094,
+            66.60000305175781,
+            106.06791687011719,
+            24.891616277524932,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 727,
+          "volume_mm3": 0.048251405605368225,
+          "bounds": [
+            105.20000019073487,
+            23.607269287109375,
+            66.60000305175781,
+            105.7626953125,
+            24.374999268495763,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 728,
+          "volume_mm3": 0.014463199602162986,
+          "bounds": [
+            105.20000019073487,
+            23.058928954837537,
+            66.60000305175781,
+            105.51970672607422,
+            23.607269287109375,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 729,
+          "volume_mm3": 0.014313047665765355,
+          "bounds": [
+            106.04124379390308,
+            24.9698486328125,
+            66.60000305175781,
+            106.4301528930664,
+            25.53071184931692,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 730,
+          "volume_mm3": 0.009071290558067362,
+          "bounds": [
+            105.20000019073487,
+            22.54821014404297,
+            66.60000305175781,
+            105.34310913085938,
+            23.087039947509766,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 731,
+          "volume_mm3": 0.0017589183271067288,
+          "bounds": [
+            105.20000019073487,
+            22.000049466945143,
+            66.60000305175781,
+            105.23593139648438,
+            22.54821014404297,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 732,
+          "volume_mm3": 0.00038432174676425457,
+          "bounds": [
+            105.20000019073487,
+            22.48957334748757,
+            66.60000305175781,
+            105.23593139648438,
+            22.59653378445242,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 733,
+          "volume_mm3": 0.014249872670924368,
+          "bounds": [
+            105.20000019073487,
+            23.293978451824234,
+            66.60000305175781,
+            105.51970672607422,
+            23.7396957298836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 734,
+          "volume_mm3": 0.014313039734599409,
+          "bounds": [
+            105.63157251066482,
+            24.55679702758789,
+            66.60000305175781,
+            106.06791687011719,
+            25.087692763366107,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 735,
+          "volume_mm3": 0.014313125943725642,
+          "bounds": [
+            105.28637983487882,
+            24.099998474121094,
+            66.60000305175781,
+            105.7626953125,
+            24.59184337753583,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 736,
+          "volume_mm3": 0.007329920038127602,
+          "bounds": [
+            105.20000019073487,
+            23.607269287109375,
+            66.60000305175781,
+            105.51970672607422,
+            23.968965989571824,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 924,
+          "volume_mm3": 0.001759037748837623,
+          "bounds": [
+            113.56407165527344,
+            42.0,
+            66.60000305175781,
+            113.59999980926514,
+            42.54821014404297,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 937,
+          "volume_mm3": 0.014249622479121676,
+          "bounds": [
+            113.2802963256836,
+            43.293981442340986,
+            66.60000305175781,
+            113.59999980926514,
+            43.73969514928864,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 938,
+          "volume_mm3": 0.007329852522157516,
+          "bounds": [
+            113.2802963256836,
+            43.607269287109375,
+            66.60000305175781,
+            113.59999980926514,
+            43.96896548566543,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 939,
+          "volume_mm3": 0.00038425646606697617,
+          "bounds": [
+            113.56407165527344,
+            42.48957832770734,
+            66.60000305175781,
+            113.59999980926514,
+            42.596529680163584,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 940,
+          "volume_mm3": 0.009071383460316884,
+          "bounds": [
+            113.4568862915039,
+            42.54821014404297,
+            66.60000305175781,
+            113.59999980926514,
+            43.087039947509766,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 941,
+          "volume_mm3": 0.014463489009310881,
+          "bounds": [
+            113.2802963256836,
+            43.05892853966922,
+            66.60000305175781,
+            113.59999980926514,
+            43.607269287109375,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 942,
+          "volume_mm3": 0.04825116686274278,
+          "bounds": [
+            113.03730773925781,
+            43.607269287109375,
+            66.60000305175781,
+            113.59999980926514,
+            44.374999585981556,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 943,
+          "volume_mm3": 0.014312890241848985,
+          "bounds": [
+            113.03730773925781,
+            44.099998474121094,
+            66.60000305175781,
+            113.51362000855414,
+            44.59184110353161,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 944,
+          "volume_mm3": 0.0499383483907232,
+          "bounds": [
+            112.73208618164062,
+            44.099998474121094,
+            66.60000305175781,
+            113.36873109834849,
+            44.89161477292602,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 945,
+          "volume_mm3": 0.014312920059236836,
+          "bounds": [
+            112.73208618164062,
+            44.55679702758789,
+            66.60000305175781,
+            113.16842858026412,
+            45.08769054387741,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 946,
+          "volume_mm3": 0.04993848194513095,
+          "bounds": [
+            112.3698501586914,
+            44.55679702758789,
+            66.60000305175781,
+            112.99647537775573,
+            45.35875620609693,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 947,
+          "volume_mm3": 0.014312942713478452,
+          "bounds": [
+            112.3698501586914,
+            44.9698486328125,
+            66.60000305175781,
+            112.75875773197583,
+            45.53070979301214,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 948,
+          "volume_mm3": 0.049938890697291245,
+          "bounds": [
+            111.95679473876953,
+            44.9698486328125,
+            66.60000305175781,
+            112.56268199737801,
+            45.76842849486672,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 949,
+          "volume_mm3": 0.013533811027835463,
+          "bounds": [
+            111.95679473876953,
+            45.33208465576172,
+            66.60000305175781,
+            112.29161490073216,
+            45.90543058353246,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 950,
+          "volume_mm3": 0.0499381946961992,
+          "bounds": [
+            111.5,
+            45.33208465576172,
+            66.60000305175781,
+            112.08657694500995,
+            46.10573183735089,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 951,
+          "volume_mm3": 0.048479994230022874,
+          "bounds": [
+            111.00727081298828,
+            45.637306213378906,
+            66.60000305175781,
+            111.78680516772177,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 952,
+          "volume_mm3": 0.03217964461389354,
+          "bounds": [
+            110.4870376586914,
+            45.88029479980469,
+            66.60000305175781,
+            111.38618448788756,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 953,
+          "volume_mm3": 0.013290345367095523,
+          "bounds": [
+            109.94821166992188,
+            46.056888580322266,
+            66.60000305175781,
+            110.76735462431414,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 954,
+          "volume_mm3": 0.0023381438671696494,
+          "bounds": [
+            109.40001607652505,
+            46.16407012939453,
+            66.60000305175781,
+            110.0507716289235,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 955,
+          "volume_mm3": 0.0023381438671694066,
+          "bounds": [
+            108.74923142283431,
+            46.16407012939453,
+            66.60000305175781,
+            109.39998697523276,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 956,
+          "volume_mm3": 0.013290465396300077,
+          "bounds": [
+            108.0326419557618,
+            46.056888580322266,
+            66.60000305175781,
+            108.85179138183594,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 958,
+          "volume_mm3": 0.0321793080812956,
+          "bounds": [
+            107.41381856387024,
+            45.88029479980469,
+            66.60000305175781,
+            108.31295776367188,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 959,
+          "volume_mm3": 0.04848005176618361,
+          "bounds": [
+            107.01319699801373,
+            45.637306213378906,
+            66.60000305175781,
+            107.79273223876953,
+            46.19999980926514,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 960,
+          "volume_mm3": 0.04993880857553046,
+          "bounds": [
+            106.71342135680129,
+            45.33208465576172,
+            66.60000305175781,
+            107.30000305175781,
+            46.105733284450196,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 961,
+          "volume_mm3": 0.04993820805257182,
+          "bounds": [
+            106.23732034739373,
+            44.9698486328125,
+            66.60000305175781,
+            106.84320068359375,
+            45.76842759068243,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 962,
+          "volume_mm3": 0.04993864739028651,
+          "bounds": [
+            105.80352656867905,
+            44.55679702758789,
+            66.60000305175781,
+            106.4301528930664,
+            45.35875773197583,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 963,
+          "volume_mm3": 0.013533721528917195,
+          "bounds": [
+            106.50838383803973,
+            45.33208465576172,
+            66.60000305175781,
+            106.84320068359375,
+            45.90542944883812,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 964,
+          "volume_mm3": 0.049938531357823786,
+          "bounds": [
+            105.43127042109376,
+            44.099998474121094,
+            66.60000305175781,
+            106.06791687011719,
+            44.89161627752493,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 965,
+          "volume_mm3": 0.048251419773533755,
+          "bounds": [
+            105.20000019073487,
+            43.607269287109375,
+            66.60000305175781,
+            105.7626953125,
+            44.37499977884244,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 966,
+          "volume_mm3": 0.014463199602162663,
+          "bounds": [
+            105.20000019073487,
+            43.05892895483753,
+            66.60000305175781,
+            105.51970672607422,
+            43.607269287109375,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 967,
+          "volume_mm3": 0.0143130476657648,
+          "bounds": [
+            106.04124379390308,
+            44.9698486328125,
+            66.60000305175781,
+            106.4301528930664,
+            45.530711849316916,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 968,
+          "volume_mm3": 0.00907129055806738,
+          "bounds": [
+            105.20000019073487,
+            42.54821014404297,
+            66.60000305175781,
+            105.34310913085938,
+            43.087039947509766,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 969,
+          "volume_mm3": 0.0017589183271068953,
+          "bounds": [
+            105.20000019073487,
+            42.00004946694514,
+            66.60000305175781,
+            105.23593139648438,
+            42.54821014404297,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 970,
+          "volume_mm3": 0.0003843217467642823,
+          "bounds": [
+            105.20000019073487,
+            42.48957334748757,
+            66.60000305175781,
+            105.23593139648438,
+            42.59653378445242,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 971,
+          "volume_mm3": 0.014249872670924923,
+          "bounds": [
+            105.20000019073487,
+            43.29397845182423,
+            66.60000305175781,
+            105.51970672607422,
+            43.7396957298836,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 972,
+          "volume_mm3": 0.014313039734599575,
+          "bounds": [
+            105.63157251066482,
+            44.55679702758789,
+            66.60000305175781,
+            106.06791687011719,
+            45.08769276336611,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 973,
+          "volume_mm3": 0.0143130947140195,
+          "bounds": [
+            105.28638008655457,
+            44.099998474121094,
+            66.60000305175781,
+            105.7626953125,
+            44.59184337753583,
+            66.80000305175781
+          ]
+        },
+        {
+          "triangle": 974,
+          "volume_mm3": 0.007329937099666339,
+          "bounds": [
+            105.20000019073487,
+            43.607269287109375,
+            66.60000305175781,
+            105.51970672607422,
+            43.96896652323433,
+            66.80000305175781
+          ]
+        }
+      ],
+      "pass": false
+    }
+  ],
+  "new_installed_print_pieces": 22,
+  "old_installed_print_pieces": 24,
+  "changed_print_volume_cm3": 0.21730839109557565,
+  "limits": [
+    "Frozen v13 board authority only, not the later v17 source reconciliation.",
+    "This does not establish switch maximum overtravel, zero-preload calibration, return reliability, prevailing torque or print strength.",
+    "Tool and screw envelopes remain nominal allocations; sample validation is required."
+  ]
+}

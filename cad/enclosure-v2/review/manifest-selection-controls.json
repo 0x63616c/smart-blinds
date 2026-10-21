@@ -1,0 +1,22 @@
+{
+  "inputs": {
+    "verify.py": "622db664fc6a654d2388beeac15bc4d171793b7c0c8e88161f8e6e87ea494ee2",
+    "review/manifest_selection_test.py": "39f61c7b3b0498547053e13bbfcd795b20ecbc6e09f80a8e0f9142f6508e7764"
+  },
+  "passed": true,
+  "controls": [
+    "latest_valid_selected_over_superseded_row",
+    "old_output_cannot_hide_latest_mismatch",
+    "missing_latest_output_rejected",
+    "changed_source_has_no_current_export",
+    "all30_current_real_export_roles_bound"
+  ],
+  "current_roles": 30,
+  "superseded_same_source_rows": [
+    {
+      "part": "front",
+      "manifest": "evidence/export-20261021T084914.json",
+      "sha256": "19acf51ccff5e35de61d280d98987d8efa145461116068cf69e0eed5aa96fb14"
+    }
+  ]
+}

@@ -1,0 +1,2894 @@
+{
+  "status": "Bounded actual v16 delta/box service screen; complete wired service and closed case still NOT accepted",
+  "inputs": {
+    "work/edge-port-study/board80_screen.py": "32d38af0dee286bba62495b6e0fb0a5e36268f60e38216747ae75a7a6ce3e79b",
+    "work/v13-service-clearance/v16_frame_screen.py": "e2ee24a48bd01ed8a9851810c38f8bb0443044c8e79ebc8b02ceba1d89993e44",
+    "tools/kicad_sexpr.py": "88c6c7c7e63cf34f565d6ca6ea1a78bf5bfaf93c0f3a55687549c4195de7e583",
+    "work/v13-service-clearance/motor_support.scad": "032a9cff124f6fdd726061e92dae3e422c12e44709b23acb89068a120d3205dc",
+    "work/v5-enclosure-candidate/parameters.scad": "9f7084848f53809ac158e866a39f0077908690b733cc412b50eacaea91e2ecfb",
+    "work/clean-layout-study/native-54-v16-pd-return/placement.kicad_pcb": "c6339b0acb416b0564a970979d25451778566237b74b2088c15d9f8838643f5b",
+    "work/v5-enclosure-candidate/allocation-report.json": "59b9f6bafa2d578563158365793e0264b4bcc8d861cbe6a64c853bd41ebbf523",
+    "work/clean-layout-study/native-54-v16-pd-return/models/31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a.wrl": "31b2ac9a40994188ebd20202214e75f004b604b0068b3dea50d8cf7940cadb1a",
+    "work/v13-service-clearance/checks/motor_frame.stl": "d0dbdea9e8a13d4ea6fa297280f7a8ba67eecca222b636a449c656d262dcc218",
+    "work/v5-guarded-outlet/checks/front.stl": "3e0b639a9d0ed58648c013a1856de6e418034a19d93f0469174647eb30e48185",
+    "work/v5-guarded-outlet/checks/rear.stl": "bf5b25a9a64210809801af9ca19092d735f00fe17ab5ecdd022159bff6a86271",
+    "work/v5-guarded-outlet/checks/spacer.stl": "129777ca9dcc1109a1f321c99af96f59150f4915a6227913bfb4b87d0ce23d1c",
+    "work/v13-service-clearance/checks/guard_clamp.stl": "2d741cca2b22861ac8fa2cb80587dcdb410a0943dad20cc47445a93b8d34b5f5"
+  },
+  "new_v11_v12_component_bounds": [
+    {
+      "address": "controller.c_bulk",
+      "reference": "C25",
+      "part": "CL21A226MAYNNNE",
+      "uv": [
+        1.5,
+        76.0
+      ],
+      "body_max_height_mm": 1.3,
+      "mount_allowance_mm": 0.15,
+      "bounds_xyz": [
+        108.75,
+        67.0,
+        8.85,
+        110.2,
+        69.0,
+        10.15
+      ],
+      "source_model_bounds_mm": [
+        [
+          -0.999998,
+          -0.6499860000000001,
+          0.0
+        ],
+        [
+          0.999998,
+          0.6499860000000001,
+          1.2999720000000001
+        ]
+      ],
+      "status": "Actual explicit WRL geometry, not manufacturer dimensional qualification"
+    },
+    {
+      "address": "controller.c_bypass",
+      "reference": "C26",
+      "part": "CL05B104KB54PNC",
+      "uv": [
+        3.75,
+        77.75
+      ],
+      "body_max_height_mm": 0.6,
+      "mount_allowance_mm": 0.15,
+      "bounds_xyz": [
+        109.45,
+        69.425,
+        11.2,
+        110.2,
+        70.075,
+        12.3
+      ],
+      "status": "Conservative physical body reservation; U16 uses parent-reviewed TI maximum, C26 uses 0402 body allowance, not mesh as tolerance authority"
+    },
+    {
+      "address": "supervision.watchdog",
+      "reference": "U16",
+      "part": "TPS3430WDRCR",
+      "uv": [
+        26.75,
+        60.0
+      ],
+      "body_max_height_mm": 1.0,
+      "mount_allowance_mm": 0.15,
+      "bounds_xyz": [
+        109.05,
+        50.45,
+        33.2,
+        110.2,
+        53.55,
+        36.3
+      ],
+      "status": "Conservative physical body reservation; U16 uses parent-reviewed TI maximum, C26 uses 0402 body allowance, not mesh as tolerance authority"
+    },
+    {
+      "address": "logic_supply.c_output_fast",
+      "reference": "C45",
+      "part": "CL05B104KB54PNC",
+      "uv": [
+        13.5,
+        50.75
+      ],
+      "body_max_height_mm": 0.6,
+      "mount_allowance_mm": 0.15,
+      "bounds_xyz": [
+        109.45,
+        42.425,
+        20.95,
+        110.2,
+        43.075,
+        22.05
+      ],
+      "status": "Conservative physical body reservation; U16 uses parent-reviewed TI maximum, C26 uses 0402 body allowance, not mesh as tolerance authority"
+    }
+  ],
+  "actual_70_via_contact_checks": [
+    {
+      "index": 0,
+      "uv": [
+        35.19999999999999,
+        5.550000000000011
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 1,
+      "uv": [
+        35.19999999999999,
+        4.900000000000006
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 2,
+      "uv": [
+        28.25,
+        8.25
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 3,
+      "uv": [
+        36.25,
+        12.0
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 4,
+      "uv": [
+        36.25,
+        10.5
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 5,
+      "uv": [
+        35.19999999999999,
+        3.5999999999999943
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 6,
+      "uv": [
+        31.25,
+        8.25
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 7,
+      "uv": [
+        34.94999999999999,
+        2.5
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 8,
+      "uv": [
+        7.450000000000003,
+        47.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 9,
+      "uv": [
+        15.0,
+        49.75
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 10,
+      "uv": [
+        38.650000000000006,
+        4.25
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 11,
+      "uv": [
+        14.400000000000006,
+        51.45
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 12,
+      "uv": [
+        43.30000000000001,
+        10.099999999999994
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 13,
+      "uv": [
+        39.25,
+        16.599999999999994
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 14,
+      "uv": [
+        2.6500000000000057,
+        78.6
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 15,
+      "uv": [
+        26.299999999999997,
+        7.800000000000011
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 16,
+      "uv": [
+        34.099999999999994,
+        7.849999999999994
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 17,
+      "uv": [
+        1.5,
+        78.6
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 18,
+      "uv": [
+        16.5,
+        50.099999999999994
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 19,
+      "uv": [
+        40.25,
+        6.75
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 20,
+      "uv": [
+        35.75,
+        16.599999999999994
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 21,
+      "uv": [
+        14.0,
+        56.900000000000006
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 22,
+      "uv": [
+        8.200000000000003,
+        47.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 23,
+      "uv": [
+        41.0,
+        16.599999999999994
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 24,
+      "uv": [
+        13.400000000000006,
+        49.0
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 25,
+      "uv": [
+        43.30000000000001,
+        12.599999999999994
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 26,
+      "uv": [
+        37.599999999999994,
+        6.5
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 27,
+      "uv": [
+        15.75,
+        50.099999999999994
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 28,
+      "uv": [
+        13.25,
+        51.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 29,
+      "uv": [
+        12.0,
+        56.900000000000006
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 30,
+      "uv": [
+        32.69999999999999,
+        7.800000000000011
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 31,
+      "uv": [
+        4.200000000000003,
+        79.0
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 32,
+      "uv": [
+        39.25,
+        8.050000000000011
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 33,
+      "uv": [
+        3.450000000000003,
+        79.0
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 34,
+      "uv": [
+        14.150000000000006,
+        49.0
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 35,
+      "uv": [
+        37.5,
+        16.599999999999994
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 36,
+      "uv": [
+        9.5,
+        47.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 37,
+      "uv": [
+        12.25,
+        50.400000000000006
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 38,
+      "uv": [
+        4.25,
+        76.7
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 39,
+      "uv": [
+        3.5,
+        76.7
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 40,
+      "uv": [
+        3.5,
+        52.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 41,
+      "uv": [
+        10.25,
+        47.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 42,
+      "uv": [
+        3.5,
+        49.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 43,
+      "uv": [
+        3.5,
+        53.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 44,
+      "uv": [
+        3.5,
+        48.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 45,
+      "uv": [
+        8.75,
+        56.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 46,
+      "uv": [
+        2.0,
+        73.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 47,
+      "uv": [
+        1.0,
+        73.5
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 48,
+      "uv": [
+        33.80000000000001,
+        17.19999999999999
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 49,
+      "uv": [
+        32.099999999999994,
+        14.5
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 50,
+      "uv": [
+        41.75,
+        12.25
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 51,
+      "uv": [
+        37.0,
+        21.5
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 52,
+      "uv": [
+        18.200000000000003,
+        56.25
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 53,
+      "uv": [
+        13.299999999999997,
+        52.650000000000006
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 54,
+      "uv": [
+        14.75,
+        56.0
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 55,
+      "uv": [
+        13.25,
+        53.849999999999994
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 56,
+      "uv": [
+        31.900000000000006,
+        7.800000000000011
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 57,
+      "uv": [
+        27.099999999999994,
+        7.800000000000011
+      ],
+      "copper_diameter_mm": 0.6,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 58,
+      "uv": [
+        29.25,
+        8.25
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 59,
+      "uv": [
+        37.25,
+        7.5
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 60,
+      "uv": [
+        30.25,
+        8.25
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 61,
+      "uv": [
+        34.75,
+        6.5
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 62,
+      "uv": [
+        29.75,
+        7.75
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 63,
+      "uv": [
+        28.75,
+        7.75
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 64,
+      "uv": [
+        38.19999999999999,
+        8.199999999999989
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 65,
+      "uv": [
+        38.19999999999999,
+        5.900000000000006
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 66,
+      "uv": [
+        41.5,
+        7.5
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 67,
+      "uv": [
+        33.25,
+        21.5
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 68,
+      "uv": [
+        41.75,
+        11.25
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    },
+    {
+      "index": 69,
+      "uv": [
+        43.5,
+        17.650000000000006
+      ],
+      "copper_diameter_mm": 0.5,
+      "rear_surface_frame_contact": false
+    }
+  ],
+  "via_contact_control_passed": true,
+  "component_tail_boxes_xyz": {
+    "encoder_mated_conservative": [
+      106.60000000000001,
+      26.725,
+      57.8,
+      110.2,
+      37.275,
+      63.0
+    ],
+    "home_mated_conservative": [
+      106.60000000000001,
+      7.85,
+      57.8,
+      110.2,
+      17.15,
+      63.0
+    ],
+    "usb_drawing_body": [
+      106.94,
+      -8.5,
+      33.03,
+      110.2,
+      -1.15,
+      41.97
+    ],
+    "radio_body": [
+      107.034,
+      53.0,
+      13.5,
+      110.2,
+      72.0,
+      31.5
+    ],
+    "radio_antenna": [
+      109.2,
+      72.0,
+      13.5,
+      110.2,
+      78.5,
+      31.5
+    ],
+    "C31_max_plus_mount": [
+      102.0,
+      48.6,
+      40.6,
+      110.2,
+      55.4,
+      48.4
+    ],
+    "ordinary_component_allocation_0": [
+      101.2,
+      -8.0,
+      8.0,
+      110.2,
+      -5.0,
+      62.0
+    ],
+    "ordinary_component_allocation_1": [
+      101.2,
+      -5.0,
+      11.0,
+      110.2,
+      3.0,
+      62.0
+    ],
+    "ordinary_component_allocation_2": [
+      101.2,
+      3.0,
+      8.0,
+      110.2,
+      57.0,
+      62.0
+    ],
+    "ordinary_component_allocation_3": [
+      101.2,
+      57.0,
+      46.5,
+      110.2,
+      64.0,
+      62.0
+    ],
+    "ordinary_component_allocation_4": [
+      101.2,
+      64.0,
+      46.5,
+      110.2,
+      72.0,
+      60.5
+    ],
+    "controller.up_body": [
+      108.9,
+      20.25,
+      58.5,
+      110.2,
+      23.75,
+      61.5
+    ],
+    "controller.down_body": [
+      108.9,
+      40.25,
+      58.5,
+      110.2,
+      43.75,
+      61.5
+    ],
+    "controller.c_bulk": [
+      108.75,
+      67.0,
+      8.85,
+      110.2,
+      69.0,
+      10.15
+    ],
+    "controller.c_bypass": [
+      109.45,
+      69.425,
+      11.2,
+      110.2,
+      70.075,
+      12.3
+    ],
+    "supervision.watchdog": [
+      109.05,
+      50.45,
+      33.2,
+      110.2,
+      53.55,
+      36.3
+    ],
+    "logic_supply.c_output_fast": [
+      109.45,
+      42.425,
+      20.95,
+      110.2,
+      43.075,
+      22.05
+    ],
+    "pack_header_only": [
+      101.43,
+      62.01,
+      47.175,
+      110.2,
+      71.92,
+      59.825
+    ],
+    "pack_connector.header_tail_0": [
+      111.8001,
+      65.57,
+      51.75,
+      113.7,
+      69.07,
+      55.25
+    ],
+    "pack_connector.header_tail_1": [
+      111.8001,
+      61.849999999999994,
+      49.35,
+      113.7,
+      64.15,
+      51.65
+    ],
+    "pack_connector.header_tail_2": [
+      111.8001,
+      61.849999999999994,
+      52.35,
+      113.7,
+      64.15,
+      54.65
+    ],
+    "pack_connector.header_tail_3": [
+      111.8001,
+      61.849999999999994,
+      55.35,
+      113.7,
+      64.15,
+      57.65
+    ],
+    "pack_connector.header_tail_4": [
+      111.8001,
+      58.849999999999994,
+      49.35,
+      113.7,
+      61.150000000000006,
+      51.65
+    ],
+    "pack_connector.header_tail_5": [
+      111.8001,
+      58.849999999999994,
+      52.35,
+      113.7,
+      61.150000000000006,
+      54.65
+    ],
+    "pack_connector.header_tail_6": [
+      111.8001,
+      58.849999999999994,
+      55.35,
+      113.7,
+      61.150000000000006,
+      57.65
+    ],
+    "usb.connector_tail_0": [
+      111.8001,
+      -2.8,
+      34.06,
+      113.7,
+      -1.7000000000000002,
+      35.16
+    ],
+    "usb.connector_tail_1": [
+      111.8001,
+      -2.8,
+      39.84,
+      113.7,
+      -1.7000000000000002,
+      40.94
+    ],
+    "usb.connector_tail_2": [
+      111.8001,
+      -3.0,
+      40.575,
+      113.7,
+      -0.5,
+      43.075
+    ],
+    "usb.connector_tail_3": [
+      111.8001,
+      -7.03,
+      40.725,
+      113.7,
+      -4.83,
+      42.925000000000004
+    ],
+    "usb.connector_tail_4": [
+      111.8001,
+      -7.03,
+      32.075,
+      113.7,
+      -4.83,
+      34.275000000000006
+    ],
+    "usb.connector_tail_5": [
+      111.8001,
+      -3.0,
+      31.925,
+      113.7,
+      -0.5,
+      34.425
+    ]
+  },
+  "checks": [
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "encoder_mated_conservative",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "home_mated_conservative",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb_drawing_body",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_body",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "radio_antenna",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "C31_max_plus_mount",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_0",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_1",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_2",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_3",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "ordinary_component_allocation_4",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.up_body",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.down_body",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bulk",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "controller.c_bypass",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "supervision.watchdog",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "logic_supply.c_output_fast",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_header_only",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_0",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_1",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_2",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_3",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_4",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_5",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "pack_connector.header_tail_6",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_0",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_1",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_2",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_3",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_4",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "frame",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "front",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "rear",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "spacer",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "guard",
+      "stage": "installed",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "frame",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "front",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "rear",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "spacer",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    },
+    {
+      "moving": "usb.connector_tail_5",
+      "fixed": "guard",
+      "stage": "board_continuous_slide_minus8",
+      "collision": false
+    }
+  ],
+  "findings": [],
+  "latch_blade": {
+    "bounds_xyz": [
+      97.0,
+      74.0,
+      52.0,
+      100.0,
+      80.0,
+      95.0
+    ],
+    "obstacle_findings": [
+      "frame"
+    ],
+    "status": "Access allocation only; actual latch datum, press stroke and holding force remain unqualified"
+  },
+  "service_translation": {
+    "board_minusY_mm": 8,
+    "required_before_motion": [
+      "USB unplugged",
+      "cover with buttons/comb removed",
+      "encoder and home unplugged and parked with motor-side assembly",
+      "motor inline pair disconnected",
+      "controller-side motor pigtail released from its restraint and manually supported with PCB",
+      "both M2 frame clips removed",
+      "pack latch held released; plug shell independently supported",
+      "closed cassette and frame supported on nonconductive bench support"
+    ],
+    "not_proved": [
+      "retained motor wire length and tie release",
+      "sensor upper terminations and parking motion",
+      "fixed-length pack wire retention against contact loads",
+      "complete guarded module extraction against revised backplate/drive/cover",
+      "actual latch datum/press stroke/hand access",
+      "proper PCB edge grip and unsupported component protection"
+    ]
+  },
+  "passed": false
+}

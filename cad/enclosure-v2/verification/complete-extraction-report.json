@@ -1,0 +1,511 @@
+{
+  "inputs": {
+    "verification/complete_extraction.py": "f45baa2d799c036a86c438d5500984bacf1dc39851e1f9bd3a1692128c327d11",
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "verification/extraction-report.json": "b77da3c76d2f7a4d5d0ffb4f9b41b95f06258d7323dc409a4eb59b3fea6f2ae7",
+    "exports/backplate.stl": "1bf0360fbc72b7980c403765f620cf57739888b59025bc0c707262d6f94a5703",
+    "exports/front.stl": "c82eff25e0130e75b2e9b663660e36afbb2f86964e454d9ad0efc7c8966b382a",
+    "exports/spacer.stl": "e71c64fad70731a9343a0c80fff5a1e269d8ddf07fb124d8499c5dbdfe43c500",
+    "exports/guard_clamp.stl": "f7ed295cd5f8feaccebf5ad4f35b0288865526dd439c02ded031c94ce1b59da7",
+    "exports/backing.stl": "1401a85f27f25b8fa73b0a7c1e352b6443facbe5ef9767105239731cada108f6",
+    "exports/tail_keeper.stl": "13f5b020d51e667885f2d00747e60321b980fbc1e15dc4a3949564d18d620433",
+    "exports/contents.stl": "93defbddbee348c3a5dc35782a3a2952c03b09fb7d113e052a00760a3e590130",
+    "exports/pack_fasteners.stl": "bbd6ae4a92d7c0e8cc5e47e4f5d0990b75536d2556328a40de9bb44ed007f5b8",
+    "exports/inline_body.stl": "61c2f89cf01f579e7bc5e1b2734cd44f91fa240398dd6e4ca2bcacdd683ee777",
+    "source/definitions.scad": "7e158ddde12b27f3b82b929e3472cd414397bed086db700f4fd10aee8450c952",
+    "verification/current-board-report.json": "2198eda5d0ad62430df5841adf24fc0f97ff1585345a469f7ec0ec4f19550783",
+    "data/pack-paths.json": "055e7ece95a4abb05fbf811853a4db91adb61de05641c50e4529e70afddc7e16",
+    "data/routes.json": "74850743b91128b6705a6fd76d927acf3fa168514f5f985fa44b73e89a2ec763"
+  },
+  "retained_prior_checks": 13,
+  "additional_checks": [
+    {
+      "name": "front_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "front_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "front_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "front_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "spacer_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "spacer_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "spacer_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "spacer_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "guard_clamp_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "guard_clamp_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "guard_clamp_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "guard_clamp_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "backing_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "backing_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "backing_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "backing_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "tail_keeper_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "tail_keeper_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "tail_keeper_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "tail_keeper_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "contents_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "contents_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "contents_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "contents_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "pack_fasteners_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "pack_fasteners_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "pack_fasteners_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "pack_fasteners_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "inline_body_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "inline_body_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "inline_body_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "inline_body_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "current_reviewed_component_tail_allocation_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "current_reviewed_component_tail_allocation_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "current_reviewed_component_tail_allocation_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "current_reviewed_component_tail_allocation_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "PCB_body_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "PCB_body_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "PCB_body_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "PCB_body_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "clamp_fasteners_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "clamp_fasteners_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "clamp_fasteners_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "clamp_fasteners_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "tail_keeper_fasteners_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "tail_keeper_fasteners_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "tail_keeper_fasteners_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "tail_keeper_fasteners_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "lower_clip_fastener_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "lower_clip_fastener_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "lower_clip_fastener_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "lower_clip_fastener_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "upper_clip_fastener_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "upper_clip_fastener_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "upper_clip_fastener_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "upper_clip_fastener_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "guard_fastener_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "guard_fastener_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "guard_fastener_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "guard_fastener_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "all_three_pack_fans_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "all_three_pack_fans_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "all_three_pack_fans_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "all_three_pack_fans_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "retained_controller_motor_tails_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "retained_controller_motor_tails_slide_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "retained_controller_motor_tails_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "retained_controller_motor_tails_lift_wall_head",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    }
+  ],
+  "declaration_boxes": {
+    "current_reviewed_component_tail_allocation": [
+      101.2,
+      -8.75,
+      8.5,
+      113.7,
+      78.75,
+      62.9
+    ],
+    "PCB_body": [
+      110.2,
+      -8.0,
+      8.0,
+      111.8,
+      72.0,
+      62.0
+    ],
+    "clamp_fasteners": [
+      53.5,
+      98.3,
+      60.19,
+      67.0,
+      108.3,
+      64.81
+    ],
+    "tail_keeper_fasteners": [
+      93.1,
+      66.1,
+      63.6,
+      105.1,
+      69.9,
+      73.2
+    ],
+    "lower_clip_fastener": [
+      106.5,
+      -3.31,
+      4.29,
+      114.6,
+      1.31,
+      8.91
+    ],
+    "upper_clip_fastener": [
+      106.5,
+      65.69,
+      62.09,
+      114.6,
+      70.31,
+      66.71
+    ],
+    "guard_fastener": [
+      39.0,
+      112.2,
+      40.0,
+      45.0,
+      118.2,
+      54.0
+    ],
+    "all_three_pack_fans": [
+      50.57,
+      78.33999999999999,
+      36.970000000000006,
+      109.75933573986455,
+      120.10710280336927,
+      65.85821997002745
+    ],
+    "retained_controller_motor_tails": [
+      96.32,
+      47.77,
+      58.27,
+      111.43,
+      81.23,
+      70.33
+    ]
+  },
+  "passed": true,
+  "limits": [
+    "Actual source mesh or declared conservative drawing/hardware allocations; vendor variants and print tolerances remain unqualified",
+    "Initial Z3 wall-plate seating plane intentionally removed as in the base release check",
+    "Flexible cable parking is sampled separately; no strength, pressure, motor fit or hand-usability acceptance"
+  ]
+}

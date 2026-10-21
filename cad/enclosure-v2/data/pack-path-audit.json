@@ -1,0 +1,3734 @@
+{
+  "status": "Narrow geometric screen only; no physical wire or complete assembly qualification",
+  "inputs": {
+    "work/v5-raised-drive-fan/audit.py": "02bc537b71f71e7ba0df403a66bd1291f0372bc40f1a6d0f62481ea43bba703a",
+    "work/v5-raised-drive-fan/solve_robust.py": "6a9ab55c2c48c5cec1ebee631d4cdbaae85f9d07eef5c26e24ee51b721d86f5c",
+    "work/v5-raised-drive-fan/curve_bounds.py": "cdc26e5b4231d78bed4389249e948fa57108b9490d1e38918d0dc9d24c9695a5",
+    "work/v5-raised-drive-fan/trial_robust14.json": "7bd31aacb15b93421a259e1a482ecefe1ea0056d316a0f7905d39f1dc781f065",
+    "work/v5-enclosure-candidate/checkpoint.json": "594a1e4c42d7d263c03220dbd4d66c812222d0f5f6f293aefc2209a87fb9434c",
+    "work/v5-enclosure-candidate/proposal.json": "2e03d80fb2847180d74d4bab19406bb1150e9203c250532d8c6bdd8bf1325cbc",
+    "hw/boards/blind-connectors/connector.ato": "fb64efd69c0723b639b4f4f3484d1c69d93761a0efc507b136dde29e09a926ee",
+    "hw/routing/blind-pack-primary/primary-routed.kicad_pcb": "0f0fc7c37d16f1f2e84f3550887fb583ac037396732e465a0d2fce7a4604280f",
+    "work/pcb-handedness-study/contact-datum-review.json": "1c3201d435e19329103d831853d4d5fff34356f0c659a68edc0947909953a137",
+    "work/v5-harness-continuity/paths.py": "bd51f25f584235f2736c8a6d495d20d83ec630a9187ebfc6db8c12d109347d5d",
+    "work/v5-harness-continuity/pack_trial.py": "d9ed849ad4078832d1d7d6163342c12125d0079d919933cce8f5b4f2feeb29fe",
+    "work/v5-harness-continuity/quintic_trial.py": "10ddbbebd939575d27008ae197578e13da21059e4c22433e13ec8562fc68a4fa",
+    "work/edge-port-study/board80_screen.py": "32d38af0dee286bba62495b6e0fb0a5e36268f60e38216747ae75a7a6ce3e79b",
+    "work/inward-harness-v2/routes.py": "a1003a6a944d021bdae5f96c6b1e99b7d937db13487c7d266a64f642e80db46d",
+    "work/v5-enclosure-candidate/checks-revised/frame.stl": "2e5b0450ed2320bccd0fdf30a0c72d6bdc73cbdb16d6bc2871e26f26fef5a048",
+    "work/v5-enclosure-candidate/checks-revised/cover.stl": "8d2ce9d69e229cff08f7db47a2c1b14cc0aaa9cd138ded6caab05c5a7c31bdd8",
+    "work/joint-module-service-study/checks/front.stl": "c23bbf4c46e53aff2754ed1380074998659383cb2147a6f74675e0e38c93dedc",
+    "work/joint-module-service-study/checks/rear.stl": "6aedac4a4e84f451cc7ceb81d4246ebd6e6a730d3868b7b70f313acdd4f9f806",
+    "work/joint-module-service-study/checks/spacer.stl": "14fd6da20e29ed25cf31a9e1146a85a88e347fb6e9db3916b55a56fd83fcdbf7",
+    "work/pcb-handedness-study/frame-checks/backplate.stl": "6b2f033a755af2bd2512596e8efc0a81e90eb95abb9ff0de56bd4b5500339bd3"
+  },
+  "candidate_exterior_mm": [
+    118,
+    196.0,
+    75
+  ],
+  "drive_raise_mm": 11.0,
+  "controller_drop_mm": 3.0,
+  "signal_paths": [
+    {
+      "name": "encoder",
+      "segments": [
+        {
+          "kind": "line",
+          "name": "connector straight",
+          "a": [
+            108.4,
+            32.0,
+            63.0
+          ],
+          "b": [
+            108.4,
+            32.0,
+            63.5
+          ]
+        },
+        {
+          "kind": "arc",
+          "name": "outward to left bend",
+          "a": [
+            108.4,
+            32.0,
+            63.5
+          ],
+          "bend_direction": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "initial_tangent": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "radius": 6.25,
+          "angle": 1.5707963267948966
+        },
+        {
+          "kind": "line",
+          "name": "between bends",
+          "a": [
+            102.15,
+            32.0,
+            69.75
+          ],
+          "b": [
+            94.25,
+            32.0,
+            69.75
+          ]
+        },
+        {
+          "kind": "arc",
+          "name": "left to upper bay bend",
+          "a": [
+            94.25,
+            32.0,
+            69.75
+          ],
+          "bend_direction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "initial_tangent": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "radius": 6.25,
+          "angle": 1.5707963267948966
+        },
+        {
+          "kind": "line",
+          "name": "upper bay lane",
+          "a": [
+            88.0,
+            38.25,
+            69.75
+          ],
+          "b": [
+            88.0,
+            123.0,
+            69.75
+          ]
+        }
+      ],
+      "length_mm": 112.78495408493622,
+      "joins": [
+        {
+          "between": [
+            "connector straight",
+            "outward to left bend"
+          ],
+          "position_error_mm": 0.0,
+          "tangent_dot": 1.0,
+          "angle_deg": 0.0
+        },
+        {
+          "between": [
+            "outward to left bend",
+            "between bends"
+          ],
+          "position_error_mm": 0.0,
+          "tangent_dot": 1.0,
+          "angle_deg": 0.0
+        },
+        {
+          "between": [
+            "between bends",
+            "left to upper bay bend"
+          ],
+          "position_error_mm": 0.0,
+          "tangent_dot": 1.0,
+          "angle_deg": 0.0
+        },
+        {
+          "between": [
+            "left to upper bay bend",
+            "upper bay lane"
+          ],
+          "position_error_mm": 0.0,
+          "tangent_dot": 1.0,
+          "angle_deg": 0.0
+        }
+      ],
+      "C1_tangent_continuous": true,
+      "minimum_inside_radius_mm": 5.0
+    },
+    {
+      "name": "home",
+      "segments": [
+        {
+          "kind": "line",
+          "name": "connector straight",
+          "a": [
+            108.4,
+            12.5,
+            63.0
+          ],
+          "b": [
+            108.4,
+            12.5,
+            63.5
+          ]
+        },
+        {
+          "kind": "arc",
+          "name": "outward to left bend",
+          "a": [
+            108.4,
+            12.5,
+            63.5
+          ],
+          "bend_direction": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "initial_tangent": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "radius": 6.25,
+          "angle": 1.5707963267948966
+        },
+        {
+          "kind": "line",
+          "name": "between bends",
+          "a": [
+            102.15,
+            12.5,
+            69.75
+          ],
+          "b": [
+            97.75,
+            12.5,
+            69.75
+          ]
+        },
+        {
+          "kind": "arc",
+          "name": "left to upper bay bend",
+          "a": [
+            97.75,
+            12.5,
+            69.75
+          ],
+          "bend_direction": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "initial_tangent": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "radius": 6.25,
+          "angle": 1.5707963267948966
+        },
+        {
+          "kind": "line",
+          "name": "upper bay lane",
+          "a": [
+            91.5,
+            18.75,
+            69.75
+          ],
+          "b": [
+            91.5,
+            123.0,
+            69.75
+          ]
+        }
+      ],
+      "length_mm": 128.7849540849362,
+      "joins": [
+        {
+          "between": [
+            "connector straight",
+            "outward to left bend"
+          ],
+          "position_error_mm": 0.0,
+          "tangent_dot": 1.0,
+          "angle_deg": 0.0
+        },
+        {
+          "between": [
+            "outward to left bend",
+            "between bends"
+          ],
+          "position_error_mm": 0.0,
+          "tangent_dot": 1.0,
+          "angle_deg": 0.0
+        },
+        {
+          "between": [
+            "between bends",
+            "left to upper bay bend"
+          ],
+          "position_error_mm": 0.0,
+          "tangent_dot": 1.0,
+          "angle_deg": 0.0
+        },
+        {
+          "between": [
+            "left to upper bay bend",
+            "upper bay lane"
+          ],
+          "position_error_mm": 0.0,
+          "tangent_dot": 1.0,
+          "angle_deg": 0.0
+        }
+      ],
+      "C1_tangent_continuous": true,
+      "minimum_inside_radius_mm": 5.0
+    }
+  ],
+  "scope": [
+    "Existing six contact identities unchanged",
+    "Every battery path includes actual pad and plug exit",
+    "C1 tangent joins exact; Bernstein curvature bounds include whole quintic, not just samples",
+    "Pair distances bound complete curves by exact polyline segment distances plus proven chord error",
+    "Wire OD1.85 plus0.3 radial allowance; minimum remaining clearance target0.4",
+    "Service screen includes upward2.5 rigid release sweep against raised conservative drive bound",
+    "Three row sensitivities are discrete assumed scenarios, not a vendor tolerance guarantee or a continuous-parameter proof"
+  ],
+  "limits": [
+    "Case/frame/port solid changes not yet exported; original fan-region meshes used only where unchanged",
+    "Old spacer guide and new strain relief remain explicit integration items",
+    "Two motor lanes are reserved straight corridors only; pad-to-motor complete routes remain unfinished",
+    "Unplug-before-release, bench reshaping, guide restraint, wire cut/strip and physical flex/retention are not qualified",
+    "9.75 inside radius is generic planning, not exact selected Molex lead rating"
+  ],
+  "obstacle_boxes": {
+    "fixed_corner_screw_foot": [
+      83.8,
+      103,
+      3,
+      89.8,
+      109,
+      67.3
+    ],
+    "fixed_frame_arm": [
+      86.8,
+      107.8,
+      61.5,
+      114.6,
+      110.8,
+      64.3
+    ],
+    "raised_drive_bound": [
+      0,
+      123.0,
+      6.001,
+      115,
+      217.0,
+      71
+    ],
+    "D3_z_sda": [
+      44.45,
+      99.3,
+      38.2,
+      49.15,
+      101.7,
+      41.2
+    ],
+    "D2_z_scl": [
+      44.45,
+      102.3,
+      38.2,
+      49.15,
+      104.7,
+      41.2
+    ],
+    "D1_z_alert": [
+      44.45,
+      105.3,
+      38.2,
+      49.15,
+      107.7,
+      41.2
+    ],
+    "R11_r_sda": [
+      49.95,
+      103.95,
+      38.2,
+      51.65,
+      105.05,
+      41.2
+    ],
+    "R10_r_scl": [
+      49.95,
+      105.95,
+      38.2,
+      51.65,
+      107.05,
+      41.2
+    ],
+    "R1_r_alert": [
+      42.45,
+      107.95,
+      38.2,
+      44.15,
+      109.05,
+      41.2
+    ]
+  },
+  "cases": [
+    {
+      "common_row_shift_mm": -0.5,
+      "rows": [
+        {
+          "contact": 1,
+          "net": "PACK+",
+          "controls": [
+            [
+              51.8,
+              100.8,
+              40.2
+            ],
+            [
+              51.8,
+              100.8,
+              61.68639235186454
+            ],
+            [
+              91.8,
+              134.60526774819155,
+              72.30313495470303
+            ],
+            [
+              110.14039763310589,
+              111.462790663912,
+              68.62528307431165
+            ],
+            [
+              108.515,
+              126.67886513041238,
+              50.5
+            ],
+            [
+              108.515,
+              97.53946941109939,
+              50.5
+            ]
+          ],
+          "pad": [
+            51.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            108.515,
+            79.57,
+            50.5
+          ],
+          "finished_centreline_length_mm": 112.77690745657912,
+          "relaxed_exit_straight_mm": 17.969469411099393,
+          "curve_chord_error_bound_mm": 0.0006258210165563465,
+          "certified_inside_radius_lower_bound_mm": 9.931978418397833,
+          "positive_speed_lower_bound": 55.43809644404912,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              62.712922976416586,
+              107.52674557446795,
+              56.233699934504806,
+              65.35853000429294,
+              110.08391099098559,
+              58.80271114289619
+            ],
+            "backplate": [
+              99.53267502507725,
+              117.42902977806136,
+              61.04081159750603,
+              102.0988258027189,
+              119.8961177684346,
+              63.54812217184113
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 2,
+          "net": "PACK-",
+          "controls": [
+            [
+              57.8,
+              100.8,
+              40.2
+            ],
+            [
+              57.8,
+              100.8,
+              53.92746640723036
+            ],
+            [
+              72.75017199981546,
+              114.83008856947602,
+              63.932804290828656
+            ],
+            [
+              109.71664453433945,
+              138.54622123282658,
+              62.36066286211212
+            ],
+            [
+              108.515,
+              107.11422309837869,
+              53.5
+            ],
+            [
+              108.515,
+              96.37288011198252,
+              53.5
+            ]
+          ],
+          "pad": [
+            57.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            108.515,
+            79.57,
+            53.5
+          ],
+          "finished_centreline_length_mm": 98.8095438600058,
+          "relaxed_exit_straight_mm": 16.802880111982535,
+          "curve_chord_error_bound_mm": 0.0006746290859248968,
+          "certified_inside_radius_lower_bound_mm": 9.879285503064935,
+          "positive_speed_lower_bound": 53.70671493198081,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              67.16827375777879,
+              107.53298375043676,
+              53.496536172548,
+              69.76753777106973,
+              110.07987120100195,
+              56.02044543953364
+            ],
+            "backplate": [
+              100.0500770776172,
+              115.43902448690268,
+              56.70830094009177,
+              102.61630920408943,
+              117.95810096063208,
+              59.18905778248895
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 3,
+          "net": "SDA",
+          "controls": [
+            [
+              63.8,
+              100.8,
+              40.2
+            ],
+            [
+              63.8,
+              100.8,
+              61.48615668708
+            ],
+            [
+              80.77678175856009,
+              126.8445279223109,
+              49.13195326886698
+            ],
+            [
+              104.38493197311703,
+              107.01858107955252,
+              69.86419127898034
+            ],
+            [
+              108.515,
+              112.24700249291777,
+              56.5
+            ],
+            [
+              108.515,
+              92.27000002474423,
+              56.5
+            ]
+          ],
+          "pad": [
+            63.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            108.515,
+            79.57,
+            56.5
+          ],
+          "finished_centreline_length_mm": 84.82150355990717,
+          "relaxed_exit_straight_mm": 12.700000024744249,
+          "curve_chord_error_bound_mm": 0.0005694548365904114,
+          "certified_inside_radius_lower_bound_mm": 9.78202811781623,
+          "positive_speed_lower_bound": 51.99257801585012,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              71.94022285371966,
+              107.49077220189861,
+              52.86909348460542,
+              74.51775890530786,
+              110.00921368818429,
+              55.37091838564216
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 4,
+          "net": "SCL",
+          "controls": [
+            [
+              69.8,
+              100.8,
+              40.2
+            ],
+            [
+              69.8,
+              100.8,
+              53.046079223424
+            ],
+            [
+              81.13312949728679,
+              115.90898361325354,
+              59.393684063542665
+            ],
+            [
+              81.93182850112277,
+              119.09531561652679,
+              39.90295689212144
+            ],
+            [
+              105.515,
+              107.23497645125485,
+              50.5
+            ],
+            [
+              105.515,
+              92.2700004195089,
+              50.5
+            ]
+          ],
+          "pad": [
+            69.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            105.515,
+            79.57,
+            50.5
+          ],
+          "finished_centreline_length_mm": 71.83129087089765,
+          "relaxed_exit_straight_mm": 12.700000419508912,
+          "curve_chord_error_bound_mm": 0.0004063014177321482,
+          "certified_inside_radius_lower_bound_mm": 9.853613176612763,
+          "positive_speed_lower_bound": 44.53222104301479,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              75.59321980224578,
+              107.52707641724268,
+              49.91894667789532,
+              78.11350803721479,
+              110.03483429379509,
+              52.375347672719236
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 5,
+          "net": "CHARGER_NTC",
+          "controls": [
+            [
+              75.8,
+              100.8,
+              40.2
+            ],
+            [
+              75.8,
+              100.8,
+              57.386014620058674
+            ],
+            [
+              81.98731049778506,
+              122.21067827306152,
+              70.16937242767062
+            ],
+            [
+              98.18879116151474,
+              115.7194746382742,
+              62.18301123099935
+            ],
+            [
+              105.515,
+              119.89271457953427,
+              53.5
+            ],
+            [
+              105.515,
+              97.57,
+              53.5
+            ]
+          ],
+          "pad": [
+            75.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            105.515,
+            79.57,
+            53.5
+          ],
+          "finished_centreline_length_mm": 83.07395242322596,
+          "relaxed_exit_straight_mm": 18.0,
+          "curve_chord_error_bound_mm": 0.0003619640652922498,
+          "certified_inside_radius_lower_bound_mm": 9.910566495238108,
+          "positive_speed_lower_bound": 48.42224637907364,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              79.22896900193783,
+              107.50106069571328,
+              56.56601780095356,
+              81.7474558326313,
+              110.0279211813738,
+              59.09607354431183
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 6,
+          "net": "CHARGER_NTC_RETURN",
+          "controls": [
+            [
+              81.8,
+              100.8,
+              40.2
+            ],
+            [
+              81.8,
+              100.8,
+              52.80165643285811
+            ],
+            [
+              70.45402560517202,
+              113.81996874715725,
+              54.22968143501339
+            ],
+            [
+              100.93450383570375,
+              128.06629066120436,
+              59.2333925924005
+            ],
+            [
+              105.515,
+              104.90129325858736,
+              56.5
+            ],
+            [
+              105.515,
+              95.24503271064283,
+              56.5
+            ]
+          ],
+          "pad": [
+            81.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            105.515,
+            79.57,
+            56.5
+          ],
+          "finished_centreline_length_mm": 71.60809783901894,
+          "relaxed_exit_straight_mm": 15.675032710642837,
+          "curve_chord_error_bound_mm": 0.0004615494186411356,
+          "certified_inside_radius_lower_bound_mm": 9.870557679277768,
+          "positive_speed_lower_bound": 46.9472838019573,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              80.44915243865064,
+              107.52223000066127,
+              51.004438022260736,
+              82.94015731249091,
+              110.04561689169388,
+              53.50165840607312
+            ]
+          },
+          "box_findings": {
+            "fixed_corner_screw_foot": [
+              81.33973587222188,
+              108.86213867101394,
+              51.836737654178364,
+              83.84497625963199,
+              111.38091091571033,
+              54.32878355332429
+            ]
+          },
+          "release_drive_findings": []
+        }
+      ],
+      "pair_gaps": [
+        {
+          "contacts": [
+            1,
+            2
+          ],
+          "inflated_gap_lower_bound_mm": 0.4519933328283451,
+          "witness": [
+            [
+              107.30183594919659,
+              114.9498669789441,
+              56.08359563308601
+            ],
+            [
+              105.05389171401312,
+              113.21044285639027,
+              56.67542772700123
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            3
+          ],
+          "inflated_gap_lower_bound_mm": 3.548804724146853,
+          "witness": [
+            [
+              108.515,
+              92.14862858776957,
+              50.5
+            ],
+            [
+              108.515,
+              92.14862858776957,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            4
+          ],
+          "inflated_gap_lower_bound_mm": 0.5489678775657113,
+          "witness": [
+            [
+              108.515,
+              92.14862858776957,
+              50.5
+            ],
+            [
+              105.515,
+              92.14862858776957,
+              50.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 1.791598279676504,
+          "witness": [
+            [
+              108.51500816352161,
+              97.57682702381297,
+              50.50009318020854
+            ],
+            [
+              105.515,
+              97.57,
+              53.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 4.257116562064172,
+          "witness": [
+            [
+              108.515,
+              95.14354015628614,
+              50.5
+            ],
+            [
+              105.515,
+              95.14354015628614,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            3
+          ],
+          "inflated_gap_lower_bound_mm": 0.5487559160774845,
+          "witness": [
+            [
+              108.515,
+              92.22158031961037,
+              53.5
+            ],
+            [
+              108.515,
+              92.22158031961037,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            4
+          ],
+          "inflated_gap_lower_bound_mm": 1.7915597566156276,
+          "witness": [
+            [
+              108.515,
+              92.22158031961037,
+              53.5
+            ],
+            [
+              105.515,
+              92.22158031961037,
+              50.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 0.417331781933627,
+          "witness": [
+            [
+              102.2265869080133,
+              116.11444747694281,
+              57.70480762892287
+            ],
+            [
+              100.53681907513283,
+              113.79740965619389,
+              57.64516248353476
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 1.7915045086147185,
+          "witness": [
+            [
+              108.515,
+              95.18679445701905,
+              53.5
+            ],
+            [
+              105.515,
+              95.18679445701905,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            3,
+            4
+          ],
+          "inflated_gap_lower_bound_mm": 1.6323884795311159,
+          "witness": [
+            [
+              73.98285906646603,
+              109.13834437787712,
+              54.41288841870597
+            ],
+            [
+              75.8701732612408,
+              107.92496326932715,
+              51.001200435066885
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            3,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 0.4486964277176825,
+          "witness": [
+            [
+              81.91375690847273,
+              111.84345618080621,
+              56.80894361176407
+            ],
+            [
+              81.7019338660135,
+              110.028661044307,
+              59.06049668911173
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            3,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 0.42108645316479837,
+          "witness": [
+            [
+              101.00147303836764,
+              109.55318379748627,
+              59.817156746100245
+            ],
+            [
+              100.8607278692147,
+              109.4309749464462,
+              56.95109420608049
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            4,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 0.5492317345169754,
+          "witness": [
+            [
+              105.515,
+              92.2700004195089,
+              50.5
+            ],
+            [
+              105.515,
+              92.2700004195089,
+              53.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            4,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 0.4294337981833869,
+          "witness": [
+            [
+              80.87362893353114,
+              111.22287083422746,
+              50.754586807840944
+            ],
+            [
+              82.02165179892066,
+              109.33006873247459,
+              52.59726998557081
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            5,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 0.47580924775222155,
+          "witness": [
+            [
+              102.19092038888259,
+              112.25686936696597,
+              56.47540528977874
+            ],
+            [
+              100.12789800159264,
+              110.2344936381848,
+              56.94350181862519
+            ]
+          ]
+        }
+      ],
+      "other_lane_gaps": [
+        {
+          "contact": 1,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 2.359863476785969,
+          "witness": [
+            [
+              88.12807783346581,
+              117.85584129408939,
+              64.6151077542937
+            ],
+            [
+              88.0,
+              117.85584129408939,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 1,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 2.4105767537487046,
+          "witness": [
+            [
+              91.20730695412871,
+              118.39014348716178,
+              64.57106175625255
+            ],
+            [
+              91.5,
+              118.39014348716178,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 1,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 2.61021204894724,
+          "witness": [
+            [
+              94.01721376401844,
+              118.72085854324996,
+              64.2924952043542
+            ],
+            [
+              94.75,
+              118.72085854324996,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 1,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 3.2312080077971683,
+          "witness": [
+            [
+              96.63250411548051,
+              118.8685089170931,
+              63.78518443970478
+            ],
+            [
+              98.0,
+              118.86850891709308,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 7.794273428307921,
+          "witness": [
+            [
+              88.32333111665561,
+              117.85451866969906,
+              59.18399792631475
+            ],
+            [
+              88.0,
+              117.85451866969906,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 7.777187597182111,
+          "witness": [
+            [
+              91.27032440857263,
+              118.35551849333868,
+              59.198637196373646
+            ],
+            [
+              91.5,
+              118.35551849333868,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 7.801536466491823,
+          "witness": [
+            [
+              94.01195679820714,
+              118.5159386978211,
+              59.07438879183377
+            ],
+            [
+              94.75,
+              118.5159386978211,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 8.118666369617918,
+          "witness": [
+            [
+              96.68691696286871,
+              118.31114853177246,
+              58.81254167662727
+            ],
+            [
+              98.0,
+              118.31114853177246,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 8.540165536384396,
+          "witness": [
+            [
+              90.11232015211436,
+              112.40777926521339,
+              58.632149738528724
+            ],
+            [
+              88.0,
+              112.40777926521339,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 7.939190731466647,
+          "witness": [
+            [
+              93.16535633251206,
+              112.07606227496423,
+              59.16443885964832
+            ],
+            [
+              91.5,
+              112.07606227496423,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 7.3765574751859475,
+          "witness": [
+            [
+              95.88116636765145,
+              111.51072249815688,
+              59.53819246514927
+            ],
+            [
+              94.75,
+              111.51072249815688,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 7.09191327758006,
+          "witness": [
+            [
+              98.54604143037022,
+              110.66509818024771,
+              59.773152911125884
+            ],
+            [
+              98.0,
+              110.6650981802477,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 17.35205517981334,
+          "witness": [
+            [
+              83.10693934777176,
+              111.86869150197458,
+              50.22532537902312
+            ],
+            [
+              88.0,
+              111.86869150197458,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 18.167523435371518,
+          "witness": [
+            [
+              87.27611213894191,
+              111.8931793938438,
+              49.23642000632822
+            ],
+            [
+              91.5,
+              111.8931793938438,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 18.400855054779527,
+          "witness": [
+            [
+              95.16221473146898,
+              108.52500338266027,
+              48.452813639255645
+            ],
+            [
+              94.75,
+              108.52500338266027,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 17.795956952263154,
+          "witness": [
+            [
+              105.515,
+              92.2700004195089,
+              50.5
+            ],
+            [
+              98.0,
+              92.2700004195089,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 5.316407628361369,
+          "witness": [
+            [
+              88.36124162269894,
+              114.38658902875453,
+              61.66529690303129
+            ],
+            [
+              88.0,
+              114.38658902875453,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 5.440084652798487,
+          "witness": [
+            [
+              90.58529731722722,
+              115.10990929645298,
+              61.58462713589266
+            ],
+            [
+              91.5,
+              115.10990929645298,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 5.900985934514208,
+          "witness": [
+            [
+              92.75590082561455,
+              115.50769091858346,
+              61.190217006243415
+            ],
+            [
+              94.75,
+              115.50769091858346,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 6.849541997233783,
+          "witness": [
+            [
+              94.83109957949684,
+              115.59244828789907,
+              60.556643446918045
+            ],
+            [
+              98.0,
+              115.59244828789907,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 11.248626882899623,
+          "witness": [
+            [
+              90.60988351856255,
+              114.12376979041088,
+              55.96988339839306
+            ],
+            [
+              88.0,
+              114.12376979041088,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 10.688490721191778,
+          "witness": [
+            [
+              93.3153118193738,
+              113.95057413981364,
+              56.40797681578021
+            ],
+            [
+              91.5,
+              113.95057413981364,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 10.198952339770221,
+          "witness": [
+            [
+              95.91907728006228,
+              113.1599682570006,
+              56.70472588415614
+            ],
+            [
+              94.75,
+              113.1599682570006,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 9.971188597017392,
+          "witness": [
+            [
+              98.5884255109749,
+              111.59388808676889,
+              56.89229482222888
+            ],
+            [
+              98.0,
+              111.59388808676889,
+              69.3
+            ]
+          ]
+        }
+      ],
+      "minimum_pair_gap_mm": 0.417331781933627,
+      "minimum_other_lane_gap_mm": 2.359863476785969,
+      "minimum_inside_radius_mm": 9.78202811781623,
+      "narrow_pass": false
+    },
+    {
+      "common_row_shift_mm": 0,
+      "rows": [
+        {
+          "contact": 1,
+          "net": "PACK+",
+          "controls": [
+            [
+              51.8,
+              100.8,
+              40.2
+            ],
+            [
+              51.8,
+              100.8,
+              61.68639235186454
+            ],
+            [
+              91.8,
+              134.60526774819155,
+              72.30313495470303
+            ],
+            [
+              109.64039763310589,
+              111.462790663912,
+              68.62528307431165
+            ],
+            [
+              108.015,
+              126.67886513041238,
+              50.5
+            ],
+            [
+              108.015,
+              97.53946941109939,
+              50.5
+            ]
+          ],
+          "pad": [
+            51.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            108.015,
+            79.57,
+            50.5
+          ],
+          "finished_centreline_length_mm": 112.3759603685425,
+          "relaxed_exit_straight_mm": 17.969469411099393,
+          "curve_chord_error_bound_mm": 0.0006275690440105441,
+          "certified_inside_radius_lower_bound_mm": 9.898709987600117,
+          "positive_speed_lower_bound": 55.13143387806499,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              62.6816053509978,
+              107.5267438264405,
+              56.23369818647735,
+              65.32640750825409,
+              110.08391273901304,
+              58.80271289092365
+            ],
+            "backplate": [
+              99.52126653127517,
+              117.37805753917938,
+              60.86939167590159,
+              102.08286331133996,
+              119.84687945139807,
+              63.378320860970454
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 2,
+          "net": "PACK-",
+          "controls": [
+            [
+              57.8,
+              100.8,
+              40.2
+            ],
+            [
+              57.8,
+              100.8,
+              53.92746640723036
+            ],
+            [
+              72.75017199981546,
+              114.83008856947602,
+              63.932804290828656
+            ],
+            [
+              109.21664453433945,
+              138.54622123282658,
+              62.36066286211212
+            ],
+            [
+              108.015,
+              107.11422309837869,
+              53.5
+            ],
+            [
+              108.015,
+              96.37288011198252,
+              53.5
+            ]
+          ],
+          "pad": [
+            57.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            108.015,
+            79.57,
+            53.5
+          ],
+          "finished_centreline_length_mm": 98.40462058812369,
+          "relaxed_exit_straight_mm": 16.802880111982535,
+          "curve_chord_error_bound_mm": 0.0006718129143362574,
+          "certified_inside_radius_lower_bound_mm": 9.895547691771371,
+          "positive_speed_lower_bound": 53.70671493198081,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              67.10657498194168,
+              107.53298656660834,
+              53.49653898871959,
+              69.70467335779813,
+              110.07986838483036,
+              56.020442623362044
+            ],
+            "backplate": [
+              100.42321356549448,
+              114.9303304113363,
+              56.49586952680153,
+              102.98159945716,
+              117.45802925172931,
+              58.97823704131916
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 3,
+          "net": "SDA",
+          "controls": [
+            [
+              63.8,
+              100.8,
+              40.2
+            ],
+            [
+              63.8,
+              100.8,
+              61.48615668708
+            ],
+            [
+              80.77678175856009,
+              126.8445279223109,
+              49.13195326886698
+            ],
+            [
+              103.88493197311703,
+              107.01858107955252,
+              69.86419127898034
+            ],
+            [
+              108.015,
+              112.24700249291777,
+              56.5
+            ],
+            [
+              108.015,
+              92.27000002474423,
+              56.5
+            ]
+          ],
+          "pad": [
+            63.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            108.015,
+            79.57,
+            56.5
+          ],
+          "finished_centreline_length_mm": 84.39468503403302,
+          "relaxed_exit_straight_mm": 12.700000024744249,
+          "curve_chord_error_bound_mm": 0.0005688942556140046,
+          "certified_inside_radius_lower_bound_mm": 9.801283532347364,
+          "positive_speed_lower_bound": 51.69037185438582,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              71.88305220150063,
+              107.4907727624796,
+              52.8690940451864,
+              74.45947106424038,
+              110.0092131276033,
+              55.370917825061184
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 4,
+          "net": "SCL",
+          "controls": [
+            [
+              69.8,
+              100.8,
+              40.2
+            ],
+            [
+              69.8,
+              100.8,
+              53.046079223424
+            ],
+            [
+              81.13312949728679,
+              115.90898361325354,
+              59.393684063542665
+            ],
+            [
+              81.43182850112277,
+              119.09531561652679,
+              39.90295689212144
+            ],
+            [
+              105.015,
+              107.23497645125485,
+              50.5
+            ],
+            [
+              105.015,
+              92.2700004195089,
+              50.5
+            ]
+          ],
+          "pad": [
+            69.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            105.015,
+            79.57,
+            50.5
+          ],
+          "finished_centreline_length_mm": 71.42113180988248,
+          "relaxed_exit_straight_mm": 12.700000419508912,
+          "curve_chord_error_bound_mm": 0.0004091262510529699,
+          "certified_inside_radius_lower_bound_mm": 9.873790592055556,
+          "positive_speed_lower_bound": 43.80988556962739,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              75.49509416005257,
+              107.52707359240935,
+              49.918943853062004,
+              78.01394428613199,
+              110.03483711862842,
+              52.37535049755255
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 5,
+          "net": "CHARGER_NTC",
+          "controls": [
+            [
+              75.8,
+              100.8,
+              40.2
+            ],
+            [
+              75.8,
+              100.8,
+              57.386014620058674
+            ],
+            [
+              81.98731049778506,
+              122.21067827306152,
+              70.16937242767062
+            ],
+            [
+              97.68879116151474,
+              115.7194746382742,
+              62.18301123099935
+            ],
+            [
+              105.015,
+              119.89271457953427,
+              53.5
+            ],
+            [
+              105.015,
+              97.57,
+              53.5
+            ]
+          ],
+          "pad": [
+            75.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            105.015,
+            79.57,
+            53.5
+          ],
+          "finished_centreline_length_mm": 82.70042829258571,
+          "relaxed_exit_straight_mm": 18.0,
+          "curve_chord_error_bound_mm": 0.0003606127667544476,
+          "certified_inside_radius_lower_bound_mm": 9.885711867077422,
+          "positive_speed_lower_bound": 47.62204843039432,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              79.16726876122766,
+              107.50106204701181,
+              56.566019152252096,
+              81.68459288423277,
+              110.02791983007526,
+              59.09607219301329
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 6,
+          "net": "CHARGER_NTC_RETURN",
+          "controls": [
+            [
+              81.8,
+              100.8,
+              40.2
+            ],
+            [
+              81.8,
+              100.8,
+              52.80165643285811
+            ],
+            [
+              70.45402560517202,
+              113.81996874715725,
+              54.22968143501339
+            ],
+            [
+              100.43450383570375,
+              128.06629066120436,
+              59.2333925924005
+            ],
+            [
+              105.015,
+              104.90129325858736,
+              56.5
+            ],
+            [
+              105.015,
+              95.24503271064283,
+              56.5
+            ]
+          ],
+          "pad": [
+            81.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            105.015,
+            79.57,
+            56.5
+          ],
+          "finished_centreline_length_mm": 71.27400301277675,
+          "relaxed_exit_straight_mm": 15.675032710642837,
+          "curve_chord_error_bound_mm": 0.00045876232151447085,
+          "certified_inside_radius_lower_bound_mm": 9.853200259936399,
+          "positive_speed_lower_bound": 46.84731031484983,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              80.36360115041245,
+              107.5222327877584,
+              51.00444080935786,
+              82.85324256318349,
+              110.04561410459675,
+              53.501655618975995
+            ]
+          },
+          "box_findings": {
+            "fixed_corner_screw_foot": [
+              81.3330669350046,
+              108.99751645361484,
+              51.91872666802843,
+              83.83821016956469,
+              111.51562865611109,
+              54.41024940842522
+            ]
+          },
+          "release_drive_findings": []
+        }
+      ],
+      "pair_gaps": [
+        {
+          "contacts": [
+            1,
+            2
+          ],
+          "inflated_gap_lower_bound_mm": 0.44151388303474437,
+          "witness": [
+            [
+              106.84492694285548,
+              114.9358409132133,
+              56.06908094493786
+            ],
+            [
+              104.60356269055005,
+              113.21044285639027,
+              56.67542772700123
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            3
+          ],
+          "inflated_gap_lower_bound_mm": 3.548803536700375,
+          "witness": [
+            [
+              108.015,
+              92.14862858776957,
+              50.5
+            ],
+            [
+              108.015,
+              92.14862858776957,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            4
+          ],
+          "inflated_gap_lower_bound_mm": 0.5489633047049363,
+          "witness": [
+            [
+              108.015,
+              92.14862858776957,
+              50.5
+            ],
+            [
+              105.015,
+              92.14862858776957,
+              50.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 1.7915978865849498,
+          "witness": [
+            [
+              108.01500816857524,
+              97.57682661072839,
+              50.50009317917819
+            ],
+            [
+              105.015,
+              97.57,
+              53.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 4.257117601133844,
+          "witness": [
+            [
+              108.015,
+              95.14354015628614,
+              50.5
+            ],
+            [
+              105.015,
+              95.14354015628614,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            3
+          ],
+          "inflated_gap_lower_bound_mm": 0.5487592928300495,
+          "witness": [
+            [
+              108.015,
+              92.22158031961037,
+              53.5
+            ],
+            [
+              108.015,
+              92.22158031961037,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            4
+          ],
+          "inflated_gap_lower_bound_mm": 1.7915597479538954,
+          "witness": [
+            [
+              108.015,
+              92.22158031961037,
+              53.5
+            ],
+            [
+              105.015,
+              92.22158031961037,
+              50.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 0.4326502123494734,
+          "witness": [
+            [
+              101.5732669272882,
+              116.284979587617,
+              57.77414092823644
+            ],
+            [
+              99.92350760454225,
+              113.91987229323657,
+              57.76045809372746
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 1.7915101118834338,
+          "witness": [
+            [
+              108.015,
+              95.18679445701905,
+              53.5
+            ],
+            [
+              105.015,
+              95.18679445701905,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            3,
+            4
+          ],
+          "inflated_gap_lower_bound_mm": 1.6256537356119254,
+          "witness": [
+            [
+              73.89558538363784,
+              109.12690960845676,
+              54.404239215591375
+            ],
+            [
+              75.79125901881186,
+              107.92496326932715,
+              51.001200435066885
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            3,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 0.4440148637260049,
+          "witness": [
+            [
+              81.8509419982965,
+              111.86030416740226,
+              56.83054544385952
+            ],
+            [
+              81.63744012315826,
+              110.04745117989826,
+              59.07747310285034
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            3,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 0.4233488910569479,
+          "witness": [
+            [
+              100.4725019063869,
+              109.62188782554914,
+              59.8202830929994
+            ],
+            [
+              100.34733003636948,
+              109.50808885566235,
+              56.95088902194575
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            4,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 0.5492302609821924,
+          "witness": [
+            [
+              105.015,
+              92.2700004195089,
+              50.5
+            ],
+            [
+              105.015,
+              92.2700004195089,
+              53.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            4,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 0.4655272277586238,
+          "witness": [
+            [
+              80.76376185898395,
+              111.25373396186134,
+              50.73781898877361
+            ],
+            [
+              81.93734110926098,
+              109.34994373658076,
+              52.60962426604091
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            5,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 0.45648800069182005,
+          "witness": [
+            [
+              101.75967127326341,
+              112.21514830118784,
+              56.449288783335064
+            ],
+            [
+              99.68959959360134,
+              110.2344936381848,
+              56.94350181862519
+            ]
+          ]
+        }
+      ],
+      "other_lane_gaps": [
+        {
+          "contact": 1,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 2.355231725281945,
+          "witness": [
+            [
+              88.10534163110736,
+              117.8907745235676,
+              64.61922199296097
+            ],
+            [
+              88.0,
+              117.8907745235676,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 1,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 2.424183991388928,
+          "witness": [
+            [
+              91.17708763487931,
+              118.4189493612398,
+              64.55922274687258
+            ],
+            [
+              91.5,
+              118.4189493612398,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 1,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 2.6488891651585202,
+          "witness": [
+            [
+              93.97500718681702,
+              118.73967877281117,
+              64.25971656928637
+            ],
+            [
+              94.75,
+              118.73967877281117,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 1,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 3.3031781433259675,
+          "witness": [
+            [
+              96.56417969281559,
+              118.87288171762803,
+              63.72822288482586
+            ],
+            [
+              98.0,
+              118.87288171762805,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 7.7870504601413515,
+          "witness": [
+            [
+              88.29559317710624,
+              117.90353556087983,
+              59.1904141683539
+            ],
+            [
+              88.0,
+              117.90353556087985,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 7.7837721765813335,
+          "witness": [
+            [
+              91.23637594517805,
+              118.383561679763,
+              59.19284699301017
+            ],
+            [
+              91.5,
+              118.383561679763,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 7.8249134250232215,
+          "witness": [
+            [
+              93.97045116478094,
+              118.5128776566943,
+              59.05402734750727
+            ],
+            [
+              94.75,
+              118.5128776566943,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 8.163437215528417,
+          "witness": [
+            [
+              96.59768771068529,
+              118.26821103602367,
+              58.77893395558668
+            ],
+            [
+              98.0,
+              118.26821103602367,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 8.49333750922861,
+          "witness": [
+            [
+              90.10253098884743,
+              112.39246263579713,
+              58.67795620563977
+            ],
+            [
+              88.0,
+              112.39246263579713,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 7.894032341109395,
+          "witness": [
+            [
+              93.14490777202724,
+              112.03114629155246,
+              59.20694498042917
+            ],
+            [
+              91.5,
+              112.03114629155246,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 7.339151195048468,
+          "witness": [
+            [
+              95.8478531088688,
+              111.43133819906805,
+              59.57203320429849
+            ],
+            [
+              94.75,
+              111.43133819906805,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 7.072443545285881,
+          "witness": [
+            [
+              98.46176825715688,
+              110.55416435566931,
+              59.788189657045066
+            ],
+            [
+              98.0,
+              110.55416435566931,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 17.410082805483402,
+          "witness": [
+            [
+              82.98116376346154,
+              111.88855302810995,
+              50.19735978593201
+            ],
+            [
+              88.0,
+              111.88855302810995,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 18.23151307312042,
+          "witness": [
+            [
+              87.36595349434326,
+              111.82070159148124,
+              49.15285324070559
+            ],
+            [
+              91.5,
+              111.82070159148124,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 18.381717348828527,
+          "witness": [
+            [
+              96.10780637719087,
+              107.5041277818865,
+              48.51217050012744
+            ],
+            [
+              94.75,
+              107.5041277818865,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 17.61573711561611,
+          "witness": [
+            [
+              105.015,
+              92.2700004195089,
+              50.5
+            ],
+            [
+              98.0,
+              92.2700004195089,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 5.307747216245546,
+          "witness": [
+            [
+              88.29937582854996,
+              114.44665427903242,
+              61.67143741100077
+            ],
+            [
+              88.0,
+              114.44665427903242,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 5.470587036446761,
+          "witness": [
+            [
+              90.47446991323494,
+              115.14655299126429,
+              61.56706448943853
+            ],
+            [
+              91.5,
+              115.14655299126429,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 5.974885227070133,
+          "witness": [
+            [
+              92.62832696024783,
+              115.52622067768841,
+              61.14627257175728
+            ],
+            [
+              94.75,
+              115.52622067768843,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 6.9676842520422495,
+          "witness": [
+            [
+              94.6597640938873,
+              115.58562362790033,
+              60.494184128255306
+            ],
+            [
+              98.0,
+              115.58562362790033,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 11.195158865292866,
+          "witness": [
+            [
+              90.58427404984641,
+              114.13484706398458,
+              56.019463711582304
+            ],
+            [
+              88.0,
+              114.13484706398458,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 10.643658490611877,
+          "witness": [
+            [
+              93.26662924477448,
+              113.89410482671073,
+              56.446670785326404
+            ],
+            [
+              91.5,
+              113.89410482671073,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 10.164857936038805,
+          "witness": [
+            [
+              95.86111669537692,
+              113.01504640984967,
+              56.73371036903958
+            ],
+            [
+              94.75,
+              113.01504640984967,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 9.95247760192409,
+          "witness": [
+            [
+              98.51400336674233,
+              111.32143188270972,
+              56.90771889463027
+            ],
+            [
+              98.0,
+              111.32143188270973,
+              69.3
+            ]
+          ]
+        }
+      ],
+      "minimum_pair_gap_mm": 0.4233488910569479,
+      "minimum_other_lane_gap_mm": 2.355231725281945,
+      "minimum_inside_radius_mm": 9.801283532347364,
+      "narrow_pass": false
+    },
+    {
+      "common_row_shift_mm": 0.5,
+      "rows": [
+        {
+          "contact": 1,
+          "net": "PACK+",
+          "controls": [
+            [
+              51.8,
+              100.8,
+              40.2
+            ],
+            [
+              51.8,
+              100.8,
+              61.68639235186454
+            ],
+            [
+              91.8,
+              134.60526774819155,
+              72.30313495470303
+            ],
+            [
+              109.14039763310589,
+              111.462790663912,
+              68.62528307431165
+            ],
+            [
+              107.515,
+              126.67886513041238,
+              50.5
+            ],
+            [
+              107.515,
+              97.53946941109939,
+              50.5
+            ]
+          ],
+          "pad": [
+            51.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            107.515,
+            79.57,
+            50.5
+          ],
+          "finished_centreline_length_mm": 111.97616423378818,
+          "relaxed_exit_straight_mm": 17.969469411099393,
+          "curve_chord_error_bound_mm": 0.0006293519406794562,
+          "certified_inside_radius_lower_bound_mm": 9.85777316277321,
+          "positive_speed_lower_bound": 54.81902528654036,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              62.6502876907098,
+              107.52674204354383,
+              56.23369640358068,
+              65.29428504708446,
+              110.0839145219097,
+              58.80271467382032
+            ],
+            "backplate": [
+              99.49117846868387,
+              117.32189782491542,
+              60.69322756230648,
+              102.0482606930626,
+              119.7924520283026,
+              63.203724711206775
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 2,
+          "net": "PACK-",
+          "controls": [
+            [
+              57.8,
+              100.8,
+              40.2
+            ],
+            [
+              57.8,
+              100.8,
+              53.92746640723036
+            ],
+            [
+              72.75017199981546,
+              114.83008856947602,
+              63.932804290828656
+            ],
+            [
+              108.71664453433945,
+              138.54622123282658,
+              62.36066286211212
+            ],
+            [
+              107.515,
+              107.11422309837869,
+              53.5
+            ],
+            [
+              107.515,
+              96.37288011198252,
+              53.5
+            ]
+          ],
+          "pad": [
+            57.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            107.515,
+            79.57,
+            53.5
+          ],
+          "finished_centreline_length_mm": 98.0006541816798,
+          "relaxed_exit_straight_mm": 16.802880111982535,
+          "curve_chord_error_bound_mm": 0.0006690222568510626,
+          "certified_inside_radius_lower_bound_mm": 9.911709125273731,
+          "positive_speed_lower_bound": 53.70671493198081,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              67.04487618059045,
+              107.53298935726582,
+              53.496541779377075,
+              69.64180897004067,
+              110.07986559417289,
+              56.02043983270456
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 3,
+          "net": "SDA",
+          "controls": [
+            [
+              63.8,
+              100.8,
+              40.2
+            ],
+            [
+              63.8,
+              100.8,
+              61.48615668708
+            ],
+            [
+              80.77678175856009,
+              126.8445279223109,
+              49.13195326886698
+            ],
+            [
+              103.38493197311703,
+              107.01858107955252,
+              69.86419127898034
+            ],
+            [
+              107.515,
+              112.24700249291777,
+              56.5
+            ],
+            [
+              107.515,
+              92.27000002474423,
+              56.5
+            ]
+          ],
+          "pad": [
+            63.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            107.515,
+            79.57,
+            56.5
+          ],
+          "finished_centreline_length_mm": 83.96881096917946,
+          "relaxed_exit_straight_mm": 12.700000024744249,
+          "curve_chord_error_bound_mm": 0.000568377108287282,
+          "certified_inside_radius_lower_bound_mm": 9.820602656441292,
+          "positive_speed_lower_bound": 51.38157145479678,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              71.82588150584796,
+              107.49077327962691,
+              52.86909456233373,
+              74.40118326660658,
+              110.00921261045599,
+              55.37091730791386
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 4,
+          "net": "SCL",
+          "controls": [
+            [
+              69.8,
+              100.8,
+              40.2
+            ],
+            [
+              69.8,
+              100.8,
+              53.046079223424
+            ],
+            [
+              81.13312949728679,
+              115.90898361325354,
+              59.393684063542665
+            ],
+            [
+              80.93182850112277,
+              119.09531561652679,
+              39.90295689212144
+            ],
+            [
+              104.515,
+              107.23497645125485,
+              50.5
+            ],
+            [
+              104.515,
+              92.2700004195089,
+              50.5
+            ]
+          ],
+          "pad": [
+            69.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            104.515,
+            79.57,
+            50.5
+          ],
+          "finished_centreline_length_mm": 71.01266467039642,
+          "relaxed_exit_straight_mm": 12.700000419508912,
+          "curve_chord_error_bound_mm": 0.0004119923986558027,
+          "certified_inside_radius_lower_bound_mm": 9.868441158557017,
+          "positive_speed_lower_bound": 43.07216761111331,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              75.39696847654511,
+              107.52707072626175,
+              49.9189409869144,
+              77.91438057636346,
+              110.03483998477601,
+              52.37535336370016
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 5,
+          "net": "CHARGER_NTC",
+          "controls": [
+            [
+              75.8,
+              100.8,
+              40.2
+            ],
+            [
+              75.8,
+              100.8,
+              57.386014620058674
+            ],
+            [
+              81.98731049778506,
+              122.21067827306152,
+              70.16937242767062
+            ],
+            [
+              97.18879116151474,
+              115.7194746382742,
+              62.18301123099935
+            ],
+            [
+              104.515,
+              119.89271457953427,
+              53.5
+            ],
+            [
+              104.515,
+              97.57,
+              53.5
+            ]
+          ],
+          "pad": [
+            75.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            104.515,
+            79.57,
+            53.5
+          ],
+          "finished_centreline_length_mm": 82.32890934258369,
+          "relaxed_exit_straight_mm": 18.0,
+          "curve_chord_error_bound_mm": 0.00035932596695716713,
+          "certified_inside_radius_lower_bound_mm": 9.856878737678114,
+          "positive_speed_lower_bound": 46.778803714668776,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              79.10556845601877,
+              107.50106333381162,
+              56.5660204390519,
+              81.62173000033296,
+              110.02791854327546,
+              59.09607090621349
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        },
+        {
+          "contact": 6,
+          "net": "CHARGER_NTC_RETURN",
+          "controls": [
+            [
+              81.8,
+              100.8,
+              40.2
+            ],
+            [
+              81.8,
+              100.8,
+              52.80165643285811
+            ],
+            [
+              70.45402560517202,
+              113.81996874715725,
+              54.22968143501339
+            ],
+            [
+              99.93450383570375,
+              128.06629066120436,
+              59.2333925924005
+            ],
+            [
+              104.515,
+              104.90129325858736,
+              56.5
+            ],
+            [
+              104.515,
+              95.24503271064283,
+              56.5
+            ]
+          ],
+          "pad": [
+            81.8,
+            100.8,
+            38.2
+          ],
+          "exit": [
+            104.515,
+            79.57,
+            56.5
+          ],
+          "finished_centreline_length_mm": 70.94251170856118,
+          "relaxed_exit_straight_mm": 15.675032710642837,
+          "curve_chord_error_bound_mm": 0.00045601301454533413,
+          "certified_inside_radius_lower_bound_mm": 9.835771217244305,
+          "positive_speed_lower_bound": 46.721947267378916,
+          "C1_start_dot": 1.0,
+          "C1_end_dot": 1.0,
+          "mesh_findings": {
+            "cassette_front": [
+              80.2780498243841,
+              107.52223553706537,
+              51.00444355866483,
+              82.7663278516662,
+              110.04561135528978,
+              53.50165286966902
+            ]
+          },
+          "box_findings": {},
+          "release_drive_findings": []
+        }
+      ],
+      "pair_gaps": [
+        {
+          "contacts": [
+            1,
+            2
+          ],
+          "inflated_gap_lower_bound_mm": 0.4309027952954456,
+          "witness": [
+            [
+              106.38769630736996,
+              114.92181355337985,
+              56.054564917604736
+            ],
+            [
+              104.15323366708698,
+              113.21044285639027,
+              56.67542772700123
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            3
+          ],
+          "inflated_gap_lower_bound_mm": 3.548802270951033,
+          "witness": [
+            [
+              107.515,
+              92.14862858776957,
+              50.5
+            ],
+            [
+              107.515,
+              92.14862858776957,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            4
+          ],
+          "inflated_gap_lower_bound_mm": 0.5489586556606646,
+          "witness": [
+            [
+              107.515,
+              92.14862858776957,
+              50.5
+            ],
+            [
+              104.515,
+              92.14862858776957,
+              50.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 1.7915973941254015,
+          "witness": [
+            [
+              107.51500817362876,
+              97.57682619764365,
+              50.50009317814784
+            ],
+            [
+              104.515,
+              97.57,
+              53.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            1,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 4.257118567544144,
+          "witness": [
+            [
+              107.515,
+              95.14354015628614,
+              50.5
+            ],
+            [
+              104.515,
+              95.14354015628614,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            3
+          ],
+          "inflated_gap_lower_bound_mm": 0.5487626006348615,
+          "witness": [
+            [
+              107.515,
+              92.22158031961037,
+              53.5
+            ],
+            [
+              107.515,
+              92.22158031961037,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            4
+          ],
+          "inflated_gap_lower_bound_mm": 1.7915596724637777,
+          "witness": [
+            [
+              107.515,
+              92.22158031961037,
+              53.5
+            ],
+            [
+              104.515,
+              92.22158031961037,
+              50.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 0.4477098858486453,
+          "witness": [
+            [
+              100.94514197926082,
+              116.43364334980508,
+              57.8357754024814
+            ],
+            [
+              99.33590016139017,
+              114.02275197984783,
+              57.860813844035505
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            2,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 1.7915156518478883,
+          "witness": [
+            [
+              107.515,
+              95.18679445701905,
+              53.5
+            ],
+            [
+              104.515,
+              95.18679445701905,
+              56.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            3,
+            4
+          ],
+          "inflated_gap_lower_bound_mm": 1.6187654046954472,
+          "witness": [
+            [
+              73.79400697651192,
+              109.1079560877374,
+              54.38990796800833
+            ],
+            [
+              75.71234477638292,
+              107.92496326932715,
+              51.001200435066885
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            3,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 0.4389422327531968,
+          "witness": [
+            [
+              81.83119904696854,
+              111.88578735959058,
+              56.863709615297644
+            ],
+            [
+              81.60192625810794,
+              110.09564348011376,
+              59.12073578374692
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            3,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 0.4250953438725158,
+          "witness": [
+            [
+              99.89666801594784,
+              109.7160780023601,
+              59.823497324042
+            ],
+            [
+              99.80521464740056,
+              109.62025192952717,
+              56.950429561279655
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            4,
+            5
+          ],
+          "inflated_gap_lower_bound_mm": 0.5492286816343869,
+          "witness": [
+            [
+              104.515,
+              92.2700004195089,
+              50.5
+            ],
+            [
+              104.515,
+              92.2700004195089,
+              53.5
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            4,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 0.5025249481654654,
+          "witness": [
+            [
+              80.65209166249727,
+              111.28464216176035,
+              50.72048992623112
+            ],
+            [
+              81.85226790463162,
+              109.3698875037574,
+              52.622021289559214
+            ]
+          ]
+        },
+        {
+          "contacts": [
+            5,
+            6
+          ],
+          "inflated_gap_lower_bound_mm": 0.4368677964246112,
+          "witness": [
+            [
+              101.31202299039388,
+              112.19249023080793,
+              56.43518215829961
+            ],
+            [
+              99.25130118561005,
+              110.2344936381848,
+              56.94350181862519
+            ]
+          ]
+        }
+      ],
+      "other_lane_gaps": [
+        {
+          "contact": 1,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 2.3514105288895095,
+          "witness": [
+            [
+              88.08210593235444,
+              117.92577804433287,
+              64.62261746743457
+            ],
+            [
+              88.0,
+              117.92577804433287,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 1,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 2.439395176862269,
+          "witness": [
+            [
+              91.145790382804,
+              118.44746539661199,
+              64.54601619601291
+            ],
+            [
+              91.5,
+              118.44746539661199,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 1,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 2.690226017031822,
+          "witness": [
+            [
+              93.92615893879984,
+              118.7573597182062,
+              64.22558576478289
+            ],
+            [
+              94.75,
+              118.7573597182062,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 1,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 3.379403714866416,
+          "witness": [
+            [
+              96.45660857702211,
+              118.87534803495205,
+              63.67796936369585
+            ],
+            [
+              98.0,
+              118.87534803495205,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 7.780708240237713,
+          "witness": [
+            [
+              88.23597445956068,
+              117.94507206877009,
+              59.19526027241447
+            ],
+            [
+              88.0,
+              117.94507206877009,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 7.79165399350031,
+          "witness": [
+            [
+              91.17481945343553,
+              118.40711441657497,
+              59.186680967729956
+            ],
+            [
+              91.5,
+              118.40711441657497,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 7.850421045963444,
+          "witness": [
+            [
+              93.8957014301519,
+              118.50675942719012,
+              59.03439575343261
+            ],
+            [
+              94.75,
+              118.50675942719012,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 2,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 8.211250327158359,
+          "witness": [
+            [
+              96.50474124716617,
+              118.22025010279486,
+              58.743451062231166
+            ],
+            [
+              98.0,
+              118.22025010279486,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 8.445833424076332,
+          "witness": [
+            [
+              90.09214026311251,
+              112.37486205027514,
+              58.72433669538675
+            ],
+            [
+              88.0,
+              112.37486205027514,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 7.848709033171197,
+          "witness": [
+            [
+              93.12328331793472,
+              111.98246542895942,
+              59.24945376110794
+            ],
+            [
+              91.5,
+              111.98246542895942,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 7.302631340159479,
+          "witness": [
+            [
+              95.78889710871483,
+              111.35321045194108,
+              59.60228905759632
+            ],
+            [
+              94.75,
+              111.35321045194108,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 3,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 7.055650097525589,
+          "witness": [
+            [
+              98.38819417417973,
+              110.43085620122518,
+              59.80171094509104
+            ],
+            [
+              98.0,
+              110.43085620122518,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 17.469995375617817,
+          "witness": [
+            [
+              82.858715587102,
+              111.90863381547781,
+              50.16724723392128
+            ],
+            [
+              88.0,
+              111.90863381547781,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 18.294890829185785,
+          "witness": [
+            [
+              87.52605093727011,
+              111.71614129260894,
+              49.05682403675693
+            ],
+            [
+              91.5,
+              111.71614129260894,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 18.34004702088594,
+          "witness": [
+            [
+              97.19196124588363,
+              106.19038063500453,
+              48.65345037889698
+            ],
+            [
+              94.75,
+              106.19038063500452,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 4,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 17.446452710362927,
+          "witness": [
+            [
+              104.515,
+              92.2700004195089,
+              50.5
+            ],
+            [
+              98.0,
+              92.2700004195089,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 5.301249684172984,
+          "witness": [
+            [
+              88.19332881601156,
+              114.49000123050138,
+              61.67470487910234
+            ],
+            [
+              88.0,
+              114.49000123050138,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 5.504590139993206,
+          "witness": [
+            [
+              90.34666966902705,
+              115.17921979698616,
+              61.549758954430445
+            ],
+            [
+              91.5,
+              115.17921979698616,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 6.053746205343724,
+          "witness": [
+            [
+              92.482685956187,
+              115.54166648270724,
+              61.103714383063675
+            ],
+            [
+              94.75,
+              115.54166648270726,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 5,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 7.091664204005045,
+          "witness": [
+            [
+              94.48111718917296,
+              115.57663719824586,
+              60.430519924471035
+            ],
+            [
+              98.0,
+              115.57663719824586,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "encoder",
+          "inflated_gap_lower_bound_mm": 11.14149596816815,
+          "witness": [
+            [
+              90.52838928708145,
+              114.1395754296067,
+              56.06363324459413
+            ],
+            [
+              88.0,
+              114.1395754296067,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "home",
+          "inflated_gap_lower_bound_mm": 10.599169728467455,
+          "witness": [
+            [
+              93.21762384521618,
+              113.82780005213077,
+              56.48511657410663
+            ],
+            [
+              91.5,
+              113.82780005213077,
+              69.75
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "motor_lane_reserve1",
+          "inflated_gap_lower_bound_mm": 10.131892218950314,
+          "witness": [
+            [
+              95.80301170973506,
+              112.8534624277634,
+              56.76179225847689
+            ],
+            [
+              94.75,
+              112.85346242776342,
+              69.3
+            ]
+          ]
+        },
+        {
+          "contact": 6,
+          "lane": "motor_lane_reserve2",
+          "inflated_gap_lower_bound_mm": 9.936050939737465,
+          "witness": [
+            [
+              98.4366727713828,
+              111.02393113101283,
+              56.921192651094906
+            ],
+            [
+              98.0,
+              111.02393113101283,
+              69.3
+            ]
+          ]
+        }
+      ],
+      "minimum_pair_gap_mm": 0.4250953438725158,
+      "minimum_other_lane_gap_mm": 2.3514105288895095,
+      "minimum_inside_radius_mm": 9.820602656441292,
+      "narrow_pass": false
+    }
+  ],
+  "path_sha256": "055e7ece95a4abb05fbf811853a4db91adb61de05641c50e4529e70afddc7e16",
+  "narrow_pass": false
+}

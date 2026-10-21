@@ -1,0 +1,7 @@
+{
+  "status": "Preserved verifier-entry failure before any geometry jobs",
+  "line": "assert sha(H/row['file'])==row['sha256']",
+  "cause": "The verifier validated every same-source historical manifest before selecting later outputs. A targeted front export was overwritten by a subsequent full export with a different file hash. A valid latest manifest exists, but the older row triggered the gate first.",
+  "geometry_or_source_reexport_required": false,
+  "correction": "Select the latest source-current manifest per role, then enforce its exact current file hash. Never fall back to an older manifest when the latest row fails."
+}

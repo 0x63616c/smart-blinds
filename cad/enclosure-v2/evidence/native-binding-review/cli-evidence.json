@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "case": "local",
+      "exit_code": 0,
+      "native_verification": true,
+      "receipt_sha256": "cc224b517de06a3193ac0ca5c0328a12aa5f278373a297c43654d6e85e41e629",
+      "drc_sha256": "18489150af4274ef4b221b359f478e1e1c4d0eea1d7545f0aa7c5b52583dd386",
+      "semantic_sha256": "32384247798430524280004074e9fff880595ae05e5017eea9b4bc3606e73b46"
+    },
+    {
+      "case": "ci",
+      "exit_code": 0,
+      "native_verification": true,
+      "receipt_sha256": "513e37e608a8dfa1fff02a3d97f1d9cbb89c86434901cb50bc865e137e4c6fa4",
+      "drc_sha256": "7d7f3648d2d1c3680f6c1d6bec811f1285c0ea79734d4250689766e2a2c975a2",
+      "semantic_sha256": "32384247798430524280004074e9fff880595ae05e5017eea9b4bc3606e73b46"
+    },
+    {
+      "case": "source-only",
+      "exit_code": 0,
+      "native_verification": false,
+      "error": null
+    },
+    {
+      "case": "no-mode",
+      "exit_code": 1,
+      "native_verification": null,
+      "error": "mode"
+    }
+  ],
+  "tool_sha256": "7a12af783332281faaa21f2a8f595a5a4875255c18e3c8c4d244e77a8ebba4c5",
+  "manifest_sha256": "5d0d5db9aa604e98b155b63de5f7a7887f5edeed3a721dfdebad880aef3ca444"
+}

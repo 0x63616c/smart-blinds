@@ -1,0 +1,271 @@
+{
+  "inputs": {
+    "data/physical-board.kicad_pcb": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+    "review/board_rebind_delta.py": "7473c3697ddc78b3d6361667df81dfa504a2ff3965881b03fcf6a0e5ccb770e2"
+  },
+  "baseline_board": "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-maintained/data/physical-board.kicad_pcb",
+  "baseline_sha256": "4102c8953614670b903404fc0efb1b5c9040e1e944fbae4e365fcd99dcf68794",
+  "current_board": "data/physical-board.kicad_pcb",
+  "current_sha256": "03a6b3dc624e2cf0e83f8cfdd90f64dc52071fb2b8387deb0e22949903981e74",
+  "footprints": 206,
+  "rear_vias": 120,
+  "part_model_pose_changes": [
+    {
+      "address": "usb.r_cutoff_ov_bottom",
+      "old": {
+        "ref": "R95",
+        "pose": [
+          32.0,
+          12.0,
+          90.0
+        ],
+        "models": [
+          [
+            "model",
+            "${KIPRJMOD}/models/faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087.wrl",
+            [
+              "offset",
+              [
+                "xyz",
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            [
+              "scale",
+              [
+                "xyz",
+                "1",
+                "1",
+                "1"
+              ]
+            ],
+            [
+              "rotate",
+              [
+                "xyz",
+                "0",
+                "0",
+                "0"
+              ]
+            ]
+          ]
+        ]
+      },
+      "new": {
+        "ref": "R95",
+        "pose": [
+          32.5,
+          12.75,
+          0
+        ],
+        "models": [
+          [
+            "model",
+            "${KIPRJMOD}/models/faa82da61885ea112341b4f247e14745361c1b1a00a205a9e1fcf3f723da5087.wrl",
+            [
+              "offset",
+              [
+                "xyz",
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            [
+              "scale",
+              [
+                "xyz",
+                "1",
+                "1",
+                "1"
+              ]
+            ],
+            [
+              "rotate",
+              [
+                "xyz",
+                "0",
+                "0",
+                "0"
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "address": "usb.r_cutoff_ov_top",
+      "old": {
+        "ref": "R96",
+        "pose": [
+          32.0,
+          9.75,
+          90.0
+        ],
+        "models": [
+          [
+            "model",
+            "${KIPRJMOD}/models/134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6.step",
+            [
+              "offset",
+              [
+                "xyz",
+                "0",
+                "0",
+                "-0"
+              ]
+            ],
+            [
+              "scale",
+              [
+                "xyz",
+                "1",
+                "1",
+                "1"
+              ]
+            ],
+            [
+              "rotate",
+              [
+                "xyz",
+                "0",
+                "0",
+                "0"
+              ]
+            ]
+          ]
+        ]
+      },
+      "new": {
+        "ref": "R96",
+        "pose": [
+          32.5,
+          11.0,
+          90.0
+        ],
+        "models": [
+          [
+            "model",
+            "${KIPRJMOD}/models/134d58dd68899b29f9e19def208de6690d06010e01c304866fbd4d81c8640aa6.step",
+            [
+              "offset",
+              [
+                "xyz",
+                "0",
+                "0",
+                "-0"
+              ]
+            ],
+            [
+              "scale",
+              [
+                "xyz",
+                "1",
+                "1",
+                "1"
+              ]
+            ],
+            [
+              "rotate",
+              [
+                "xyz",
+                "0",
+                "0",
+                "0"
+              ]
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "address": "usb.tvs_vbus",
+      "old": {
+        "ref": "D5",
+        "pose": [
+          36.25,
+          2.0,
+          0
+        ],
+        "models": [
+          [
+            "model",
+            "${KIPRJMOD}/models/14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade.wrl",
+            [
+              "offset",
+              [
+                "xyz",
+                "0",
+                "-0",
+                "-0"
+              ]
+            ],
+            [
+              "scale",
+              [
+                "xyz",
+                "1",
+                "1",
+                "1"
+              ]
+            ],
+            [
+              "rotate",
+              [
+                "xyz",
+                "0",
+                "0",
+                "0"
+              ]
+            ]
+          ]
+        ]
+      },
+      "new": {
+        "ref": "D5",
+        "pose": [
+          32.5,
+          8.75,
+          0
+        ],
+        "models": [
+          [
+            "model",
+            "${KIPRJMOD}/models/14ac50f7b4827dcde67bb16365958ce2eacdd85e045f0f18a04bc018ac2caade.wrl",
+            [
+              "offset",
+              [
+                "xyz",
+                "0",
+                "-0",
+                "-0"
+              ]
+            ],
+            [
+              "scale",
+              [
+                "xyz",
+                "1",
+                "1",
+                "1"
+              ]
+            ],
+            [
+              "rotate",
+              [
+                "xyz",
+                "0",
+                "0",
+                "0"
+              ]
+            ]
+          ]
+        ]
+      }
+    }
+  ],
+  "outline_exact_sexpr_equal": true,
+  "status": "Deliberate rebind inventory; actual collision screens separate"
+}

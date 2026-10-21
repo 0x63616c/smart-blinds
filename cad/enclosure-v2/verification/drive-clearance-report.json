@@ -1,0 +1,35 @@
+{
+  "inputs": {
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "verification/drive_clearance.py": "d354fe41038fc0ed49e661176c1013b9a5bb0495b48f7e8469ae945bd293ec10",
+    "exports/drive.stl": "d7a4da95237e061cccaf515681374fde97f36b002f65d728fb84fb3136a32773",
+    "exports/backplate.stl": "1bf0360fbc72b7980c403765f620cf57739888b59025bc0c707262d6f94a5703",
+    "exports/cover.stl": "2b95279f2921345e124c49aceef7eab1eb64589ccc228e9e8f37ace8d235f2af"
+  },
+  "drive_surface_components": 6,
+  "checks": [
+    {
+      "obstacle": "cover",
+      "surface_gap_or_1mm_lower_bound": 0.6000003814697266,
+      "tested_triangle_pairs": 20,
+      "surface_findings": [],
+      "contained_drive_component_witnesses": [],
+      "pass": true
+    },
+    {
+      "obstacle": "backplate_above_drive_seat",
+      "surface_gap_or_1mm_lower_bound": 1.0,
+      "tested_triangle_pairs": 0,
+      "surface_findings": [],
+      "contained_drive_component_witnesses": [],
+      "pass": true
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "Static exact triangular geometry only, no supplier dimensional tolerance or thermal/load qualification",
+    "Backplate geometry belowZ6.01 is the deliberately shared drive seat; upright posts and every higher obstacle remain",
+    "Touching drive assembly is not a single valid printable solid; its eight named prints are checked separately",
+    "Motor dimensional allowance and chain behavior must still be qualified on the purchased motor/blind"
+  ]
+}

@@ -10,7 +10,7 @@ White printed enclosures, USB-C charging, physical buttons and Home Assistant co
 USB-C boards below are references, not the new blind controller or a battery charger.
 No complete unit has been built or physically validated.
 
-[Enclosure comparison](docs/mechanical/2026-10-19-holder-and-drive-trade-study.md) · [Electronics comparison](docs/electrical/2026-10-19-power-control-trade.md) ·
+[Current enclosure](docs/mechanical/enclosure-v2.md) · [Enclosure comparison](docs/mechanical/2026-10-19-holder-and-drive-trade-study.md) · [Electronics comparison](docs/electrical/2026-10-19-power-control-trade.md) ·
 [Design brief](docs/brief.md) · [Progress](docs/status.md) · [Measurements](docs/measurements.json) ·
 [Validation plan](docs/verification-plan.md) · [Shopping list](bom/README.md) · [Wi-Fi motion checkpoint](docs/firmware/wifi-motion.md) · [Local ownership](docs/firmware/local-ownership.md)
 
@@ -42,9 +42,13 @@ The automatic gallery rebuilds the current route before rendering it. The smalle
 
 These images are generated from the design sources. [Preview generation and provenance](docs/previews.md).
 A green preview badge means the images generated successfully, not that the hardware is validated.
-The enclosure previews below still contain a [known PCB orientation error](docs/mechanical/pcb-orientation-review.md).
-The inward-facing board placement and its frame, ports and cable paths are being corrected;
-these images must not be used as physical PCB-fit evidence.
+The [current 118 × 196 × 77 mm enclosure](docs/mechanical/enclosure-v2.md) has
+an inward-facing controller, removable protected cassette and 22 installed
+printed pieces. Its source-bound local review passes 17 nominal geometry checks;
+physical motor/holder fit, strength and assembly remain untested. The current
+assembly pictures use component envelopes; the KiCad view shows the populated board.
+Older enclosure images retain their [known orientation error](docs/mechanical/pcb-orientation-review.md)
+and are labelled historical. Fresh current-source images are published by CI.
 
 <!-- previews:start -->
 ### Cleaner controller — current routing draft

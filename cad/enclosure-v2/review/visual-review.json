@@ -1,0 +1,38 @@
+{
+  "inputs": {
+    "review/render-report.json": "ddb6eacab16d99857f1df4f2122d1f153784531544470edf84952a67c45a0ac1",
+    "review/relief_views.scad": "61e3db1677a9bda4635ea70806158a6240540533439921f94e76812e34513d00",
+    "evidence/verification-run.json": "c30bc90c19e9e26b8e08852d425d1b32b737be1b7be42760a52a8191a5c0298f",
+    "verification/cassette-reliefs-report.json": "40a9d356004f1752cd289a8bb8f7fa31a97982d9bd1d7d94a5e7a64993fc4979",
+    "review/baseline-comparison.json": "3c8f0cb6c7a757608aa9964ed77a5a1707ce1294bceaa91e577a88465ae1757e"
+  },
+  "inspected": true,
+  "images": [
+    {
+      "file": "renders/relief-link.png",
+      "sha256": "8aa49cf53f3e897c9b6b54ff96117851514ade2eb917a592caa07f7f5eda4429",
+      "observation": "The white boss/link and orange stop are identifiable beside the green substrate allocation. The narrow underside gap is partly occluded; this is an orientation view, not a visual clearance measurement. Small crop-edge preview fringes remain."
+    },
+    {
+      "file": "renders/relief-motor.png",
+      "sha256": "4a494778f072063d135e1b7e4f2ee0dca4a75e47fa6f1eebe71a4acba00de9d3",
+      "observation": "The blue keeper boss and white recessed cassette wall are visible with the retained wall patch. The source-solid checks establish the radial/material values; the image is a nominal detail view."
+    },
+    {
+      "file": "renders/relief-upper_capture.png",
+      "sha256": "dedb03772a994943387f90075c5ae8a0e86d3917b4517a43a627c8cf066cc93e",
+      "observation": "The separate front/rear outer bands and orange capture are identifiable. Some inner gaps are occluded by the cropped contents; no distance is inferred from pixels."
+    },
+    {
+      "file": "renders/relief-lower_capture.png",
+      "sha256": "c5d9611a2b6460067ff4b4bdeba06bc656e3b82af1d3188e686f97566fb0bde2",
+      "observation": "The local white front reinforcement remains visible beside the retained orange capture and green contents. OpenCSG crop-edge fringes are rendering artifacts; the complete print topology comes from the solid checker."
+    }
+  ],
+  "method": "All four actual PNGs inspected. OpenCSG source-export cutaways only; no AI-generated geometry or image editing.",
+  "limits": [
+    "No visual clearance measurement or physical-fit claim.",
+    "First CGAL crop-render failure is preserved under first-detail-render; geometry and passing fit reports were not changed.",
+    "Colours distinguish parts and are not final material selections."
+  ]
+}

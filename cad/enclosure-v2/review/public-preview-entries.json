@@ -1,0 +1,150 @@
+{
+  "status": "Proposed entries for parent integration; paths become valid after package promotion",
+  "designs": [
+    {
+      "kind": "openscad",
+      "source": "cad/enclosure-v2/source/assembly_v2.scad",
+      "dependencies": [
+        "cad/enclosure-v2/source/*.scad",
+        "cad/enclosure-v2/parameters/*.json",
+        "cad/enclosure-v2/assets/*",
+        "cad/enclosure-v2/data/*.json",
+        "cad/enclosure-v2/data/physical-board.kicad_pcb"
+      ],
+      "auto_frame": false,
+      "id": "enclosure-v2-closed",
+      "title": "Current enclosure \u2014 exterior",
+      "camera": [
+        59,
+        85,
+        36,
+        22,
+        0,
+        26,
+        630
+      ],
+      "defines": {
+        "part": "closed",
+        "optional_plugs": false
+      },
+      "collapsed": false,
+      "role": "118 \u00d7 196 \u00d7 77 mm enclosure candidate; plain integral buttons reach 78.8 mm. Proper inward PCB pose, real cover screws, underside USB and provisional chain. Motor/holder/print fit remains unqualified."
+    },
+    {
+      "kind": "openscad",
+      "source": "cad/enclosure-v2/source/assembly_v2.scad",
+      "dependencies": [
+        "cad/enclosure-v2/source/*.scad",
+        "cad/enclosure-v2/parameters/*.json",
+        "cad/enclosure-v2/assets/*",
+        "cad/enclosure-v2/data/*.json",
+        "cad/enclosure-v2/data/physical-board.kicad_pcb"
+      ],
+      "auto_frame": false,
+      "id": "enclosure-v2-assembly",
+      "title": "Current enclosure \u2014 cover removed",
+      "camera": [
+        59,
+        85,
+        36,
+        22,
+        0,
+        26,
+        630
+      ],
+      "defines": {
+        "part": "assembly",
+        "optional_plugs": false
+      },
+      "collapsed": false,
+      "role": "22 installed printed pieces with a protected battery cassette and jointly removable controller frame. Prominent PCB parts are drawing allocations; this is not a complete native populated-board render. Physical load, cable and assembly tests remain."
+    },
+    {
+      "kind": "openscad",
+      "source": "cad/enclosure-v2/source/assembly_v2.scad",
+      "dependencies": [
+        "cad/enclosure-v2/source/*.scad",
+        "cad/enclosure-v2/parameters/*.json",
+        "cad/enclosure-v2/assets/*",
+        "cad/enclosure-v2/data/*.json",
+        "cad/enclosure-v2/data/physical-board.kicad_pcb"
+      ],
+      "auto_frame": false,
+      "id": "enclosure-v2-service",
+      "title": "Current enclosure \u2014 service position",
+      "camera": [
+        59,
+        90,
+        70,
+        45,
+        0,
+        25,
+        790
+      ],
+      "defines": {
+        "part": "service",
+        "optional_plugs": false
+      },
+      "collapsed": false,
+      "role": "Modeled joint removal after specified fastener and harness steps. Raw group links remain in the closed cassette. Finite rigid and sampled cable checks do not prove hand access, bend behavior or strain relief."
+    },
+    {
+      "kind": "openscad",
+      "source": "cad/enclosure-v2/source/assembly_v2.scad",
+      "dependencies": [
+        "cad/enclosure-v2/source/*.scad",
+        "cad/enclosure-v2/parameters/*.json",
+        "cad/enclosure-v2/assets/*",
+        "cad/enclosure-v2/data/*.json",
+        "cad/enclosure-v2/data/physical-board.kicad_pcb"
+      ],
+      "auto_frame": false,
+      "id": "enclosure-v2-buttons",
+      "title": "Current front-button mechanism",
+      "camera": [
+        108,
+        32,
+        74,
+        12,
+        0,
+        12,
+        120
+      ],
+      "defines": {
+        "part": "buttons",
+        "optional_plugs": false
+      },
+      "collapsed": true,
+      "role": "Front-inserted integral buttons and removable guide bar provide adjustment without adhesive. The shared assembly nest, screw setting and return force require prototype qualification."
+    },
+    {
+      "kind": "openscad",
+      "source": "cad/enclosure-v2/source/assembly_v2.scad",
+      "dependencies": [
+        "cad/enclosure-v2/source/*.scad",
+        "cad/enclosure-v2/parameters/*.json",
+        "cad/enclosure-v2/assets/*",
+        "cad/enclosure-v2/data/*.json",
+        "cad/enclosure-v2/data/physical-board.kicad_pcb"
+      ],
+      "auto_frame": false,
+      "id": "enclosure-v2-buttons-optional",
+      "title": "Optional removable button plugs",
+      "camera": [
+        108,
+        32,
+        74,
+        12,
+        0,
+        12,
+        120
+      ],
+      "defines": {
+        "part": "buttons",
+        "optional_plugs": true
+      },
+      "collapsed": true,
+      "role": "Optional plugs add two pieces and two O-rings per blind, reaching 79.5 mm. Retention and service removal are unqualified; the base buttons work without them."
+    }
+  ]
+}

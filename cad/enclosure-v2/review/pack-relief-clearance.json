@@ -1,0 +1,308 @@
+{
+  "inputs": {
+    "review/pack_relief_clearance.py": "62f6585981db6bf4fccee4dd77a895c94f325cb7d8ed8e964b062696f69de1aa",
+    "geometry/operations.py": "db4ec1ca59c2b5ca68445b94a4bb5b22917d41b1eb5bee3b65b4cdaf41711ea8",
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "source/definitions.scad": "7e158ddde12b27f3b82b929e3472cd414397bed086db700f4fd10aee8450c952",
+    "parameters/enclosure-v2.json": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+    "data/pack-paths.json": "055e7ece95a4abb05fbf811853a4db91adb61de05641c50e4529e70afddc7e16",
+    "exports/front.stl": "c82eff25e0130e75b2e9b663660e36afbb2f86964e454d9ad0efc7c8966b382a",
+    "exports/rear.stl": "71f9593b6a8778e4033d4aa9c8ea6a7fc278127c6ff30915871583acf35c44f5"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "row_sensitivity_case": 0,
+      "wire": 1,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 1,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 2,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 2,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 3,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 1.4001117873615136,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 3,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 4,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 0.8543537437540869,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 4,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 5,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 1.3933832307984608,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 5,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 6,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 0.7865815133213139,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 0,
+      "wire": 6,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 1,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 1,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 2,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 2,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 3,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 1.4092996935733026,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 3,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 4,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 0.6445495319758714,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 4,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 5,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 1.4575178234148898,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 5,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 6,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 0.8611603051780148,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 1,
+      "wire": 6,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 1,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 1,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 2,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 2,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 3,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 1.4172304834133365,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 3,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 4,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 0.42470013075310287,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 4,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 5,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 1.5225975919627266,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 5,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 6,
+      "part": "front",
+      "clearance_or_3mm_lower_bound": 0.9364366823215056,
+      "pass": true,
+      "failure_witness": null
+    },
+    {
+      "row_sensitivity_case": 2,
+      "wire": 6,
+      "part": "rear",
+      "clearance_or_3mm_lower_bound": 3.0,
+      "pass": true,
+      "failure_witness": null
+    }
+  ],
+  "limits": [
+    "Full unchanged polyline geometry checked with1.23mm radius, including1.85mm maximum wire OD plus retained planning allowance.",
+    "Three nominal contact-height cases are a sensitivity study, not a vendor contact-position tolerance.",
+    "Static free path geometry is not strain relief force or elastic service qualification."
+  ]
+}

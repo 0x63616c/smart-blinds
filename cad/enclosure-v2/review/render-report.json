@@ -1,0 +1,88 @@
+{
+  "inputs": {
+    "review/relief_views.scad": "61e3db1677a9bda4635ea70806158a6240540533439921f94e76812e34513d00",
+    "review/render_reliefs.py": "0e5967efdb873b13cae1ff7a4197408d7e273565f95bd301222cd817022bbd2b",
+    "source/definitions.scad": "7e158ddde12b27f3b82b929e3472cd414397bed086db700f4fd10aee8450c952",
+    "parameters/enclosure-v2.json": "7b00c0977d70f8479589bc36594e5589f898a9e3fa7608fe25ec569b6dce593e",
+    "exports/front.stl": "c82eff25e0130e75b2e9b663660e36afbb2f86964e454d9ad0efc7c8966b382a",
+    "exports/rear.stl": "71f9593b6a8778e4033d4aa9c8ea6a7fc278127c6ff30915871583acf35c44f5",
+    "exports/spacer.stl": "e71c64fad70731a9343a0c80fff5a1e269d8ddf07fb124d8499c5dbdfe43c500",
+    "exports/contents.stl": "93defbddbee348c3a5dc35782a3a2952c03b09fb7d113e052a00760a3e590130",
+    "exports/motor_frame.stl": "320f50c53cdb039b697155fe80124b93352cee0f1854c1913f81742948253d19"
+  },
+  "outputs": [
+    {
+      "file": "renders/relief-link.png",
+      "sha256": "8aa49cf53f3e897c9b6b54ff96117851514ade2eb917a592caa07f7f5eda4429",
+      "seconds": 0.821778124984121,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--preview",
+        "--imgsize=1200,1000",
+        "--projection=o",
+        "--colorscheme=Tomorrow",
+        "--camera=43,112,39,55,0,35,44",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/renders/relief-link.png",
+        "-D",
+        "part=\"link\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/review/relief_views.scad"
+      ]
+    },
+    {
+      "file": "renders/relief-motor.png",
+      "sha256": "4a494778f072063d135e1b7e4f2ee0dca4a75e47fa6f1eebe71a4acba00de9d3",
+      "seconds": 0.4428263750160113,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--preview",
+        "--imgsize=1200,1000",
+        "--projection=o",
+        "--colorscheme=Tomorrow",
+        "--camera=94,68,66,55,0,35,35",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/renders/relief-motor.png",
+        "-D",
+        "part=\"motor\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/review/relief_views.scad"
+      ]
+    },
+    {
+      "file": "renders/relief-upper_capture.png",
+      "sha256": "dedb03772a994943387f90075c5ae8a0e86d3917b4517a43a627c8cf066cc93e",
+      "seconds": 0.5897367500001565,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--preview",
+        "--imgsize=1200,1000",
+        "--projection=o",
+        "--colorscheme=Tomorrow",
+        "--camera=92,103,34,55,0,35,45",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/renders/relief-upper_capture.png",
+        "-D",
+        "part=\"upper_capture\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/review/relief_views.scad"
+      ]
+    },
+    {
+      "file": "renders/relief-lower_capture.png",
+      "sha256": "c5d9611a2b6460067ff4b4bdeba06bc656e3b82af1d3188e686f97566fb0bde2",
+      "seconds": 0.6320449580089189,
+      "command": [
+        "/opt/homebrew/bin/openscad",
+        "--preview",
+        "--imgsize=1200,1000",
+        "--projection=o",
+        "--colorscheme=Tomorrow",
+        "--camera=92,10,38,55,0,35,30",
+        "-o",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/renders/relief-lower_capture.png",
+        "-D",
+        "part=\"lower_capture\"",
+        "/Users/calum/code/github.com/0x63616c/smart-blinds/work/enclosure-v2-clearance-successor/review/relief_views.scad"
+      ]
+    }
+  ],
+  "status": "OpenCSG source-export cutaway previews, not CGAL or physical-fit acceptance; colours distinguish parts. Initial CGAL failure retained."
+}

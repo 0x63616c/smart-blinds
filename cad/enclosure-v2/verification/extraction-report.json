@@ -1,0 +1,184 @@
+{
+  "inputs": {
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "verification/extraction.py": "6fd2ffd39347699f86e2a8b2eeebf63f2cdbfb8e54a62fe6cf92e29c1af64ceb",
+    "exports/backplate.stl": "1bf0360fbc72b7980c403765f620cf57739888b59025bc0c707262d6f94a5703",
+    "exports/rear.stl": "71f9593b6a8778e4033d4aa9c8ea6a7fc278127c6ff30915871583acf35c44f5",
+    "exports/motor_frame.stl": "320f50c53cdb039b697155fe80124b93352cee0f1854c1913f81742948253d19",
+    "data/pack-paths.json": "055e7ece95a4abb05fbf811853a4db91adb61de05641c50e4529e70afddc7e16",
+    "data/motor-service.json": "142a7b3c3d7535e9d3f1ac6377208d07d988a1adae04e6c9ccc9f4622cbb3726",
+    "data/encoder-parking.json": "6da8ce8f4c4c8a9145e605a2652e4eb2472a5a61e0f959536918eecc1794462b",
+    "exports/front.stl": "c82eff25e0130e75b2e9b663660e36afbb2f86964e454d9ad0efc7c8966b382a",
+    "exports/spacer.stl": "e71c64fad70731a9343a0c80fff5a1e269d8ddf07fb124d8499c5dbdfe43c500",
+    "exports/guard_clamp.stl": "f7ed295cd5f8feaccebf5ad4f35b0288865526dd439c02ded031c94ce1b59da7",
+    "exports/backing.stl": "1401a85f27f25b8fa73b0a7c1e352b6443facbe5ef9767105239731cada108f6",
+    "exports/tail_keeper.stl": "13f5b020d51e667885f2d00747e60321b980fbc1e15dc4a3949564d18d620433",
+    "verification/current-board-report.json": "2198eda5d0ad62430df5841adf24fc0f97ff1585345a469f7ec0ec4f19550783",
+    "exports/contents.stl": "93defbddbee348c3a5dc35782a3a2952c03b09fb7d113e052a00760a3e590130",
+    "exports/pack_fasteners.stl": "bbd6ae4a92d7c0e8cc5e47e4f5d0990b75536d2556328a40de9bb44ed007f5b8",
+    "exports/service_hardware.stl": "5bee4b31c314bd60a54018f4257ea914255272fdcd0e3ad114655eec6e48cb3a",
+    "exports/inline_body.stl": "61c2f89cf01f579e7bc5e1b2734cd44f91fa240398dd6e4ca2bcacdd683ee777",
+    "exports/drive.stl": "d7a4da95237e061cccaf515681374fde97f36b002f65d728fb84fb3136a32773"
+  },
+  "library": "manifold3d3.3.2",
+  "motion": [
+    [
+      0,
+      2.5,
+      0
+    ],
+    [
+      0,
+      0,
+      72
+    ]
+  ],
+  "checks": [
+    {
+      "name": "rear_slide_backplate",
+      "extruded_surface_prisms": 164,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "rear_slide_wall_head",
+      "extruded_surface_prisms": 21,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "rear_lift_backplate",
+      "extruded_surface_prisms": 91,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "rear_lift_wall_head",
+      "extruded_surface_prisms": 20,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "frame_slide_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "frame_slide_wall_head",
+      "extruded_surface_prisms": 2,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "frame_lift_backplate",
+      "extruded_surface_prisms": 0,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "frame_lift_wall_head",
+      "extruded_surface_prisms": 2,
+      "findings": [],
+      "pass": true
+    },
+    {
+      "name": "forward_separation_drive_actual_min_y",
+      "moving_max_y": 122.60710280336927,
+      "fixed_min_y": 125.30000305175781,
+      "clearance_mm": 2.69290024838854,
+      "pass": true
+    },
+    {
+      "name": "forward_separation_motor_parked_wire_min_y",
+      "moving_max_y": 122.60710280336927,
+      "fixed_min_y": 137.4488,
+      "clearance_mm": 14.841697196630733,
+      "pass": true
+    },
+    {
+      "name": "forward_separation_encoder_parked_wire_min_y",
+      "moving_max_y": 122.60710280336927,
+      "fixed_min_y": 125.4488,
+      "clearance_mm": 2.841697196630733,
+      "pass": true
+    },
+    {
+      "name": "forward_separation_motor_whole_family_housing_min_y",
+      "moving_max_y": 122.60710280336927,
+      "fixed_min_y": 123.7,
+      "clearance_mm": 1.0928971966307301,
+      "pass": true
+    },
+    {
+      "name": "forward_separation_encoder_receptacle_min_y",
+      "moving_max_y": 122.60710280336927,
+      "fixed_min_y": 125.325,
+      "clearance_mm": 2.71789719663073,
+      "pass": true
+    }
+  ],
+  "coverage": [
+    {
+      "name": "front",
+      "max_y_after_slide": 122.5
+    },
+    {
+      "name": "spacer",
+      "max_y_after_slide": 113.9000015258789
+    },
+    {
+      "name": "guard_clamp",
+      "max_y_after_slide": 122.5
+    },
+    {
+      "name": "backing",
+      "max_y_after_slide": 104.69999694824219
+    },
+    {
+      "name": "tail_keeper",
+      "max_y_after_slide": 73.5
+    },
+    {
+      "name": "motor_frame",
+      "max_y_after_slide": 113.30000305175781
+    },
+    {
+      "name": "retained_pack_fan_all_three_cases",
+      "max_y_after_slide": 122.60710280336927
+    },
+    {
+      "name": "PCB_and_current_component_allocation",
+      "max_y_after_slide": 81.25,
+      "status": "Conservative component allocation boxes; not a complete vendor-tolerance model"
+    },
+    {
+      "name": "contents",
+      "max_y_after_slide": 112.5
+    },
+    {
+      "name": "pack_fasteners",
+      "max_y_after_slide": 111.25
+    },
+    {
+      "name": "service_hardware",
+      "max_y_after_slide": 111.25
+    },
+    {
+      "name": "inline_body",
+      "max_y_after_slide": 108.0
+    },
+    {
+      "name": "guard_M3_fastener_conservative",
+      "max_y_after_slide": 120.7
+    }
+  ],
+  "positive_capture_control_volume_mm3": 11.760025634779595,
+  "passed": true,
+  "limits": [
+    "Exact triangular-prism boundary extrusion plus endpoint solids covers rigid translations; actual flexible parking is a sampled family, not continuous manual-motion proof",
+    "FlatZ3 seating face intentionally omitted; cleats and all other backplate obstacles retained",
+    "Actual screw stack, connector variant, motor dimensions, hand support and print tolerances still require qualification",
+    "All raw cell links stay inside the screwed cassette throughout this removal"
+  ]
+}

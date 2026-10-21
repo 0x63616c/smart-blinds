@@ -25,9 +25,10 @@ These checks are not current, thermal, surge, RF or physical qualification.
 
 The maintained emitter starts from the current unrouted capture and explicit
 per-part/routing records. The old 196-part 54 × 68.5 mm route remains historical;
-its passing checks are not reused as acceptance of this layout. Current CI and
-preview commands are being updated around the new source. Fresh whole-project CI
-and the consolidated enclosure package remain pending at this checkpoint.
+its passing checks are not reused as acceptance of this layout. The controller checkpoint
+[`51cd391` passed all thirteen design checks](https://github.com/0x63616c/smart-blinds/actions/runs/39605316054),
+and CI published its refreshed README gallery. The consolidated enclosure candidate below is now included; its
+Linux rebuild is a separate check, not inherited from the earlier case.
 
 Local native KiCad automation now runs through the
 [isolated Linux runner](../tools/kicad-linux/README.md), following a macOS
@@ -42,7 +43,7 @@ corrections must be verified against the exact model used by the viewer.
 
 | Area | Implemented and checked | Still required |
 |---|---|---|
-| Enclosure | Published historical case and service studies; a separate 118 × 196 × 77 mm candidate corrects PCB handedness and front-button insertion | Resolve two newly found internal collisions, replay checks against the current routed board, integrate maintained sources, then test physical fit, retention, strength and creep |
+| Enclosure | [Current 118 × 196 × 77 mm package](mechanical/enclosure-v2.md), inward PCB, 22 installed printed pieces and 17 source-bound local geometry checks; four original overlap controls retained. | Physical motor/holder fit, print strength, cable restraint, loaded handling and optional home-sensor path. |
 | Motor fit | Documented JGB37-520 family envelope with allowances; replaceable cradle and shaft adapter | Fit to the purchased Recfountik 111 RPM motor, encoder wiring, current, torque and load measurements |
 | Main controller | Source-driven 54 × 80 mm four-layer partial route: 206 parts, 649 pins, 516 segments, 120 vias; native schematic and corrected lands reconciled | 352 open connections and three retained hybrid type findings; finish remaining power/signal routing and qualify current, thermal, transient and manufacturing behavior |
 | Battery carriers | Two opposing 86 × 104 mm boards, six PCB holders, branch fuses, protected pack outputs, sensing and gauge | Complete main routing, carrier electrical/thermal review, holder load path, insulation and qualified protection settings |
@@ -363,8 +364,9 @@ measurements remain required before deployment or a battery-life claim.
   reachable range. Equal percentages of each blind's individual travel are not used.
 - Six Samsung 50E cells form one 3S2P pack per device. Cell inventory, condition and
   matched-pack suitability remain unverified.
-- The 71 mm retained case requires holder tails and solder protrusion of no more
-  than 1.5 mm. The untrimmed 78 mm comparison is not an implemented retained variant.
+- The current enclosure is 118 × 196 × 77 mm, with plain buttons reaching 78.8 mm.
+  The historical 71 mm case and its material budget are separate; actual holder
+  tails, solder, cable and printed tolerances still require prototype checks.
 - The current drive shares radial load between the motor and an outboard bearing;
   it does not isolate the gearbox from chain force.
 - The firmware defaults have no qualification records and do not configure motor or
@@ -379,9 +381,9 @@ measurements remain required before deployment or a battery-life claim.
   **$99.27 for two**, using catalog observations from 19–20 October. The [dated ledger](../hw/studies/clean-main/dated-components.json) includes both carriers. It excludes
   boards, assembly/setup/feeder fees, minimums, cells, motors, cables, mechanics, shipping
   and tax; stock and assembly eligibility need refreshing. This is not a quote.
-- The earlier canonical USB input suppressor exceeds both 28 V input limits.
-  The 206-part working study contains a replacement front end; its remaining
-  routing and transient/current qualification are unfinished.
+- The current 206-part circuit replaces the earlier USB input front end, whose
+  suppressor exceeded both 28 V input limits. Remaining routing and
+  transient/current qualification are unfinished.
 - A stuck dump switch dissipates about32 W, and thermal cutoff removes the
   absorber while coasting. Sustained back-drive needs a complete holding/braking
   solution; these are design gaps, not passed simulation or prototype checks.

@@ -1,0 +1,454 @@
+{
+  "inputs": {
+    "geometry/mesh.py": "b92dbabbae87d8c3da08a696e30e6e78f6695b1d388b17c36592abea632921b4",
+    "verification/solid_checks.py": "874a6cf6e5562687bb73c0868ddc9852a13832b9391ffa7ea99272cb022d84af",
+    "exports/backplate.stl": "1bf0360fbc72b7980c403765f620cf57739888b59025bc0c707262d6f94a5703",
+    "exports/cover.stl": "2b95279f2921345e124c49aceef7eab1eb64589ccc228e9e8f37ace8d235f2af",
+    "exports/motor_frame.stl": "320f50c53cdb039b697155fe80124b93352cee0f1854c1913f81742948253d19",
+    "exports/backing.stl": "1401a85f27f25b8fa73b0a7c1e352b6443facbe5ef9767105239731cada108f6",
+    "exports/guard_clamp.stl": "f7ed295cd5f8feaccebf5ad4f35b0288865526dd439c02ded031c94ce1b59da7",
+    "exports/tail_keeper.stl": "13f5b020d51e667885f2d00747e60321b980fbc1e15dc4a3949564d18d620433",
+    "exports/inline_body.stl": "61c2f89cf01f579e7bc5e1b2734cd44f91fa240398dd6e4ca2bcacdd683ee777",
+    "exports/housing_tie.stl": "a2f039e8acce4013697cf421236b6438791dba73e782ce34c6f5000206d70f21",
+    "exports/front.stl": "c82eff25e0130e75b2e9b663660e36afbb2f86964e454d9ad0efc7c8966b382a",
+    "exports/rear.stl": "71f9593b6a8778e4033d4aa9c8ea6a7fc278127c6ff30915871583acf35c44f5",
+    "exports/spacer.stl": "e71c64fad70731a9343a0c80fff5a1e269d8ddf07fb124d8499c5dbdfe43c500"
+  },
+  "library": "manifold3d3.3.2",
+  "source": "https://github.com/elalish/manifold",
+  "method": "Exact original STL coordinates welded by identical vertex values; float32 interchange, no repair, smoothing or tolerance expansion. Pinned independent Boolean engine. Imported manifold validity checked before each operation.",
+  "meshes": [
+    {
+      "part": "backplate",
+      "volume_mm3": 96052.54028319144,
+      "status": "Error.NoError",
+      "bounds": [
+        0.0,
+        -11.0,
+        0.0,
+        118.0,
+        185.0,
+        62.70000076293945
+      ],
+      "shells": 1
+    },
+    {
+      "part": "cover",
+      "volume_mm3": 158282.5080728581,
+      "status": "Error.NoError",
+      "bounds": [
+        0.0,
+        -11.0,
+        3.3999996185302734,
+        118.0,
+        185.0,
+        77.0
+      ],
+      "shells": 1
+    },
+    {
+      "part": "motor_frame",
+      "volume_mm3": 5051.55579848345,
+      "status": "Error.NoError",
+      "bounds": [
+        83.19999694824219,
+        -6.5,
+        3.3999996185302734,
+        114.5999984741211,
+        110.80000305175781,
+        69.0999984741211
+      ],
+      "shells": 1
+    },
+    {
+      "part": "backing",
+      "volume_mm3": 2323.324650488155,
+      "status": "Error.NoError",
+      "bounds": [
+        49.0,
+        98.4000015258789,
+        42.0,
+        84.0,
+        102.19999694824219,
+        65.9000015258789
+      ],
+      "shells": 1
+    },
+    {
+      "part": "guard_clamp",
+      "volume_mm3": 2671.9825767909083,
+      "status": "Error.NoError",
+      "bounds": [
+        37.20000076293945,
+        101.80000305175781,
+        34.0,
+        94.0,
+        120.0,
+        65.9000015258789
+      ],
+      "shells": 1
+    },
+    {
+      "part": "tail_keeper",
+      "volume_mm3": 134.07199410790778,
+      "status": "Error.NoError",
+      "bounds": [
+        92.0999984741211,
+        65.0,
+        69.0999984741211,
+        106.0999984741211,
+        71.0,
+        71.5999984741211
+      ],
+      "shells": 1
+    },
+    {
+      "part": "inline_body",
+      "volume_mm3": 2427.600992202759,
+      "status": "Error.NoError",
+      "bounds": [
+        93.44999694824219,
+        80.0,
+        64.8499984741211,
+        104.6500015258789,
+        105.5,
+        73.3499984741211
+      ],
+      "shells": 1
+    },
+    {
+      "part": "housing_tie",
+      "volume_mm3": 194.08210298152235,
+      "status": "Error.NoError",
+      "bounds": [
+        92.44999694824219,
+        89.2249984741211,
+        62.29999923706055,
+        109.25,
+        93.67500305175781,
+        74.3499984741211
+      ],
+      "shells": 1
+    },
+    {
+      "part": "front",
+      "volume_mm3": 34482.38548500106,
+      "status": "Error.NoError",
+      "bounds": [
+        3.1999998092651367,
+        4.399999618530273,
+        34.29999923706055,
+        93.80000305175781,
+        120.0,
+        68.5
+      ],
+      "shells": 1
+    },
+    {
+      "part": "rear",
+      "volume_mm3": 32434.56039145902,
+      "status": "Error.NoError",
+      "bounds": [
+        3.1999998092651367,
+        4.399999618530273,
+        3.0,
+        93.80000305175781,
+        120.0,
+        34.29999923706055
+      ],
+      "shells": 1
+    },
+    {
+      "part": "spacer",
+      "volume_mm3": 11571.163617154949,
+      "status": "Error.NoError",
+      "bounds": [
+        3.3999996185302734,
+        4.59999942779541,
+        28.799999237060547,
+        92.19999694824219,
+        111.4000015258789,
+        39.400001525878906
+      ],
+      "shells": 1
+    }
+  ],
+  "checks": [
+    {
+      "name": "motor_frame_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "backing_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "guard_clamp_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "tail_keeper_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "inline_body_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "housing_tie_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "front_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "rear_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "spacer_cover",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "backing_front",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "backing_rear",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "backing_spacer",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "tail_keeper_front",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "tail_keeper_rear",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "tail_keeper_spacer",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "guard_clamp_front",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "guard_clamp_rear",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    },
+    {
+      "name": "guard_clamp_spacer",
+      "volume_mm3": 0.0,
+      "bounds": [
+        Infinity,
+        Infinity,
+        Infinity,
+        -Infinity,
+        -Infinity,
+        -Infinity
+      ],
+      "empty": true,
+      "pass": true,
+      "status": "Error.NoError"
+    }
+  ],
+  "controls": 2,
+  "passed": true,
+  "limits": [
+    "Static source geometry, not print tolerance, strength or physical fit",
+    "Earlier CGAL import errors remain failed; this is independent evidence on same mesh hashes"
+  ]
+}

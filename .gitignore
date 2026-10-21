@@ -34,6 +34,13 @@ cad/**/*.step
 cad/**/*.3mf
 cad/**/*.gcode
 
+# Reviewed enclosure source operands and prototype print snapshots.
+!cad/enclosure-v2/assets/*.stl
+!cad/enclosure-v2/exports/*.stl
+!cad/enclosure-v2/data/baseline-front.stl
+!cad/enclosure-v2/data/baseline-rear.stl
+!cad/enclosure-v2/data/rejected-motor-frame.stl
+
 # OS / editor
 .DS_Store
 .idea/
